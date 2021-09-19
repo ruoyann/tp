@@ -57,3 +57,13 @@ You can reach us at the email `seer[at]comp.nus.edu.sg`
 
 * Role: Developer
 * Responsibilities: UI
+
+### Yin Ruoyan 
+
+<img src="images/ruoyan.png" width="200px">
+
+[[github](http://github.com/ruoyann)]
+[[portfolio](team/johndoe.md)]
+
+* Role: Developer
+* Responsibilities: UI
