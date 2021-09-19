@@ -60,7 +60,7 @@ You can reach us at the email `seer[at]comp.nus.edu.sg`
 
 ### Kim-Chan Tze Yong, Joenz
 
-<img src="images/joenz.png" width="2000px">
+<img src="images/joenz.png" width="200px">
 
 [[github](http://github.com/joenzkimchan)]
 [[portfolio](null)]
