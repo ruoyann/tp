@@ -9,6 +9,12 @@ You can reach us at the email `seer[at]comp.nus.edu.sg`
 
 ## Project team
 
+### Owen Tan
+
+<img src="images/owentan.png" width="200px">
+
+[[github](https://github.com/mslevis)]
+
 ### Lim Danqi
 
 <img src="images/limdanqi.jpg" width="200px">
@@ -16,16 +22,6 @@ You can reach us at the email `seer[at]comp.nus.edu.sg`
 [[github](https://github.com/limdanqi)]
 
 * Role: Developer
-
-### Jane Doe
-
-<img src="images/johndoe.png" width="200px">
-
-[[github](http://github.com/johndoe)]
-[[portfolio](team/johndoe.md)]
-
-* Role: Team Lead
-* Responsibilities: UI
 
 ### Jefferson Lim
 
@@ -35,26 +31,6 @@ You can reach us at the email `seer[at]comp.nus.edu.sg`
 
 * Role: Developer
 * Responsibilities: Data
-
-### Jean Doe
-
-<img src="images/johndoe.png" width="200px">
-
-[[github](http://github.com/johndoe)]
-[[portfolio](team/johndoe.md)]
-
-* Role: Developer
-* Responsibilities: Dev Ops + Threading
-
-### James Doe
-
-<img src="images/johndoe.png" width="200px">
-
-[[github](http://github.com/johndoe)]
-[[portfolio](team/johndoe.md)]
-
-* Role: Developer
-* Responsibilities: UI
 
 ### Yin Ruoyan 
 
