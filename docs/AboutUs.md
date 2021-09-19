@@ -15,43 +15,29 @@ You can reach us at the email `seer[at]comp.nus.edu.sg`
 
 [[github](https://github.com/mslevis)]
 
+### Lim Danqi
+
+<img src="images/limdanqi.jpg" width="200px">
+
+[[github](https://github.com/limdanqi)]
+
 * Role: Developer
 
-### Jane Doe
+### Jefferson Lim
 
 <img src="images/johndoe.png" width="200px">
 
-[[github](http://github.com/johndoe)]
-[[portfolio](team/johndoe.md)]
-
-* Role: Team Lead
-* Responsibilities: UI
-
-### Johnny Doe
-
-<img src="images/johndoe.png" width="200px">
-
-[[github](http://github.com/johndoe)] [[portfolio](team/johndoe.md)]
+[[github](http://github.com/qreoct)] [[portfolio](team/johndoe.md)]
 
 * Role: Developer
 * Responsibilities: Data
 
-### Jean Doe
+### Kim-Chan Tze Yong, Joenz
 
-<img src="images/johndoe.png" width="200px">
+<img src="images/joenz.png" width="200px">
 
-[[github](http://github.com/johndoe)]
-[[portfolio](team/johndoe.md)]
+[[github](http://github.com/joenzkimchan)]
+[[portfolio](null)]
 
-* Role: Developer
-* Responsibilities: Dev Ops + Threading
-
-### James Doe
-
-<img src="images/johndoe.png" width="200px">
-
-[[github](http://github.com/johndoe)]
-[[portfolio](team/johndoe.md)]
-
-* Role: Developer
-* Responsibilities: UI
+* Role: Gojou Satoru
+* Responsibilities: To be confirmed 
