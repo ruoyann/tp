@@ -55,3 +55,13 @@ You can reach us at the email `seer[at]comp.nus.edu.sg`
 
 * Role: Developer
 * Responsibilities: UI
+
+### Kim-Chan Tze Yong, Joenz
+
+<img src="images/joenz.png" width="200px">
+
+[[github](http://github.com/joenzkimchan)]
+[[portfolio](null)]
+
+* Role: Gojou Satoru
+* Responsibilities: To be confirmed 
