@@ -11,7 +11,7 @@ You can reach us at the email `seer[at]comp.nus.edu.sg`
 
 ### Lim Danqi
 
-<img src="images/Alice-in-Wonderland.jpg" width="200px">
+<img src="images/limdanqi.jpg" width="200px">
 
 [[github](https://github.com/limdanqi)]
 
