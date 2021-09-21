@@ -14,7 +14,7 @@ StudyTracker is a **desktop app that lets you save your favourite study spots, o
 
 1. Ensure you have Java `11` or above installed in your Computer.
 
-1. Download the latest `StudyTracker.jar` from [here](https://github.com/se-edu/addressbook-level3/releases).
+1. Download the latest `StudyTracker.jar` from [here](https://github.com/AY2122S1-CS2103T-T09-1/tp/releases).
 
 1. Copy the file to the folder you want to use as the _home folder_ for your AddressBook.
 
@@ -24,13 +24,13 @@ StudyTracker is a **desktop app that lets you save your favourite study spots, o
 1. Type the command in the command box and press Enter to execute it. e.g. typing **`help`** and pressing Enter will open the help window.<br>
    Some example commands you can try:
 
-   * **`list`** : Lists all contacts.
+   * **`list`** : Lists all study locations.
 
    * **`add`**` n[COM1] r[5]` : Adds a study location named `COM1` to the StudyTracker.
 
    * **`delete`**`n[COM1]` : Deletes the location named `COM1` from the StudyTracker.
 
-   * **`clear`** : Deletes all contacts.
+   * **`clear`** : Deletes all study spots.
 
    * **`exit`** : Exits the app.
 
@@ -79,7 +79,7 @@ Format: `help`
 
 ### Adding a study spot: `add`
 
-Adds a person to the address book.
+Adds a study spot to the StudyTracker.
 
 Format: `add n[NAME]* r[RATING]* a[ADDRESS] t[TAG...] m[AMENITY...]`
 
@@ -129,8 +129,8 @@ Format: `edit n[NAME]* n[NEW_NAME] a[NEW_ADDRESS] t[NEW_TAG] m[NEW_AMENITY] r[NE
 * Edits the study spot with the same name. The name, while not case-sensitive, **must match the name in the list**.
 * At least one of the optional fields must be provided.
 * Existing values will be updated to the input values.
-* When editing tags, the existing tags of the person will be removed i.e adding of tags is not cumulative.
-* You can remove all the person’s tags by typing `t/` without
+* When editing tags, the existing tags of the study spot will be removed i.e adding of tags is not cumulative.
+* You can remove all the study spot’s tags by typing `t/` without
     specifying any tags after it.
 
 Examples:
@@ -141,7 +141,7 @@ Study spot “TR3” has been edited to “Training Room 3”
 
 Command alias: `ed`
 
-### Locating persons by name: `find`
+### Locating a study spot by name: `find`
 
 Finds study spots whose names contain the query.
 
@@ -167,7 +167,7 @@ Deletes the specified study spot from the StudyTracker.
 
 Format: `delete n[NAME]*`
 
-* Deletes the person with the specified **name**.
+* Deletes the study spot with the specified **name**.
 
 
 Examples:
