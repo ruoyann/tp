@@ -234,12 +234,12 @@ Recall from the User Guide that the `edit` command has the format: `edit INDEX [
         persons.addAll(
             source.getPersonList()
                   .stream()
-                  .map(JsonAdaptedPerson::new)
+                  .map(JsonAdaptedStudySpot::new)
                   .collect(Collectors.toList()));
     }
     ```
 
-1. It appears that a `JsonAdaptedPerson` is created for each `Person` and then added to the `JsonSerializableAddressBook`.
+1. It appears that a `JsonAdaptedStudySpot` is created for each `Person` and then added to the `JsonSerializableAddressBook`.
    This is because regular Java objects need to go through an _adaptation_ for them to be suitable to be saved in JSON format.
 
 1. While you are stepping through the classes in the `Storage` component, here is the component's class diagram to help you understand how those classes fit into the structure of the component.<br>

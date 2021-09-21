@@ -20,19 +20,19 @@ import seedu.address.model.AddressBook;
 import seedu.address.model.Model;
 import seedu.address.model.ReadOnlyAddressBook;
 import seedu.address.model.ReadOnlyUserPrefs;
-import seedu.address.model.person.Person;
-import seedu.address.testutil.PersonBuilder;
+import seedu.address.model.studyspot.StudySpot;
+import seedu.address.testutil.StudySpotBuilder;
 
 public class AddCommandTest {
 
     @Test
-    public void constructor_nullPerson_throwsNullPointerException() {
+    public void constructor_nullStudySpot_throwsNullPointerException() {
         assertThrows(NullPointerException.class, () -> new AddCommand(null));
     }
 
     @Test
     public void execute_personAcceptedByModel_addSuccessful() throws Exception {
-        ModelStubAcceptingPersonAdded modelStub = new ModelStubAcceptingPersonAdded();
+        ModelStubAcceptingStudySpotAdded modelStub = new ModelStubAcceptingStudySpotAdded();
         Person validPerson = new PersonBuilder().build();
 
         CommandResult commandResult = new AddCommand(validPerson).execute(modelStub);

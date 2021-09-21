@@ -5,16 +5,16 @@ import static java.util.Objects.requireNonNull;
 import java.util.List;
 
 import javafx.collections.ObservableList;
-import seedu.address.model.person.Person;
-import seedu.address.model.person.UniquePersonList;
+import seedu.address.model.studyspot.StudySpot;
+import seedu.address.model.studyspot.UniqueStudySpotList;
 
 /**
  * Wraps all data at the address-book level
- * Duplicates are not allowed (by .isSamePerson comparison)
+ * Duplicates are not allowed (by .isSameStudySpot comparison)
  */
 public class AddressBook implements ReadOnlyAddressBook {
 
-    private final UniquePersonList persons;
+    private final UniqueStudySpotList persons;
 
     /*
      * The 'unusual' code block below is a non-static initialization block, sometimes used to avoid duplication
@@ -24,13 +24,13 @@ public class AddressBook implements ReadOnlyAddressBook {
      *   among constructors.
      */
     {
-        persons = new UniquePersonList();
+        persons = new UniqueStudySpotList();
     }
 
     public AddressBook() {}
 
     /**
-     * Creates an AddressBook using the Persons in the {@code toBeCopied}
+     * Creates an AddressBook using the StudySpots in the {@code toBeCopied}
      */
     public AddressBook(ReadOnlyAddressBook toBeCopied) {
         this();
@@ -43,8 +43,8 @@ public class AddressBook implements ReadOnlyAddressBook {
      * Replaces the contents of the person list with {@code persons}.
      * {@code persons} must not contain duplicate persons.
      */
-    public void setPersons(List<Person> persons) {
-        this.persons.setPersons(persons);
+    public void setStudySpots(List<StudySpot> persons) {
+        this.persons.setStudySpots(persons);
     }
 
     /**
@@ -53,7 +53,7 @@ public class AddressBook implements ReadOnlyAddressBook {
     public void resetData(ReadOnlyAddressBook newData) {
         requireNonNull(newData);
 
-        setPersons(newData.getPersonList());
+        setStudySpots(newData.getStudySpotList());
     }
 
     //// person-level operations
@@ -61,7 +61,7 @@ public class AddressBook implements ReadOnlyAddressBook {
     /**
      * Returns true if a person with the same identity as {@code person} exists in the address book.
      */
-    public boolean hasPerson(Person person) {
+    public boolean hasStudySpot(StudySpot person) {
         requireNonNull(person);
         return persons.contains(person);
     }
@@ -70,26 +70,26 @@ public class AddressBook implements ReadOnlyAddressBook {
      * Adds a person to the address book.
      * The person must not already exist in the address book.
      */
-    public void addPerson(Person p) {
+    public void addStudySpot(StudySpot p) {
         persons.add(p);
     }
 
     /**
-     * Replaces the given person {@code target} in the list with {@code editedPerson}.
+     * Replaces the given person {@code target} in the list with {@code editedStudySpot}.
      * {@code target} must exist in the address book.
-     * The person identity of {@code editedPerson} must not be the same as another existing person in the address book.
+     * The person identity of {@code editedStudySpot} must not be the same as another existing person in the address book.
      */
-    public void setPerson(Person target, Person editedPerson) {
-        requireNonNull(editedPerson);
+    public void setStudySpot(StudySpot target, StudySpot editedStudySpot) {
+        requireNonNull(editedStudySpot);
 
-        persons.setPerson(target, editedPerson);
+        persons.setStudySpot(target, editedStudySpot);
     }
 
     /**
      * Removes {@code key} from this {@code AddressBook}.
      * {@code key} must exist in the address book.
      */
-    public void removePerson(Person key) {
+    public void removeStudySpot(StudySpot key) {
         persons.remove(key);
     }
 
@@ -102,7 +102,7 @@ public class AddressBook implements ReadOnlyAddressBook {
     }
 
     @Override
-    public ObservableList<Person> getPersonList() {
+    public ObservableList<StudySpot> getStudySpotList() {
         return persons.asUnmodifiableObservableList();
     }
 

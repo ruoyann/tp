@@ -1,4 +1,4 @@
-package seedu.address.model.person;
+package seedu.address.model.studyspot;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertFalse;
@@ -15,8 +15,8 @@ import java.util.List;
 
 import org.junit.jupiter.api.Test;
 
-import seedu.address.model.person.exceptions.DuplicatePersonException;
-import seedu.address.model.person.exceptions.PersonNotFoundException;
+import seedu.address.model.studyspot.exceptions.DuplicatePersonException;
+import seedu.address.model.studyspot.exceptions.PersonNotFoundException;
 import seedu.address.testutil.PersonBuilder;
 
 public class UniquePersonListTest {
@@ -42,7 +42,7 @@ public class UniquePersonListTest {
     @Test
     public void contains_personWithSameIdentityFieldsInList_returnsTrue() {
         uniquePersonList.add(ALICE);
-        Person editedAlice = new PersonBuilder(ALICE).withAddress(VALID_ADDRESS_BOB).withTags(VALID_TAG_HUSBAND)
+        StudySpot editedAlice = new PersonBuilder(ALICE).withAddress(VALID_ADDRESS_BOB).withTags(VALID_TAG_HUSBAND)
                 .build();
         assertTrue(uniquePersonList.contains(editedAlice));
     }

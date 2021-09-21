@@ -229,7 +229,7 @@ Now that we have all the information that we need, let’s lay the groundwork fo
 
 ### Add a new `Remark` class
 
-Create a new `Remark` in `seedu.address.model.person`. Since a `Remark` is a field that is similar to `Address`, we can reuse a significant bit of code.
+Create a new `Remark` in `seedu.address.model.studyspot`. Since a `Remark` is a field that is similar to `Address`, we can reuse a significant bit of code.
 
 A copy-paste and search-replace later, you should have something like [this](https://github.com/se-edu/addressbook-level3/commit/4516e099699baa9e2d51801bd26f016d812dedcc#diff-af2f075d24dfcd333876f0fbce321f25). Note how `Remark` has no constrains and thus does not require input
 validation.
@@ -289,7 +289,7 @@ Refer to [this commit](https://github.com/se-edu/addressbook-level3/commit/ce998
 
 ## Updating Storage
 
-AddressBook stores data by serializing `JsonAdaptedPerson` into `json` with the help of an external library — Jackson. Let’s update `JsonAdaptedPerson` to work with our new `Person`!
+AddressBook stores data by serializing `JsonAdaptedStudySpot` into `json` with the help of an external library — Jackson. Let’s update `JsonAdaptedStudySpot` to work with our new `Person`!
 
 While the changes to code may be minimal, the test data will have to be updated as well.
 
