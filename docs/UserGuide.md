@@ -26,9 +26,9 @@ StudyTracker is a **desktop app that lets you save your favourite study spots, o
 
    * **`list`** : Lists all contacts.
 
-   * **`add`**`n/John Doe p/98765432 e/johnd@example.com a/John street, block 123, #01-01` : Adds a contact named `John Doe` to the Address Book.
+   * **`add`**` n[COM1] r[5]` : Adds a study location named `COM1` to the StudyTracker.
 
-   * **`delete`**`3` : Deletes the 3rd contact shown in the current list.
+   * **`delete`**`n[COM1]` : Deletes the location named `COM1` from the StudyTracker.
 
    * **`clear`** : Deletes all contacts.
 
