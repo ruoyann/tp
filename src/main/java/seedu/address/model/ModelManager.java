@@ -89,9 +89,9 @@ public class ModelManager implements Model {
     }
 
     @Override
-    public boolean hasStudySpot(StudySpot StudySpot) {
-        requireNonNull(StudySpot);
-        return addressBook.hasStudySpot(StudySpot);
+    public boolean hasStudySpot(StudySpot studySpot) {
+        requireNonNull(studySpot);
+        return addressBook.hasStudySpot(studySpot);
     }
 
     @Override
@@ -100,8 +100,8 @@ public class ModelManager implements Model {
     }
 
     @Override
-    public void addStudySpot(StudySpot StudySpot) {
-        addressBook.addStudySpot(StudySpot);
+    public void addStudySpot(StudySpot studySpot) {
+        addressBook.addStudySpot(studySpot);
         updateFilteredStudySpotList(PREDICATE_SHOW_ALL_STUDYSPOTS);
     }
 

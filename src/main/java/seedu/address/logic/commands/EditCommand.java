@@ -22,9 +22,13 @@ import seedu.address.model.Model;
 import seedu.address.model.studyspot.Address;
 import seedu.address.model.studyspot.Email;
 import seedu.address.model.studyspot.Name;
-import seedu.address.model.studyspot.StudySpot;
 import seedu.address.model.studyspot.Phone;
+import seedu.address.model.studyspot.StudySpot;
 import seedu.address.model.tag.Tag;
+
+
+
+
 
 /**
  * Edits the details of an existing person in the address book.
@@ -90,7 +94,8 @@ public class EditCommand extends Command {
      * Creates and returns a {@code StudySpot} with the details of {@code personToEdit}
      * edited with {@code editStudySpotDescriptor}.
      */
-    private static StudySpot createEditedStudySpot(StudySpot personToEdit, EditStudySpotDescriptor editStudySpotDescriptor) {
+    private static StudySpot createEditedStudySpot(StudySpot personToEdit,
+                                                   EditStudySpotDescriptor editStudySpotDescriptor) {
         assert personToEdit != null;
 
         Name updatedName = editStudySpotDescriptor.getName().orElse(personToEdit.getName());

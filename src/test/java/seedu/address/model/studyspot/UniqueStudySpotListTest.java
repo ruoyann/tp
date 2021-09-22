@@ -159,7 +159,8 @@ public class UniqueStudySpotListTest {
     @Test
     public void setStudySpots_listWithDuplicateStudySpots_throwsDuplicateStudySpotException() {
         List<StudySpot> listWithDuplicateStudySpots = Arrays.asList(ALICE, ALICE);
-        assertThrows(DuplicateStudySpotException.class, () -> uniqueStudySpotList.setStudySpots(listWithDuplicateStudySpots));
+        assertThrows(DuplicateStudySpotException.class, () ->
+                uniqueStudySpotList.setStudySpots(listWithDuplicateStudySpots));
     }
 
     @Test

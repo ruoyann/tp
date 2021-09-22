@@ -13,10 +13,11 @@ import seedu.address.model.studyspot.exceptions.StudySpotNotFoundException;
 
 /**
  * A list of persons that enforces uniqueness between its elements and does not allow nulls.
- * A person is considered unique by comparing using {@code StudySpot#isSameStudySpot(StudySpot)}. As such, adding and updating of
- * persons uses StudySpot#isSameStudySpot(StudySpot) for equality so as to ensure that the person being added or updated is
- * unique in terms of identity in the UniqueStudySpotList. However, the removal of a person uses StudySpot#equals(Object) so
- * as to ensure that the person with exactly the same fields will be removed.
+ * A person is considered unique by comparing using {@code StudySpot#isSameStudySpot(StudySpot)}.
+ * As such, adding and updating of persons uses StudySpot#isSameStudySpot(StudySpot) for equality
+ * so as to ensure that the person being added or updated is unique in terms of identity in the UniqueStudySpotList.
+ * However, the removal of a person uses StudySpot#equals(Object) so as to ensure that
+ * the person with exactly the same fields will be removed.
  *
  * Supports a minimal set of list operations.
  *

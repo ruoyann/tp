@@ -36,7 +36,8 @@ public class EditStudySpotDescriptorTest {
         assertFalse(DESC_AMY.equals(DESC_BOB));
 
         // different name -> returns false
-        EditStudySpotDescriptor editedAmy = new EditStudySpotDescriptorBuilder(DESC_AMY).withName(VALID_NAME_BOB).build();
+        EditStudySpotDescriptor editedAmy = new EditStudySpotDescriptorBuilder(DESC_AMY)
+                .withName(VALID_NAME_BOB).build();
         assertFalse(DESC_AMY.equals(editedAmy));
 
         // different phone -> returns false

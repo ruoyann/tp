@@ -13,8 +13,8 @@ import seedu.address.commons.exceptions.IllegalValueException;
 import seedu.address.model.studyspot.Address;
 import seedu.address.model.studyspot.Email;
 import seedu.address.model.studyspot.Name;
-import seedu.address.model.studyspot.StudySpot;
 import seedu.address.model.studyspot.Phone;
+import seedu.address.model.studyspot.StudySpot;
 import seedu.address.model.tag.Tag;
 
 /**
