@@ -14,31 +14,31 @@ import seedu.address.commons.core.LogsCenter;
 import seedu.address.model.studyspot.StudySpot;
 
 /**
- * Represents the in-memory model of the address book data.
+ * Represents the in-memory model of the study tracker data.
  */
 public class ModelManager implements Model {
     private static final Logger logger = LogsCenter.getLogger(ModelManager.class);
 
-    private final AddressBook addressBook;
+    private final StudyTracker studyTracker;
     private final UserPrefs userPrefs;
     private final FilteredList<StudySpot> filteredStudySpots;
 
     /**
-     * Initializes a ModelManager with the given addressBook and userPrefs.
+     * Initializes a ModelManager with the given studyTracker and userPrefs.
      */
-    public ModelManager(ReadOnlyAddressBook addressBook, ReadOnlyUserPrefs userPrefs) {
+    public ModelManager(ReadOnlyStudyTracker studyTracker, ReadOnlyUserPrefs userPrefs) {
         super();
-        requireAllNonNull(addressBook, userPrefs);
+        requireAllNonNull(studyTracker, userPrefs);
 
-        logger.fine("Initializing with address book: " + addressBook + " and user prefs " + userPrefs);
+        logger.fine("Initializing with study tracker: " + studyTracker + " and user prefs " + userPrefs);
 
-        this.addressBook = new AddressBook(addressBook);
+        this.studyTracker = new StudyTracker(studyTracker);
         this.userPrefs = new UserPrefs(userPrefs);
-        filteredStudySpots = new FilteredList<>(this.addressBook.getStudySpotList());
+        filteredStudySpots = new FilteredList<>(this.studyTracker.getStudySpotList());
     }
 
     public ModelManager() {
-        this(new AddressBook(), new UserPrefs());
+        this(new StudyTracker(), new UserPrefs());
     }
 
     //=========== UserPrefs ==================================================================================
@@ -66,42 +66,42 @@ public class ModelManager implements Model {
     }
 
     @Override
-    public Path getAddressBookFilePath() {
-        return userPrefs.getAddressBookFilePath();
+    public Path getStudyTrackerFilePath() {
+        return userPrefs.getStudyTrackerFilePath();
     }
 
     @Override
-    public void setAddressBookFilePath(Path addressBookFilePath) {
-        requireNonNull(addressBookFilePath);
-        userPrefs.setAddressBookFilePath(addressBookFilePath);
+    public void setStudyTrackerFilePath(Path studyTrackerFilePath) {
+        requireNonNull(studyTrackerFilePath);
+        userPrefs.setStudyTrackerFilePath(studyTrackerFilePath);
     }
 
-    //=========== AddressBook ================================================================================
+    //=========== StudyTracker ================================================================================
 
     @Override
-    public void setAddressBook(ReadOnlyAddressBook addressBook) {
-        this.addressBook.resetData(addressBook);
+    public void setStudyTracker(ReadOnlyStudyTracker studyTracker) {
+        this.studyTracker.resetData(studyTracker);
     }
 
     @Override
-    public ReadOnlyAddressBook getAddressBook() {
-        return addressBook;
+    public ReadOnlyStudyTracker getStudyTracker() {
+        return studyTracker;
     }
 
     @Override
     public boolean hasStudySpot(StudySpot studySpot) {
         requireNonNull(studySpot);
-        return addressBook.hasStudySpot(studySpot);
+        return studyTracker.hasStudySpot(studySpot);
     }
 
     @Override
     public void deleteStudySpot(StudySpot target) {
-        addressBook.removeStudySpot(target);
+        studyTracker.removeStudySpot(target);
     }
 
     @Override
     public void addStudySpot(StudySpot studySpot) {
-        addressBook.addStudySpot(studySpot);
+        studyTracker.addStudySpot(studySpot);
         updateFilteredStudySpotList(PREDICATE_SHOW_ALL_STUDYSPOTS);
     }
 
@@ -109,7 +109,7 @@ public class ModelManager implements Model {
     public void setStudySpot(StudySpot target, StudySpot editedStudySpot) {
         requireAllNonNull(target, editedStudySpot);
 
-        addressBook.setStudySpot(target, editedStudySpot);
+        studyTracker.setStudySpot(target, editedStudySpot);
     }
 
     //=========== Filtered StudySpot List Accessors =============================================================
@@ -143,7 +143,7 @@ public class ModelManager implements Model {
 
         // state check
         ModelManager other = (ModelManager) obj;
-        return addressBook.equals(other.addressBook)
+        return studyTracker.equals(other.studyTracker)
                 && userPrefs.equals(other.userPrefs)
                 && filteredStudySpots.equals(other.filteredStudySpots);
     }

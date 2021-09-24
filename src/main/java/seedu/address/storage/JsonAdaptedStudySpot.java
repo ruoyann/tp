@@ -31,7 +31,7 @@ class JsonAdaptedStudySpot {
     private final List<JsonAdaptedTag> tagged = new ArrayList<>();
 
     /**
-     * Constructs a {@code JsonAdaptedStudySpot} with the given person details.
+     * Constructs a {@code JsonAdaptedStudySpot} with the given study spot details.
      */
     @JsonCreator
     public JsonAdaptedStudySpot(@JsonProperty("name") String name, @JsonProperty("phone") String phone,
@@ -60,14 +60,14 @@ class JsonAdaptedStudySpot {
     }
 
     /**
-     * Converts this Jackson-friendly adapted person object into the model's {@code StudySpot} object.
+     * Converts this Jackson-friendly adapted study spot object into the model's {@code StudySpot} object.
      *
-     * @throws IllegalValueException if there were any data constraints violated in the adapted person.
+     * @throws IllegalValueException if there were any data constraints violated in the adapted study spot.
      */
     public StudySpot toModelType() throws IllegalValueException {
-        final List<Tag> personTags = new ArrayList<>();
+        final List<Tag> studySpotTags = new ArrayList<>();
         for (JsonAdaptedTag tag : tagged) {
-            personTags.add(tag.toModelType());
+            studySpotTags.add(tag.toModelType());
         }
 
         if (name == null) {
@@ -102,7 +102,7 @@ class JsonAdaptedStudySpot {
         }
         final Address modelAddress = new Address(address);
 
-        final Set<Tag> modelTags = new HashSet<>(personTags);
+        final Set<Tag> modelTags = new HashSet<>(studySpotTags);
         return new StudySpot(modelName, modelPhone, modelEmail, modelAddress, modelTags);
     }
 

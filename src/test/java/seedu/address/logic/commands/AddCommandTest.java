@@ -16,9 +16,9 @@ import org.junit.jupiter.api.Test;
 import javafx.collections.ObservableList;
 import seedu.address.commons.core.GuiSettings;
 import seedu.address.logic.commands.exceptions.CommandException;
-import seedu.address.model.AddressBook;
+import seedu.address.model.StudyTracker;
 import seedu.address.model.Model;
-import seedu.address.model.ReadOnlyAddressBook;
+import seedu.address.model.ReadOnlyStudyTracker;
 import seedu.address.model.ReadOnlyUserPrefs;
 import seedu.address.model.studyspot.StudySpot;
 import seedu.address.testutil.StudySpotBuilder;
@@ -38,7 +38,7 @@ public class AddCommandTest {
         CommandResult commandResult = new AddCommand(validStudySpot).execute(modelStub);
 
         assertEquals(String.format(AddCommand.MESSAGE_SUCCESS, validStudySpot), commandResult.getFeedbackToUser());
-        assertEquals(Arrays.asList(validStudySpot), modelStub.personsAdded);
+        assertEquals(Arrays.asList(validStudySpot), modelStub.studySpotsAdded);
     }
 
     @Test
@@ -99,12 +99,12 @@ public class AddCommandTest {
         }
 
         @Override
-        public Path getAddressBookFilePath() {
+        public Path getStudyTrackerFilePath() {
             throw new AssertionError("This method should not be called.");
         }
 
         @Override
-        public void setAddressBookFilePath(Path addressBookFilePath) {
+        public void setStudyTrackerFilePath(Path studyTrackerFilePath) {
             throw new AssertionError("This method should not be called.");
         }
 
@@ -114,12 +114,12 @@ public class AddCommandTest {
         }
 
         @Override
-        public void setAddressBook(ReadOnlyAddressBook newData) {
+        public void setStudyTracker(ReadOnlyStudyTracker newData) {
             throw new AssertionError("This method should not be called.");
         }
 
         @Override
-        public ReadOnlyAddressBook getAddressBook() {
+        public ReadOnlyStudyTracker getStudyTracker() {
             throw new AssertionError("This method should not be called.");
         }
 
@@ -171,23 +171,23 @@ public class AddCommandTest {
      * A Model stub that always accept the person being added.
      */
     private class ModelStubAcceptingStudySpotAdded extends ModelStub {
-        final ArrayList<StudySpot> personsAdded = new ArrayList<>();
+        final ArrayList<StudySpot> studySpotsAdded = new ArrayList<>();
 
         @Override
         public boolean hasStudySpot(StudySpot person) {
             requireNonNull(person);
-            return personsAdded.stream().anyMatch(person::isSameStudySpot);
+            return studySpotsAdded.stream().anyMatch(person::isSameStudySpot);
         }
 
         @Override
         public void addStudySpot(StudySpot person) {
             requireNonNull(person);
-            personsAdded.add(person);
+            studySpotsAdded.add(person);
         }
 
         @Override
-        public ReadOnlyAddressBook getAddressBook() {
-            return new AddressBook();
+        public ReadOnlyStudyTracker getStudyTracker() {
+            return new StudyTracker();
         }
     }
 

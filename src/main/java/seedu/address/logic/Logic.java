@@ -7,7 +7,7 @@ import seedu.address.commons.core.GuiSettings;
 import seedu.address.logic.commands.CommandResult;
 import seedu.address.logic.commands.exceptions.CommandException;
 import seedu.address.logic.parser.exceptions.ParseException;
-import seedu.address.model.ReadOnlyAddressBook;
+import seedu.address.model.ReadOnlyStudyTracker;
 import seedu.address.model.studyspot.StudySpot;
 
 /**
@@ -24,17 +24,17 @@ public interface Logic {
     CommandResult execute(String commandText) throws CommandException, ParseException;
 
     /**
-     * Returns the AddressBook.
+     * Returns the StudyTracker.
      *
-     * @see seedu.address.model.Model#getAddressBook()
+     * @see seedu.address.model.Model#getStudyTracker()
      */
-    ReadOnlyAddressBook getAddressBook();
+    ReadOnlyStudyTracker getAddressBook();
 
-    /** Returns an unmodifiable view of the filtered list of persons */
+    /** Returns an unmodifiable view of the filtered list of study spots */
     ObservableList<StudySpot> getFilteredStudySpotList();
 
     /**
-     * Returns the user prefs' address book file path.
+     * Returns the user prefs' study tracker file path.
      */
     Path getAddressBookFilePath();
 

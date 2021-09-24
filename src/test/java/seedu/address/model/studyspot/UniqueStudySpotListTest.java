@@ -149,8 +149,8 @@ public class UniqueStudySpotListTest {
     @Test
     public void setStudySpots_list_replacesOwnListWithProvidedList() {
         uniqueStudySpotList.add(ALICE);
-        List<StudySpot> personList = Collections.singletonList(BOB);
-        uniqueStudySpotList.setStudySpots(personList);
+        List<StudySpot> studySpots = Collections.singletonList(BOB);
+        uniqueStudySpotList.setStudySpots(studySpots);
         UniqueStudySpotList expectedUniqueStudySpotList = new UniqueStudySpotList();
         expectedUniqueStudySpotList.add(BOB);
         assertEquals(expectedUniqueStudySpotList, uniqueStudySpotList);

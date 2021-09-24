@@ -31,14 +31,14 @@ import seedu.address.model.tag.Tag;
 
 
 /**
- * Edits the details of an existing person in the address book.
+ * Edits the details of an existing study spot in the study tracker.
  */
 public class EditCommand extends Command {
 
     public static final String COMMAND_WORD = "edit";
 
-    public static final String MESSAGE_USAGE = COMMAND_WORD + ": Edits the details of the person identified "
-            + "by the index number used in the displayed person list. "
+    public static final String MESSAGE_USAGE = COMMAND_WORD + ": Edits the details of the study spot identified "
+            + "by the index number used in the displayed study spot list. "
             + "Existing values will be overwritten by the input values.\n"
             + "Parameters: INDEX (must be a positive integer) "
             + "[" + PREFIX_NAME + "NAME] "
@@ -50,16 +50,16 @@ public class EditCommand extends Command {
             + PREFIX_PHONE + "91234567 "
             + PREFIX_EMAIL + "johndoe@example.com";
 
-    public static final String MESSAGE_EDIT_PERSON_SUCCESS = "Edited StudySpot: %1$s";
+    public static final String MESSAGE_EDIT_PERSON_SUCCESS = "Edited study spot: %1$s";
     public static final String MESSAGE_NOT_EDITED = "At least one field to edit must be provided.";
-    public static final String MESSAGE_DUPLICATE_PERSON = "This person already exists in the address book.";
+    public static final String MESSAGE_DUPLICATE_PERSON = "This study spot already exists in the study tracker.";
 
     private final Index index;
     private final EditStudySpotDescriptor editStudySpotDescriptor;
 
     /**
-     * @param index of the person in the filtered person list to edit
-     * @param editStudySpotDescriptor details to edit the person with
+     * @param index of the study spot in the filtered study spot list to edit
+     * @param editStudySpotDescriptor details to edit the study spot with
      */
     public EditCommand(Index index, EditStudySpotDescriptor editStudySpotDescriptor) {
         requireNonNull(index);
@@ -78,31 +78,31 @@ public class EditCommand extends Command {
             throw new CommandException(Messages.MESSAGE_INVALID_PERSON_DISPLAYED_INDEX);
         }
 
-        StudySpot personToEdit = lastShownList.get(index.getZeroBased());
-        StudySpot editedStudySpot = createEditedStudySpot(personToEdit, editStudySpotDescriptor);
+        StudySpot studySpotToEdit = lastShownList.get(index.getZeroBased());
+        StudySpot editedStudySpot = createEditedStudySpot(studySpotToEdit, editStudySpotDescriptor);
 
-        if (!personToEdit.isSameStudySpot(editedStudySpot) && model.hasStudySpot(editedStudySpot)) {
+        if (!studySpotToEdit.isSameStudySpot(editedStudySpot) && model.hasStudySpot(editedStudySpot)) {
             throw new CommandException(MESSAGE_DUPLICATE_PERSON);
         }
 
-        model.setStudySpot(personToEdit, editedStudySpot);
+        model.setStudySpot(studySpotToEdit, editedStudySpot);
         model.updateFilteredStudySpotList(PREDICATE_SHOW_ALL_STUDYSPOTS);
         return new CommandResult(String.format(MESSAGE_EDIT_PERSON_SUCCESS, editedStudySpot));
     }
 
     /**
-     * Creates and returns a {@code StudySpot} with the details of {@code personToEdit}
+     * Creates and returns a {@code StudySpot} with the details of {@code studySpotToEdit}
      * edited with {@code editStudySpotDescriptor}.
      */
-    private static StudySpot createEditedStudySpot(StudySpot personToEdit,
+    private static StudySpot createEditedStudySpot(StudySpot studySpotToEdit,
                                                    EditStudySpotDescriptor editStudySpotDescriptor) {
-        assert personToEdit != null;
+        assert studySpotToEdit != null;
 
-        Name updatedName = editStudySpotDescriptor.getName().orElse(personToEdit.getName());
-        Phone updatedPhone = editStudySpotDescriptor.getPhone().orElse(personToEdit.getPhone());
-        Email updatedEmail = editStudySpotDescriptor.getEmail().orElse(personToEdit.getEmail());
-        Address updatedAddress = editStudySpotDescriptor.getAddress().orElse(personToEdit.getAddress());
-        Set<Tag> updatedTags = editStudySpotDescriptor.getTags().orElse(personToEdit.getTags());
+        Name updatedName = editStudySpotDescriptor.getName().orElse(studySpotToEdit.getName());
+        Phone updatedPhone = editStudySpotDescriptor.getPhone().orElse(studySpotToEdit.getPhone());
+        Email updatedEmail = editStudySpotDescriptor.getEmail().orElse(studySpotToEdit.getEmail());
+        Address updatedAddress = editStudySpotDescriptor.getAddress().orElse(studySpotToEdit.getAddress());
+        Set<Tag> updatedTags = editStudySpotDescriptor.getTags().orElse(studySpotToEdit.getTags());
 
         return new StudySpot(updatedName, updatedPhone, updatedEmail, updatedAddress, updatedTags);
     }
@@ -126,8 +126,8 @@ public class EditCommand extends Command {
     }
 
     /**
-     * Stores the details to edit the person with. Each non-empty field value will replace the
-     * corresponding field value of the person.
+     * Stores the details to edit the study spot with. Each non-empty field value will replace the
+     * corresponding field value of the study spot.
      */
     public static class EditStudySpotDescriptor {
         private Name name;
