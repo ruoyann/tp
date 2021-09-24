@@ -52,7 +52,8 @@ public class UniqueStudySpotList implements Iterable<StudySpot> {
     /**
      * Replaces the study spot {@code target} in the list with {@code editedStudySpot}.
      * {@code target} must exist in the list.
-     * The study spot identity of {@code editedStudySpot} must not be the same as another existing study spot in the list.
+     * The study spot identity of {@code editedStudySpot} must not be the same as
+     * another existing study spot in the list.
      */
     public void setStudySpot(StudySpot target, StudySpot editedStudySpot) {
         requireAllNonNull(target, editedStudySpot);

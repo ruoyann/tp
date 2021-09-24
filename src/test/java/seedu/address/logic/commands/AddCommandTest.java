@@ -16,10 +16,10 @@ import org.junit.jupiter.api.Test;
 import javafx.collections.ObservableList;
 import seedu.address.commons.core.GuiSettings;
 import seedu.address.logic.commands.exceptions.CommandException;
-import seedu.address.model.StudyTracker;
 import seedu.address.model.Model;
 import seedu.address.model.ReadOnlyStudyTracker;
 import seedu.address.model.ReadOnlyUserPrefs;
+import seedu.address.model.StudyTracker;
 import seedu.address.model.studyspot.StudySpot;
 import seedu.address.testutil.StudySpotBuilder;
 

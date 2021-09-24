@@ -37,7 +37,8 @@ class JsonSerializableStudyTracker {
      * @param source future changes to this will not affect the created {@code JsonSerializableStudyTracker}.
      */
     public JsonSerializableStudyTracker(ReadOnlyStudyTracker source) {
-        studySpots.addAll(source.getStudySpotList().stream().map(JsonAdaptedStudySpot::new).collect(Collectors.toList()));
+        studySpots.addAll(source.getStudySpotList().stream()
+                .map(JsonAdaptedStudySpot::new).collect(Collectors.toList()));
     }
 
     /**
