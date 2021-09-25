@@ -74,14 +74,14 @@ public class MainApp extends Application {
      * or an empty study tracker will be used instead if errors occur when reading {@code storage}'s study tracker.
      */
     private Model initModelManager(Storage storage, ReadOnlyUserPrefs userPrefs) {
-        Optional<ReadOnlyStudyTracker> addressBookOptional;
+        Optional<ReadOnlyStudyTracker> studyTrackerOptional;
         ReadOnlyStudyTracker initialData;
         try {
-            addressBookOptional = storage.readStudyTracker();
-            if (!addressBookOptional.isPresent()) {
+            studyTrackerOptional = storage.readStudyTracker();
+            if (!studyTrackerOptional.isPresent()) {
                 logger.info("Data file not found. Will be starting with a sample StudyTracker");
             }
-            initialData = addressBookOptional.orElseGet(SampleDataUtil::getSampleAddressBook);
+            initialData = studyTrackerOptional.orElseGet(SampleDataUtil::getSampleAddressBook);
         } catch (DataConversionException e) {
             logger.warning("Data file not in the correct format. Will be starting with an empty StudyTracker");
             initialData = new StudyTracker();

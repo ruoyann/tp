@@ -50,7 +50,7 @@ public class EditCommand extends Command {
             + PREFIX_PHONE + "91234567 "
             + PREFIX_EMAIL + "johndoe@example.com";
 
-    public static final String MESSAGE_EDIT_PERSON_SUCCESS = "Edited study spot: %1$s";
+    public static final String MESSAGE_EDIT_STUDYSPOT_SUCCESS = "Edited study spot: %1$s";
     public static final String MESSAGE_NOT_EDITED = "At least one field to edit must be provided.";
     public static final String MESSAGE_DUPLICATE_PERSON = "This study spot already exists in the study tracker.";
 
@@ -75,7 +75,7 @@ public class EditCommand extends Command {
         List<StudySpot> lastShownList = model.getFilteredStudySpotList();
 
         if (index.getZeroBased() >= lastShownList.size()) {
-            throw new CommandException(Messages.MESSAGE_INVALID_PERSON_DISPLAYED_INDEX);
+            throw new CommandException(Messages.MESSAGE_INVALID_STUDYSPOT_DISPLAYED_INDEX);
         }
 
         StudySpot studySpotToEdit = lastShownList.get(index.getZeroBased());
@@ -87,7 +87,7 @@ public class EditCommand extends Command {
 
         model.setStudySpot(studySpotToEdit, editedStudySpot);
         model.updateFilteredStudySpotList(PREDICATE_SHOW_ALL_STUDYSPOTS);
-        return new CommandResult(String.format(MESSAGE_EDIT_PERSON_SUCCESS, editedStudySpot));
+        return new CommandResult(String.format(MESSAGE_EDIT_STUDYSPOT_SUCCESS, editedStudySpot));
     }
 
     /**

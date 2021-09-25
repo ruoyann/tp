@@ -34,7 +34,7 @@ public class AddCommand extends Command {
             + PREFIX_TAG + "owesMoney";
 
     public static final String MESSAGE_SUCCESS = "New study spot added: %1$s";
-    public static final String MESSAGE_DUPLICATE_PERSON = "This study spot already exists in the study tracker";
+    public static final String MESSAGE_DUPLICATE_STUDYSPOT = "This study spot already exists in the study tracker";
 
     private final StudySpot toAdd;
 
@@ -51,7 +51,7 @@ public class AddCommand extends Command {
         requireNonNull(model);
 
         if (model.hasStudySpot(toAdd)) {
-            throw new CommandException(MESSAGE_DUPLICATE_PERSON);
+            throw new CommandException(MESSAGE_DUPLICATE_STUDYSPOT);
         }
 
         model.addStudySpot(toAdd);

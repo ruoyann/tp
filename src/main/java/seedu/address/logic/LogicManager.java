@@ -55,7 +55,7 @@ public class LogicManager implements Logic {
     }
 
     @Override
-    public ReadOnlyStudyTracker getAddressBook() {
+    public ReadOnlyStudyTracker getStudyTracker() {
         return model.getStudyTracker();
     }
 
@@ -65,7 +65,7 @@ public class LogicManager implements Logic {
     }
 
     @Override
-    public Path getAddressBookFilePath() {
+    public Path getStudyTrackerFilePath() {
         return model.getStudyTrackerFilePath();
     }
 

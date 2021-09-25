@@ -47,7 +47,7 @@ public interface Model {
     /**
      * Replaces study tracker data with the data in {@code addressBook}.
      */
-    void setStudyTracker(ReadOnlyStudyTracker addressBook);
+    void setStudyTracker(ReadOnlyStudyTracker studyTracker);
 
     /** Returns the StudyTracker */
     ReadOnlyStudyTracker getStudyTracker();

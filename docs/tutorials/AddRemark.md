@@ -295,7 +295,7 @@ While the changes to code may be minimal, the test data will have to be updated 
 
 <div markdown="span" class="alert alert-warning">
 
-:exclamation: You must delete StudyTracker’s storage file located at `/data/addressbook.json` before running it! Not doing so will cause StudyTracker to default to an empty study tracker!
+:exclamation: You must delete StudyTracker’s storage file located at `/data/studytracker.json` before running it! Not doing so will cause StudyTracker to default to an empty study tracker!
 
 </div>
 

@@ -40,7 +40,7 @@ public class EditCommandTest {
         EditStudySpotDescriptor descriptor = new EditStudySpotDescriptorBuilder(editedStudySpot).build();
         EditCommand editCommand = new EditCommand(INDEX_FIRST_PERSON, descriptor);
 
-        String expectedMessage = String.format(EditCommand.MESSAGE_EDIT_PERSON_SUCCESS, editedStudySpot);
+        String expectedMessage = String.format(EditCommand.MESSAGE_EDIT_STUDYSPOT_SUCCESS, editedStudySpot);
 
         Model expectedModel = new ModelManager(new StudyTracker(model.getStudyTracker()), new UserPrefs());
         expectedModel.setStudySpot(model.getFilteredStudySpotList().get(0), editedStudySpot);
@@ -61,7 +61,7 @@ public class EditCommandTest {
                 .withPhone(VALID_PHONE_BOB).withTags(VALID_TAG_HUSBAND).build();
         EditCommand editCommand = new EditCommand(indexLastStudySpot, descriptor);
 
-        String expectedMessage = String.format(EditCommand.MESSAGE_EDIT_PERSON_SUCCESS, editedStudySpot);
+        String expectedMessage = String.format(EditCommand.MESSAGE_EDIT_STUDYSPOT_SUCCESS, editedStudySpot);
 
         Model expectedModel = new ModelManager(new StudyTracker(model.getStudyTracker()), new UserPrefs());
         expectedModel.setStudySpot(lastStudySpot, editedStudySpot);
@@ -74,7 +74,7 @@ public class EditCommandTest {
         EditCommand editCommand = new EditCommand(INDEX_FIRST_PERSON, new EditStudySpotDescriptor());
         StudySpot editedStudySpot = model.getFilteredStudySpotList().get(INDEX_FIRST_PERSON.getZeroBased());
 
-        String expectedMessage = String.format(EditCommand.MESSAGE_EDIT_PERSON_SUCCESS, editedStudySpot);
+        String expectedMessage = String.format(EditCommand.MESSAGE_EDIT_STUDYSPOT_SUCCESS, editedStudySpot);
 
         Model expectedModel = new ModelManager(new StudyTracker(model.getStudyTracker()), new UserPrefs());
 
@@ -90,7 +90,7 @@ public class EditCommandTest {
         EditCommand editCommand = new EditCommand(INDEX_FIRST_PERSON,
                 new EditStudySpotDescriptorBuilder().withName(VALID_NAME_BOB).build());
 
-        String expectedMessage = String.format(EditCommand.MESSAGE_EDIT_PERSON_SUCCESS, editedStudySpot);
+        String expectedMessage = String.format(EditCommand.MESSAGE_EDIT_STUDYSPOT_SUCCESS, editedStudySpot);
 
         Model expectedModel = new ModelManager(new StudyTracker(model.getStudyTracker()), new UserPrefs());
         expectedModel.setStudySpot(model.getFilteredStudySpotList().get(0), editedStudySpot);
@@ -125,7 +125,7 @@ public class EditCommandTest {
         EditStudySpotDescriptor descriptor = new EditStudySpotDescriptorBuilder().withName(VALID_NAME_BOB).build();
         EditCommand editCommand = new EditCommand(outOfBoundIndex, descriptor);
 
-        assertCommandFailure(editCommand, model, Messages.MESSAGE_INVALID_PERSON_DISPLAYED_INDEX);
+        assertCommandFailure(editCommand, model, Messages.MESSAGE_INVALID_STUDYSPOT_DISPLAYED_INDEX);
     }
 
     /**
@@ -142,7 +142,7 @@ public class EditCommandTest {
         EditCommand editCommand = new EditCommand(outOfBoundIndex,
                 new EditStudySpotDescriptorBuilder().withName(VALID_NAME_BOB).build());
 
-        assertCommandFailure(editCommand, model, Messages.MESSAGE_INVALID_PERSON_DISPLAYED_INDEX);
+        assertCommandFailure(editCommand, model, Messages.MESSAGE_INVALID_STUDYSPOT_DISPLAYED_INDEX);
     }
 
     @Test

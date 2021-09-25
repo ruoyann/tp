@@ -28,7 +28,7 @@ public interface Logic {
      *
      * @see seedu.address.model.Model#getStudyTracker()
      */
-    ReadOnlyStudyTracker getAddressBook();
+    ReadOnlyStudyTracker getStudyTracker();
 
     /** Returns an unmodifiable view of the filtered list of study spots */
     ObservableList<StudySpot> getFilteredStudySpotList();
@@ -36,7 +36,7 @@ public interface Logic {
     /**
      * Returns the user prefs' study tracker file path.
      */
-    Path getAddressBookFilePath();
+    Path getStudyTrackerFilePath();
 
     /**
      * Returns the user prefs' GUI settings.

@@ -19,7 +19,7 @@ import seedu.address.model.studyspot.StudySpot;
 @JsonRootName(value = "studytracker")
 class JsonSerializableStudyTracker {
 
-    public static final String MESSAGE_DUPLICATE_PERSON = "StudySpots list contains duplicate study spot(s).";
+    public static final String MESSAGE_DUPLICATE_STUDYSPOT = "StudySpots list contains duplicate study spot(s).";
 
     private final List<JsonAdaptedStudySpot> studySpots = new ArrayList<>();
 
@@ -51,7 +51,7 @@ class JsonSerializableStudyTracker {
         for (JsonAdaptedStudySpot jsonAdaptedStudySpot : studySpots) {
             StudySpot spot = jsonAdaptedStudySpot.toModelType();
             if (studyTracker.hasStudySpot(spot)) {
-                throw new IllegalValueException(MESSAGE_DUPLICATE_PERSON);
+                throw new IllegalValueException(MESSAGE_DUPLICATE_STUDYSPOT);
             }
             studyTracker.addStudySpot(spot);
         }

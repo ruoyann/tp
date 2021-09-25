@@ -40,7 +40,7 @@ public class JsonSerializableStudyTrackerTest {
     public void toModelType_duplicateStudySpots_throwsIllegalValueException() throws Exception {
         JsonSerializableStudyTracker dataFromFile = JsonUtil.readJsonFile(DUPLICATE_PERSON_FILE,
                 JsonSerializableStudyTracker.class).get();
-        assertThrows(IllegalValueException.class, JsonSerializableStudyTracker.MESSAGE_DUPLICATE_PERSON,
+        assertThrows(IllegalValueException.class, JsonSerializableStudyTracker.MESSAGE_DUPLICATE_STUDYSPOT,
                 dataFromFile::toModelType);
     }
 
