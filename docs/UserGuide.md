@@ -38,29 +38,45 @@ StudyTracker is a **desktop app that lets you save your favourite study spots, o
 
 --------------------------------------------------------------------------------------------------------------------
 
-## Command Syntax [incomplete]
+## Command Syntax
 
 <div markdown="block" class="alert alert-info">
 
-**:information_source: Notes about the command format:**<br>
+**:information_source: Throughout the User Guide, you may see commands to enter into the bot. Here is how to read the command format:**<br>
 
-* Words in `UPPER_CASE` are the parameters to be supplied by the user.<br>
-  e.g. in `add n/NAME`, `NAME` is a parameter which can be used as `add n/John Doe`.
+* The first word of every line *always* specifies the **command word**. Command words are single words. Commands may have aliases, which are shortened versions of the command word. <br>
+  e.g. `add` has the alias `new`.
 
-* Items in square brackets are optional.<br>
-  e.g `n/NAME [t/TAG]` can be used as `n/John Doe t/friend` or as `n/John Doe`.
+* The subsequent blocks are known as **parameters**. Each parameter has a delimiter. <br>
+  e.g. the `NAME` parameter has a delimiter `n` and the `AMENITY` parameter has a delimiter `m`.
+
+* Square brackets are required for user input. Words in `UPPER_CASE` are the parameters to be supplied by the user.<br>
+  e.g. in `add n[NAME]*`, `NAME` is a parameter which can be used as `add n[COM1 Basement]`.
+
+* Parameters with an asterisk `*` are required while those without an asterisk are optional.<br>
+  e.g `n[NAME]* m[AMENITY...]` can be used as `n[COM1 Basement] m[wifi]` or as `n[COM1 Basement]`.
 
 * Items with `…`​ after them can be used multiple times including zero times.<br>
-  e.g. `[t/TAG]…​` can be used as ` ` (i.e. 0 times), `t/friend`, `t/friend t/family` etc.
+  e.g. `t[TAG...]​` can be used as ` ` (i.e. 0 times), `t[noisy]`, `t[mosquitos] t[sunny]` etc.
 
 * Parameters can be in any order.<br>
-  e.g. if the command specifies `n/NAME p/PHONE_NUMBER`, `p/PHONE_NUMBER n/NAME` is also acceptable.
+  e.g. if the command specifies `n[NAME]* a[ADDRESS]`, `a[ADDRESS] n[NAME]*` is also acceptable.
 
 * If a parameter is expected only once in the command but you specified it multiple times, only the last occurrence of the parameter will be taken.<br>
-  e.g. if you specify `p/12341234 p/56785678`, only `p/56785678` will be taken.
+  e.g. if you specify `a[COM1] a[CLB]`, only `a[CLB]` will be taken.
 
 * Extraneous parameters for commands that do not take in parameters (such as `help`, `list`, `exit` and `clear`) will be ignored.<br>
   e.g. if the command specifies `help 123`, it will be interpreted as `help`.
+
+Some examples of **valid** user inputs for the *add command* are provided below:
+* `add n[PC Commons] a[UTown] t[very crowded] m[toilet] r[4]`
+* `add n[COM2 Basement] a[SoC]` (optional arguments are not required)
+* `new n[TR3] a[Yusof Ishak House] m[food] m[socket]` (multiple amenities are acceptable)
+
+Some examples of **invalid** user inputs for the *add command* are provided below:
+* `add n[PC Commons]` (missing `RATING` parameter)
+* `add PC Commons [UTown] [very crowded] [toilet] [4]*` (delimiters and slashes missing from parameters, unnecessary asterisk added outside of parameters)
+* `n[PC Commons] a[UTown] r[4]` (missing command word `add`)
 
 </div>
 
