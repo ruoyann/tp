@@ -120,4 +120,8 @@ public class StudySpot {
         return builder.toString();
     }
 
+    public boolean isSameName(Name name) {
+        return this.name.isSameNameCaseInsensitive(name);
+    }
+
 }

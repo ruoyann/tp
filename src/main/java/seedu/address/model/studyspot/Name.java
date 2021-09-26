@@ -1,5 +1,7 @@
 package seedu.address.model.studyspot;
 
+import java.util.Locale;
+
 import static java.util.Objects.requireNonNull;
 import static seedu.address.commons.util.AppUtil.checkArgument;
 
@@ -54,6 +56,12 @@ public class Name {
     @Override
     public int hashCode() {
         return fullName.hashCode();
+    }
+
+    public boolean isSameNameCaseInsensitive(Name other) {
+        String fullNameCaseInsensitive = this.fullName.toLowerCase();
+        String otherNameCaseInsensitive = other.fullName.toLowerCase();
+        return fullNameCaseInsensitive.equals(otherNameCaseInsensitive);
     }
 
 }

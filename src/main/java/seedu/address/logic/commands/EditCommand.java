@@ -13,6 +13,7 @@ import java.util.HashSet;
 import java.util.List;
 import java.util.Optional;
 import java.util.Set;
+import java.util.stream.Stream;
 
 import seedu.address.commons.core.Messages;
 import seedu.address.commons.core.index.Index;
@@ -51,7 +52,8 @@ public class EditCommand extends Command {
     public static final String MESSAGE_NOT_EDITED = "At least one field to edit must be provided.";
     public static final String MESSAGE_DUPLICATE_PERSON = "This study spot already exists in the study tracker.";
 
-    private final Index index;
+    private Index index;
+    private Name name;
     private final EditStudySpotDescriptor editStudySpotDescriptor;
 
     /**
@@ -66,16 +68,35 @@ public class EditCommand extends Command {
         this.editStudySpotDescriptor = new EditStudySpotDescriptor(editStudySpotDescriptor);
     }
 
+    public EditCommand(Name name, EditStudySpotDescriptor editStudySpotDescriptor) {
+        requireNonNull(name);
+        requireNonNull(editStudySpotDescriptor);
+
+        this.name = name;
+        this.editStudySpotDescriptor = editStudySpotDescriptor;
+    }
+
     @Override
     public CommandResult execute(Model model) throws CommandException {
         requireNonNull(model);
-        List<StudySpot> lastShownList = model.getFilteredStudySpotList();
+        List<StudySpot> lastShownList = model.getFullList();
 
-        if (index.getZeroBased() >= lastShownList.size()) {
-            throw new CommandException(Messages.MESSAGE_INVALID_STUDYSPOT_DISPLAYED_INDEX);
+        boolean isPresent = false;
+        StudySpot studySpotToEdit = null;
+        for (StudySpot current: lastShownList) {
+            if (current.isSameName(name)) {
+                studySpotToEdit = current;
+                isPresent = true;
+                break;
+            }
         }
 
-        StudySpot studySpotToEdit = lastShownList.get(index.getZeroBased());
+        if (!isPresent) {
+            throw new CommandException(Messages.MESSAGE_INVALID_EDIT_NAME);
+        }
+
+
+
         StudySpot editedStudySpot = createEditedStudySpot(studySpotToEdit, editStudySpotDescriptor);
 
         if (!studySpotToEdit.isSameStudySpot(editedStudySpot) && model.hasStudySpot(editedStudySpot)) {
