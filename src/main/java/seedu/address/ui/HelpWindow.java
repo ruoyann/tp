@@ -1,6 +1,6 @@
 package seedu.address.ui;
 
-import java.awt.*;
+import java.awt.Desktop;
 import java.io.IOException;
 import java.net.URISyntaxException;
 import java.net.URL;
@@ -100,9 +100,7 @@ public class HelpWindow extends UiPart<Stage> {
         try {
             // new ProcessBuilder("x-www-browser", USERGUIDE_URL).start();
             Desktop.getDesktop().browse(new URL(USERGUIDE_URL).toURI());
-        } catch (IOException e) {
-            e.printStackTrace();
-        } catch (URISyntaxException e) {
+        } catch (IOException | URISyntaxException e) {
             e.printStackTrace();
         }
     }
