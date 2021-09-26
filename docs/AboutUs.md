@@ -13,7 +13,7 @@ We are a team based in the [School of Computing, National University of Singapor
 
 [[github](https://github.com/mslevis)]
 
-* Responsibility: Integration 
+* Responsibility: Integration
 
 ### Lim Danqi
 
@@ -21,7 +21,7 @@ We are a team based in the [School of Computing, National University of Singapor
 
 [[github](https://github.com/limdanqi)]
 
-* Responsibility: Testing 
+* Responsibility: Testing
 
 ### Jefferson Lim
 
@@ -39,7 +39,7 @@ We are a team based in the [School of Computing, National University of Singapor
 
 * Responsibilities: Code quality, Sourcetree 
 
-### Yin Ruoyan 
+### Yin Ruoyan
 
 <img src="images/ruoyann.png" width="200px">
 
