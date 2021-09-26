@@ -27,7 +27,7 @@
               <Insets right="5.0" />
             </HBox.margin>
           </Label>
-          <Button fx:id="copyButton" mnemonicParsing="false" onAction="#copyUrl" text="Copy URL">
+          <Button fx:id="copyButton" mnemonicParsing="false" onAction="#openWebpage" text="Open in browser">
             <HBox.margin>
               <Insets left="5.0" />
             </HBox.margin>
