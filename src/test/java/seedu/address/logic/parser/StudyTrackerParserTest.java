@@ -29,9 +29,9 @@ import seedu.address.testutil.EditStudySpotDescriptorBuilder;
 import seedu.address.testutil.StudySpotBuilder;
 import seedu.address.testutil.StudySpotUtil;
 
-public class AddressBookParserTest {
+public class StudyTrackerParserTest {
 
-    private final AddressBookParser parser = new AddressBookParser();
+    private final StudyTrackerParser parser = new StudyTrackerParser();
 
     @Test
     public void parseCommand_add() throws Exception {

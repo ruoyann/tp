@@ -61,8 +61,8 @@ public class StudySpot {
     }
 
     /**
-     * Returns true if both persons have the same name.
-     * This defines a weaker notion of equality between two persons.
+     * Returns true if both study spots have the same name.
+     * This defines a weaker notion of equality between two study spots.
      */
     public boolean isSameStudySpot(StudySpot otherSpot) {
         if (otherSpot == this) {
@@ -74,8 +74,8 @@ public class StudySpot {
     }
 
     /**
-     * Returns true if both persons have the same identity and data fields.
-     * This defines a stronger notion of equality between two persons.
+     * Returns true if both study spots have the same identity and data fields.
+     * This defines a stronger notion of equality between two study spots.
      */
     @Override
     public boolean equals(Object other) {

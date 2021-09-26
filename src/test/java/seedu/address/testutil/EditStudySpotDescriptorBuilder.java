@@ -28,15 +28,15 @@ public class EditStudySpotDescriptorBuilder {
     }
 
     /**
-     * Returns an {@code EditStudySpotDescriptor} with fields containing {@code person}'s details
+     * Returns an {@code EditStudySpotDescriptor} with fields containing {@code studySpot}'s details
      */
-    public EditStudySpotDescriptorBuilder(StudySpot person) {
+    public EditStudySpotDescriptorBuilder(StudySpot studySpot) {
         descriptor = new EditStudySpotDescriptor();
-        descriptor.setName(person.getName());
-        descriptor.setPhone(person.getPhone());
-        descriptor.setEmail(person.getEmail());
-        descriptor.setAddress(person.getAddress());
-        descriptor.setTags(person.getTags());
+        descriptor.setName(studySpot.getName());
+        descriptor.setPhone(studySpot.getPhone());
+        descriptor.setEmail(studySpot.getEmail());
+        descriptor.setAddress(studySpot.getAddress());
+        descriptor.setTags(studySpot.getTags());
     }
 
     /**

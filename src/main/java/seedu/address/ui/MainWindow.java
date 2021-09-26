@@ -31,7 +31,7 @@ public class MainWindow extends UiPart<Stage> {
     private Logic logic;
 
     // Independent Ui parts residing in this Ui container
-    private StudySpotListPanel personListPanel;
+    private StudySpotListPanel studySpotListPanel;
     private ResultDisplay resultDisplay;
     private HelpWindow helpWindow;
 
@@ -42,7 +42,7 @@ public class MainWindow extends UiPart<Stage> {
     private MenuItem helpMenuItem;
 
     @FXML
-    private StackPane personListPanelPlaceholder;
+    private StackPane studySpotListPanelPlaceholder;
 
     @FXML
     private StackPane resultDisplayPlaceholder;
@@ -110,13 +110,13 @@ public class MainWindow extends UiPart<Stage> {
      * Fills up all the placeholders of this window.
      */
     void fillInnerParts() {
-        personListPanel = new StudySpotListPanel(logic.getFilteredStudySpotList());
-        personListPanelPlaceholder.getChildren().add(personListPanel.getRoot());
+        studySpotListPanel = new StudySpotListPanel(logic.getFilteredStudySpotList());
+        studySpotListPanelPlaceholder.getChildren().add(studySpotListPanel.getRoot());
 
         resultDisplay = new ResultDisplay();
         resultDisplayPlaceholder.getChildren().add(resultDisplay.getRoot());
 
-        StatusBarFooter statusBarFooter = new StatusBarFooter(logic.getAddressBookFilePath());
+        StatusBarFooter statusBarFooter = new StatusBarFooter(logic.getStudyTrackerFilePath());
         statusbarPlaceholder.getChildren().add(statusBarFooter.getRoot());
 
         CommandBox commandBox = new CommandBox(this::executeCommand);
@@ -164,7 +164,7 @@ public class MainWindow extends UiPart<Stage> {
     }
 
     public StudySpotListPanel getStudySpotListPanel() {
-        return personListPanel;
+        return studySpotListPanel;
     }
 
     /**

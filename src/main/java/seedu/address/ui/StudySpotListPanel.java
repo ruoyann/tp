@@ -11,22 +11,22 @@ import seedu.address.commons.core.LogsCenter;
 import seedu.address.model.studyspot.StudySpot;
 
 /**
- * Panel containing the list of persons.
+ * Panel containing the list of study spots.
  */
 public class StudySpotListPanel extends UiPart<Region> {
     private static final String FXML = "StudySpotListPanel.fxml";
     private final Logger logger = LogsCenter.getLogger(StudySpotListPanel.class);
 
     @FXML
-    private ListView<StudySpot> personListView;
+    private ListView<StudySpot> studySpotListView;
 
     /**
      * Creates a {@code StudySpotListPanel} with the given {@code ObservableList}.
      */
-    public StudySpotListPanel(ObservableList<StudySpot> personList) {
+    public StudySpotListPanel(ObservableList<StudySpot> studySpots) {
         super(FXML);
-        personListView.setItems(personList);
-        personListView.setCellFactory(listView -> new StudySpotListViewCell());
+        studySpotListView.setItems(studySpots);
+        studySpotListView.setCellFactory(listView -> new StudySpotListViewCell());
     }
 
     /**
@@ -34,14 +34,14 @@ public class StudySpotListPanel extends UiPart<Region> {
      */
     class StudySpotListViewCell extends ListCell<StudySpot> {
         @Override
-        protected void updateItem(StudySpot person, boolean empty) {
-            super.updateItem(person, empty);
+        protected void updateItem(StudySpot spot, boolean empty) {
+            super.updateItem(spot, empty);
 
-            if (empty || person == null) {
+            if (empty || spot == null) {
                 setGraphic(null);
                 setText(null);
             } else {
-                setGraphic(new StudySpotCard(person, getIndex() + 1).getRoot());
+                setGraphic(new StudySpotCard(spot, getIndex() + 1).getRoot());
             }
         }
     }

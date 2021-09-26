@@ -12,12 +12,12 @@ import seedu.address.model.studyspot.exceptions.DuplicateStudySpotException;
 import seedu.address.model.studyspot.exceptions.StudySpotNotFoundException;
 
 /**
- * A list of persons that enforces uniqueness between its elements and does not allow nulls.
- * A person is considered unique by comparing using {@code StudySpot#isSameStudySpot(StudySpot)}.
- * As such, adding and updating of persons uses StudySpot#isSameStudySpot(StudySpot) for equality
- * so as to ensure that the person being added or updated is unique in terms of identity in the UniqueStudySpotList.
- * However, the removal of a person uses StudySpot#equals(Object) so as to ensure that
- * the person with exactly the same fields will be removed.
+ * A list of study spots that enforces uniqueness between its elements and does not allow nulls.
+ * A study spot is considered unique by comparing using {@code StudySpot#isSameStudySpot(StudySpot)}.
+ * As such, adding and updating of study spots uses StudySpot#isSameStudySpot(StudySpot) for equality
+ * so as to ensure that the study spot being added or updated is unique in terms of identity in the UniqueStudySpotList.
+ * However, the removal of a study spot uses StudySpot#equals(Object) so as to ensure that
+ * the study spot with exactly the same fields will be removed.
  *
  * Supports a minimal set of list operations.
  *
@@ -30,7 +30,7 @@ public class UniqueStudySpotList implements Iterable<StudySpot> {
             FXCollections.unmodifiableObservableList(internalList);
 
     /**
-     * Returns true if the list contains an equivalent person as the given argument.
+     * Returns true if the list contains an equivalent study spot as the given argument.
      */
     public boolean contains(StudySpot toCheck) {
         requireNonNull(toCheck);
@@ -38,8 +38,8 @@ public class UniqueStudySpotList implements Iterable<StudySpot> {
     }
 
     /**
-     * Adds a person to the list.
-     * The person must not already exist in the list.
+     * Adds a study spot to the list.
+     * The study spot must not already exist in the list.
      */
     public void add(StudySpot toAdd) {
         requireNonNull(toAdd);
@@ -50,9 +50,10 @@ public class UniqueStudySpotList implements Iterable<StudySpot> {
     }
 
     /**
-     * Replaces the person {@code target} in the list with {@code editedStudySpot}.
+     * Replaces the study spot {@code target} in the list with {@code editedStudySpot}.
      * {@code target} must exist in the list.
-     * The person identity of {@code editedStudySpot} must not be the same as another existing person in the list.
+     * The study spot identity of {@code editedStudySpot} must not be the same as
+     * another existing study spot in the list.
      */
     public void setStudySpot(StudySpot target, StudySpot editedStudySpot) {
         requireAllNonNull(target, editedStudySpot);
@@ -70,8 +71,8 @@ public class UniqueStudySpotList implements Iterable<StudySpot> {
     }
 
     /**
-     * Removes the equivalent person from the list.
-     * The person must exist in the list.
+     * Removes the equivalent study spot from the list.
+     * The study spot must exist in the list.
      */
     public void remove(StudySpot toRemove) {
         requireNonNull(toRemove);
@@ -86,16 +87,16 @@ public class UniqueStudySpotList implements Iterable<StudySpot> {
     }
 
     /**
-     * Replaces the contents of this list with {@code persons}.
-     * {@code persons} must not contain duplicate persons.
+     * Replaces the contents of this list with {@code studySpots}.
+     * {@code studySpots} must not contain duplicate study spots.
      */
-    public void setStudySpots(List<StudySpot> persons) {
-        requireAllNonNull(persons);
-        if (!personsAreUnique(persons)) {
+    public void setStudySpots(List<StudySpot> studySpots) {
+        requireAllNonNull(studySpots);
+        if (!studySpotsAreUnique(studySpots)) {
             throw new DuplicateStudySpotException();
         }
 
-        internalList.setAll(persons);
+        internalList.setAll(studySpots);
     }
 
     /**
@@ -123,12 +124,12 @@ public class UniqueStudySpotList implements Iterable<StudySpot> {
     }
 
     /**
-     * Returns true if {@code persons} contains only unique persons.
+     * Returns true if {@code studySpots} contains only unique study spots.
      */
-    private boolean personsAreUnique(List<StudySpot> persons) {
-        for (int i = 0; i < persons.size() - 1; i++) {
-            for (int j = i + 1; j < persons.size(); j++) {
-                if (persons.get(i).isSameStudySpot(persons.get(j))) {
+    private boolean studySpotsAreUnique(List<StudySpot> studySpots) {
+        for (int i = 0; i < studySpots.size() - 1; i++) {
+            for (int j = i + 1; j < studySpots.size(); j++) {
+                if (studySpots.get(i).isSameStudySpot(studySpots.get(j))) {
                     return false;
                 }
             }

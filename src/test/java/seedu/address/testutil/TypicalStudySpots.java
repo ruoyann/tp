@@ -15,7 +15,7 @@ import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 
-import seedu.address.model.AddressBook;
+import seedu.address.model.StudyTracker;
 import seedu.address.model.studyspot.StudySpot;
 
 /**
@@ -60,12 +60,12 @@ public class TypicalStudySpots {
     private TypicalStudySpots() {} // prevents instantiation
 
     /**
-     * Returns an {@code AddressBook} with all the typical persons.
+     * Returns an {@code StudyTracker} with all the typical study spots.
      */
-    public static AddressBook getTypicalAddressBook() {
-        AddressBook ab = new AddressBook();
-        for (StudySpot person : getTypicalStudySpots()) {
-            ab.addStudySpot(person);
+    public static StudyTracker getTypicalAddressBook() {
+        StudyTracker ab = new StudyTracker();
+        for (StudySpot spot : getTypicalStudySpots()) {
+            ab.addStudySpot(spot);
         }
         return ab;
     }

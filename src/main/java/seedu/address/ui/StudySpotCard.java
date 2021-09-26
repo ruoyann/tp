@@ -21,10 +21,10 @@ public class StudySpotCard extends UiPart<Region> {
      * As a consequence, UI elements' variable names cannot be set to such keywords
      * or an exception will be thrown by JavaFX during runtime.
      *
-     * @see <a href="https://github.com/se-edu/addressbook-level4/issues/336">The issue on AddressBook level 4</a>
+     * @see <a href="https://github.com/se-edu/addressbook-level4/issues/336">The issue on StudyTracker level 4</a>
      */
 
-    public final StudySpot person;
+    public final StudySpot studySpot;
 
     @FXML
     private HBox cardPane;
@@ -44,15 +44,15 @@ public class StudySpotCard extends UiPart<Region> {
     /**
      * Creates a {@code StudySpotCode} with the given {@code StudySpot} and index to display.
      */
-    public StudySpotCard(StudySpot person, int displayedIndex) {
+    public StudySpotCard(StudySpot studySpot, int displayedIndex) {
         super(FXML);
-        this.person = person;
+        this.studySpot = studySpot;
         id.setText(displayedIndex + ". ");
-        name.setText(person.getName().fullName);
-        phone.setText(person.getPhone().value);
-        address.setText(person.getAddress().value);
-        email.setText(person.getEmail().value);
-        person.getTags().stream()
+        name.setText(studySpot.getName().fullName);
+        phone.setText(studySpot.getPhone().value);
+        address.setText(studySpot.getAddress().value);
+        email.setText(studySpot.getEmail().value);
+        studySpot.getTags().stream()
                 .sorted(Comparator.comparing(tag -> tag.tagName))
                 .forEach(tag -> tags.getChildren().add(new Label(tag.tagName)));
     }
@@ -72,6 +72,6 @@ public class StudySpotCard extends UiPart<Region> {
         // state check
         StudySpotCard card = (StudySpotCard) other;
         return id.getText().equals(card.id.getText())
-                && person.equals(card.person);
+                && studySpot.equals(card.studySpot);
     }
 }

@@ -29,7 +29,7 @@ public class AddCommandIntegrationTest {
     public void execute_newStudySpot_success() {
         StudySpot validStudySpot = new StudySpotBuilder().build();
 
-        Model expectedModel = new ModelManager(model.getAddressBook(), new UserPrefs());
+        Model expectedModel = new ModelManager(model.getStudyTracker(), new UserPrefs());
         expectedModel.addStudySpot(validStudySpot);
 
         assertCommandSuccess(new AddCommand(validStudySpot), model,
@@ -38,8 +38,8 @@ public class AddCommandIntegrationTest {
 
     @Test
     public void execute_duplicateStudySpot_throwsCommandException() {
-        StudySpot personInList = model.getAddressBook().getStudySpotList().get(0);
-        assertCommandFailure(new AddCommand(personInList), model, AddCommand.MESSAGE_DUPLICATE_PERSON);
+        StudySpot personInList = model.getStudyTracker().getStudySpotList().get(0);
+        assertCommandFailure(new AddCommand(personInList), model, AddCommand.MESSAGE_DUPLICATE_STUDYSPOT);
     }
 
 }
