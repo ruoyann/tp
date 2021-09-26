@@ -1,5 +1,9 @@
 package seedu.address.ui;
 
+import java.awt.*;
+import java.io.IOException;
+import java.net.URISyntaxException;
+import java.net.URL;
 import java.util.logging.Logger;
 
 import javafx.fxml.FXML;
@@ -91,13 +95,17 @@ public class HelpWindow extends UiPart<Stage> {
     }
 
     /**
-     * Copies the URL to the user guide to the clipboard.
+     * Opens the URL in a web browser
      */
     @FXML
-    private void copyUrl() {
-        final Clipboard clipboard = Clipboard.getSystemClipboard();
-        final ClipboardContent url = new ClipboardContent();
-        url.putString(USERGUIDE_URL);
-        clipboard.setContent(url);
+    private void openWebpage() {
+        try {
+            // new ProcessBuilder("x-www-browser", USERGUIDE_URL).start();
+            Desktop.getDesktop().browse(new URL(USERGUIDE_URL).toURI());
+        } catch (IOException e) {
+            e.printStackTrace();
+        } catch (URISyntaxException e) {
+            e.printStackTrace();
+        }
     }
 }
