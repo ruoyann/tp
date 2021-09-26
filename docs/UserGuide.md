@@ -3,7 +3,7 @@ layout: page
 title: User Guide
 ---
 
-AddressBook Level 3 (AB3) is a **desktop app for managing contacts, optimized for use via a Command Line Interface** (CLI) while still having the benefits of a Graphical User Interface (GUI). If you can type fast, AB3 can get your contact management tasks done faster than traditional GUI apps.
+StudyTracker is a **desktop app that lets you save your favourite study spots, optimized for use via Command Line Interface (CLI).** It allows you to keep track of different study spots you’ve visited and record your past experiences at these study spots. Key information such as amenities available can be recorded to plan your future visits.
 
 * Table of Contents
 {:toc}
@@ -14,23 +14,23 @@ AddressBook Level 3 (AB3) is a **desktop app for managing contacts, optimized fo
 
 1. Ensure you have Java `11` or above installed in your Computer.
 
-1. Download the latest `addressbook.jar` from [here](https://github.com/se-edu/addressbook-level3/releases).
+1. Download the latest `StudyTracker.jar` from [here](https://github.com/AY2122S1-CS2103T-T09-1/tp/releases).
 
 1. Copy the file to the folder you want to use as the _home folder_ for your AddressBook.
 
 1. Double-click the file to start the app. The GUI similar to the below should appear in a few seconds. Note how the app contains some sample data.<br>
-   ![Ui](images/Ui.png)
+   ![Ui](images/Uisketch.png)
 
 1. Type the command in the command box and press Enter to execute it. e.g. typing **`help`** and pressing Enter will open the help window.<br>
    Some example commands you can try:
 
-   * **`list`** : Lists all contacts.
+   * **`list`** : Lists all study locations.
 
-   * **`add`**`n/John Doe p/98765432 e/johnd@example.com a/John street, block 123, #01-01` : Adds a contact named `John Doe` to the Address Book.
+   * **`add`**` n[COM1] r[5]` : Adds a study location named `COM1` to the StudyTracker.
 
-   * **`delete`**`3` : Deletes the 3rd contact shown in the current list.
+   * **`delete`**`n[COM1]` : Deletes the location named `COM1` from the StudyTracker.
 
-   * **`clear`** : Deletes all contacts.
+   * **`clear`** : Deletes all study spots.
 
    * **`exit`** : Exits the app.
 
@@ -38,7 +38,7 @@ AddressBook Level 3 (AB3) is a **desktop app for managing contacts, optimized fo
 
 --------------------------------------------------------------------------------------------------------------------
 
-## Features
+## Command Syntax [incomplete]
 
 <div markdown="block" class="alert alert-info">
 
@@ -64,95 +64,151 @@ AddressBook Level 3 (AB3) is a **desktop app for managing contacts, optimized fo
 
 </div>
 
+## Features
+
+
+
 ### Viewing help : `help`
 
-Shows a message explaning how to access the help page.
+Provides a link to the full User Guide.
 
 ![help message](images/helpMessage.png)
 
 Format: `help`
 
 
-### Adding a person: `add`
+### Adding a study spot: `add`
 
-Adds a person to the address book.
+Adds a study spot to the StudyTracker.
 
-Format: `add n/NAME p/PHONE_NUMBER e/EMAIL a/ADDRESS [t/TAG]…​`
+Format: `add n[NAME]* r[RATING]* a[ADDRESS] t[TAG...] m[AMENITY...]`
 
 <div markdown="span" class="alert alert-primary">:bulb: **Tip:**
-A person can have any number of tags (including 0)
+Tags, amenities and address are all optional.
 </div>
 
 Examples:
-* `add n/John Doe p/98765432 e/johnd@example.com a/John street, block 123, #01-01`
-* `add n/Betsy Crowe t/friend e/betsycrowe@example.com a/Newgate Prison p/1234567 t/criminal`
+```
+add n[COM1] r[5]
+New study spot “COM1 Basement” added to list!
 
-### Listing all persons : `list`
+add n[Starbucks at U-Town] r[4] t[noisy] m[wifi]
+New study spot “Starbucks at U-Town” added to list!
+```
 
-Shows a list of all persons in the address book.
+Command alias: `new`
+
+### Listing all study spots : `list`
+
+Shows all saved study spots in the StudyTracker.
 
 Format: `list`
 
-### Editing a person : `edit`
+Examples:
+```
+list 
+Your study spots are:
+  1. COM1 Basement
+  2. TR3
+  3. PC Commons
+  4. CLB
+```
 
-Edits an existing person in the address book.
+<div markdown="span" class="alert alert-primary">:bulb: **Tip:**
+Make use of command aliases to speed up typing your inputs!
+</div>
 
-Format: `edit INDEX [n/NAME] [p/PHONE] [e/EMAIL] [a/ADDRESS] [t/TAG]…​`
+Command alias :`ls`
 
-* Edits the person at the specified `INDEX`. The index refers to the index number shown in the displayed person list. The index **must be a positive integer** 1, 2, 3, …​
+### Editing a study spot : `edit`
+
+Edits the details of a single study spot.
+
+Format: `edit n[NAME]* n[NEW_NAME] a[NEW_ADDRESS] t[NEW_TAG] m[NEW_AMENITY] r[NEW_RATING]`
+
+* Edits the study spot with the same name. The name, while not case-sensitive, **must match the name in the list**.
 * At least one of the optional fields must be provided.
 * Existing values will be updated to the input values.
-* When editing tags, the existing tags of the person will be removed i.e adding of tags is not cumulative.
-* You can remove all the person’s tags by typing `t/` without
+* When editing tags, the existing tags of the study spot will be removed i.e adding of tags is not cumulative.
+* You can remove all the study spot’s tags by typing `t/` without
     specifying any tags after it.
 
 Examples:
-*  `edit 1 p/91234567 e/johndoe@example.com` Edits the phone number and email address of the 1st person to be `91234567` and `johndoe@example.com` respectively.
-*  `edit 2 n/Betsy Crower t/` Edits the name of the 2nd person to be `Betsy Crower` and clears all existing tags.
+```
+edit n[tr3] n[Training Room 3]
+Study spot “TR3” has been edited to “Training Room 3”
+```
 
-### Locating persons by name: `find`
+Command alias: `ed`
 
-Finds persons whose names contain any of the given keywords.
+### Locating a study spot by name: `find`
 
-Format: `find KEYWORD [MORE_KEYWORDS]`
+Finds study spots whose names contain the query.
+
+Format: `find n[NAME]*`
 
 * The search is case-insensitive. e.g `hans` will match `Hans`
-* The order of the keywords does not matter. e.g. `Hans Bo` will match `Bo Hans`
-* Only the name is searched.
-* Only full words will be matched e.g. `Han` will not match `Hans`
-* Persons matching at least one keyword will be returned (i.e. `OR` search).
-  e.g. `Hans Bo` will return `Hans Gruber`, `Bo Yang`
+* The results will contain study spots whose name **contains** the query. e.g. `lib` will give `library`
 
 Examples:
-* `find John` returns `john` and `John Doe`
-* `find alex david` returns `Alex Yeoh`, `David Li`<br>
-  ![result for 'find alex david'](images/findAlexDavidResult.png)
+```
+find n[lib]
+Found the following study spots matching “lib”:
+  1. Central Library
+  2. Hon Sui Sen Memorial Library
+  3. Jurong Library
+```
 
-### Deleting a person : `delete`
+Command alias: `grep`
 
-Deletes the specified person from the address book.
+### Deleting a study spot : `delete`
 
-Format: `delete INDEX`
+Deletes the specified study spot from the StudyTracker.
 
-* Deletes the person at the specified `INDEX`.
-* The index refers to the index number shown in the displayed person list.
-* The index **must be a positive integer** 1, 2, 3, …​
+Format: `delete n[NAME]*`
+
+* Deletes the study spot with the specified **name**.
+
 
 Examples:
-* `list` followed by `delete 2` deletes the 2nd person in the address book.
-* `find Betsy` followed by `delete 1` deletes the 1st person in the results of the `find` command.
+```
+delete n[COM1]
+COM1 has been deleted.
+```
+
+Command alias: `rm`
 
 ### Clearing all entries : `clear`
 
-Clears all entries from the address book.
+Clears all entries from the StudyTracker.
+
+<div markdown="span" class="alert alert-primary">:exclamation: **NOTE:**
+This command is irreversible!
+</div>
 
 Format: `clear`
 
+Example:
+```
+clear
+All study spots have been cleared.
+```
+
+Command alias: `rma`
+
 ### Exiting the program : `exit`
 
-Exits the program.
+Closes the StudyTracker.
 
 Format: `exit`
+
+Example:
+```
+exit
+Goodbye!
+```
+
+Command alias: `/q`
 
 ### Saving the data
 
@@ -160,7 +216,7 @@ AddressBook data are saved in the hard disk automatically after any command that
 
 ### Editing the data file
 
-AddressBook data are saved as a JSON file `[JAR file location]/data/addressbook.json`. Advanced users are welcome to update data directly by editing that data file.
+AddressBook data are saved as a JSON file `[JAR file location]/data/studytracker.json`. Advanced users are welcome to update data directly by editing that data file.
 
 <div markdown="span" class="alert alert-warning">:exclamation: **Caution:**
 If your changes to the data file makes its format invalid, AddressBook will discard all data and start with an empty data file at the next run.
@@ -183,10 +239,10 @@ _Details coming soon ..._
 
 Action | Format, Examples
 --------|------------------
-**Add** | `add n/NAME p/PHONE_NUMBER e/EMAIL a/ADDRESS [t/TAG]…​` <br> e.g., `add n/James Ho p/22224444 e/jamesho@example.com a/123, Clementi Rd, 1234665 t/friend t/colleague`
+**Add** | `add n[NAME]* r[RATING]* a[ADDRESS] t[TAG...] m[AMENITY...]` <br> e.g., `add n[COM1] r[5]`
 **Clear** | `clear`
-**Delete** | `delete INDEX`<br> e.g., `delete 3`
-**Edit** | `edit INDEX [n/NAME] [p/PHONE_NUMBER] [e/EMAIL] [a/ADDRESS] [t/TAG]…​`<br> e.g.,`edit 2 n/James Lee e/jameslee@example.com`
-**Find** | `find KEYWORD [MORE_KEYWORDS]`<br> e.g., `find James Jake`
+**Delete** | `delete n[NAME]*` <br> e.g., `delete n[COM1]`
+**Edit** | `edit n[NAME]* n[NEW_NAME] a[NEW_ADDRESS] t[NEW_TAG] m[NEW_AMENITY] r[NEW_RATING]`<br> e.g.,`edit n[tr3] n[Training Room 3]`
+**Find** | `find n[NAME]*`<br> e.g., `find n[lib]`
 **List** | `list`
 **Help** | `help`

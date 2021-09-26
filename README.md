@@ -18,3 +18,4 @@ Allows students to easily track different study areas that they have visited, an
 
 ### Acknowledgement
 StudyTracker is an application developed based on the `AddressBook Level 3` application created by the [SE-EDU initiative](https://se-education.org).
+

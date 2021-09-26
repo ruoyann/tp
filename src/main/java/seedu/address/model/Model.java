@@ -5,14 +5,14 @@ import java.util.function.Predicate;
 
 import javafx.collections.ObservableList;
 import seedu.address.commons.core.GuiSettings;
-import seedu.address.model.person.Person;
+import seedu.address.model.studyspot.StudySpot;
 
 /**
  * The API of the Model component.
  */
 public interface Model {
     /** {@code Predicate} that always evaluate to true */
-    Predicate<Person> PREDICATE_SHOW_ALL_PERSONS = unused -> true;
+    Predicate<StudySpot> PREDICATE_SHOW_ALL_STUDYSPOTS = unused -> true;
 
     /**
      * Replaces user prefs data with the data in {@code userPrefs}.
@@ -35,53 +35,54 @@ public interface Model {
     void setGuiSettings(GuiSettings guiSettings);
 
     /**
-     * Returns the user prefs' address book file path.
+     * Returns the user prefs' study tracker file path.
      */
-    Path getAddressBookFilePath();
+    Path getStudyTrackerFilePath();
 
     /**
-     * Sets the user prefs' address book file path.
+     * Sets the user prefs' study tracker file path.
      */
-    void setAddressBookFilePath(Path addressBookFilePath);
+    void setStudyTrackerFilePath(Path addressBookFilePath);
 
     /**
-     * Replaces address book data with the data in {@code addressBook}.
+     * Replaces study tracker data with the data in {@code addressBook}.
      */
-    void setAddressBook(ReadOnlyAddressBook addressBook);
+    void setStudyTracker(ReadOnlyStudyTracker studyTracker);
 
-    /** Returns the AddressBook */
-    ReadOnlyAddressBook getAddressBook();
+    /** Returns the StudyTracker */
+    ReadOnlyStudyTracker getStudyTracker();
 
     /**
-     * Returns true if a person with the same identity as {@code person} exists in the address book.
+     * Returns true if a study spot with the same identity as {@code studySpot} exists in the study tracker.
      */
-    boolean hasPerson(Person person);
+    boolean hasStudySpot(StudySpot studySpot);
 
     /**
-     * Deletes the given person.
-     * The person must exist in the address book.
+     * Deletes the given study spot.
+     * The study spot must exist in the study tracker.
      */
-    void deletePerson(Person target);
+    void deleteStudySpot(StudySpot target);
 
     /**
-     * Adds the given person.
-     * {@code person} must not already exist in the address book.
+     * Adds the given study spot.
+     * {@code study spot} must not already exist in the study tracker.
      */
-    void addPerson(Person person);
+    void addStudySpot(StudySpot studySpot);
 
     /**
-     * Replaces the given person {@code target} with {@code editedPerson}.
-     * {@code target} must exist in the address book.
-     * The person identity of {@code editedPerson} must not be the same as another existing person in the address book.
+     * Replaces the given study spot {@code target} with {@code editedStudySpot}.
+     * {@code target} must exist in the study tracker.
+     * The study spot identity of {@code editedStudySpot}
+     * must not be the same as another existing study spot in the study tracker.
      */
-    void setPerson(Person target, Person editedPerson);
+    void setStudySpot(StudySpot target, StudySpot editedStudySpot);
 
-    /** Returns an unmodifiable view of the filtered person list */
-    ObservableList<Person> getFilteredPersonList();
+    /** Returns an unmodifiable view of the filtered study spot list */
+    ObservableList<StudySpot> getFilteredStudySpotList();
 
     /**
-     * Updates the filter of the filtered person list to filter by the given {@code predicate}.
+     * Updates the filter of the filtered study spot list to filter by the given {@code predicate}.
      * @throws NullPointerException if {@code predicate} is null.
      */
-    void updateFilteredPersonList(Predicate<Person> predicate);
+    void updateFilteredStudySpotList(Predicate<StudySpot> predicate);
 }
