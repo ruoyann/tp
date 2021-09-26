@@ -9,7 +9,7 @@ We are a team based in the [School of Computing, National University of Singapor
 
 ### Owen Tan
 
-<img src="images/owentan.png" width="200px">
+<img src="images/mslevis.png" width="200px">
 
 [[github](https://github.com/mslevis)]
 
