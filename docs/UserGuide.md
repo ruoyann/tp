@@ -16,7 +16,7 @@ StudyTracker is a **desktop app that lets you save your favourite study spots, o
 
 1. Download the latest `StudyTracker.jar` from [here](https://github.com/AY2122S1-CS2103T-T09-1/tp/releases).
 
-1. Copy the file to the folder you want to use as the _home folder_ for your AddressBook.
+1. Copy the file to the folder you want to use as the _home folder_ for your StudyTracker.
 
 1. Double-click the file to start the app. The GUI similar to the below should appear in a few seconds. Note how the app contains some sample data.<br>
    ![Ui](images/Uisketch.png)
@@ -26,9 +26,9 @@ StudyTracker is a **desktop app that lets you save your favourite study spots, o
 
    * **`list`** : Lists all study locations.
 
-   * **`add`**` n[COM1] r[5]` : Adds a study location named `COM1` to the StudyTracker.
+   * **`add`**` n/COM1 r/5` : Adds a study location named `COM1` to the StudyTracker.
 
-   * **`delete`**`n[COM1]` : Deletes the location named `COM1` from the StudyTracker.
+   * **`delete`**`n/COM1` : Deletes the location named `COM1` from the StudyTracker.
 
    * **`clear`** : Deletes all study spots.
 
@@ -38,29 +38,45 @@ StudyTracker is a **desktop app that lets you save your favourite study spots, o
 
 --------------------------------------------------------------------------------------------------------------------
 
-## Command Syntax [incomplete]
+## Command Syntax
 
 <div markdown="block" class="alert alert-info">
 
-**:information_source: Notes about the command format:**<br>
+**:information_source: Throughout the User Guide, you may see commands to enter into the bot. Here is how to read the command format:**<br>
 
-* Words in `UPPER_CASE` are the parameters to be supplied by the user.<br>
-  e.g. in `add n/NAME`, `NAME` is a parameter which can be used as `add n/John Doe`.
+* The first word of every line *always* specifies the **command word**. Command words are single words. Commands may have aliases, which are shortened versions of the command word. <br>
+  e.g. `add` has the alias `new`.
 
-* Items in square brackets are optional.<br>
-  e.g `n/NAME [t/TAG]` can be used as `n/John Doe t/friend` or as `n/John Doe`.
+* The subsequent blocks are known as **parameters**. Each parameter has a delimiter. <br>
+  e.g. the `NAME` parameter has a delimiter `n` and the `AMENITY` parameter has a delimiter `m`.
+
+* Slashes are required for user input. Words in `UPPER_CASE` are the parameters to be supplied by the user.<br>
+  e.g. in `add n/NAME*`, `NAME` is a parameter which can be used as `add n/COM1 Basement`.
+
+* Parameters with an asterisk `*` are required while those without an asterisk are optional.<br>
+  e.g `n/NAME* m/AMENITY...` can be used as `n/COM1 Basement m/wifi` or as `n/COM1 Basement`.
 
 * Items with `…`​ after them can be used multiple times including zero times.<br>
-  e.g. `[t/TAG]…​` can be used as ` ` (i.e. 0 times), `t/friend`, `t/friend t/family` etc.
+  e.g. `t/TAG...​` can be used as ` ` (i.e. 0 times), `t/noisy`, `t/mosquitos t/sunny` etc.
 
 * Parameters can be in any order.<br>
-  e.g. if the command specifies `n/NAME p/PHONE_NUMBER`, `p/PHONE_NUMBER n/NAME` is also acceptable.
+  e.g. if the command specifies `n/NAME* a/ADDRESS`, `a/ADDRESS n/NAME*` is also acceptable.
 
-* If a parameter is expected only once in the command but you specified it multiple times, only the last occurrence of the parameter will be taken.<br>
-  e.g. if you specify `p/12341234 p/56785678`, only `p/56785678` will be taken.
+* If a parameter is expected only once in the command, but you specified it multiple times, only the last occurrence of the parameter will be taken.<br>
+  e.g. if you specify `a/COM1 a/CLB`, only `a/CLB` will be taken.
 
 * Extraneous parameters for commands that do not take in parameters (such as `help`, `list`, `exit` and `clear`) will be ignored.<br>
   e.g. if the command specifies `help 123`, it will be interpreted as `help`.
+
+Some examples of **valid** user inputs for the *add command* are provided below:
+* `add n/PC Commons a/UTown t/very crowded m/toilet r/4`
+* `add n/COM2 Basement a/SoC` (optional arguments are not required)
+* `new n/TR3 a/Yusof Ishak House m/food m/socket` (multiple amenities are acceptable)
+
+Some examples of **invalid** user inputs for the *add command* are provided below:
+* `add n/PC Commons` (missing `RATING` parameter)
+* `add PC Commons /UTown /very crowded /toilet /4*` (delimiters and slashes missing from parameters, unnecessary asterisk added outside of parameters)
+* `n/PC Commons a/UTown r/4` (missing command word `add`)
 
 </div>
 
@@ -81,7 +97,7 @@ Format: `help`
 
 Adds a study spot to the StudyTracker.
 
-Format: `add n[NAME]* r[RATING]* a[ADDRESS] t[TAG...] m[AMENITY...]`
+Format: `add n/NAME* r/RATING* a/ADDRESS t/TAG... m/AMENITY...`
 
 <div markdown="span" class="alert alert-primary">:bulb: **Tip:**
 Tags, amenities and address are all optional.
@@ -89,10 +105,10 @@ Tags, amenities and address are all optional.
 
 Examples:
 ```
-add n[COM1] r[5]
+add n/COM1 Basement r/5
 New study spot “COM1 Basement” added to list!
 
-add n[Starbucks at U-Town] r[4] t[noisy] m[wifi]
+add n/Starbucks at U-Town r/4 t/noisy m/wifi
 New study spot “Starbucks at U-Town” added to list!
 ```
 
@@ -124,7 +140,7 @@ Command alias :`ls`
 
 Edits the details of a single study spot.
 
-Format: `edit n[NAME]* n[NEW_NAME] a[NEW_ADDRESS] t[NEW_TAG] m[NEW_AMENITY] r[NEW_RATING]`
+Format: `edit n/NAME* n/NEW_NAME a/NEW_ADDRESS t/NEW_TAG m/NEW_AMENITY r/NEW_RATING`
 
 * Edits the study spot with the same name. The name, while not case-sensitive, **must match the name in the list**.
 * At least one of the optional fields must be provided.
@@ -135,7 +151,7 @@ Format: `edit n[NAME]* n[NEW_NAME] a[NEW_ADDRESS] t[NEW_TAG] m[NEW_AMENITY] r[NE
 
 Examples:
 ```
-edit n[tr3] n[Training Room 3]
+edit n/tr3 n/Training Room 3
 Study spot “TR3” has been edited to “Training Room 3”
 ```
 
@@ -145,14 +161,14 @@ Command alias: `ed`
 
 Finds study spots whose names contain the query.
 
-Format: `find n[NAME]*`
+Format: `find n/NAME*`
 
 * The search is case-insensitive. e.g `hans` will match `Hans`
 * The results will contain study spots whose name **contains** the query. e.g. `lib` will give `library`
 
 Examples:
 ```
-find n[lib]
+find n/lib
 Found the following study spots matching “lib”:
   1. Central Library
   2. Hon Sui Sen Memorial Library
@@ -165,14 +181,14 @@ Command alias: `grep`
 
 Deletes the specified study spot from the StudyTracker.
 
-Format: `delete n[NAME]*`
+Format: `delete n/NAME*`
 
 * Deletes the study spot with the specified **name**.
 
 
 Examples:
 ```
-delete n[COM1]
+delete n/COM1
 COM1 has been deleted.
 ```
 
@@ -212,14 +228,14 @@ Command alias: `/q`
 
 ### Saving the data
 
-AddressBook data are saved in the hard disk automatically after any command that changes the data. There is no need to save manually.
+StudyTracker data are saved in the hard disk automatically after any command that changes the data. There is no need to save manually.
 
 ### Editing the data file
 
-AddressBook data are saved as a JSON file `[JAR file location]/data/studytracker.json`. Advanced users are welcome to update data directly by editing that data file.
+StudyTracker data are saved as a JSON file `[JAR file location]/data/studytracker.json`. Advanced users are welcome to update data directly by editing that data file.
 
 <div markdown="span" class="alert alert-warning">:exclamation: **Caution:**
-If your changes to the data file makes its format invalid, AddressBook will discard all data and start with an empty data file at the next run.
+If your changes to the data file makes its format invalid, StudyTracker will discard all data and start with an empty data file at the next run.
 </div>
 
 ### Archiving data files `[coming in v2.0]`
@@ -231,7 +247,7 @@ _Details coming soon ..._
 ## FAQ
 
 **Q**: How do I transfer my data to another Computer?<br>
-**A**: Install the app in the other computer and overwrite the empty data file it creates with the file that contains the data of your previous AddressBook home folder.
+**A**: Install the app in the other computer and overwrite the empty data file it creates with the file that contains the data of your previous StudyTracker home folder.
 
 --------------------------------------------------------------------------------------------------------------------
 
@@ -239,10 +255,10 @@ _Details coming soon ..._
 
 Action | Format, Examples
 --------|------------------
-**Add** | `add n[NAME]* r[RATING]* a[ADDRESS] t[TAG...] m[AMENITY...]` <br> e.g., `add n[COM1] r[5]`
+**Add** | `add n/NAME* r/RATING* a/ADDRESS t/TAG... m/AMENITY...` <br> e.g., `add n/COM1 r/5`
 **Clear** | `clear`
-**Delete** | `delete n[NAME]*` <br> e.g., `delete n[COM1]`
-**Edit** | `edit n[NAME]* n[NEW_NAME] a[NEW_ADDRESS] t[NEW_TAG] m[NEW_AMENITY] r[NEW_RATING]`<br> e.g.,`edit n[tr3] n[Training Room 3]`
-**Find** | `find n[NAME]*`<br> e.g., `find n[lib]`
+**Delete** | `delete n/NAME*` <br> e.g., `delete n/COM1`
+**Edit** | `edit n/NAME* n/NEW_NAME a/NEW_ADDRESS t/NEW_TAG m/NEW_AMENITY r/NEW_RATING`<br> e.g.,`edit n/tr3 n/Training Room 3`
+**Find** | `find n/NAME*`<br> e.g., `find n/lib`
 **List** | `list`
 **Help** | `help`
