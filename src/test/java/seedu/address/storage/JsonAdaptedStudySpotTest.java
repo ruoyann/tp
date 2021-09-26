@@ -15,7 +15,7 @@ import seedu.address.commons.exceptions.IllegalValueException;
 import seedu.address.model.studyspot.Address;
 import seedu.address.model.studyspot.Email;
 import seedu.address.model.studyspot.Name;
-import seedu.address.model.studyspot.Phone;
+import seedu.address.model.studyspot.Rating;
 
 public class JsonAdaptedStudySpotTest {
     private static final String INVALID_NAME = "R@chel";
@@ -25,7 +25,7 @@ public class JsonAdaptedStudySpotTest {
     private static final String INVALID_TAG = "#friend";
 
     private static final String VALID_NAME = BENSON.getName().toString();
-    private static final String VALID_PHONE = BENSON.getPhone().toString();
+    private static final String VALID_PHONE = BENSON.getRating().toString();
     private static final String VALID_EMAIL = BENSON.getEmail().toString();
     private static final String VALID_ADDRESS = BENSON.getAddress().toString();
     private static final List<JsonAdaptedTag> VALID_TAGS = BENSON.getTags().stream()
@@ -58,7 +58,7 @@ public class JsonAdaptedStudySpotTest {
     public void toModelType_invalidPhone_throwsIllegalValueException() {
         JsonAdaptedStudySpot person =
                 new JsonAdaptedStudySpot(VALID_NAME, INVALID_PHONE, VALID_EMAIL, VALID_ADDRESS, VALID_TAGS);
-        String expectedMessage = Phone.MESSAGE_CONSTRAINTS;
+        String expectedMessage = Rating.MESSAGE_CONSTRAINTS;
         assertThrows(IllegalValueException.class, expectedMessage, person::toModelType);
     }
 
@@ -66,7 +66,7 @@ public class JsonAdaptedStudySpotTest {
     public void toModelType_nullPhone_throwsIllegalValueException() {
         JsonAdaptedStudySpot person = new JsonAdaptedStudySpot(VALID_NAME, null, VALID_EMAIL,
                 VALID_ADDRESS, VALID_TAGS);
-        String expectedMessage = String.format(MISSING_FIELD_MESSAGE_FORMAT, Phone.class.getSimpleName());
+        String expectedMessage = String.format(MISSING_FIELD_MESSAGE_FORMAT, Rating.class.getSimpleName());
         assertThrows(IllegalValueException.class, expectedMessage, person::toModelType);
     }
 

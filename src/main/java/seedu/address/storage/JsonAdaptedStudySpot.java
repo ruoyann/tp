@@ -10,11 +10,8 @@ import com.fasterxml.jackson.annotation.JsonCreator;
 import com.fasterxml.jackson.annotation.JsonProperty;
 
 import seedu.address.commons.exceptions.IllegalValueException;
-import seedu.address.model.studyspot.Address;
-import seedu.address.model.studyspot.Email;
-import seedu.address.model.studyspot.Name;
-import seedu.address.model.studyspot.Phone;
-import seedu.address.model.studyspot.StudySpot;
+import seedu.address.model.studyspot.*;
+import seedu.address.model.studyspot.Rating;
 import seedu.address.model.tag.Tag;
 
 /**
@@ -51,7 +48,7 @@ class JsonAdaptedStudySpot {
      */
     public JsonAdaptedStudySpot(StudySpot source) {
         name = source.getName().fullName;
-        phone = source.getPhone().value;
+        phone = source.getRating().value;
         email = source.getEmail().value;
         address = source.getAddress().value;
         tagged.addAll(source.getTags().stream()
@@ -79,12 +76,12 @@ class JsonAdaptedStudySpot {
         final Name modelName = new Name(name);
 
         if (phone == null) {
-            throw new IllegalValueException(String.format(MISSING_FIELD_MESSAGE_FORMAT, Phone.class.getSimpleName()));
+            throw new IllegalValueException(String.format(MISSING_FIELD_MESSAGE_FORMAT, Rating.class.getSimpleName()));
         }
-        if (!Phone.isValidPhone(phone)) {
-            throw new IllegalValueException(Phone.MESSAGE_CONSTRAINTS);
+        if (!Rating.isValidRating(phone)) {
+            throw new IllegalValueException(Rating.MESSAGE_CONSTRAINTS);
         }
-        final Phone modelPhone = new Phone(phone);
+        final Rating modelRating = new Rating(phone);
 
         if (email == null) {
             throw new IllegalValueException(String.format(MISSING_FIELD_MESSAGE_FORMAT, Email.class.getSimpleName()));
@@ -103,7 +100,7 @@ class JsonAdaptedStudySpot {
         final Address modelAddress = new Address(address);
 
         final Set<Tag> modelTags = new HashSet<>(studySpotTags);
-        return new StudySpot(modelName, modelPhone, modelEmail, modelAddress, modelTags);
+        return new StudySpot(modelName, modelRating, modelEmail, modelAddress, modelTags);
     }
 
 }

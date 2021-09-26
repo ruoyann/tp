@@ -33,7 +33,7 @@ public class StudySpotCard extends UiPart<Region> {
     @FXML
     private Label id;
     @FXML
-    private Label phone;
+    private Label rating;
     @FXML
     private Label address;
     @FXML
@@ -49,7 +49,7 @@ public class StudySpotCard extends UiPart<Region> {
         this.studySpot = studySpot;
         id.setText(displayedIndex + ". ");
         name.setText(studySpot.getName().fullName);
-        phone.setText(studySpot.getPhone().value);
+        rating.setText(studySpot.getRating().value);
         address.setText(studySpot.getAddress().value);
         email.setText(studySpot.getEmail().value);
         studySpot.getTags().stream()

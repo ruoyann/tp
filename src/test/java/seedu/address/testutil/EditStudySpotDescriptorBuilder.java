@@ -8,7 +8,7 @@ import seedu.address.logic.commands.EditCommand.EditStudySpotDescriptor;
 import seedu.address.model.studyspot.Address;
 import seedu.address.model.studyspot.Email;
 import seedu.address.model.studyspot.Name;
-import seedu.address.model.studyspot.Phone;
+import seedu.address.model.studyspot.Rating;
 import seedu.address.model.studyspot.StudySpot;
 import seedu.address.model.tag.Tag;
 
@@ -33,7 +33,7 @@ public class EditStudySpotDescriptorBuilder {
     public EditStudySpotDescriptorBuilder(StudySpot studySpot) {
         descriptor = new EditStudySpotDescriptor();
         descriptor.setName(studySpot.getName());
-        descriptor.setPhone(studySpot.getPhone());
+        descriptor.setRating(studySpot.getRating());
         descriptor.setEmail(studySpot.getEmail());
         descriptor.setAddress(studySpot.getAddress());
         descriptor.setTags(studySpot.getTags());
@@ -51,7 +51,7 @@ public class EditStudySpotDescriptorBuilder {
      * Sets the {@code Phone} of the {@code EditStudySpotDescriptor} that we are building.
      */
     public EditStudySpotDescriptorBuilder withPhone(String phone) {
-        descriptor.setPhone(new Phone(phone));
+        descriptor.setRating(new Rating(phone));
         return this;
     }
 

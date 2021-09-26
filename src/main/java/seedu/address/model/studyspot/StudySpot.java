@@ -17,7 +17,7 @@ public class StudySpot {
 
     // Identity fields
     private final Name name;
-    private final Phone phone;
+    private final Rating rating;
     private final Email email;
 
     // Data fields
@@ -27,10 +27,10 @@ public class StudySpot {
     /**
      * Every field must be present and not null.
      */
-    public StudySpot(Name name, Phone phone, Email email, Address address, Set<Tag> tags) {
-        requireAllNonNull(name, phone, email, address, tags);
+    public StudySpot(Name name, Rating rating, Email email, Address address, Set<Tag> tags) {
+        requireAllNonNull(name, rating, email, address, tags);
         this.name = name;
-        this.phone = phone;
+        this.rating = rating;
         this.email = email;
         this.address = address;
         this.tags.addAll(tags);
@@ -40,8 +40,8 @@ public class StudySpot {
         return name;
     }
 
-    public Phone getPhone() {
-        return phone;
+    public Rating getRating() {
+        return rating;
     }
 
     public Email getEmail() {
@@ -89,7 +89,7 @@ public class StudySpot {
 
         StudySpot otherStudySpot = (StudySpot) other;
         return otherStudySpot.getName().equals(getName())
-                && otherStudySpot.getPhone().equals(getPhone())
+                && otherStudySpot.getRating().equals(getRating())
                 && otherStudySpot.getEmail().equals(getEmail())
                 && otherStudySpot.getAddress().equals(getAddress())
                 && otherStudySpot.getTags().equals(getTags());
@@ -98,15 +98,15 @@ public class StudySpot {
     @Override
     public int hashCode() {
         // use this method for custom fields hashing instead of implementing your own
-        return Objects.hash(name, phone, email, address, tags);
+        return Objects.hash(name, rating, email, address, tags);
     }
 
     @Override
     public String toString() {
         final StringBuilder builder = new StringBuilder();
         builder.append(getName())
-                .append("; Phone: ")
-                .append(getPhone())
+                .append("; Rating: ")
+                .append(getRating())
                 .append("; Email: ")
                 .append(getEmail())
                 .append("; Address: ")

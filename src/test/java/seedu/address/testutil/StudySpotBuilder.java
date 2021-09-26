@@ -3,11 +3,8 @@ package seedu.address.testutil;
 import java.util.HashSet;
 import java.util.Set;
 
-import seedu.address.model.studyspot.Address;
-import seedu.address.model.studyspot.Email;
-import seedu.address.model.studyspot.Name;
-import seedu.address.model.studyspot.Phone;
-import seedu.address.model.studyspot.StudySpot;
+import seedu.address.model.studyspot.*;
+import seedu.address.model.studyspot.Rating;
 import seedu.address.model.tag.Tag;
 import seedu.address.model.util.SampleDataUtil;
 
@@ -22,7 +19,7 @@ public class StudySpotBuilder {
     public static final String DEFAULT_ADDRESS = "123, Jurong West Ave 6, #08-111";
 
     private Name name;
-    private Phone phone;
+    private Rating rating;
     private Email email;
     private Address address;
     private Set<Tag> tags;
@@ -32,7 +29,7 @@ public class StudySpotBuilder {
      */
     public StudySpotBuilder() {
         name = new Name(DEFAULT_NAME);
-        phone = new Phone(DEFAULT_PHONE);
+        rating = new Rating(DEFAULT_PHONE);
         email = new Email(DEFAULT_EMAIL);
         address = new Address(DEFAULT_ADDRESS);
         tags = new HashSet<>();
@@ -43,7 +40,7 @@ public class StudySpotBuilder {
      */
     public StudySpotBuilder(StudySpot personToCopy) {
         name = personToCopy.getName();
-        phone = personToCopy.getPhone();
+        rating = personToCopy.getRating();
         email = personToCopy.getEmail();
         address = personToCopy.getAddress();
         tags = new HashSet<>(personToCopy.getTags());
@@ -77,7 +74,7 @@ public class StudySpotBuilder {
      * Sets the {@code Phone} of the {@code StudySpot} that we are building.
      */
     public StudySpotBuilder withPhone(String phone) {
-        this.phone = new Phone(phone);
+        this.rating = new Rating(phone);
         return this;
     }
 
@@ -90,7 +87,7 @@ public class StudySpotBuilder {
     }
 
     public StudySpot build() {
-        return new StudySpot(name, phone, email, address, tags);
+        return new StudySpot(name, rating, email, address, tags);
     }
 
 }
