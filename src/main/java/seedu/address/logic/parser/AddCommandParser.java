@@ -12,8 +12,11 @@ import java.util.stream.Stream;
 
 import seedu.address.logic.commands.AddCommand;
 import seedu.address.logic.parser.exceptions.ParseException;
-import seedu.address.model.studyspot.*;
+import seedu.address.model.studyspot.Address;
+import seedu.address.model.studyspot.Email;
+import seedu.address.model.studyspot.Name;
 import seedu.address.model.studyspot.Rating;
+import seedu.address.model.studyspot.StudySpot;
 import seedu.address.model.tag.Tag;
 
 /**

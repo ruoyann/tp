@@ -9,8 +9,8 @@ import static seedu.address.commons.util.AppUtil.checkArgument;
  */
 public class Email {
 
-    public static final String MESSAGE_CONSTRAINTS = "This is a place holder for email, and should" +
-            "be changed to another functionality";
+    public static final String MESSAGE_CONSTRAINTS = "This is a place holder for email, and should"
+            + "be changed to another functionality";
 
     /*
      * The first character of the email must not be a whitespace,

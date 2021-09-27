@@ -1,7 +1,5 @@
 package seedu.address.model.studyspot;
 
-import java.util.Locale;
-
 import static java.util.Objects.requireNonNull;
 import static seedu.address.commons.util.AppUtil.checkArgument;
 
@@ -58,6 +56,13 @@ public class Name {
         return fullName.hashCode();
     }
 
+    /**
+     * Checks if two names are the same without caring about
+     * case sensitivity
+     *
+     * @param other name to be checked
+     * @return true if they are the same
+     */
     public boolean isSameNameCaseInsensitive(Name other) {
         String fullNameCaseInsensitive = this.fullName.toLowerCase();
         String otherNameCaseInsensitive = other.fullName.toLowerCase();
