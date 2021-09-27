@@ -25,7 +25,7 @@ class JsonAdaptedStudySpot {
     public static final String MISSING_FIELD_MESSAGE_FORMAT = "StudySpot's %s field is missing!";
 
     private final String name;
-    private final String phone;
+    private final String rating;
     private final String email;
     private final String address;
     private final List<JsonAdaptedTag> tagged = new ArrayList<>();
@@ -34,11 +34,11 @@ class JsonAdaptedStudySpot {
      * Constructs a {@code JsonAdaptedStudySpot} with the given study spot details.
      */
     @JsonCreator
-    public JsonAdaptedStudySpot(@JsonProperty("name") String name, @JsonProperty("phone") String phone,
+    public JsonAdaptedStudySpot(@JsonProperty("name") String name, @JsonProperty("phone") String rating,
             @JsonProperty("email") String email, @JsonProperty("address") String address,
             @JsonProperty("tagged") List<JsonAdaptedTag> tagged) {
         this.name = name;
-        this.phone = phone;
+        this.rating = rating;
         this.email = email;
         this.address = address;
         if (tagged != null) {
@@ -51,7 +51,7 @@ class JsonAdaptedStudySpot {
      */
     public JsonAdaptedStudySpot(StudySpot source) {
         name = source.getName().fullName;
-        phone = source.getRating().value;
+        rating = source.getRating().value;
         email = source.getEmail().value;
         address = source.getAddress().value;
         tagged.addAll(source.getTags().stream()
@@ -78,13 +78,13 @@ class JsonAdaptedStudySpot {
         }
         final Name modelName = new Name(name);
 
-        if (phone == null) {
+        if (rating == null) {
             throw new IllegalValueException(String.format(MISSING_FIELD_MESSAGE_FORMAT, Rating.class.getSimpleName()));
         }
-        if (!Rating.isValidRating(phone)) {
+        if (!Rating.isValidRating(rating)) {
             throw new IllegalValueException(Rating.MESSAGE_CONSTRAINTS);
         }
-        final Rating modelRating = new Rating(phone);
+        final Rating modelRating = new Rating(rating);
 
         if (email == null) {
             throw new IllegalValueException(String.format(MISSING_FIELD_MESSAGE_FORMAT, Email.class.getSimpleName()));

@@ -80,12 +80,12 @@ public class ParserUtilTest {
     }
 
     @Test
-    public void parsePhone_null_throwsNullPointerException() {
+    public void parseRating_null_throwsNullPointerException() {
         assertThrows(NullPointerException.class, () -> ParserUtil.parseRating((String) null));
     }
 
     @Test
-    public void parsePhone_invalidValue_throwsParseException() {
+    public void parseRating_invalidValue_throwsParseException() {
         assertThrows(ParseException.class, () -> ParserUtil.parseRating(INVALID_RATING));
     }
 

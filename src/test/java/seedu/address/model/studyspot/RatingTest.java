@@ -14,13 +14,13 @@ public class RatingTest {
     }
 
     @Test
-    public void constructor_invalidPhone_throwsIllegalArgumentException() {
+    public void constructor_invalidRating_throwsIllegalArgumentException() {
         String invalidPhone = "";
         assertThrows(IllegalArgumentException.class, () -> new Rating(invalidPhone));
     }
 
     @Test
-    public void isValidPhone() {
+    public void isValidRating() {
         // null phone number
         assertThrows(NullPointerException.class, () -> Rating.isValidRating(null));
 

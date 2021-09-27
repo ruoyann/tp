@@ -2,43 +2,43 @@
   "_comment": "AddressBook save file which contains the same Person values as in TypicalPersons#getTypicalAddressBook()",
   "studySpots" : [ {
     "name" : "Starbucks",
-    "phone" : "4",
+    "rating" : "4",
     "email" : "-",
     "address" : "UTown",
     "tagged" : [ "coffee" ]
   }, {
     "name" : "Central library",
-    "phone" : "3",
+    "rating" : "3",
     "email" : "-",
     "address" : "NUS, Central Library",
     "tagged" : [ "cold", "quiet" ]
   }, {
     "name" : "COM1",
-    "phone" : "2",
+    "rating" : "2",
     "email" : "-",
     "address" : "NUS",
     "tagged" : [ ]
   }, {
     "name" : "Amy Bee",
-    "phone" : "3",
+    "rating" : "3",
     "email" : "amy@example.com",
     "address" : "Block 312, Amy Street 1",
     "tagged" : [ "friend" ]
   }, {
     "name" : "Daniel Meier",
-    "phone" : "3",
+    "rating" : "3",
     "email" : "cornelia@example.com",
     "address" : "10th street",
     "tagged" : [ "friends" ]
   },{
     "name" : "Elle Meyer",
-    "phone" : "4",
+    "rating" : "4",
     "email" : "werner@example.com",
     "address" : "michegan ave",
     "tagged" : [ ]
   }, {
     "name" : "Fiona Kunz",
-    "phone" : "5",
+    "rating" : "5",
     "email" : "lydia@example.com",
     "address" : "little tokyo",
     "tagged" : [ ]
