@@ -5,11 +5,11 @@ import static org.junit.jupiter.api.Assertions.assertTrue;
 import static seedu.address.logic.commands.CommandTestUtil.VALID_ADDRESS_BOB;
 import static seedu.address.logic.commands.CommandTestUtil.VALID_EMAIL_BOB;
 import static seedu.address.logic.commands.CommandTestUtil.VALID_NAME_BOB;
-import static seedu.address.logic.commands.CommandTestUtil.VALID_PHONE_BOB;
+import static seedu.address.logic.commands.CommandTestUtil.VALID_RATING_BOB;
 import static seedu.address.logic.commands.CommandTestUtil.VALID_TAG_HUSBAND;
 import static seedu.address.testutil.Assert.assertThrows;
-import static seedu.address.testutil.TypicalStudySpots.ALICE;
 import static seedu.address.testutil.TypicalStudySpots.BOB;
+import static seedu.address.testutil.TypicalStudySpots.STARBUCKS;
 
 import org.junit.jupiter.api.Test;
 
@@ -26,19 +26,19 @@ public class StudySpotTest {
     @Test
     public void isSameStudySpot() {
         // same object -> returns true
-        assertTrue(ALICE.isSameStudySpot(ALICE));
+        assertTrue(STARBUCKS.isSameStudySpot(STARBUCKS));
 
         // null -> returns false
-        assertFalse(ALICE.isSameStudySpot(null));
+        assertFalse(STARBUCKS.isSameStudySpot(null));
 
         // same name, all other attributes different -> returns true
-        StudySpot editedAlice = new StudySpotBuilder(ALICE).withPhone(VALID_PHONE_BOB).withEmail(VALID_EMAIL_BOB)
+        StudySpot editedAlice = new StudySpotBuilder(STARBUCKS).withRating(VALID_RATING_BOB).withEmail(VALID_EMAIL_BOB)
                 .withAddress(VALID_ADDRESS_BOB).withTags(VALID_TAG_HUSBAND).build();
-        assertTrue(ALICE.isSameStudySpot(editedAlice));
+        assertTrue(STARBUCKS.isSameStudySpot(editedAlice));
 
         // different name, all other attributes same -> returns false
-        editedAlice = new StudySpotBuilder(ALICE).withName(VALID_NAME_BOB).build();
-        assertFalse(ALICE.isSameStudySpot(editedAlice));
+        editedAlice = new StudySpotBuilder(STARBUCKS).withName(VALID_NAME_BOB).build();
+        assertFalse(STARBUCKS.isSameStudySpot(editedAlice));
 
         // name differs in case, all other attributes same -> returns false
         StudySpot editedBob = new StudySpotBuilder(BOB).withName(VALID_NAME_BOB.toLowerCase()).build();
@@ -53,39 +53,39 @@ public class StudySpotTest {
     @Test
     public void equals() {
         // same values -> returns true
-        StudySpot aliceCopy = new StudySpotBuilder(ALICE).build();
-        assertTrue(ALICE.equals(aliceCopy));
+        StudySpot aliceCopy = new StudySpotBuilder(STARBUCKS).build();
+        assertTrue(STARBUCKS.equals(aliceCopy));
 
         // same object -> returns true
-        assertTrue(ALICE.equals(ALICE));
+        assertTrue(STARBUCKS.equals(STARBUCKS));
 
         // null -> returns false
-        assertFalse(ALICE.equals(null));
+        assertFalse(STARBUCKS.equals(null));
 
         // different type -> returns false
-        assertFalse(ALICE.equals(5));
+        assertFalse(STARBUCKS.equals(5));
 
         // different person -> returns false
-        assertFalse(ALICE.equals(BOB));
+        assertFalse(STARBUCKS.equals(BOB));
 
         // different name -> returns false
-        StudySpot editedAlice = new StudySpotBuilder(ALICE).withName(VALID_NAME_BOB).build();
-        assertFalse(ALICE.equals(editedAlice));
+        StudySpot editedAlice = new StudySpotBuilder(STARBUCKS).withName(VALID_NAME_BOB).build();
+        assertFalse(STARBUCKS.equals(editedAlice));
 
         // different phone -> returns false
-        editedAlice = new StudySpotBuilder(ALICE).withPhone(VALID_PHONE_BOB).build();
-        assertFalse(ALICE.equals(editedAlice));
+        editedAlice = new StudySpotBuilder(STARBUCKS).withRating(VALID_RATING_BOB).build();
+        assertFalse(STARBUCKS.equals(editedAlice));
 
         // different email -> returns false
-        editedAlice = new StudySpotBuilder(ALICE).withEmail(VALID_EMAIL_BOB).build();
-        assertFalse(ALICE.equals(editedAlice));
+        editedAlice = new StudySpotBuilder(STARBUCKS).withEmail(VALID_EMAIL_BOB).build();
+        assertFalse(STARBUCKS.equals(editedAlice));
 
         // different address -> returns false
-        editedAlice = new StudySpotBuilder(ALICE).withAddress(VALID_ADDRESS_BOB).build();
-        assertFalse(ALICE.equals(editedAlice));
+        editedAlice = new StudySpotBuilder(STARBUCKS).withAddress(VALID_ADDRESS_BOB).build();
+        assertFalse(STARBUCKS.equals(editedAlice));
 
         // different tags -> returns false
-        editedAlice = new StudySpotBuilder(ALICE).withTags(VALID_TAG_HUSBAND).build();
-        assertFalse(ALICE.equals(editedAlice));
+        editedAlice = new StudySpotBuilder(STARBUCKS).withTags(VALID_TAG_HUSBAND).build();
+        assertFalse(STARBUCKS.equals(editedAlice));
     }
 }

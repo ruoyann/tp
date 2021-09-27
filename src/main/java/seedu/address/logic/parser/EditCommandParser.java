@@ -11,6 +11,7 @@ import static seedu.address.logic.parser.CliSyntax.PREFIX_TAG;
 
 import java.util.Collection;
 import java.util.Collections;
+import java.util.NoSuchElementException;
 import java.util.Optional;
 import java.util.Set;
 
@@ -40,7 +41,7 @@ public class EditCommandParser implements Parser<EditCommand> {
 
         try {
             toBeChangedSpot = ParserUtil.parseName(argMultimap.getValue(PREFIX_EDIT_SPOT).get());
-        } catch (ParseException pe) {
+        } catch (NoSuchElementException pe) {
             throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT, EditCommand.MESSAGE_USAGE), pe);
         }
 

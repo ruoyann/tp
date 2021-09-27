@@ -3,9 +3,9 @@ package seedu.address.storage;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertFalse;
 import static seedu.address.testutil.Assert.assertThrows;
-import static seedu.address.testutil.TypicalStudySpots.ALICE;
 import static seedu.address.testutil.TypicalStudySpots.HOON;
 import static seedu.address.testutil.TypicalStudySpots.IDA;
+import static seedu.address.testutil.TypicalStudySpots.STARBUCKS;
 import static seedu.address.testutil.TypicalStudySpots.getTypicalAddressBook;
 
 import java.io.IOException;
@@ -73,7 +73,7 @@ public class JsonStudyTrackerStorageTest {
 
         // Modify data, overwrite exiting file, and read back
         original.addStudySpot(HOON);
-        original.removeStudySpot(ALICE);
+        original.removeStudySpot(STARBUCKS);
         jsonStudyTrackerStorage.saveStudyTracker(original, filePath);
         readBack = jsonStudyTrackerStorage.readStudyTracker(filePath).get();
         assertEquals(original, new StudyTracker(readBack));

@@ -16,10 +16,10 @@ import seedu.address.model.util.SampleDataUtil;
  */
 public class StudySpotBuilder {
 
-    public static final String DEFAULT_NAME = "Amy Bee";
-    public static final String DEFAULT_PHONE = "85355255";
-    public static final String DEFAULT_EMAIL = "amy@gmail.com";
-    public static final String DEFAULT_ADDRESS = "123, Jurong West Ave 6, #08-111";
+    public static final String DEFAULT_NAME = "COM1 Tech Hangout";
+    public static final String DEFAULT_RATING = "3";
+    public static final String DEFAULT_EMAIL = "-";
+    public static final String DEFAULT_ADDRESS = "School of Computing";
 
     private Name name;
     private Rating rating;
@@ -32,21 +32,21 @@ public class StudySpotBuilder {
      */
     public StudySpotBuilder() {
         name = new Name(DEFAULT_NAME);
-        rating = new Rating(DEFAULT_PHONE);
+        rating = new Rating(DEFAULT_RATING);
         email = new Email(DEFAULT_EMAIL);
         address = new Address(DEFAULT_ADDRESS);
         tags = new HashSet<>();
     }
 
     /**
-     * Initializes the StudySpotBuilder with the data of {@code personToCopy}.
+     * Initializes the StudySpotBuilder with the data of {@code studySpotToCopy}.
      */
-    public StudySpotBuilder(StudySpot personToCopy) {
-        name = personToCopy.getName();
-        rating = personToCopy.getRating();
-        email = personToCopy.getEmail();
-        address = personToCopy.getAddress();
-        tags = new HashSet<>(personToCopy.getTags());
+    public StudySpotBuilder(StudySpot studySpotToCopy) {
+        name = studySpotToCopy.getName();
+        rating = studySpotToCopy.getRating();
+        email = studySpotToCopy.getEmail();
+        address = studySpotToCopy.getAddress();
+        tags = new HashSet<>(studySpotToCopy.getTags());
     }
 
     /**
@@ -74,10 +74,10 @@ public class StudySpotBuilder {
     }
 
     /**
-     * Sets the {@code Phone} of the {@code StudySpot} that we are building.
+     * Sets the {@code Rating} of the {@code StudySpot} that we are building.
      */
-    public StudySpotBuilder withPhone(String phone) {
-        this.rating = new Rating(phone);
+    public StudySpotBuilder withRating(String rating) {
+        this.rating = new Rating(rating);
         return this;
     }
 

@@ -23,6 +23,7 @@ import seedu.address.logic.commands.FindCommand;
 import seedu.address.logic.commands.HelpCommand;
 import seedu.address.logic.commands.ListCommand;
 import seedu.address.logic.parser.exceptions.ParseException;
+import seedu.address.model.studyspot.Name;
 import seedu.address.model.studyspot.NameContainsKeywordsPredicate;
 import seedu.address.model.studyspot.StudySpot;
 import seedu.address.testutil.EditStudySpotDescriptorBuilder;
@@ -55,11 +56,11 @@ public class StudyTrackerParserTest {
 
     @Test
     public void parseCommand_edit() throws Exception {
-        StudySpot person = new StudySpotBuilder().build();
-        EditStudySpotDescriptor descriptor = new EditStudySpotDescriptorBuilder(person).build();
+        StudySpot studySpot = new StudySpotBuilder().withName("Test").build();
+        EditStudySpotDescriptor descriptor = new EditStudySpotDescriptorBuilder(studySpot).build();
         EditCommand command = (EditCommand) parser.parseCommand(EditCommand.COMMAND_WORD + " "
-                + INDEX_FIRST_PERSON.getOneBased() + " " + StudySpotUtil.getEditStudySpotDescriptorDetails(descriptor));
-        assertEquals(new EditCommand(INDEX_FIRST_PERSON, descriptor), command);
+                + "spot/Test" + " " + StudySpotUtil.getEditStudySpotDescriptorDetails(descriptor));
+        assertEquals(new EditCommand(new Name("Test"), descriptor), command);
     }
 
     @Test

@@ -5,7 +5,7 @@ import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 import static seedu.address.commons.core.Messages.MESSAGE_STUDYSPOT_LISTED_OVERVIEW;
 import static seedu.address.logic.commands.CommandTestUtil.assertCommandSuccess;
-import static seedu.address.testutil.TypicalStudySpots.CARL;
+import static seedu.address.testutil.TypicalStudySpots.AMY;
 import static seedu.address.testutil.TypicalStudySpots.ELLE;
 import static seedu.address.testutil.TypicalStudySpots.FIONA;
 import static seedu.address.testutil.TypicalStudySpots.getTypicalAddressBook;
@@ -67,11 +67,11 @@ public class FindCommandTest {
     @Test
     public void execute_multipleKeywords_multipleStudySpotsFound() {
         String expectedMessage = String.format(MESSAGE_STUDYSPOT_LISTED_OVERVIEW, 3);
-        NameContainsKeywordsPredicate predicate = preparePredicate("Kurz Elle Kunz");
+        NameContainsKeywordsPredicate predicate = preparePredicate("Amy Elle Kunz");
         FindCommand command = new FindCommand(predicate);
         expectedModel.updateFilteredStudySpotList(predicate);
         assertCommandSuccess(command, model, expectedMessage, expectedModel);
-        assertEquals(Arrays.asList(CARL, ELLE, FIONA), model.getFilteredStudySpotList());
+        assertEquals(Arrays.asList(AMY, ELLE, FIONA), model.getFilteredStudySpotList());
     }
 
     /**

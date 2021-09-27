@@ -33,8 +33,8 @@ public class RatingTest {
         assertFalse(Rating.isValidRating("9312 1534")); // spaces within digits
 
         // valid phone numbers
-        assertTrue(Rating.isValidRating("911")); // exactly 3 numbers
-        assertTrue(Rating.isValidRating("93121534"));
-        assertTrue(Rating.isValidRating("124293842033123")); // long phone numbers
+        assertTrue(Rating.isValidRating("3")); // only digits from 1 to 5
+        assertTrue(Rating.isValidRating("5"));
+        assertTrue(Rating.isValidRating("1"));
     }
 }

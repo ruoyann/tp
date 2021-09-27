@@ -142,7 +142,7 @@ public class EditCommand extends Command {
 
         // state check
         EditCommand e = (EditCommand) other;
-        return index.equals(e.index)
+        return name.isSameNameCaseInsensitive(e.name)
                 && editStudySpotDescriptor.equals(e.editStudySpotDescriptor);
     }
 

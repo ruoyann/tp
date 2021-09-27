@@ -48,10 +48,10 @@ public class EditStudySpotDescriptorBuilder {
     }
 
     /**
-     * Sets the {@code Phone} of the {@code EditStudySpotDescriptor} that we are building.
+     * Sets the {@code Rating} of the {@code EditStudySpotDescriptor} that we are building.
      */
-    public EditStudySpotDescriptorBuilder withPhone(String phone) {
-        descriptor.setRating(new Rating(phone));
+    public EditStudySpotDescriptorBuilder withRating(String rating) {
+        descriptor.setRating(new Rating(rating));
         return this;
     }
 
