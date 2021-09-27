@@ -5,8 +5,8 @@ import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 import static seedu.address.model.Model.PREDICATE_SHOW_ALL_STUDYSPOTS;
 import static seedu.address.testutil.Assert.assertThrows;
-import static seedu.address.testutil.TypicalStudySpots.ALICE;
-import static seedu.address.testutil.TypicalStudySpots.BENSON;
+import static seedu.address.testutil.TypicalStudySpots.CENTRAL_LIBRARY;
+import static seedu.address.testutil.TypicalStudySpots.STARBUCKS;
 
 import java.nio.file.Path;
 import java.nio.file.Paths;
@@ -79,13 +79,13 @@ public class ModelManagerTest {
 
     @Test
     public void hasStudySpot_personNotInAddressBook_returnsFalse() {
-        assertFalse(modelManager.hasStudySpot(ALICE));
+        assertFalse(modelManager.hasStudySpot(STARBUCKS));
     }
 
     @Test
     public void hasStudySpot_personInAddressBook_returnsTrue() {
-        modelManager.addStudySpot(ALICE);
-        assertTrue(modelManager.hasStudySpot(ALICE));
+        modelManager.addStudySpot(STARBUCKS);
+        assertTrue(modelManager.hasStudySpot(STARBUCKS));
     }
 
     @Test
@@ -95,7 +95,8 @@ public class ModelManagerTest {
 
     @Test
     public void equals() {
-        StudyTracker studyTracker = new AddressBookBuilder().withStudySpot(ALICE).withStudySpot(BENSON).build();
+        StudyTracker studyTracker = new AddressBookBuilder().withStudySpot(STARBUCKS)
+                .withStudySpot(CENTRAL_LIBRARY).build();
         StudyTracker differentStudyTracker = new StudyTracker();
         UserPrefs userPrefs = new UserPrefs();
 
@@ -117,7 +118,7 @@ public class ModelManagerTest {
         assertFalse(modelManager.equals(new ModelManager(differentStudyTracker, userPrefs)));
 
         // different filteredList -> returns false
-        String[] keywords = ALICE.getName().fullName.split("\\s+");
+        String[] keywords = STARBUCKS.getName().fullName.split("\\s+");
         modelManager.updateFilteredStudySpotList(new NameContainsKeywordsPredicate(Arrays.asList(keywords)));
         assertFalse(modelManager.equals(new ModelManager(studyTracker, userPrefs)));
 

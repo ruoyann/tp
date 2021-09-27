@@ -6,8 +6,8 @@ import static org.junit.jupiter.api.Assertions.assertTrue;
 import static seedu.address.logic.commands.CommandTestUtil.VALID_ADDRESS_BOB;
 import static seedu.address.logic.commands.CommandTestUtil.VALID_TAG_HUSBAND;
 import static seedu.address.testutil.Assert.assertThrows;
-import static seedu.address.testutil.TypicalStudySpots.ALICE;
 import static seedu.address.testutil.TypicalStudySpots.BOB;
+import static seedu.address.testutil.TypicalStudySpots.STARBUCKS;
 
 import java.util.Arrays;
 import java.util.Collections;
@@ -30,20 +30,20 @@ public class UniqueStudySpotListTest {
 
     @Test
     public void contains_personNotInList_returnsFalse() {
-        assertFalse(uniqueStudySpotList.contains(ALICE));
+        assertFalse(uniqueStudySpotList.contains(STARBUCKS));
     }
 
     @Test
     public void contains_personInList_returnsTrue() {
-        uniqueStudySpotList.add(ALICE);
-        assertTrue(uniqueStudySpotList.contains(ALICE));
+        uniqueStudySpotList.add(STARBUCKS);
+        assertTrue(uniqueStudySpotList.contains(STARBUCKS));
     }
 
     @Test
     public void contains_personWithSameIdentityFieldsInList_returnsTrue() {
-        uniqueStudySpotList.add(ALICE);
-        StudySpot editedAlice = new StudySpotBuilder(ALICE).withAddress(VALID_ADDRESS_BOB).withTags(VALID_TAG_HUSBAND)
-                .build();
+        uniqueStudySpotList.add(STARBUCKS);
+        StudySpot editedAlice = new StudySpotBuilder(STARBUCKS)
+                .withAddress(VALID_ADDRESS_BOB).withTags(VALID_TAG_HUSBAND).build();
         assertTrue(uniqueStudySpotList.contains(editedAlice));
     }
 
@@ -54,40 +54,40 @@ public class UniqueStudySpotListTest {
 
     @Test
     public void add_duplicateStudySpot_throwsDuplicateStudySpotException() {
-        uniqueStudySpotList.add(ALICE);
-        assertThrows(DuplicateStudySpotException.class, () -> uniqueStudySpotList.add(ALICE));
+        uniqueStudySpotList.add(STARBUCKS);
+        assertThrows(DuplicateStudySpotException.class, () -> uniqueStudySpotList.add(STARBUCKS));
     }
 
     @Test
     public void setStudySpot_nullTargetStudySpot_throwsNullPointerException() {
-        assertThrows(NullPointerException.class, () -> uniqueStudySpotList.setStudySpot(null, ALICE));
+        assertThrows(NullPointerException.class, () -> uniqueStudySpotList.setStudySpot(null, STARBUCKS));
     }
 
     @Test
     public void setStudySpot_nullEditedStudySpot_throwsNullPointerException() {
-        assertThrows(NullPointerException.class, () -> uniqueStudySpotList.setStudySpot(ALICE, null));
+        assertThrows(NullPointerException.class, () -> uniqueStudySpotList.setStudySpot(STARBUCKS, null));
     }
 
     @Test
     public void setStudySpot_targetStudySpotNotInList_throwsStudySpotNotFoundException() {
-        assertThrows(StudySpotNotFoundException.class, () -> uniqueStudySpotList.setStudySpot(ALICE, ALICE));
+        assertThrows(StudySpotNotFoundException.class, () -> uniqueStudySpotList.setStudySpot(STARBUCKS, STARBUCKS));
     }
 
     @Test
     public void setStudySpot_editedStudySpotIsSameStudySpot_success() {
-        uniqueStudySpotList.add(ALICE);
-        uniqueStudySpotList.setStudySpot(ALICE, ALICE);
+        uniqueStudySpotList.add(STARBUCKS);
+        uniqueStudySpotList.setStudySpot(STARBUCKS, STARBUCKS);
         UniqueStudySpotList expectedUniqueStudySpotList = new UniqueStudySpotList();
-        expectedUniqueStudySpotList.add(ALICE);
+        expectedUniqueStudySpotList.add(STARBUCKS);
         assertEquals(expectedUniqueStudySpotList, uniqueStudySpotList);
     }
 
     @Test
     public void setStudySpot_editedStudySpotHasSameIdentity_success() {
-        uniqueStudySpotList.add(ALICE);
-        StudySpot editedAlice = new StudySpotBuilder(ALICE).withAddress(VALID_ADDRESS_BOB).withTags(VALID_TAG_HUSBAND)
-                .build();
-        uniqueStudySpotList.setStudySpot(ALICE, editedAlice);
+        uniqueStudySpotList.add(STARBUCKS);
+        StudySpot editedAlice = new StudySpotBuilder(STARBUCKS).withAddress(VALID_ADDRESS_BOB)
+                .withTags(VALID_TAG_HUSBAND).build();
+        uniqueStudySpotList.setStudySpot(STARBUCKS, editedAlice);
         UniqueStudySpotList expectedUniqueStudySpotList = new UniqueStudySpotList();
         expectedUniqueStudySpotList.add(editedAlice);
         assertEquals(expectedUniqueStudySpotList, uniqueStudySpotList);
@@ -95,8 +95,8 @@ public class UniqueStudySpotListTest {
 
     @Test
     public void setStudySpot_editedStudySpotHasDifferentIdentity_success() {
-        uniqueStudySpotList.add(ALICE);
-        uniqueStudySpotList.setStudySpot(ALICE, BOB);
+        uniqueStudySpotList.add(STARBUCKS);
+        uniqueStudySpotList.setStudySpot(STARBUCKS, BOB);
         UniqueStudySpotList expectedUniqueStudySpotList = new UniqueStudySpotList();
         expectedUniqueStudySpotList.add(BOB);
         assertEquals(expectedUniqueStudySpotList, uniqueStudySpotList);
@@ -104,9 +104,9 @@ public class UniqueStudySpotListTest {
 
     @Test
     public void setStudySpot_editedStudySpotHasNonUniqueIdentity_throwsDuplicateStudySpotException() {
-        uniqueStudySpotList.add(ALICE);
+        uniqueStudySpotList.add(STARBUCKS);
         uniqueStudySpotList.add(BOB);
-        assertThrows(DuplicateStudySpotException.class, () -> uniqueStudySpotList.setStudySpot(ALICE, BOB));
+        assertThrows(DuplicateStudySpotException.class, () -> uniqueStudySpotList.setStudySpot(STARBUCKS, BOB));
     }
 
     @Test
@@ -116,13 +116,13 @@ public class UniqueStudySpotListTest {
 
     @Test
     public void remove_personDoesNotExist_throwsStudySpotNotFoundException() {
-        assertThrows(StudySpotNotFoundException.class, () -> uniqueStudySpotList.remove(ALICE));
+        assertThrows(StudySpotNotFoundException.class, () -> uniqueStudySpotList.remove(STARBUCKS));
     }
 
     @Test
     public void remove_existingStudySpot_removesStudySpot() {
-        uniqueStudySpotList.add(ALICE);
-        uniqueStudySpotList.remove(ALICE);
+        uniqueStudySpotList.add(STARBUCKS);
+        uniqueStudySpotList.remove(STARBUCKS);
         UniqueStudySpotList expectedUniqueStudySpotList = new UniqueStudySpotList();
         assertEquals(expectedUniqueStudySpotList, uniqueStudySpotList);
     }
@@ -134,7 +134,7 @@ public class UniqueStudySpotListTest {
 
     @Test
     public void setStudySpots_uniqueStudySpotList_replacesOwnListWithProvidedUniqueStudySpotList() {
-        uniqueStudySpotList.add(ALICE);
+        uniqueStudySpotList.add(STARBUCKS);
         UniqueStudySpotList expectedUniqueStudySpotList = new UniqueStudySpotList();
         expectedUniqueStudySpotList.add(BOB);
         uniqueStudySpotList.setStudySpots(expectedUniqueStudySpotList);
@@ -148,7 +148,7 @@ public class UniqueStudySpotListTest {
 
     @Test
     public void setStudySpots_list_replacesOwnListWithProvidedList() {
-        uniqueStudySpotList.add(ALICE);
+        uniqueStudySpotList.add(STARBUCKS);
         List<StudySpot> studySpots = Collections.singletonList(BOB);
         uniqueStudySpotList.setStudySpots(studySpots);
         UniqueStudySpotList expectedUniqueStudySpotList = new UniqueStudySpotList();
@@ -158,7 +158,7 @@ public class UniqueStudySpotListTest {
 
     @Test
     public void setStudySpots_listWithDuplicateStudySpots_throwsDuplicateStudySpotException() {
-        List<StudySpot> listWithDuplicateStudySpots = Arrays.asList(ALICE, ALICE);
+        List<StudySpot> listWithDuplicateStudySpots = Arrays.asList(STARBUCKS, STARBUCKS);
         assertThrows(DuplicateStudySpotException.class, () ->
                 uniqueStudySpotList.setStudySpots(listWithDuplicateStudySpots));
     }

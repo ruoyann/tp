@@ -85,4 +85,9 @@ public interface Model {
      * @throws NullPointerException if {@code predicate} is null.
      */
     void updateFilteredStudySpotList(Predicate<StudySpot> predicate);
+
+    /**
+     * Returns an unmodifiable view of the non filtered study spot list
+     */
+    ObservableList<StudySpot> getFullList();
 }

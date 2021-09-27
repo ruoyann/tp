@@ -17,7 +17,7 @@ We are a team based in the [School of Computing, National University of Singapor
 
 ### Lim Danqi
 
-<img src="images/limdanqi.jpg" width="200px">
+<img src="images/limdanqi.png" width="200px">
 
 [[github](https://github.com/limdanqi)]
 
@@ -29,17 +29,7 @@ We are a team based in the [School of Computing, National University of Singapor
 
 [[github](http://github.com/qreoct)]
 
-* Responsibilities: Team lead, documentation 
-
-### Yin Ruoyan 
-
-<img src="images/ruoyan.png" width="200px">
-
-[[github](http://github.com/ruoyann)]
-[[portfolio](team/johndoe.md)]
-
-* Role: Developer
-* Responsibilities: UI
+* Responsibilities: Team lead, documentation
 
 ### Kim-Chan Tze Yong, Joenz
 

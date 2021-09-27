@@ -140,7 +140,7 @@ Command alias :`ls`
 
 Edits the details of a single study spot.
 
-Format: `edit n/NAME* n/NEW_NAME a/NEW_ADDRESS t/NEW_TAG m/NEW_AMENITY r/NEW_RATING`
+Format: `edit spot/NAME* n/NEW_NAME a/NEW_ADDRESS t/NEW_TAG m/NEW_AMENITY r/NEW_RATING`
 
 * Edits the study spot with the same name. The name, while not case-sensitive, **must match the name in the list**.
 * At least one of the optional fields must be provided.
@@ -151,7 +151,7 @@ Format: `edit n/NAME* n/NEW_NAME a/NEW_ADDRESS t/NEW_TAG m/NEW_AMENITY r/NEW_RAT
 
 Examples:
 ```
-edit n/tr3 n/Training Room 3
+edit spot/tr3 n/Training Room 3
 Study spot “TR3” has been edited to “Training Room 3”
 ```
 

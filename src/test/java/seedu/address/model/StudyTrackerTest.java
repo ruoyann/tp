@@ -6,7 +6,7 @@ import static org.junit.jupiter.api.Assertions.assertTrue;
 import static seedu.address.logic.commands.CommandTestUtil.VALID_ADDRESS_BOB;
 import static seedu.address.logic.commands.CommandTestUtil.VALID_TAG_HUSBAND;
 import static seedu.address.testutil.Assert.assertThrows;
-import static seedu.address.testutil.TypicalStudySpots.ALICE;
+import static seedu.address.testutil.TypicalStudySpots.STARBUCKS;
 import static seedu.address.testutil.TypicalStudySpots.getTypicalAddressBook;
 
 import java.util.Arrays;
@@ -46,9 +46,10 @@ public class StudyTrackerTest {
     @Test
     public void resetData_withDuplicateStudySpots_throwsDuplicateStudySpotException() {
         // Two study spots with the same identity fields
-        StudySpot editedAlice = new StudySpotBuilder(ALICE).withAddress(VALID_ADDRESS_BOB).withTags(VALID_TAG_HUSBAND)
+        StudySpot editedAlice = new StudySpotBuilder(STARBUCKS)
+                .withAddress(VALID_ADDRESS_BOB).withTags(VALID_TAG_HUSBAND)
                 .build();
-        List<StudySpot> newStudySpots = Arrays.asList(ALICE, editedAlice);
+        List<StudySpot> newStudySpots = Arrays.asList(STARBUCKS, editedAlice);
         StudyTrackerStub newData = new StudyTrackerStub(newStudySpots);
 
         assertThrows(DuplicateStudySpotException.class, () -> studyTracker.resetData(newData));
@@ -61,19 +62,20 @@ public class StudyTrackerTest {
 
     @Test
     public void hasStudySpot_personNotInAddressBook_returnsFalse() {
-        assertFalse(studyTracker.hasStudySpot(ALICE));
+        assertFalse(studyTracker.hasStudySpot(STARBUCKS));
     }
 
     @Test
     public void hasStudySpot_personInAddressBook_returnsTrue() {
-        studyTracker.addStudySpot(ALICE);
-        assertTrue(studyTracker.hasStudySpot(ALICE));
+        studyTracker.addStudySpot(STARBUCKS);
+        assertTrue(studyTracker.hasStudySpot(STARBUCKS));
     }
 
     @Test
     public void hasStudySpot_personWithSameIdentityFieldsInAddressBook_returnsTrue() {
-        studyTracker.addStudySpot(ALICE);
-        StudySpot editedAlice = new StudySpotBuilder(ALICE).withAddress(VALID_ADDRESS_BOB).withTags(VALID_TAG_HUSBAND)
+        studyTracker.addStudySpot(STARBUCKS);
+        StudySpot editedAlice = new StudySpotBuilder(STARBUCKS)
+                .withAddress(VALID_ADDRESS_BOB).withTags(VALID_TAG_HUSBAND)
                 .build();
         assertTrue(studyTracker.hasStudySpot(editedAlice));
     }

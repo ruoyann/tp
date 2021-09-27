@@ -148,4 +148,9 @@ public class ModelManager implements Model {
                 && filteredStudySpots.equals(other.filteredStudySpots);
     }
 
+    @Override
+    public ObservableList<StudySpot> getFullList() {
+        return studyTracker.getStudySpotList();
+    }
+
 }

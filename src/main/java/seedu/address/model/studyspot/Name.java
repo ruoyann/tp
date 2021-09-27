@@ -56,4 +56,17 @@ public class Name {
         return fullName.hashCode();
     }
 
+    /**
+     * Checks if two names are the same without caring about
+     * case sensitivity
+     *
+     * @param other name to be checked
+     * @return true if they are the same
+     */
+    public boolean isSameNameCaseInsensitive(Name other) {
+        String fullNameCaseInsensitive = this.fullName.toLowerCase();
+        String otherNameCaseInsensitive = other.fullName.toLowerCase();
+        return fullNameCaseInsensitive.equals(otherNameCaseInsensitive);
+    }
+
 }

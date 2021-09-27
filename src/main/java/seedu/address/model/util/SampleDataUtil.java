@@ -9,7 +9,7 @@ import seedu.address.model.StudyTracker;
 import seedu.address.model.studyspot.Address;
 import seedu.address.model.studyspot.Email;
 import seedu.address.model.studyspot.Name;
-import seedu.address.model.studyspot.Phone;
+import seedu.address.model.studyspot.Rating;
 import seedu.address.model.studyspot.StudySpot;
 import seedu.address.model.tag.Tag;
 
@@ -19,24 +19,24 @@ import seedu.address.model.tag.Tag;
 public class SampleDataUtil {
     public static StudySpot[] getSampleStudySpots() {
         return new StudySpot[] {
-            new StudySpot(new Name("Alex Yeoh"), new Phone("87438807"), new Email("alexyeoh@example.com"),
-                new Address("Blk 30 Geylang Street 29, #06-40"),
-                getTagSet("friends")),
-            new StudySpot(new Name("Bernice Yu"), new Phone("99272758"), new Email("berniceyu@example.com"),
-                new Address("Blk 30 Lorong 3 Serangoon Gardens, #07-18"),
-                getTagSet("colleagues", "friends")),
-            new StudySpot(new Name("Charlotte Oliveiro"), new Phone("93210283"), new Email("charlotte@example.com"),
-                new Address("Blk 11 Ang Mo Kio Street 74, #11-04"),
-                getTagSet("neighbours")),
-            new StudySpot(new Name("David Li"), new Phone("91031282"), new Email("lidavid@example.com"),
-                new Address("Blk 436 Serangoon Gardens Street 26, #16-43"),
-                getTagSet("family")),
-            new StudySpot(new Name("Irfan Ibrahim"), new Phone("92492021"), new Email("irfan@example.com"),
-                new Address("Blk 47 Tampines Street 20, #17-35"),
-                getTagSet("classmates")),
-            new StudySpot(new Name("Roy Balakrishnan"), new Phone("92624417"), new Email("royb@example.com"),
-                new Address("Blk 45 Aljunied Street 85, #11-31"),
-                getTagSet("colleagues"))
+            new StudySpot(new Name("Starbucks UTown"), new Rating("4"), new Email("Starbucks@Utown.com"),
+                new Address("U-Town"),
+                getTagSet("coffee", "tea", "me")),
+            new StudySpot(new Name("COM1 Tech Hangout"), new Rating("4"), new Email("-"),
+                new Address("COM1"),
+                getTagSet("friendly")),
+            new StudySpot(new Name("Central Library"), new Rating("3"), new Email("clb@nus.com"),
+                new Address("Next to FASS"),
+                getTagSet("quiet", "cold")),
+            new StudySpot(new Name("Outside cool spot"), new Rating("2"), new Email("-"),
+                new Address("Cool-spot"),
+                getTagSet("drinks", "hot")),
+            new StudySpot(new Name("Medicine library"), new Rating("5"), new Email("-"),
+                new Address("-"),
+                getTagSet("awesome")),
+            new StudySpot(new Name("Mothers basement"), new Rating("1"), new Email("mom@example.com"),
+                new Address("My house"),
+                getTagSet("depression"))
         };
     }
 
@@ -56,5 +56,4 @@ public class SampleDataUtil {
                 .map(Tag::new)
                 .collect(Collectors.toSet());
     }
-
 }
