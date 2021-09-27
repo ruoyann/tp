@@ -15,6 +15,9 @@ public class StatusBarFooter extends UiPart<Region> {
     private static final String FXML = "StatusBarFooter.fxml";
 
     @FXML
+    private Label versionStatus;
+
+    @FXML
     private Label saveLocationStatus;
 
     /**
@@ -22,6 +25,7 @@ public class StatusBarFooter extends UiPart<Region> {
      */
     public StatusBarFooter(Path saveLocation) {
         super(FXML);
+        versionStatus.setText("v1.1");
         saveLocationStatus.setText(Paths.get(".").resolve(saveLocation).toString());
     }
 

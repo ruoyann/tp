@@ -142,8 +142,20 @@
      -fx-border-top-width: 1px;
 }
 
+.pane-without-border {
+     -fx-background-color: derive(#1d1d1d, 20%)
+}
+
 .status-bar {
     -fx-background-color: derive(#1d1d1d, 30%);
+}
+
+.info-display .label{
+    -fx-font-family: "Open Sans Bold";
+    -fx-font-size: 18pt;
+    -fx-text-fill: white;
+    -fx-font-weight: bold;
+    -fx-font-style: italic;
 }
 
 .result-display {
