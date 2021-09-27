@@ -2,8 +2,8 @@ package seedu.address.logic.commands;
 
 import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertTrue;
-import static seedu.address.logic.commands.CommandTestUtil.DESC_FRONTIER;
 import static seedu.address.logic.commands.CommandTestUtil.DESC_DECK;
+import static seedu.address.logic.commands.CommandTestUtil.DESC_FRONTIER;
 import static seedu.address.logic.commands.CommandTestUtil.VALID_ADDRESS_DECK;
 import static seedu.address.logic.commands.CommandTestUtil.VALID_EMAIL_DECK;
 import static seedu.address.logic.commands.CommandTestUtil.VALID_NAME_DECK;

@@ -1,20 +1,20 @@
 package seedu.address.logic.parser;
 
 import static seedu.address.commons.core.Messages.MESSAGE_INVALID_COMMAND_FORMAT;
-import static seedu.address.logic.commands.CommandTestUtil.ADDRESS_DESC_FRONTIER;
 import static seedu.address.logic.commands.CommandTestUtil.ADDRESS_DESC_DECK;
-import static seedu.address.logic.commands.CommandTestUtil.EMAIL_DESC_FRONTIER;
+import static seedu.address.logic.commands.CommandTestUtil.ADDRESS_DESC_FRONTIER;
 import static seedu.address.logic.commands.CommandTestUtil.EMAIL_DESC_DECK;
+import static seedu.address.logic.commands.CommandTestUtil.EMAIL_DESC_FRONTIER;
 import static seedu.address.logic.commands.CommandTestUtil.INVALID_ADDRESS_DESC;
 import static seedu.address.logic.commands.CommandTestUtil.INVALID_NAME_DESC;
 import static seedu.address.logic.commands.CommandTestUtil.INVALID_RATING_DESC;
 import static seedu.address.logic.commands.CommandTestUtil.INVALID_TAG_DESC;
-import static seedu.address.logic.commands.CommandTestUtil.NAME_DESC_FRONTIER;
 import static seedu.address.logic.commands.CommandTestUtil.NAME_DESC_DECK;
+import static seedu.address.logic.commands.CommandTestUtil.NAME_DESC_FRONTIER;
 import static seedu.address.logic.commands.CommandTestUtil.PREAMBLE_NON_EMPTY;
 import static seedu.address.logic.commands.CommandTestUtil.PREAMBLE_WHITESPACE;
-import static seedu.address.logic.commands.CommandTestUtil.RATING_DESC_FRONTIER;
 import static seedu.address.logic.commands.CommandTestUtil.RATING_DESC_DECK;
+import static seedu.address.logic.commands.CommandTestUtil.RATING_DESC_FRONTIER;
 import static seedu.address.logic.commands.CommandTestUtil.TAG_DESC_CROWDED;
 import static seedu.address.logic.commands.CommandTestUtil.TAG_DESC_QUIET;
 import static seedu.address.logic.commands.CommandTestUtil.VALID_ADDRESS_DECK;
@@ -25,8 +25,8 @@ import static seedu.address.logic.commands.CommandTestUtil.VALID_TAG_CROWDED;
 import static seedu.address.logic.commands.CommandTestUtil.VALID_TAG_QUIET;
 import static seedu.address.logic.parser.CommandParserTestUtil.assertParseFailure;
 import static seedu.address.logic.parser.CommandParserTestUtil.assertParseSuccess;
-import static seedu.address.testutil.TypicalStudySpots.FRONTIER;
 import static seedu.address.testutil.TypicalStudySpots.DECK;
+import static seedu.address.testutil.TypicalStudySpots.FRONTIER;
 
 import org.junit.jupiter.api.Test;
 
@@ -77,8 +77,9 @@ public class AddCommandParserTest {
     public void parse_optionalFieldsMissing_success() {
         // zero tags
         StudySpot expectedStudySpot = new StudySpotBuilder(FRONTIER).withTags().build();
-        assertParseSuccess(parser, NAME_DESC_FRONTIER + RATING_DESC_FRONTIER + EMAIL_DESC_FRONTIER + ADDRESS_DESC_FRONTIER,
-                new AddCommand(expectedStudySpot));
+        assertParseSuccess(parser, NAME_DESC_FRONTIER + RATING_DESC_FRONTIER
+                        + EMAIL_DESC_FRONTIER + ADDRESS_DESC_FRONTIER,
+                        new AddCommand(expectedStudySpot));
     }
 
     /**

@@ -1,27 +1,27 @@
 package seedu.address.logic.parser;
 
 import static seedu.address.commons.core.Messages.MESSAGE_INVALID_COMMAND_FORMAT;
-import static seedu.address.logic.commands.CommandTestUtil.ADDRESS_DESC_FRONTIER;
 import static seedu.address.logic.commands.CommandTestUtil.ADDRESS_DESC_DECK;
-import static seedu.address.logic.commands.CommandTestUtil.EMAIL_DESC_FRONTIER;
+import static seedu.address.logic.commands.CommandTestUtil.ADDRESS_DESC_FRONTIER;
 import static seedu.address.logic.commands.CommandTestUtil.EMAIL_DESC_DECK;
+import static seedu.address.logic.commands.CommandTestUtil.EMAIL_DESC_FRONTIER;
 import static seedu.address.logic.commands.CommandTestUtil.INVALID_ADDRESS_DESC;
 import static seedu.address.logic.commands.CommandTestUtil.INVALID_EMAIL_DESC;
 import static seedu.address.logic.commands.CommandTestUtil.INVALID_NAME_DESC;
 import static seedu.address.logic.commands.CommandTestUtil.INVALID_RATING_DESC;
 import static seedu.address.logic.commands.CommandTestUtil.INVALID_TAG_DESC;
 import static seedu.address.logic.commands.CommandTestUtil.NAME_DESC_FRONTIER;
-import static seedu.address.logic.commands.CommandTestUtil.RATING_DESC_FRONTIER;
 import static seedu.address.logic.commands.CommandTestUtil.RATING_DESC_DECK;
+import static seedu.address.logic.commands.CommandTestUtil.RATING_DESC_FRONTIER;
 import static seedu.address.logic.commands.CommandTestUtil.TAG_DESC_CROWDED;
 import static seedu.address.logic.commands.CommandTestUtil.TAG_DESC_QUIET;
-import static seedu.address.logic.commands.CommandTestUtil.VALID_ADDRESS_FRONTIER;
 import static seedu.address.logic.commands.CommandTestUtil.VALID_ADDRESS_DECK;
-import static seedu.address.logic.commands.CommandTestUtil.VALID_EMAIL_FRONTIER;
+import static seedu.address.logic.commands.CommandTestUtil.VALID_ADDRESS_FRONTIER;
 import static seedu.address.logic.commands.CommandTestUtil.VALID_EMAIL_DECK;
+import static seedu.address.logic.commands.CommandTestUtil.VALID_EMAIL_FRONTIER;
 import static seedu.address.logic.commands.CommandTestUtil.VALID_NAME_FRONTIER;
-import static seedu.address.logic.commands.CommandTestUtil.VALID_RATING_FRONTIER;
 import static seedu.address.logic.commands.CommandTestUtil.VALID_RATING_DECK;
+import static seedu.address.logic.commands.CommandTestUtil.VALID_RATING_FRONTIER;
 import static seedu.address.logic.commands.CommandTestUtil.VALID_TAG_CROWDED;
 import static seedu.address.logic.commands.CommandTestUtil.VALID_TAG_QUIET;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_TAG;
@@ -172,12 +172,16 @@ public class EditCommandParserTest {
     @Test
     public void parse_multipleRepeatedFields_acceptsLast() {
         Name targetName = new Name(VALID_NAME_FRONTIER);
-        String userInput = " spot/" + targetName.fullName + RATING_DESC_FRONTIER + ADDRESS_DESC_FRONTIER + EMAIL_DESC_FRONTIER
-                + TAG_DESC_CROWDED + RATING_DESC_FRONTIER + ADDRESS_DESC_FRONTIER + EMAIL_DESC_FRONTIER + TAG_DESC_CROWDED
-                + RATING_DESC_DECK + ADDRESS_DESC_DECK + EMAIL_DESC_DECK + TAG_DESC_QUIET;
+        String userInput = " spot/" + targetName.fullName + RATING_DESC_FRONTIER + ADDRESS_DESC_FRONTIER
+                + EMAIL_DESC_FRONTIER + TAG_DESC_CROWDED + RATING_DESC_FRONTIER + ADDRESS_DESC_FRONTIER
+                + EMAIL_DESC_FRONTIER + TAG_DESC_CROWDED + RATING_DESC_DECK + ADDRESS_DESC_DECK
+                + EMAIL_DESC_DECK + TAG_DESC_QUIET;
 
-        EditStudySpotDescriptor descriptor = new EditStudySpotDescriptorBuilder().withRating(VALID_RATING_DECK)
-                .withEmail(VALID_EMAIL_DECK).withAddress(VALID_ADDRESS_DECK).withTags(VALID_TAG_CROWDED, VALID_TAG_QUIET)
+        EditStudySpotDescriptor descriptor = new EditStudySpotDescriptorBuilder()
+                .withRating(VALID_RATING_DECK)
+                .withEmail(VALID_EMAIL_DECK)
+                .withAddress(VALID_ADDRESS_DECK)
+                .withTags(VALID_TAG_CROWDED, VALID_TAG_QUIET)
                 .build();
         EditCommand expectedCommand = new EditCommand(targetName, descriptor);
 

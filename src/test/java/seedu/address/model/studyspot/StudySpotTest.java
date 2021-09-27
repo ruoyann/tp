@@ -32,7 +32,8 @@ public class StudySpotTest {
         assertFalse(STARBUCKS.isSameStudySpot(null));
 
         // same name, all other attributes different -> returns true
-        StudySpot editedStarbucks = new StudySpotBuilder(STARBUCKS).withRating(VALID_RATING_DECK).withEmail(VALID_EMAIL_DECK)
+        StudySpot editedStarbucks = new StudySpotBuilder(STARBUCKS)
+                .withRating(VALID_RATING_DECK).withEmail(VALID_EMAIL_DECK)
                 .withAddress(VALID_ADDRESS_DECK).withTags(VALID_TAG_QUIET).build();
         assertTrue(STARBUCKS.isSameStudySpot(editedStarbucks));
 

@@ -1,13 +1,13 @@
 package seedu.address.testutil;
 
-import static seedu.address.logic.commands.CommandTestUtil.VALID_ADDRESS_FRONTIER;
 import static seedu.address.logic.commands.CommandTestUtil.VALID_ADDRESS_DECK;
-import static seedu.address.logic.commands.CommandTestUtil.VALID_EMAIL_FRONTIER;
+import static seedu.address.logic.commands.CommandTestUtil.VALID_ADDRESS_FRONTIER;
 import static seedu.address.logic.commands.CommandTestUtil.VALID_EMAIL_DECK;
-import static seedu.address.logic.commands.CommandTestUtil.VALID_NAME_FRONTIER;
+import static seedu.address.logic.commands.CommandTestUtil.VALID_EMAIL_FRONTIER;
 import static seedu.address.logic.commands.CommandTestUtil.VALID_NAME_DECK;
-import static seedu.address.logic.commands.CommandTestUtil.VALID_RATING_FRONTIER;
+import static seedu.address.logic.commands.CommandTestUtil.VALID_NAME_FRONTIER;
 import static seedu.address.logic.commands.CommandTestUtil.VALID_RATING_DECK;
+import static seedu.address.logic.commands.CommandTestUtil.VALID_RATING_FRONTIER;
 import static seedu.address.logic.commands.CommandTestUtil.VALID_TAG_CROWDED;
 import static seedu.address.logic.commands.CommandTestUtil.VALID_TAG_QUIET;
 
@@ -60,10 +60,16 @@ public class TypicalStudySpots {
             .withAddress("NUS COM1, Basement 1").build();
 
     // Manually added - StudySpot's details found in {@code CommandTestUtil}
-    public static final StudySpot FRONTIER = new StudySpotBuilder().withName(VALID_NAME_FRONTIER).withRating(VALID_RATING_FRONTIER)
-            .withEmail(VALID_EMAIL_FRONTIER).withAddress(VALID_ADDRESS_FRONTIER).withTags(VALID_TAG_CROWDED).build();
-    public static final StudySpot DECK = new StudySpotBuilder().withName(VALID_NAME_DECK).withRating(VALID_RATING_DECK)
-            .withEmail(VALID_EMAIL_DECK).withAddress(VALID_ADDRESS_DECK).withTags(VALID_TAG_QUIET, VALID_TAG_CROWDED)
+    public static final StudySpot FRONTIER = new StudySpotBuilder().withName(VALID_NAME_FRONTIER)
+            .withRating(VALID_RATING_FRONTIER)
+            .withEmail(VALID_EMAIL_FRONTIER)
+            .withAddress(VALID_ADDRESS_FRONTIER)
+            .withTags(VALID_TAG_CROWDED).build();
+    public static final StudySpot DECK = new StudySpotBuilder().withName(VALID_NAME_DECK)
+            .withRating(VALID_RATING_DECK)
+            .withEmail(VALID_EMAIL_DECK)
+            .withAddress(VALID_ADDRESS_DECK)
+            .withTags(VALID_TAG_QUIET, VALID_TAG_CROWDED)
             .build();
 
 

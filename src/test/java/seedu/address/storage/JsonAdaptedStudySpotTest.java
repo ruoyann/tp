@@ -97,7 +97,11 @@ public class JsonAdaptedStudySpotTest {
 
     @Test
     public void toModelType_nullAddress_throwsIllegalValueException() {
-        JsonAdaptedStudySpot studySpot = new JsonAdaptedStudySpot(VALID_NAME, VALID_RATING, VALID_EMAIL, null, VALID_TAGS);
+        JsonAdaptedStudySpot studySpot = new JsonAdaptedStudySpot(VALID_NAME,
+                VALID_RATING,
+                VALID_EMAIL,
+                null,
+                VALID_TAGS);
         String expectedMessage = String.format(MISSING_FIELD_MESSAGE_FORMAT, Address.class.getSimpleName());
         assertThrows(IllegalValueException.class, expectedMessage, studySpot::toModelType);
     }

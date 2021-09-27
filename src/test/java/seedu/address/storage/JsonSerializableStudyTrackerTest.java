@@ -18,7 +18,8 @@ public class JsonSerializableStudyTrackerTest {
     private static final Path TEST_DATA_FOLDER = Paths.get("src", "test", "data", "JsonSerializableStudyTrackerTest");
     private static final Path TYPICAL_STUDYSPOTS_FILE = TEST_DATA_FOLDER.resolve("typicalStudySpotsStudyTracker.json");
     private static final Path INVALID_STUDYSPOT_FILE = TEST_DATA_FOLDER.resolve("invalidStudySpotStudyTracker.json");
-    private static final Path DUPLICATE_STUDYSPOT_FILE = TEST_DATA_FOLDER.resolve("duplicateStudySpotStudyTracker.json");
+    private static final Path DUPLICATE_STUDYSPOT_FILE =
+            TEST_DATA_FOLDER.resolve("duplicateStudySpotStudyTracker.json");
 
     @Test
     public void toModelType_typicalStudySpotsFile_success() throws Exception {
