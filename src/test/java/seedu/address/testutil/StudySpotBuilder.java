@@ -19,7 +19,7 @@ public class StudySpotBuilder {
     public static final String DEFAULT_NAME = "COM1 Tech Hangout";
     public static final String DEFAULT_RATING = "3";
     public static final String DEFAULT_EMAIL = "-";
-    public static final String DEFAULT_ADDRESS = "School of Computing";
+    public static final String DEFAULT_ADDRESS = "NUS School of Computing";
 
     private Name name;
     private Rating rating;

@@ -1,8 +1,8 @@
 {
   "studySpots": [ {
-    "name": "Person with invalid name field: Ha!ns Mu@ster",
-    "phone": "9482424",
-    "email": "hans@example.com",
-    "address": "4th street"
+    "name": "Study Spot with invalid name field: *bucks @ ut0wN!",
+    "rating": "2",
+    "email": "blank email",
+    "address": "UTown Green"
   } ]
 }

@@ -5,10 +5,10 @@ import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 import static seedu.address.commons.core.Messages.MESSAGE_STUDYSPOT_LISTED_OVERVIEW;
 import static seedu.address.logic.commands.CommandTestUtil.assertCommandSuccess;
-import static seedu.address.testutil.TypicalStudySpots.AMY;
-import static seedu.address.testutil.TypicalStudySpots.ELLE;
-import static seedu.address.testutil.TypicalStudySpots.FIONA;
-import static seedu.address.testutil.TypicalStudySpots.getTypicalAddressBook;
+import static seedu.address.testutil.TypicalStudySpots.FRONTIER;
+import static seedu.address.testutil.TypicalStudySpots.PC_COMMONS;
+import static seedu.address.testutil.TypicalStudySpots.LT_17;
+import static seedu.address.testutil.TypicalStudySpots.getTypicalStudyTracker;
 
 import java.util.Arrays;
 import java.util.Collections;
@@ -24,8 +24,8 @@ import seedu.address.model.studyspot.NameContainsKeywordsPredicate;
  * Contains integration tests (interaction with the Model) for {@code FindCommand}.
  */
 public class FindCommandTest {
-    private Model model = new ModelManager(getTypicalAddressBook(), new UserPrefs());
-    private Model expectedModel = new ModelManager(getTypicalAddressBook(), new UserPrefs());
+    private Model model = new ModelManager(getTypicalStudyTracker(), new UserPrefs());
+    private Model expectedModel = new ModelManager(getTypicalStudyTracker(), new UserPrefs());
 
     @Test
     public void equals() {
@@ -50,7 +50,7 @@ public class FindCommandTest {
         // null -> returns false
         assertFalse(findFirstCommand.equals(null));
 
-        // different person -> returns false
+        // different study spot -> returns false
         assertFalse(findFirstCommand.equals(findSecondCommand));
     }
 
@@ -67,11 +67,11 @@ public class FindCommandTest {
     @Test
     public void execute_multipleKeywords_multipleStudySpotsFound() {
         String expectedMessage = String.format(MESSAGE_STUDYSPOT_LISTED_OVERVIEW, 3);
-        NameContainsKeywordsPredicate predicate = preparePredicate("Amy Elle Kunz");
+        NameContainsKeywordsPredicate predicate = preparePredicate("Frontier PC LT17");
         FindCommand command = new FindCommand(predicate);
         expectedModel.updateFilteredStudySpotList(predicate);
         assertCommandSuccess(command, model, expectedMessage, expectedModel);
-        assertEquals(Arrays.asList(AMY, ELLE, FIONA), model.getFilteredStudySpotList());
+        assertEquals(Arrays.asList(FRONTIER, PC_COMMONS, LT_17), model.getFilteredStudySpotList());
     }
 
     /**

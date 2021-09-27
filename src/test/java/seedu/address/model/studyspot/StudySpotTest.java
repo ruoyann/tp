@@ -2,13 +2,13 @@ package seedu.address.model.studyspot;
 
 import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertTrue;
-import static seedu.address.logic.commands.CommandTestUtil.VALID_ADDRESS_BOB;
-import static seedu.address.logic.commands.CommandTestUtil.VALID_EMAIL_BOB;
-import static seedu.address.logic.commands.CommandTestUtil.VALID_NAME_BOB;
-import static seedu.address.logic.commands.CommandTestUtil.VALID_RATING_BOB;
-import static seedu.address.logic.commands.CommandTestUtil.VALID_TAG_HUSBAND;
+import static seedu.address.logic.commands.CommandTestUtil.VALID_ADDRESS_DECK;
+import static seedu.address.logic.commands.CommandTestUtil.VALID_EMAIL_DECK;
+import static seedu.address.logic.commands.CommandTestUtil.VALID_NAME_DECK;
+import static seedu.address.logic.commands.CommandTestUtil.VALID_RATING_DECK;
+import static seedu.address.logic.commands.CommandTestUtil.VALID_TAG_QUIET;
 import static seedu.address.testutil.Assert.assertThrows;
-import static seedu.address.testutil.TypicalStudySpots.BOB;
+import static seedu.address.testutil.TypicalStudySpots.DECK;
 import static seedu.address.testutil.TypicalStudySpots.STARBUCKS;
 
 import org.junit.jupiter.api.Test;
@@ -19,8 +19,8 @@ public class StudySpotTest {
 
     @Test
     public void asObservableList_modifyList_throwsUnsupportedOperationException() {
-        StudySpot person = new StudySpotBuilder().build();
-        assertThrows(UnsupportedOperationException.class, () -> person.getTags().remove(0));
+        StudySpot studySpot = new StudySpotBuilder().build();
+        assertThrows(UnsupportedOperationException.class, () -> studySpot.getTags().remove(0));
     }
 
     @Test
@@ -32,29 +32,29 @@ public class StudySpotTest {
         assertFalse(STARBUCKS.isSameStudySpot(null));
 
         // same name, all other attributes different -> returns true
-        StudySpot editedAlice = new StudySpotBuilder(STARBUCKS).withRating(VALID_RATING_BOB).withEmail(VALID_EMAIL_BOB)
-                .withAddress(VALID_ADDRESS_BOB).withTags(VALID_TAG_HUSBAND).build();
-        assertTrue(STARBUCKS.isSameStudySpot(editedAlice));
+        StudySpot editedStarbucks = new StudySpotBuilder(STARBUCKS).withRating(VALID_RATING_DECK).withEmail(VALID_EMAIL_DECK)
+                .withAddress(VALID_ADDRESS_DECK).withTags(VALID_TAG_QUIET).build();
+        assertTrue(STARBUCKS.isSameStudySpot(editedStarbucks));
 
         // different name, all other attributes same -> returns false
-        editedAlice = new StudySpotBuilder(STARBUCKS).withName(VALID_NAME_BOB).build();
-        assertFalse(STARBUCKS.isSameStudySpot(editedAlice));
+        editedStarbucks = new StudySpotBuilder(STARBUCKS).withName(VALID_NAME_DECK).build();
+        assertFalse(STARBUCKS.isSameStudySpot(editedStarbucks));
 
         // name differs in case, all other attributes same -> returns false
-        StudySpot editedBob = new StudySpotBuilder(BOB).withName(VALID_NAME_BOB.toLowerCase()).build();
-        assertFalse(BOB.isSameStudySpot(editedBob));
+        StudySpot editedDeck = new StudySpotBuilder(DECK).withName(VALID_NAME_DECK.toLowerCase()).build();
+        assertFalse(DECK.isSameStudySpot(editedDeck));
 
         // name has trailing spaces, all other attributes same -> returns false
-        String nameWithTrailingSpaces = VALID_NAME_BOB + " ";
-        editedBob = new StudySpotBuilder(BOB).withName(nameWithTrailingSpaces).build();
-        assertFalse(BOB.isSameStudySpot(editedBob));
+        String nameWithTrailingSpaces = VALID_NAME_DECK + " ";
+        editedDeck = new StudySpotBuilder(DECK).withName(nameWithTrailingSpaces).build();
+        assertFalse(DECK.isSameStudySpot(editedDeck));
     }
 
     @Test
     public void equals() {
         // same values -> returns true
-        StudySpot aliceCopy = new StudySpotBuilder(STARBUCKS).build();
-        assertTrue(STARBUCKS.equals(aliceCopy));
+        StudySpot starbucksCopy = new StudySpotBuilder(STARBUCKS).build();
+        assertTrue(STARBUCKS.equals(starbucksCopy));
 
         // same object -> returns true
         assertTrue(STARBUCKS.equals(STARBUCKS));
@@ -65,27 +65,27 @@ public class StudySpotTest {
         // different type -> returns false
         assertFalse(STARBUCKS.equals(5));
 
-        // different person -> returns false
-        assertFalse(STARBUCKS.equals(BOB));
+        // different study spot -> returns false
+        assertFalse(STARBUCKS.equals(DECK));
 
         // different name -> returns false
-        StudySpot editedAlice = new StudySpotBuilder(STARBUCKS).withName(VALID_NAME_BOB).build();
-        assertFalse(STARBUCKS.equals(editedAlice));
+        StudySpot editedStarbucks = new StudySpotBuilder(STARBUCKS).withName(VALID_NAME_DECK).build();
+        assertFalse(STARBUCKS.equals(editedStarbucks));
 
-        // different phone -> returns false
-        editedAlice = new StudySpotBuilder(STARBUCKS).withRating(VALID_RATING_BOB).build();
-        assertFalse(STARBUCKS.equals(editedAlice));
+        // different rating -> returns false
+        editedStarbucks = new StudySpotBuilder(STARBUCKS).withRating(VALID_RATING_DECK).build();
+        assertFalse(STARBUCKS.equals(editedStarbucks));
 
         // different email -> returns false
-        editedAlice = new StudySpotBuilder(STARBUCKS).withEmail(VALID_EMAIL_BOB).build();
-        assertFalse(STARBUCKS.equals(editedAlice));
+        editedStarbucks = new StudySpotBuilder(STARBUCKS).withEmail(VALID_EMAIL_DECK).build();
+        assertFalse(STARBUCKS.equals(editedStarbucks));
 
         // different address -> returns false
-        editedAlice = new StudySpotBuilder(STARBUCKS).withAddress(VALID_ADDRESS_BOB).build();
-        assertFalse(STARBUCKS.equals(editedAlice));
+        editedStarbucks = new StudySpotBuilder(STARBUCKS).withAddress(VALID_ADDRESS_DECK).build();
+        assertFalse(STARBUCKS.equals(editedStarbucks));
 
         // different tags -> returns false
-        editedAlice = new StudySpotBuilder(STARBUCKS).withTags(VALID_TAG_HUSBAND).build();
-        assertFalse(STARBUCKS.equals(editedAlice));
+        editedStarbucks = new StudySpotBuilder(STARBUCKS).withTags(VALID_TAG_QUIET).build();
+        assertFalse(STARBUCKS.equals(editedStarbucks));
     }
 }

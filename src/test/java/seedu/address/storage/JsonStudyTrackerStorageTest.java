@@ -3,10 +3,10 @@ package seedu.address.storage;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertFalse;
 import static seedu.address.testutil.Assert.assertThrows;
-import static seedu.address.testutil.TypicalStudySpots.HOON;
-import static seedu.address.testutil.TypicalStudySpots.IDA;
+import static seedu.address.testutil.TypicalStudySpots.BIZ_PODS;
+import static seedu.address.testutil.TypicalStudySpots.COMPUTING_LOUNGE;
 import static seedu.address.testutil.TypicalStudySpots.STARBUCKS;
-import static seedu.address.testutil.TypicalStudySpots.getTypicalAddressBook;
+import static seedu.address.testutil.TypicalStudySpots.getTypicalStudyTracker;
 
 import java.io.IOException;
 import java.nio.file.Path;
@@ -63,7 +63,7 @@ public class JsonStudyTrackerStorageTest {
     @Test
     public void readAndSaveAddressBook_allInOrder_success() throws Exception {
         Path filePath = testFolder.resolve("TempAddressBook.json");
-        StudyTracker original = getTypicalAddressBook();
+        StudyTracker original = getTypicalStudyTracker();
         JsonStudyTrackerStorage jsonStudyTrackerStorage = new JsonStudyTrackerStorage(filePath);
 
         // Save in new file and read back
@@ -72,14 +72,14 @@ public class JsonStudyTrackerStorageTest {
         assertEquals(original, new StudyTracker(readBack));
 
         // Modify data, overwrite exiting file, and read back
-        original.addStudySpot(HOON);
+        original.addStudySpot(BIZ_PODS);
         original.removeStudySpot(STARBUCKS);
         jsonStudyTrackerStorage.saveStudyTracker(original, filePath);
         readBack = jsonStudyTrackerStorage.readStudyTracker(filePath).get();
         assertEquals(original, new StudyTracker(readBack));
 
         // Save and read without specifying file path
-        original.addStudySpot(IDA);
+        original.addStudySpot(COMPUTING_LOUNGE);
         jsonStudyTrackerStorage.saveStudyTracker(original); // file path not specified
         readBack = jsonStudyTrackerStorage.readStudyTracker().get(); // file path not specified
         assertEquals(original, new StudyTracker(readBack));

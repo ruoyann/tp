@@ -31,7 +31,7 @@ public class AddCommandTest {
     }
 
     @Test
-    public void execute_personAcceptedByModel_addSuccessful() throws Exception {
+    public void execute_validStudySpotAcceptedByModel_addSuccessful() throws Exception {
         ModelStubAcceptingStudySpotAdded modelStub = new ModelStubAcceptingStudySpotAdded();
         StudySpot validStudySpot = new StudySpotBuilder().build();
 
@@ -53,26 +53,26 @@ public class AddCommandTest {
 
     @Test
     public void equals() {
-        StudySpot alice = new StudySpotBuilder().withName("Alice").build();
-        StudySpot bob = new StudySpotBuilder().withName("Bob").build();
-        AddCommand addAliceCommand = new AddCommand(alice);
-        AddCommand addBobCommand = new AddCommand(bob);
+        StudySpot frontier = new StudySpotBuilder().withName("Frontier").build();
+        StudySpot deck = new StudySpotBuilder().withName("Deck").build();
+        AddCommand addFrontierCommand = new AddCommand(frontier);
+        AddCommand addDeckCommand = new AddCommand(deck);
 
         // same object -> returns true
-        assertTrue(addAliceCommand.equals(addAliceCommand));
+        assertTrue(addFrontierCommand.equals(addFrontierCommand));
 
         // same values -> returns true
-        AddCommand addAliceCommandCopy = new AddCommand(alice);
-        assertTrue(addAliceCommand.equals(addAliceCommandCopy));
+        AddCommand addFrontierCommandCopy = new AddCommand(frontier);
+        assertTrue(addFrontierCommand.equals(addFrontierCommandCopy));
 
         // different types -> returns false
-        assertFalse(addAliceCommand.equals(1));
+        assertFalse(addFrontierCommand.equals(1));
 
         // null -> returns false
-        assertFalse(addAliceCommand.equals(null));
+        assertFalse(addFrontierCommand.equals(null));
 
-        // different person -> returns false
-        assertFalse(addAliceCommand.equals(addBobCommand));
+        // different study spot -> returns false
+        assertFalse(addFrontierCommand.equals(addDeckCommand));
     }
 
     /**
@@ -110,7 +110,7 @@ public class AddCommandTest {
         }
 
         @Override
-        public void addStudySpot(StudySpot person) {
+        public void addStudySpot(StudySpot studySpot) {
             throw new AssertionError("This method should not be called.");
         }
 
@@ -125,7 +125,7 @@ public class AddCommandTest {
         }
 
         @Override
-        public boolean hasStudySpot(StudySpot person) {
+        public boolean hasStudySpot(StudySpot studySpot) {
             throw new AssertionError("This method should not be called.");
         }
 
@@ -156,39 +156,39 @@ public class AddCommandTest {
     }
 
     /**
-     * A Model stub that contains a single person.
+     * A Model stub that contains a single study spot.
      */
     private class ModelStubWithStudySpot extends ModelStub {
-        private final StudySpot person;
+        private final StudySpot studySpot;
 
-        ModelStubWithStudySpot(StudySpot person) {
-            requireNonNull(person);
-            this.person = person;
+        ModelStubWithStudySpot(StudySpot studySpot) {
+            requireNonNull(studySpot);
+            this.studySpot = studySpot;
         }
 
         @Override
-        public boolean hasStudySpot(StudySpot person) {
-            requireNonNull(person);
-            return this.person.isSameStudySpot(person);
+        public boolean hasStudySpot(StudySpot studySpot) {
+            requireNonNull(studySpot);
+            return this.studySpot.isSameStudySpot(studySpot);
         }
     }
 
     /**
-     * A Model stub that always accept the person being added.
+     * A Model stub that always accept the study spot being added.
      */
     private class ModelStubAcceptingStudySpotAdded extends ModelStub {
         final ArrayList<StudySpot> studySpotsAdded = new ArrayList<>();
 
         @Override
-        public boolean hasStudySpot(StudySpot person) {
-            requireNonNull(person);
-            return studySpotsAdded.stream().anyMatch(person::isSameStudySpot);
+        public boolean hasStudySpot(StudySpot studySpot) {
+            requireNonNull(studySpot);
+            return studySpotsAdded.stream().anyMatch(studySpot::isSameStudySpot);
         }
 
         @Override
-        public void addStudySpot(StudySpot person) {
-            requireNonNull(person);
-            studySpotsAdded.add(person);
+        public void addStudySpot(StudySpot studySpot) {
+            requireNonNull(studySpot);
+            studySpotsAdded.add(studySpot);
         }
 
         @Override

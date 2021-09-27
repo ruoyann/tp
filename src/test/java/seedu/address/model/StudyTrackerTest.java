@@ -3,11 +3,11 @@ package seedu.address.model;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertTrue;
-import static seedu.address.logic.commands.CommandTestUtil.VALID_ADDRESS_BOB;
-import static seedu.address.logic.commands.CommandTestUtil.VALID_TAG_HUSBAND;
+import static seedu.address.logic.commands.CommandTestUtil.VALID_ADDRESS_DECK;
+import static seedu.address.logic.commands.CommandTestUtil.VALID_TAG_QUIET;
 import static seedu.address.testutil.Assert.assertThrows;
 import static seedu.address.testutil.TypicalStudySpots.STARBUCKS;
-import static seedu.address.testutil.TypicalStudySpots.getTypicalAddressBook;
+import static seedu.address.testutil.TypicalStudySpots.getTypicalStudyTracker;
 
 import java.util.Arrays;
 import java.util.Collection;
@@ -38,7 +38,7 @@ public class StudyTrackerTest {
 
     @Test
     public void resetData_withValidReadOnlyAddressBook_replacesData() {
-        StudyTracker newData = getTypicalAddressBook();
+        StudyTracker newData = getTypicalStudyTracker();
         studyTracker.resetData(newData);
         assertEquals(newData, studyTracker);
     }
@@ -46,10 +46,10 @@ public class StudyTrackerTest {
     @Test
     public void resetData_withDuplicateStudySpots_throwsDuplicateStudySpotException() {
         // Two study spots with the same identity fields
-        StudySpot editedAlice = new StudySpotBuilder(STARBUCKS)
-                .withAddress(VALID_ADDRESS_BOB).withTags(VALID_TAG_HUSBAND)
+        StudySpot editedStarbucks = new StudySpotBuilder(STARBUCKS)
+                .withAddress(VALID_ADDRESS_DECK).withTags(VALID_TAG_QUIET)
                 .build();
-        List<StudySpot> newStudySpots = Arrays.asList(STARBUCKS, editedAlice);
+        List<StudySpot> newStudySpots = Arrays.asList(STARBUCKS, editedStarbucks);
         StudyTrackerStub newData = new StudyTrackerStub(newStudySpots);
 
         assertThrows(DuplicateStudySpotException.class, () -> studyTracker.resetData(newData));
@@ -61,23 +61,23 @@ public class StudyTrackerTest {
     }
 
     @Test
-    public void hasStudySpot_personNotInAddressBook_returnsFalse() {
+    public void hasStudySpot_studySpotNotInAddressBook_returnsFalse() {
         assertFalse(studyTracker.hasStudySpot(STARBUCKS));
     }
 
     @Test
-    public void hasStudySpot_personInAddressBook_returnsTrue() {
+    public void hasStudySpot_studySpotInAddressBook_returnsTrue() {
         studyTracker.addStudySpot(STARBUCKS);
         assertTrue(studyTracker.hasStudySpot(STARBUCKS));
     }
 
     @Test
-    public void hasStudySpot_personWithSameIdentityFieldsInAddressBook_returnsTrue() {
+    public void hasStudySpot_studySpotWithSameIdentityFieldsInAddressBook_returnsTrue() {
         studyTracker.addStudySpot(STARBUCKS);
-        StudySpot editedAlice = new StudySpotBuilder(STARBUCKS)
-                .withAddress(VALID_ADDRESS_BOB).withTags(VALID_TAG_HUSBAND)
+        StudySpot editedStarbucks = new StudySpotBuilder(STARBUCKS)
+                .withAddress(VALID_ADDRESS_DECK).withTags(VALID_TAG_QUIET)
                 .build();
-        assertTrue(studyTracker.hasStudySpot(editedAlice));
+        assertTrue(studyTracker.hasStudySpot(editedStarbucks));
     }
 
     @Test

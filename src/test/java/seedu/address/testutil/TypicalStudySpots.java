@@ -1,15 +1,15 @@
 package seedu.address.testutil;
 
-import static seedu.address.logic.commands.CommandTestUtil.VALID_ADDRESS_AMY;
-import static seedu.address.logic.commands.CommandTestUtil.VALID_ADDRESS_BOB;
-import static seedu.address.logic.commands.CommandTestUtil.VALID_EMAIL_AMY;
-import static seedu.address.logic.commands.CommandTestUtil.VALID_EMAIL_BOB;
-import static seedu.address.logic.commands.CommandTestUtil.VALID_NAME_AMY;
-import static seedu.address.logic.commands.CommandTestUtil.VALID_NAME_BOB;
-import static seedu.address.logic.commands.CommandTestUtil.VALID_RATING_AMY;
-import static seedu.address.logic.commands.CommandTestUtil.VALID_RATING_BOB;
-import static seedu.address.logic.commands.CommandTestUtil.VALID_TAG_FRIEND;
-import static seedu.address.logic.commands.CommandTestUtil.VALID_TAG_HUSBAND;
+import static seedu.address.logic.commands.CommandTestUtil.VALID_ADDRESS_FRONTIER;
+import static seedu.address.logic.commands.CommandTestUtil.VALID_ADDRESS_DECK;
+import static seedu.address.logic.commands.CommandTestUtil.VALID_EMAIL_FRONTIER;
+import static seedu.address.logic.commands.CommandTestUtil.VALID_EMAIL_DECK;
+import static seedu.address.logic.commands.CommandTestUtil.VALID_NAME_FRONTIER;
+import static seedu.address.logic.commands.CommandTestUtil.VALID_NAME_DECK;
+import static seedu.address.logic.commands.CommandTestUtil.VALID_RATING_FRONTIER;
+import static seedu.address.logic.commands.CommandTestUtil.VALID_RATING_DECK;
+import static seedu.address.logic.commands.CommandTestUtil.VALID_TAG_CROWDED;
+import static seedu.address.logic.commands.CommandTestUtil.VALID_TAG_QUIET;
 
 import java.util.ArrayList;
 import java.util.Arrays;
@@ -31,28 +31,39 @@ public class TypicalStudySpots {
             .withAddress("NUS, Central Library")
             .withEmail("-").withRating("3")
             .withTags("cold", "quiet").build();
-    public static final StudySpot COM1 = new StudySpotBuilder().withName("COM1").withRating("2")
-            .withEmail("-").withAddress("NUS").build();
-    public static final StudySpot DANIEL = new StudySpotBuilder().withName("Daniel Meier").withRating("3")
-            .withEmail("cornelia@example.com").withAddress("10th street").withTags("friends").build();
-    public static final StudySpot ELLE = new StudySpotBuilder().withName("Elle Meyer").withRating("4")
-            .withEmail("werner@example.com").withAddress("michegan ave").build();
-    public static final StudySpot FIONA = new StudySpotBuilder().withName("Fiona Kunz").withRating("5")
-            .withEmail("lydia@example.com").withAddress("little tokyo").build();
-    public static final StudySpot GEORGE = new StudySpotBuilder().withName("George Best").withRating("3")
-            .withEmail("anna@example.com").withAddress("4th street").build();
+    public static final StudySpot COM1 = new StudySpotBuilder().withName("COM1")
+            .withRating("2")
+            .withEmail("-")
+            .withAddress("NUS Computing").build();
+    public static final StudySpot TOKYO_ROOM = new StudySpotBuilder().withName("Tokyo Room")
+            .withRating("3")
+            .withEmail("-")
+            .withAddress("NUS, Yusof Ishak House Level 3")
+            .withTags("cold").build();
+    public static final StudySpot PC_COMMONS = new StudySpotBuilder().withName("PC Commons")
+            .withRating("4")
+            .withEmail("-")
+            .withAddress("Utown").build();
+    public static final StudySpot LT_17 = new StudySpotBuilder().withName("LT17")
+            .withRating("5")
+            .withEmail("-")
+            .withAddress("NUS COM2").build();
 
     // Manually added
-    public static final StudySpot HOON = new StudySpotBuilder().withName("Hoon Meier").withRating("1")
-            .withEmail("stefan@example.com").withAddress("little india").build();
-    public static final StudySpot IDA = new StudySpotBuilder().withName("Ida Mueller").withRating("1")
-            .withEmail("hans@example.com").withAddress("chicago ave").build();
+    public static final StudySpot BIZ_PODS = new StudySpotBuilder().withName("Biz Pods")
+            .withRating("1")
+            .withEmail("-")
+            .withAddress("NUS BIZ 1").build();
+    public static final StudySpot COMPUTING_LOUNGE = new StudySpotBuilder().withName("Computing Lounge")
+            .withRating("1")
+            .withEmail("-")
+            .withAddress("NUS COM1, Basement 1").build();
 
     // Manually added - StudySpot's details found in {@code CommandTestUtil}
-    public static final StudySpot AMY = new StudySpotBuilder().withName(VALID_NAME_AMY).withRating(VALID_RATING_AMY)
-            .withEmail(VALID_EMAIL_AMY).withAddress(VALID_ADDRESS_AMY).withTags(VALID_TAG_FRIEND).build();
-    public static final StudySpot BOB = new StudySpotBuilder().withName(VALID_NAME_BOB).withRating(VALID_RATING_BOB)
-            .withEmail(VALID_EMAIL_BOB).withAddress(VALID_ADDRESS_BOB).withTags(VALID_TAG_HUSBAND, VALID_TAG_FRIEND)
+    public static final StudySpot FRONTIER = new StudySpotBuilder().withName(VALID_NAME_FRONTIER).withRating(VALID_RATING_FRONTIER)
+            .withEmail(VALID_EMAIL_FRONTIER).withAddress(VALID_ADDRESS_FRONTIER).withTags(VALID_TAG_CROWDED).build();
+    public static final StudySpot DECK = new StudySpotBuilder().withName(VALID_NAME_DECK).withRating(VALID_RATING_DECK)
+            .withEmail(VALID_EMAIL_DECK).withAddress(VALID_ADDRESS_DECK).withTags(VALID_TAG_QUIET, VALID_TAG_CROWDED)
             .build();
 
 
@@ -61,15 +72,16 @@ public class TypicalStudySpots {
     /**
      * Returns an {@code StudyTracker} with all the typical study spots.
      */
-    public static StudyTracker getTypicalAddressBook() {
-        StudyTracker ab = new StudyTracker();
+    public static StudyTracker getTypicalStudyTracker() {
+        StudyTracker st = new StudyTracker();
         for (StudySpot spot : getTypicalStudySpots()) {
-            ab.addStudySpot(spot);
+            st.addStudySpot(spot);
         }
-        return ab;
+        return st;
     }
 
     public static List<StudySpot> getTypicalStudySpots() {
-        return new ArrayList<>(Arrays.asList(STARBUCKS, CENTRAL_LIBRARY, COM1, AMY, DANIEL, ELLE, FIONA));
+        return new ArrayList<>(Arrays.asList(STARBUCKS, CENTRAL_LIBRARY, COM1,
+                FRONTIER, TOKYO_ROOM, PC_COMMONS, LT_17));
     }
 }

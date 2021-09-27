@@ -34,81 +34,81 @@ public class JsonAdaptedStudySpotTest {
 
     @Test
     public void toModelType_validStudySpotDetails_returnsStudySpot() throws Exception {
-        JsonAdaptedStudySpot person = new JsonAdaptedStudySpot(CENTRAL_LIBRARY);
-        assertEquals(CENTRAL_LIBRARY, person.toModelType());
+        JsonAdaptedStudySpot studySpot = new JsonAdaptedStudySpot(CENTRAL_LIBRARY);
+        assertEquals(CENTRAL_LIBRARY, studySpot.toModelType());
     }
 
     @Test
     public void toModelType_invalidName_throwsIllegalValueException() {
-        JsonAdaptedStudySpot person =
+        JsonAdaptedStudySpot studySpot =
                 new JsonAdaptedStudySpot(INVALID_NAME, VALID_RATING, VALID_EMAIL, VALID_ADDRESS, VALID_TAGS);
         String expectedMessage = Name.MESSAGE_CONSTRAINTS;
-        assertThrows(IllegalValueException.class, expectedMessage, person::toModelType);
+        assertThrows(IllegalValueException.class, expectedMessage, studySpot::toModelType);
     }
 
     @Test
     public void toModelType_nullName_throwsIllegalValueException() {
-        JsonAdaptedStudySpot person = new JsonAdaptedStudySpot(null, VALID_RATING,
+        JsonAdaptedStudySpot studySpot = new JsonAdaptedStudySpot(null, VALID_RATING,
                 VALID_EMAIL, VALID_ADDRESS, VALID_TAGS);
         String expectedMessage = String.format(MISSING_FIELD_MESSAGE_FORMAT, Name.class.getSimpleName());
-        assertThrows(IllegalValueException.class, expectedMessage, person::toModelType);
+        assertThrows(IllegalValueException.class, expectedMessage, studySpot::toModelType);
     }
 
     @Test
     public void toModelType_invalidRating_throwsIllegalValueException() {
-        JsonAdaptedStudySpot person =
+        JsonAdaptedStudySpot studySpot =
                 new JsonAdaptedStudySpot(VALID_NAME, INVALID_RATING, VALID_EMAIL, VALID_ADDRESS, VALID_TAGS);
         String expectedMessage = Rating.MESSAGE_CONSTRAINTS;
-        assertThrows(IllegalValueException.class, expectedMessage, person::toModelType);
+        assertThrows(IllegalValueException.class, expectedMessage, studySpot::toModelType);
     }
 
     @Test
     public void toModelType_nullRating_throwsIllegalValueException() {
-        JsonAdaptedStudySpot person = new JsonAdaptedStudySpot(VALID_NAME, null, VALID_EMAIL,
+        JsonAdaptedStudySpot studySpot = new JsonAdaptedStudySpot(VALID_NAME, null, VALID_EMAIL,
                 VALID_ADDRESS, VALID_TAGS);
         String expectedMessage = String.format(MISSING_FIELD_MESSAGE_FORMAT, Rating.class.getSimpleName());
-        assertThrows(IllegalValueException.class, expectedMessage, person::toModelType);
+        assertThrows(IllegalValueException.class, expectedMessage, studySpot::toModelType);
     }
 
     // no invalid emails
     //    @Test
     //    public void toModelType_invalidEmail_throwsIllegalValueException() {
-    //        JsonAdaptedStudySpot person =
-    //                new JsonAdaptedStudySpot(VALID_NAME, VALID_PHONE, INVALID_EMAIL, VALID_ADDRESS, VALID_TAGS);
+    //        JsonAdaptedStudySpot studySpot =
+    //                new JsonAdaptedStudySpot(VALID_NAME, VALID_RATING, INVALID_EMAIL, VALID_ADDRESS, VALID_TAGS);
     //        String expectedMessage = Email.MESSAGE_CONSTRAINTS;
-    //        assertThrows(IllegalValueException.class, expectedMessage, person::toModelType);
+    //        assertThrows(IllegalValueException.class, expectedMessage, studySpot::toModelType);
     //    }
 
     @Test
     public void toModelType_nullEmail_throwsIllegalValueException() {
-        JsonAdaptedStudySpot person = new JsonAdaptedStudySpot(VALID_NAME, VALID_RATING, null,
+        JsonAdaptedStudySpot studySpot = new JsonAdaptedStudySpot(VALID_NAME, VALID_RATING, null,
                 VALID_ADDRESS, VALID_TAGS);
         String expectedMessage = String.format(MISSING_FIELD_MESSAGE_FORMAT, Email.class.getSimpleName());
-        assertThrows(IllegalValueException.class, expectedMessage, person::toModelType);
+        assertThrows(IllegalValueException.class, expectedMessage, studySpot::toModelType);
     }
 
     @Test
     public void toModelType_invalidAddress_throwsIllegalValueException() {
-        JsonAdaptedStudySpot person =
+        JsonAdaptedStudySpot studySpot =
                 new JsonAdaptedStudySpot(VALID_NAME, VALID_RATING, VALID_EMAIL, INVALID_ADDRESS, VALID_TAGS);
         String expectedMessage = Address.MESSAGE_CONSTRAINTS;
-        assertThrows(IllegalValueException.class, expectedMessage, person::toModelType);
+        assertThrows(IllegalValueException.class, expectedMessage, studySpot::toModelType);
     }
 
     @Test
     public void toModelType_nullAddress_throwsIllegalValueException() {
-        JsonAdaptedStudySpot person = new JsonAdaptedStudySpot(VALID_NAME, VALID_RATING, VALID_EMAIL, null, VALID_TAGS);
+        JsonAdaptedStudySpot studySpot = new JsonAdaptedStudySpot(VALID_NAME, VALID_RATING, VALID_EMAIL, null, VALID_TAGS);
         String expectedMessage = String.format(MISSING_FIELD_MESSAGE_FORMAT, Address.class.getSimpleName());
-        assertThrows(IllegalValueException.class, expectedMessage, person::toModelType);
+        assertThrows(IllegalValueException.class, expectedMessage, studySpot::toModelType);
     }
 
     @Test
     public void toModelType_invalidTags_throwsIllegalValueException() {
         List<JsonAdaptedTag> invalidTags = new ArrayList<>(VALID_TAGS);
         invalidTags.add(new JsonAdaptedTag(INVALID_TAG));
-        JsonAdaptedStudySpot person =
+        JsonAdaptedStudySpot studySpot =
                 new JsonAdaptedStudySpot(VALID_NAME, VALID_RATING, VALID_EMAIL, VALID_ADDRESS, invalidTags);
-        assertThrows(IllegalValueException.class, person::toModelType);
+        assertThrows(IllegalValueException.class, studySpot::toModelType);
     }
 
 }

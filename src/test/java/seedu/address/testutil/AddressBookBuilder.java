@@ -23,8 +23,8 @@ public class AddressBookBuilder {
     /**
      * Adds a new {@code StudySpot} to the {@code StudyTracker} that we are building.
      */
-    public AddressBookBuilder withStudySpot(StudySpot person) {
-        studyTracker.addStudySpot(person);
+    public AddressBookBuilder withStudySpot(StudySpot studySpot) {
+        studyTracker.addStudySpot(studySpot);
         return this;
     }
 
