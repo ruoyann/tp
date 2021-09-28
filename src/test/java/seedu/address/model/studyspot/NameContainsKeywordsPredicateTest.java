@@ -34,42 +34,42 @@ public class NameContainsKeywordsPredicateTest {
         // null -> returns false
         assertFalse(firstPredicate.equals(null));
 
-        // different person -> returns false
+        // different study spot -> returns false
         assertFalse(firstPredicate.equals(secondPredicate));
     }
 
     @Test
     public void test_nameContainsKeywords_returnsTrue() {
         // One keyword
-        NameContainsKeywordsPredicate predicate = new NameContainsKeywordsPredicate(Collections.singletonList("Alice"));
-        assertTrue(predicate.test(new StudySpotBuilder().withName("Alice Bob").build()));
+        NameContainsKeywordsPredicate predicate = new NameContainsKeywordsPredicate(Collections.singletonList("COM2"));
+        assertTrue(predicate.test(new StudySpotBuilder().withName("COM2 Hangout").build()));
 
         // Multiple keywords
-        predicate = new NameContainsKeywordsPredicate(Arrays.asList("Alice", "Bob"));
-        assertTrue(predicate.test(new StudySpotBuilder().withName("Alice Bob").build()));
+        predicate = new NameContainsKeywordsPredicate(Arrays.asList("COM2", "Hangout"));
+        assertTrue(predicate.test(new StudySpotBuilder().withName("COM2 Hangout").build()));
 
         // Only one matching keyword
-        predicate = new NameContainsKeywordsPredicate(Arrays.asList("Bob", "Carol"));
-        assertTrue(predicate.test(new StudySpotBuilder().withName("Alice Carol").build()));
+        predicate = new NameContainsKeywordsPredicate(Arrays.asList("BIZ", "COM2"));
+        assertTrue(predicate.test(new StudySpotBuilder().withName("BIZ Library").build()));
 
         // Mixed-case keywords
-        predicate = new NameContainsKeywordsPredicate(Arrays.asList("aLIce", "bOB"));
-        assertTrue(predicate.test(new StudySpotBuilder().withName("Alice Bob").build()));
+        predicate = new NameContainsKeywordsPredicate(Arrays.asList("cOM2", "tEcH"));
+        assertTrue(predicate.test(new StudySpotBuilder().withName("COM2 Hangout").build()));
     }
 
     @Test
     public void test_nameDoesNotContainKeywords_returnsFalse() {
         // Zero keywords
         NameContainsKeywordsPredicate predicate = new NameContainsKeywordsPredicate(Collections.emptyList());
-        assertFalse(predicate.test(new StudySpotBuilder().withName("Alice").build()));
+        assertFalse(predicate.test(new StudySpotBuilder().withName("Frontier").build()));
 
         // Non-matching keyword
-        predicate = new NameContainsKeywordsPredicate(Arrays.asList("Carol"));
-        assertFalse(predicate.test(new StudySpotBuilder().withName("Alice Bob").build()));
+        predicate = new NameContainsKeywordsPredicate(Arrays.asList("Deck"));
+        assertFalse(predicate.test(new StudySpotBuilder().withName("Frontier Canteen").build()));
 
-        // Keywords match phone, email and address, but does not match name
-        predicate = new NameContainsKeywordsPredicate(Arrays.asList("12345", "alice@email.com", "Main", "Street"));
-        assertFalse(predicate.test(new StudySpotBuilder().withName("Alice").withRating("3")
-                .withEmail("alice@email.com").withAddress("Main Street").build()));
+        // Keywords match rating, email and address, but does not match name
+        predicate = new NameContainsKeywordsPredicate(Arrays.asList("4", "email", "NUS", "Science"));
+        assertFalse(predicate.test(new StudySpotBuilder().withName("Frontier").withRating("4")
+                .withEmail("email").withAddress("NUS Science").build()));
     }
 }

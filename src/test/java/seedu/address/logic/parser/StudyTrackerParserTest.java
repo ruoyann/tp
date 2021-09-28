@@ -5,7 +5,7 @@ import static org.junit.jupiter.api.Assertions.assertTrue;
 import static seedu.address.commons.core.Messages.MESSAGE_INVALID_COMMAND_FORMAT;
 import static seedu.address.commons.core.Messages.MESSAGE_UNKNOWN_COMMAND;
 import static seedu.address.testutil.Assert.assertThrows;
-import static seedu.address.testutil.TypicalIndexes.INDEX_FIRST_PERSON;
+import static seedu.address.testutil.TypicalIndexes.INDEX_FIRST_SPOT;
 
 import java.util.Arrays;
 import java.util.List;
@@ -36,9 +36,9 @@ public class StudyTrackerParserTest {
 
     @Test
     public void parseCommand_add() throws Exception {
-        StudySpot person = new StudySpotBuilder().build();
-        AddCommand command = (AddCommand) parser.parseCommand(StudySpotUtil.getAddCommand(person));
-        assertEquals(new AddCommand(person), command);
+        StudySpot studySpot = new StudySpotBuilder().build();
+        AddCommand command = (AddCommand) parser.parseCommand(StudySpotUtil.getAddCommand(studySpot));
+        assertEquals(new AddCommand(studySpot), command);
     }
 
     @Test
@@ -50,8 +50,8 @@ public class StudyTrackerParserTest {
     @Test
     public void parseCommand_delete() throws Exception {
         DeleteCommand command = (DeleteCommand) parser.parseCommand(
-                DeleteCommand.COMMAND_WORD + " " + INDEX_FIRST_PERSON.getOneBased());
-        assertEquals(new DeleteCommand(INDEX_FIRST_PERSON), command);
+                DeleteCommand.COMMAND_WORD + " " + INDEX_FIRST_SPOT.getOneBased());
+        assertEquals(new DeleteCommand(INDEX_FIRST_SPOT), command);
     }
 
     @Test

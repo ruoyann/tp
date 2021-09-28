@@ -1,13 +1,13 @@
 {
   "studySpots": [ {
-    "name": "Valid Person",
-    "phone": "9482424",
-    "email": "hans@example.com",
-    "address": "4th street"
+    "name": "Valid Study Spot",
+    "rating": "3",
+    "email": "blank email",
+    "address": "NUS"
   }, {
-    "name": "Person With Invalid Phone Field",
-    "phone": "948asdf2424",
-    "email": "hans@example.com",
-    "address": "4th street"
+    "name": "Study Spot With Invalid rating Field",
+    "rating": "100 amazing",
+    "email": "blank email",
+    "address": "NUS"
   } ]
 }

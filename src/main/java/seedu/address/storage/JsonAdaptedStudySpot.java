@@ -34,7 +34,7 @@ class JsonAdaptedStudySpot {
      * Constructs a {@code JsonAdaptedStudySpot} with the given study spot details.
      */
     @JsonCreator
-    public JsonAdaptedStudySpot(@JsonProperty("name") String name, @JsonProperty("phone") String rating,
+    public JsonAdaptedStudySpot(@JsonProperty("name") String name, @JsonProperty("rating") String rating,
             @JsonProperty("email") String email, @JsonProperty("address") String address,
             @JsonProperty("tagged") List<JsonAdaptedTag> tagged) {
         this.name = name;

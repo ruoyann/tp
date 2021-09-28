@@ -1,5 +1,5 @@
 {
-  "_comment": "AddressBook save file which contains the same Person values as in TypicalPersons#getTypicalAddressBook()",
+  "_comment": "AddressBook save file which contains the same StudySpot values as in TypicalStudySpots#getTypicalAddressBook()",
   "studySpots" : [ {
     "name" : "Starbucks",
     "rating" : "4",
@@ -16,31 +16,31 @@
     "name" : "COM1",
     "rating" : "2",
     "email" : "-",
-    "address" : "NUS",
+    "address" : "NUS Computing",
     "tagged" : [ ]
   }, {
-    "name" : "Amy Bee",
+    "name" : "Frontier Canteen",
     "rating" : "3",
-    "email" : "amy@example.com",
-    "address" : "Block 312, Amy Street 1",
-    "tagged" : [ "friend" ]
+    "email" : "Frontier email",
+    "address" : "NUS Science Faculty",
+    "tagged" : [ "crowded" ]
   }, {
-    "name" : "Daniel Meier",
+    "name" : "Tokyo Room",
     "rating" : "3",
-    "email" : "cornelia@example.com",
-    "address" : "10th street",
-    "tagged" : [ "friends" ]
+    "email" : "-",
+    "address" : "NUS, Yusof Ishak House Level 3",
+    "tagged" : [ "cold" ]
   },{
-    "name" : "Elle Meyer",
+    "name" : "PC Commons",
     "rating" : "4",
-    "email" : "werner@example.com",
-    "address" : "michegan ave",
+    "email" : "-",
+    "address" : "Utown",
     "tagged" : [ ]
   }, {
-    "name" : "Fiona Kunz",
+    "name" : "LT17",
     "rating" : "5",
-    "email" : "lydia@example.com",
-    "address" : "little tokyo",
+    "email" : "-",
+    "address" : "NUS COM2",
     "tagged" : [ ]
   } ]
 }

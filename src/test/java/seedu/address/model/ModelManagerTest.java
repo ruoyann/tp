@@ -78,12 +78,12 @@ public class ModelManagerTest {
     }
 
     @Test
-    public void hasStudySpot_personNotInAddressBook_returnsFalse() {
+    public void hasStudySpot_studySpotNotInAddressBook_returnsFalse() {
         assertFalse(modelManager.hasStudySpot(STARBUCKS));
     }
 
     @Test
-    public void hasStudySpot_personInAddressBook_returnsTrue() {
+    public void hasStudySpot_studySpotInAddressBook_returnsTrue() {
         modelManager.addStudySpot(STARBUCKS);
         assertTrue(modelManager.hasStudySpot(STARBUCKS));
     }

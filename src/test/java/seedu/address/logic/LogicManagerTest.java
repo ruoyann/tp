@@ -3,12 +3,12 @@ package seedu.address.logic;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static seedu.address.commons.core.Messages.MESSAGE_INVALID_STUDYSPOT_DISPLAYED_INDEX;
 import static seedu.address.commons.core.Messages.MESSAGE_UNKNOWN_COMMAND;
-import static seedu.address.logic.commands.CommandTestUtil.ADDRESS_DESC_AMY;
-import static seedu.address.logic.commands.CommandTestUtil.EMAIL_DESC_AMY;
-import static seedu.address.logic.commands.CommandTestUtil.NAME_DESC_AMY;
-import static seedu.address.logic.commands.CommandTestUtil.RATING_DESC_AMY;
+import static seedu.address.logic.commands.CommandTestUtil.ADDRESS_DESC_FRONTIER;
+import static seedu.address.logic.commands.CommandTestUtil.EMAIL_DESC_FRONTIER;
+import static seedu.address.logic.commands.CommandTestUtil.NAME_DESC_FRONTIER;
+import static seedu.address.logic.commands.CommandTestUtil.RATING_DESC_FRONTIER;
 import static seedu.address.testutil.Assert.assertThrows;
-import static seedu.address.testutil.TypicalStudySpots.AMY;
+import static seedu.address.testutil.TypicalStudySpots.FRONTIER;
 
 import java.io.IOException;
 import java.nio.file.Path;
@@ -79,9 +79,9 @@ public class LogicManagerTest {
         logic = new LogicManager(model, storage);
 
         // Execute add command
-        String addCommand = AddCommand.COMMAND_WORD + NAME_DESC_AMY + RATING_DESC_AMY + EMAIL_DESC_AMY
-                + ADDRESS_DESC_AMY;
-        StudySpot expectedStudySpot = new StudySpotBuilder(AMY).withTags().build();
+        String addCommand = AddCommand.COMMAND_WORD + NAME_DESC_FRONTIER + RATING_DESC_FRONTIER + EMAIL_DESC_FRONTIER
+                + ADDRESS_DESC_FRONTIER;
+        StudySpot expectedStudySpot = new StudySpotBuilder(FRONTIER).withTags().build();
         ModelManager expectedModel = new ModelManager();
         expectedModel.addStudySpot(expectedStudySpot);
         String expectedMessage = LogicManager.FILE_OPS_ERROR_MESSAGE + DUMMY_IO_EXCEPTION;

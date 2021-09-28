@@ -2,13 +2,13 @@ package seedu.address.logic.commands;
 
 import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertTrue;
-import static seedu.address.logic.commands.CommandTestUtil.DESC_AMY;
-import static seedu.address.logic.commands.CommandTestUtil.DESC_BOB;
-import static seedu.address.logic.commands.CommandTestUtil.VALID_ADDRESS_BOB;
-import static seedu.address.logic.commands.CommandTestUtil.VALID_EMAIL_BOB;
-import static seedu.address.logic.commands.CommandTestUtil.VALID_NAME_BOB;
-import static seedu.address.logic.commands.CommandTestUtil.VALID_RATING_BOB;
-import static seedu.address.logic.commands.CommandTestUtil.VALID_TAG_HUSBAND;
+import static seedu.address.logic.commands.CommandTestUtil.DESC_DECK;
+import static seedu.address.logic.commands.CommandTestUtil.DESC_FRONTIER;
+import static seedu.address.logic.commands.CommandTestUtil.VALID_ADDRESS_DECK;
+import static seedu.address.logic.commands.CommandTestUtil.VALID_EMAIL_DECK;
+import static seedu.address.logic.commands.CommandTestUtil.VALID_NAME_DECK;
+import static seedu.address.logic.commands.CommandTestUtil.VALID_RATING_DECK;
+import static seedu.address.logic.commands.CommandTestUtil.VALID_TAG_QUIET;
 
 import org.junit.jupiter.api.Test;
 
@@ -20,40 +20,40 @@ public class EditStudySpotDescriptorTest {
     @Test
     public void equals() {
         // same values -> returns true
-        EditStudySpotDescriptor descriptorWithSameValues = new EditStudySpotDescriptor(DESC_AMY);
-        assertTrue(DESC_AMY.equals(descriptorWithSameValues));
+        EditStudySpotDescriptor descriptorWithSameValues = new EditStudySpotDescriptor(DESC_FRONTIER);
+        assertTrue(DESC_FRONTIER.equals(descriptorWithSameValues));
 
         // same object -> returns true
-        assertTrue(DESC_AMY.equals(DESC_AMY));
+        assertTrue(DESC_FRONTIER.equals(DESC_FRONTIER));
 
         // null -> returns false
-        assertFalse(DESC_AMY.equals(null));
+        assertFalse(DESC_FRONTIER.equals(null));
 
         // different types -> returns false
-        assertFalse(DESC_AMY.equals(5));
+        assertFalse(DESC_FRONTIER.equals(5));
 
         // different values -> returns false
-        assertFalse(DESC_AMY.equals(DESC_BOB));
+        assertFalse(DESC_FRONTIER.equals(DESC_DECK));
 
         // different name -> returns false
-        EditStudySpotDescriptor editedAmy = new EditStudySpotDescriptorBuilder(DESC_AMY)
-                .withName(VALID_NAME_BOB).build();
-        assertFalse(DESC_AMY.equals(editedAmy));
+        EditStudySpotDescriptor editedFrontier = new EditStudySpotDescriptorBuilder(DESC_FRONTIER)
+                .withName(VALID_NAME_DECK).build();
+        assertFalse(DESC_FRONTIER.equals(editedFrontier));
 
-        // different phone -> returns false
-        editedAmy = new EditStudySpotDescriptorBuilder(DESC_AMY).withRating(VALID_RATING_BOB).build();
-        assertFalse(DESC_AMY.equals(editedAmy));
+        // different rating -> returns false
+        editedFrontier = new EditStudySpotDescriptorBuilder(DESC_FRONTIER).withRating(VALID_RATING_DECK).build();
+        assertFalse(DESC_FRONTIER.equals(editedFrontier));
 
         // different email -> returns false
-        editedAmy = new EditStudySpotDescriptorBuilder(DESC_AMY).withEmail(VALID_EMAIL_BOB).build();
-        assertFalse(DESC_AMY.equals(editedAmy));
+        editedFrontier = new EditStudySpotDescriptorBuilder(DESC_FRONTIER).withEmail(VALID_EMAIL_DECK).build();
+        assertFalse(DESC_FRONTIER.equals(editedFrontier));
 
         // different address -> returns false
-        editedAmy = new EditStudySpotDescriptorBuilder(DESC_AMY).withAddress(VALID_ADDRESS_BOB).build();
-        assertFalse(DESC_AMY.equals(editedAmy));
+        editedFrontier = new EditStudySpotDescriptorBuilder(DESC_FRONTIER).withAddress(VALID_ADDRESS_DECK).build();
+        assertFalse(DESC_FRONTIER.equals(editedFrontier));
 
         // different tags -> returns false
-        editedAmy = new EditStudySpotDescriptorBuilder(DESC_AMY).withTags(VALID_TAG_HUSBAND).build();
-        assertFalse(DESC_AMY.equals(editedAmy));
+        editedFrontier = new EditStudySpotDescriptorBuilder(DESC_FRONTIER).withTags(VALID_TAG_QUIET).build();
+        assertFalse(DESC_FRONTIER.equals(editedFrontier));
     }
 }

@@ -49,7 +49,7 @@ public class EditCommand extends Command {
 
     public static final String MESSAGE_EDIT_STUDYSPOT_SUCCESS = "Edited study spot: %1$s";
     public static final String MESSAGE_NOT_EDITED = "At least one field to edit must be provided.";
-    public static final String MESSAGE_DUPLICATE_PERSON = "This study spot already exists in the study tracker.";
+    public static final String MESSAGE_DUPLICATE_STUDYSPOT = "This study spot already exists in the study tracker.";
 
     private Index index;
     private Name name;
@@ -103,7 +103,7 @@ public class EditCommand extends Command {
         StudySpot editedStudySpot = createEditedStudySpot(studySpotToEdit, editStudySpotDescriptor);
 
         if (!studySpotToEdit.isSameStudySpot(editedStudySpot) && model.hasStudySpot(editedStudySpot)) {
-            throw new CommandException(MESSAGE_DUPLICATE_PERSON);
+            throw new CommandException(MESSAGE_DUPLICATE_STUDYSPOT);
         }
 
         model.setStudySpot(studySpotToEdit, editedStudySpot);
