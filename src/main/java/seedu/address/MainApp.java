@@ -81,7 +81,7 @@ public class MainApp extends Application {
             if (!studyTrackerOptional.isPresent()) {
                 logger.info("Data file not found. Will be starting with a sample StudyTracker");
             }
-            initialData = studyTrackerOptional.orElseGet(SampleDataUtil::getSampleAddressBook);
+            initialData = studyTrackerOptional.orElseGet(SampleDataUtil::getSampleStudyTracker);
         } catch (DataConversionException e) {
             logger.warning("Data file not in the correct format. Will be starting with an empty StudyTracker");
             initialData = new StudyTracker();

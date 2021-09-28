@@ -30,7 +30,8 @@ public class TypicalStudySpots {
     public static final StudySpot CENTRAL_LIBRARY = new StudySpotBuilder().withName("Central library")
             .withAddress("NUS, Central Library")
             .withEmail("-").withRating("3")
-            .withTags("cold", "quiet").build();
+            .withTags("cold", "quiet")
+            .withAmenities("wifi").build();
     public static final StudySpot COM1 = new StudySpotBuilder().withName("COM1")
             .withRating("2")
             .withEmail("-")

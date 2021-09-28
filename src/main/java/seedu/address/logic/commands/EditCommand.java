@@ -2,6 +2,7 @@ package seedu.address.logic.commands;
 
 import static java.util.Objects.requireNonNull;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_ADDRESS;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_AMENITY;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_EMAIL;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_NAME;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_RATING;
@@ -19,6 +20,7 @@ import seedu.address.commons.core.index.Index;
 import seedu.address.commons.util.CollectionUtil;
 import seedu.address.logic.commands.exceptions.CommandException;
 import seedu.address.model.Model;
+import seedu.address.model.amenity.Amenity;
 import seedu.address.model.studyspot.Address;
 import seedu.address.model.studyspot.Email;
 import seedu.address.model.studyspot.Name;
@@ -42,9 +44,10 @@ public class EditCommand extends Command {
             + "[" + PREFIX_RATING + "RATING] "
             + "[" + PREFIX_EMAIL + "EMAIL] "
             + "[" + PREFIX_ADDRESS + "ADDRESS] "
-            + "[" + PREFIX_TAG + "TAG]...\n"
+            + "[" + PREFIX_TAG + "TAG]..."
+            + "[" + PREFIX_AMENITY + "AMENITY]...\n"
             + "Example: " + COMMAND_WORD + " 1 "
-            + PREFIX_RATING + "91234567 "
+            + PREFIX_RATING + "4"
             + PREFIX_EMAIL + "johndoe@example.com";
 
     public static final String MESSAGE_EDIT_STUDYSPOT_SUCCESS = "Edited study spot: %1$s";
@@ -98,8 +101,6 @@ public class EditCommand extends Command {
             throw new CommandException(Messages.MESSAGE_INVALID_EDIT_NAME);
         }
 
-
-
         StudySpot editedStudySpot = createEditedStudySpot(studySpotToEdit, editStudySpotDescriptor);
 
         if (!studySpotToEdit.isSameStudySpot(editedStudySpot) && model.hasStudySpot(editedStudySpot)) {
@@ -124,8 +125,9 @@ public class EditCommand extends Command {
         Email updatedEmail = editStudySpotDescriptor.getEmail().orElse(studySpotToEdit.getEmail());
         Address updatedAddress = editStudySpotDescriptor.getAddress().orElse(studySpotToEdit.getAddress());
         Set<Tag> updatedTags = editStudySpotDescriptor.getTags().orElse(studySpotToEdit.getTags());
+        Set<Amenity> updatedAmenities = editStudySpotDescriptor.getAmenities().orElse(studySpotToEdit.getAmenities());
 
-        return new StudySpot(updatedName, updatedRating, updatedEmail, updatedAddress, updatedTags);
+        return new StudySpot(updatedName, updatedRating, updatedEmail, updatedAddress, updatedTags, updatedAmenities);
     }
 
     @Override
@@ -156,12 +158,13 @@ public class EditCommand extends Command {
         private Email email;
         private Address address;
         private Set<Tag> tags;
+        private Set<Amenity> amenities;
 
         public EditStudySpotDescriptor() {}
 
         /**
          * Copy constructor.
-         * A defensive copy of {@code tags} is used internally.
+         * A defensive copy of {@code tags} and {@code amenities} are used internally.
          */
         public EditStudySpotDescriptor(EditStudySpotDescriptor toCopy) {
             setName(toCopy.name);
@@ -169,13 +172,14 @@ public class EditCommand extends Command {
             setEmail(toCopy.email);
             setAddress(toCopy.address);
             setTags(toCopy.tags);
+            setAmenities(toCopy.amenities);
         }
 
         /**
          * Returns true if at least one field is edited.
          */
         public boolean isAnyFieldEdited() {
-            return CollectionUtil.isAnyNonNull(name, rating, email, address, tags);
+            return CollectionUtil.isAnyNonNull(name, rating, email, address, tags, amenities);
         }
 
         public void setName(Name name) {
@@ -227,6 +231,23 @@ public class EditCommand extends Command {
             return (tags != null) ? Optional.of(Collections.unmodifiableSet(tags)) : Optional.empty();
         }
 
+        /**
+         * Sets {@code amenities} to this object's {@code amenities}.
+         * A defensive copy of {@code amenities} is used internally.
+         */
+        public void setAmenities(Set<Amenity> amenities) {
+            this.amenities = (amenities != null) ? new HashSet<>(amenities) : null;
+        }
+
+        /**
+         * Returns an unmodifiable amenity set, which throws {@code UnsupportedOperationException}
+         * if modification is attempted.
+         * Returns {@code Optional#empty()} if {@code amenities} is null.
+         */
+        public Optional<Set<Amenity>> getAmenities() {
+            return (amenities != null) ? Optional.of(Collections.unmodifiableSet(amenities)) : Optional.empty();
+        }
+
         @Override
         public boolean equals(Object other) {
             // short circuit if same object
@@ -246,7 +267,8 @@ public class EditCommand extends Command {
                     && getRating().equals(e.getRating())
                     && getEmail().equals(e.getEmail())
                     && getAddress().equals(e.getAddress())
-                    && getTags().equals(e.getTags());
+                    && getTags().equals(e.getTags())
+                    && getAmenities().equals(e.getAmenities());
         }
     }
 }

@@ -9,6 +9,7 @@ import java.util.Set;
 import seedu.address.commons.core.index.Index;
 import seedu.address.commons.util.StringUtil;
 import seedu.address.logic.parser.exceptions.ParseException;
+import seedu.address.model.amenity.Amenity;
 import seedu.address.model.studyspot.Address;
 import seedu.address.model.studyspot.Email;
 import seedu.address.model.studyspot.Name;
@@ -123,5 +124,32 @@ public class ParserUtil {
             tagSet.add(parseTag(tagName));
         }
         return tagSet;
+    }
+
+    /**
+     * Parses a {@code String amenity} into an {@code Amenity}.
+     * Leading and trailing whitespaces will be trimmed.
+     *
+     * @throws ParseException if the given {@code amenity} is invalid.
+     */
+    public static Amenity parseAmenity(String amenity) throws ParseException {
+        requireNonNull(amenity);
+        String trimmedAmenity = amenity.trim();
+        if (!Amenity.isValidAmenityType(amenity)) {
+            throw new ParseException(String.format(Amenity.MESSAGE_CONSTRAINTS, Amenity.listAllAmenityTypes()));
+        }
+        return new Amenity(trimmedAmenity);
+    }
+
+    /**
+     * Parses {@code Collection<String> amenities} into a {@code Set<Amenity>}.
+     */
+    public static Set<Amenity> parseAmenities(Collection<String> amenities) throws ParseException {
+        requireNonNull(amenities);
+        final Set<Amenity> amenitySet = new HashSet<>();
+        for (String amenityType : amenities) {
+            amenitySet.add(parseAmenity(amenityType));
+        }
+        return amenitySet;
     }
 }
