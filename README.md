@@ -2,7 +2,7 @@
 
 ![Ui](docs/images/Ui.png)
 
-#StudyTracker
+# StudyTracker
 
 ## Value proposition 
 Allows students to easily track different study areas that they have visited, and will allow them to sort and remember different places they have studied at.
@@ -18,4 +18,3 @@ Allows students to easily track different study areas that they have visited, an
 
 ### Acknowledgement
 StudyTracker is an application developed based on the `AddressBook Level 3` application created by the [SE-EDU initiative](https://se-education.org).
-

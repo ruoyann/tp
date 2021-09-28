@@ -9,6 +9,7 @@ import javafx.scene.control.TextInputControl;
 import javafx.scene.input.KeyCombination;
 import javafx.scene.input.KeyEvent;
 import javafx.scene.layout.StackPane;
+import javafx.scene.layout.VBox;
 import javafx.stage.Stage;
 import seedu.address.commons.core.GuiSettings;
 import seedu.address.commons.core.LogsCenter;
@@ -34,6 +35,7 @@ public class MainWindow extends UiPart<Stage> {
     private StudySpotListPanel studySpotListPanel;
     private ResultDisplay resultDisplay;
     private HelpWindow helpWindow;
+    private InfoDisplay infoDisplay;
 
     @FXML
     private StackPane commandBoxPlaceholder;
@@ -49,6 +51,9 @@ public class MainWindow extends UiPart<Stage> {
 
     @FXML
     private StackPane statusbarPlaceholder;
+
+    @FXML
+    private VBox infoDisplayPlaceholder;
 
     /**
      * Creates a {@code MainWindow} with the given {@code Stage} and {@code Logic}.
@@ -115,6 +120,9 @@ public class MainWindow extends UiPart<Stage> {
 
         resultDisplay = new ResultDisplay();
         resultDisplayPlaceholder.getChildren().add(resultDisplay.getRoot());
+
+        infoDisplay = new InfoDisplay();
+        infoDisplayPlaceholder.getChildren().add(infoDisplay.getRoot());
 
         StatusBarFooter statusBarFooter = new StatusBarFooter(logic.getStudyTrackerFilePath());
         statusbarPlaceholder.getChildren().add(statusBarFooter.getRoot());

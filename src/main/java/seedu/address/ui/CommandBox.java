@@ -16,6 +16,8 @@ public class CommandBox extends UiPart<Region> {
     public static final String ERROR_STYLE_CLASS = "error";
     private static final String FXML = "CommandBox.fxml";
 
+    private String lastCommand = "";
+
     private final CommandExecutor commandExecutor;
 
     @FXML
@@ -29,6 +31,7 @@ public class CommandBox extends UiPart<Region> {
         this.commandExecutor = commandExecutor;
         // calls #setStyleToDefault() whenever there is a change to the text of the command box.
         commandTextField.textProperty().addListener((unused1, unused2, unused3) -> setStyleToDefault());
+        handleKeyboardShortcuts();
     }
 
     /**
@@ -44,6 +47,7 @@ public class CommandBox extends UiPart<Region> {
         try {
             commandExecutor.execute(commandText);
             commandTextField.setText("");
+            this.lastCommand = commandText;
         } catch (CommandException | ParseException e) {
             setStyleToIndicateCommandFailure();
         }
@@ -67,6 +71,44 @@ public class CommandBox extends UiPart<Region> {
         }
 
         styleClass.add(ERROR_STYLE_CLASS);
+    }
+
+    /**
+     * Handles keyboard shortcuts in the Input box.
+     * Shortcuts: Up arrow toggles between last-entered commands.
+     *
+     * @@author qreoct-reused
+     * Reused from https://github.com/qreoct/ip/blob/master/src/main/java/duke/controllers/AppWindow.java
+     */
+    private void handleKeyboardShortcuts() {
+        commandTextField.setOnKeyReleased(event -> {
+            String key = event.getCode().toString();
+            if (key.equals("UP")) {
+                toggleLastCommand();
+            }
+        });
+    }
+
+    /**
+     * Toggles the commandTextField to show last command or current command.
+     *
+     * @@author qreoct-reused
+     * Reused from https://github.com/qreoct/ip/blob/master/src/main/java/duke/controllers/AppWindow.java
+     */
+    private void toggleLastCommand() {
+        String input = commandTextField.getText();
+        String temp = lastCommand;
+
+        if (lastCommand.equals("")) {
+            return;
+        } else if (!input.isBlank()) {
+            temp = input;
+        }
+
+        commandTextField.clear();
+        commandTextField.setText(lastCommand);
+        commandTextField.positionCaret(lastCommand.length());
+        this.lastCommand = temp;
     }
 
     /**
