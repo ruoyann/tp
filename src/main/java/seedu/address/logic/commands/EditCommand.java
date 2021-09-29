@@ -7,15 +7,12 @@ import static seedu.address.logic.parser.CliSyntax.PREFIX_NAME;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_RATING;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_TAG;
 import static seedu.address.model.Model.PREDICATE_SHOW_ALL_STUDYSPOTS;
-
 import java.util.Collections;
 import java.util.HashSet;
 import java.util.List;
 import java.util.Optional;
 import java.util.Set;
-
 import seedu.address.commons.core.Messages;
-import seedu.address.commons.core.index.Index;
 import seedu.address.commons.util.CollectionUtil;
 import seedu.address.logic.commands.exceptions.CommandException;
 import seedu.address.model.Model;
@@ -44,28 +41,15 @@ public class EditCommand extends Command {
             + "[" + PREFIX_ADDRESS + "ADDRESS] "
             + "[" + PREFIX_TAG + "TAG]...\n"
             + "Example: " + COMMAND_WORD + " 1 "
-            + PREFIX_RATING + "91234567 "
+            + PREFIX_RATING + "5"
             + PREFIX_EMAIL + "johndoe@example.com";
 
     public static final String MESSAGE_EDIT_STUDYSPOT_SUCCESS = "Edited study spot: %1$s";
     public static final String MESSAGE_NOT_EDITED = "At least one field to edit must be provided.";
     public static final String MESSAGE_DUPLICATE_STUDYSPOT = "This study spot already exists in the study tracker.";
 
-    private Index index;
     private Name name;
     private final EditStudySpotDescriptor editStudySpotDescriptor;
-
-    /**
-     * @param index of the study spot in the filtered study spot list to edit
-     * @param editStudySpotDescriptor details to edit the study spot with
-     */
-    public EditCommand(Index index, EditStudySpotDescriptor editStudySpotDescriptor) {
-        requireNonNull(index);
-        requireNonNull(editStudySpotDescriptor);
-
-        this.index = index;
-        this.editStudySpotDescriptor = new EditStudySpotDescriptor(editStudySpotDescriptor);
-    }
 
     /**
      * @param name of the study spot in the study spot list to edit
