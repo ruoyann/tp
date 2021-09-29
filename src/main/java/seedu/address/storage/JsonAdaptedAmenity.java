@@ -40,7 +40,8 @@ class JsonAdaptedAmenity {
      */
     public Amenity toModelType() throws IllegalValueException {
         if (!Amenity.isValidAmenityType(amenityType)) {
-            throw new IllegalValueException(String.format(Amenity.MESSAGE_CONSTRAINTS, Amenity.listAllAmenityTypes()));
+            throw new IllegalValueException(String.format(Amenity.MESSAGE_CONSTRAINTS,
+                    Amenity.listAllAmenityTypes(Amenity.VALID_TYPES)));
         }
         return new Amenity(amenityType);
     }

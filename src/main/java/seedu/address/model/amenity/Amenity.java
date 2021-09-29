@@ -23,27 +23,32 @@ public class Amenity {
      */
     public Amenity(String amenityType) {
         requireNonNull(amenityType);
-        checkArgument(isValidAmenityType(amenityType), String.format(MESSAGE_CONSTRAINTS, listAllAmenityTypes()));
+        checkArgument(isValidAmenityType(amenityType),
+                String.format(MESSAGE_CONSTRAINTS, listAllAmenityTypes(VALID_TYPES)));
         this.amenityType = amenityType;
     }
 
     /**
-     * Returns true if a given string is a valid amenity type
+     * Returns true if a given string is a valid amenity type.
      */
     public static boolean isValidAmenityType(String test) {
+        requireNonNull(test);
         return Arrays.asList(VALID_TYPES).contains(test);
     }
 
-    public static String listAllAmenityTypes() {
-        if (VALID_TYPES.length == 1) {
-            return VALID_TYPES[0];
+    /**
+     * Lists all amenity types in a single string.
+     */
+    public static String listAllAmenityTypes(String[] amenityTypes) {
+        if (amenityTypes.length == 1) {
+            return amenityTypes[0];
         } else {
             StringBuffer sb = new StringBuffer();
-            for (int i = 0; i < VALID_TYPES.length - 1; i++) {
-                sb.append(VALID_TYPES[i]);
+            for (int i = 0; i < amenityTypes.length - 1; i++) {
+                sb.append(amenityTypes[i]);
                 sb.append(", ");
             }
-            sb.append(VALID_TYPES[VALID_TYPES.length - 1]);
+            sb.append(amenityTypes[amenityTypes.length - 1]);
             return sb.toString();
         }
     }
@@ -64,7 +69,7 @@ public class Amenity {
      * Format state as text for viewing.
      */
     public String toString() {
-        return '[' + amenityType + ']';
+        return amenityType;
     }
 
 }

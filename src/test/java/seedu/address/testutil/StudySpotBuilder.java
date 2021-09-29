@@ -70,7 +70,8 @@ public class StudySpotBuilder {
     }
 
     /**
-     * Parses the {@code amenities} into a {@code Set<Amenity>} and set it to the {@code StudySpot} that we are building.
+     * Parses the {@code amenities} into a {@code Set<Amenity>} and set it to the {@code StudySpot}
+     * that we are building.
      */
     public StudySpotBuilder withAmenities(String ... amenities) {
         this.amenities = SampleDataUtil.getAmenitySet(amenities);

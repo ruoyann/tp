@@ -136,7 +136,8 @@ public class ParserUtil {
         requireNonNull(amenity);
         String trimmedAmenity = amenity.trim();
         if (!Amenity.isValidAmenityType(amenity)) {
-            throw new ParseException(String.format(Amenity.MESSAGE_CONSTRAINTS, Amenity.listAllAmenityTypes()));
+            throw new ParseException(String.format(Amenity.MESSAGE_CONSTRAINTS,
+                    Amenity.listAllAmenityTypes(Amenity.VALID_TYPES)));
         }
         return new Amenity(trimmedAmenity);
     }

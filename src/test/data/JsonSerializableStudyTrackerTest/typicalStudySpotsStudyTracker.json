@@ -27,7 +27,7 @@
     "email" : "Frontier email",
     "address" : "NUS Science Faculty",
     "tagged" : [ "crowded" ],
-    "amenities" : [ "wifi" ]
+    "amenities" : [ ]
   }, {
     "name" : "Tokyo Room",
     "rating" : "3",
@@ -48,6 +48,6 @@
     "email" : "-",
     "address" : "NUS COM2",
     "tagged" : [ ],
-    "amenities" : [ "wifi" ]
+    "amenities" : [ ]
   } ]
 }
