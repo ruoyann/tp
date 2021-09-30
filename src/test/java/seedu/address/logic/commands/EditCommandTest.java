@@ -6,6 +6,7 @@ import static seedu.address.logic.commands.CommandTestUtil.DESC_DECK;
 import static seedu.address.logic.commands.CommandTestUtil.DESC_FRONTIER;
 import static seedu.address.logic.commands.CommandTestUtil.VALID_NAME_DECK;
 import static seedu.address.logic.commands.CommandTestUtil.VALID_RATING_DECK;
+import static seedu.address.logic.commands.CommandTestUtil.VALID_TAG_COLD;
 import static seedu.address.logic.commands.CommandTestUtil.VALID_TAG_QUIET;
 import static seedu.address.logic.commands.CommandTestUtil.assertCommandFailure;
 import static seedu.address.logic.commands.CommandTestUtil.assertCommandSuccess;
@@ -73,6 +74,25 @@ public class EditCommandTest {
     }
 
     @Test
+    public void execute_replaceTags_success() {
+        Name firstStudySpotInTypicalStudySpots = new Name("Starbucks");
+        StudySpot studySpotInFilteredList = model.getFilteredStudySpotList().get(INDEX_FIRST_SPOT.getZeroBased());
+        StudySpot editedStudySpot = new StudySpotBuilder(studySpotInFilteredList)
+                .withTags(VALID_TAG_QUIET, VALID_TAG_COLD).build();
+
+        EditStudySpotDescriptor descriptor = new EditStudySpotDescriptorBuilder()
+                .withTags(VALID_TAG_QUIET, VALID_TAG_COLD).build();
+        EditCommand editCommand = new EditCommand(firstStudySpotInTypicalStudySpots, descriptor);
+
+        String expectedMessage = String.format(EditCommand.MESSAGE_EDIT_STUDYSPOT_SUCCESS, editedStudySpot);
+
+        Model expectedModel = new ModelManager(new StudyTracker(model.getStudyTracker()), new UserPrefs());
+        expectedModel.setStudySpot(model.getFilteredStudySpotList().get(0), editedStudySpot);
+
+        assertCommandSuccess(editCommand, model, expectedMessage, expectedModel);
+    }
+
+    @Test
     public void execute_noFieldSpecifiedUnfilteredList_success() {
         Name firstStudySpotInTypicalStudySpots = new Name("Starbucks");
         EditCommand editCommand = new EditCommand(firstStudySpotInTypicalStudySpots, new EditStudySpotDescriptor());
@@ -129,6 +149,16 @@ public class EditCommandTest {
     @Test
     public void execute_invalidStudySpotIndexUnfilteredList_failure() {
         Name notInTypicalStudySpots = new Name("Test not in typical study spots");
+        EditStudySpotDescriptor descriptor = new EditStudySpotDescriptorBuilder().withName(VALID_NAME_DECK).build();
+        EditCommand editCommand = new EditCommand(notInTypicalStudySpots, descriptor);
+
+        assertCommandFailure(editCommand, model, Messages.MESSAGE_INVALID_EDIT_NAME);
+    }
+
+    @Test
+    public void execute_nonFullNameSpecifiedStudySpotUnfilteredList_failure() {
+        String nonFullName = "THE DECK";
+        Name notInTypicalStudySpots = new Name(nonFullName);
         EditStudySpotDescriptor descriptor = new EditStudySpotDescriptorBuilder().withName(VALID_NAME_DECK).build();
         EditCommand editCommand = new EditCommand(notInTypicalStudySpots, descriptor);
 
