@@ -12,7 +12,10 @@ import static seedu.address.testutil.Assert.assertThrows;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
+import java.util.logging.Logger;
 
+import seedu.address.AppParameters;
+import seedu.address.commons.core.LogsCenter;
 import seedu.address.commons.core.index.Index;
 import seedu.address.logic.commands.exceptions.CommandException;
 import seedu.address.model.Model;
@@ -25,7 +28,6 @@ import seedu.address.testutil.EditStudySpotDescriptorBuilder;
  * Contains helper methods for testing commands.
  */
 public class CommandTestUtil {
-
     public static final String VALID_NAME_FRONTIER = "Frontier Canteen";
     public static final String VALID_NAME_DECK = "The Deck Canteen";
     public static final String VALID_RATING_FRONTIER = "3";
@@ -78,7 +80,7 @@ public class CommandTestUtil {
             Model expectedModel) {
         try {
             CommandResult result = command.execute(actualModel);
-            assertEquals(expectedCommandResult, result); //todo
+            assertEquals(expectedCommandResult, result);
             assertEquals(expectedModel, actualModel);
         } catch (CommandException ce) {
             throw new AssertionError("Execution of command should not fail.", ce);
