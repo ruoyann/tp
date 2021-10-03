@@ -2,6 +2,7 @@ package seedu.address.logic.commands;
 
 import static java.util.Objects.requireNonNull;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_ADDRESS;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_EDIT_SPOT;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_EMAIL;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_NAME;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_RATING;
@@ -15,7 +16,6 @@ import java.util.Optional;
 import java.util.Set;
 
 import seedu.address.commons.core.Messages;
-import seedu.address.commons.core.index.Index;
 import seedu.address.commons.util.CollectionUtil;
 import seedu.address.logic.commands.exceptions.CommandException;
 import seedu.address.model.Model;
@@ -35,37 +35,24 @@ public class EditCommand extends Command {
     public static final String COMMAND_WORD = "edit";
 
     public static final String MESSAGE_USAGE = COMMAND_WORD + ": Edits the details of the study spot identified "
-            + "by the index number used in the displayed study spot list. "
+            + "by its name (case-insensitive). "
             + "Existing values will be overwritten by the input values.\n"
-            + "Parameters: INDEX (must be a positive integer) "
+            + "Parameters: "
+            + PREFIX_EDIT_SPOT + "NAME "
             + "[" + PREFIX_NAME + "NAME] "
             + "[" + PREFIX_RATING + "RATING] "
             + "[" + PREFIX_EMAIL + "EMAIL] "
             + "[" + PREFIX_ADDRESS + "ADDRESS] "
             + "[" + PREFIX_TAG + "TAG]...\n"
-            + "Example: " + COMMAND_WORD + " 1 "
-            + PREFIX_RATING + "91234567 "
-            + PREFIX_EMAIL + "johndoe@example.com";
+            + "Example: " + COMMAND_WORD + " " + PREFIX_EDIT_SPOT + "tr3 "
+            + PREFIX_RATING + "5 ";
 
     public static final String MESSAGE_EDIT_STUDYSPOT_SUCCESS = "Edited study spot: %1$s";
     public static final String MESSAGE_NOT_EDITED = "At least one field to edit must be provided.";
     public static final String MESSAGE_DUPLICATE_STUDYSPOT = "This study spot already exists in the study tracker.";
 
-    private Index index;
     private Name name;
     private final EditStudySpotDescriptor editStudySpotDescriptor;
-
-    /**
-     * @param index of the study spot in the filtered study spot list to edit
-     * @param editStudySpotDescriptor details to edit the study spot with
-     */
-    public EditCommand(Index index, EditStudySpotDescriptor editStudySpotDescriptor) {
-        requireNonNull(index);
-        requireNonNull(editStudySpotDescriptor);
-
-        this.index = index;
-        this.editStudySpotDescriptor = new EditStudySpotDescriptor(editStudySpotDescriptor);
-    }
 
     /**
      * @param name of the study spot in the study spot list to edit
