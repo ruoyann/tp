@@ -6,7 +6,7 @@
     "email" : "-",
     "address" : "UTown",
     "tagged" : [ "coffee" ],
-    "amenities" : [ ]
+    "amenities" : [ "wifi" ]
   }, {
     "name" : "Central library",
     "rating" : "3",

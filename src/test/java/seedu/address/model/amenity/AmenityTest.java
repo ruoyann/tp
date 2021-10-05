@@ -25,7 +25,7 @@ public class AmenityTest {
         assertThrows(NullPointerException.class, () -> Amenity.isValidAmenityType(null));
 
         // invalid amenity type
-        assertFalse(Amenity.isValidAmenityType("#wifi"));
+        assertFalse(Amenity.isValidAmenityType("carpark"));
     }
 
     @Test
@@ -39,8 +39,8 @@ public class AmenityTest {
         assertEquals(expectedOutcome, Amenity.listAllAmenityTypes(singleAmenityType));
 
         // multiple amenity types
-        String[] multipleAmenityTypes = {"wifi", "charger", "food", "air-con"};
-        expectedOutcome = "wifi, charger, food, air-con";
+        String[] multipleAmenityTypes = {"wifi", "charger", "food", "aircon"};
+        expectedOutcome = "wifi, charger, food, aircon";
 
         assertEquals(expectedOutcome, Amenity.listAllAmenityTypes(multipleAmenityTypes));
     }

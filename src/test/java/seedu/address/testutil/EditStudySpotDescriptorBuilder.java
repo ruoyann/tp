@@ -5,6 +5,7 @@ import java.util.stream.Collectors;
 import java.util.stream.Stream;
 
 import seedu.address.logic.commands.EditCommand.EditStudySpotDescriptor;
+import seedu.address.model.amenity.Amenity;
 import seedu.address.model.studyspot.Address;
 import seedu.address.model.studyspot.Email;
 import seedu.address.model.studyspot.Name;
@@ -37,6 +38,7 @@ public class EditStudySpotDescriptorBuilder {
         descriptor.setEmail(studySpot.getEmail());
         descriptor.setAddress(studySpot.getAddress());
         descriptor.setTags(studySpot.getTags());
+        descriptor.setAmenities(studySpot.getAmenities());
     }
 
     /**
@@ -78,6 +80,16 @@ public class EditStudySpotDescriptorBuilder {
     public EditStudySpotDescriptorBuilder withTags(String... tags) {
         Set<Tag> tagSet = Stream.of(tags).map(Tag::new).collect(Collectors.toSet());
         descriptor.setTags(tagSet);
+        return this;
+    }
+
+    /**
+     * Parses the {@code amenities} into a {@code Set<Amenity>} and set it to the {@code EditStudySpotDescriptor}
+     * that we are building.
+     */
+    public EditStudySpotDescriptorBuilder withAmenities(String... amenities) {
+        Set<Amenity> amenitySet = Stream.of(amenities).map(Amenity::new).collect(Collectors.toSet());
+        descriptor.setAmenities(amenitySet);
         return this;
     }
 

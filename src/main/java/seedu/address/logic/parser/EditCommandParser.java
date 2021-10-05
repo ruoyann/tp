@@ -3,10 +3,12 @@ package seedu.address.logic.parser;
 import static java.util.Objects.requireNonNull;
 import static seedu.address.commons.core.Messages.MESSAGE_INVALID_COMMAND_FORMAT;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_ADDRESS;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_AMENITY;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_EDIT_SPOT;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_EMAIL;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_NAME;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_RATING;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_REMOVE_AMENITY;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_TAG;
 
 import java.util.Collection;
@@ -18,6 +20,7 @@ import java.util.Set;
 import seedu.address.logic.commands.EditCommand;
 import seedu.address.logic.commands.EditCommand.EditStudySpotDescriptor;
 import seedu.address.logic.parser.exceptions.ParseException;
+import seedu.address.model.amenity.Amenity;
 import seedu.address.model.studyspot.Name;
 import seedu.address.model.tag.Tag;
 
@@ -35,7 +38,7 @@ public class EditCommandParser implements Parser<EditCommand> {
         requireNonNull(args);
         ArgumentMultimap argMultimap =
                 ArgumentTokenizer.tokenize(args, PREFIX_EDIT_SPOT, PREFIX_NAME,
-                        PREFIX_RATING, PREFIX_EMAIL, PREFIX_ADDRESS, PREFIX_TAG);
+                        PREFIX_RATING, PREFIX_EMAIL, PREFIX_ADDRESS, PREFIX_TAG, PREFIX_AMENITY, PREFIX_REMOVE_AMENITY);
 
         Name toBeChangedSpot;
 
@@ -59,6 +62,10 @@ public class EditCommandParser implements Parser<EditCommand> {
             editStudySpotDescriptor.setAddress(ParserUtil.parseAddress(argMultimap.getValue(PREFIX_ADDRESS).get()));
         }
         parseTagsForEdit(argMultimap.getAllValues(PREFIX_TAG)).ifPresent(editStudySpotDescriptor::setTags);
+        parseAmenitiesForEdit(argMultimap.getAllValues(PREFIX_AMENITY))
+                .ifPresent(editStudySpotDescriptor::setAddedAmenities);
+        parseAmenitiesForEdit(argMultimap.getAllValues(PREFIX_REMOVE_AMENITY))
+                .ifPresent(editStudySpotDescriptor::setRemovedAmenities);
 
         if (!editStudySpotDescriptor.isAnyFieldEdited()) {
             throw new ParseException(EditCommand.MESSAGE_NOT_EDITED);
@@ -80,6 +87,22 @@ public class EditCommandParser implements Parser<EditCommand> {
         }
         Collection<String> tagSet = tags.size() == 1 && tags.contains("") ? Collections.emptySet() : tags;
         return Optional.of(ParserUtil.parseTags(tagSet));
+    }
+
+    /**
+     * Parses {@code Collection<String> amenities} into a {@code Set<Amenity>} if {@code amenities} is non-empty.
+     * If {@code amenities} contain only one element which is an empty string, it will be parsed into a
+     * {@code Set<Amenity>} containing zero tags.
+     */
+    private Optional<Set<Amenity>> parseAmenitiesForEdit(Collection<String> amenities) throws ParseException {
+        assert amenities != null;
+
+        if (amenities.isEmpty()) {
+            return Optional.empty();
+        }
+        Collection<String> amenitySet = amenities.size() == 1 && amenities.contains("")
+                ? Collections.emptySet() : amenities;
+        return Optional.of(ParserUtil.parseAmenities(amenitySet));
     }
 
 }

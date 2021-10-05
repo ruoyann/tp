@@ -3,9 +3,11 @@ package seedu.address.logic.commands;
 import static java.util.Objects.requireNonNull;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_ADDRESS;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_AMENITY;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_EDIT_SPOT;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_EMAIL;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_NAME;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_RATING;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_REMOVE_AMENITY;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_TAG;
 import static seedu.address.model.Model.PREDICATE_SHOW_ALL_STUDYSPOTS;
 
@@ -37,15 +39,17 @@ public class EditCommand extends Command {
     public static final String COMMAND_WORD = "edit";
 
     public static final String MESSAGE_USAGE = COMMAND_WORD + ": Edits the details of the study spot identified "
-            + "by the index number used in the displayed study spot list. "
+            + "by its name. "
             + "Existing values will be overwritten by the input values.\n"
             + "Parameters: INDEX (must be a positive integer) "
+            + "[" + PREFIX_EDIT_SPOT + "NAME] (non-case sensitive) "
             + "[" + PREFIX_NAME + "NAME] "
             + "[" + PREFIX_RATING + "RATING] "
             + "[" + PREFIX_EMAIL + "EMAIL] "
             + "[" + PREFIX_ADDRESS + "ADDRESS] "
             + "[" + PREFIX_TAG + "TAG]..."
-            + "[" + PREFIX_AMENITY + "AMENITY]...\n"
+            + "[" + PREFIX_AMENITY + "NEW AMENITY]..."
+            + "[" + PREFIX_REMOVE_AMENITY + "OLD AMENITY]...\n"
             + "Example: " + COMMAND_WORD + " 1 "
             + PREFIX_RATING + "4"
             + PREFIX_EMAIL + "johndoe@example.com";
@@ -53,6 +57,8 @@ public class EditCommand extends Command {
     public static final String MESSAGE_EDIT_STUDYSPOT_SUCCESS = "Edited study spot: %1$s";
     public static final String MESSAGE_NOT_EDITED = "At least one field to edit must be provided.";
     public static final String MESSAGE_DUPLICATE_STUDYSPOT = "This study spot already exists in the study tracker.";
+    public static final String MESSAGE_REPEATED_COMMANDS =
+            "There can only be one addition or removal instruction in each command.";
 
     private Index index;
     private Name name;
@@ -117,7 +123,8 @@ public class EditCommand extends Command {
      * edited with {@code editStudySpotDescriptor}.
      */
     private static StudySpot createEditedStudySpot(StudySpot studySpotToEdit,
-                                                   EditStudySpotDescriptor editStudySpotDescriptor) {
+                                                   EditStudySpotDescriptor editStudySpotDescriptor)
+            throws CommandException {
         assert studySpotToEdit != null;
 
         Name updatedName = editStudySpotDescriptor.getName().orElse(studySpotToEdit.getName());
@@ -125,7 +132,8 @@ public class EditCommand extends Command {
         Email updatedEmail = editStudySpotDescriptor.getEmail().orElse(studySpotToEdit.getEmail());
         Address updatedAddress = editStudySpotDescriptor.getAddress().orElse(studySpotToEdit.getAddress());
         Set<Tag> updatedTags = editStudySpotDescriptor.getTags().orElse(studySpotToEdit.getTags());
-        Set<Amenity> updatedAmenities = editStudySpotDescriptor.getAmenities().orElse(studySpotToEdit.getAmenities());
+        Set<Amenity> updatedAmenities = editStudySpotDescriptor.updateAmenities(studySpotToEdit.getAmenities())
+                .getAmenities().orElse(studySpotToEdit.getAmenities());
 
         return new StudySpot(updatedName, updatedRating, updatedEmail, updatedAddress, updatedTags, updatedAmenities);
     }
@@ -159,6 +167,8 @@ public class EditCommand extends Command {
         private Address address;
         private Set<Tag> tags;
         private Set<Amenity> amenities;
+        private Set<Amenity> addedAmenities;
+        private Set<Amenity> removedAmenities;
 
         public EditStudySpotDescriptor() {}
 
@@ -173,13 +183,16 @@ public class EditCommand extends Command {
             setAddress(toCopy.address);
             setTags(toCopy.tags);
             setAmenities(toCopy.amenities);
+            setAddedAmenities(toCopy.addedAmenities);
+            setRemovedAmenities(toCopy.removedAmenities);
         }
 
         /**
          * Returns true if at least one field is edited.
          */
         public boolean isAnyFieldEdited() {
-            return CollectionUtil.isAnyNonNull(name, rating, email, address, tags, amenities);
+            return CollectionUtil.isAnyNonNull(name, rating, email, address, tags,
+                    amenities, addedAmenities, removedAmenities);
         }
 
         public void setName(Name name) {
@@ -240,12 +253,129 @@ public class EditCommand extends Command {
         }
 
         /**
+         * Sets {@code addedAmenities} to this object's {@code addedAmenities}.
+         */
+        public void setAddedAmenities(Set<Amenity> addedAmenities) {
+            this.addedAmenities = (addedAmenities != null) ? new HashSet<>(addedAmenities) : null;
+        }
+
+        /**
+         * Sets {@code removedAmenities} to this object's {@code removedAmenities}.
+         */
+        public void setRemovedAmenities(Set<Amenity> removedAmenities) {
+            this.removedAmenities = (removedAmenities != null) ? new HashSet<>(removedAmenities) : null;
+        }
+
+        /**
          * Returns an unmodifiable amenity set, which throws {@code UnsupportedOperationException}
          * if modification is attempted.
          * Returns {@code Optional#empty()} if {@code amenities} is null.
          */
         public Optional<Set<Amenity>> getAmenities() {
             return (amenities != null) ? Optional.of(Collections.unmodifiableSet(amenities)) : Optional.empty();
+        }
+
+        /**
+         * Returns amenities added in an edit command.
+         */
+        public Set<Amenity> getAmenitiesAdded() {
+            return addedAmenities;
+        }
+
+        /**
+         * Returns amenities removed in an edit command.
+         */
+        public Set<Amenity> getAmenitiesRemoved() {
+            return removedAmenities;
+        }
+
+        /**
+         * Returns a new EditStudySpotDescriptor, which updates the existing amenities according to
+         * the edit command provided.
+         */
+        public EditStudySpotDescriptor updateAmenities(Set<Amenity> existingAmenities) throws CommandException {
+            boolean repeatedAmenityPresent = checkRepeatedAmenity(addedAmenities, removedAmenities);
+            if (repeatedAmenityPresent) {
+                throw new CommandException(MESSAGE_REPEATED_COMMANDS);
+            }
+
+            Set<Amenity> updatedAmenities = new HashSet<>();
+            if (addedAmenities != null) {
+                updatedAmenities = combineAmenitiesAdded(addedAmenities, existingAmenities);
+            }
+            if (removedAmenities != null) {
+                updatedAmenities = combineAmenitiesRemoved(removedAmenities, existingAmenities);
+            }
+            setAmenities(updatedAmenities);
+            return this;
+        }
+
+        /**
+         * Returns an amenity set which has {@code addedAmenities} added to {@code existingAmenities}.
+         */
+        public Set<Amenity> combineAmenitiesAdded(Set<Amenity> addedAmenities, Set<Amenity> existingAmenities) {
+            Set<Amenity> result = existingAmenities;
+            for (Amenity amenity: addedAmenities) {
+                if (!existingAmenities.contains(amenity)) {
+                    result = addAmenity(result, amenity);
+                }
+            }
+            return result;
+        }
+
+        /**
+         * Returns an amenity set which has {@code amenitiesRemoved} removed from {@code existingAmenities}.
+         */
+        public Set<Amenity> combineAmenitiesRemoved(Set<Amenity> amenitiesRemoved, Set<Amenity> existingAmenities)
+                throws CommandException {
+            Set<Amenity> result = existingAmenities;
+            for (Amenity amenity: amenitiesRemoved) {
+                if (!existingAmenities.contains(amenity)) {
+                    throw new CommandException(String.format(Amenity.MESSAGE_REMOVAL_CONSTRAINTS,
+                            Amenity.listAllAmenityTypes(Amenity.VALID_TYPES)));
+                } else {
+                    result = removedAmenity(result, amenity);
+                }
+            }
+            return result;
+        }
+
+        private boolean checkRepeatedAmenity(Set<Amenity> addedAmenities, Set<Amenity> removedAmenities) {
+            if (addedAmenities == null || removedAmenities == null) {
+                return false;
+            }
+            for (Amenity amenity : addedAmenities) {
+                if (containAmenityType(removedAmenities, amenity.amenityType)) {
+                    return true;
+                }
+            }
+            return false;
+        }
+
+        private boolean containAmenityType(Set<Amenity> amenities, String amenityType) {
+            for (Amenity amenity : amenities) {
+                if (amenity.amenityType.equals(amenityType)) {
+                    return true;
+                }
+            }
+            return false;
+        }
+
+        private Set<Amenity> addAmenity(Set<Amenity> existingAmenities, Amenity amenityAdded) {
+            Set<Amenity> result = new HashSet<>();
+            result.addAll(existingAmenities);
+            result.add(amenityAdded);
+            return result;
+        }
+
+        private Set<Amenity> removedAmenity(Set<Amenity> existingAmenities, Amenity amenityRemoved) {
+            Set<Amenity> result = new HashSet<>();
+            for (Amenity amenity : existingAmenities) {
+                if (!amenity.equals(amenityRemoved)) {
+                    result.add(amenity);
+                }
+            }
+            return result;
         }
 
         @Override

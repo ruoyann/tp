@@ -23,7 +23,7 @@ public class JsonAdaptedStudySpotTest {
     private static final String INVALID_ADDRESS = " ";
     private static final String INVALID_EMAIL = "example.com";
     private static final String INVALID_TAG = "#friend";
-    private static final String INVALID_AMENITY = "#wifi";
+    private static final String INVALID_AMENITY = "carpark";
 
     private static final String VALID_NAME = CENTRAL_LIBRARY.getName().toString();
     private static final String VALID_RATING = CENTRAL_LIBRARY.getRating().toString();
@@ -121,4 +121,13 @@ public class JsonAdaptedStudySpotTest {
         assertThrows(IllegalValueException.class, studySpot::toModelType);
     }
 
+    @Test
+    public void toModelType_invalidAmenityTypes_throwsIllegalValueException() {
+        List<JsonAdaptedAmenity> invalidAmenityTypes = new ArrayList<>(VALID_AMENITIES);
+        invalidAmenityTypes.add(new JsonAdaptedAmenity(INVALID_AMENITY));
+        JsonAdaptedStudySpot studySpot =
+                new JsonAdaptedStudySpot(VALID_NAME, VALID_RATING, VALID_EMAIL, VALID_ADDRESS, VALID_TAGS,
+                        invalidAmenityTypes);
+        assertThrows(IllegalValueException.class, studySpot::toModelType);
+    }
 }
