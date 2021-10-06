@@ -11,3 +11,7 @@ Copyright by Jan Jan Kovařík - http://glyphicons.com/
 Copyright by Irastoya - https://irastoya.com/
 - books.png
 - study_tracker_32.png
+
+Copyright by FontAwesome - https://fontawesome.com
+- calendar-alt.svg
+- map-marker-alt.svg

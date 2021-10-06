@@ -7,6 +7,7 @@ import javafx.scene.control.Label;
 import javafx.scene.layout.FlowPane;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.Region;
+import seedu.address.model.studyspot.Rating;
 import seedu.address.model.studyspot.StudySpot;
 
 /**
@@ -49,7 +50,7 @@ public class StudySpotCard extends UiPart<Region> {
         this.studySpot = studySpot;
         id.setText(displayedIndex + ". ");
         name.setText(studySpot.getName().fullName);
-        rating.setText(studySpot.getRating().value);
+        rating.setText(ratingDisplay(studySpot.getRating()));
         address.setText(studySpot.getAddress().value);
         email.setText(studySpot.getEmail().value);
         studySpot.getTags().stream()
@@ -73,5 +74,15 @@ public class StudySpotCard extends UiPart<Region> {
         StudySpotCard card = (StudySpotCard) other;
         return id.getText().equals(card.id.getText())
                 && studySpot.equals(card.studySpot);
+    }
+
+    private String ratingDisplay(Rating providedRating) {
+        int rating = Integer.parseInt(providedRating.value);
+        StringBuilder result = new StringBuilder();
+        for (int i = 0; i < 5; i++) {
+            result.append(rating > 0 ? "★" : "☆");
+            rating -= 1;
+        }
+        return result.toString();
     }
 }
