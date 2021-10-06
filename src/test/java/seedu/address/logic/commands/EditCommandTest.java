@@ -5,7 +5,6 @@ import static org.junit.jupiter.api.Assertions.assertTrue;
 import static seedu.address.logic.commands.CommandTestUtil.DESC_DECK;
 import static seedu.address.logic.commands.CommandTestUtil.DESC_FRONTIER;
 import static seedu.address.logic.commands.CommandTestUtil.VALID_NAME_DECK;
-import static seedu.address.logic.commands.CommandTestUtil.VALID_RATING_DECK;
 import static seedu.address.logic.commands.CommandTestUtil.VALID_TAG_COLD;
 import static seedu.address.logic.commands.CommandTestUtil.VALID_TAG_QUIET;
 import static seedu.address.logic.commands.CommandTestUtil.assertCommandFailure;
