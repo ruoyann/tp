@@ -5,42 +5,49 @@
     "rating" : "4",
     "email" : "-",
     "address" : "UTown",
-    "tagged" : [ "coffee" ]
+    "tagged" : [ "coffee" ],
+    "amenities" : [ "wifi" ]
   }, {
     "name" : "Central library",
     "rating" : "3",
     "email" : "-",
     "address" : "NUS, Central Library",
-    "tagged" : [ "cold", "quiet" ]
+    "tagged" : [ "cold", "quiet" ],
+    "amenities" : [ "wifi" ]
   }, {
     "name" : "COM1",
     "rating" : "2",
     "email" : "-",
     "address" : "NUS Computing",
-    "tagged" : [ ]
+    "tagged" : [ ],
+    "amenities" : [ "wifi" ]
   }, {
     "name" : "Frontier Canteen",
     "rating" : "3",
     "email" : "Frontier email",
     "address" : "NUS Science Faculty",
-    "tagged" : [ "crowded" ]
+    "tagged" : [ "crowded" ],
+    "amenities" : [ ]
   }, {
     "name" : "Tokyo Room",
     "rating" : "3",
     "email" : "-",
     "address" : "NUS, Yusof Ishak House Level 3",
-    "tagged" : [ "cold" ]
+    "tagged" : [ "cold" ],
+    "amenities" : [ "wifi" ]
   },{
     "name" : "PC Commons",
     "rating" : "4",
     "email" : "-",
     "address" : "Utown",
-    "tagged" : [ ]
+    "tagged" : [ ],
+    "amenities" : [ "wifi" ]
   }, {
     "name" : "LT17",
     "rating" : "5",
     "email" : "-",
     "address" : "NUS COM2",
-    "tagged" : [ ]
+    "tagged" : [ ],
+    "amenities" : [ ]
   } ]
 }
