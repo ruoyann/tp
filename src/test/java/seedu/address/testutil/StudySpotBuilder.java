@@ -3,6 +3,7 @@ package seedu.address.testutil;
 import java.util.HashSet;
 import java.util.Set;
 
+import seedu.address.model.amenity.Amenity;
 import seedu.address.model.studyspot.Address;
 import seedu.address.model.studyspot.Email;
 import seedu.address.model.studyspot.Name;
@@ -26,6 +27,7 @@ public class StudySpotBuilder {
     private Email email;
     private Address address;
     private Set<Tag> tags;
+    private Set<Amenity> amenities;
 
     /**
      * Creates a {@code StudySpotBuilder} with the default details.
@@ -36,6 +38,7 @@ public class StudySpotBuilder {
         email = new Email(DEFAULT_EMAIL);
         address = new Address(DEFAULT_ADDRESS);
         tags = new HashSet<>();
+        amenities = new HashSet<>();
     }
 
     /**
@@ -47,6 +50,7 @@ public class StudySpotBuilder {
         email = studySpotToCopy.getEmail();
         address = studySpotToCopy.getAddress();
         tags = new HashSet<>(studySpotToCopy.getTags());
+        amenities = new HashSet<>(studySpotToCopy.getAmenities());
     }
 
     /**
@@ -62,6 +66,15 @@ public class StudySpotBuilder {
      */
     public StudySpotBuilder withTags(String ... tags) {
         this.tags = SampleDataUtil.getTagSet(tags);
+        return this;
+    }
+
+    /**
+     * Parses the {@code amenities} into a {@code Set<Amenity>} and set it to the {@code StudySpot}
+     * that we are building.
+     */
+    public StudySpotBuilder withAmenities(String ... amenities) {
+        this.amenities = SampleDataUtil.getAmenitySet(amenities);
         return this;
     }
 
@@ -90,7 +103,7 @@ public class StudySpotBuilder {
     }
 
     public StudySpot build() {
-        return new StudySpot(name, rating, email, address, tags);
+        return new StudySpot(name, rating, email, address, tags, amenities);
     }
 
 }

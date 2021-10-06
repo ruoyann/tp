@@ -26,24 +26,29 @@ public class TypicalStudySpots {
     public static final StudySpot STARBUCKS = new StudySpotBuilder().withName("Starbucks")
             .withAddress("UTown").withEmail("-")
             .withRating("4")
-            .withTags("coffee").build();
+            .withTags("coffee")
+            .build();
     public static final StudySpot CENTRAL_LIBRARY = new StudySpotBuilder().withName("Central library")
             .withAddress("NUS, Central Library")
             .withEmail("-").withRating("3")
-            .withTags("cold", "quiet").build();
+            .withTags("cold", "quiet")
+            .withAmenities("wifi").build();
     public static final StudySpot COM1 = new StudySpotBuilder().withName("COM1")
             .withRating("2")
             .withEmail("-")
-            .withAddress("NUS Computing").build();
+            .withAddress("NUS Computing")
+            .withAmenities("wifi").build();
     public static final StudySpot TOKYO_ROOM = new StudySpotBuilder().withName("Tokyo Room")
             .withRating("3")
             .withEmail("-")
             .withAddress("NUS, Yusof Ishak House Level 3")
-            .withTags("cold").build();
+            .withTags("cold")
+            .withAmenities("wifi").build();
     public static final StudySpot PC_COMMONS = new StudySpotBuilder().withName("PC Commons")
             .withRating("4")
             .withEmail("-")
-            .withAddress("Utown").build();
+            .withAddress("Utown")
+            .withAmenities("wifi").build();
     public static final StudySpot LT_17 = new StudySpotBuilder().withName("LT17")
             .withRating("5")
             .withEmail("-")

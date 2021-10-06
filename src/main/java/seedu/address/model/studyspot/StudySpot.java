@@ -7,6 +7,7 @@ import java.util.HashSet;
 import java.util.Objects;
 import java.util.Set;
 
+import seedu.address.model.amenity.Amenity;
 import seedu.address.model.tag.Tag;
 
 /**
@@ -23,17 +24,19 @@ public class StudySpot {
     // Data fields
     private final Address address;
     private final Set<Tag> tags = new HashSet<>();
+    private final Set<Amenity> amenities = new HashSet<>();
 
     /**
      * Every field must be present and not null.
      */
-    public StudySpot(Name name, Rating rating, Email email, Address address, Set<Tag> tags) {
-        requireAllNonNull(name, rating, email, address, tags);
+    public StudySpot(Name name, Rating rating, Email email, Address address, Set<Tag> tags, Set<Amenity> amenities) {
+        requireAllNonNull(name, rating, email, address, tags, amenities);
         this.name = name;
         this.rating = rating;
         this.email = email;
         this.address = address;
         this.tags.addAll(tags);
+        this.amenities.addAll(amenities);
     }
 
     public Name getName() {
@@ -58,6 +61,14 @@ public class StudySpot {
      */
     public Set<Tag> getTags() {
         return Collections.unmodifiableSet(tags);
+    }
+
+    /**
+     * Returns an immutable amenity set, which throws {@code UnsupportedOperationException}
+     * if modification is attempted.
+     */
+    public Set<Amenity> getAmenities() {
+        return Collections.unmodifiableSet(amenities);
     }
 
     /**
@@ -92,13 +103,14 @@ public class StudySpot {
                 && otherStudySpot.getRating().equals(getRating())
                 && otherStudySpot.getEmail().equals(getEmail())
                 && otherStudySpot.getAddress().equals(getAddress())
-                && otherStudySpot.getTags().equals(getTags());
+                && otherStudySpot.getTags().equals(getTags())
+                && otherStudySpot.getAmenities().equals(getAmenities());
     }
 
     @Override
     public int hashCode() {
         // use this method for custom fields hashing instead of implementing your own
-        return Objects.hash(name, rating, email, address, tags);
+        return Objects.hash(name, rating, email, address, tags, amenities);
     }
 
     @Override
@@ -117,6 +129,13 @@ public class StudySpot {
             builder.append("; Tags: ");
             tags.forEach(builder::append);
         }
+
+        Set<Amenity> amenities = getAmenities();
+        if (!amenities.isEmpty()) {
+            builder.append("; Amenities: ");
+            amenities.forEach(builder::append);
+        }
+
         return builder.toString();
     }
 
