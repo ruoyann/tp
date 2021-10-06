@@ -29,11 +29,12 @@ public class AddCommand extends Command {
             + "[" + PREFIX_AMENITY + "AMENITY]..."
             + "Example: " + COMMAND_WORD + " "
             + PREFIX_NAME + "COM1 "
-            + PREFIX_RATING + "5"
+            + PREFIX_RATING + "5 "
             + PREFIX_EMAIL + "johnd@example.com "
-            + PREFIX_ADDRESS + "SoC"
+            + PREFIX_ADDRESS + "SoC "
             + PREFIX_TAG + "cold "
-            + PREFIX_TAG + "quiet";
+            + PREFIX_TAG + "quiet"
+            + PREFIX_AMENITY + "wifi";
 
     public static final String MESSAGE_SUCCESS = "New study spot added: %1$s";
     public static final String MESSAGE_DUPLICATE_STUDYSPOT = "This study spot already exists in the study tracker";
