@@ -1,6 +1,7 @@
 package seedu.address.testutil;
 
 import static seedu.address.logic.parser.CliSyntax.PREFIX_ADDRESS;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_AMENITY;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_EMAIL;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_NAME;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_RATING;
@@ -10,6 +11,7 @@ import java.util.Set;
 
 import seedu.address.logic.commands.AddCommand;
 import seedu.address.logic.commands.EditCommand.EditStudySpotDescriptor;
+import seedu.address.model.amenity.Amenity;
 import seedu.address.model.studyspot.StudySpot;
 import seedu.address.model.tag.Tag;
 
@@ -37,6 +39,8 @@ public class StudySpotUtil {
         studySpot.getTags().stream().forEach(
             s -> sb.append(PREFIX_TAG + s.tagName + " ")
         );
+        studySpot.getAmenities().stream().forEach(s -> sb.append(PREFIX_AMENITY + s.amenityType + " ")
+        );
         return sb.toString();
     }
 
@@ -55,6 +59,15 @@ public class StudySpotUtil {
                 sb.append(PREFIX_TAG);
             } else {
                 tags.forEach(s -> sb.append(PREFIX_TAG).append(s.tagName).append(" "));
+            }
+        }
+        sb.append(" ");
+        if (descriptor.getAmenities().isPresent()) {
+            Set<Amenity> amenities = descriptor.getAmenities().get();
+            if (amenities.isEmpty()) {
+                sb.append(PREFIX_AMENITY);
+            } else {
+                amenities.forEach(s -> sb.append(PREFIX_AMENITY).append(s.amenityType).append(" "));
             }
         }
         return sb.toString();

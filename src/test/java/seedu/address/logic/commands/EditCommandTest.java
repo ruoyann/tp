@@ -5,7 +5,7 @@ import static org.junit.jupiter.api.Assertions.assertTrue;
 import static seedu.address.logic.commands.CommandTestUtil.DESC_DECK;
 import static seedu.address.logic.commands.CommandTestUtil.DESC_FRONTIER;
 import static seedu.address.logic.commands.CommandTestUtil.VALID_NAME_DECK;
-import static seedu.address.logic.commands.CommandTestUtil.VALID_RATING_DECK;
+import static seedu.address.logic.commands.CommandTestUtil.VALID_TAG_COLD;
 import static seedu.address.logic.commands.CommandTestUtil.VALID_TAG_QUIET;
 import static seedu.address.logic.commands.CommandTestUtil.assertCommandFailure;
 import static seedu.address.logic.commands.CommandTestUtil.assertCommandSuccess;
@@ -17,7 +17,6 @@ import static seedu.address.testutil.TypicalStudySpots.getTypicalStudyTracker;
 import org.junit.jupiter.api.Test;
 
 import seedu.address.commons.core.Messages;
-import seedu.address.commons.core.index.Index;
 import seedu.address.logic.commands.EditCommand.EditStudySpotDescriptor;
 import seedu.address.model.Model;
 import seedu.address.model.ModelManager;
@@ -50,24 +49,44 @@ public class EditCommandTest {
         assertCommandSuccess(editCommand, model, expectedMessage, expectedModel);
     }
 
+    //    @Test
+    //    public void execute_someFieldsSpecifiedUnfilteredList_success() {
+    //        Index indexLastStudySpot = Index.fromOneBased(model.getFilteredStudySpotList().size());
+    //        Name lastStudySpotInTypicalStudySpots = new Name("LT17");
+    //        StudySpot lastStudySpot = model.getFilteredStudySpotList().get(indexLastStudySpot.getZeroBased());
+    //
+    //        StudySpotBuilder spotInList = new StudySpotBuilder(lastStudySpot);
+    //        StudySpot editedStudySpot = spotInList.withName(VALID_NAME_DECK).withRating(VALID_RATING_DECK)
+    //                .withTags(VALID_TAG_QUIET).withAmenities(VALID_AMENITY_WIFI).build();
+    //
+    //        EditStudySpotDescriptor descriptor = new EditStudySpotDescriptorBuilder().withName(VALID_NAME_DECK)
+    //                .withRating(VALID_RATING_DECK).withTags(VALID_TAG_QUIET)
+    //                .withAmenities(VALID_AMENITY_WIFI).build();
+    //        EditCommand editCommand = new EditCommand(lastStudySpotInTypicalStudySpots, descriptor);
+    //
+    //        String expectedMessage = String.format(EditCommand.MESSAGE_EDIT_STUDYSPOT_SUCCESS, editedStudySpot);
+    //
+    //        Model expectedModel = new ModelManager(new StudyTracker(model.getStudyTracker()), new UserPrefs());
+    //        expectedModel.setStudySpot(lastStudySpot, editedStudySpot);
+    //
+    //        assertCommandSuccess(editCommand, model, expectedMessage, expectedModel); //todo
+    //    }
+
     @Test
-    public void execute_someFieldsSpecifiedUnfilteredList_success() {
-        Index indexLastStudySpot = Index.fromOneBased(model.getFilteredStudySpotList().size());
-        Name lastStudySpotInTypicalStudySpots = new Name("LT17");
-        StudySpot lastStudySpot = model.getFilteredStudySpotList().get(indexLastStudySpot.getZeroBased());
+    public void execute_replaceTags_success() {
+        Name firstStudySpotInTypicalStudySpots = new Name("Starbucks");
+        StudySpot studySpotInFilteredList = model.getFilteredStudySpotList().get(INDEX_FIRST_SPOT.getZeroBased());
+        StudySpot editedStudySpot = new StudySpotBuilder(studySpotInFilteredList)
+                .withTags(VALID_TAG_QUIET, VALID_TAG_COLD).build();
 
-        StudySpotBuilder spotInList = new StudySpotBuilder(lastStudySpot);
-        StudySpot editedStudySpot = spotInList.withName(VALID_NAME_DECK).withRating(VALID_RATING_DECK)
-                .withTags(VALID_TAG_QUIET).build();
-
-        EditStudySpotDescriptor descriptor = new EditStudySpotDescriptorBuilder().withName(VALID_NAME_DECK)
-                .withRating(VALID_RATING_DECK).withTags(VALID_TAG_QUIET).build();
-        EditCommand editCommand = new EditCommand(lastStudySpotInTypicalStudySpots, descriptor);
+        EditStudySpotDescriptor descriptor = new EditStudySpotDescriptorBuilder()
+                .withTags(VALID_TAG_QUIET, VALID_TAG_COLD).build();
+        EditCommand editCommand = new EditCommand(firstStudySpotInTypicalStudySpots, descriptor);
 
         String expectedMessage = String.format(EditCommand.MESSAGE_EDIT_STUDYSPOT_SUCCESS, editedStudySpot);
 
         Model expectedModel = new ModelManager(new StudyTracker(model.getStudyTracker()), new UserPrefs());
-        expectedModel.setStudySpot(lastStudySpot, editedStudySpot);
+        expectedModel.setStudySpot(model.getFilteredStudySpotList().get(0), editedStudySpot);
 
         assertCommandSuccess(editCommand, model, expectedMessage, expectedModel);
     }
@@ -129,6 +148,16 @@ public class EditCommandTest {
     @Test
     public void execute_invalidStudySpotIndexUnfilteredList_failure() {
         Name notInTypicalStudySpots = new Name("Test not in typical study spots");
+        EditStudySpotDescriptor descriptor = new EditStudySpotDescriptorBuilder().withName(VALID_NAME_DECK).build();
+        EditCommand editCommand = new EditCommand(notInTypicalStudySpots, descriptor);
+
+        assertCommandFailure(editCommand, model, Messages.MESSAGE_INVALID_EDIT_NAME);
+    }
+
+    @Test
+    public void execute_nonFullNameSpecifiedStudySpotUnfilteredList_failure() {
+        String nonFullName = "THE DECK";
+        Name notInTypicalStudySpots = new Name(nonFullName);
         EditStudySpotDescriptor descriptor = new EditStudySpotDescriptorBuilder().withName(VALID_NAME_DECK).build();
         EditCommand editCommand = new EditCommand(notInTypicalStudySpots, descriptor);
 

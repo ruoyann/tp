@@ -3,9 +3,11 @@ package seedu.address.logic.commands;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_ADDRESS;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_AMENITY;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_EMAIL;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_NAME;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_RATING;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_REMOVE_AMENITY;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_TAG;
 import static seedu.address.testutil.Assert.assertThrows;
 
@@ -36,6 +38,8 @@ public class CommandTestUtil {
     public static final String VALID_ADDRESS_DECK = "NUS FASS";
     public static final String VALID_TAG_QUIET = "quiet";
     public static final String VALID_TAG_CROWDED = "crowded";
+    public static final String VALID_TAG_COLD = "cold";
+    public static final String VALID_AMENITY_WIFI = "wifi";
 
     public static final String NAME_DESC_FRONTIER = " " + PREFIX_NAME + VALID_NAME_FRONTIER;
     public static final String NAME_DESC_DECK = " " + PREFIX_NAME + VALID_NAME_DECK;
@@ -47,9 +51,12 @@ public class CommandTestUtil {
     public static final String ADDRESS_DESC_DECK = " " + PREFIX_ADDRESS + VALID_ADDRESS_DECK;
     public static final String TAG_DESC_CROWDED = " " + PREFIX_TAG + VALID_TAG_CROWDED;
     public static final String TAG_DESC_QUIET = " " + PREFIX_TAG + VALID_TAG_QUIET;
+    public static final String AMENITY_DESC_WIFI = " " + PREFIX_AMENITY + VALID_AMENITY_WIFI;
+    public static final String AMENITY_RM_DESC_WIFI = " " + PREFIX_REMOVE_AMENITY + VALID_AMENITY_WIFI;
 
     public static final String INVALID_NAME_DESC = " " + PREFIX_NAME + "LT27&"; // '&' not allowed in names
     public static final String INVALID_RATING_DESC = " " + PREFIX_RATING + "911a"; // digits not from '1-5' not allowed
+    public static final String INVALID_RATING_OUTOFRANGE_DESC = " " + PREFIX_RATING + "9";
     public static final String INVALID_EMAIL_DESC = ""; // no email
     public static final String INVALID_ADDRESS_DESC = " " + PREFIX_ADDRESS; // empty string not allowed for addresses
     public static final String INVALID_TAG_DESC = " " + PREFIX_TAG + "bringJacket*"; // '*' not allowed in tags

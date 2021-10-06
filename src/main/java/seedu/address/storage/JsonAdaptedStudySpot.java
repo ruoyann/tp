@@ -10,6 +10,7 @@ import com.fasterxml.jackson.annotation.JsonCreator;
 import com.fasterxml.jackson.annotation.JsonProperty;
 
 import seedu.address.commons.exceptions.IllegalValueException;
+import seedu.address.model.amenity.Amenity;
 import seedu.address.model.studyspot.Address;
 import seedu.address.model.studyspot.Email;
 import seedu.address.model.studyspot.Name;
@@ -29,6 +30,7 @@ class JsonAdaptedStudySpot {
     private final String email;
     private final String address;
     private final List<JsonAdaptedTag> tagged = new ArrayList<>();
+    private final List<JsonAdaptedAmenity> amenities = new ArrayList<>();
 
     /**
      * Constructs a {@code JsonAdaptedStudySpot} with the given study spot details.
@@ -36,13 +38,17 @@ class JsonAdaptedStudySpot {
     @JsonCreator
     public JsonAdaptedStudySpot(@JsonProperty("name") String name, @JsonProperty("rating") String rating,
             @JsonProperty("email") String email, @JsonProperty("address") String address,
-            @JsonProperty("tagged") List<JsonAdaptedTag> tagged) {
+            @JsonProperty("tagged") List<JsonAdaptedTag> tagged,
+            @JsonProperty("amenities") List<JsonAdaptedAmenity> amenities) {
         this.name = name;
         this.rating = rating;
         this.email = email;
         this.address = address;
         if (tagged != null) {
             this.tagged.addAll(tagged);
+        }
+        if (amenities != null) {
+            this.amenities.addAll(amenities);
         }
     }
 
@@ -57,6 +63,9 @@ class JsonAdaptedStudySpot {
         tagged.addAll(source.getTags().stream()
                 .map(JsonAdaptedTag::new)
                 .collect(Collectors.toList()));
+        amenities.addAll(source.getAmenities().stream()
+                .map(JsonAdaptedAmenity::new)
+                .collect(Collectors.toList()));
     }
 
     /**
@@ -68,6 +77,11 @@ class JsonAdaptedStudySpot {
         final List<Tag> studySpotTags = new ArrayList<>();
         for (JsonAdaptedTag tag : tagged) {
             studySpotTags.add(tag.toModelType());
+        }
+
+        final List<Amenity> studySpotAmenities = new ArrayList<>();
+        for (JsonAdaptedAmenity amenity : amenities) {
+            studySpotAmenities.add(amenity.toModelType());
         }
 
         if (name == null) {
@@ -103,7 +117,8 @@ class JsonAdaptedStudySpot {
         final Address modelAddress = new Address(address);
 
         final Set<Tag> modelTags = new HashSet<>(studySpotTags);
-        return new StudySpot(modelName, modelRating, modelEmail, modelAddress, modelTags);
+        final Set<Amenity> modelAmenities = new HashSet<>(studySpotAmenities);
+        return new StudySpot(modelName, modelRating, modelEmail, modelAddress, modelTags, modelAmenities);
     }
 
 }
