@@ -21,6 +21,7 @@ public class EditStudySpotDescriptorTest {
     public void equals() {
         // same values -> returns true
         EditStudySpotDescriptor descriptorWithSameValues = new EditStudySpotDescriptor(DESC_FRONTIER);
+        boolean a = DESC_FRONTIER.equals(descriptorWithSameValues);
         assertTrue(DESC_FRONTIER.equals(descriptorWithSameValues));
 
         // same object -> returns true
@@ -53,7 +54,7 @@ public class EditStudySpotDescriptorTest {
         assertFalse(DESC_FRONTIER.equals(editedFrontier));
 
         // different tags -> returns false
-        editedFrontier = new EditStudySpotDescriptorBuilder(DESC_FRONTIER).withTags(VALID_TAG_QUIET).build();
+        editedFrontier = new EditStudySpotDescriptorBuilder(DESC_FRONTIER).withAddedTags(VALID_TAG_QUIET).build();
         assertFalse(DESC_FRONTIER.equals(editedFrontier));
     }
 }

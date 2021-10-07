@@ -9,6 +9,7 @@ import static seedu.address.logic.parser.CliSyntax.PREFIX_EMAIL;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_NAME;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_RATING;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_REMOVE_AMENITY;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_REMOVE_TAG;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_TAG;
 
 import java.util.Collection;
@@ -38,7 +39,8 @@ public class EditCommandParser implements Parser<EditCommand> {
         requireNonNull(args);
         ArgumentMultimap argMultimap =
                 ArgumentTokenizer.tokenize(args, PREFIX_EDIT_SPOT, PREFIX_NAME,
-                        PREFIX_RATING, PREFIX_EMAIL, PREFIX_ADDRESS, PREFIX_TAG, PREFIX_AMENITY, PREFIX_REMOVE_AMENITY);
+                        PREFIX_RATING, PREFIX_EMAIL, PREFIX_ADDRESS, PREFIX_TAG, PREFIX_REMOVE_TAG,
+                        PREFIX_AMENITY, PREFIX_REMOVE_AMENITY);
 
         Name toBeChangedSpot;
 
@@ -61,7 +63,12 @@ public class EditCommandParser implements Parser<EditCommand> {
         if (argMultimap.getValue(PREFIX_ADDRESS).isPresent()) {
             editStudySpotDescriptor.setAddress(ParserUtil.parseAddress(argMultimap.getValue(PREFIX_ADDRESS).get()));
         }
-        parseTagsForEdit(argMultimap.getAllValues(PREFIX_TAG)).ifPresent(editStudySpotDescriptor::setTags);
+
+        parseTagsForEdit(argMultimap.getAllValues(PREFIX_TAG))
+                .ifPresent(editStudySpotDescriptor::setAddedTags);
+        parseTagsForEdit(argMultimap.getAllValues(PREFIX_REMOVE_TAG))
+                .ifPresent(editStudySpotDescriptor::setRemovedTags);
+
         parseAmenitiesForEdit(argMultimap.getAllValues(PREFIX_AMENITY))
                 .ifPresent(editStudySpotDescriptor::setAddedAmenities);
         parseAmenitiesForEdit(argMultimap.getAllValues(PREFIX_REMOVE_AMENITY))
