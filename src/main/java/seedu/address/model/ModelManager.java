@@ -112,6 +112,28 @@ public class ModelManager implements Model {
         studyTracker.setStudySpot(target, editedStudySpot);
     }
 
+    /**
+     * Adds the given study spot to favourites.
+     * {@code study spot} must already exist in the study tracker.
+     *
+     * @param studySpot
+     */
+    @Override
+    public void addStudySpotToFavourites(StudySpot studySpot) {
+
+    }
+
+    /**
+     * Removes the given study spot from favourites.
+     * {@code study spot} must already exist in the study tracker.
+     *
+     * @param studySpot
+     */
+    @Override
+    public void removeStudySpotFromFavourites(StudySpot studySpot) {
+
+    }
+
     //=========== Filtered StudySpot List Accessors =============================================================
 
     /**
