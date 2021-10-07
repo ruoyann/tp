@@ -113,6 +113,16 @@ public class ModelManager implements Model {
     }
 
     /**
+     * Returns true if a study spot with the same identity as {@code studySpot} is a favourite in the study tracker.
+     *
+     * @param studySpot
+     */
+    @Override
+    public boolean isFavouriteStudySpot(StudySpot studySpot) {
+        return studyTracker.isFavouriteStudySpot(studySpot);
+    }
+
+    /**
      * Adds the given study spot to favourites.
      * {@code study spot} must already exist in the study tracker.
      *
@@ -120,7 +130,7 @@ public class ModelManager implements Model {
      */
     @Override
     public void addStudySpotToFavourites(StudySpot studySpot) {
-
+        studyTracker.addStudySpotToFavourites(studySpot);
     }
 
     /**
@@ -131,7 +141,7 @@ public class ModelManager implements Model {
      */
     @Override
     public void removeStudySpotFromFavourites(StudySpot studySpot) {
-
+        studyTracker.removeStudySpotFromFavourites(studySpot);
     }
 
     //=========== Filtered StudySpot List Accessors =============================================================

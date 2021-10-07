@@ -78,6 +78,11 @@ public interface Model {
     void setStudySpot(StudySpot target, StudySpot editedStudySpot);
 
     /**
+     * Returns true if a study spot with the same identity as {@code studySpot} is a favourite in the study tracker.
+     */
+    public boolean isFavouriteStudySpot(StudySpot studySpot);
+
+    /**
      * Adds the given study spot to favourites.
      * {@code study spot} must already exist in the study tracker.
      */

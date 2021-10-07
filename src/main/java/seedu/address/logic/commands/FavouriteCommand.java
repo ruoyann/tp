@@ -44,7 +44,7 @@ public class FavouriteCommand extends Command {
                 break;
             }
         }
-        if (!model.hasStudySpot(studySpotToFavourite)) {
+        if (!isPresent) {
             throw new CommandException(MESSAGE_NAME_NOT_FOUND);
         }
 
