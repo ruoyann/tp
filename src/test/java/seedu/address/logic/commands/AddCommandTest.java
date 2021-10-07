@@ -140,6 +140,22 @@ public class AddCommandTest {
         }
 
         @Override
+        public boolean isFavouriteStudySpot(StudySpot studySpot) {
+            throw new AssertionError("This method should not be called.");
+        }
+
+        @Override
+        public void addStudySpotToFavourites(StudySpot studySpot) {
+            throw new AssertionError("This method should not be called.");
+        }
+
+        @Override
+        public void removeStudySpotFromFavourites(StudySpot studySpot) {
+            throw new AssertionError("This method should not be called.");
+
+        }
+
+        @Override
         public ObservableList<StudySpot> getFilteredStudySpotList() {
             throw new AssertionError("This method should not be called.");
         }

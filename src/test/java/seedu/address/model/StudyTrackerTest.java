@@ -99,6 +99,12 @@ public class StudyTrackerTest {
         public ObservableList<StudySpot> getStudySpotList() {
             return studySpots;
         }
+
+        //TODO
+        @Override
+        public ObservableList<StudySpot> getFavouriteStudySpotList() {
+            throw new AssertionError("This method should not be called.");
+        }
     }
 
 }

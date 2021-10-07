@@ -14,6 +14,7 @@ import seedu.address.logic.commands.FavouriteCommand;
 import seedu.address.logic.commands.FindCommand;
 import seedu.address.logic.commands.HelpCommand;
 import seedu.address.logic.commands.ListCommand;
+import seedu.address.logic.commands.UnfavouriteCommand;
 import seedu.address.logic.parser.exceptions.ParseException;
 
 /**
@@ -54,6 +55,9 @@ public class StudyTrackerParser {
 
         case FavouriteCommand.COMMAND_WORD:
             return new FavouriteCommandParser().parse(arguments);
+
+        case UnfavouriteCommand.COMMAND_WORD:
+            return new UnfavouriteCommandParser().parse(arguments);
 
         case ClearCommand.COMMAND_WORD:
             return new ClearCommand();
