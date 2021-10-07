@@ -2,7 +2,7 @@ package seedu.address.logic.commands;
 
 import static java.util.Objects.requireNonNull;
 import static seedu.address.commons.core.Messages.MESSAGE_NAME_NOT_FOUND;
-import static seedu.address.logic.parser.CliSyntax.PREFIX_EDIT_SPOT;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_NAME;
 import java.util.List;
 import seedu.address.logic.commands.exceptions.CommandException;
 import seedu.address.model.Model;
@@ -19,8 +19,8 @@ public class FavouriteCommand extends Command {
     public static final String MESSAGE_USAGE = COMMAND_WORD
             + ": Adds the study spot to favourites.\n"
             + "Parameters: "
-            + "[" + PREFIX_EDIT_SPOT + "NAME] (non-case sensitive) "
-            + "Example: " + COMMAND_WORD + " " + PREFIX_EDIT_SPOT + "tr3 ";
+            + "[" + PREFIX_NAME + "NAME] (non-case sensitive) "
+            + "Example: " + COMMAND_WORD + " " + PREFIX_NAME + "tr3 ";
 
     public static final String MESSAGE_FAVOURITE_STUDYSPOT_SUCCESS = "Added study spot to favourites: %1$s";
 
