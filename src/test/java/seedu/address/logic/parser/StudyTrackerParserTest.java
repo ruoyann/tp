@@ -53,9 +53,10 @@ public class StudyTrackerParserTest {
     //    @Test
     //    public void parseCommand_edit() throws Exception {
     //        StudySpot studySpot = new StudySpotBuilder().withName("Test").build();
-    //        EditStudySpotDescriptor descriptor = new EditStudySpotDescriptorBuilder(studySpot).build();
+    //        EditCommand.EditStudySpotDescriptor descriptor = new EditStudySpotDescriptorBuilder(studySpot).build();
     //        EditCommand command = (EditCommand) parser.parseCommand(EditCommand.COMMAND_WORD + " "
     //                + "spot/Test" + " " + StudySpotUtil.getEditStudySpotDescriptorDetails(descriptor));
+    //        boolean a = (new EditCommand(new Name("Test"), descriptor)).equals(command);
     //        assertEquals(new EditCommand(new Name("Test"), descriptor), command);
     //        //todo discrepancies in amenities and addedamenities
     //    }

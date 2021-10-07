@@ -3,6 +3,7 @@ package seedu.address.logic.parser;
 import static seedu.address.commons.core.Messages.MESSAGE_INVALID_COMMAND_FORMAT;
 import static seedu.address.logic.commands.CommandTestUtil.ADDRESS_DESC_DECK;
 import static seedu.address.logic.commands.CommandTestUtil.ADDRESS_DESC_FRONTIER;
+import static seedu.address.logic.commands.CommandTestUtil.AMENITY_DESC_WIFI;
 import static seedu.address.logic.commands.CommandTestUtil.EMAIL_DESC_DECK;
 import static seedu.address.logic.commands.CommandTestUtil.EMAIL_DESC_FRONTIER;
 import static seedu.address.logic.commands.CommandTestUtil.INVALID_ADDRESS_DESC;
@@ -16,8 +17,10 @@ import static seedu.address.logic.commands.CommandTestUtil.RATING_DESC_DECK;
 import static seedu.address.logic.commands.CommandTestUtil.RATING_DESC_FRONTIER;
 import static seedu.address.logic.commands.CommandTestUtil.TAG_DESC_CROWDED;
 import static seedu.address.logic.commands.CommandTestUtil.TAG_DESC_QUIET;
+import static seedu.address.logic.commands.CommandTestUtil.TAG_DESC_REMOVE_QUIET;
 import static seedu.address.logic.commands.CommandTestUtil.VALID_ADDRESS_DECK;
 import static seedu.address.logic.commands.CommandTestUtil.VALID_ADDRESS_FRONTIER;
+import static seedu.address.logic.commands.CommandTestUtil.VALID_AMENITY_WIFI;
 import static seedu.address.logic.commands.CommandTestUtil.VALID_EMAIL_DECK;
 import static seedu.address.logic.commands.CommandTestUtil.VALID_EMAIL_FRONTIER;
 import static seedu.address.logic.commands.CommandTestUtil.VALID_NAME_DECK;
@@ -117,15 +120,19 @@ public class EditCommandParserTest {
     @Test
     public void parse_allFieldsSpecified_success() {
         Name targetName = new Name(VALID_NAME_FRONTIER);
-        String userInput = " " + PREFIX_EDIT_SPOT + targetName.fullName + RATING_DESC_DECK + TAG_DESC_QUIET
-                + EMAIL_DESC_FRONTIER + ADDRESS_DESC_FRONTIER + NAME_DESC_FRONTIER + TAG_DESC_CROWDED;
+        String userInput = " " + PREFIX_EDIT_SPOT + targetName.fullName + RATING_DESC_DECK
+                + EMAIL_DESC_FRONTIER + ADDRESS_DESC_FRONTIER + NAME_DESC_FRONTIER
+                + TAG_DESC_CROWDED + TAG_DESC_REMOVE_QUIET
+                + AMENITY_DESC_WIFI;
 
         EditStudySpotDescriptor descriptor = new EditStudySpotDescriptorBuilder().withName(VALID_NAME_FRONTIER)
                 .withRating(VALID_RATING_DECK).withEmail(VALID_EMAIL_FRONTIER).withAddress(VALID_ADDRESS_FRONTIER)
-                .withTags(VALID_TAG_QUIET, VALID_TAG_CROWDED).build();
+                .withAddedTags(VALID_TAG_CROWDED).withRemovedTags(VALID_TAG_QUIET)
+                .withAddedAmenities(VALID_AMENITY_WIFI).build();
         EditCommand expectedCommand = new EditCommand(targetName, descriptor);
 
         assertParseSuccess(parser, userInput, expectedCommand);
+        //todo add removal fields for other amenity types
     }
 
     @Test
@@ -169,7 +176,7 @@ public class EditCommandParserTest {
 
         // tags
         userInput = " " + PREFIX_EDIT_SPOT + targetName.fullName + TAG_DESC_CROWDED;
-        descriptor = new EditStudySpotDescriptorBuilder().withTags(VALID_TAG_CROWDED).build();
+        descriptor = new EditStudySpotDescriptorBuilder().withAddedTags(VALID_TAG_CROWDED).build();
         expectedCommand = new EditCommand(targetName, descriptor);
         assertParseSuccess(parser, userInput, expectedCommand);
     }
@@ -187,7 +194,7 @@ public class EditCommandParserTest {
                 .withRating(VALID_RATING_DECK)
                 .withEmail(VALID_EMAIL_DECK)
                 .withAddress(VALID_ADDRESS_DECK)
-                .withTags(VALID_TAG_CROWDED, VALID_TAG_QUIET)
+                .withAddedTags(VALID_TAG_CROWDED, VALID_TAG_QUIET)
                 .build();
         EditCommand expectedCommand = new EditCommand(targetName, descriptor);
 
@@ -217,7 +224,7 @@ public class EditCommandParserTest {
         Name targetName = new Name(VALID_NAME_FRONTIER);
         String userInput = " " + PREFIX_EDIT_SPOT + targetName.fullName + TAG_EMPTY;
 
-        EditStudySpotDescriptor descriptor = new EditStudySpotDescriptorBuilder().withTags().build();
+        EditStudySpotDescriptor descriptor = new EditStudySpotDescriptorBuilder().withAddedTags().build();
         EditCommand expectedCommand = new EditCommand(targetName, descriptor);
 
         assertParseSuccess(parser, userInput, expectedCommand);

@@ -74,22 +74,42 @@ public class EditStudySpotDescriptorBuilder {
     }
 
     /**
-     * Parses the {@code tags} into a {@code Set<Tag>} and set it to the {@code EditStudySpotDescriptor}
+     * Parses the {@code addedTags} into a {@code Set<Tag>} and set it to the {@code EditStudySpotDescriptor}
      * that we are building.
      */
-    public EditStudySpotDescriptorBuilder withTags(String... tags) {
-        Set<Tag> tagSet = Stream.of(tags).map(Tag::new).collect(Collectors.toSet());
-        descriptor.setTags(tagSet);
+    public EditStudySpotDescriptorBuilder withAddedTags(String... addedTags) {
+        Set<Tag> tagSet = Stream.of(addedTags).map(Tag::new).collect(Collectors.toSet());
+        descriptor.setAddedTags(tagSet);
         return this;
     }
 
     /**
-     * Parses the {@code amenities} into a {@code Set<Amenity>} and set it to the {@code EditStudySpotDescriptor}
+     * Parses the {@code removedTags} into a {@code Set<Tag>} and set it to the {@code EditStudySpotDescriptor}
      * that we are building.
      */
-    public EditStudySpotDescriptorBuilder withAmenities(String... amenities) {
-        Set<Amenity> amenitySet = Stream.of(amenities).map(Amenity::new).collect(Collectors.toSet());
-        descriptor.setAmenities(amenitySet);
+    public EditStudySpotDescriptorBuilder withRemovedTags(String... removedTags) {
+        Set<Tag> tagSet = Stream.of(removedTags).map(Tag::new).collect(Collectors.toSet());
+        descriptor.setRemovedTags(tagSet);
+        return this;
+    }
+
+    /**
+     * Parses the {@code addedAmenities} into a {@code Set<Amenity>} and set it to the {@code EditStudySpotDescriptor}
+     * that we are building.
+     */
+    public EditStudySpotDescriptorBuilder withAddedAmenities(String... addedAmenities) {
+        Set<Amenity> amenitySet = Stream.of(addedAmenities).map(Amenity::new).collect(Collectors.toSet());
+        descriptor.setAddedAmenities(amenitySet);
+        return this;
+    }
+
+    /**
+     * Parses the {@code removedAmenities} into a {@code Set<Amenity>} and set it to the {@code EditStudySpotDescriptor}
+     * that we are building.
+     */
+    public EditStudySpotDescriptorBuilder withRemovedAmenities(String... removedAmenities) {
+        Set<Amenity> amenitySet = Stream.of(removedAmenities).map(Amenity::new).collect(Collectors.toSet());
+        descriptor.setRemovedAmenities(amenitySet);
         return this;
     }
 

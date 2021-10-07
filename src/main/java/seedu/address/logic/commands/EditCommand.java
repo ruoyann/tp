@@ -57,6 +57,13 @@ public class EditCommand extends Command {
     public static final String MESSAGE_DUPLICATE_STUDYSPOT = "This study spot already exists in the study tracker.";
     public static final String MESSAGE_REPEATED_COMMANDS =
             "There can only be one addition or removal instruction in each command.";
+    public static final String MESSAGE_REMOVAL_CONSTRAINTS =
+            "Only tags or amenities currently present can be removed.";
+    public static final String MESSAGE_MISSING_REMOVAL_INPUT =
+            "Please enter a existing tag or amenity to remove. E.g. rt/cold OR rm/wifi.";
+
+    public static final String FIELD_TAG = "tag";
+    public static final String FIELD_AMENITY = "amenity";
 
     private Name name;
     private final EditStudySpotDescriptor editStudySpotDescriptor;
@@ -116,7 +123,8 @@ public class EditCommand extends Command {
         Rating updatedRating = editStudySpotDescriptor.getRating().orElse(studySpotToEdit.getRating());
         Email updatedEmail = editStudySpotDescriptor.getEmail().orElse(studySpotToEdit.getEmail());
         Address updatedAddress = editStudySpotDescriptor.getAddress().orElse(studySpotToEdit.getAddress());
-        Set<Tag> updatedTags = editStudySpotDescriptor.getTags().orElse(studySpotToEdit.getTags());
+        Set<Tag> updatedTags = editStudySpotDescriptor.updateTags(studySpotToEdit.getTags())
+                .getTags().orElse(studySpotToEdit.getTags());
         Set<Amenity> updatedAmenities = editStudySpotDescriptor.updateAmenities(studySpotToEdit.getAmenities())
                 .getAmenities().orElse(studySpotToEdit.getAmenities());
 
@@ -151,6 +159,8 @@ public class EditCommand extends Command {
         private Email email;
         private Address address;
         private Set<Tag> tags;
+        private Set<Tag> addedTags;
+        private Set<Tag> removedTags;
         private Set<Amenity> amenities;
         private Set<Amenity> addedAmenities;
         private Set<Amenity> removedAmenities;
@@ -167,6 +177,8 @@ public class EditCommand extends Command {
             setEmail(toCopy.email);
             setAddress(toCopy.address);
             setTags(toCopy.tags);
+            setAddedTags(toCopy.addedTags);
+            setRemovedTags(toCopy.removedTags);
             setAmenities(toCopy.amenities);
             setAddedAmenities(toCopy.addedAmenities);
             setRemovedAmenities(toCopy.removedAmenities);
@@ -176,7 +188,7 @@ public class EditCommand extends Command {
          * Returns true if at least one field is edited.
          */
         public boolean isAnyFieldEdited() {
-            return CollectionUtil.isAnyNonNull(name, rating, email, address, tags,
+            return CollectionUtil.isAnyNonNull(name, rating, email, address, tags, addedTags, removedTags,
                     amenities, addedAmenities, removedAmenities);
         }
 
@@ -221,12 +233,44 @@ public class EditCommand extends Command {
         }
 
         /**
+         * Sets {@code addedTags} to this object's {@code addedTags}.
+         */
+        public void setAddedTags(Set<Tag> addedTags) {
+            this.addedTags = (addedTags != null) ? new HashSet<>(addedTags) : null;
+        }
+
+        /**
+         * Sets {@code removedTags} to this object's {@code removedTags}.
+         */
+        public void setRemovedTags(Set<Tag> removedTags) {
+            this.removedTags = (removedTags != null) ? new HashSet<>(removedTags) : null;
+        }
+
+        /**
          * Returns an unmodifiable tag set, which throws {@code UnsupportedOperationException}
          * if modification is attempted.
          * Returns {@code Optional#empty()} if {@code tags} is null.
          */
         public Optional<Set<Tag>> getTags() {
             return (tags != null) ? Optional.of(Collections.unmodifiableSet(tags)) : Optional.empty();
+        }
+
+        /**
+         * Returns an unmodifiable tag set of added tags, which throws {@code UnsupportedOperationException}
+         * if modification is attempted.
+         * Returns {@code Optional#empty()} if {@code addedTags} is null.
+         */
+        public Optional<Set<Tag>> getAddedTags() {
+            return (addedTags != null) ? Optional.of(Collections.unmodifiableSet(addedTags)) : Optional.empty();
+        }
+
+        /**
+         * Returns an unmodifiable tag set of removed tags, which throws {@code UnsupportedOperationException}
+         * if modification is attempted.
+         * Returns {@code Optional#empty()} if {@code removedTags} is null.
+         */
+        public Optional<Set<Tag>> getRemovedTags() {
+            return (removedTags != null) ? Optional.of(Collections.unmodifiableSet(removedTags)) : Optional.empty();
         }
 
         /**
@@ -261,17 +305,60 @@ public class EditCommand extends Command {
         }
 
         /**
-         * Returns amenities added in an edit command.
+         * Returns an unmodifiable amenity set of added amenities, which throws {@code UnsupportedOperationException}
+         * if modification is attempted.
+         * Returns {@code Optional#empty()} if {@code addedAmenities} is null.
          */
-        public Set<Amenity> getAmenitiesAdded() {
-            return addedAmenities;
+        public Optional<Set<Amenity>> getAmenitiesAdded() {
+            return (addedAmenities != null)
+                    ? Optional.of(Collections.unmodifiableSet(addedAmenities)) : Optional.empty();
         }
 
         /**
-         * Returns amenities removed in an edit command.
+         * Returns an unmodifiable amenity set of removed amenities, which throws {@code UnsupportedOperationException}
+         * if modification is attempted.
+         * Returns {@code Optional#empty()} if {@code amenities} is null.
          */
-        public Set<Amenity> getAmenitiesRemoved() {
-            return removedAmenities;
+        public Optional<Set<Amenity>> getAmenitiesRemoved() {
+            return (removedAmenities != null)
+                    ? Optional.of(Collections.unmodifiableSet(removedAmenities)) : Optional.empty();
+        }
+
+        /**
+         * Returns a new EditStudySpotDescriptor, which updates the existing tags according to
+         * the edit command provided.
+         */
+        public EditStudySpotDescriptor updateTags(Set<Tag> existingTags) throws CommandException {
+            boolean repeatedTagPresent = checkRepeatedField(addedTags, removedTags, FIELD_TAG);
+            if (repeatedTagPresent) {
+                throw new CommandException(MESSAGE_REPEATED_COMMANDS);
+            }
+
+            // case where all tags are cleared
+            if (addedTags != null && addedTags.isEmpty()) {
+                setTags(addedTags);
+                return this;
+            }
+
+            // case where input to rt/ is empty
+            if (removedTags != null && removedTags.isEmpty()) {
+                throw new CommandException(MESSAGE_MISSING_REMOVAL_INPUT);
+            }
+
+            // case where setTags() is already used without setAddedTags() and setRemovedTags()
+            if (addedTags == null && removedTags == null && tags != null) {
+                return this;
+            }
+
+            Set<Tag> updatedTags = existingTags;
+            if (addedTags != null) {
+                updatedTags = combineTagsAdded(addedTags, updatedTags);
+            }
+            if (removedTags != null) {
+                updatedTags = combineTagsRemoved(removedTags, updatedTags);
+            }
+            setTags(updatedTags);
+            return this;
         }
 
         /**
@@ -279,20 +366,60 @@ public class EditCommand extends Command {
          * the edit command provided.
          */
         public EditStudySpotDescriptor updateAmenities(Set<Amenity> existingAmenities) throws CommandException {
-            boolean repeatedAmenityPresent = checkRepeatedAmenity(addedAmenities, removedAmenities);
+            boolean repeatedAmenityPresent = checkRepeatedField(addedAmenities, removedAmenities, FIELD_AMENITY);
             if (repeatedAmenityPresent) {
                 throw new CommandException(MESSAGE_REPEATED_COMMANDS);
             }
 
-            Set<Amenity> updatedAmenities = new HashSet<>();
+            // case where all amenities are cleared
+            if (addedAmenities != null && addedAmenities.isEmpty()) {
+                setAmenities(addedAmenities);
+                return this;
+            }
+
+            // case where input to rm/ is empty
+            if (removedAmenities != null && removedAmenities.isEmpty()) {
+                throw new CommandException(MESSAGE_MISSING_REMOVAL_INPUT);
+            }
+
+            Set<Amenity> updatedAmenities = existingAmenities;
             if (addedAmenities != null) {
-                updatedAmenities = combineAmenitiesAdded(addedAmenities, existingAmenities);
+                updatedAmenities = combineAmenitiesAdded(addedAmenities, updatedAmenities);
             }
             if (removedAmenities != null) {
-                updatedAmenities = combineAmenitiesRemoved(removedAmenities, existingAmenities);
+                updatedAmenities = combineAmenitiesRemoved(removedAmenities, updatedAmenities);
             }
             setAmenities(updatedAmenities);
             return this;
+        }
+
+        /**
+         * Returns an tag set which has {@code addedTags} added to {@code existingTags}.
+         */
+        public Set<Tag> combineTagsAdded(Set<Tag> addedTags, Set<Tag> existingTags) {
+            Set<Tag> result = existingTags;
+            for (Tag tag: addedTags) {
+                if (!existingTags.contains(tag)) {
+                    result = addField(result, tag);
+                }
+            }
+            return result;
+        }
+
+        /**
+         * Returns an tag set which has {@code tagsRemoved} removed from {@code existingTags}.
+         */
+        public Set<Tag> combineTagsRemoved(Set<Tag> tagsRemoved, Set<Tag> existingTags)
+                throws CommandException {
+            Set<Tag> result = existingTags;
+            for (Tag tag: tagsRemoved) {
+                if (!existingTags.contains(tag)) {
+                    throw new CommandException(MESSAGE_REMOVAL_CONSTRAINTS);
+                } else {
+                    result = removeField(result, tag);
+                }
+            }
+            return result;
         }
 
         /**
@@ -302,7 +429,7 @@ public class EditCommand extends Command {
             Set<Amenity> result = existingAmenities;
             for (Amenity amenity: addedAmenities) {
                 if (!existingAmenities.contains(amenity)) {
-                    result = addAmenity(result, amenity);
+                    result = addField(result, amenity);
                 }
             }
             return result;
@@ -316,48 +443,90 @@ public class EditCommand extends Command {
             Set<Amenity> result = existingAmenities;
             for (Amenity amenity: amenitiesRemoved) {
                 if (!existingAmenities.contains(amenity)) {
-                    throw new CommandException(String.format(Amenity.MESSAGE_REMOVAL_CONSTRAINTS,
-                            Amenity.listAllAmenityTypes(Amenity.VALID_TYPES)));
+                    throw new CommandException(MESSAGE_REMOVAL_CONSTRAINTS);
                 } else {
-                    result = removedAmenity(result, amenity);
+                    result = removeField(result, amenity);
                 }
             }
             return result;
         }
 
-        private boolean checkRepeatedAmenity(Set<Amenity> addedAmenities, Set<Amenity> removedAmenities) {
-            if (addedAmenities == null || removedAmenities == null) {
+        private <T> boolean checkRepeatedField(Set<T> addedSet, Set<T> removedSet,
+                                           String fieldType) {
+            if (addedSet == null || removedSet == null) {
                 return false;
             }
-            for (Amenity amenity : addedAmenities) {
-                if (containAmenityType(removedAmenities, amenity.amenityType)) {
-                    return true;
+
+            switch (fieldType) {
+            case FIELD_TAG:
+                // It is safe to cast 'Set<Tag>' to 'Set<T>' as the method only goes to this case block
+                // when addedSet is of type Set<Tag>.
+                @SuppressWarnings("unchecked")
+                Set<Tag> addedTags = (Set<Tag>) addedSet;
+                for (Tag tag : addedTags) {
+                    if (containField(removedSet, tag.tagName, FIELD_TAG)) {
+                        return true;
+                    }
                 }
+                break;
+            case FIELD_AMENITY:
+                // It is safe to cast 'Set<Amenity>' to 'Set<T>' as the method only goes to this case block
+                // when addedSet is of type Set<Amenity>.
+                @SuppressWarnings("unchecked")
+                Set<Amenity> addedAmenities = (Set<Amenity>) addedSet;
+                for (Amenity amenity : addedAmenities) {
+                    if (containField(removedSet, amenity.amenityType, FIELD_AMENITY)) {
+                        return true;
+                    }
+                }
+                break;
+            default:
+                throw new AssertionError("error occured");
             }
             return false;
         }
 
-        private boolean containAmenityType(Set<Amenity> amenities, String amenityType) {
-            for (Amenity amenity : amenities) {
-                if (amenity.amenityType.equals(amenityType)) {
-                    return true;
+        private <T> boolean containField(Set<T> set, String fieldTested, String fieldType) {
+            switch (fieldType) {
+            case FIELD_TAG:
+                // It is safe to cast 'Set<Tag>' to 'Set<T>' as the method only goes to this case block
+                // when set is of type Set<Tag>.
+                @SuppressWarnings("unchecked")
+                Set<Tag> tagSet = (Set<Tag>) set;
+                for (Tag tag : tagSet) {
+                    if (tag.tagName.equals(fieldTested)) {
+                        return true;
+                    }
                 }
+                break;
+            case FIELD_AMENITY:
+                // It is safe to cast 'Set<Amenity>' to 'Set<T>' as the method only goes to this case block
+                // when set is of type Set<Amenity>.
+                @SuppressWarnings("unchecked")
+                Set<Amenity> amenitySet = (Set<Amenity>) set;
+                for (Amenity amenity : amenitySet) {
+                    if (amenity.amenityType.equals(fieldTested)) {
+                        return true;
+                    }
+                }
+                break;
+            default:
+                throw new AssertionError("error occured");
             }
             return false;
         }
 
-        private Set<Amenity> addAmenity(Set<Amenity> existingAmenities, Amenity amenityAdded) {
-            Set<Amenity> result = new HashSet<>();
-            result.addAll(existingAmenities);
-            result.add(amenityAdded);
+        private <T> Set<T> addField(Set<T> existingFields, T addedField) {
+            Set<T> result = new HashSet<>(existingFields);
+            result.add(addedField);
             return result;
         }
 
-        private Set<Amenity> removedAmenity(Set<Amenity> existingAmenities, Amenity amenityRemoved) {
-            Set<Amenity> result = new HashSet<>();
-            for (Amenity amenity : existingAmenities) {
-                if (!amenity.equals(amenityRemoved)) {
-                    result.add(amenity);
+        private <T> Set<T> removeField(Set<T> existingFields, T removedField) {
+            Set<T> result = new HashSet<>();
+            for (T field : existingFields) {
+                if (!field.equals(removedField)) {
+                    result.add(field);
                 }
             }
             return result;
@@ -377,13 +546,16 @@ public class EditCommand extends Command {
 
             // state check
             EditStudySpotDescriptor e = (EditStudySpotDescriptor) other;
-
             return getName().equals(e.getName())
                     && getRating().equals(e.getRating())
                     && getEmail().equals(e.getEmail())
                     && getAddress().equals(e.getAddress())
                     && getTags().equals(e.getTags())
-                    && getAmenities().equals(e.getAmenities());
+                    && getAddedTags().equals(e.getAddedTags())
+                    && getRemovedTags().equals(e.getRemovedTags())
+                    && getAmenities().equals(e.getAmenities())
+                    && getAmenitiesAdded().equals(e.getAmenitiesAdded())
+                    && getAmenitiesRemoved().equals(e.getAmenitiesRemoved());
         }
     }
 }
