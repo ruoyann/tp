@@ -309,7 +309,7 @@ public class EditCommand extends Command {
          * if modification is attempted.
          * Returns {@code Optional#empty()} if {@code addedAmenities} is null.
          */
-        public Optional<Set<Amenity>> getAmenitiesAdded() {
+        public Optional<Set<Amenity>> getAddedAmenities() {
             return (addedAmenities != null)
                     ? Optional.of(Collections.unmodifiableSet(addedAmenities)) : Optional.empty();
         }
@@ -319,7 +319,7 @@ public class EditCommand extends Command {
          * if modification is attempted.
          * Returns {@code Optional#empty()} if {@code amenities} is null.
          */
-        public Optional<Set<Amenity>> getAmenitiesRemoved() {
+        public Optional<Set<Amenity>> getRemovedAmenities() {
             return (removedAmenities != null)
                     ? Optional.of(Collections.unmodifiableSet(removedAmenities)) : Optional.empty();
         }
@@ -554,8 +554,8 @@ public class EditCommand extends Command {
                     && getAddedTags().equals(e.getAddedTags())
                     && getRemovedTags().equals(e.getRemovedTags())
                     && getAmenities().equals(e.getAmenities())
-                    && getAmenitiesAdded().equals(e.getAmenitiesAdded())
-                    && getAmenitiesRemoved().equals(e.getAmenitiesRemoved());
+                    && getAddedAmenities().equals(e.getAddedAmenities())
+                    && getRemovedAmenities().equals(e.getRemovedAmenities());
         }
     }
 }
