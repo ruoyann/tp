@@ -34,6 +34,11 @@ public interface Logic {
     ObservableList<StudySpot> getFilteredStudySpotList();
 
     /**
+     * Returns an unmodifiable view of the non filtered study spot list
+     */
+    ObservableList<StudySpot> getFullList();
+
+    /**
      * Returns the user prefs' study tracker file path.
      */
     Path getStudyTrackerFilePath();
