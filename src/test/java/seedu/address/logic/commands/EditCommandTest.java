@@ -2,17 +2,7 @@ package seedu.address.logic.commands;
 
 import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertTrue;
-import static seedu.address.logic.commands.CommandTestUtil.DESC_DECK;
-import static seedu.address.logic.commands.CommandTestUtil.DESC_FRONTIER;
-import static seedu.address.logic.commands.CommandTestUtil.VALID_AMENITY_WIFI;
-import static seedu.address.logic.commands.CommandTestUtil.VALID_NAME_DECK;
-import static seedu.address.logic.commands.CommandTestUtil.VALID_RATING_DECK;
-import static seedu.address.logic.commands.CommandTestUtil.VALID_TAG_COFFEE;
-import static seedu.address.logic.commands.CommandTestUtil.VALID_TAG_COLD;
-import static seedu.address.logic.commands.CommandTestUtil.VALID_TAG_QUIET;
-import static seedu.address.logic.commands.CommandTestUtil.assertCommandFailure;
-import static seedu.address.logic.commands.CommandTestUtil.assertCommandSuccess;
-import static seedu.address.logic.commands.CommandTestUtil.showStudySpotAtIndex;
+import static seedu.address.logic.commands.CommandTestUtil.*;
 import static seedu.address.testutil.TypicalIndexes.INDEX_FIRST_SPOT;
 import static seedu.address.testutil.TypicalIndexes.INDEX_SECOND_SPOT;
 import static seedu.address.testutil.TypicalStudySpots.getTypicalStudyTracker;
@@ -40,7 +30,7 @@ public class EditCommandTest {
 
     @Test
     public void execute_allFieldsSpecifiedUnfilteredList_success() {
-        StudySpot editedStudySpot = new StudySpotBuilder().withAmenities(VALID_AMENITY_WIFI).build();
+        StudySpot editedStudySpot = new StudySpotBuilder().withAmenities(VALID_AMENITY_WIFI, VALID_AMENITY_CHARGER).build();
         Name firstStudySpotInTypicalStudySpots = new Name("Starbucks");
         EditStudySpotDescriptor descriptor = new EditStudySpotDescriptorBuilder(editedStudySpot).build();
         EditCommand editCommand = new EditCommand(firstStudySpotInTypicalStudySpots, descriptor);
