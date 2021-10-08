@@ -27,18 +27,18 @@ public class TypicalStudySpots {
             .withAddress("UTown").withEmail("-")
             .withRating("4")
             .withTags("coffee")
-            .withAmenities("wifi")
+            .withAmenities("wifi", "charger")
             .build();
     public static final StudySpot CENTRAL_LIBRARY = new StudySpotBuilder().withName("Central library")
             .withAddress("NUS, Central Library")
             .withEmail("-").withRating("3")
             .withTags("cold", "quiet")
-            .withAmenities("wifi").build();
+            .withAmenities("wifi", "charger").build();
     public static final StudySpot COM1 = new StudySpotBuilder().withName("COM1")
             .withRating("2")
             .withEmail("-")
             .withAddress("NUS Computing")
-            .withAmenities("wifi").build();
+            .withAmenities("wifi", "charger").build();
     public static final StudySpot TOKYO_ROOM = new StudySpotBuilder().withName("Tokyo Room")
             .withRating("3")
             .withEmail("-")
@@ -49,7 +49,7 @@ public class TypicalStudySpots {
             .withRating("4")
             .withEmail("-")
             .withAddress("Utown")
-            .withAmenities("wifi").build();
+            .withAmenities("wifi", "charger").build();
     public static final StudySpot LT_17 = new StudySpotBuilder().withName("LT17")
             .withRating("5")
             .withEmail("-")

@@ -6,28 +6,28 @@
     "email" : "-",
     "address" : "UTown",
     "tagged" : [ "coffee" ],
-    "amenities" : [ "wifi" ]
+    "amenities" : [ "wifi", "charger" ]
   }, {
     "name" : "Central library",
     "rating" : "3",
     "email" : "-",
     "address" : "NUS, Central Library",
     "tagged" : [ "cold", "quiet" ],
-    "amenities" : [ "wifi" ]
+    "amenities" : [ "wifi", "charger" ]
   }, {
     "name" : "COM1",
     "rating" : "2",
     "email" : "-",
     "address" : "NUS Computing",
     "tagged" : [ ],
-    "amenities" : [ "wifi" ]
+    "amenities" : [ "wifi", "charger" ]
   }, {
     "name" : "Frontier Canteen",
     "rating" : "3",
     "email" : "Frontier email",
     "address" : "NUS Science Faculty",
     "tagged" : [ "crowded" ],
-    "amenities" : [ ]
+    "amenities" : [ "charger"]
   }, {
     "name" : "Tokyo Room",
     "rating" : "3",
