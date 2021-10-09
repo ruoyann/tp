@@ -53,7 +53,7 @@
       <VBox alignment="TOP_RIGHT" GridPane.columnIndex="2">
         <HBox alignment="TOP_RIGHT" spacing="4">
           <Label alignment="TOP_RIGHT" styleClass="icon_container, cell_small_label" text="♥" />
-          <FlowPane fx:id="amenities" styleClass="icon_container, cell_small_label" />
+          <HBox fx:id="amenities"/>
         </HBox>
         <Region VBox.vgrow="ALWAYS" /> <!-- spacer -->
         <HBox alignment="CENTER_RIGHT" spacing="4">

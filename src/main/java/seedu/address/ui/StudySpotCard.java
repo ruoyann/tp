@@ -1,11 +1,11 @@
 package seedu.address.ui;
 
+import java.util.Arrays;
 import java.util.Comparator;
-import java.util.HashSet;
 import java.util.Set;
+import java.util.stream.Collectors;
 
 import javafx.fxml.FXML;
-import javafx.geometry.Pos;
 import javafx.scene.control.Label;
 import javafx.scene.layout.FlowPane;
 import javafx.scene.layout.HBox;
@@ -58,7 +58,7 @@ public class StudySpotCard extends UiPart<Region> {
     @FXML
     private FlowPane tags;
     @FXML
-    private FlowPane amenities;
+    private HBox amenities;
 
     /**
      * Creates a {@code StudySpotCode} with the given {@code StudySpot} and index to display.
@@ -68,15 +68,13 @@ public class StudySpotCard extends UiPart<Region> {
         this.studySpot = studySpot;
         id.setText(displayedIndex + ". ");
         name.setText(studySpot.getName().fullName);
-        rating.setText(ratingDisplay(studySpot.getRating()));
+        rating.setText(setRatingDisplay(studySpot.getRating()));
         address.setText(studySpot.getAddress().value);
         email.setText(studySpot.getEmail().value);
         studySpot.getTags().stream()
                 .sorted(Comparator.comparing(tag -> tag.tagName))
                 .forEach(tag -> tags.getChildren().add(new Label(tag.tagName)));
-        studySpot.getAmenities().stream()
-                .sorted(Comparator.comparing(amenity -> amenity.amenityType))
-                .forEach(amenity -> amenities.getChildren().add(getAmenityLabel(amenity.amenityType)));
+        setAmenitiesDisplay(amenities, studySpot);
     }
 
     @Override
@@ -97,14 +95,46 @@ public class StudySpotCard extends UiPart<Region> {
                 && studySpot.equals(card.studySpot);
     }
 
-    private Label getAmenityLabel(String amenityType) {
+    private void setAmenitiesDisplay(HBox amenitiesDisplay, StudySpot studySpot) {
+        if (studySpot.getAmenities().isEmpty()) {
+            setDefaultAmenitiesDisplay(amenitiesDisplay);
+        } else {
+            setUpdatedAmenitiesDisplay(amenitiesDisplay, studySpot);
+        }
+    }
+
+    private void setDefaultAmenitiesDisplay(HBox amenitiesDisplay) {
+        Arrays.stream(Amenity.VALID_TYPES)
+                .sorted()
+                .forEach(amenityType -> amenitiesDisplay.getChildren()
+                        .add(getAmenityIconLabel(amenityType, false)));
+    }
+
+    private void setUpdatedAmenitiesDisplay(HBox amenitiesDisplay, StudySpot studySpot) {
+        Set<String> amenitiesPresent = studySpot.getAmenities().stream()
+                        .map(amenity -> amenity.amenityType).sorted().collect(Collectors.toSet());
+        Arrays.stream(Amenity.VALID_TYPES)
+                .sorted()
+                .forEach(amenityType -> {
+                    if (amenitiesPresent.contains(amenityType)) {
+                        amenitiesDisplay.getChildren().add(getAmenityIconLabel(amenityType, true));
+                    } else {
+                        amenitiesDisplay.getChildren().add(getAmenityIconLabel(amenityType, false));
+                    }
+                });
+    }
+
+    private Label getAmenityIconLabel(String amenityType, boolean isActive) {
         Label result = new Label();
 
         SVGPath icon = new SVGPath();
         icon.setScaleX(0.03);
         icon.setScaleY(0.03);
         icon.getStyleClass().add("svg_icon");
-        icon.getStyleClass().add("cell_muted_label");
+        if (!isActive) {
+            icon.getStyleClass().add("cell_muted_label");
+        }
+
         switch (amenityType) {
         case "wifi":
             icon.setContent(SVGPATH_WIFI_CONTENT);
@@ -119,7 +149,7 @@ public class StudySpotCard extends UiPart<Region> {
         }
     }
 
-    private String ratingDisplay(Rating providedRating) {
+    private String setRatingDisplay(Rating providedRating) {
         int rating = Integer.parseInt(providedRating.value);
         StringBuilder result = new StringBuilder();
         for (int i = 0; i < 5; i++) {

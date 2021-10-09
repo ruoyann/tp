@@ -332,10 +332,9 @@
 }
 
 #amenities {
-    -fx-hgap: 10;
-    -fx-vgap: 4;
+    -fx-spacing: 10;
     -fx-background-color: derive(fg-low, 20%);
-    -fx-padding: 6 28 4 28;
+    -fx-padding: 6 24 4 24;
     -fx-background-radius: 16;
     -fx-opacity: 0.8;
 }
