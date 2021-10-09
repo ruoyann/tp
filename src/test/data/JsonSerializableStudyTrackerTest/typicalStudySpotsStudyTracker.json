@@ -5,6 +5,7 @@
     "rating" : "4",
     "email" : "-",
     "address" : "UTown",
+    "favourite" : "false",
     "tagged" : [ "coffee" ],
     "amenities" : [ "wifi", "charger" ]
   }, {
@@ -12,6 +13,7 @@
     "rating" : "3",
     "email" : "-",
     "address" : "NUS, Central Library",
+    "favourite" : "false",
     "tagged" : [ "cold", "quiet" ],
     "amenities" : [ "wifi", "charger" ]
   }, {
@@ -19,6 +21,7 @@
     "rating" : "2",
     "email" : "-",
     "address" : "NUS Computing",
+    "favourite" : "false",
     "tagged" : [ ],
     "amenities" : [ "wifi", "charger" ]
   }, {
@@ -26,6 +29,7 @@
     "rating" : "3",
     "email" : "Frontier email",
     "address" : "NUS Science Faculty",
+    "favourite" : "false",
     "tagged" : [ "crowded" ],
     "amenities" : [ ]
   }, {
@@ -33,6 +37,7 @@
     "rating" : "3",
     "email" : "-",
     "address" : "NUS, Yusof Ishak House Level 3",
+    "favourite" : "false",
     "tagged" : [ "cold" ],
     "amenities" : [ "wifi" ]
   },{
@@ -40,6 +45,7 @@
     "rating" : "4",
     "email" : "-",
     "address" : "Utown",
+    "favourite" : "false",
     "tagged" : [ ],
     "amenities" : [ ]
   }, {
@@ -47,6 +53,7 @@
     "rating" : "5",
     "email" : "-",
     "address" : "NUS COM2",
+    "favourite" : "false",
     "tagged" : [ ],
     "amenities" : [ ]
   } ]
