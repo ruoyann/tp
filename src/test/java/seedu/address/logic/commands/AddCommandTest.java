@@ -145,12 +145,12 @@ public class AddCommandTest {
         }
 
         @Override
-        public void addStudySpotToFavourites(StudySpot studySpot) {
+        public StudySpot addStudySpotToFavourites(StudySpot studySpot) {
             throw new AssertionError("This method should not be called.");
         }
 
         @Override
-        public void removeStudySpotFromFavourites(StudySpot studySpot) {
+        public StudySpot removeStudySpotFromFavourites(StudySpot studySpot) {
             throw new AssertionError("This method should not be called.");
 
         }

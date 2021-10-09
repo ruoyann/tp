@@ -45,7 +45,8 @@ public class StudySpot {
      * Overloaded constructor with favourite specified.
      * Every field must be present and not null.
      */
-    public StudySpot(Name name, Rating rating, Email email, Address address, Favourite favourite, Set<Tag> tags, Set<Amenity> amenities) {
+    public StudySpot(Name name, Rating rating, Email email, Address address, Favourite favourite,
+                     Set<Tag> tags, Set<Amenity> amenities) {
         requireAllNonNull(name, rating, email, address, tags, amenities);
         this.name = name;
         this.rating = rating;
@@ -128,6 +129,7 @@ public class StudySpot {
                 && otherStudySpot.getRating().equals(getRating())
                 && otherStudySpot.getEmail().equals(getEmail())
                 && otherStudySpot.getAddress().equals(getAddress())
+                && otherStudySpot.getFavourite().equals(getFavourite())
                 && otherStudySpot.getTags().equals(getTags())
                 && otherStudySpot.getAmenities().equals(getAmenities());
     }
@@ -147,7 +149,9 @@ public class StudySpot {
                 .append("; Email: ")
                 .append(getEmail())
                 .append("; Address: ")
-                .append(getAddress());
+                .append(getAddress())
+                .append("; Favourite: ")
+                .append(getFavourite());
 
         Set<Tag> tags = getTags();
         if (!tags.isEmpty()) {

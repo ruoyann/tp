@@ -5,6 +5,7 @@ import static java.util.Objects.requireNonNull;
 import java.util.List;
 
 import javafx.collections.ObservableList;
+import seedu.address.model.studyspot.Favourite;
 import seedu.address.model.studyspot.StudySpot;
 import seedu.address.model.studyspot.UniqueStudySpotList;
 
@@ -120,9 +121,16 @@ public class StudyTracker implements ReadOnlyStudyTracker {
      * {@code study spot} must already exist in the study tracker.
      *
      * @param studySpot
+     * @return Returns the updated study spot.
      */
-    public void addStudySpotToFavourites(StudySpot studySpot) {
-        favouriteStudySpots.add(studySpot);
+    public StudySpot addStudySpotToFavourites(StudySpot studySpot) {
+        assert(hasStudySpot(studySpot) == true);
+        StudySpot favouriteStudySpot = new StudySpot(studySpot.getName(), studySpot.getRating(),
+                studySpot.getEmail(), studySpot.getAddress(), new Favourite(true),
+                studySpot.getTags(), studySpot.getAmenities());
+        setStudySpot(studySpot, favouriteStudySpot);
+        favouriteStudySpots.add(favouriteStudySpot);
+        return favouriteStudySpot;
     }
 
     /**
@@ -130,9 +138,16 @@ public class StudyTracker implements ReadOnlyStudyTracker {
      * {@code study spot} must already exist in the study tracker.
      *
      * @param studySpot
+     * @return Returns the updated study spot.
      */
-    public void removeStudySpotFromFavourites(StudySpot studySpot) {
+    public StudySpot removeStudySpotFromFavourites(StudySpot studySpot) {
+        assert(hasStudySpot(studySpot) == true);
+        StudySpot unfavouriteStudySpot = new StudySpot(studySpot.getName(), studySpot.getRating(),
+                studySpot.getEmail(), studySpot.getAddress(), new Favourite(false),
+                studySpot.getTags(), studySpot.getAmenities());
+        setStudySpot(studySpot, unfavouriteStudySpot);
         favouriteStudySpots.remove(studySpot);
+        return unfavouriteStudySpot;
     }
 
     //// util methods

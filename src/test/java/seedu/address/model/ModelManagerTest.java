@@ -89,6 +89,24 @@ public class ModelManagerTest {
     }
 
     @Test
+    public void isFavouriteStudySpot_nullStudySpot_throwsNullPointerException() {
+        assertThrows(NullPointerException.class, () -> modelManager.isFavouriteStudySpot(null));
+    }
+
+    @Test
+    public void isFavouriteStudySpot_studySpotNotInFavourites_returnsFalse() {
+        modelManager.addStudySpot(STARBUCKS);
+        assertFalse(modelManager.isFavouriteStudySpot(STARBUCKS));
+    }
+
+    @Test
+    public void isFavouriteStudySpot_studySpotInFavourites_returnsTrue() {
+        modelManager.addStudySpot(STARBUCKS);
+        modelManager.addStudySpotToFavourites(STARBUCKS);
+        assertTrue(modelManager.isFavouriteStudySpot(STARBUCKS));
+    }
+
+    @Test
     public void getFilteredStudySpotList_modifyList_throwsUnsupportedOperationException() {
         assertThrows(UnsupportedOperationException.class, () -> modelManager.getFilteredStudySpotList().remove(0));
     }

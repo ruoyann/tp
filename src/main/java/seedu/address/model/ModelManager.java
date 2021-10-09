@@ -102,6 +102,9 @@ public class ModelManager implements Model {
     @Override
     public void addStudySpot(StudySpot studySpot) {
         studyTracker.addStudySpot(studySpot);
+        if (studySpot.isFavourite()) {
+            addStudySpotToFavourites(studySpot);
+        }
         updateFilteredStudySpotList(PREDICATE_SHOW_ALL_STUDYSPOTS);
     }
 
@@ -129,8 +132,9 @@ public class ModelManager implements Model {
      * @param studySpot
      */
     @Override
-    public void addStudySpotToFavourites(StudySpot studySpot) {
-        studyTracker.addStudySpotToFavourites(studySpot);
+    public StudySpot addStudySpotToFavourites(StudySpot studySpot) {
+        StudySpot favStudySpot = studyTracker.addStudySpotToFavourites(studySpot);
+        return favStudySpot;
     }
 
     /**
@@ -140,8 +144,9 @@ public class ModelManager implements Model {
      * @param studySpot
      */
     @Override
-    public void removeStudySpotFromFavourites(StudySpot studySpot) {
-        studyTracker.removeStudySpotFromFavourites(studySpot);
+    public StudySpot removeStudySpotFromFavourites(StudySpot studySpot) {
+        StudySpot unfavStudySpot = studyTracker.removeStudySpotFromFavourites(studySpot);
+        return unfavStudySpot;
     }
 
     //=========== Filtered StudySpot List Accessors =============================================================

@@ -2,6 +2,7 @@ package seedu.address.logic.parser;
 
 import static java.util.Objects.requireNonNull;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_NAME;
+
 import seedu.address.logic.commands.FavouriteCommand;
 import seedu.address.logic.parser.exceptions.ParseException;
 import seedu.address.model.studyspot.Name;

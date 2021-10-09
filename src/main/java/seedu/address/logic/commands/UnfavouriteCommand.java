@@ -3,10 +3,11 @@ package seedu.address.logic.commands;
 import static java.util.Objects.requireNonNull;
 import static seedu.address.commons.core.Messages.MESSAGE_NAME_NOT_FOUND;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_NAME;
+
 import java.util.List;
+
 import seedu.address.logic.commands.exceptions.CommandException;
 import seedu.address.model.Model;
-import seedu.address.model.studyspot.Favourite;
 import seedu.address.model.studyspot.Name;
 import seedu.address.model.studyspot.StudySpot;
 
@@ -24,6 +25,8 @@ public class UnfavouriteCommand extends Command {
             + "Example: " + COMMAND_WORD + " " + PREFIX_NAME + "tr3 ";
 
     public static final String MESSAGE_UNFAVOURITE_STUDYSPOT_SUCCESS = "Removed study spot from favourites: %1$s";
+    public static final String MESSAGE_UNFAVOURITE_REPEATSTUDYSPOT_FAIL =
+            "Study spot provided is not a favourite: %1$s";
 
     private final Name name;
 
@@ -49,12 +52,13 @@ public class UnfavouriteCommand extends Command {
             throw new CommandException(MESSAGE_NAME_NOT_FOUND);
         }
 
-        StudySpot favouriteStudySpot = new StudySpot(studySpotToUnfavourite.getName(), studySpotToUnfavourite.getRating(),
-                studySpotToUnfavourite.getEmail(), studySpotToUnfavourite.getAddress(), new Favourite(false),
-                studySpotToUnfavourite.getTags(), studySpotToUnfavourite.getAmenities());
-        model.setStudySpot(studySpotToUnfavourite, favouriteStudySpot);
-        model.removeStudySpotFromFavourites(studySpotToUnfavourite);
-        return new CommandResult(String.format(MESSAGE_UNFAVOURITE_STUDYSPOT_SUCCESS, studySpotToUnfavourite));
+        if (!studySpotToUnfavourite.isFavourite()) {
+            throw new CommandException(String.format(MESSAGE_UNFAVOURITE_REPEATSTUDYSPOT_FAIL,
+                    studySpotToUnfavourite.getName()));
+        }
+
+        StudySpot updatedStudySpot = model.removeStudySpotFromFavourites(studySpotToUnfavourite);
+        return new CommandResult(String.format(MESSAGE_UNFAVOURITE_STUDYSPOT_SUCCESS, updatedStudySpot.getName()));
     }
 
     @Override

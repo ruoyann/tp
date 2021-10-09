@@ -85,15 +85,19 @@ public interface Model {
     /**
      * Adds the given study spot to favourites.
      * {@code study spot} must already exist in the study tracker.
+     *
+     * @return Returns updated study spot.
      */
-    void addStudySpotToFavourites(StudySpot studySpot);
+    StudySpot addStudySpotToFavourites(StudySpot studySpot);
 
 
     /**
      * Removes the given study spot from favourites.
      * {@code study spot} must already exist in the study tracker.
+     *
+     * @return Returns updated study spot.
      */
-    void removeStudySpotFromFavourites(StudySpot studySpot);
+    StudySpot removeStudySpotFromFavourites(StudySpot studySpot);
 
     /** Returns an unmodifiable view of the filtered study spot list */
     ObservableList<StudySpot> getFilteredStudySpotList();
