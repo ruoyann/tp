@@ -157,6 +157,30 @@ Study spot “TR3” has been edited to “Training Room 3”
 
 Command alias: `ed`
 
+### Adding a study spot to Favourites: `fav`
+
+Adds a study spot to the StudyTracker's Favourites.
+
+Format: `fav n/NAME*`
+
+Examples:
+```
+fav n/COM1 Basement
+Study spot "COM1 Basement" added to favourites!
+```
+
+### Removing a study spot from Favourites: `unfav`
+
+Removes a study spot from the StudyTracker's Favourites.
+
+Format: `unfav n/NAME*`
+
+Examples:
+```
+unfav n/COM1 Basement
+Study spot "COM1 Basement" removed from favourites!
+```
+
 ### Locating a study spot by name: `find`
 
 Finds study spots whose names contain the query.
@@ -164,12 +188,12 @@ Finds study spots whose names contain the query.
 Format: `find n/NAME*`
 
 * The search is case-insensitive. e.g `hans` will match `Hans`
-* The results will contain study spots whose name **contains** the query. e.g. `lib` will give `library`
+* Only full words will be matched. e.g. `Han` will not match `Hans`
 
 Examples:
 ```
-find n/lib
-Found the following study spots matching “lib”:
+find n/library
+Found the following study spots matching “library”:
   1. Central Library
   2. Hon Sui Sen Memorial Library
   3. Jurong Library
