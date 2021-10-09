@@ -27,7 +27,7 @@ public class ListCommandParser implements Parser<ListCommand> {
         Predicate<StudySpot> predicate = PREDICATE_SHOW_ALL_STUDYSPOTS;
         // List
         if (trimmedArgs.isEmpty()) {
-            return new ListCommand(predicate);
+            return new ListCommand(predicate, false, null);
         }
 
         // List favourites
@@ -37,7 +37,7 @@ public class ListCommandParser implements Parser<ListCommand> {
             predicate = predicate.and(StudySpot::isFavourite);
         }
         if (!isFlagPresent(flags, ListCommand.FLAG_TAGS)) {
-            return new ListCommand(predicate);
+            return new ListCommand(predicate, isFavFlagPresent, null);
         }
 
         // List tags
@@ -46,7 +46,7 @@ public class ListCommandParser implements Parser<ListCommand> {
         Predicate<StudySpot> containsTags = ListCommand.containsTags(tagList);
         predicate = isFavFlagPresent ? predicate.or(containsTags) : containsTags;
 
-        return new ListCommand(predicate);
+        return new ListCommand(predicate, isFavFlagPresent, tagList);
     }
 
     public boolean isFlagPresent(String[] args, String flag) {

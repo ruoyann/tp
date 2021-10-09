@@ -6,6 +6,7 @@ import java.util.Arrays;
 import java.util.HashSet;
 import java.util.Set;
 import java.util.function.Predicate;
+import java.util.stream.Collectors;
 
 import seedu.address.model.Model;
 import seedu.address.model.studyspot.StudySpot;
@@ -25,16 +26,25 @@ public class ListCommand extends Command {
     public static final String MESSAGE_SUCCESS = "Listed all study spots";
 
     private final Predicate<StudySpot> predicate;
+    private final boolean isFavFlagPresent;
+    private final Set<Tag> tags;
 
-    public ListCommand(Predicate<StudySpot> predicate) {
+    public ListCommand(Predicate<StudySpot> predicate, boolean isFavFlagPresent, Set<Tag> tags) {
         this.predicate = predicate;
+        this.isFavFlagPresent = isFavFlagPresent;
+        this.tags = tags;
     }
 
     @Override
     public CommandResult execute(Model model) {
         requireNonNull(model);
         model.updateFilteredStudySpotList(predicate);
-        return new CommandResult(MESSAGE_SUCCESS);
+        StringBuilder sb = new StringBuilder();
+        sb.append(MESSAGE_SUCCESS);
+        if (!getFilterMessage().isBlank()) {
+            sb.append(getFilterMessage());
+        }
+        return new CommandResult(sb.toString());
     }
     
     /**
@@ -60,6 +70,20 @@ public class ListCommand extends Command {
             sb.append(allFlags[allFlags.length - 1]);
             return sb.toString();
         }
+    }
+
+    public String getFilterMessage() {
+        StringBuilder sb = new StringBuilder();
+        if (isFavFlagPresent) {
+            sb.append(" in Favourites");
+        }
+        if (tags != null && !tags.isEmpty()) {
+            sb.append("\n");
+            sb.append("with Tags: ");
+            String str = String.join(", ", tags.stream().map(Object::toString).collect(Collectors.toSet()));
+            sb.append(str);
+        }
+        return sb.toString();
     }
 
     /**

@@ -29,14 +29,14 @@ public class ListCommandTest {
 
     @Test
     public void execute_listIsNotFiltered_showsSameList() {
-        assertCommandSuccess(new ListCommand(PREDICATE_SHOW_ALL_STUDYSPOTS), model,
+        assertCommandSuccess(new ListCommand(PREDICATE_SHOW_ALL_STUDYSPOTS, false, null), model,
                 ListCommand.MESSAGE_SUCCESS, expectedModel);
     }
 
     @Test
     public void execute_listIsFiltered_showsEverything() {
         showStudySpotAtIndex(model, INDEX_FIRST_SPOT);
-        assertCommandSuccess(new ListCommand(PREDICATE_SHOW_ALL_STUDYSPOTS), model,
+        assertCommandSuccess(new ListCommand(PREDICATE_SHOW_ALL_STUDYSPOTS, false, null), model,
                 ListCommand.MESSAGE_SUCCESS, expectedModel);
     }
 }
