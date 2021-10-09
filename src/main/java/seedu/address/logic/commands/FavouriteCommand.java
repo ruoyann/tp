@@ -6,6 +6,7 @@ import static seedu.address.logic.parser.CliSyntax.PREFIX_NAME;
 import java.util.List;
 import seedu.address.logic.commands.exceptions.CommandException;
 import seedu.address.model.Model;
+import seedu.address.model.studyspot.Favourite;
 import seedu.address.model.studyspot.Name;
 import seedu.address.model.studyspot.StudySpot;
 
@@ -48,7 +49,11 @@ public class FavouriteCommand extends Command {
             throw new CommandException(MESSAGE_NAME_NOT_FOUND);
         }
 
-        model.addStudySpotToFavourites(studySpotToFavourite);
+        StudySpot favouriteStudySpot = new StudySpot(studySpotToFavourite.getName(), studySpotToFavourite.getRating(),
+                studySpotToFavourite.getEmail(), studySpotToFavourite.getAddress(), new Favourite(true),
+                studySpotToFavourite.getTags(), studySpotToFavourite.getAmenities());
+        model.setStudySpot(studySpotToFavourite, favouriteStudySpot);
+        model.addStudySpotToFavourites(favouriteStudySpot);
         return new CommandResult(String.format(MESSAGE_FAVOURITE_STUDYSPOT_SUCCESS, studySpotToFavourite));
     }
 

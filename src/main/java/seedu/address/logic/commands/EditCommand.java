@@ -10,13 +10,11 @@ import static seedu.address.logic.parser.CliSyntax.PREFIX_RATING;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_REMOVE_AMENITY;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_TAG;
 import static seedu.address.model.Model.PREDICATE_SHOW_ALL_STUDYSPOTS;
-
 import java.util.Collections;
 import java.util.HashSet;
 import java.util.List;
 import java.util.Optional;
 import java.util.Set;
-
 import seedu.address.commons.core.Messages;
 import seedu.address.commons.util.CollectionUtil;
 import seedu.address.logic.commands.exceptions.CommandException;
@@ -24,6 +22,7 @@ import seedu.address.model.Model;
 import seedu.address.model.amenity.Amenity;
 import seedu.address.model.studyspot.Address;
 import seedu.address.model.studyspot.Email;
+import seedu.address.model.studyspot.Favourite;
 import seedu.address.model.studyspot.Name;
 import seedu.address.model.studyspot.Rating;
 import seedu.address.model.studyspot.StudySpot;
@@ -65,7 +64,7 @@ public class EditCommand extends Command {
     public static final String FIELD_TAG = "tag";
     public static final String FIELD_AMENITY = "amenity";
 
-    private Name name;
+    private final Name name;
     private final EditStudySpotDescriptor editStudySpotDescriptor;
 
     /**
@@ -127,8 +126,10 @@ public class EditCommand extends Command {
                 .getTags().orElse(studySpotToEdit.getTags());
         Set<Amenity> updatedAmenities = editStudySpotDescriptor.updateAmenities(studySpotToEdit.getAmenities())
                 .getAmenities().orElse(studySpotToEdit.getAmenities());
+        Favourite updatedFavourite = editStudySpotDescriptor.getFavourite().orElse(studySpotToEdit.getFavourite());
 
-        return new StudySpot(updatedName, updatedRating, updatedEmail, updatedAddress, updatedTags, updatedAmenities);
+        return new StudySpot(updatedName, updatedRating, updatedEmail, updatedAddress, updatedFavourite,
+                updatedTags, updatedAmenities);
     }
 
     @Override
@@ -158,6 +159,7 @@ public class EditCommand extends Command {
         private Rating rating;
         private Email email;
         private Address address;
+        private Favourite favourite;
         private Set<Tag> tags;
         private Set<Tag> addedTags;
         private Set<Tag> removedTags;
@@ -176,6 +178,7 @@ public class EditCommand extends Command {
             setRating(toCopy.rating);
             setEmail(toCopy.email);
             setAddress(toCopy.address);
+            setFavourite(toCopy.favourite);
             setTags(toCopy.tags);
             setAddedTags(toCopy.addedTags);
             setRemovedTags(toCopy.removedTags);
@@ -222,6 +225,14 @@ public class EditCommand extends Command {
 
         public Optional<Address> getAddress() {
             return Optional.ofNullable(address);
+        }
+
+        public void setFavourite(Favourite favourite) {
+            this.favourite = favourite;
+        }
+
+        public Optional<Favourite> getFavourite() {
+            return Optional.ofNullable(favourite);
         }
 
         /**
@@ -557,5 +568,6 @@ public class EditCommand extends Command {
                     && getAmenitiesAdded().equals(e.getAmenitiesAdded())
                     && getAmenitiesRemoved().equals(e.getAmenitiesRemoved());
         }
+
     }
 }

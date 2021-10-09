@@ -20,6 +20,7 @@ public class StudySpot {
     private final Name name;
     private final Rating rating;
     private final Email email;
+    private final Favourite favourite;
 
     // Data fields
     private final Address address;
@@ -37,6 +38,22 @@ public class StudySpot {
         this.address = address;
         this.tags.addAll(tags);
         this.amenities.addAll(amenities);
+        this.favourite = new Favourite(false);
+    }
+
+    /**
+     * Overloaded constructor with favourite specified.
+     * Every field must be present and not null.
+     */
+    public StudySpot(Name name, Rating rating, Email email, Address address, Favourite favourite, Set<Tag> tags, Set<Amenity> amenities) {
+        requireAllNonNull(name, rating, email, address, tags, amenities);
+        this.name = name;
+        this.rating = rating;
+        this.email = email;
+        this.address = address;
+        this.tags.addAll(tags);
+        this.amenities.addAll(amenities);
+        this.favourite = favourite;
     }
 
     public Name getName() {
@@ -53,6 +70,14 @@ public class StudySpot {
 
     public Address getAddress() {
         return address;
+    }
+
+    public Favourite getFavourite() {
+        return favourite;
+    }
+
+    public boolean isFavourite() {
+        return favourite.isFavourite();
     }
 
     /**
