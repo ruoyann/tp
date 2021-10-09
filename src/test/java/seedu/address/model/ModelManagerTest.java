@@ -16,7 +16,7 @@ import org.junit.jupiter.api.Test;
 
 import seedu.address.commons.core.GuiSettings;
 import seedu.address.model.studyspot.NameContainsKeywordsPredicate;
-import seedu.address.testutil.AddressBookBuilder;
+import seedu.address.testutil.StudyTrackerBuilder;
 
 public class ModelManagerTest {
 
@@ -61,12 +61,12 @@ public class ModelManagerTest {
     }
 
     @Test
-    public void setAddressBookFilePath_nullPath_throwsNullPointerException() {
+    public void setStudyTrackerFilePath_nullPath_throwsNullPointerException() {
         assertThrows(NullPointerException.class, () -> modelManager.setStudyTrackerFilePath(null));
     }
 
     @Test
-    public void setAddressBookFilePath_validPath_setsAddressBookFilePath() {
+    public void setStudyTrackerFilePath_validPath_setsStudyTrackerFilePath() {
         Path path = Paths.get("address/book/file/path");
         modelManager.setStudyTrackerFilePath(path);
         assertEquals(path, modelManager.getStudyTrackerFilePath());
@@ -78,12 +78,12 @@ public class ModelManagerTest {
     }
 
     @Test
-    public void hasStudySpot_studySpotNotInAddressBook_returnsFalse() {
+    public void hasStudySpot_studySpotNotInStudyTracker_returnsFalse() {
         assertFalse(modelManager.hasStudySpot(STARBUCKS));
     }
 
     @Test
-    public void hasStudySpot_studySpotInAddressBook_returnsTrue() {
+    public void hasStudySpot_studySpotInStudyTracker_returnsTrue() {
         modelManager.addStudySpot(STARBUCKS);
         assertTrue(modelManager.hasStudySpot(STARBUCKS));
     }
@@ -95,7 +95,7 @@ public class ModelManagerTest {
 
     @Test
     public void equals() {
-        StudyTracker studyTracker = new AddressBookBuilder().withStudySpot(STARBUCKS)
+        StudyTracker studyTracker = new StudyTrackerBuilder().withStudySpot(STARBUCKS)
                 .withStudySpot(CENTRAL_LIBRARY).build();
         StudyTracker differentStudyTracker = new StudyTracker();
         UserPrefs userPrefs = new UserPrefs();

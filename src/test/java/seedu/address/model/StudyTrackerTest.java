@@ -37,7 +37,7 @@ public class StudyTrackerTest {
     }
 
     @Test
-    public void resetData_withValidReadOnlyAddressBook_replacesData() {
+    public void resetData_withValidReadOnlyStudyTracker_replacesData() {
         StudyTracker newData = getTypicalStudyTracker();
         studyTracker.resetData(newData);
         assertEquals(newData, studyTracker);
@@ -61,18 +61,18 @@ public class StudyTrackerTest {
     }
 
     @Test
-    public void hasStudySpot_studySpotNotInAddressBook_returnsFalse() {
+    public void hasStudySpot_studySpotNotInStudyTracker_returnsFalse() {
         assertFalse(studyTracker.hasStudySpot(STARBUCKS));
     }
 
     @Test
-    public void hasStudySpot_studySpotInAddressBook_returnsTrue() {
+    public void hasStudySpot_studySpotInStudyTracker_returnsTrue() {
         studyTracker.addStudySpot(STARBUCKS);
         assertTrue(studyTracker.hasStudySpot(STARBUCKS));
     }
 
     @Test
-    public void hasStudySpot_studySpotWithSameIdentityFieldsInAddressBook_returnsTrue() {
+    public void hasStudySpot_studySpotWithSameIdentityFieldsInStudyTracker_returnsTrue() {
         studyTracker.addStudySpot(STARBUCKS);
         StudySpot editedStarbucks = new StudySpotBuilder(STARBUCKS)
                 .withAddress(VALID_ADDRESS_DECK).withTags(VALID_TAG_QUIET)
