@@ -13,10 +13,11 @@ import java.nio.file.Paths;
 import java.util.Arrays;
 
 import org.junit.jupiter.api.Test;
-
 import seedu.address.commons.core.GuiSettings;
 import seedu.address.model.studyspot.NameContainsKeywordsPredicate;
+import seedu.address.model.studyspot.StudySpot;
 import seedu.address.testutil.AddressBookBuilder;
+import seedu.address.testutil.StudySpotBuilder;
 
 public class ModelManagerTest {
 
@@ -80,6 +81,21 @@ public class ModelManagerTest {
     @Test
     public void hasStudySpot_studySpotNotInAddressBook_returnsFalse() {
         assertFalse(modelManager.hasStudySpot(STARBUCKS));
+    }
+
+    @Test
+    public void addStudySpot_studySpotNotAFavourite_returnsFalse() {
+        assertFalse(STARBUCKS.isFavourite());
+        modelManager.addStudySpot(STARBUCKS);
+        assertFalse(modelManager.isFavouriteStudySpot(STARBUCKS));
+    }
+
+    @Test
+    public void addStudySpot_studySpotIsAFavourite_returnsTrue() {
+        StudySpot test = new StudySpotBuilder(STARBUCKS).withFavourite(true).build();
+        assertTrue(test.isFavourite());
+        modelManager.addStudySpot(test);
+        assertTrue(modelManager.isFavouriteStudySpot(test));
     }
 
     @Test

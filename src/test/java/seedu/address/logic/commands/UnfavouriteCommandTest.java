@@ -49,6 +49,18 @@ public class UnfavouriteCommandTest {
     }
 
     @Test
+    public void execute_studySpotIsNotAFavourite_throwsCommandException() {
+        StudySpot invalidStudySpot = new StudySpotBuilder().withFavourite(false).build();
+        assertFalse(invalidStudySpot.isFavourite());
+        model.addStudySpot(invalidStudySpot);
+        UnfavouriteCommand unfavouriteCommand = new UnfavouriteCommand(invalidStudySpot.getName());
+
+        String expectedMessage =
+                String.format(UnfavouriteCommand.MESSAGE_UNFAVOURITE_REPEATSTUDYSPOT_FAIL, invalidStudySpot.getName());
+
+        assertCommandFailure(unfavouriteCommand, model, expectedMessage);
+    }
+    @Test
     public void equals() {
         StudySpot firstStudySpot = model.getFilteredStudySpotList().get(INDEX_FIRST_SPOT.getZeroBased());
         StudySpot secondStudySpot = model.getFilteredStudySpotList().get(INDEX_SECOND_SPOT.getZeroBased());

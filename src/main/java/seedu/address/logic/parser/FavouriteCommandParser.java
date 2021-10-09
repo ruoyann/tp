@@ -1,7 +1,10 @@
 package seedu.address.logic.parser;
 
 import static java.util.Objects.requireNonNull;
+import static seedu.address.commons.core.Messages.MESSAGE_INVALID_COMMAND_FORMAT;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_NAME;
+
+import java.util.NoSuchElementException;
 
 import seedu.address.logic.commands.FavouriteCommand;
 import seedu.address.logic.parser.exceptions.ParseException;
@@ -20,7 +23,12 @@ public class FavouriteCommandParser implements Parser<FavouriteCommand> {
     public FavouriteCommand parse(String args) throws ParseException {
         requireNonNull(args);
         ArgumentMultimap argMultimap = ArgumentTokenizer.tokenize(args, PREFIX_NAME);
-        Name name = ParserUtil.parseName(argMultimap.getValue(PREFIX_NAME).get());
+        Name name;
+        try {
+            name = ParserUtil.parseName(argMultimap.getValue(PREFIX_NAME).get());
+        } catch (NoSuchElementException pe) {
+            throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT, FavouriteCommand.MESSAGE_USAGE), pe);
+        }
         return new FavouriteCommand(name);
     }
 

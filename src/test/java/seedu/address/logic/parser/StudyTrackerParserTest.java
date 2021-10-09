@@ -4,22 +4,25 @@ import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 import static seedu.address.commons.core.Messages.MESSAGE_INVALID_COMMAND_FORMAT;
 import static seedu.address.commons.core.Messages.MESSAGE_UNKNOWN_COMMAND;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_NAME;
 import static seedu.address.testutil.Assert.assertThrows;
 import static seedu.address.testutil.TypicalIndexes.INDEX_FIRST_SPOT;
+import static seedu.address.testutil.TypicalStudySpots.STARBUCKS;
 
 import java.util.Arrays;
 import java.util.List;
 import java.util.stream.Collectors;
 
 import org.junit.jupiter.api.Test;
-
 import seedu.address.logic.commands.AddCommand;
 import seedu.address.logic.commands.ClearCommand;
 import seedu.address.logic.commands.DeleteCommand;
 import seedu.address.logic.commands.ExitCommand;
+import seedu.address.logic.commands.FavouriteCommand;
 import seedu.address.logic.commands.FindCommand;
 import seedu.address.logic.commands.HelpCommand;
 import seedu.address.logic.commands.ListCommand;
+import seedu.address.logic.commands.UnfavouriteCommand;
 import seedu.address.logic.parser.exceptions.ParseException;
 import seedu.address.model.studyspot.NameContainsKeywordsPredicate;
 import seedu.address.model.studyspot.StudySpot;
@@ -60,6 +63,20 @@ public class StudyTrackerParserTest {
     //        assertEquals(new EditCommand(new Name("Test"), descriptor), command);
     //        //todo discrepancies in amenities and addedamenities
     //    }
+
+    @Test
+    public void parseCommand_favourite() throws Exception {
+        FavouriteCommand command = (FavouriteCommand) parser.parseCommand(
+                FavouriteCommand.COMMAND_WORD + " " + PREFIX_NAME + STARBUCKS.getName());
+        assertEquals(new FavouriteCommand(STARBUCKS.getName()), command);
+    }
+
+    @Test
+    public void parseCommand_unfavourite() throws Exception {
+        UnfavouriteCommand command = (UnfavouriteCommand) parser.parseCommand(
+                UnfavouriteCommand.COMMAND_WORD + " " + PREFIX_NAME + STARBUCKS.getName());
+        assertEquals(new UnfavouriteCommand(STARBUCKS.getName()), command);
+    }
 
     @Test
     public void parseCommand_exit() throws Exception {
