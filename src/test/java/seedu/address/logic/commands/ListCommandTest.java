@@ -2,6 +2,7 @@ package seedu.address.logic.commands;
 
 import static seedu.address.logic.commands.CommandTestUtil.assertCommandSuccess;
 import static seedu.address.logic.commands.CommandTestUtil.showStudySpotAtIndex;
+import static seedu.address.model.Model.PREDICATE_SHOW_ALL_STUDYSPOTS;
 import static seedu.address.testutil.TypicalIndexes.INDEX_FIRST_SPOT;
 import static seedu.address.testutil.TypicalStudySpots.getTypicalStudyTracker;
 
@@ -28,12 +29,14 @@ public class ListCommandTest {
 
     @Test
     public void execute_listIsNotFiltered_showsSameList() {
-        assertCommandSuccess(new ListCommand(), model, ListCommand.MESSAGE_SUCCESS, expectedModel);
+        assertCommandSuccess(new ListCommand(PREDICATE_SHOW_ALL_STUDYSPOTS), model,
+                ListCommand.MESSAGE_SUCCESS, expectedModel);
     }
 
     @Test
     public void execute_listIsFiltered_showsEverything() {
         showStudySpotAtIndex(model, INDEX_FIRST_SPOT);
-        assertCommandSuccess(new ListCommand(), model, ListCommand.MESSAGE_SUCCESS, expectedModel);
+        assertCommandSuccess(new ListCommand(PREDICATE_SHOW_ALL_STUDYSPOTS), model,
+                ListCommand.MESSAGE_SUCCESS, expectedModel);
     }
 }
