@@ -9,9 +9,10 @@ import static java.util.Objects.requireNonNull;
 public class Favourite {
 
     public static final String MESSAGE_CONSTRAINTS =
-            "Favourites should only be true or false, and it should not be blank";
+            "Favourite should only be true or false, and it should not be blank";
 
     public final boolean isFavourite;
+    public final String value;
 
     /**
      * Constructs a {@code Favourite}.
@@ -21,6 +22,7 @@ public class Favourite {
     public Favourite(boolean isFavourite) {
         requireNonNull(isFavourite);
         this.isFavourite = isFavourite;
+        this.value = String.valueOf(isFavourite);
     }
 
     /**
@@ -31,9 +33,16 @@ public class Favourite {
         return isFavourite;
     }
 
+    /**
+     * Returns true if a given string is a valid favourite.
+     */
+    public static boolean isValidFavourite(String test) {
+        return test.equals("true") || test.equals("false");
+    }
+
     @Override
     public String toString() {
-        return String.valueOf(isFavourite);
+        return value;
     }
 
     @Override
