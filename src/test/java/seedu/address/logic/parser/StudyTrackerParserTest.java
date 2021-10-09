@@ -18,6 +18,8 @@ import org.junit.jupiter.api.Test;
 import seedu.address.logic.commands.AddCommand;
 import seedu.address.logic.commands.ClearCommand;
 import seedu.address.logic.commands.DeleteCommand;
+import seedu.address.logic.commands.EditCommand;
+import seedu.address.logic.commands.EditCommand.EditStudySpotDescriptor;
 import seedu.address.logic.commands.ExitCommand;
 import seedu.address.logic.commands.FavouriteCommand;
 import seedu.address.logic.commands.FindCommand;
@@ -25,8 +27,10 @@ import seedu.address.logic.commands.HelpCommand;
 import seedu.address.logic.commands.ListCommand;
 import seedu.address.logic.commands.UnfavouriteCommand;
 import seedu.address.logic.parser.exceptions.ParseException;
+import seedu.address.model.studyspot.Name;
 import seedu.address.model.studyspot.NameContainsKeywordsPredicate;
 import seedu.address.model.studyspot.StudySpot;
+import seedu.address.testutil.EditStudySpotDescriptorBuilder;
 import seedu.address.testutil.StudySpotBuilder;
 import seedu.address.testutil.StudySpotUtil;
 
@@ -54,16 +58,14 @@ public class StudyTrackerParserTest {
         assertEquals(new DeleteCommand(INDEX_FIRST_SPOT), command);
     }
 
-    //    @Test
-    //    public void parseCommand_edit() throws Exception {
-    //        StudySpot studySpot = new StudySpotBuilder().withName("Test").build();
-    //        EditCommand.EditStudySpotDescriptor descriptor = new EditStudySpotDescriptorBuilder(studySpot).build();
-    //        EditCommand command = (EditCommand) parser.parseCommand(EditCommand.COMMAND_WORD + " "
-    //                + "spot/Test" + " " + StudySpotUtil.getEditStudySpotDescriptorDetails(descriptor));
-    //        boolean a = (new EditCommand(new Name("Test"), descriptor)).equals(command);
-    //        assertEquals(new EditCommand(new Name("Test"), descriptor), command);
-    //        //todo discrepancies in amenities and addedamenities
-    //    }
+    @Test
+    public void parseCommand_edit() throws Exception {
+        StudySpot studySpot = new StudySpotBuilder().withName("Test").build();
+        EditStudySpotDescriptor descriptor = new EditStudySpotDescriptorBuilder(studySpot).build();
+        EditCommand commandFromParse = (EditCommand) parser.parseCommand(EditCommand.COMMAND_WORD + " "
+                + "spot/Test" + " " + StudySpotUtil.getEditStudySpotDescriptorDetails(descriptor));
+        assertEquals(new EditCommand(new Name("Test"), descriptor), commandFromParse);
+    }
 
     @Test
     public void parseCommand_favourite() throws Exception {

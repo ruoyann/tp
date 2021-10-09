@@ -59,6 +59,8 @@ public class CommandTestUtil {
     public static final String TAG_DESC_REMOVE_QUIET = " " + PREFIX_REMOVE_TAG + VALID_TAG_QUIET;
     public static final String AMENITY_DESC_WIFI = " " + PREFIX_AMENITY + VALID_AMENITY_WIFI;
     public static final String AMENITY_RM_DESC_WIFI = " " + PREFIX_REMOVE_AMENITY + VALID_AMENITY_WIFI;
+    public static final String AMENITY_DESC_CHARGER = " " + PREFIX_AMENITY + VALID_AMENITY_CHARGER;
+    public static final String AMENITY_RM_DESC_CHARGER = " " + PREFIX_REMOVE_AMENITY + VALID_AMENITY_CHARGER;
 
     public static final String INVALID_NAME_DESC = " " + PREFIX_NAME + "LT27&"; // '&' not allowed in names
     public static final String INVALID_RATING_DESC = " " + PREFIX_RATING + "911a"; // digits not from '1-5' not allowed
