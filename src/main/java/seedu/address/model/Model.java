@@ -42,10 +42,10 @@ public interface Model {
     /**
      * Sets the user prefs' study tracker file path.
      */
-    void setStudyTrackerFilePath(Path addressBookFilePath);
+    void setStudyTrackerFilePath(Path studyTrackerFilePath);
 
     /**
-     * Replaces study tracker data with the data in {@code addressBook}.
+     * Replaces study tracker data with the data in {@code studyTracker}.
      */
     void setStudyTracker(ReadOnlyStudyTracker studyTracker);
 
