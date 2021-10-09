@@ -183,16 +183,17 @@ Study spot "COM1 Basement" removed from favourites!
 
 ### Locating a study spot by name: `find`
 
-Finds study spots whose names contain the query.
+Finds study spots whose names contain any of the given keywords.
 
-Format: `find n/NAME*`
+Format: `find KEYWORD* [MORE KEYWORDS]`
 
 * The search is case-insensitive. e.g `hans` will match `Hans`
 * Only full words will be matched. e.g. `Han` will not match `Hans`
+* Study spots matching at least one keyword will be returned.
 
 Examples:
 ```
-find n/library
+find library
 Found the following study spots matching “library”:
   1. Central Library
   2. Hon Sui Sen Memorial Library
