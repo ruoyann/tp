@@ -22,6 +22,7 @@ public class ListCommandParser implements Parser<ListCommand> {
      * @throws ParseException if the user input does not conform the expected format
      */
     public ListCommand parse(String args) throws ParseException {
+        boolean isFavFlagPresent = false;
         String trimmedArgs = args.trim();
         Predicate<StudySpot> predicate = PREDICATE_SHOW_ALL_STUDYSPOTS;
         // List
@@ -32,6 +33,7 @@ public class ListCommandParser implements Parser<ListCommand> {
         // List favourites
         String[] flags = trimmedArgs.split("\\s+");
         if (isFlagPresent(flags, ListCommand.FLAG_FAVOURITES)) {
+            isFavFlagPresent = true;
             predicate = predicate.and(StudySpot::isFavourite);
         }
         if (!isFlagPresent(flags, ListCommand.FLAG_TAGS)) {
@@ -42,7 +44,7 @@ public class ListCommandParser implements Parser<ListCommand> {
         ArgumentMultimap argMultimap = ArgumentTokenizer.tokenize(args, PREFIX_TAG);
         Set<Tag> tagList = ParserUtil.parseTags(argMultimap.getAllValues(PREFIX_TAG));
         Predicate<StudySpot> containsTags = ListCommand.containsTags(tagList);
-        predicate = predicate.or(containsTags);
+        predicate = isFavFlagPresent ? predicate.or(containsTags) : containsTags;
 
         return new ListCommand(predicate);
     }
