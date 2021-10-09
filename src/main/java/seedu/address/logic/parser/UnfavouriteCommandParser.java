@@ -27,7 +27,8 @@ public class UnfavouriteCommandParser implements Parser<UnfavouriteCommand> {
         try {
             name = ParserUtil.parseName(argMultimap.getValue(PREFIX_NAME).get());
         } catch (NoSuchElementException pe) {
-            throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT, UnfavouriteCommand.MESSAGE_USAGE), pe);
+            throw new ParseException(
+                    String.format(MESSAGE_INVALID_COMMAND_FORMAT, UnfavouriteCommand.MESSAGE_USAGE), pe);
         }
         return new UnfavouriteCommand(name);
     }

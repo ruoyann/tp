@@ -7,6 +7,7 @@ import static seedu.address.logic.parser.CommandParserTestUtil.assertParseSucces
 import static seedu.address.testutil.TypicalStudySpots.STARBUCKS;
 
 import org.junit.jupiter.api.Test;
+
 import seedu.address.logic.commands.FavouriteCommand;
 import seedu.address.model.studyspot.Name;
 
