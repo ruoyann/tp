@@ -26,11 +26,11 @@ public class JsonStudyTrackerStorageTest {
     public Path testFolder;
 
     @Test
-    public void readAddressBook_nullFilePath_throwsNullPointerException() {
-        assertThrows(NullPointerException.class, () -> readAddressBook(null));
+    public void readStudyTracker_nullFilePath_throwsNullPointerException() {
+        assertThrows(NullPointerException.class, () -> readStudyTracker(null));
     }
 
-    private java.util.Optional<ReadOnlyStudyTracker> readAddressBook(String filePath) throws Exception {
+    private java.util.Optional<ReadOnlyStudyTracker> readStudyTracker(String filePath) throws Exception {
         return new JsonStudyTrackerStorage(Paths.get(filePath)).readStudyTracker(addToTestDataPathIfNotNull(filePath));
     }
 
@@ -42,27 +42,28 @@ public class JsonStudyTrackerStorageTest {
 
     @Test
     public void read_missingFile_emptyResult() throws Exception {
-        assertFalse(readAddressBook("NonExistentFile.json").isPresent());
+        assertFalse(readStudyTracker("NonExistentFile.json").isPresent());
     }
 
     @Test
     public void read_notJsonFormat_exceptionThrown() {
-        assertThrows(DataConversionException.class, () -> readAddressBook("notJsonFormatStudyTracker.json"));
+        assertThrows(DataConversionException.class, () -> readStudyTracker("notJsonFormatStudyTracker.json"));
     }
 
     @Test
-    public void readAddressBook_invalidStudySpotAddressBook_throwDataConversionException() {
-        assertThrows(DataConversionException.class, () -> readAddressBook("invalidStudySpotStudyTracker.json"));
+    public void readStudyTracker_invalidStudySpotStudyTracker_throwDataConversionException() {
+        assertThrows(DataConversionException.class, () -> readStudyTracker("invalidStudySpotStudyTracker.json"));
     }
 
     @Test
-    public void readAddressBook_invalidAndValidStudySpotAddressBook_throwDataConversionException() {
-        assertThrows(DataConversionException.class, () -> readAddressBook("invalidAndValidStudySpotStudyTracker.json"));
+    public void readStudyTracker_invalidAndValidStudySpotStudyTracker_throwDataConversionException() {
+        assertThrows(DataConversionException.class, () ->
+                readStudyTracker("invalidAndValidStudySpotStudyTracker.json"));
     }
 
     @Test
-    public void readAndSaveAddressBook_allInOrder_success() throws Exception {
-        Path filePath = testFolder.resolve("TempAddressBook.json");
+    public void readAndSaveStudyTracker_allInOrder_success() throws Exception {
+        Path filePath = testFolder.resolve("TempStudyTracker.json");
         StudyTracker original = getTypicalStudyTracker();
         JsonStudyTrackerStorage jsonStudyTrackerStorage = new JsonStudyTrackerStorage(filePath);
 
@@ -87,24 +88,24 @@ public class JsonStudyTrackerStorageTest {
     }
 
     @Test
-    public void saveAddressBook_nullAddressBook_throwsNullPointerException() {
-        assertThrows(NullPointerException.class, () -> saveAddressBook(null, "SomeFile.json"));
+    public void saveStudyTracker_nullStudyTracker_throwsNullPointerException() {
+        assertThrows(NullPointerException.class, () -> saveStudyTracker(null, "SomeFile.json"));
     }
 
     /**
-     * Saves {@code addressBook} at the specified {@code filePath}.
+     * Saves {@code studyTracker} at the specified {@code filePath}.
      */
-    private void saveAddressBook(ReadOnlyStudyTracker addressBook, String filePath) {
+    private void saveStudyTracker(ReadOnlyStudyTracker studyTracker, String filePath) {
         try {
             new JsonStudyTrackerStorage(Paths.get(filePath))
-                    .saveStudyTracker(addressBook, addToTestDataPathIfNotNull(filePath));
+                    .saveStudyTracker(studyTracker, addToTestDataPathIfNotNull(filePath));
         } catch (IOException ioe) {
             throw new AssertionError("There should not be an error writing to the file.", ioe);
         }
     }
 
     @Test
-    public void saveAddressBook_nullFilePath_throwsNullPointerException() {
-        assertThrows(NullPointerException.class, () -> saveAddressBook(new StudyTracker(), null));
+    public void saveStudyTracker_nullFilePath_throwsNullPointerException() {
+        assertThrows(NullPointerException.class, () -> saveStudyTracker(new StudyTracker(), null));
     }
 }

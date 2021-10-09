@@ -1,5 +1,5 @@
 {
-  "_comment": "AddressBook save file which contains the same StudySpot values as in TypicalStudySpots#getTypicalAddressBook()",
+  "_comment": "StudyTracker save file which contains the same StudySpot values as in TypicalStudySpots#getTypicalStudyTracker()",
   "studySpots" : [ {
     "name" : "Starbucks",
     "rating" : "4",
