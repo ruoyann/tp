@@ -563,6 +563,7 @@ public class EditCommand extends Command {
                     && getRating().equals(e.getRating())
                     && getEmail().equals(e.getEmail())
                     && getAddress().equals(e.getAddress())
+                    && getFavourite().equals(e.getFavourite())
                     && getTags().equals(e.getTags())
                     && getAddedTags().equals(e.getAddedTags())
                     && getRemovedTags().equals(e.getRemovedTags())

@@ -57,7 +57,7 @@
       </VBox>
 
       <VBox GridPane.columnIndex="2" alignment="TOP_RIGHT" >
-        <Label fx:id="favourite" styleClass="icon_container, cell_small_label" alignment="TOP_RIGHT"/>
+        <Label fx:id="favourite" text="♥" styleClass="icon_container, cell_small_label" alignment="TOP_RIGHT"/>
         <Region VBox.vgrow="ALWAYS" /> <!-- spacer -->
         <HBox spacing="4" alignment="CENTER_RIGHT">
           <Label styleClass="cell_big_label" text="30" />

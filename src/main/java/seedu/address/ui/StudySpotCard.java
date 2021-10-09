@@ -52,7 +52,7 @@ public class StudySpotCard extends UiPart<Region> {
         this.studySpot = studySpot;
         id.setText(displayedIndex + ". ");
         name.setText(studySpot.getName().fullName);
-        favourite.setText(studySpot.isFavourite() ? "♥" : "");
+        favourite.setVisible(studySpot.isFavourite());
         rating.setText(ratingDisplay(studySpot.getRating()));
         address.setText(studySpot.getAddress().value);
         email.setText(studySpot.getEmail().value);
