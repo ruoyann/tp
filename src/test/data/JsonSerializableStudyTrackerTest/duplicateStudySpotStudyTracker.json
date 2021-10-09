@@ -4,11 +4,13 @@
     "rating": "3",
     "email": "-",
     "address": "SoC COM2, B1",
+    "favourite" : "false",
     "tagged": [ "noisy" ]
   }, {
     "name": "COM2 Tech Hangout",
     "rating": "2",
     "email": "-",
-    "address": "NUS School of Computing, COM2, Basement 1"
+    "address": "NUS School of Computing, COM2, Basement 1",
+    "favourite" : "false"
   } ]
 }

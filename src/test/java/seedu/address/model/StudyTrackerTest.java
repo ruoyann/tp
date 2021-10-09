@@ -37,7 +37,7 @@ public class StudyTrackerTest {
     }
 
     @Test
-    public void resetData_withValidReadOnlyAddressBook_replacesData() {
+    public void resetData_withValidReadOnlyStudyTracker_replacesData() {
         StudyTracker newData = getTypicalStudyTracker();
         studyTracker.resetData(newData);
         assertEquals(newData, studyTracker);
@@ -61,23 +61,60 @@ public class StudyTrackerTest {
     }
 
     @Test
-    public void hasStudySpot_studySpotNotInAddressBook_returnsFalse() {
+    public void hasStudySpot_studySpotNotInStudyTracker_returnsFalse() {
         assertFalse(studyTracker.hasStudySpot(STARBUCKS));
     }
 
     @Test
-    public void hasStudySpot_studySpotInAddressBook_returnsTrue() {
+    public void hasStudySpot_studySpotInStudyTracker_returnsTrue() {
         studyTracker.addStudySpot(STARBUCKS);
         assertTrue(studyTracker.hasStudySpot(STARBUCKS));
     }
 
     @Test
-    public void hasStudySpot_studySpotWithSameIdentityFieldsInAddressBook_returnsTrue() {
+    public void hasStudySpot_studySpotWithSameIdentityFieldsInStudyTracker_returnsTrue() {
         studyTracker.addStudySpot(STARBUCKS);
         StudySpot editedStarbucks = new StudySpotBuilder(STARBUCKS)
                 .withAddress(VALID_ADDRESS_DECK).withTags(VALID_TAG_QUIET)
                 .build();
         assertTrue(studyTracker.hasStudySpot(editedStarbucks));
+    }
+
+    @Test
+    public void addStudySpotToFavourite_notInStudyTracker_throwsAssertionError() {
+        assertThrows(AssertionError.class, () -> studyTracker.addStudySpotToFavourites(STARBUCKS));
+    }
+
+    @Test
+    public void addStudySpotToFavourite_studySpotInFavourites_returnsTrue() {
+        studyTracker.addStudySpot(STARBUCKS);
+        studyTracker.addStudySpotToFavourites(STARBUCKS);
+        StudySpot favouritedStarbucks = new StudySpotBuilder(STARBUCKS).withFavourite(true).build();
+        assertTrue(studyTracker.getFavouriteStudySpotList().contains(favouritedStarbucks));
+    }
+
+    @Test
+    public void removeStudySpotToFavourite_studySpotInFavourites_returnsTrue() {
+        studyTracker.addStudySpot(STARBUCKS);
+        studyTracker.addStudySpotToFavourites(STARBUCKS);
+        StudySpot favouritedStarbucks = new StudySpotBuilder(STARBUCKS).withFavourite(true).build();
+        assertTrue(studyTracker.getFavouriteStudySpotList().contains(favouritedStarbucks));
+        studyTracker.removeStudySpotFromFavourites(favouritedStarbucks);
+        assertTrue(studyTracker.getFavouriteStudySpotList().isEmpty());
+    }
+
+    @Test
+    public void isFavouriteStudySpot_notInFavourites_returnsFalse() {
+        studyTracker.addStudySpot(STARBUCKS);
+        assertFalse(studyTracker.isFavouriteStudySpot(STARBUCKS));
+    }
+
+
+    @Test
+    public void isFavouriteStudySpot_inFavourites_returnsTrue() {
+        studyTracker.addStudySpot(STARBUCKS);
+        studyTracker.addStudySpotToFavourites(STARBUCKS);
+        assertTrue(studyTracker.isFavouriteStudySpot(STARBUCKS));
     }
 
     @Test
@@ -98,6 +135,12 @@ public class StudyTrackerTest {
         @Override
         public ObservableList<StudySpot> getStudySpotList() {
             return studySpots;
+        }
+
+        //TODO
+        @Override
+        public ObservableList<StudySpot> getFavouriteStudySpotList() {
+            throw new AssertionError("This method should not be called.");
         }
     }
 

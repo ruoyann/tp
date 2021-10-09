@@ -50,6 +50,8 @@ public class StudySpotCard extends UiPart<Region> {
     @FXML
     private Label id;
     @FXML
+    private Label favourite;
+    @FXML
     private Label rating;
     @FXML
     private Label address;
@@ -69,6 +71,8 @@ public class StudySpotCard extends UiPart<Region> {
         id.setText(displayedIndex + ". ");
         name.setText(studySpot.getName().fullName);
         rating.setText(setRatingDisplay(studySpot.getRating()));
+        favourite.setVisible(studySpot.isFavourite());
+        rating.setText(ratingDisplay(studySpot.getRating()));
         address.setText(studySpot.getAddress().value);
         email.setText(studySpot.getEmail().value);
         studySpot.getTags().stream()
