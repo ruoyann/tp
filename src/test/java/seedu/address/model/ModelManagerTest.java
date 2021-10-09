@@ -16,6 +16,8 @@ import org.junit.jupiter.api.Test;
 
 import seedu.address.commons.core.GuiSettings;
 import seedu.address.model.studyspot.NameContainsKeywordsPredicate;
+import seedu.address.model.studyspot.StudySpot;
+import seedu.address.testutil.StudySpotBuilder;
 import seedu.address.testutil.StudyTrackerBuilder;
 
 public class ModelManagerTest {
@@ -83,9 +85,42 @@ public class ModelManagerTest {
     }
 
     @Test
+    public void addStudySpot_studySpotNotAFavourite_returnsFalse() {
+        assertFalse(STARBUCKS.isFavourite());
+        modelManager.addStudySpot(STARBUCKS);
+        assertFalse(modelManager.isFavouriteStudySpot(STARBUCKS));
+    }
+
+    @Test
+    public void addStudySpot_studySpotIsAFavourite_returnsTrue() {
+        StudySpot test = new StudySpotBuilder(STARBUCKS).withFavourite(true).build();
+        assertTrue(test.isFavourite());
+        modelManager.addStudySpot(test);
+        assertTrue(modelManager.isFavouriteStudySpot(test));
+    }
+
+    @Test
     public void hasStudySpot_studySpotInStudyTracker_returnsTrue() {
         modelManager.addStudySpot(STARBUCKS);
         assertTrue(modelManager.hasStudySpot(STARBUCKS));
+    }
+
+    @Test
+    public void isFavouriteStudySpot_nullStudySpot_throwsNullPointerException() {
+        assertThrows(NullPointerException.class, () -> modelManager.isFavouriteStudySpot(null));
+    }
+
+    @Test
+    public void isFavouriteStudySpot_studySpotNotInFavourites_returnsFalse() {
+        modelManager.addStudySpot(STARBUCKS);
+        assertFalse(modelManager.isFavouriteStudySpot(STARBUCKS));
+    }
+
+    @Test
+    public void isFavouriteStudySpot_studySpotInFavourites_returnsTrue() {
+        modelManager.addStudySpot(STARBUCKS);
+        modelManager.addStudySpotToFavourites(STARBUCKS);
+        assertTrue(modelManager.isFavouriteStudySpot(STARBUCKS));
     }
 
     @Test

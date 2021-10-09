@@ -4,6 +4,7 @@ import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 import static seedu.address.logic.commands.CommandTestUtil.DESC_DECK;
 import static seedu.address.logic.commands.CommandTestUtil.DESC_FRONTIER;
+import static seedu.address.logic.commands.CommandTestUtil.VALID_AMENITY_CHARGER;
 import static seedu.address.logic.commands.CommandTestUtil.VALID_AMENITY_WIFI;
 import static seedu.address.logic.commands.CommandTestUtil.VALID_NAME_DECK;
 import static seedu.address.logic.commands.CommandTestUtil.VALID_RATING_DECK;
@@ -40,7 +41,8 @@ public class EditCommandTest {
 
     @Test
     public void execute_allFieldsSpecifiedUnfilteredList_success() {
-        StudySpot editedStudySpot = new StudySpotBuilder().withAmenities(VALID_AMENITY_WIFI).build();
+        StudySpot editedStudySpot = new StudySpotBuilder().withAmenities(VALID_AMENITY_WIFI, VALID_AMENITY_CHARGER)
+                .build();
         Name firstStudySpotInTypicalStudySpots = new Name("Starbucks");
         EditStudySpotDescriptor descriptor = new EditStudySpotDescriptorBuilder(editedStudySpot).build();
         EditCommand editCommand = new EditCommand(firstStudySpotInTypicalStudySpots, descriptor);
@@ -176,7 +178,7 @@ public class EditCommandTest {
         EditStudySpotDescriptor descriptor = new EditStudySpotDescriptorBuilder().withName(VALID_NAME_DECK).build();
         EditCommand editCommand = new EditCommand(notInTypicalStudySpots, descriptor);
 
-        assertCommandFailure(editCommand, model, Messages.MESSAGE_INVALID_EDIT_NAME);
+        assertCommandFailure(editCommand, model, Messages.MESSAGE_NAME_NOT_FOUND);
     }
 
     @Test
@@ -186,7 +188,7 @@ public class EditCommandTest {
         EditStudySpotDescriptor descriptor = new EditStudySpotDescriptorBuilder().withName(VALID_NAME_DECK).build();
         EditCommand editCommand = new EditCommand(notInTypicalStudySpots, descriptor);
 
-        assertCommandFailure(editCommand, model, Messages.MESSAGE_INVALID_EDIT_NAME);
+        assertCommandFailure(editCommand, model, Messages.MESSAGE_NAME_NOT_FOUND);
     }
 
     @Test

@@ -3,6 +3,7 @@
     "name": "Study Spot with invalid name field: *bucks @ ut0wN!",
     "rating": "2",
     "email": "blank email",
-    "address": "UTown Green"
+    "address": "UTown Green",
+    "favourite" : "false"
   } ]
 }

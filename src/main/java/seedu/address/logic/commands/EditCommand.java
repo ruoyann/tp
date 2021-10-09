@@ -24,6 +24,7 @@ import seedu.address.model.Model;
 import seedu.address.model.amenity.Amenity;
 import seedu.address.model.studyspot.Address;
 import seedu.address.model.studyspot.Email;
+import seedu.address.model.studyspot.Favourite;
 import seedu.address.model.studyspot.Name;
 import seedu.address.model.studyspot.Rating;
 import seedu.address.model.studyspot.StudySpot;
@@ -65,7 +66,7 @@ public class EditCommand extends Command {
     public static final String FIELD_TAG = "tag";
     public static final String FIELD_AMENITY = "amenity";
 
-    private Name name;
+    private final Name name;
     private final EditStudySpotDescriptor editStudySpotDescriptor;
 
     /**
@@ -96,7 +97,7 @@ public class EditCommand extends Command {
         }
 
         if (!isPresent) {
-            throw new CommandException(Messages.MESSAGE_INVALID_EDIT_NAME);
+            throw new CommandException(Messages.MESSAGE_NAME_NOT_FOUND);
         }
 
         StudySpot editedStudySpot = createEditedStudySpot(studySpotToEdit, editStudySpotDescriptor);
@@ -127,8 +128,10 @@ public class EditCommand extends Command {
                 .getTags().orElse(studySpotToEdit.getTags());
         Set<Amenity> updatedAmenities = editStudySpotDescriptor.updateAmenities(studySpotToEdit.getAmenities())
                 .getAmenities().orElse(studySpotToEdit.getAmenities());
+        Favourite updatedFavourite = editStudySpotDescriptor.getFavourite().orElse(studySpotToEdit.getFavourite());
 
-        return new StudySpot(updatedName, updatedRating, updatedEmail, updatedAddress, updatedTags, updatedAmenities);
+        return new StudySpot(updatedName, updatedRating, updatedEmail, updatedAddress, updatedFavourite,
+                updatedTags, updatedAmenities);
     }
 
     @Override
@@ -158,6 +161,7 @@ public class EditCommand extends Command {
         private Rating rating;
         private Email email;
         private Address address;
+        private Favourite favourite;
         private Set<Tag> tags;
         private Set<Tag> addedTags;
         private Set<Tag> removedTags;
@@ -176,6 +180,7 @@ public class EditCommand extends Command {
             setRating(toCopy.rating);
             setEmail(toCopy.email);
             setAddress(toCopy.address);
+            setFavourite(toCopy.favourite);
             setTags(toCopy.tags);
             setAddedTags(toCopy.addedTags);
             setRemovedTags(toCopy.removedTags);
@@ -222,6 +227,14 @@ public class EditCommand extends Command {
 
         public Optional<Address> getAddress() {
             return Optional.ofNullable(address);
+        }
+
+        public void setFavourite(Favourite favourite) {
+            this.favourite = favourite;
+        }
+
+        public Optional<Favourite> getFavourite() {
+            return Optional.ofNullable(favourite);
         }
 
         /**
@@ -309,7 +322,7 @@ public class EditCommand extends Command {
          * if modification is attempted.
          * Returns {@code Optional#empty()} if {@code addedAmenities} is null.
          */
-        public Optional<Set<Amenity>> getAmenitiesAdded() {
+        public Optional<Set<Amenity>> getAddedAmenities() {
             return (addedAmenities != null)
                     ? Optional.of(Collections.unmodifiableSet(addedAmenities)) : Optional.empty();
         }
@@ -319,7 +332,7 @@ public class EditCommand extends Command {
          * if modification is attempted.
          * Returns {@code Optional#empty()} if {@code amenities} is null.
          */
-        public Optional<Set<Amenity>> getAmenitiesRemoved() {
+        public Optional<Set<Amenity>> getRemovedAmenities() {
             return (removedAmenities != null)
                     ? Optional.of(Collections.unmodifiableSet(removedAmenities)) : Optional.empty();
         }
@@ -550,12 +563,14 @@ public class EditCommand extends Command {
                     && getRating().equals(e.getRating())
                     && getEmail().equals(e.getEmail())
                     && getAddress().equals(e.getAddress())
+                    && getFavourite().equals(e.getFavourite())
                     && getTags().equals(e.getTags())
                     && getAddedTags().equals(e.getAddedTags())
                     && getRemovedTags().equals(e.getRemovedTags())
                     && getAmenities().equals(e.getAmenities())
-                    && getAmenitiesAdded().equals(e.getAmenitiesAdded())
-                    && getAmenitiesRemoved().equals(e.getAmenitiesRemoved());
+                    && getAddedAmenities().equals(e.getAddedAmenities())
+                    && getRemovedAmenities().equals(e.getRemovedAmenities());
         }
+
     }
 }

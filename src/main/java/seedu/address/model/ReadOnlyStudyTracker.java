@@ -14,4 +14,9 @@ public interface ReadOnlyStudyTracker {
      */
     ObservableList<StudySpot> getStudySpotList();
 
+    /**
+     * Returns an unmodifiable view of the favourite study spots list.
+     * This list will not contain any duplicate study spots.
+     */
+    ObservableList<StudySpot> getFavouriteStudySpotList();
 }

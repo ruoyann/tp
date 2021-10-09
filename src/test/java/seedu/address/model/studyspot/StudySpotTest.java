@@ -34,7 +34,7 @@ public class StudySpotTest {
         // same name, all other attributes different -> returns true
         StudySpot editedStarbucks = new StudySpotBuilder(STARBUCKS)
                 .withRating(VALID_RATING_DECK).withEmail(VALID_EMAIL_DECK)
-                .withAddress(VALID_ADDRESS_DECK).withTags(VALID_TAG_QUIET).build();
+                .withAddress(VALID_ADDRESS_DECK).withFavourite(true).withTags(VALID_TAG_QUIET).build();
         assertTrue(STARBUCKS.isSameStudySpot(editedStarbucks));
 
         // different name, all other attributes same -> returns false
@@ -83,6 +83,10 @@ public class StudySpotTest {
 
         // different address -> returns false
         editedStarbucks = new StudySpotBuilder(STARBUCKS).withAddress(VALID_ADDRESS_DECK).build();
+        assertFalse(STARBUCKS.equals(editedStarbucks));
+
+        // different favourite -> returns false
+        editedStarbucks = new StudySpotBuilder(STARBUCKS).withFavourite(true).build();
         assertFalse(STARBUCKS.equals(editedStarbucks));
 
         // different tags -> returns false

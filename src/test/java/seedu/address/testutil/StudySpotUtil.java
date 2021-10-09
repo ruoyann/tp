@@ -53,20 +53,20 @@ public class StudySpotUtil {
         descriptor.getRating().ifPresent(rating -> sb.append(PREFIX_RATING).append(rating.value).append(" "));
         descriptor.getEmail().ifPresent(email -> sb.append(PREFIX_EMAIL).append(email.value).append(" "));
         descriptor.getAddress().ifPresent(address -> sb.append(PREFIX_ADDRESS).append(address.value).append(" "));
-        if (descriptor.getTags().isPresent()) {
-            Set<Tag> tags = descriptor.getTags().get();
-            if (tags.isEmpty()) {
+        if (descriptor.getAddedTags().isPresent()) {
+            if (descriptor.getAddedTags().get().isEmpty()) {
                 sb.append(PREFIX_TAG);
             } else {
+                Set<Tag> tags = descriptor.getAddedTags().get();
                 tags.forEach(s -> sb.append(PREFIX_TAG).append(s.tagName).append(" "));
             }
         }
         sb.append(" ");
-        if (descriptor.getAmenities().isPresent()) {
-            Set<Amenity> amenities = descriptor.getAmenities().get();
-            if (amenities.isEmpty()) {
+        if (descriptor.getAddedAmenities().isPresent()) {
+            if (descriptor.getAddedAmenities().get().isEmpty()) {
                 sb.append(PREFIX_AMENITY);
             } else {
+                Set<Amenity> amenities = descriptor.getAddedAmenities().get();
                 amenities.forEach(s -> sb.append(PREFIX_AMENITY).append(s.amenityType).append(" "));
             }
         }

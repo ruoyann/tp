@@ -81,6 +81,43 @@ public class StudyTrackerTest {
     }
 
     @Test
+    public void addStudySpotToFavourite_notInStudyTracker_throwsAssertionError() {
+        assertThrows(AssertionError.class, () -> studyTracker.addStudySpotToFavourites(STARBUCKS));
+    }
+
+    @Test
+    public void addStudySpotToFavourite_studySpotInFavourites_returnsTrue() {
+        studyTracker.addStudySpot(STARBUCKS);
+        studyTracker.addStudySpotToFavourites(STARBUCKS);
+        StudySpot favouritedStarbucks = new StudySpotBuilder(STARBUCKS).withFavourite(true).build();
+        assertTrue(studyTracker.getFavouriteStudySpotList().contains(favouritedStarbucks));
+    }
+
+    @Test
+    public void removeStudySpotToFavourite_studySpotInFavourites_returnsTrue() {
+        studyTracker.addStudySpot(STARBUCKS);
+        studyTracker.addStudySpotToFavourites(STARBUCKS);
+        StudySpot favouritedStarbucks = new StudySpotBuilder(STARBUCKS).withFavourite(true).build();
+        assertTrue(studyTracker.getFavouriteStudySpotList().contains(favouritedStarbucks));
+        studyTracker.removeStudySpotFromFavourites(favouritedStarbucks);
+        assertTrue(studyTracker.getFavouriteStudySpotList().isEmpty());
+    }
+
+    @Test
+    public void isFavouriteStudySpot_notInFavourites_returnsFalse() {
+        studyTracker.addStudySpot(STARBUCKS);
+        assertFalse(studyTracker.isFavouriteStudySpot(STARBUCKS));
+    }
+
+
+    @Test
+    public void isFavouriteStudySpot_inFavourites_returnsTrue() {
+        studyTracker.addStudySpot(STARBUCKS);
+        studyTracker.addStudySpotToFavourites(STARBUCKS);
+        assertTrue(studyTracker.isFavouriteStudySpot(STARBUCKS));
+    }
+
+    @Test
     public void getStudySpotList_modifyList_throwsUnsupportedOperationException() {
         assertThrows(UnsupportedOperationException.class, () -> studyTracker.getStudySpotList().remove(0));
     }
@@ -98,6 +135,12 @@ public class StudyTrackerTest {
         @Override
         public ObservableList<StudySpot> getStudySpotList() {
             return studySpots;
+        }
+
+        //TODO
+        @Override
+        public ObservableList<StudySpot> getFavouriteStudySpotList() {
+            throw new AssertionError("This method should not be called.");
         }
     }
 
