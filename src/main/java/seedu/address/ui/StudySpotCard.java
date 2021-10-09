@@ -72,7 +72,7 @@ public class StudySpotCard extends UiPart<Region> {
         name.setText(studySpot.getName().fullName);
         rating.setText(setRatingDisplay(studySpot.getRating()));
         favourite.setVisible(studySpot.isFavourite());
-        rating.setText(ratingDisplay(studySpot.getRating()));
+        rating.setText(setRatingDisplay(studySpot.getRating()));
         address.setText(studySpot.getAddress().value);
         email.setText(studySpot.getEmail().value);
         studySpot.getTags().stream()
