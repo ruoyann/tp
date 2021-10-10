@@ -18,9 +18,9 @@
       <ColumnConstraints hgrow="SOMETIMES" minWidth="10" />
     </columnConstraints>
 
-    <VBox minHeight="125" GridPane.columnIndex="0" styleClass="card">
+    <VBox minHeight="125" styleClass="card" GridPane.columnIndex="0">
 
-      <GridPane HBox.hgrow="ALWAYS" hgap="8">
+      <GridPane hgap="8" HBox.hgrow="ALWAYS">
 
       <columnConstraints>
         <ColumnConstraints hgrow="SOMETIMES" minWidth="36" maxWidth="36"/>
@@ -57,7 +57,10 @@
       </VBox>
 
       <VBox GridPane.columnIndex="2" alignment="TOP_RIGHT" >
-        <Label styleClass="icon_container, cell_small_label" text="♥" alignment="TOP_RIGHT"/>
+        <HBox alignment="TOP_RIGHT" spacing="4">
+          <Label fx:id="favourite" text="♥" styleClass="icon_container, cell_small_label" alignment="TOP_RIGHT"/>
+          <HBox fx:id="amenities"/>
+        </HBox>
         <Region VBox.vgrow="ALWAYS" /> <!-- spacer -->
         <HBox spacing="4" alignment="CENTER_RIGHT">
           <Label styleClass="cell_big_label" text="30" />

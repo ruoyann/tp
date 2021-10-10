@@ -9,7 +9,7 @@
 <VBox xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1">
   <HBox alignment="CENTER_LEFT" spacing="48">
     <Label text="StudyTracker" styleClass="h1-size"/>
-    <Label fx:id="studySpotListCount" styleClass="icon_container" text="2/5"/>
+    <Label fx:id="studySpotListCount" styleClass="icon_container" text="0"/>
   </HBox>
   <ListView fx:id="studySpotListView" VBox.vgrow="ALWAYS" />
 </VBox>
