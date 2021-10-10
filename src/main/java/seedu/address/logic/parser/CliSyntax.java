@@ -15,5 +15,6 @@ public class CliSyntax {
     public static final Prefix PREFIX_AMENITY = new Prefix("m/");
     public static final Prefix PREFIX_REMOVE_AMENITY = new Prefix("rm/");
     public static final Prefix PREFIX_EDIT_SPOT = new Prefix("spot/");
+    public static final Prefix PREFIX_FLAG = new Prefix("-");
 
 }

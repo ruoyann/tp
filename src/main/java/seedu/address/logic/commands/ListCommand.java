@@ -2,8 +2,9 @@ package seedu.address.logic.commands;
 
 import static java.util.Objects.requireNonNull;
 
-import java.util.Arrays;
+import java.util.Collections;
 import java.util.HashSet;
+import java.util.Optional;
 import java.util.Set;
 import java.util.function.Predicate;
 import java.util.stream.Collectors;
@@ -18,9 +19,8 @@ import seedu.address.model.tag.Tag;
 public class ListCommand extends Command {
 
     public static final String COMMAND_WORD = "list";
-    public static final String FLAG_FAVOURITES = "-f";
-    public static final String FLAG_TAGS = "-t";
-    public static final String[] VALID_FLAGS = {"-f", "-t"};
+    public static final String FLAG_FAVOURITES = "f";
+    public static final String FLAG_TAGS = "t";
 
     public static final String MESSAGE_CONSTRAINTS = "Only valid flags are accepted as extra parameters";
     public static final String MESSAGE_SUCCESS = "Listed all study spots";
@@ -46,31 +46,6 @@ public class ListCommand extends Command {
         }
         return new CommandResult(sb.toString());
     }
-    
-    /**
-     * Returns true if a given string is a valid list flag.
-     */
-    public static boolean isValidFlag(String test) {
-        requireNonNull(test);
-        return Arrays.asList(VALID_FLAGS).contains(test);
-    }
-
-    /**
-     * Lists all flags in a single string.
-     */
-    public static String listAllFlags(String[] allFlags) {
-        if (allFlags.length == 1) {
-            return allFlags[0];
-        } else {
-            StringBuffer sb = new StringBuffer();
-            for (int i = 0; i < allFlags.length - 1; i++) {
-                sb.append(allFlags[i]);
-                sb.append(", ");
-            }
-            sb.append(allFlags[allFlags.length - 1]);
-            return sb.toString();
-        }
-    }
 
     public String getFilterMessage() {
         StringBuilder sb = new StringBuilder();
@@ -78,12 +53,20 @@ public class ListCommand extends Command {
             sb.append(" in Favourites");
         }
         if (tags != null && !tags.isEmpty()) {
-            sb.append("\n");
-            sb.append("with Tags: ");
+            sb.append(" with Tags: ");
             String str = String.join(", ", tags.stream().map(Object::toString).collect(Collectors.toSet()));
             sb.append(str);
         }
         return sb.toString();
+    }
+
+    /**
+     * Returns an unmodifiable tag set, which throws {@code UnsupportedOperationException}
+     * if modification is attempted.
+     * Returns {@code Optional#empty()} if {@code tags} is null.
+     */
+    public Optional<Set<Tag>> getTags() {
+        return (tags != null) ? Optional.of(Collections.unmodifiableSet(tags)) : Optional.empty();
     }
 
     /**
@@ -103,4 +86,23 @@ public class ListCommand extends Command {
         return studySpotContainTag;
     }
 
+    @Override
+    public boolean equals(Object other) {
+        // short circuit if same object
+        if (other == this) {
+            return true;
+        }
+
+        // instanceof handles nulls
+        if (!(other instanceof ListCommand)) {
+            return false;
+        }
+
+        // state check
+        ListCommand c = (ListCommand) other;
+        return predicate.equals(c.predicate)
+                && isFavFlagPresent && c.isFavFlagPresent
+                && getTags().equals(c.getTags());
+    }
 }
+
