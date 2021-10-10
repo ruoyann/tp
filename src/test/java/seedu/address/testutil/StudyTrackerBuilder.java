@@ -4,26 +4,26 @@ import seedu.address.model.StudyTracker;
 import seedu.address.model.studyspot.StudySpot;
 
 /**
- * A utility class to help with building Addressbook objects.
+ * A utility class to help with building StudyTracker objects.
  * Example usage: <br>
- *     {@code StudyTracker ab = new AddressBookBuilder().withStudySpot("John", "Doe").build();}
+ *     {@code StudyTracker ab = new StudyTrackerBuilder().withStudySpot("John", "Doe").build();}
  */
-public class AddressBookBuilder {
+public class StudyTrackerBuilder {
 
     private StudyTracker studyTracker;
 
-    public AddressBookBuilder() {
+    public StudyTrackerBuilder() {
         studyTracker = new StudyTracker();
     }
 
-    public AddressBookBuilder(StudyTracker studyTracker) {
+    public StudyTrackerBuilder(StudyTracker studyTracker) {
         this.studyTracker = studyTracker;
     }
 
     /**
      * Adds a new {@code StudySpot} to the {@code StudyTracker} that we are building.
      */
-    public AddressBookBuilder withStudySpot(StudySpot studySpot) {
+    public StudyTrackerBuilder withStudySpot(StudySpot studySpot) {
         studyTracker.addStudySpot(studySpot);
         return this;
     }

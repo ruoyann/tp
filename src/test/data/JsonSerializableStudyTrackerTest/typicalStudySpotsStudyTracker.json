@@ -1,31 +1,35 @@
 {
-  "_comment": "AddressBook save file which contains the same StudySpot values as in TypicalStudySpots#getTypicalAddressBook()",
+  "_comment": "StudyTracker save file which contains the same StudySpot values as in TypicalStudySpots#getTypicalStudyTracker()",
   "studySpots" : [ {
     "name" : "Starbucks",
     "rating" : "4",
     "email" : "-",
     "address" : "UTown",
+    "favourite" : "false",
     "tagged" : [ "coffee" ],
-    "amenities" : [ "wifi" ]
+    "amenities" : [ "wifi", "charger" ]
   }, {
     "name" : "Central library",
     "rating" : "3",
     "email" : "-",
     "address" : "NUS, Central Library",
+    "favourite" : "false",
     "tagged" : [ "cold", "quiet" ],
-    "amenities" : [ "wifi" ]
+    "amenities" : [ "wifi", "charger" ]
   }, {
     "name" : "COM1",
     "rating" : "2",
     "email" : "-",
     "address" : "NUS Computing",
+    "favourite" : "false",
     "tagged" : [ ],
-    "amenities" : [ "wifi" ]
+    "amenities" : [ "wifi", "charger" ]
   }, {
     "name" : "Frontier Canteen",
     "rating" : "3",
     "email" : "Frontier email",
     "address" : "NUS Science Faculty",
+    "favourite" : "false",
     "tagged" : [ "crowded" ],
     "amenities" : [ ]
   }, {
@@ -33,6 +37,7 @@
     "rating" : "3",
     "email" : "-",
     "address" : "NUS, Yusof Ishak House Level 3",
+    "favourite" : "false",
     "tagged" : [ "cold" ],
     "amenities" : [ "wifi" ]
   },{
@@ -40,13 +45,15 @@
     "rating" : "4",
     "email" : "-",
     "address" : "Utown",
+    "favourite" : "false",
     "tagged" : [ ],
-    "amenities" : [ "wifi" ]
+    "amenities" : [ ]
   }, {
     "name" : "LT17",
     "rating" : "5",
     "email" : "-",
     "address" : "NUS COM2",
+    "favourite" : "false",
     "tagged" : [ ],
     "amenities" : [ ]
   } ]

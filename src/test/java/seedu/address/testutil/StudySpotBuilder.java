@@ -6,6 +6,7 @@ import java.util.Set;
 import seedu.address.model.amenity.Amenity;
 import seedu.address.model.studyspot.Address;
 import seedu.address.model.studyspot.Email;
+import seedu.address.model.studyspot.Favourite;
 import seedu.address.model.studyspot.Name;
 import seedu.address.model.studyspot.Rating;
 import seedu.address.model.studyspot.StudySpot;
@@ -21,11 +22,13 @@ public class StudySpotBuilder {
     public static final String DEFAULT_RATING = "3";
     public static final String DEFAULT_EMAIL = "-";
     public static final String DEFAULT_ADDRESS = "NUS School of Computing";
+    public static final boolean DEFAULT_FAVOURITE = false;
 
     private Name name;
     private Rating rating;
     private Email email;
     private Address address;
+    private Favourite favourite;
     private Set<Tag> tags;
     private Set<Amenity> amenities;
 
@@ -37,6 +40,7 @@ public class StudySpotBuilder {
         rating = new Rating(DEFAULT_RATING);
         email = new Email(DEFAULT_EMAIL);
         address = new Address(DEFAULT_ADDRESS);
+        favourite = new Favourite(DEFAULT_FAVOURITE);
         tags = new HashSet<>();
         amenities = new HashSet<>();
     }
@@ -49,6 +53,7 @@ public class StudySpotBuilder {
         rating = studySpotToCopy.getRating();
         email = studySpotToCopy.getEmail();
         address = studySpotToCopy.getAddress();
+        favourite = studySpotToCopy.getFavourite();
         tags = new HashSet<>(studySpotToCopy.getTags());
         amenities = new HashSet<>(studySpotToCopy.getAmenities());
     }
@@ -102,8 +107,16 @@ public class StudySpotBuilder {
         return this;
     }
 
+    /**
+     * Sets the {@code Favourite} of the {@code StudySpot} that we are building.
+     */
+    public StudySpotBuilder withFavourite(boolean favourite) {
+        this.favourite = new Favourite(favourite);
+        return this;
+    }
+
     public StudySpot build() {
-        return new StudySpot(name, rating, email, address, tags, amenities);
+        return new StudySpot(name, rating, email, address, favourite, tags, amenities);
     }
 
 }

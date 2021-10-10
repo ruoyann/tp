@@ -53,10 +53,10 @@ public interface Model {
     /**
      * Sets the user prefs' study tracker file path.
      */
-    void setStudyTrackerFilePath(Path addressBookFilePath);
+    void setStudyTrackerFilePath(Path studyTrackerFilePath);
 
     /**
-     * Replaces study tracker data with the data in {@code addressBook}.
+     * Replaces study tracker data with the data in {@code studyTracker}.
      */
     void setStudyTracker(ReadOnlyStudyTracker studyTracker);
 
@@ -87,6 +87,28 @@ public interface Model {
      * must not be the same as another existing study spot in the study tracker.
      */
     void setStudySpot(StudySpot target, StudySpot editedStudySpot);
+
+    /**
+     * Returns true if a study spot with the same identity as {@code studySpot} is a favourite in the study tracker.
+     */
+    public boolean isFavouriteStudySpot(StudySpot studySpot);
+
+    /**
+     * Adds the given study spot to favourites.
+     * {@code study spot} must already exist in the study tracker.
+     *
+     * @return Returns updated study spot.
+     */
+    StudySpot addStudySpotToFavourites(StudySpot studySpot);
+
+
+    /**
+     * Removes the given study spot from favourites.
+     * {@code study spot} must already exist in the study tracker.
+     *
+     * @return Returns updated study spot.
+     */
+    StudySpot removeStudySpotFromFavourites(StudySpot studySpot);
 
     /** Returns an unmodifiable view of the filtered study spot list */
     ObservableList<StudySpot> getFilteredStudySpotList();

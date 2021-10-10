@@ -10,6 +10,7 @@ import static seedu.address.logic.parser.CliSyntax.PREFIX_EMAIL;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_NAME;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_RATING;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_REMOVE_AMENITY;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_REMOVE_TAG;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_TAG;
 import static seedu.address.testutil.Assert.assertThrows;
 
@@ -41,11 +42,14 @@ public class CommandTestUtil {
     public static final String VALID_TAG_QUIET = "quiet";
     public static final String VALID_TAG_CROWDED = "crowded";
     public static final String VALID_TAG_COLD = "cold";
-    public static final String VALID_AMENITY_WIFI = "wifi";
+    public static final String VALID_TAG_COFFEE = "coffee";
     public static final String VALID_ALIAS_LS = "ls";
     public static final String VALID_ALIAS_PWD = "pwd";
     public static final String VALID_ALIAS_COMMAND_LIST = "list";
     public static final String VALID_ALIAS_COMMAND_EXIT = "exit";
+    public static final String VALID_AMENITY_WIFI = "wifi";
+    public static final String VALID_AMENITY_AIRCON = "aircon";
+    public static final String VALID_AMENITY_CHARGER = "charger";
 
     public static final String NAME_DESC_FRONTIER = " " + PREFIX_NAME + VALID_NAME_FRONTIER;
     public static final String NAME_DESC_DECK = " " + PREFIX_NAME + VALID_NAME_DECK;
@@ -56,14 +60,17 @@ public class CommandTestUtil {
     public static final String ADDRESS_DESC_FRONTIER = " " + PREFIX_ADDRESS + VALID_ADDRESS_FRONTIER;
     public static final String ADDRESS_DESC_DECK = " " + PREFIX_ADDRESS + VALID_ADDRESS_DECK;
     public static final String TAG_DESC_CROWDED = " " + PREFIX_TAG + VALID_TAG_CROWDED;
+    public static final String TAG_DESC_REMOVE_CROWDED = " " + PREFIX_REMOVE_TAG + VALID_TAG_CROWDED;
     public static final String TAG_DESC_QUIET = " " + PREFIX_TAG + VALID_TAG_QUIET;
+    public static final String TAG_DESC_REMOVE_QUIET = " " + PREFIX_REMOVE_TAG + VALID_TAG_QUIET;
     public static final String AMENITY_DESC_WIFI = " " + PREFIX_AMENITY + VALID_AMENITY_WIFI;
     public static final String AMENITY_RM_DESC_WIFI = " " + PREFIX_REMOVE_AMENITY + VALID_AMENITY_WIFI;
+    public static final String AMENITY_DESC_CHARGER = " " + PREFIX_AMENITY + VALID_AMENITY_CHARGER;
+    public static final String AMENITY_RM_DESC_CHARGER = " " + PREFIX_REMOVE_AMENITY + VALID_AMENITY_CHARGER;
     public static final String ALIAS_USER_ALIAS_LS = " " + PREFIX_ALIAS + VALID_ALIAS_LS;
     public static final String ALIAS_USER_ALIAS_PWD = " " + PREFIX_ALIAS + VALID_ALIAS_PWD;
     public static final String ALIAS_USER_COMMAND_LIST = " " + PREFIX_ALIAS_COMMAND + VALID_ALIAS_COMMAND_LIST;
     public static final String ALIAS_USER_COMMAND_EXIT = " " + PREFIX_ALIAS_COMMAND + VALID_ALIAS_COMMAND_EXIT;
-
 
     public static final String INVALID_NAME_DESC = " " + PREFIX_NAME + "LT27&"; // '&' not allowed in names
     public static final String INVALID_RATING_DESC = " " + PREFIX_RATING + "911a"; // digits not from '1-5' not allowed
@@ -84,10 +91,10 @@ public class CommandTestUtil {
     static {
         DESC_FRONTIER = new EditStudySpotDescriptorBuilder().withName(VALID_NAME_FRONTIER)
                 .withRating(VALID_RATING_FRONTIER).withEmail(VALID_EMAIL_FRONTIER).withAddress(VALID_ADDRESS_FRONTIER)
-                .withTags(VALID_TAG_CROWDED).build();
+                .withAddedTags(VALID_TAG_CROWDED).build();
         DESC_DECK = new EditStudySpotDescriptorBuilder().withName(VALID_NAME_DECK)
                 .withRating(VALID_RATING_DECK).withEmail(VALID_EMAIL_DECK).withAddress(VALID_ADDRESS_DECK)
-                .withTags(VALID_TAG_QUIET, VALID_TAG_CROWDED).build();
+                .withAddedTags(VALID_TAG_QUIET, VALID_TAG_CROWDED).build();
     }
 
     /**

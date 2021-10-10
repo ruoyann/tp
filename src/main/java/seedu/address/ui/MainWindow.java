@@ -116,7 +116,8 @@ public class MainWindow extends UiPart<Stage> {
      * Fills up all the placeholders of this window.
      */
     void fillInnerParts() {
-        studySpotListPanel = new StudySpotListPanel(logic.getFilteredStudySpotList());
+        studySpotListPanel = new StudySpotListPanel(logic.getFilteredStudySpotList(),
+                logic.getFullList().size());
         studySpotListPanelPlaceholder.getChildren().add(studySpotListPanel.getRoot());
 
         resultDisplay = new ResultDisplay();
@@ -186,6 +187,8 @@ public class MainWindow extends UiPart<Stage> {
             CommandResult commandResult = logic.execute(commandText);
             logger.info("Result: " + commandResult.getFeedbackToUser());
             resultDisplay.setFeedbackToUser(commandResult.getFeedbackToUser());
+            studySpotListPanel.updateStudySpotCountDisplay(logic.getFilteredStudySpotList().size(),
+                    logic.getFullList().size());
 
             if (commandResult.isShowHelp()) {
                 handleHelp();

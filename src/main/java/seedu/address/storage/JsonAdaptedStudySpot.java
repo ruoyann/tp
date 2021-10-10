@@ -13,6 +13,7 @@ import seedu.address.commons.exceptions.IllegalValueException;
 import seedu.address.model.amenity.Amenity;
 import seedu.address.model.studyspot.Address;
 import seedu.address.model.studyspot.Email;
+import seedu.address.model.studyspot.Favourite;
 import seedu.address.model.studyspot.Name;
 import seedu.address.model.studyspot.Rating;
 import seedu.address.model.studyspot.StudySpot;
@@ -29,6 +30,7 @@ class JsonAdaptedStudySpot {
     private final String rating;
     private final String email;
     private final String address;
+    private final String favourite;
     private final List<JsonAdaptedTag> tagged = new ArrayList<>();
     private final List<JsonAdaptedAmenity> amenities = new ArrayList<>();
 
@@ -38,12 +40,13 @@ class JsonAdaptedStudySpot {
     @JsonCreator
     public JsonAdaptedStudySpot(@JsonProperty("name") String name, @JsonProperty("rating") String rating,
             @JsonProperty("email") String email, @JsonProperty("address") String address,
-            @JsonProperty("tagged") List<JsonAdaptedTag> tagged,
+            @JsonProperty("favourite") String favourite, @JsonProperty("tagged") List<JsonAdaptedTag> tagged,
             @JsonProperty("amenities") List<JsonAdaptedAmenity> amenities) {
         this.name = name;
         this.rating = rating;
         this.email = email;
         this.address = address;
+        this.favourite = favourite;
         if (tagged != null) {
             this.tagged.addAll(tagged);
         }
@@ -60,6 +63,7 @@ class JsonAdaptedStudySpot {
         rating = source.getRating().value;
         email = source.getEmail().value;
         address = source.getAddress().value;
+        favourite = source.getFavourite().value;
         tagged.addAll(source.getTags().stream()
                 .map(JsonAdaptedTag::new)
                 .collect(Collectors.toList()));
@@ -116,9 +120,19 @@ class JsonAdaptedStudySpot {
         }
         final Address modelAddress = new Address(address);
 
+        if (favourite == null) {
+            throw new IllegalValueException(String.format(MISSING_FIELD_MESSAGE_FORMAT,
+                    Favourite.class.getSimpleName()));
+        }
+        if (!Favourite.isValidFavourite(favourite)) {
+            throw new IllegalValueException(Favourite.MESSAGE_CONSTRAINTS);
+        }
+        final Favourite modelFavourite = new Favourite(Boolean.parseBoolean(favourite));
+
         final Set<Tag> modelTags = new HashSet<>(studySpotTags);
         final Set<Amenity> modelAmenities = new HashSet<>(studySpotAmenities);
-        return new StudySpot(modelName, modelRating, modelEmail, modelAddress, modelTags, modelAmenities);
+        return new StudySpot(modelName, modelRating, modelEmail, modelAddress, modelFavourite,
+                modelTags, modelAmenities);
     }
 
 }

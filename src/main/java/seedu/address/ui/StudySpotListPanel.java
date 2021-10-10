@@ -25,12 +25,24 @@ public class StudySpotListPanel extends UiPart<Region> {
     private Label studySpotListCount;
 
     /**
-     * Creates a {@code StudySpotListPanel} with the given {@code ObservableList}.
+     * Creates a {@code StudySpotListPanel} with the given {@code ObservableList} and {@code totalStudySpots}.
      */
-    public StudySpotListPanel(ObservableList<StudySpot> studySpots) {
+    public StudySpotListPanel(ObservableList<StudySpot> filteredStudySpots, int totalStudySpots) {
         super(FXML);
-        studySpotListView.setItems(studySpots);
+        studySpotListView.setItems(filteredStudySpots);
         studySpotListView.setCellFactory(listView -> new StudySpotListViewCell());
+        studySpotListCount.setText(getInitialStudySpotCountDisplay(totalStudySpots));
+    }
+
+    /**
+     * Updates {@code studySpotListCount} with the given {@code filteredStudySpots} and {@code totalStudySpots}.
+     */
+    public void updateStudySpotCountDisplay(int filteredStudySpots, int totalStudySpots) {
+        studySpotListCount.setText(filteredStudySpots + "/" + totalStudySpots);
+    }
+
+    private String getInitialStudySpotCountDisplay(int studySpotCount) {
+        return studySpotCount + "/" + studySpotCount;
     }
 
     /**

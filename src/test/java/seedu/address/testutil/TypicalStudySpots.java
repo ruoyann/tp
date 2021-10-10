@@ -27,17 +27,23 @@ public class TypicalStudySpots {
             .withAddress("UTown").withEmail("-")
             .withRating("4")
             .withTags("coffee")
+            .withAmenities("wifi", "charger")
             .build();
     public static final StudySpot CENTRAL_LIBRARY = new StudySpotBuilder().withName("Central library")
             .withAddress("NUS, Central Library")
             .withEmail("-").withRating("3")
             .withTags("cold", "quiet")
-            .withAmenities("wifi").build();
+            .withAmenities("wifi", "charger").build();
     public static final StudySpot COM1 = new StudySpotBuilder().withName("COM1")
             .withRating("2")
             .withEmail("-")
             .withAddress("NUS Computing")
-            .withAmenities("wifi").build();
+            .withAmenities("wifi", "charger").build();
+    public static final StudySpot FRONTIER_CANTEEN = new StudySpotBuilder().withName("Frontier Canteen")
+            .withRating("3")
+            .withEmail("Frontier email")
+            .withAddress("NUS Science Faculty")
+            .withTags("crowded").build();
     public static final StudySpot TOKYO_ROOM = new StudySpotBuilder().withName("Tokyo Room")
             .withRating("3")
             .withEmail("-")
@@ -47,8 +53,7 @@ public class TypicalStudySpots {
     public static final StudySpot PC_COMMONS = new StudySpotBuilder().withName("PC Commons")
             .withRating("4")
             .withEmail("-")
-            .withAddress("Utown")
-            .withAmenities("wifi").build();
+            .withAddress("Utown").build();
     public static final StudySpot LT_17 = new StudySpotBuilder().withName("LT17")
             .withRating("5")
             .withEmail("-")
@@ -93,6 +98,6 @@ public class TypicalStudySpots {
 
     public static List<StudySpot> getTypicalStudySpots() {
         return new ArrayList<>(Arrays.asList(STARBUCKS, CENTRAL_LIBRARY, COM1,
-                FRONTIER, TOKYO_ROOM, PC_COMMONS, LT_17));
+                FRONTIER_CANTEEN, TOKYO_ROOM, PC_COMMONS, LT_17));
     }
 }

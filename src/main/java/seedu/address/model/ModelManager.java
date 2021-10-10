@@ -122,6 +122,9 @@ public class ModelManager implements Model {
     @Override
     public void addStudySpot(StudySpot studySpot) {
         studyTracker.addStudySpot(studySpot);
+        if (studySpot.isFavourite()) {
+            addStudySpotToFavourites(studySpot);
+        }
         updateFilteredStudySpotList(PREDICATE_SHOW_ALL_STUDYSPOTS);
     }
 
@@ -132,11 +135,45 @@ public class ModelManager implements Model {
         studyTracker.setStudySpot(target, editedStudySpot);
     }
 
+    /**
+     * Returns true if a study spot with the same identity as {@code studySpot} is a favourite in the study tracker.
+     *
+     * @param studySpot
+     */
+    @Override
+    public boolean isFavouriteStudySpot(StudySpot studySpot) {
+        return studyTracker.isFavouriteStudySpot(studySpot);
+    }
+
+    /**
+     * Adds the given study spot to favourites.
+     * {@code study spot} must already exist in the study tracker.
+     *
+     * @param studySpot
+     */
+    @Override
+    public StudySpot addStudySpotToFavourites(StudySpot studySpot) {
+        StudySpot favStudySpot = studyTracker.addStudySpotToFavourites(studySpot);
+        return favStudySpot;
+    }
+
+    /**
+     * Removes the given study spot from favourites.
+     * {@code study spot} must already exist in the study tracker.
+     *
+     * @param studySpot
+     */
+    @Override
+    public StudySpot removeStudySpotFromFavourites(StudySpot studySpot) {
+        StudySpot unfavStudySpot = studyTracker.removeStudySpotFromFavourites(studySpot);
+        return unfavStudySpot;
+    }
+
     //=========== Filtered StudySpot List Accessors =============================================================
 
     /**
      * Returns an unmodifiable view of the list of {@code StudySpot} backed by the internal list of
-     * {@code versionedAddressBook}
+     * {@code versionedStudyTracker}
      */
     @Override
     public ObservableList<StudySpot> getFilteredStudySpotList() {

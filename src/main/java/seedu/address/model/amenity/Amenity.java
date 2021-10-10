@@ -12,8 +12,7 @@ import java.util.Arrays;
 public class Amenity {
 
     public static final String MESSAGE_CONSTRAINTS = "Amenities should only be of the types: %s.";
-    public static final String MESSAGE_REMOVAL_CONSTRAINTS = "Only amenities currently present can be removed:  %s.";
-    public static final String[] VALID_TYPES = {"wifi"};
+    public static final String[] VALID_TYPES = {"wifi", "charger"};
 
     public final String amenityType;
 
