@@ -14,6 +14,7 @@ import seedu.address.logic.commands.FavouriteCommand;
 import seedu.address.logic.commands.FindCommand;
 import seedu.address.logic.commands.HelpCommand;
 import seedu.address.logic.commands.ListCommand;
+import seedu.address.logic.commands.UnaliasCommand;
 import seedu.address.logic.commands.UnfavouriteCommand;
 
 /**
@@ -46,6 +47,7 @@ public class CliSyntax {
         FindCommand.COMMAND_WORD,
         HelpCommand.COMMAND_WORD,
         ListCommand.COMMAND_WORD,
+        UnaliasCommand.COMMAND_WORD,
         UnfavouriteCommand.COMMAND_WORD
     ).collect(Collectors.toCollection(HashSet::new));
 

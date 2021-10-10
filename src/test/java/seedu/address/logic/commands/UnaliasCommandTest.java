@@ -16,6 +16,7 @@ import java.util.Arrays;
 
 import org.junit.jupiter.api.Test;
 
+import seedu.address.logic.commands.exceptions.CommandException;
 import seedu.address.model.ModelStub;
 import seedu.address.model.ReadOnlyUserPrefs;
 import seedu.address.model.UserPrefs;
@@ -44,18 +45,18 @@ class UnaliasCommandTest {
     }
 
     @Test
-    public void execute_aliasNotInModel_showsNotFoundMessage() throws Exception {
+    public void execute_aliasNotInModel_throwsCommandException() throws Exception {
         Alias lsAlias = new Alias(VALID_ALIAS_LS, VALID_ALIAS_COMMAND_LIST);
         Alias pwdAlias = new Alias(VALID_ALIAS_PWD, VALID_ALIAS_COMMAND_LIST);
         ModelStubWithAlias modelStub = new ModelStubWithAlias(lsAlias);
 
         // initially contains alias 'ls', try to unalias 'pwd'
         assertTrue(modelStub.hasAlias(lsAlias));
-        CommandResult unaliasCommandResult = new UnaliasCommand(pwdAlias).execute(modelStub);
+        UnaliasCommand cmd = new UnaliasCommand(pwdAlias);
 
         // 'pwd' is not removed, 'ls' still in model
-        assertEquals(String.format(MESSAGE_NOT_FOUND, pwdAlias.userAlias),
-                unaliasCommandResult.getFeedbackToUser());
+        assertThrows(CommandException.class,
+                String.format(MESSAGE_NOT_FOUND, pwdAlias.userAlias), () -> cmd.execute(modelStub));
         assertTrue(modelStub.hasAlias(lsAlias));
     }
 

@@ -6,6 +6,7 @@ import static seedu.address.commons.util.AppUtil.checkArgument;
 import java.util.Objects;
 
 import seedu.address.logic.commands.AliasCommand;
+import seedu.address.logic.commands.UnaliasCommand;
 import seedu.address.logic.parser.CliSyntax;
 
 /**
@@ -77,7 +78,8 @@ public class Alias {
      * Checks if provided commandWord is 'alias' or 'unalias'
      */
     public static boolean isDangerousCommandWord(String commandWord) {
-        return commandWord.equals(AliasCommand.COMMAND_WORD);
+        return commandWord.equals(AliasCommand.COMMAND_WORD)
+                || commandWord.equals(UnaliasCommand.COMMAND_WORD);
     }
 
     /**

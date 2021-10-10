@@ -3,6 +3,7 @@ package seedu.address.logic.commands;
 import static java.util.Objects.requireNonNull;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_ALIAS;
 
+import seedu.address.logic.commands.exceptions.CommandException;
 import seedu.address.model.Model;
 import seedu.address.model.alias.Alias;
 
@@ -34,9 +35,9 @@ public class UnaliasCommand extends Command {
     }
 
     @Override
-    public CommandResult execute(Model model) {
+    public CommandResult execute(Model model) throws CommandException {
         if (!model.hasAlias(alias)) {
-            return new CommandResult(String.format(MESSAGE_NOT_FOUND, alias.userAlias));
+            throw new CommandException(String.format(MESSAGE_NOT_FOUND, alias.userAlias));
         }
         model.removeAlias(alias);
         return new CommandResult(String.format(MESSAGE_SUCCESS_UNALIAS, alias.userAlias));
