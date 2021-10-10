@@ -11,18 +11,16 @@ import static seedu.address.logic.commands.CommandTestUtil.VALID_ALIAS_LS;
 import static seedu.address.logic.commands.CommandTestUtil.VALID_ALIAS_PWD;
 import static seedu.address.testutil.Assert.assertThrows;
 
-import java.nio.file.Path;
 import java.util.ArrayList;
 import java.util.Arrays;
-import java.util.function.Predicate;
+import java.util.stream.Collectors;
 
 import org.junit.jupiter.api.Test;
 
-import javafx.collections.ObservableList;
-import seedu.address.commons.core.GuiSettings;
-import seedu.address.model.*;
+import seedu.address.model.ModelStub;
+import seedu.address.model.ReadOnlyUserPrefs;
+import seedu.address.model.UserPrefs;
 import seedu.address.model.alias.Alias;
-import seedu.address.model.studyspot.StudySpot;
 
 class AliasCommandTest {
 
@@ -50,7 +48,9 @@ class AliasCommandTest {
         CommandResult showTypeAliasCommandResult = new AliasCommand(true).execute(modelStub);
 
         // shows the default aliases
-        assertEquals(String.format(MESSAGE_SUCCESS_SHOW, modelStub.getUserPrefs().getUserAliases()),
+        assertEquals(String.format(MESSAGE_SUCCESS_SHOW,
+                modelStub.getUserPrefs().getUserAliases().stream()
+                        .map(Alias::toString).collect(Collectors.joining("\n"))),
                 showTypeAliasCommandResult.getFeedbackToUser());
     }
 
@@ -65,7 +65,9 @@ class AliasCommandTest {
         // running showType Alias Command now shows the newly added Alias
         CommandResult showTypeAliasCommandResult = new AliasCommand(true).execute(modelStub);
         assertTrue(modelStub.hasAlias(listAlias));
-        assertEquals(String.format(MESSAGE_SUCCESS_SHOW, modelStub.getUserPrefs().getUserAliases()),
+        assertEquals(String.format(MESSAGE_SUCCESS_SHOW,
+                modelStub.getUserPrefs().getUserAliases().stream()
+                        .map(Alias::toString).collect(Collectors.joining("\n"))),
                 showTypeAliasCommandResult.getFeedbackToUser());
     }
 

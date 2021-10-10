@@ -37,12 +37,12 @@ public class AliasCommandParser implements Parser<AliasCommand> {
         }
 
         String userAlias = argMultimap.getValue(PREFIX_ALIAS).get();
-        String aliasCommandWord = argMultimap.getValue(PREFIX_ALIAS_COMMAND).get();
+        String aliasCommandPhrase = argMultimap.getValue(PREFIX_ALIAS_COMMAND).get();
 
         Alias aliasToAdd;
 
         try {
-            aliasToAdd = new Alias(userAlias, aliasCommandWord);
+            aliasToAdd = new Alias(userAlias, aliasCommandPhrase);
         } catch (IllegalArgumentException e) {
             throw new ParseException(String.format(MESSAGE_INVALID_ALIAS_ARGUMENTS, e.getMessage()));
         }

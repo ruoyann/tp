@@ -1,17 +1,15 @@
 package seedu.address.logic.parser;
 
-import seedu.address.logic.commands.AliasCommand;
-import seedu.address.logic.commands.UnaliasCommand;
-import seedu.address.logic.parser.exceptions.ParseException;
-import seedu.address.model.alias.Alias;
-
-import java.util.stream.Stream;
-
 import static java.util.Objects.requireNonNull;
 import static seedu.address.commons.core.Messages.MESSAGE_INVALID_ALIAS_ARGUMENTS;
 import static seedu.address.commons.core.Messages.MESSAGE_INVALID_COMMAND_FORMAT;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_ALIAS;
-import static seedu.address.logic.parser.CliSyntax.PREFIX_ALIAS_COMMAND;
+
+import java.util.stream.Stream;
+
+import seedu.address.logic.commands.UnaliasCommand;
+import seedu.address.logic.parser.exceptions.ParseException;
+import seedu.address.model.alias.Alias;
 
 /**
  * Parses input arguments and creates a new UnaliasCommand object

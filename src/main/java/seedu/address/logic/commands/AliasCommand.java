@@ -4,6 +4,8 @@ import static java.util.Objects.requireNonNull;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_ALIAS;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_ALIAS_COMMAND;
 
+import java.util.stream.Collectors;
+
 import seedu.address.model.Model;
 import seedu.address.model.alias.Alias;
 
@@ -22,7 +24,7 @@ public class AliasCommand extends Command {
             + COMMAND_WORD + " " + PREFIX_ALIAS + "e " + PREFIX_ALIAS_COMMAND + "edit";
 
     public static final String MESSAGE_SUCCESS_SET = "Added alias %1$s.";
-    public static final String MESSAGE_SUCCESS_SHOW = "Here are your aliases: %1$s.";
+    public static final String MESSAGE_SUCCESS_SHOW = "Here are your aliases:\n%1$s.";
 
     private final boolean isShowType;
     private final Alias alias;
@@ -49,7 +51,11 @@ public class AliasCommand extends Command {
     @Override
     public CommandResult execute(Model model) {
         if (this.isShowType) {
-            return new CommandResult(String.format(MESSAGE_SUCCESS_SHOW, model.getUserPrefs().getUserAliases()));
+            return new CommandResult(String.format(MESSAGE_SUCCESS_SHOW,
+                    model.getUserPrefs().getUserAliases().stream()
+                    .map(Alias::toString)
+                    .collect(Collectors.joining("\n")))
+            );
         } else {
             model.addAlias(alias);
             return new CommandResult(String.format(MESSAGE_SUCCESS_SET, alias));

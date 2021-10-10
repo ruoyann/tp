@@ -86,12 +86,6 @@ class AliasCommandParserTest {
                         + ALIAS_USER_ALIAS_LS + ALIAS_USER_COMMAND_LIST,
                         String.format(MESSAGE_INVALID_COMMAND_FORMAT, AliasCommand.MESSAGE_USAGE));
 
-        // extraneous arguments after alias prefixes - error
-        assertParseFailure(parser, PREAMBLE_WHITESPACE
-                        + ALIAS_USER_ALIAS_LS + ALIAS_USER_COMMAND_LIST
-                        + ADDRESS_DESC_DECK + TAG_DESC_CROWDED,
-                String.format(MESSAGE_INVALID_ALIAS_ARGUMENTS, Alias.MESSAGE_COMMAND_CONSTRAINTS));
-
         // using a command word in userAlias argument
         assertParseFailure(parser, PREAMBLE_WHITESPACE
                 + INVALID_USER_ALIAS + ALIAS_USER_COMMAND_LIST,

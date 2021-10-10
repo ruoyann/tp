@@ -65,7 +65,12 @@ public class Alias {
      * @param commandWord provided in constructor.
      */
     public static boolean isValidCommandWord(String commandWord) {
-        return CliSyntax.COMMAND_WORDS_LIST.contains(commandWord);
+        if (commandWord != null) {
+            String firstWord = commandWord.split(" ")[0];
+            return CliSyntax.COMMAND_WORDS_LIST.contains(firstWord);
+        }
+
+        return false;
     }
 
     /**
@@ -105,7 +110,7 @@ public class Alias {
      * Format state as text for viewing.
      */
     public String toString() {
-        return userAlias + " = " + aliasCommandWord;
+        return userAlias + ": [" + aliasCommandWord + "]";
     }
 
 }

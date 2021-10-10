@@ -1,11 +1,10 @@
 package seedu.address.logic.commands;
 
-import seedu.address.model.Model;
-import seedu.address.model.alias.Alias;
-
 import static java.util.Objects.requireNonNull;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_ALIAS;
-import static seedu.address.logic.parser.CliSyntax.PREFIX_ALIAS_COMMAND;
+
+import seedu.address.model.Model;
+import seedu.address.model.alias.Alias;
 
 /**
  * Removes aliases for Commands in StudyTracker.

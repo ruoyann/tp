@@ -112,8 +112,6 @@ add n/Starbucks at U-Town r/4 t/noisy m/wifi
 New study spot “Starbucks at U-Town” added to list!
 ```
 
-Command alias: `new`
-
 ### Listing all study spots : `list`
 
 Shows all saved study spots in the StudyTracker.
@@ -224,9 +222,28 @@ Adds or shows user-defined aliases.
 
 Format: `alias show` to show all aliases
 
-Format: `alias al/ALIAS* cmd/COMMANDWORD*` to set alias
+Format: `alias al/ALIAS* cmd/COMMAND*` to set alias
 
 Format `unalias al/ALIAS*` to remove alias
+
+Example:
+```
+alias al/myList cmd/list
+```
+running `myList` will run the `list` command.
+
+<div markdown="span" class="alert alert-primary">:bulb: **Tip:**
+Aliases can be chained to make more powerful commands!
+
+Example:
+```
+alias al/Rate5 cmd/edit r/5
+```
+will set alias `Rate5` to expand to the command `edit r/5`.
+
+Running `Rate5 spot/Bishan Library` would then result in `edit r/5 spot/Bishan Library`!
+</div>
+
 
 ### Saving the data
 
@@ -262,6 +279,6 @@ Action | Format, Examples
 **Delete** | `delete n/NAME*` <br> e.g., `delete n/COM1`
 **Edit** | `edit n/NAME* n/NEW_NAME a/NEW_ADDRESS t/NEW_TAG m/NEW_AMENITY r/NEW_RATING`<br> e.g.,`edit n/tr3 n/Training Room 3`
 **Find** | `find n/NAME*`<br> e.g., `find n/lib`
-**Alias** | `alias al/ALIAS* cmd/COMMANDWORD*`<br> e.g., `alias al/d cmd/delete`
+**Alias** | `alias al/ALIAS* cmd/COMMAND*`<br> e.g., `alias al/home cmd/find n/home`
 **List** | `list`
 **Help** | `help`

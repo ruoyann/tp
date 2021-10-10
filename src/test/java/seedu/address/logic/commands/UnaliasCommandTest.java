@@ -1,9 +1,12 @@
 package seedu.address.logic.commands;
 
 import static java.util.Objects.requireNonNull;
-import static org.junit.jupiter.api.Assertions.*;
+import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertFalse;
-import static seedu.address.logic.commands.CommandTestUtil.*;
+import static org.junit.jupiter.api.Assertions.assertTrue;
+import static seedu.address.logic.commands.CommandTestUtil.VALID_ALIAS_COMMAND_LIST;
+import static seedu.address.logic.commands.CommandTestUtil.VALID_ALIAS_LS;
+import static seedu.address.logic.commands.CommandTestUtil.VALID_ALIAS_PWD;
 import static seedu.address.logic.commands.UnaliasCommand.MESSAGE_NOT_FOUND;
 import static seedu.address.logic.commands.UnaliasCommand.MESSAGE_SUCCESS_UNALIAS;
 import static seedu.address.testutil.Assert.assertThrows;
@@ -32,11 +35,11 @@ class UnaliasCommandTest {
 
         // initially contains alias pwd
         assertTrue(modelStub.hasAlias(pwdAlias));
-        CommandResult UnaliasCommandResult = new UnaliasCommand(pwdAlias).execute(modelStub);
+        CommandResult unaliasCommandResult = new UnaliasCommand(pwdAlias).execute(modelStub);
 
         // pwd alias has been removed
         assertEquals(String.format(MESSAGE_SUCCESS_UNALIAS, pwdAlias.userAlias),
-                UnaliasCommandResult.getFeedbackToUser());
+                unaliasCommandResult.getFeedbackToUser());
         assertEquals(Arrays.asList(pwdAlias), modelStub.aliasesRemoved);
     }
 
@@ -48,11 +51,11 @@ class UnaliasCommandTest {
 
         // initially contains alias 'ls', try to unalias 'pwd'
         assertTrue(modelStub.hasAlias(lsAlias));
-        CommandResult UnaliasCommandResult = new UnaliasCommand(pwdAlias).execute(modelStub);
+        CommandResult unaliasCommandResult = new UnaliasCommand(pwdAlias).execute(modelStub);
 
         // 'pwd' is not removed, 'ls' still in model
         assertEquals(String.format(MESSAGE_NOT_FOUND, pwdAlias.userAlias),
-                UnaliasCommandResult.getFeedbackToUser());
+                unaliasCommandResult.getFeedbackToUser());
         assertTrue(modelStub.hasAlias(lsAlias));
     }
 
@@ -84,8 +87,8 @@ class UnaliasCommandTest {
      * A Model stub that contains a single Alias.
      */
     private class ModelStubWithAlias extends ModelStub {
-        private final Alias alias;
         final ArrayList<Alias> aliasesRemoved = new ArrayList<>();
+        private final Alias alias;
 
         ModelStubWithAlias(Alias alias) {
             requireNonNull(alias);

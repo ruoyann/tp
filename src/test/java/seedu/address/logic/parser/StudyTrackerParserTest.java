@@ -4,6 +4,8 @@ import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 import static seedu.address.commons.core.Messages.MESSAGE_INVALID_COMMAND_FORMAT;
 import static seedu.address.commons.core.Messages.MESSAGE_UNKNOWN_COMMAND;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_ALIAS;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_ALIAS_COMMAND;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_NAME;
 import static seedu.address.testutil.Assert.assertThrows;
 import static seedu.address.testutil.TypicalIndexes.INDEX_FIRST_SPOT;
@@ -17,6 +19,7 @@ import java.util.stream.Collectors;
 import org.junit.jupiter.api.Test;
 
 import seedu.address.logic.commands.AddCommand;
+import seedu.address.logic.commands.AliasCommand;
 import seedu.address.logic.commands.ClearCommand;
 import seedu.address.logic.commands.DeleteCommand;
 import seedu.address.logic.commands.EditCommand;
@@ -26,6 +29,7 @@ import seedu.address.logic.commands.FavouriteCommand;
 import seedu.address.logic.commands.FindCommand;
 import seedu.address.logic.commands.HelpCommand;
 import seedu.address.logic.commands.ListCommand;
+import seedu.address.logic.commands.UnaliasCommand;
 import seedu.address.logic.commands.UnfavouriteCommand;
 import seedu.address.logic.parser.exceptions.ParseException;
 import seedu.address.model.alias.Alias;
@@ -68,6 +72,22 @@ public class StudyTrackerParserTest {
         EditCommand commandFromParse = (EditCommand) parser.parseCommand(EditCommand.COMMAND_WORD + " "
                 + "spot/Test" + " " + StudySpotUtil.getEditStudySpotDescriptorDetails(descriptor), ALIAS_LIST);
         assertEquals(new EditCommand(new Name("Test"), descriptor), commandFromParse);
+    }
+
+    @Test
+    public void parseCommand_alias() throws Exception {
+        Alias listAlias = new Alias("ls", "list");
+        AliasCommand command = (AliasCommand) parser.parseCommand(
+                AliasCommand.COMMAND_WORD + " " + PREFIX_ALIAS + "ls " + PREFIX_ALIAS_COMMAND + "list ", ALIAS_LIST);
+        assertEquals(new AliasCommand(false, listAlias), command);
+    }
+
+    @Test
+    public void parseCommand_unalias() throws Exception {
+        Alias listAlias = new Alias("ls", "list");
+        UnaliasCommand command = (UnaliasCommand) parser.parseCommand(
+                UnaliasCommand.COMMAND_WORD + " " + PREFIX_ALIAS + "ls ", ALIAS_LIST);
+        assertEquals(new UnaliasCommand(listAlias), command);
     }
 
     @Test
