@@ -103,6 +103,7 @@ public class ModelManager implements Model {
 
     @Override
     public boolean hasAlias(Alias alias) {
+        requireNonNull(alias);
         List<Alias> aliases = userPrefs.getUserAliases();
 
         return aliases.stream().anyMatch(a -> a.isSameAlias(alias));

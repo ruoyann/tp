@@ -5,6 +5,7 @@ import static java.util.Objects.requireNonNull;
 import java.nio.file.Path;
 import java.nio.file.Paths;
 import java.util.Arrays;
+import java.util.LinkedList;
 import java.util.List;
 import java.util.Objects;
 
@@ -16,11 +17,13 @@ import seedu.address.model.alias.Alias;
  */
 public class UserPrefs implements ReadOnlyUserPrefs {
 
-    public static final List<Alias> DEFAULT_PROGRAM_ALIASES = Arrays.asList(
+    // We want the aliases to be editable, so we need to wrap with LinkedList
+    // https://stackoverflow.com/questions/2965747
+    public static final List<Alias> DEFAULT_PROGRAM_ALIASES = new LinkedList<>(Arrays.asList(
             new Alias("ls", "list"),
             new Alias("bye", "exit"),
             new Alias("quit", "exit")
-    );
+    ));
 
     private GuiSettings guiSettings = new GuiSettings();
     private Path studyTrackerFilePath = Paths.get("data" , "studytracker.json");
