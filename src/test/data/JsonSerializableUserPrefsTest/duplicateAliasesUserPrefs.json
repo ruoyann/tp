@@ -2,11 +2,9 @@
   "guiSettings" : {
     "windowWidth" : 880.0,
     "windowHeight" : 740.0,
-    "extra" : "some value ",
     "windowCoordinates" : {
       "x" : 300,
-      "y" : 100,
-      "z" : 99
+      "y" : 100
     }
   },
   "studyTrackerFilePath" : "studytracker.json",
@@ -19,5 +17,8 @@
   }, {
     "userAlias" : "quit",
     "aliasCommandWord" : "exit"
-  }]
+  }, {
+    "userAlias" : "quit",
+    "aliasCommandWord" : "list"
+  } ]
 }

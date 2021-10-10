@@ -5,6 +5,7 @@ import java.util.function.Predicate;
 
 import javafx.collections.ObservableList;
 import seedu.address.commons.core.GuiSettings;
+import seedu.address.model.alias.Alias;
 import seedu.address.model.studyspot.StudySpot;
 
 /**
@@ -33,6 +34,16 @@ public interface Model {
      * Sets the user prefs' GUI settings.
      */
     void setGuiSettings(GuiSettings guiSettings);
+
+    /**
+     * Adds an alias to user prefs.
+     */
+    void addAlias(Alias aliasToAdd);
+
+    /**
+     * Returns true if an Alias with the same {@code userAlias} exists in the userPrefs.
+     */
+    boolean hasAlias(Alias alias);
 
     /**
      * Returns the user prefs' study tracker file path.

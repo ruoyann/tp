@@ -20,6 +20,7 @@ import seedu.address.model.Model;
 import seedu.address.model.ReadOnlyStudyTracker;
 import seedu.address.model.ReadOnlyUserPrefs;
 import seedu.address.model.StudyTracker;
+import seedu.address.model.alias.Alias;
 import seedu.address.model.studyspot.StudySpot;
 import seedu.address.testutil.StudySpotBuilder;
 
@@ -96,6 +97,16 @@ public class AddCommandTest {
 
         @Override
         public void setGuiSettings(GuiSettings guiSettings) {
+            throw new AssertionError("This method should not be called.");
+        }
+
+        @Override
+        public void addAlias(Alias aliasToAdd) {
+            throw new AssertionError("This method should not be called.");
+        }
+
+        @Override
+        public boolean hasAlias(Alias alias) {
             throw new AssertionError("This method should not be called.");
         }
 

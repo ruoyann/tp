@@ -42,11 +42,12 @@ public class LogicManager implements Logic {
         logger.info("----------------[USER COMMAND][" + commandText + "]");
 
         CommandResult commandResult;
-        Command command = studyTrackerParser.parseCommand(commandText);
+        Command command = studyTrackerParser.parseCommand(commandText, model.getUserPrefs().getUserAliases());
         commandResult = command.execute(model);
 
         try {
             storage.saveStudyTracker(model.getStudyTracker());
+            storage.saveUserPrefs(model.getUserPrefs());
         } catch (IOException ioe) {
             throw new CommandException(FILE_OPS_ERROR_MESSAGE + ioe, ioe);
         }

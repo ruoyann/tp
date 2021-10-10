@@ -134,7 +134,7 @@ Your study spots are:
 Make use of command aliases to speed up typing your inputs!
 </div>
 
-Command alias :`ls`
+Default command alias :`ls`
 
 ### Editing a study spot : `edit`
 
@@ -155,8 +155,6 @@ edit spot/tr3 n/Training Room 3
 Study spot “TR3” has been edited to “Training Room 3”
 ```
 
-Command alias: `ed`
-
 ### Locating a study spot by name: `find`
 
 Finds study spots whose names contain the query.
@@ -175,8 +173,6 @@ Found the following study spots matching “lib”:
   3. Jurong Library
 ```
 
-Command alias: `grep`
-
 ### Deleting a study spot : `delete`
 
 Deletes the specified study spot from the StudyTracker.
@@ -191,8 +187,6 @@ Examples:
 delete n/COM1
 COM1 has been deleted.
 ```
-
-Command alias: `rm`
 
 ### Clearing all entries : `clear`
 
@@ -210,8 +204,6 @@ clear
 All study spots have been cleared.
 ```
 
-Command alias: `rma`
-
 ### Exiting the program : `exit`
 
 Closes the StudyTracker.
@@ -224,7 +216,17 @@ exit
 Goodbye!
 ```
 
-Command alias: `/q`
+Command alias: `bye`, `quit`
+
+### Setting command aliases : `alias`, `unalias`
+
+Adds or shows user-defined aliases.
+
+Format: `alias show` to show all aliases
+
+Format: `alias al/ALIAS* cmd/COMMANDWORD*` to set alias
+
+Format `unalias al/ALIAS*` to remove alias
 
 ### Saving the data
 
@@ -247,7 +249,7 @@ _Details coming soon ..._
 ## FAQ
 
 **Q**: How do I transfer my data to another Computer?<br>
-**A**: Install the app in the other computer and overwrite the empty data file it creates with the file that contains the data of your previous StudyTracker home folder.
+**A**: Install the app in the other computer and overwrite the empty **data** file it creates with the file that contains the data of your previous StudyTracker home folder. You may also copy the **preferences.json** file to keep your user preferences.
 
 --------------------------------------------------------------------------------------------------------------------
 
@@ -260,5 +262,6 @@ Action | Format, Examples
 **Delete** | `delete n/NAME*` <br> e.g., `delete n/COM1`
 **Edit** | `edit n/NAME* n/NEW_NAME a/NEW_ADDRESS t/NEW_TAG m/NEW_AMENITY r/NEW_RATING`<br> e.g.,`edit n/tr3 n/Training Room 3`
 **Find** | `find n/NAME*`<br> e.g., `find n/lib`
+**Alias** | `alias al/ALIAS* cmd/COMMANDWORD*`<br> e.g., `alias al/d cmd/delete`
 **List** | `list`
 **Help** | `help`

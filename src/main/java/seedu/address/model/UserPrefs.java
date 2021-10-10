@@ -4,17 +4,28 @@ import static java.util.Objects.requireNonNull;
 
 import java.nio.file.Path;
 import java.nio.file.Paths;
+import java.util.Arrays;
+import java.util.List;
 import java.util.Objects;
 
 import seedu.address.commons.core.GuiSettings;
+import seedu.address.model.alias.Alias;
 
 /**
  * Represents User's preferences.
  */
 public class UserPrefs implements ReadOnlyUserPrefs {
 
+    public static final List<Alias> DEFAULT_PROGRAM_ALIASES = Arrays.asList(
+            new Alias("ls", "list"),
+            new Alias("bye", "exit"),
+            new Alias("quit", "exit")
+    );
+
     private GuiSettings guiSettings = new GuiSettings();
     private Path studyTrackerFilePath = Paths.get("data" , "studytracker.json");
+
+    private List<Alias> userAliases = DEFAULT_PROGRAM_ALIASES;
 
     /**
      * Creates a {@code UserPrefs} with default values.
@@ -36,6 +47,7 @@ public class UserPrefs implements ReadOnlyUserPrefs {
         requireNonNull(newUserPrefs);
         setGuiSettings(newUserPrefs.getGuiSettings());
         setStudyTrackerFilePath(newUserPrefs.getStudyTrackerFilePath());
+        setUserAliases(newUserPrefs.getUserAliases());
     }
 
     public GuiSettings getGuiSettings() {
@@ -56,6 +68,15 @@ public class UserPrefs implements ReadOnlyUserPrefs {
         this.studyTrackerFilePath = studyTrackerFilePath;
     }
 
+    public void setUserAliases(List<Alias> aliases) {
+        requireNonNull(aliases);
+        this.userAliases = aliases;
+    }
+
+    public List<Alias> getUserAliases() {
+        return userAliases;
+    }
+
     @Override
     public boolean equals(Object other) {
         if (other == this) {
@@ -68,12 +89,13 @@ public class UserPrefs implements ReadOnlyUserPrefs {
         UserPrefs o = (UserPrefs) other;
 
         return guiSettings.equals(o.guiSettings)
-                && studyTrackerFilePath.equals(o.studyTrackerFilePath);
+                && studyTrackerFilePath.equals(o.studyTrackerFilePath)
+                && userAliases.equals(o.userAliases);
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(guiSettings, studyTrackerFilePath);
+        return Objects.hash(guiSettings, studyTrackerFilePath, userAliases);
     }
 
     @Override
@@ -81,6 +103,7 @@ public class UserPrefs implements ReadOnlyUserPrefs {
         StringBuilder sb = new StringBuilder();
         sb.append("Gui Settings : " + guiSettings);
         sb.append("\nLocal data file location : " + studyTrackerFilePath);
+        sb.append("\nWith user aliases : " + userAliases);
         return sb.toString();
     }
 

@@ -4,6 +4,7 @@ import static java.util.Objects.requireNonNull;
 import static seedu.address.commons.util.CollectionUtil.requireAllNonNull;
 
 import java.nio.file.Path;
+import java.util.List;
 import java.util.function.Predicate;
 import java.util.logging.Logger;
 
@@ -11,6 +12,7 @@ import javafx.collections.ObservableList;
 import javafx.collections.transformation.FilteredList;
 import seedu.address.commons.core.GuiSettings;
 import seedu.address.commons.core.LogsCenter;
+import seedu.address.model.alias.Alias;
 import seedu.address.model.studyspot.StudySpot;
 
 /**
@@ -74,6 +76,24 @@ public class ModelManager implements Model {
     public void setStudyTrackerFilePath(Path studyTrackerFilePath) {
         requireNonNull(studyTrackerFilePath);
         userPrefs.setStudyTrackerFilePath(studyTrackerFilePath);
+    }
+
+    @Override
+    public void addAlias(Alias aliasToAdd) {
+        List<Alias> aliases = userPrefs.getUserAliases();
+
+        // if alias already defined, replace command word with incoming aliasToAdd
+        aliases.removeIf(al -> al.userAlias.equals(aliasToAdd.getUserAlias()));
+
+        aliases.add(aliasToAdd);
+        userPrefs.setUserAliases(aliases);
+    }
+
+    @Override
+    public boolean hasAlias(Alias alias) {
+        List<Alias> aliases = userPrefs.getUserAliases();
+
+        return aliases.stream().anyMatch(a -> a.isSameAlias(alias));
     }
 
     //=========== StudyTracker ================================================================================

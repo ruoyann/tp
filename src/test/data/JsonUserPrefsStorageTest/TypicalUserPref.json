@@ -1,11 +1,21 @@
 {
   "guiSettings" : {
-    "windowWidth" : 1000.0,
-    "windowHeight" : 500.0,
+    "windowWidth" : 880.0,
+    "windowHeight" : 740.0,
     "windowCoordinates" : {
       "x" : 300,
       "y" : 100
     }
   },
-  "studyTrackerFilePath" : "studytracker.json"
+  "studyTrackerFilePath" : "studytracker.json",
+  "userAliases" : [ {
+    "userAlias" : "ls",
+    "aliasCommandWord" : "list"
+  }, {
+    "userAlias" : "bye",
+    "aliasCommandWord" : "exit"
+  }, {
+    "userAlias" : "quit",
+    "aliasCommandWord" : "exit"
+  } ]
 }
