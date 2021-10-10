@@ -3,6 +3,10 @@ package seedu.address.model;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertTrue;
+import static seedu.address.logic.commands.CommandTestUtil.VALID_ALIAS_COMMAND_EXIT;
+import static seedu.address.logic.commands.CommandTestUtil.VALID_ALIAS_COMMAND_LIST;
+import static seedu.address.logic.commands.CommandTestUtil.VALID_ALIAS_LS;
+import static seedu.address.logic.commands.CommandTestUtil.VALID_ALIAS_PWD;
 import static seedu.address.model.Model.PREDICATE_SHOW_ALL_STUDYSPOTS;
 import static seedu.address.testutil.Assert.assertThrows;
 import static seedu.address.testutil.TypicalStudySpots.CENTRAL_LIBRARY;
@@ -11,10 +15,12 @@ import static seedu.address.testutil.TypicalStudySpots.STARBUCKS;
 import java.nio.file.Path;
 import java.nio.file.Paths;
 import java.util.Arrays;
+import java.util.List;
 
 import org.junit.jupiter.api.Test;
 
 import seedu.address.commons.core.GuiSettings;
+import seedu.address.model.alias.Alias;
 import seedu.address.model.studyspot.NameContainsKeywordsPredicate;
 import seedu.address.model.studyspot.StudySpot;
 import seedu.address.testutil.StudySpotBuilder;
@@ -72,6 +78,58 @@ public class ModelManagerTest {
         Path path = Paths.get("address/book/file/path");
         modelManager.setStudyTrackerFilePath(path);
         assertEquals(path, modelManager.getStudyTrackerFilePath());
+    }
+
+    @Test
+    public void hasAlias_nullAlias_throwsNullPointerException() {
+        assertThrows(NullPointerException.class, () -> modelManager.hasAlias(null));
+    }
+
+    @Test
+    public void addAlias_nullAlias_throwsNullPointerException() {
+        assertThrows(NullPointerException.class, () -> modelManager.addAlias(null));
+    }
+
+    @Test
+    public void addAlias_newAlias_getsAdded() {
+        Alias pwdAlias = new Alias(VALID_ALIAS_PWD, VALID_ALIAS_COMMAND_LIST);
+        modelManager.addAlias(pwdAlias);
+        assertTrue(modelManager.hasAlias(pwdAlias));
+    }
+
+    @Test
+    public void addAlias_existingAlias_getsReplaced() {
+        Alias lsAlias = new Alias(VALID_ALIAS_LS, VALID_ALIAS_COMMAND_EXIT);
+        Alias lsAliasOld = new Alias(VALID_ALIAS_LS, VALID_ALIAS_COMMAND_LIST);
+        modelManager.addAlias(lsAlias);
+        assertTrue(modelManager.hasAlias(lsAlias));
+        assertTrue(modelManager.getUserPrefs().getUserAliases().contains(lsAlias));
+        assertFalse(modelManager.getUserPrefs().getUserAliases().contains(lsAliasOld));
+    }
+
+    @Test
+    public void removeAlias_nullAlias_throwsNullPointerException() {
+        assertThrows(NullPointerException.class, () -> modelManager.removeAlias(null));
+    }
+
+    @Test
+    public void removeAlias_notInUserPrefs_aliasesUnchanged() {
+        Alias unknownAlias = new Alias("abd", VALID_ALIAS_COMMAND_LIST);
+        assertFalse(modelManager.hasAlias(unknownAlias));
+
+        List<Alias> initialAliases = modelManager.getUserPrefs().getUserAliases();
+        modelManager.removeAlias(unknownAlias);
+        assertEquals(initialAliases, modelManager.getUserPrefs().getUserAliases());
+    }
+
+    @Test
+    public void removeAlias_aliasInUserPrefs_getsRemoved() {
+        Alias toRemove = new Alias(VALID_ALIAS_LS, VALID_ALIAS_COMMAND_LIST);
+        assertTrue(modelManager.hasAlias(toRemove));
+
+        List<Alias> initialAliases = modelManager.getUserPrefs().getUserAliases();
+        modelManager.removeAlias(toRemove);
+        assertFalse(modelManager.hasAlias(toRemove));
     }
 
     @Test
