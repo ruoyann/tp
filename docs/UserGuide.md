@@ -153,19 +153,44 @@ edit spot/tr3 n/Training Room 3
 Study spot “TR3” has been edited to “Training Room 3”
 ```
 
-### Locating a study spot by name: `find`
+### Adding a study spot to Favourites: `fav`
 
-Finds study spots whose names contain the query.
+Adds a study spot to the StudyTracker's Favourites.
 
-Format: `find n/NAME*`
-
-* The search is case-insensitive. e.g `hans` will match `Hans`
-* The results will contain study spots whose name **contains** the query. e.g. `lib` will give `library`
+Format: `fav n/NAME*`
 
 Examples:
 ```
-find n/lib
-Found the following study spots matching “lib”:
+fav n/COM1 Basement
+Study spot "COM1 Basement" added to favourites!
+```
+
+### Removing a study spot from Favourites: `unfav`
+
+Removes a study spot from the StudyTracker's Favourites.
+
+Format: `unfav n/NAME*`
+
+Examples:
+```
+unfav n/COM1 Basement
+Study spot "COM1 Basement" removed from favourites!
+```
+
+### Locating a study spot by name: `find`
+
+Finds study spots whose names contain any of the given keywords.
+
+Format: `find KEYWORD* [MORE KEYWORDS]`
+
+* The search is case-insensitive. e.g `hans` will match `Hans`
+* Only full words will be matched. e.g. `Han` will not match `Hans`
+* Study spots matching at least one keyword will be returned.
+
+Examples:
+```
+find library
+Found the following study spots matching “library”:
   1. Central Library
   2. Hon Sui Sen Memorial Library
   3. Jurong Library
