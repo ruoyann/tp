@@ -5,6 +5,7 @@ import static seedu.address.commons.util.AppUtil.checkArgument;
 
 import java.util.Objects;
 
+import seedu.address.logic.commands.AliasCommand;
 import seedu.address.logic.parser.CliSyntax;
 
 /**
@@ -20,6 +21,8 @@ public class Alias {
     public static final String MESSAGE_ALIAS_CONSTRAINTS = "Provided alias cannot contain spaces or "
                     + "existing command words.";
     public static final String MESSAGE_COMMAND_CONSTRAINTS = "Provided command must match an existing command.";
+    public static final String MESSAGE_COMMAND_WARN = "Please do not create aliases for alias and unalias >:( "
+            + "We don't want any recursion shenanigans.";
 
     public final String userAlias;
     public final String aliasCommandWord;
@@ -34,6 +37,7 @@ public class Alias {
         requireNonNull(userAlias);
         requireNonNull(aliasCommandWord);
         checkArgument(isValidUserAlias(userAlias), MESSAGE_ALIAS_CONSTRAINTS);
+        checkArgument(!isDangerousCommandWord(aliasCommandWord), MESSAGE_COMMAND_WARN);
         checkArgument(isValidCommandWord(aliasCommandWord), MESSAGE_COMMAND_CONSTRAINTS);
         this.userAlias = userAlias;
         this.aliasCommandWord = aliasCommandWord;
@@ -62,6 +66,13 @@ public class Alias {
      */
     public static boolean isValidCommandWord(String commandWord) {
         return CliSyntax.COMMAND_WORDS_LIST.contains(commandWord);
+    }
+
+    /**
+     * Checks if provided commandWord is 'alias' or 'unalias'
+     */
+    public static boolean isDangerousCommandWord(String commandWord) {
+        return commandWord.equals(AliasCommand.COMMAND_WORD);
     }
 
     /**

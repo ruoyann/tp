@@ -90,6 +90,18 @@ public class ModelManager implements Model {
     }
 
     @Override
+    public void removeAlias(Alias aliasToRemove) {
+        List<Alias> aliases = userPrefs.getUserAliases();
+
+        // if alias already defined, replace command word with incoming aliasToAdd
+        // otherwise, do nothing
+        aliases.removeIf(al -> al.userAlias.equals(aliasToRemove.getUserAlias()));
+
+        userPrefs.setUserAliases(aliases);
+    }
+
+
+    @Override
     public boolean hasAlias(Alias alias) {
         List<Alias> aliases = userPrefs.getUserAliases();
 

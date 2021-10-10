@@ -41,6 +41,11 @@ public interface Model {
     void addAlias(Alias aliasToAdd);
 
     /**
+     * Removes an alias from user prefs.
+     */
+    void removeAlias(Alias aliasToRemove);
+
+    /**
      * Returns true if an Alias with the same {@code userAlias} exists in the userPrefs.
      */
     boolean hasAlias(Alias alias);

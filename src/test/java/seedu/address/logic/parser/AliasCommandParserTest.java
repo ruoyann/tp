@@ -55,7 +55,6 @@ class AliasCommandParserTest {
         // multiple commandWords - last one accepted
         assertParseSuccess(parser, PREAMBLE_WHITESPACE + ALIAS_USER_ALIAS_LS + ALIAS_USER_COMMAND_LIST
                 + ALIAS_USER_COMMAND_EXIT + ALIAS_USER_COMMAND_LIST , expectedNoShowCommand);
-
     }
 
     /**
