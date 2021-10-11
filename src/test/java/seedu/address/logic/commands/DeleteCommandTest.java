@@ -28,14 +28,14 @@ import seedu.address.model.studyspot.StudySpot;
 public class DeleteCommandTest {
 
     public static final Name INVALID_NAME = new Name("thisIsAnInvalidName");
-    public static final Name VALID_NAME_ONE = new Name("validOne");
-    public static final Name VALID_NAME_TWO = new Name("validTwo");
+    public static final Name VALID_NAME_ONE = new Name("Starbucks");
+    public static final Name VALID_NAME_TWO = new Name("Central Library");
     private Model model = new ModelManager(getTypicalStudyTracker(), new UserPrefs());
 
     @Test
     public void execute_validNameUnfilteredList_success() {
         StudySpot studySpotToDelete = model.getFilteredStudySpotList().get(0);
-        DeleteCommand deleteCommand = new DeleteCommand(studySpotToDelete.getName());
+        DeleteCommand deleteCommand = new DeleteCommand(VALID_NAME_ONE);
 
         String expectedMessage = String.format(DeleteCommand.MESSAGE_DELETE_STUDYSPOT_SUCCESS, studySpotToDelete);
 
@@ -48,19 +48,7 @@ public class DeleteCommandTest {
     @Test
     public void execute_invalidNameUnfilteredList_throwsCommandException() {
         DeleteCommand deleteCommand = new DeleteCommand(INVALID_NAME);
-
-        boolean isPresent = false;
-        List<StudySpot> lastShownList = model.getFullList();
-        for (StudySpot current: lastShownList) {
-            if (current.isSameName(INVALID_NAME)) {
-                isPresent = true;
-                break;
-            }
-        }
-
-        if (!isPresent) {
-            assertCommandFailure(deleteCommand, model, Messages.MESSAGE_INVALID_EDIT_NAME);
-        }
+        assertCommandFailure(deleteCommand, model, Messages.MESSAGE_INVALID_NAME);
     }
 
     @Test
@@ -68,7 +56,7 @@ public class DeleteCommandTest {
         showStudySpotAtIndex(model, INDEX_FIRST_SPOT);
 
         StudySpot studySpotToDelete = model.getFilteredStudySpotList().get(INDEX_FIRST_SPOT.getZeroBased());
-        DeleteCommand deleteCommand = new DeleteCommand(studySpotToDelete.getName());
+        DeleteCommand deleteCommand = new DeleteCommand(VALID_NAME_ONE);
 
         String expectedMessage = String.format(DeleteCommand.MESSAGE_DELETE_STUDYSPOT_SUCCESS, studySpotToDelete);
 
@@ -89,7 +77,7 @@ public class DeleteCommandTest {
 
         DeleteCommand deleteCommand = new DeleteCommand(INVALID_NAME);
 
-        assertCommandFailure(deleteCommand, model, Messages.MESSAGE_INVALID_EDIT_NAME);
+        assertCommandFailure(deleteCommand, model, Messages.MESSAGE_INVALID_NAME);
     }
 
     @Test

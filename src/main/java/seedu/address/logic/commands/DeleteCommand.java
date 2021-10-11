@@ -47,7 +47,7 @@ public class DeleteCommand extends Command {
         }
 
         if (!isPresent) {
-            throw new CommandException(Messages.MESSAGE_INVALID_EDIT_NAME);
+            throw new CommandException(Messages.MESSAGE_INVALID_NAME);
         }
 
         model.deleteStudySpot(studySpotToDelete);

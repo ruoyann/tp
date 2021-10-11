@@ -178,7 +178,7 @@ public class EditCommandTest {
         EditStudySpotDescriptor descriptor = new EditStudySpotDescriptorBuilder().withName(VALID_NAME_DECK).build();
         EditCommand editCommand = new EditCommand(notInTypicalStudySpots, descriptor);
 
-        assertCommandFailure(editCommand, model, Messages.MESSAGE_INVALID_EDIT_NAME);
+        assertCommandFailure(editCommand, model, Messages.MESSAGE_INVALID_NAME);
     }
 
     @Test
@@ -188,7 +188,7 @@ public class EditCommandTest {
         EditStudySpotDescriptor descriptor = new EditStudySpotDescriptorBuilder().withName(VALID_NAME_DECK).build();
         EditCommand editCommand = new EditCommand(notInTypicalStudySpots, descriptor);
 
-        assertCommandFailure(editCommand, model, Messages.MESSAGE_INVALID_EDIT_NAME);
+        assertCommandFailure(editCommand, model, Messages.MESSAGE_INVALID_NAME);
     }
 
     @Test

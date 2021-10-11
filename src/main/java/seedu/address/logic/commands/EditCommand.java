@@ -96,7 +96,7 @@ public class EditCommand extends Command {
         }
 
         if (!isPresent) {
-            throw new CommandException(Messages.MESSAGE_INVALID_EDIT_NAME);
+            throw new CommandException(Messages.MESSAGE_INVALID_NAME);
         }
 
         StudySpot editedStudySpot = createEditedStudySpot(studySpotToEdit, editStudySpotDescriptor);

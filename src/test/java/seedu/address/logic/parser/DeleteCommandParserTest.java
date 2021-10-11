@@ -25,7 +25,7 @@ public class DeleteCommandParserTest {
     public void parse_validArgs_returnsDeleteCommand() {
         Name targetName = new Name("validName");
         String userInput = " " + PREFIX_DELETE_SPOT + targetName.fullName;
-        assertParseSuccess(parser, userInput, new DeleteCommand(new Name("validName")));
+        assertParseSuccess(parser, userInput, new DeleteCommand(targetName));
     }
 
     @Test
