@@ -1,5 +1,9 @@
 package seedu.address.ui;
 
+import java.util.ArrayList;
+import java.util.List;
+import java.util.ListIterator;
+
 import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
 import javafx.scene.control.TextField;
@@ -16,7 +20,8 @@ public class CommandBox extends UiPart<Region> {
     public static final String ERROR_STYLE_CLASS = "error";
     private static final String FXML = "CommandBox.fxml";
 
-    private String lastCommand = "";
+    private List<String> commandHistory = new ArrayList<>();
+    private ListIterator<String> scroller;
 
     private final CommandExecutor commandExecutor;
 
@@ -45,9 +50,10 @@ public class CommandBox extends UiPart<Region> {
         }
 
         try {
+            scroller = null;
+            commandHistory.add(commandText);
             commandExecutor.execute(commandText);
             commandTextField.setText("");
-            this.lastCommand = commandText;
         } catch (CommandException | ParseException e) {
             setStyleToIndicateCommandFailure();
         }
@@ -81,34 +87,45 @@ public class CommandBox extends UiPart<Region> {
      * Reused from https://github.com/qreoct/ip/blob/master/src/main/java/duke/controllers/AppWindow.java
      */
     private void handleKeyboardShortcuts() {
+        System.out.println("handling shortcuts");
         commandTextField.setOnKeyReleased(event -> {
             String key = event.getCode().toString();
-            if (key.equals("UP")) {
-                toggleLastCommand();
-            }
+            cycleThroughCommandHistory(key);
         });
     }
 
     /**
-     * Toggles the commandTextField to show last command or current command.
+     * Cycles through the history of commands.
      *
-     * @@author qreoct-reused
-     * Reused from https://github.com/qreoct/ip/blob/master/src/main/java/duke/controllers/AppWindow.java
+     * @param key To check if the key pressed is UP or DOWN
+     * Adapted from https://stackoverflow.com/questions/41604430/implement-command-history-within-java-program
      */
-    private void toggleLastCommand() {
-        String input = commandTextField.getText();
-        String temp = lastCommand;
-
-        if (lastCommand.equals("")) {
-            return;
-        } else if (!input.isBlank()) {
-            temp = input;
+    private void cycleThroughCommandHistory(String key) {
+        boolean isUpArrow = key.equals("UP");
+        boolean isDownArrow = key.equals("DOWN");
+        if (scroller == null) {
+            int len = commandHistory.size();
+            scroller = commandHistory.listIterator(isUpArrow ? len - 1 : len);
         }
-
-        commandTextField.clear();
-        commandTextField.setText(lastCommand);
-        commandTextField.positionCaret(lastCommand.length());
-        this.lastCommand = temp;
+        if (commandTextField.getText().equals("")) {
+            scroller = commandHistory.listIterator(commandHistory.size());
+        }
+        if (scroller.hasPrevious() && isUpArrow) {
+            String prevCommand = scroller.previous();
+            commandTextField.setText(prevCommand);
+            commandTextField.end();
+            if (!scroller.hasPrevious()) {
+                scroller.next();
+            }
+        }
+        if (scroller.hasNext() && isDownArrow) {
+            String nextCommand = scroller.next();
+            commandTextField.setText(nextCommand);
+            commandTextField.end();
+            if (!scroller.hasNext()) {
+                scroller.previous();
+            }
+        }
     }
 
     /**
