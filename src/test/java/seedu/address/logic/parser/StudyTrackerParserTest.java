@@ -59,7 +59,8 @@ public class StudyTrackerParserTest {
 
     @Test
     public void parseCommand_delete() throws Exception {
-        DeleteCommand command = (DeleteCommand) parser.parseCommand(DeleteCommand.COMMAND_WORD + " " + CliSyntax.PREFIX_DELETE_SPOT + "Test", ALIAS_LIST);
+        DeleteCommand command = (DeleteCommand) parser.parseCommand(DeleteCommand.COMMAND_WORD
+                + " " + CliSyntax.PREFIX_DELETE_SPOT + "Test", ALIAS_LIST);
         assertEquals(new DeleteCommand(new Name("Test")), command);
     }
 
@@ -77,7 +78,8 @@ public class StudyTrackerParserTest {
     public void parseCommand_alias() throws Exception {
         Alias listAlias = new Alias("ls", "list");
         AliasCommand command = (AliasCommand) parser.parseCommand(
-                AliasCommand.COMMAND_WORD + " " + PREFIX_ALIAS + "ls " + PREFIX_ALIAS_COMMAND + "list ", ALIAS_LIST);
+                AliasCommand.COMMAND_WORD + " " + PREFIX_ALIAS + "ls "
+                        + PREFIX_ALIAS_COMMAND + "list ", ALIAS_LIST);
         assertEquals(new AliasCommand(false, listAlias), command);
     }
 
