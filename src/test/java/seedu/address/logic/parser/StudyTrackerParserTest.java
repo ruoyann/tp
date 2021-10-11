@@ -59,8 +59,7 @@ public class StudyTrackerParserTest {
 
     @Test
     public void parseCommand_delete() throws Exception {
-        DeleteCommand command = (DeleteCommand) parser.parseCommand(
-                DeleteCommand.COMMAND_WORD + " " + CliSyntax.PREFIX_DELETE_SPOT + "Test");
+        DeleteCommand command = (DeleteCommand) parser.parseCommand(DeleteCommand.COMMAND_WORD + " " + CliSyntax.PREFIX_DELETE_SPOT + "Test", ALIAS_LIST);
         assertEquals(new DeleteCommand(new Name("Test")), command);
     }
 
@@ -70,7 +69,7 @@ public class StudyTrackerParserTest {
         EditStudySpotDescriptor descriptor = new EditStudySpotDescriptorBuilder(studySpot).build();
         EditCommand commandFromParse = (EditCommand) parser.parseCommand(EditCommand.COMMAND_WORD + " "
                 + CliSyntax.PREFIX_EDIT_SPOT + "Test" + " "
-                + StudySpotUtil.getEditStudySpotDescriptorDetails(descriptor));
+                + StudySpotUtil.getEditStudySpotDescriptorDetails(descriptor), ALIAS_LIST);
         assertEquals(new EditCommand(new Name("Test"), descriptor), commandFromParse);
     }
 
