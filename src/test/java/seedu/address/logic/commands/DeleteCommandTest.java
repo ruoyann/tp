@@ -9,8 +9,6 @@ import static seedu.address.testutil.TypicalIndexes.INDEX_FIRST_SPOT;
 import static seedu.address.testutil.TypicalIndexes.INDEX_SECOND_SPOT;
 import static seedu.address.testutil.TypicalStudySpots.getTypicalStudyTracker;
 
-import java.util.List;
-
 import org.junit.jupiter.api.Test;
 
 import seedu.address.commons.core.Messages;

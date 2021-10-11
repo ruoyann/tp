@@ -65,6 +65,11 @@ public class LogicManager implements Logic {
     }
 
     @Override
+    public ObservableList<StudySpot> getFullList() {
+        return model.getFullList();
+    }
+
+    @Override
     public Path getStudyTrackerFilePath() {
         return model.getStudyTrackerFilePath();
     }
