@@ -47,7 +47,7 @@ public class JsonStudyTrackerStorage implements StudyTrackerStorage {
 
         Optional<JsonSerializableStudyTracker> jsonStudyTracker = JsonUtil.readJsonFile(
                 filePath, JsonSerializableStudyTracker.class);
-        if (!jsonStudyTracker.isPresent()) {
+        if (jsonStudyTracker.isEmpty()) {
             return Optional.empty();
         }
 

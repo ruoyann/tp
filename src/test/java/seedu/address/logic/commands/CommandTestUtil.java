@@ -3,6 +3,8 @@ package seedu.address.logic.commands;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_ADDRESS;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_ALIAS;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_ALIAS_COMMAND;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_AMENITY;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_EMAIL;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_NAME;
@@ -41,6 +43,10 @@ public class CommandTestUtil {
     public static final String VALID_TAG_CROWDED = "crowded";
     public static final String VALID_TAG_COLD = "cold";
     public static final String VALID_TAG_COFFEE = "coffee";
+    public static final String VALID_ALIAS_LS = "ls";
+    public static final String VALID_ALIAS_PWD = "pwd";
+    public static final String VALID_ALIAS_COMMAND_LIST = "list";
+    public static final String VALID_ALIAS_COMMAND_EXIT = "exit";
     public static final String VALID_AMENITY_WIFI = "wifi";
     public static final String VALID_AMENITY_AIRCON = "aircon";
     public static final String VALID_AMENITY_CHARGER = "charger";
@@ -61,6 +67,10 @@ public class CommandTestUtil {
     public static final String AMENITY_RM_DESC_WIFI = " " + PREFIX_REMOVE_AMENITY + VALID_AMENITY_WIFI;
     public static final String AMENITY_DESC_CHARGER = " " + PREFIX_AMENITY + VALID_AMENITY_CHARGER;
     public static final String AMENITY_RM_DESC_CHARGER = " " + PREFIX_REMOVE_AMENITY + VALID_AMENITY_CHARGER;
+    public static final String ALIAS_USER_ALIAS_LS = " " + PREFIX_ALIAS + VALID_ALIAS_LS;
+    public static final String ALIAS_USER_ALIAS_PWD = " " + PREFIX_ALIAS + VALID_ALIAS_PWD;
+    public static final String ALIAS_USER_COMMAND_LIST = " " + PREFIX_ALIAS_COMMAND + VALID_ALIAS_COMMAND_LIST;
+    public static final String ALIAS_USER_COMMAND_EXIT = " " + PREFIX_ALIAS_COMMAND + VALID_ALIAS_COMMAND_EXIT;
 
     public static final String INVALID_NAME_DESC = " " + PREFIX_NAME + "LT27&"; // '&' not allowed in names
     public static final String INVALID_RATING_DESC = " " + PREFIX_RATING + "911a"; // digits not from '1-5' not allowed
@@ -68,9 +78,12 @@ public class CommandTestUtil {
     public static final String INVALID_EMAIL_DESC = ""; // no email
     public static final String INVALID_ADDRESS_DESC = " " + PREFIX_ADDRESS; // empty string not allowed for addresses
     public static final String INVALID_TAG_DESC = " " + PREFIX_TAG + "bringJacket*"; // '*' not allowed in tags
+    public static final String INVALID_USER_ALIAS = " " + PREFIX_ALIAS + "list"; // alias cannot be a command word
+    public static final String INVALID_ALIAS_COMMAND = " " + PREFIX_ALIAS_COMMAND + "plant"; // not a command word
 
     public static final String PREAMBLE_WHITESPACE = "\t  \r  \n";
     public static final String PREAMBLE_NON_EMPTY = "NonEmptyPreamble";
+    public static final String PREAMBLE_ALIAS_SHOW = "show";
 
     public static final EditCommand.EditStudySpotDescriptor DESC_FRONTIER;
     public static final EditCommand.EditStudySpotDescriptor DESC_DECK;
