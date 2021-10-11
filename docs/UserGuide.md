@@ -112,8 +112,6 @@ add n/Starbucks at U-Town r/4 t/noisy m/wifi
 New study spot “Starbucks at U-Town” added to list!
 ```
 
-Command alias: `new`
-
 ### Listing all study spots : `list`
 
 Shows all saved study spots in the StudyTracker.
@@ -134,7 +132,7 @@ Your study spots are:
 Make use of command aliases to speed up typing your inputs!
 </div>
 
-Command alias :`ls`
+Default command alias :`ls`
 
 ### Editing a study spot : `edit`
 
@@ -155,27 +153,48 @@ edit spot/tr3 n/Training Room 3
 Study spot “TR3” has been edited to “Training Room 3”
 ```
 
-Command alias: `ed`
+### Adding a study spot to Favourites: `fav`
 
-### Locating a study spot by name: `find`
+Adds a study spot to the StudyTracker's Favourites.
 
-Finds study spots whose names contain the query.
-
-Format: `find n/NAME*`
-
-* The search is case-insensitive. e.g `hans` will match `Hans`
-* The results will contain study spots whose name **contains** the query. e.g. `lib` will give `library`
+Format: `fav n/NAME*`
 
 Examples:
 ```
-find n/lib
-Found the following study spots matching “lib”:
+fav n/COM1 Basement
+Study spot "COM1 Basement" added to favourites!
+```
+
+### Removing a study spot from Favourites: `unfav`
+
+Removes a study spot from the StudyTracker's Favourites.
+
+Format: `unfav n/NAME*`
+
+Examples:
+```
+unfav n/COM1 Basement
+Study spot "COM1 Basement" removed from favourites!
+```
+
+### Locating a study spot by name: `find`
+
+Finds study spots whose names contain any of the given keywords.
+
+Format: `find KEYWORD* [MORE KEYWORDS]`
+
+* The search is case-insensitive. e.g `hans` will match `Hans`
+* Only full words will be matched. e.g. `Han` will not match `Hans`
+* Study spots matching at least one keyword will be returned.
+
+Examples:
+```
+find library
+Found the following study spots matching “library”:
   1. Central Library
   2. Hon Sui Sen Memorial Library
   3. Jurong Library
 ```
-
-Command alias: `grep`
 
 ### Deleting a study spot : `delete`
 
@@ -191,8 +210,6 @@ Examples:
 delete n/COM1
 COM1 has been deleted.
 ```
-
-Command alias: `rm`
 
 ### Clearing all entries : `clear`
 
@@ -210,8 +227,6 @@ clear
 All study spots have been cleared.
 ```
 
-Command alias: `rma`
-
 ### Exiting the program : `exit`
 
 Closes the StudyTracker.
@@ -224,7 +239,36 @@ exit
 Goodbye!
 ```
 
-Command alias: `/q`
+Command alias: `bye`, `quit`
+
+### Setting command aliases : `alias`, `unalias`
+
+Adds or shows user-defined aliases.
+
+Format: `alias show` to show all aliases
+
+Format: `alias al/ALIAS* cmd/COMMAND*` to set alias
+
+Format `unalias al/ALIAS*` to remove alias
+
+Example:
+```
+alias al/myList cmd/list
+```
+running `myList` will run the `list` command.
+
+<div markdown="span" class="alert alert-primary">:bulb: **Tip:**
+Aliases can be chained to make more powerful commands!
+
+Example:
+```
+alias al/Rate5 cmd/edit r/5
+```
+will set alias `Rate5` to expand to the command `edit r/5`.
+
+Running `Rate5 spot/Bishan Library` would then result in `edit r/5 spot/Bishan Library`!
+</div>
+
 
 ### Saving the data
 
@@ -247,7 +291,7 @@ _Details coming soon ..._
 ## FAQ
 
 **Q**: How do I transfer my data to another Computer?<br>
-**A**: Install the app in the other computer and overwrite the empty data file it creates with the file that contains the data of your previous StudyTracker home folder.
+**A**: Install the app in the other computer and overwrite the empty **data** file it creates with the file that contains the data of your previous StudyTracker home folder. You may also copy the **preferences.json** file to keep your user preferences.
 
 --------------------------------------------------------------------------------------------------------------------
 
@@ -260,5 +304,6 @@ Action | Format, Examples
 **Delete** | `delete n/NAME*` <br> e.g., `delete n/COM1`
 **Edit** | `edit n/NAME* n/NEW_NAME a/NEW_ADDRESS t/NEW_TAG m/NEW_AMENITY r/NEW_RATING`<br> e.g.,`edit n/tr3 n/Training Room 3`
 **Find** | `find n/NAME*`<br> e.g., `find n/lib`
+**Alias** | `alias al/ALIAS* cmd/COMMAND*`<br> e.g., `alias al/home cmd/find n/home`
 **List** | `list`
 **Help** | `help`

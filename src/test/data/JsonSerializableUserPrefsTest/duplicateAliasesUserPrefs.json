@@ -7,7 +7,7 @@
       "y" : 100
     }
   },
-  "studyTrackerFilePath" : "data/studytracker.json",
+  "studyTrackerFilePath" : "studytracker.json",
   "userAliases" : [ {
     "userAlias" : "ls",
     "aliasCommandWord" : "list"
@@ -17,5 +17,8 @@
   }, {
     "userAlias" : "quit",
     "aliasCommandWord" : "exit"
+  }, {
+    "userAlias" : "quit",
+    "aliasCommandWord" : "list"
   } ]
 }
