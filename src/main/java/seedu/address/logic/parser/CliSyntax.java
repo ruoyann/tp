@@ -32,6 +32,7 @@ public class CliSyntax {
     public static final Prefix PREFIX_AMENITY = new Prefix("m/");
     public static final Prefix PREFIX_REMOVE_AMENITY = new Prefix("rm/");
     public static final Prefix PREFIX_EDIT_SPOT = new Prefix("spot/");
+    public static final Prefix PREFIX_DELETE_SPOT = new Prefix("n/");
     public static final Prefix PREFIX_ALIAS = new Prefix("al/");
     public static final Prefix PREFIX_ALIAS_COMMAND = new Prefix("cmd/");
 
@@ -50,5 +51,4 @@ public class CliSyntax {
         UnaliasCommand.COMMAND_WORD,
         UnfavouriteCommand.COMMAND_WORD
     ).collect(Collectors.toCollection(HashSet::new));
-
 }

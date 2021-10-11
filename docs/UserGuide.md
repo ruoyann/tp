@@ -86,7 +86,7 @@ Some examples of **invalid** user inputs for the *add command* are provided belo
 
 ### Viewing help : `help`
 
-Provides a link to the full User Guide.
+Provides a link to the full User Guide that users can visit by clicking on the button 'Open in  Browser'.
 
 ![help message](images/helpMessage.png)
 
