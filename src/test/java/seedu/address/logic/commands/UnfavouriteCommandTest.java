@@ -45,7 +45,7 @@ public class UnfavouriteCommandTest {
         assertFalse(model.hasStudySpot(invalidStudySpot));
         UnfavouriteCommand unfavouriteCommand = new UnfavouriteCommand(invalidStudySpot.getName());
 
-        assertCommandFailure(unfavouriteCommand, model, Messages.MESSAGE_NAME_NOT_FOUND);
+        assertCommandFailure(unfavouriteCommand, model, Messages.MESSAGE_INVALID_NAME);
     }
 
     @Test

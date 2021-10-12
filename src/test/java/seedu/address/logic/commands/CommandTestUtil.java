@@ -50,6 +50,7 @@ public class CommandTestUtil {
     public static final String VALID_AMENITY_WIFI = "wifi";
     public static final String VALID_AMENITY_AIRCON = "aircon";
     public static final String VALID_AMENITY_CHARGER = "charger";
+    public static final String VALID_AMENITY_FOOD = "food";
 
     public static final String NAME_DESC_FRONTIER = " " + PREFIX_NAME + VALID_NAME_FRONTIER;
     public static final String NAME_DESC_DECK = " " + PREFIX_NAME + VALID_NAME_DECK;
@@ -67,6 +68,8 @@ public class CommandTestUtil {
     public static final String AMENITY_RM_DESC_WIFI = " " + PREFIX_REMOVE_AMENITY + VALID_AMENITY_WIFI;
     public static final String AMENITY_DESC_CHARGER = " " + PREFIX_AMENITY + VALID_AMENITY_CHARGER;
     public static final String AMENITY_RM_DESC_CHARGER = " " + PREFIX_REMOVE_AMENITY + VALID_AMENITY_CHARGER;
+    public static final String AMENITY_DESC_FOOD = " " + PREFIX_AMENITY + VALID_AMENITY_FOOD;
+    public static final String AMENITY_RM_DESC_FOOD = " " + PREFIX_REMOVE_AMENITY + VALID_AMENITY_FOOD;
     public static final String ALIAS_USER_ALIAS_LS = " " + PREFIX_ALIAS + VALID_ALIAS_LS;
     public static final String ALIAS_USER_ALIAS_PWD = " " + PREFIX_ALIAS + VALID_ALIAS_PWD;
     public static final String ALIAS_USER_COMMAND_LIST = " " + PREFIX_ALIAS_COMMAND + VALID_ALIAS_COMMAND_LIST;

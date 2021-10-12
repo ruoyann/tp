@@ -8,7 +8,6 @@ import static seedu.address.logic.parser.CliSyntax.PREFIX_ALIAS;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_ALIAS_COMMAND;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_NAME;
 import static seedu.address.testutil.Assert.assertThrows;
-import static seedu.address.testutil.TypicalIndexes.INDEX_FIRST_SPOT;
 import static seedu.address.testutil.TypicalStudySpots.STARBUCKS;
 
 import java.util.Arrays;
@@ -60,9 +59,9 @@ public class StudyTrackerParserTest {
 
     @Test
     public void parseCommand_delete() throws Exception {
-        DeleteCommand command = (DeleteCommand) parser.parseCommand(
-                DeleteCommand.COMMAND_WORD + " " + INDEX_FIRST_SPOT.getOneBased(), ALIAS_LIST);
-        assertEquals(new DeleteCommand(INDEX_FIRST_SPOT), command);
+        DeleteCommand command = (DeleteCommand) parser.parseCommand(DeleteCommand.COMMAND_WORD
+                + " " + CliSyntax.PREFIX_DELETE_SPOT + "Test", ALIAS_LIST);
+        assertEquals(new DeleteCommand(new Name("Test")), command);
     }
 
     @Test
@@ -70,7 +69,8 @@ public class StudyTrackerParserTest {
         StudySpot studySpot = new StudySpotBuilder().withName("Test").build();
         EditStudySpotDescriptor descriptor = new EditStudySpotDescriptorBuilder(studySpot).build();
         EditCommand commandFromParse = (EditCommand) parser.parseCommand(EditCommand.COMMAND_WORD + " "
-                + "spot/Test" + " " + StudySpotUtil.getEditStudySpotDescriptorDetails(descriptor), ALIAS_LIST);
+                + CliSyntax.PREFIX_EDIT_SPOT + "Test" + " "
+                + StudySpotUtil.getEditStudySpotDescriptorDetails(descriptor), ALIAS_LIST);
         assertEquals(new EditCommand(new Name("Test"), descriptor), commandFromParse);
     }
 
@@ -78,7 +78,8 @@ public class StudyTrackerParserTest {
     public void parseCommand_alias() throws Exception {
         Alias listAlias = new Alias("ls", "list");
         AliasCommand command = (AliasCommand) parser.parseCommand(
-                AliasCommand.COMMAND_WORD + " " + PREFIX_ALIAS + "ls " + PREFIX_ALIAS_COMMAND + "list ", ALIAS_LIST);
+                AliasCommand.COMMAND_WORD + " " + PREFIX_ALIAS + "ls "
+                        + PREFIX_ALIAS_COMMAND + "list ", ALIAS_LIST);
         assertEquals(new AliasCommand(false, listAlias), command);
     }
 
