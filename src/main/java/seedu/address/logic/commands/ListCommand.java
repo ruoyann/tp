@@ -47,20 +47,21 @@ public class ListCommand extends Command {
         model.updateFilteredStudySpotList(predicate);
         StringBuilder sb = new StringBuilder();
         sb.append(MESSAGE_SUCCESS);
-        if (!getFilterMessage().isBlank()) {
-            sb.append(getFilterMessage());
+        String msg = getFilterMessage(isFavFlagPresent, tags);
+        if (!msg.isBlank()) {
+            sb.append(msg);
         }
         return new CommandResult(sb.toString());
     }
 
-    public String getFilterMessage() {
+    public static String getFilterMessage(boolean isFavFlag, Set<Tag> tagSet) {
         StringBuilder sb = new StringBuilder();
-        if (isFavFlagPresent) {
+        if (isFavFlag) {
             sb.append(" in Favourites");
         }
-        if (tags != null && !tags.isEmpty()) {
+        if (tagSet != null && !tagSet.isEmpty()) {
             sb.append(" with Tags: ");
-            String str = String.join(", ", tags.stream().map(Object::toString).collect(Collectors.toSet()));
+            String str = String.join(", ", tagSet.stream().map(Object::toString).collect(Collectors.toSet()));
             sb.append(str);
         }
         return sb.toString();

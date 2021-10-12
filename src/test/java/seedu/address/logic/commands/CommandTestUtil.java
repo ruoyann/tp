@@ -153,4 +153,12 @@ public class CommandTestUtil {
         assertEquals(1, model.getFilteredStudySpotList().size());
     }
 
+    /**
+     * Updates {@code model}'s filtered list to show no one.
+     */
+    public static void showNoStudySpot(Model model) {
+        model.updateFilteredStudySpotList(p -> false);
+
+        assertTrue(model.getFilteredStudySpotList().isEmpty());
+    }
 }

@@ -8,6 +8,7 @@ import static seedu.address.logic.commands.CommandTestUtil.showStudySpotAtIndex;
 import static seedu.address.testutil.TypicalIndexes.INDEX_FIRST_SPOT;
 import static seedu.address.testutil.TypicalIndexes.INDEX_SECOND_SPOT;
 import static seedu.address.testutil.TypicalStudySpots.getTypicalStudyTracker;
+import static seedu.address.logic.commands.CommandTestUtil.showNoStudySpot;
 
 import org.junit.jupiter.api.Test;
 
@@ -98,12 +99,4 @@ public class DeleteCommandTest {
         assertFalse(deleteFirstCommand.equals(deleteSecondCommand));
     }
 
-    /**
-     * Updates {@code model}'s filtered list to show no one.
-     */
-    private void showNoStudySpot(Model model) {
-        model.updateFilteredStudySpotList(p -> false);
-
-        assertTrue(model.getFilteredStudySpotList().isEmpty());
-    }
 }
