@@ -59,8 +59,6 @@ public class StudySpotCard extends UiPart<Region> {
     private Label name;
     @FXML
     private Label id;
-//    @FXML
-//    private Label favourite;
     @FXML
     private Label rating;
     @FXML
@@ -81,8 +79,6 @@ public class StudySpotCard extends UiPart<Region> {
         id.setText(displayedIndex + ". ");
         name.setText(studySpot.getName().fullName);
         rating.setText(setRatingDisplay(studySpot.getRating()));
-//        favourite.setVisible(studySpot.isFavourite());
-//        favouritee.setVisible(studySpot.isFavourite());
         setFavouriteDisplay(icons, studySpot.isFavourite());
         rating.setText(setRatingDisplay(studySpot.getRating()));
         address.setText(studySpot.getAddress().value);
@@ -123,18 +119,7 @@ public class StudySpotCard extends UiPart<Region> {
             amenitiesDisplay.getStyleClass().add("amenities_container");
             setUpdatedAmenitiesDisplay(amenitiesDisplay, studySpot);
             iconsDisplay.getChildren().add(amenitiesDisplay);
-
         }
-    }
-
-    private void setDefaultAmenitiesDisplay(HBox amenitiesDisplay) {
-//        amenitiesDisplay.setVisible(false);
-        amenitiesDisplay.setMaxWidth(0);
-        amenitiesDisplay.setMaxHeight(0);
-//        Arrays.stream(Amenity.VALID_TYPES)
-//                .sorted()
-//                .forEach(amenityType -> amenitiesDisplay.getChildren()
-//                        .add(getAmenityIconLabel(amenityType, false)));
     }
 
     private void setUpdatedAmenitiesDisplay(HBox amenitiesDisplay, StudySpot studySpot) {
@@ -147,11 +132,6 @@ public class StudySpotCard extends UiPart<Region> {
         Label result = new Label();
         result.getStyleClass().add("favourite_label");
         result.setGraphic(getIcon(SVGPATH_HEART_CONTENT, 0.025));
-        result.setAlignment(Pos.BASELINE_CENTER);
-        result.setMaxHeight(24);
-        result.setMinHeight(24);
-        result.setMinWidth(60);
-        result.setMaxWidth(60);
         return result;
     }
 
@@ -165,15 +145,12 @@ public class StudySpotCard extends UiPart<Region> {
             return result;
         case "charger":
             result.setGraphic(getIcon(SVGPATH_CHARGER_CONTENT, 0.03));
-            icon.setContent(SVGPATH_CHARGER_CONTENT);
-            result.setGraphic(icon);
             return result;
         case "food":
-            icon.setContent(SVGPATH_FOOD_CONTENT);
-            result.setGraphic(icon);
+            result.setGraphic(getIcon(SVGPATH_FOOD_CONTENT, 0.03));
             return result;
         default:
-            throw new AssertionError("error occured");
+            throw new AssertionError("Invalid amenity type for amenity icon label.");
         }
     }
 
