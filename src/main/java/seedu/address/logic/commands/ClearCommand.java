@@ -11,6 +11,9 @@ import seedu.address.model.StudyTracker;
 public class ClearCommand extends Command {
 
     public static final String COMMAND_WORD = "clear";
+    public static final String MESSAGE_USAGE = COMMAND_WORD
+            + ": Removes ALL study spots from the StudyTracker.\n"
+            + "Example: " + COMMAND_WORD;
     public static final String MESSAGE_SUCCESS = "StudyTracker has been cleared!";
 
     @Override
@@ -18,5 +21,15 @@ public class ClearCommand extends Command {
         requireNonNull(model);
         model.setStudyTracker(new StudyTracker());
         return new CommandResult(MESSAGE_SUCCESS);
+    }
+
+    @Override
+    public String toString() {
+        return "Clear";
+    }
+
+    @Override
+    public String getCommandUsage() {
+        return MESSAGE_USAGE;
     }
 }

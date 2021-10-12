@@ -160,6 +160,16 @@ public class EditCommand extends Command {
                 && editStudySpotDescriptor.equals(e.editStudySpotDescriptor);
     }
 
+    @Override
+    public String toString() {
+        return "Edit";
+    }
+
+    @Override
+    public String getCommandUsage() {
+        return MESSAGE_USAGE;
+    }
+
     /**
      * Stores the details to edit the study spot with. Each non-empty field value will replace the
      * corresponding field value of the study spot.

@@ -11,6 +11,8 @@ import seedu.address.model.Model;
 public class ListCommand extends Command {
 
     public static final String COMMAND_WORD = "list";
+    public static final String MESSAGE_USAGE = COMMAND_WORD + ": Shows all study spots. \n" +
+            "Example: " + COMMAND_WORD;
 
     public static final String MESSAGE_SUCCESS = "Listed all study spots";
 
@@ -20,5 +22,15 @@ public class ListCommand extends Command {
         requireNonNull(model);
         model.updateFilteredStudySpotList(PREDICATE_SHOW_ALL_STUDYSPOTS);
         return new CommandResult(MESSAGE_SUCCESS);
+    }
+
+    @Override
+    public String toString() {
+        return "List";
+    }
+
+    @Override
+    public String getCommandUsage() {
+        return MESSAGE_USAGE;
     }
 }

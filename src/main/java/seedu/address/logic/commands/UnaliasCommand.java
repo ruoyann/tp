@@ -62,4 +62,14 @@ public class UnaliasCommand extends Command {
         }
         return false;
     }
+
+    @Override
+    public String toString() {
+        return "Unalias";
+    }
+
+    @Override
+    public String getCommandUsage() {
+        return MESSAGE_USAGE;
+    }
 }

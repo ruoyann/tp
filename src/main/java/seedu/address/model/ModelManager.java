@@ -27,7 +27,6 @@ public class ModelManager implements Model {
     private final StudyTracker studyTracker;
     private final UserPrefs userPrefs;
     private final FilteredList<StudySpot> filteredStudySpots;
-    private final ObservableList<Command> commandList;
 
     /**
      * Initializes a ModelManager with the given studyTracker and userPrefs.
@@ -41,7 +40,6 @@ public class ModelManager implements Model {
         this.studyTracker = new StudyTracker(studyTracker);
         this.userPrefs = new UserPrefs(userPrefs);
         filteredStudySpots = new FilteredList<>(this.studyTracker.getStudySpotList());
-        this.commandList = CommandList.COMMANDS;
     }
 
     public ModelManager() {
@@ -226,10 +224,5 @@ public class ModelManager implements Model {
     @Override
     public ObservableList<StudySpot> getFullList() {
         return studyTracker.getStudySpotList();
-    }
-
-    @Override
-    public ObservableList<Command> getAllCommands() {
-        return commandList;
     }
 }

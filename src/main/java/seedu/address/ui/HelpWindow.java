@@ -7,14 +7,18 @@ import java.net.URL;
 import java.util.logging.Logger;
 
 import javafx.collections.ObservableList;
+import javafx.event.EventHandler;
 import javafx.fxml.FXML;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.control.ListView;
+import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.StackPane;
+import javafx.scene.layout.VBox;
 import javafx.stage.Stage;
 import seedu.address.commons.core.LogsCenter;
 import seedu.address.logic.commands.Command;
+import seedu.address.logic.commands.CommandList;
 
 /**
  * Controller for a help page
@@ -28,7 +32,8 @@ public class HelpWindow extends UiPart<Stage> {
     private static final Logger logger = LogsCenter.getLogger(HelpWindow.class);
     private static final String FXML = "HelpWindow.fxml";
 
-    private ObservableList<Command> commandList;
+    private ObservableList<Command> commandList = CommandList.COMMANDS;
+    private CommandInfoDisplay commandInfoDisplay;
 
     @FXML
     private Button copyButton;
@@ -37,7 +42,7 @@ public class HelpWindow extends UiPart<Stage> {
     private Label helpMessage;
 
     @FXML
-    private StackPane resultDisplayPlaceHolder;
+    private StackPane commandInfoDisplayPlaceholder;
 
     @FXML
     private ListView<Command> commandListView;
@@ -47,18 +52,21 @@ public class HelpWindow extends UiPart<Stage> {
      *
      * @param root Stage to use as the root of the HelpWindow.
      */
-    public HelpWindow(Stage root, ObservableList<Command> commandList) {
+    public HelpWindow(Stage root) {
         super(FXML, root);
         helpMessage.setText(HELP_MESSAGE);
-        this.commandList = commandList;
         commandListView.setItems(commandList);
+        commandListView.setOnMouseClicked(new HandleListView());
+
+        this.commandInfoDisplay = new CommandInfoDisplay();
+        commandInfoDisplayPlaceholder.getChildren().add(commandInfoDisplay.getRoot());
     }
 
     /**
      * Creates a new HelpWindow.
      */
-    public HelpWindow(ObservableList<Command> commandList) {
-        this(new Stage(), commandList);
+    public HelpWindow() {
+        this(new Stage());
     }
 
     /**
@@ -115,6 +123,15 @@ public class HelpWindow extends UiPart<Stage> {
             Desktop.getDesktop().browse(new URL(USERGUIDE_URL).toURI());
         } catch (IOException | URISyntaxException e) {
             e.printStackTrace();
+        }
+    }
+
+    private class HandleListView implements EventHandler<MouseEvent> {
+        @Override
+        public void handle(MouseEvent event) {
+            Command clickedCommand = commandListView.getSelectionModel().getSelectedItem();
+            String commandFormat = clickedCommand.getCommandUsage();
+            commandInfoDisplay.setCommandInfo(commandFormat);
         }
     }
 }

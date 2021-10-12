@@ -18,9 +18,9 @@ public class DeleteCommand extends Command {
     public static final String COMMAND_WORD = "delete";
 
     public static final String MESSAGE_USAGE = COMMAND_WORD
-            + ": Deletes the study spot identified by the index number used in the displayed study spot list.\n"
-            + "Parameters: INDEX (must be a positive integer)\n"
-            + "Example: " + COMMAND_WORD + " 1";
+            + ": Deletes the study spot identified by the name used in the displayed study spot list.\n"
+            + "Parameters: NAME (must be a valid name in the StudyTracker)\n"
+            + "Example: " + COMMAND_WORD + " n/ValidName";
 
     public static final String MESSAGE_DELETE_STUDYSPOT_SUCCESS = "Deleted study spot: %1$s";
 
@@ -56,5 +56,15 @@ public class DeleteCommand extends Command {
         return other == this // short circuit if same object
                 || (other instanceof DeleteCommand // instanceof handles nulls
                 && targetIndex.equals(((DeleteCommand) other).targetIndex)); // state check
+    }
+
+    @Override
+    public String toString() {
+        return "Delete";
+    }
+
+    @Override
+    public String getCommandUsage() {
+        return MESSAGE_USAGE;
     }
 }

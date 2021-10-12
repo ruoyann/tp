@@ -19,7 +19,7 @@ public class AliasCommand extends Command {
     public static final String MESSAGE_USAGE = COMMAND_WORD + ": Define or display aliases.\n"
             + "Parameters: "
             + PREFIX_ALIAS + "ALIAS "
-            + PREFIX_ALIAS_COMMAND + "COMMAND "
+            + PREFIX_ALIAS_COMMAND + "COMMAND \n"
             + "Example: "
             + COMMAND_WORD + " " + PREFIX_ALIAS + "e " + PREFIX_ALIAS_COMMAND + "edit";
 
@@ -85,5 +85,15 @@ public class AliasCommand extends Command {
             }
         }
         return false;
+    }
+
+    @Override
+    public String toString() {
+        return "Alias";
+    }
+
+    @Override
+    public String getCommandUsage() {
+        return MESSAGE_USAGE;
     }
 }

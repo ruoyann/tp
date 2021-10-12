@@ -129,9 +129,4 @@ public interface Model {
      * Returns an unmodifiable view of the non filtered study spot list
      */
     ObservableList<StudySpot> getFullList();
-
-    /**
-     * Returns a list of all available commands
-     */
-    ObservableList<Command> getAllCommands();
 }
