@@ -32,6 +32,7 @@ public class StudySpotCard extends UiPart<Region> {
     private static final String SVGPATH_CHARGER_CONTENT = "M320,32a32,32,0,0,0-64,0v96h64Zm48,128H16A16,16,0,0,0,0,"
             + "176v32a16,16,0,0,0,16,16H32v32A160.07,160.07,0,0,0,160,412.8V512h64V412.8A160.07,160.07,0,0,0,352,"
             + "256V224h16a16,16,0,0,0,16-16V176A16,16,0,0,0,368,160ZM128,32a32,32,0,0,0-64,0v96h64Z";
+    private static final String SVGPATH_FOOD_CONTENT = "M480.1 31.9c-55-55.1-164.9-34.5-227.8 28.5-49.3 49.3-55.1 110-28.8 160.4L9 413.2c-11.6 10.5-12.1 28.5-1 39.5L59.3 504c11 11 29.1 10.5 39.5-1.1l192.4-214.4c50.4 26.3 111.1 20.5 160.4-28.8 63-62.9 83.6-172.8 28.5-227.8z";
 
     /**
      * Note: Certain keywords such as "location" and "resources" are reserved keywords in JavaFX.
@@ -146,6 +147,10 @@ public class StudySpotCard extends UiPart<Region> {
             return result;
         case "charger":
             icon.setContent(SVGPATH_CHARGER_CONTENT);
+            result.setGraphic(icon);
+            return result;
+        case "food":
+            icon.setContent(SVGPATH_FOOD_CONTENT);
             result.setGraphic(icon);
             return result;
         default:
