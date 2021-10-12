@@ -6,6 +6,7 @@ import java.util.Set;
 import java.util.stream.Collectors;
 
 import javafx.fxml.FXML;
+import javafx.geometry.Pos;
 import javafx.scene.control.Label;
 import javafx.scene.layout.FlowPane;
 import javafx.scene.layout.HBox;
@@ -32,6 +33,9 @@ public class StudySpotCard extends UiPart<Region> {
     private static final String SVGPATH_CHARGER_CONTENT = "M320,32a32,32,0,0,0-64,0v96h64Zm48,128H16A16,16,0,0,0,0,"
             + "176v32a16,16,0,0,0,16,16H32v32A160.07,160.07,0,0,0,160,412.8V512h64V412.8A160.07,160.07,0,0,0,352,"
             + "256V224h16a16,16,0,0,0,16-16V176A16,16,0,0,0,368,160ZM128,32a32,32,0,0,0-64,0v96h64Z";
+    private static final String SVGPATH_HEART_CONTENT = "M462.3 62.6C407.5 15.9 326 24.3 275.7 76.2L256 "
+            + "96.5l-19.7-20.3C186.1 24.3 104.5 15.9 49.7 62.6c-62.8 53.6-66.1 149.8-9.9 207.9l193.5 199.8c12.5 12.9 "
+            + "32.8 12.9 45.3 0l193.5-199.8c56.3-58.1 53-154.3-9.8-207.9z";
 
     /**
      * Note: Certain keywords such as "location" and "resources" are reserved keywords in JavaFX.
@@ -49,8 +53,8 @@ public class StudySpotCard extends UiPart<Region> {
     private Label name;
     @FXML
     private Label id;
-    @FXML
-    private Label favourite;
+//    @FXML
+//    private Label favourite;
     @FXML
     private Label rating;
     @FXML
@@ -60,7 +64,7 @@ public class StudySpotCard extends UiPart<Region> {
     @FXML
     private FlowPane tags;
     @FXML
-    private HBox amenities;
+    private HBox icons;
 
     /**
      * Creates a {@code StudySpotCode} with the given {@code StudySpot} and index to display.
@@ -71,14 +75,16 @@ public class StudySpotCard extends UiPart<Region> {
         id.setText(displayedIndex + ". ");
         name.setText(studySpot.getName().fullName);
         rating.setText(setRatingDisplay(studySpot.getRating()));
-        favourite.setVisible(studySpot.isFavourite());
+//        favourite.setVisible(studySpot.isFavourite());
+//        favouritee.setVisible(studySpot.isFavourite());
+        setFavouriteDisplay(icons, studySpot.isFavourite());
         rating.setText(setRatingDisplay(studySpot.getRating()));
         address.setText(studySpot.getAddress().value);
         email.setText(studySpot.getEmail().value);
         studySpot.getTags().stream()
                 .sorted(Comparator.comparing(tag -> tag.tagName))
                 .forEach(tag -> tags.getChildren().add(new Label(tag.tagName)));
-        setAmenitiesDisplay(amenities, studySpot);
+        setAmenitiesDisplay(icons, studySpot);
     }
 
     @Override
@@ -99,58 +105,73 @@ public class StudySpotCard extends UiPart<Region> {
                 && studySpot.equals(card.studySpot);
     }
 
-    private void setAmenitiesDisplay(HBox amenitiesDisplay, StudySpot studySpot) {
-        if (studySpot.getAmenities().isEmpty()) {
-            setDefaultAmenitiesDisplay(amenitiesDisplay);
-        } else {
+    private void setFavouriteDisplay(HBox iconsDisplay, boolean isFavourite) {
+        if (isFavourite) {
+            iconsDisplay.getChildren().add(getFavouriteIconLabel());
+        }
+    }
+
+    private void setAmenitiesDisplay(HBox iconsDisplay, StudySpot studySpot) {
+        if (!studySpot.getAmenities().isEmpty()) {
+            HBox amenitiesDisplay = new HBox();
+            amenitiesDisplay.getStyleClass().add("amenities_container");
             setUpdatedAmenitiesDisplay(amenitiesDisplay, studySpot);
+            iconsDisplay.getChildren().add(amenitiesDisplay);
+
         }
     }
 
     private void setDefaultAmenitiesDisplay(HBox amenitiesDisplay) {
-        Arrays.stream(Amenity.VALID_TYPES)
-                .sorted()
-                .forEach(amenityType -> amenitiesDisplay.getChildren()
-                        .add(getAmenityIconLabel(amenityType, false)));
+//        amenitiesDisplay.setVisible(false);
+        amenitiesDisplay.setMaxWidth(0);
+        amenitiesDisplay.setMaxHeight(0);
+//        Arrays.stream(Amenity.VALID_TYPES)
+//                .sorted()
+//                .forEach(amenityType -> amenitiesDisplay.getChildren()
+//                        .add(getAmenityIconLabel(amenityType, false)));
     }
 
     private void setUpdatedAmenitiesDisplay(HBox amenitiesDisplay, StudySpot studySpot) {
-        Set<String> amenitiesPresent = studySpot.getAmenities().stream()
-                        .map(amenity -> amenity.amenityType).sorted().collect(Collectors.toSet());
-        Arrays.stream(Amenity.VALID_TYPES)
-                .sorted()
-                .forEach(amenityType -> {
-                    if (amenitiesPresent.contains(amenityType)) {
-                        amenitiesDisplay.getChildren().add(getAmenityIconLabel(amenityType, true));
-                    } else {
-                        amenitiesDisplay.getChildren().add(getAmenityIconLabel(amenityType, false));
-                    }
-                });
+        studySpot.getAmenities().stream()
+                .sorted(Comparator.comparing(amenity -> amenity.amenityType))
+                .forEach(amenity -> amenitiesDisplay.getChildren().add(getAmenityIconLabel(amenity.amenityType)));
     }
 
-    private Label getAmenityIconLabel(String amenityType, boolean isActive) {
+    private Label getFavouriteIconLabel() {
         Label result = new Label();
+        result.getStyleClass().add("favourite_label");
+        result.setGraphic(getIcon(SVGPATH_HEART_CONTENT, 0.025));
+        result.setAlignment(Pos.BASELINE_CENTER);
+        result.setMaxHeight(24);
+        result.setMinHeight(24);
+        result.setMinWidth(60);
+        result.setMaxWidth(60);
+        return result;
+    }
 
-        SVGPath icon = new SVGPath();
-        icon.setScaleX(0.03);
-        icon.setScaleY(0.03);
-        icon.getStyleClass().add("svg_icon");
-        if (!isActive) {
-            icon.getStyleClass().add("cell_muted_label");
-        }
+    private Label getAmenityIconLabel(String amenityType) {
+        Label result = new Label();
+        result.getStyleClass().add("amenities_icon_label");
 
         switch (amenityType) {
         case "wifi":
-            icon.setContent(SVGPATH_WIFI_CONTENT);
-            result.setGraphic(icon);
+            result.setGraphic(getIcon(SVGPATH_WIFI_CONTENT, 0.03));
             return result;
         case "charger":
-            icon.setContent(SVGPATH_CHARGER_CONTENT);
-            result.setGraphic(icon);
+            result.setGraphic(getIcon(SVGPATH_CHARGER_CONTENT, 0.03));
             return result;
         default:
             throw new AssertionError("error occured");
         }
+    }
+
+    private SVGPath getIcon(String svgPathContent, double scale) {
+        SVGPath icon = new SVGPath();
+        icon.setScaleX(scale);
+        icon.setScaleY(scale);
+        icon.getStyleClass().add("svg_icon");
+        icon.setContent(svgPathContent);
+        return icon;
     }
 
     private String setRatingDisplay(Rating providedRating) {
