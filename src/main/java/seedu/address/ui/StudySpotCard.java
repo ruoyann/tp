@@ -1,18 +1,13 @@
 package seedu.address.ui;
 
-import java.util.Arrays;
 import java.util.Comparator;
-import java.util.Set;
-import java.util.stream.Collectors;
 
 import javafx.fxml.FXML;
-import javafx.geometry.Pos;
 import javafx.scene.control.Label;
 import javafx.scene.layout.FlowPane;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.Region;
 import javafx.scene.shape.SVGPath;
-import seedu.address.model.amenity.Amenity;
 import seedu.address.model.studyspot.Rating;
 import seedu.address.model.studyspot.StudySpot;
 
@@ -150,7 +145,7 @@ public class StudySpotCard extends UiPart<Region> {
             result.setGraphic(getIcon(SVGPATH_FOOD_CONTENT, 0.03));
             return result;
         default:
-            throw new AssertionError("Invalid amenity type for amenity icon label.");
+            throw new AssertionError("Amenity [\" + amenityType + \"] not found in StudySpotCard!");
         }
     }
 
