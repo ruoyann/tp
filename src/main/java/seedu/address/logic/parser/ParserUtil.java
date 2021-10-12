@@ -1,19 +1,28 @@
 package seedu.address.logic.parser;
 
 import static java.util.Objects.requireNonNull;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_FLAG;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_TAG;
+import static seedu.address.model.Model.PREDICATE_SHOW_ALL_STUDYSPOTS;
 
+import java.util.ArrayList;
 import java.util.Collection;
 import java.util.HashSet;
+import java.util.List;
 import java.util.Set;
+import java.util.function.Predicate;
+import java.util.stream.Collectors;
 
 import seedu.address.commons.core.index.Index;
 import seedu.address.commons.util.StringUtil;
+import seedu.address.logic.commands.ListCommand;
 import seedu.address.logic.parser.exceptions.ParseException;
 import seedu.address.model.amenity.Amenity;
 import seedu.address.model.studyspot.Address;
 import seedu.address.model.studyspot.Email;
 import seedu.address.model.studyspot.Name;
 import seedu.address.model.studyspot.Rating;
+import seedu.address.model.studyspot.StudySpot;
 import seedu.address.model.tag.Tag;
 
 /**
@@ -97,6 +106,45 @@ public class ParserUtil {
             throw new ParseException(Email.MESSAGE_CONSTRAINTS);
         }
         return new Email(trimmedEmail);
+    }
+
+    /**
+     * Parses a {@code String amenity} into an {@code Amenity}.
+     * Leading and trailing whitespaces will be trimmed.
+     *
+     * @throws ParseException if the given {@code amenity} is invalid.
+     */
+    public static Predicate<StudySpot> parseFlags(ArgumentMultimap argMultiMap) throws ParseException {
+        requireNonNull(argMultiMap);
+        List<String> flags = argMultiMap.getAllValues(PREFIX_FLAG);
+        List<Predicate<StudySpot>> predicateList = new ArrayList<>();
+        predicateList.add(PREDICATE_SHOW_ALL_STUDYSPOTS);
+        if (isFlagPresent(flags, ListCommand.FLAG_FAVOURITES)) {
+            predicateList.add(StudySpot::isFavourite);
+        }
+
+        if (isFlagPresent(flags, ListCommand.FLAG_TAGS)) {
+            Set<Tag> tags = parseTags(argMultiMap.getAllValues(PREFIX_TAG));
+            List<Predicate<StudySpot>> tagsPredicate =
+                    tags.stream().map(tag -> ListCommand.containsTag(tag)).collect(Collectors.toList());
+            predicateList.addAll(tagsPredicate);
+        }
+        return predicateList.stream().reduce(Predicate::and).get();
+    }
+
+    /**
+     * Checks if a particular flag is present in the arguments.
+     * @param args Arguments from MultiMap.
+     * @param flag Query flag.
+     * @return true if query flag is present.
+     */
+    public static boolean isFlagPresent(List<String> args, String flag) {
+        for (String arg: args) {
+            if (arg.equals(flag)) {
+                return true;
+            }
+        }
+        return false;
     }
 
     /**
