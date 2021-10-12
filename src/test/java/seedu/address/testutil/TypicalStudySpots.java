@@ -1,13 +1,22 @@
 package seedu.address.testutil;
 
+import static seedu.address.logic.commands.CommandTestUtil.VALID_ADDRESS_DECK;
+import static seedu.address.logic.commands.CommandTestUtil.VALID_ADDRESS_FRONTIER;
+import static seedu.address.logic.commands.CommandTestUtil.VALID_EMAIL_DECK;
+import static seedu.address.logic.commands.CommandTestUtil.VALID_EMAIL_FRONTIER;
+import static seedu.address.logic.commands.CommandTestUtil.VALID_NAME_DECK;
+import static seedu.address.logic.commands.CommandTestUtil.VALID_NAME_FRONTIER;
+import static seedu.address.logic.commands.CommandTestUtil.VALID_RATING_DECK;
+import static seedu.address.logic.commands.CommandTestUtil.VALID_RATING_FRONTIER;
+import static seedu.address.logic.commands.CommandTestUtil.VALID_TAG_CROWDED;
+import static seedu.address.logic.commands.CommandTestUtil.VALID_TAG_QUIET;
+
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 
 import seedu.address.model.StudyTracker;
 import seedu.address.model.studyspot.StudySpot;
-
-import static seedu.address.logic.commands.CommandTestUtil.*;
 
 /**
  * A utility class containing a list of {@code StudySpot} objects to be used in tests.

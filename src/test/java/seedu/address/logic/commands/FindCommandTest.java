@@ -5,7 +5,10 @@ import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 import static seedu.address.commons.core.Messages.MESSAGE_STUDYSPOT_LISTED_OVERVIEW;
 import static seedu.address.logic.commands.CommandTestUtil.assertCommandSuccess;
-import static seedu.address.testutil.TypicalStudySpots.*;
+import static seedu.address.testutil.TypicalStudySpots.FRONTIER_CANTEEN;
+import static seedu.address.testutil.TypicalStudySpots.LT_17;
+import static seedu.address.testutil.TypicalStudySpots.PC_COMMONS;
+import static seedu.address.testutil.TypicalStudySpots.getTypicalStudyTracker;
 
 import java.util.Arrays;
 import java.util.Collections;
