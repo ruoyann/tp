@@ -27,7 +27,7 @@ public class TypicalStudySpots {
             .withAddress("UTown").withEmail("-")
             .withRating("4")
             .withTags("coffee")
-            .withAmenities("wifi", "charger")
+            .withAmenities("wifi", "charger", "food")
             .build();
     public static final StudySpot CENTRAL_LIBRARY = new StudySpotBuilder().withName("Central library")
             .withAddress("NUS, Central Library")
@@ -43,7 +43,8 @@ public class TypicalStudySpots {
             .withRating("3")
             .withEmail("Frontier email")
             .withAddress("NUS Science Faculty")
-            .withTags("crowded").build();
+            .withTags("crowded")
+            .withAmenities("food").build();
     public static final StudySpot TOKYO_ROOM = new StudySpotBuilder().withName("Tokyo Room")
             .withRating("3")
             .withEmail("-")

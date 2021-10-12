@@ -7,7 +7,7 @@
     "address" : "UTown",
     "favourite" : "false",
     "tagged" : [ "coffee" ],
-    "amenities" : [ "wifi", "charger" ]
+    "amenities" : [ "wifi", "charger", "food"]
   }, {
     "name" : "Central library",
     "rating" : "3",
@@ -31,7 +31,7 @@
     "address" : "NUS Science Faculty",
     "favourite" : "false",
     "tagged" : [ "crowded" ],
-    "amenities" : [ ]
+    "amenities" : ["food"]
   }, {
     "name" : "Tokyo Room",
     "rating" : "3",
