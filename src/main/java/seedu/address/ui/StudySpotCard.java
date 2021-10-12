@@ -89,13 +89,12 @@ public class StudySpotCard extends UiPart<Region> {
         id.setText(displayedIndex + ". ");
         name.setText(studySpot.getName().fullName);
         rating.setText(setRatingDisplay(studySpot.getRating()));
-        setFavouriteDisplay(icons, studySpot.isFavourite());
-        rating.setText(setRatingDisplay(studySpot.getRating()));
         address.setText(studySpot.getAddress().value);
         email.setText(studySpot.getEmail().value);
         studySpot.getTags().stream()
                 .sorted(Comparator.comparing(tag -> tag.tagName))
                 .forEach(tag -> tags.getChildren().add(new Label(tag.tagName)));
+        setFavouriteDisplay(icons, studySpot.isFavourite());
         setAmenitiesDisplay(icons, studySpot);
     }
 
