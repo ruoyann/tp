@@ -70,6 +70,8 @@ public class CommandTestUtil {
     public static final String AMENITY_RM_DESC_CHARGER = " " + PREFIX_REMOVE_AMENITY + VALID_AMENITY_CHARGER;
     public static final String AMENITY_DESC_FOOD = " " + PREFIX_AMENITY + VALID_AMENITY_FOOD;
     public static final String AMENITY_RM_DESC_FOOD = " " + PREFIX_REMOVE_AMENITY + VALID_AMENITY_FOOD;
+    public static final String AMENITY_DESC_AIRCON = " " + PREFIX_AMENITY + VALID_AMENITY_AIRCON;
+    public static final String AMENITY_RM_DESC_AIRCON = " " + PREFIX_REMOVE_AMENITY + VALID_AMENITY_AIRCON;
     public static final String ALIAS_USER_ALIAS_LS = " " + PREFIX_ALIAS + VALID_ALIAS_LS;
     public static final String ALIAS_USER_ALIAS_PWD = " " + PREFIX_ALIAS + VALID_ALIAS_PWD;
     public static final String ALIAS_USER_COMMAND_LIST = " " + PREFIX_ALIAS_COMMAND + VALID_ALIAS_COMMAND_LIST;
