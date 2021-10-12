@@ -27,7 +27,7 @@ public class ListCommandParser implements Parser<ListCommand> {
         boolean isFavFlagPresent = ParserUtil.isFlagPresent(
                 argMultimap.getAllValues(PREFIX_FLAG), ListCommand.FLAG_FAVOURITES);
         boolean isTagFlagPresent = ParserUtil.isFlagPresent(
-                argMultimap.getAllValues(PREFIX_TAG), ListCommand.FLAG_TAGS);
+                argMultimap.getAllValues(PREFIX_FLAG), ListCommand.FLAG_TAGS);
 
         Set<Tag> tagList = isTagFlagPresent ? ParserUtil.parseTags(argMultimap.getAllValues(PREFIX_TAG)) : null;
         return new ListCommand(predicate, isFavFlagPresent, tagList);

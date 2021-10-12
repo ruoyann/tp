@@ -29,6 +29,12 @@ public class ListCommand extends Command {
     private final boolean isFavFlagPresent;
     private final Set<Tag> tags;
 
+    /**
+     * Creates a ListCommand.
+     * @param predicate Predicate that filters the study spots.
+     * @param isFavFlagPresent Tracks if ListCommand lists favourites.
+     * @param tags List of tags that study spots are being filtered by.
+     */
     public ListCommand(Predicate<StudySpot> predicate, boolean isFavFlagPresent, Set<Tag> tags) {
         this.predicate = predicate;
         this.isFavFlagPresent = isFavFlagPresent;
@@ -99,9 +105,9 @@ public class ListCommand extends Command {
         }
 
         // state check
+        // Predicate is not a condition for equals as different predicates may have same results
         ListCommand c = (ListCommand) other;
-        return predicate.equals(c.predicate)
-                && isFavFlagPresent && c.isFavFlagPresent
+        return (isFavFlagPresent == c.isFavFlagPresent)
                 && getTags().equals(c.getTags());
     }
 }
