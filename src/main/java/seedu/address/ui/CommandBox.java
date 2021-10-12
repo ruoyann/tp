@@ -87,7 +87,6 @@ public class CommandBox extends UiPart<Region> {
      * Reused from https://github.com/qreoct/ip/blob/master/src/main/java/duke/controllers/AppWindow.java
      */
     private void handleKeyboardShortcuts() {
-        System.out.println("handling shortcuts");
         commandTextField.setOnKeyReleased(event -> {
             String key = event.getCode().toString();
             cycleThroughCommandHistory(key);
