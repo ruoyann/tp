@@ -4,11 +4,11 @@ import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 import static seedu.address.logic.commands.CommandTestUtil.assertCommandFailure;
 import static seedu.address.logic.commands.CommandTestUtil.assertCommandSuccess;
+import static seedu.address.logic.commands.CommandTestUtil.showNoStudySpot;
 import static seedu.address.logic.commands.CommandTestUtil.showStudySpotAtIndex;
 import static seedu.address.testutil.TypicalIndexes.INDEX_FIRST_SPOT;
 import static seedu.address.testutil.TypicalIndexes.INDEX_SECOND_SPOT;
 import static seedu.address.testutil.TypicalStudySpots.getTypicalStudyTracker;
-import static seedu.address.logic.commands.CommandTestUtil.showNoStudySpot;
 
 import org.junit.jupiter.api.Test;
 
