@@ -1,5 +1,6 @@
 package seedu.address.logic.parser;
 
+import static seedu.address.logic.commands.ListCommand.containsTag;
 import static seedu.address.logic.parser.CommandParserTestUtil.assertParseFailure;
 import static seedu.address.logic.parser.CommandParserTestUtil.assertParseSuccess;
 import static seedu.address.model.Model.PREDICATE_SHOW_ALL_STUDYSPOTS;
@@ -48,7 +49,7 @@ public class ListCommandParserTest {
         Tag coldTag = new Tag("cold");
         Tag warmTag = new Tag("warm");
         Set<Tag> tagSet = new HashSet<Tag>(Arrays.asList(coldTag, warmTag));
-        Predicate<StudySpot> predicate = ListCommand.containsTags(tagSet);
+        Predicate<StudySpot> predicate = containsTag(coldTag).and(containsTag(warmTag));
         assertParseSuccess(parser, " -t t/cold t/warm", new ListCommand(predicate, false, tagSet));
 
     }

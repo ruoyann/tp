@@ -11,6 +11,7 @@ import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
 import java.util.function.Predicate;
+import java.util.stream.Collectors;
 
 import seedu.address.commons.core.index.Index;
 import seedu.address.commons.util.StringUtil;
@@ -124,8 +125,9 @@ public class ParserUtil {
 
         if (isFlagPresent(flags, ListCommand.FLAG_TAGS)) {
             Set<Tag> tags = parseTags(argMultiMap.getAllValues(PREFIX_TAG));
-            Predicate<StudySpot> tagsPredicate = ListCommand.containsTags(tags);
-            predicateList.add(tagsPredicate);
+            List<Predicate<StudySpot>> tagsPredicate =
+                    tags.stream().map(tag -> ListCommand.containsTag(tag)).collect(Collectors.toList());
+            predicateList.addAll(tagsPredicate);
         }
         return predicateList.stream().reduce(Predicate::and).get();
     }

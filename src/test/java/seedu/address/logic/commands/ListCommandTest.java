@@ -59,7 +59,7 @@ public class ListCommandTest {
         assertTrue(studySpot.getTags().contains(coffee));
         showStudySpotAtIndex(model, INDEX_FIRST_SPOT);
         showStudySpotAtIndex(expectedModel, INDEX_FIRST_SPOT);
-        Predicate<StudySpot> predicate = ListCommand.containsTags(tagSet);
+        Predicate<StudySpot> predicate = ListCommand.containsTag(coffee);
         assertCommandSuccess(new ListCommand(predicate, false, tagSet), model,
                 ListCommand.MESSAGE_SUCCESS + ListCommand.getFilterMessage(false, tagSet), expectedModel);
     }
@@ -70,7 +70,7 @@ public class ListCommandTest {
         Set<Tag> tagSet = new HashSet<>(Arrays.asList(tag));
         showStudySpotAtIndex(model, INDEX_FIRST_SPOT);
         showNoStudySpot(expectedModel);
-        Predicate<StudySpot> predicate = ListCommand.containsTags(tagSet);
+        Predicate<StudySpot> predicate = ListCommand.containsTag(tag);
         assertTrue(model.getFullList().stream().filter(predicate).collect(Collectors.toList()).isEmpty());
         assertCommandSuccess(new ListCommand(predicate, false, tagSet), model,
                 ListCommand.MESSAGE_SUCCESS + ListCommand.getFilterMessage(false, tagSet), expectedModel);

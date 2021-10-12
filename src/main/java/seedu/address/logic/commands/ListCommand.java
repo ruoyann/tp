@@ -3,7 +3,6 @@ package seedu.address.logic.commands;
 import static java.util.Objects.requireNonNull;
 
 import java.util.Collections;
-import java.util.HashSet;
 import java.util.Optional;
 import java.util.Set;
 import java.util.function.Predicate;
@@ -83,17 +82,14 @@ public class ListCommand extends Command {
     }
 
     /**
-     * Returns a Predicate that checks if a studySpot contains the set of tags queried.
-     * @param queryTags
+     * Returns a Predicate that checks if a studySpot contains the tag queried.
+     * @param queryTag
      */
-    public static Predicate<StudySpot> containsTags(Set<Tag> queryTags) {
+    public static Predicate<StudySpot> containsTag(Tag queryTag) {
         Predicate<StudySpot> studySpotContainTag = new Predicate<StudySpot>() {
             @Override
             public boolean test(StudySpot studySpot) {
-                Set<Tag> studySpotTags = studySpot.getTags();
-                Set<Tag> queryTagsCopy = new HashSet<>(queryTags);
-                queryTagsCopy.retainAll(studySpotTags);
-                return !queryTagsCopy.isEmpty();
+                return studySpot.getTags().contains(queryTag);
             }
         };
         return studySpotContainTag;
