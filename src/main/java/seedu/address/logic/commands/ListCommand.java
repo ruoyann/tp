@@ -24,6 +24,7 @@ public class ListCommand extends Command {
 
     public static final String MESSAGE_CONSTRAINTS = "Only valid flags are accepted as extra parameters";
     public static final String MESSAGE_SUCCESS = "Listed all study spots";
+    public static final String MESSAGE_MISSING_TAGS = "Please enter a tag. e.g. t/cold";
 
     private final Predicate<StudySpot> predicate;
     private final boolean isFavFlagPresent;

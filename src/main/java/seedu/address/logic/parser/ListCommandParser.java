@@ -30,6 +30,9 @@ public class ListCommandParser implements Parser<ListCommand> {
                 argMultimap.getAllValues(PREFIX_FLAG), ListCommand.FLAG_TAGS);
 
         Set<Tag> tagList = isTagFlagPresent ? ParserUtil.parseTags(argMultimap.getAllValues(PREFIX_TAG)) : null;
+        if (isTagFlagPresent && tagList.isEmpty()) {
+            throw new ParseException(ListCommand.MESSAGE_MISSING_TAGS);
+        }
         return new ListCommand(predicate, isFavFlagPresent, tagList);
     }
 }
