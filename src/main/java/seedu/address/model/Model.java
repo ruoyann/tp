@@ -5,6 +5,7 @@ import java.util.function.Predicate;
 
 import javafx.collections.ObservableList;
 import seedu.address.commons.core.GuiSettings;
+import seedu.address.logic.commands.Command;
 import seedu.address.model.alias.Alias;
 import seedu.address.model.studyspot.StudySpot;
 
@@ -128,4 +129,9 @@ public interface Model {
      * Returns an unmodifiable view of the non filtered study spot list
      */
     ObservableList<StudySpot> getFullList();
+
+    /**
+     * Returns a list of all available commands
+     */
+    ObservableList<Command> getAllCommands();
 }

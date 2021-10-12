@@ -4,6 +4,7 @@ import static java.util.Objects.requireNonNull;
 import static seedu.address.commons.util.CollectionUtil.requireAllNonNull;
 
 import java.nio.file.Path;
+import java.util.ArrayList;
 import java.util.List;
 import java.util.function.Predicate;
 import java.util.logging.Logger;
@@ -12,6 +13,8 @@ import javafx.collections.ObservableList;
 import javafx.collections.transformation.FilteredList;
 import seedu.address.commons.core.GuiSettings;
 import seedu.address.commons.core.LogsCenter;
+import seedu.address.logic.commands.Command;
+import seedu.address.logic.commands.CommandList;
 import seedu.address.model.alias.Alias;
 import seedu.address.model.studyspot.StudySpot;
 
@@ -24,6 +27,7 @@ public class ModelManager implements Model {
     private final StudyTracker studyTracker;
     private final UserPrefs userPrefs;
     private final FilteredList<StudySpot> filteredStudySpots;
+    private final ObservableList<Command> commandList;
 
     /**
      * Initializes a ModelManager with the given studyTracker and userPrefs.
@@ -37,6 +41,7 @@ public class ModelManager implements Model {
         this.studyTracker = new StudyTracker(studyTracker);
         this.userPrefs = new UserPrefs(userPrefs);
         filteredStudySpots = new FilteredList<>(this.studyTracker.getStudySpotList());
+        this.commandList = CommandList.COMMANDS;
     }
 
     public ModelManager() {
@@ -223,4 +228,8 @@ public class ModelManager implements Model {
         return studyTracker.getStudySpotList();
     }
 
+    @Override
+    public ObservableList<Command> getAllCommands() {
+        return commandList;
+    }
 }

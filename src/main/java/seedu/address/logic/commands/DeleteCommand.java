@@ -30,6 +30,13 @@ public class DeleteCommand extends Command {
         this.targetIndex = targetIndex;
     }
 
+    /**
+     * Creates a default DeleteCommand constructor for {@code CommandList}
+     */
+    public DeleteCommand() {
+        this.targetIndex = null;
+    }
+
     @Override
     public CommandResult execute(Model model) throws CommandException {
         requireNonNull(model);

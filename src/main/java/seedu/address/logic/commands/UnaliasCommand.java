@@ -34,6 +34,13 @@ public class UnaliasCommand extends Command {
         this.alias = alias;
     }
 
+    /**
+     * Creates a default UnaliasCommand constructor for {@code CommandList}
+     */
+    public UnaliasCommand() {
+        this.alias = null;
+    }
+
     @Override
     public CommandResult execute(Model model) throws CommandException {
         if (!model.hasAlias(alias)) {

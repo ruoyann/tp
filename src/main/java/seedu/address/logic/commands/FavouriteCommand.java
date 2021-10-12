@@ -8,6 +8,7 @@ import java.util.List;
 
 import seedu.address.logic.commands.exceptions.CommandException;
 import seedu.address.model.Model;
+import seedu.address.model.studyspot.Favourite;
 import seedu.address.model.studyspot.Name;
 import seedu.address.model.studyspot.StudySpot;
 
@@ -32,6 +33,13 @@ public class FavouriteCommand extends Command {
 
     public FavouriteCommand(Name name) {
         this.name = name;
+    }
+
+    /**
+     * Creates a default FavouriteCommand constructor for {@code CommandList}
+     */
+    public FavouriteCommand() {
+        this.name = null;
     }
 
     @Override

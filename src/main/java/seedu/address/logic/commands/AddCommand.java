@@ -49,6 +49,13 @@ public class AddCommand extends Command {
         toAdd = studySpot;
     }
 
+    /**
+     * Creates a default AddCommand for {@code CommandList}
+     */
+    public AddCommand() {
+        toAdd = null;
+    }
+
     @Override
     public CommandResult execute(Model model) throws CommandException {
         requireNonNull(model);

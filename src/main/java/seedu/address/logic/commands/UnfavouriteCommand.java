@@ -34,6 +34,12 @@ public class UnfavouriteCommand extends Command {
         this.name = name;
     }
 
+    /**
+     * Creates a default Unfavourite Command constructor for {@code CommandList}
+     */
+    public UnfavouriteCommand() {
+        this.name = null;
+    }
     @Override
     public CommandResult execute(Model model) throws CommandException {
         requireNonNull(model);

@@ -25,6 +25,13 @@ public class FindCommand extends Command {
         this.predicate = predicate;
     }
 
+    /**
+     * Creates a default FindCommand constructor for {@code CommandList}
+     */
+    public FindCommand() {
+        this.predicate = null;
+    }
+
     @Override
     public CommandResult execute(Model model) {
         requireNonNull(model);

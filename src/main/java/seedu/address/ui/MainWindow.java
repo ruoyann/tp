@@ -71,7 +71,7 @@ public class MainWindow extends UiPart<Stage> {
 
         setAccelerators();
 
-        helpWindow = new HelpWindow();
+        helpWindow = new HelpWindow(logic.getCommandList());
     }
 
     public Stage getPrimaryStage() {
