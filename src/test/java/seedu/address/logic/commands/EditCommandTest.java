@@ -6,6 +6,7 @@ import static seedu.address.logic.commands.CommandTestUtil.DESC_DECK;
 import static seedu.address.logic.commands.CommandTestUtil.DESC_FRONTIER;
 import static seedu.address.logic.commands.CommandTestUtil.VALID_AMENITY_CHARGER;
 import static seedu.address.logic.commands.CommandTestUtil.VALID_AMENITY_WIFI;
+import static seedu.address.logic.commands.CommandTestUtil.VALID_AMENITY_FOOD;
 import static seedu.address.logic.commands.CommandTestUtil.VALID_NAME_DECK;
 import static seedu.address.logic.commands.CommandTestUtil.VALID_RATING_DECK;
 import static seedu.address.logic.commands.CommandTestUtil.VALID_TAG_COFFEE;
@@ -41,7 +42,7 @@ public class EditCommandTest {
 
     @Test
     public void execute_allFieldsSpecifiedUnfilteredList_success() {
-        StudySpot editedStudySpot = new StudySpotBuilder().withAmenities(VALID_AMENITY_WIFI, VALID_AMENITY_CHARGER)
+        StudySpot editedStudySpot = new StudySpotBuilder().withAmenities(VALID_AMENITY_WIFI, VALID_AMENITY_CHARGER, VALID_AMENITY_FOOD)
                 .build();
         Name firstStudySpotInTypicalStudySpots = new Name("Starbucks");
         EditStudySpotDescriptor descriptor = new EditStudySpotDescriptorBuilder(editedStudySpot).build();
