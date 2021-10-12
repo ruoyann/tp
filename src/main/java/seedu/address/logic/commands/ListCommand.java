@@ -2,7 +2,10 @@ package seedu.address.logic.commands;
 
 import static java.util.Objects.requireNonNull;
 
+import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.Collections;
+import java.util.List;
 import java.util.Optional;
 import java.util.Set;
 import java.util.function.Predicate;
@@ -20,10 +23,12 @@ public class ListCommand extends Command {
     public static final String COMMAND_WORD = "list";
     public static final String FLAG_FAVOURITES = "f";
     public static final String FLAG_TAGS = "t";
+    public static final List<String> FLAG_LIST = new ArrayList<>(Arrays.asList("f", "t"));
 
     public static final String MESSAGE_CONSTRAINTS = "Only valid flags are accepted as extra parameters";
     public static final String MESSAGE_SUCCESS = "Listed all study spots";
     public static final String MESSAGE_MISSING_TAGS = "Please enter a tag. e.g. t/cold";
+    public static final String MESSAGE_UNKNOWN_FLAGS = "Unknown flags given";
 
     private final Predicate<StudySpot> predicate;
     private final boolean isFavFlagPresent;
