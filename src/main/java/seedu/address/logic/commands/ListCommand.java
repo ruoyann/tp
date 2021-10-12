@@ -54,6 +54,11 @@ public class ListCommand extends Command {
         return new CommandResult(sb.toString());
     }
 
+    /**
+     * Returns the string to be printed containing the filter currently set.
+     * @param isFavFlag
+     * @param tagSet
+     */
     public static String getFilterMessage(boolean isFavFlag, Set<Tag> tagSet) {
         StringBuilder sb = new StringBuilder();
         if (isFavFlag) {

@@ -11,7 +11,6 @@ import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
 import java.util.function.Predicate;
-import java.util.stream.Collectors;
 
 import seedu.address.commons.core.index.Index;
 import seedu.address.commons.util.StringUtil;
@@ -125,20 +124,14 @@ public class ParserUtil {
 
         if (isFlagPresent(flags, ListCommand.FLAG_TAGS)) {
             Set<Tag> tags = parseTags(argMultiMap.getAllValues(PREFIX_TAG));
-            List<Predicate<StudySpot>> tagsPredicate =
-                    tags.stream().map(tag -> new Predicate<StudySpot>() {
-                        @Override
-                        public boolean test(StudySpot studySpot) {
-                            return studySpot.getTags().contains(tag);
-                        }
-                    }).collect(Collectors.toList());
-            predicateList.addAll(tagsPredicate);
+            Predicate<StudySpot> tagsPredicate = ListCommand.containsTags(tags);
+            predicateList.add(tagsPredicate);
         }
         return predicateList.stream().reduce(Predicate::and).get();
     }
 
     /**
-     * Checks if a flag is present in the arguments.
+     * Checks if a particular flag is present in the arguments.
      * @param args Arguments from MultiMap.
      * @param flag Query flag.
      * @return true if query flag is present.
