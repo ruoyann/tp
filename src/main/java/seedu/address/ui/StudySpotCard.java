@@ -89,13 +89,12 @@ public class StudySpotCard extends UiPart<Region> {
         id.setText(displayedIndex + ". ");
         name.setText(studySpot.getName().fullName);
         rating.setText(setRatingDisplay(studySpot.getRating()));
-        setFavouriteDisplay(icons, studySpot.isFavourite());
-        rating.setText(setRatingDisplay(studySpot.getRating()));
         address.setText(studySpot.getAddress().value);
         email.setText(studySpot.getEmail().value);
         studySpot.getTags().stream()
                 .sorted(Comparator.comparing(tag -> tag.tagName))
                 .forEach(tag -> tags.getChildren().add(new Label(tag.tagName)));
+        setFavouriteDisplay(icons, studySpot.isFavourite());
         setAmenitiesDisplay(icons, studySpot);
     }
 
@@ -119,14 +118,17 @@ public class StudySpotCard extends UiPart<Region> {
 
     private void setFavouriteDisplay(HBox iconsDisplay, boolean isFavourite) {
         if (isFavourite) {
-            iconsDisplay.getChildren().add(getFavouriteIconLabel());
+            HBox favouriteDisplay = new HBox();
+            favouriteDisplay.getStyleClass().add("icon_container");
+            favouriteDisplay.getChildren().add(getFavouriteIconLabel());
+            iconsDisplay.getChildren().add(favouriteDisplay);
         }
     }
 
     private void setAmenitiesDisplay(HBox iconsDisplay, StudySpot studySpot) {
         if (!studySpot.getAmenities().isEmpty()) {
             HBox amenitiesDisplay = new HBox();
-            amenitiesDisplay.getStyleClass().add("amenities_container");
+            amenitiesDisplay.getStyleClass().add("icon_container");
             setUpdatedAmenitiesDisplay(amenitiesDisplay, studySpot);
             iconsDisplay.getChildren().add(amenitiesDisplay);
         }
@@ -140,14 +142,14 @@ public class StudySpotCard extends UiPart<Region> {
 
     private Label getFavouriteIconLabel() {
         Label result = new Label();
-        result.getStyleClass().add("favourite_label");
+        result.getStyleClass().add("icon_label");
         result.setGraphic(getIcon(SVGPATH_HEART_CONTENT, 0.025));
         return result;
     }
 
     private Label getAmenityIconLabel(String amenityType) {
         Label result = new Label();
-        result.getStyleClass().add("amenities_icon_label");
+        result.getStyleClass().add("icon_label");
 
         switch (amenityType) {
         case "wifi":

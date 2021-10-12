@@ -10,7 +10,6 @@
 <?import javafx.scene.layout.VBox?>
 
 <?import javafx.scene.shape.SVGPath?>
-<?import javafx.scene.Group?>
 <HBox id="cardPane" fx:id="cardPane" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1">
   <GridPane HBox.hgrow="ALWAYS" >
 
@@ -77,9 +76,6 @@
       </VBox>
 
       </GridPane>
-
-
-
 
     </VBox>
   </GridPane>
