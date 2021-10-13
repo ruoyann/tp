@@ -1,5 +1,7 @@
 package seedu.address.logic.commands.util;
 
+import java.util.HashMap;
+
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import seedu.address.logic.commands.AddCommand;
@@ -14,7 +16,7 @@ import seedu.address.logic.commands.ListCommand;
 import seedu.address.logic.commands.UnaliasCommand;
 import seedu.address.logic.commands.UnfavouriteCommand;
 
-import java.util.HashMap;
+
 
 
 /**
@@ -38,7 +40,7 @@ public class CommandList {
      */
     public static final ObservableList<String> COMMANDS = FXCollections.observableArrayList(ADD_COMMAND, ALIAS_COMMAND,
             CLEAR_COMMAND, DELETE_COMMAND, EDIT_COMMAND, EXIT_COMMAND, FAVOURITE_COMMAND, HELP_COMMAND,
-            LIST_COMMAND, UNALIAS_COMMAND,UNFAVOURITE_COMMAND);
+            LIST_COMMAND, UNALIAS_COMMAND, UNFAVOURITE_COMMAND);
 
     public static HashMap<String, String> getCommandToUsageMapping() {
         HashMap<String, String> commandToUsage = new HashMap<>();

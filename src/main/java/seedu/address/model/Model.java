@@ -5,7 +5,6 @@ import java.util.function.Predicate;
 
 import javafx.collections.ObservableList;
 import seedu.address.commons.core.GuiSettings;
-import seedu.address.logic.commands.Command;
 import seedu.address.model.alias.Alias;
 import seedu.address.model.studyspot.StudySpot;
 

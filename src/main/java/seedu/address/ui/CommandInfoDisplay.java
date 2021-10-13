@@ -3,22 +3,28 @@ package seedu.address.ui;
 import static java.util.Objects.requireNonNull;
 
 import javafx.fxml.FXML;
+import javafx.scene.control.TextArea;
 import javafx.scene.layout.Region;
 
-import javafx.scene.control.TextArea;
 
 public class CommandInfoDisplay extends UiPart<Region> {
     private static final String FXML = "CommandInfoDisplay.fxml";
+    private static final String DEFAULT_MESSAGE = "Click on a command to view info on the command.";
 
     @FXML
     private TextArea commandInfo;
 
+    /**
+     * Creates a CommandInfoDisplay with the DEFAULT_MESSAGE as the label
+     */
     public CommandInfoDisplay() {
         super(FXML);
-        String DEFAULT_MESSAGE = "Click on a command to view info on the command.";
         commandInfo.setText(DEFAULT_MESSAGE);
     }
 
+    /**
+     * Sets the display to have the info of the selected command
+     */
     public void setCommandInfo(String info) {
         requireNonNull(info);
         try {
