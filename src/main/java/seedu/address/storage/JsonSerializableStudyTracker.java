@@ -54,6 +54,9 @@ class JsonSerializableStudyTracker {
                 throw new IllegalValueException(MESSAGE_DUPLICATE_STUDYSPOT);
             }
             studyTracker.addStudySpot(spot);
+            if (spot.isFavourite()) {
+                studyTracker.addStudySpotToFavourites(spot);
+            }
         }
         return studyTracker;
     }

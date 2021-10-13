@@ -86,7 +86,7 @@ Some examples of **invalid** user inputs for the *add command* are provided belo
 
 ### Viewing help : `help`
 
-Provides a link to the full User Guide.
+Provides a link to the full User Guide that users can visit by clicking on the button 'Open in  Browser'.
 
 ![help message](images/helpMessage.png)
 
@@ -112,11 +112,17 @@ add n/Starbucks at U-Town r/4 t/noisy m/wifi
 New study spot “Starbucks at U-Town” added to list!
 ```
 
-### Listing all study spots : `list`
+### Listing study spots : `list`
 
-Shows all saved study spots in the StudyTracker.
+Shows saved study spots in the StudyTracker.
 
-Format: `list`
+Format: `list` to show all study spots
+
+Format: `list -f` to show all favourite study spots
+
+Format: `list -t t/TAG...` to show study spots with specified tags
+
+* Multiple flags can be used at once
 
 Examples:
 ```
@@ -126,6 +132,11 @@ Your study spots are:
   2. TR3
   3. PC Commons
   4. CLB
+  
+list -f -t t/cold 
+Your study spots are:
+  1. TR3
+  2. PC Commons
 ```
 
 <div markdown="span" class="alert alert-primary">:bulb: **Tip:**
@@ -303,7 +314,8 @@ Action | Format, Examples
 **Clear** | `clear`
 **Delete** | `delete n/NAME*` <br> e.g., `delete n/COM1`
 **Edit** | `edit n/NAME* n/NEW_NAME a/NEW_ADDRESS t/NEW_TAG m/NEW_AMENITY r/NEW_RATING`<br> e.g.,`edit n/tr3 n/Training Room 3`
+**Favourite**  |  `fav n/NAME*` <br> e.g. `fav n/COM1`
 **Find** | `find n/NAME*`<br> e.g., `find n/lib`
 **Alias** | `alias al/ALIAS* cmd/COMMAND*`<br> e.g., `alias al/home cmd/find n/home`
-**List** | `list`
+**List** | `list -f -t t/TAG...`
 **Help** | `help`

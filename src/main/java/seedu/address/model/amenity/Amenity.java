@@ -12,7 +12,7 @@ import java.util.Arrays;
 public class Amenity {
 
     public static final String MESSAGE_CONSTRAINTS = "Amenities should only be of the types: %s.";
-    public static final String[] VALID_TYPES = {"wifi", "charger"};
+    public static final String[] VALID_TYPES = {"wifi", "charger", "food", "aircon"};
 
     public final String amenityType;
 
@@ -69,7 +69,7 @@ public class Amenity {
      * Format state as text for viewing.
      */
     public String toString() {
-        return amenityType;
+        return '[' + amenityType + ']';
     }
 
 }

@@ -4,6 +4,7 @@ import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 import static seedu.address.logic.commands.CommandTestUtil.assertCommandFailure;
 import static seedu.address.logic.commands.CommandTestUtil.assertCommandSuccess;
+import static seedu.address.logic.commands.CommandTestUtil.showNoStudySpot;
 import static seedu.address.logic.commands.CommandTestUtil.showStudySpotAtIndex;
 import static seedu.address.testutil.TypicalIndexes.INDEX_FIRST_SPOT;
 import static seedu.address.testutil.TypicalIndexes.INDEX_SECOND_SPOT;
@@ -16,6 +17,7 @@ import seedu.address.commons.core.index.Index;
 import seedu.address.model.Model;
 import seedu.address.model.ModelManager;
 import seedu.address.model.UserPrefs;
+import seedu.address.model.studyspot.Name;
 import seedu.address.model.studyspot.StudySpot;
 
 /**
@@ -24,12 +26,15 @@ import seedu.address.model.studyspot.StudySpot;
  */
 public class DeleteCommandTest {
 
+    public static final Name INVALID_NAME = new Name("thisIsAnInvalidName");
+    public static final Name VALID_NAME_ONE = new Name("Starbucks");
+    public static final Name VALID_NAME_TWO = new Name("Central Library");
     private Model model = new ModelManager(getTypicalStudyTracker(), new UserPrefs());
 
     @Test
-    public void execute_validIndexUnfilteredList_success() {
-        StudySpot studySpotToDelete = model.getFilteredStudySpotList().get(INDEX_FIRST_SPOT.getZeroBased());
-        DeleteCommand deleteCommand = new DeleteCommand(INDEX_FIRST_SPOT);
+    public void execute_validNameUnfilteredList_success() {
+        StudySpot studySpotToDelete = model.getFilteredStudySpotList().get(0);
+        DeleteCommand deleteCommand = new DeleteCommand(VALID_NAME_ONE);
 
         String expectedMessage = String.format(DeleteCommand.MESSAGE_DELETE_STUDYSPOT_SUCCESS, studySpotToDelete);
 
@@ -40,11 +45,9 @@ public class DeleteCommandTest {
     }
 
     @Test
-    public void execute_invalidIndexUnfilteredList_throwsCommandException() {
-        Index outOfBoundIndex = Index.fromOneBased(model.getFilteredStudySpotList().size() + 1);
-        DeleteCommand deleteCommand = new DeleteCommand(outOfBoundIndex);
-
-        assertCommandFailure(deleteCommand, model, Messages.MESSAGE_INVALID_STUDYSPOT_DISPLAYED_INDEX);
+    public void execute_invalidNameUnfilteredList_throwsCommandException() {
+        DeleteCommand deleteCommand = new DeleteCommand(INVALID_NAME);
+        assertCommandFailure(deleteCommand, model, Messages.MESSAGE_INVALID_NAME);
     }
 
     @Test
@@ -52,7 +55,7 @@ public class DeleteCommandTest {
         showStudySpotAtIndex(model, INDEX_FIRST_SPOT);
 
         StudySpot studySpotToDelete = model.getFilteredStudySpotList().get(INDEX_FIRST_SPOT.getZeroBased());
-        DeleteCommand deleteCommand = new DeleteCommand(INDEX_FIRST_SPOT);
+        DeleteCommand deleteCommand = new DeleteCommand(VALID_NAME_ONE);
 
         String expectedMessage = String.format(DeleteCommand.MESSAGE_DELETE_STUDYSPOT_SUCCESS, studySpotToDelete);
 
@@ -71,21 +74,21 @@ public class DeleteCommandTest {
         // ensures that outOfBoundIndex is still in bounds of study tracker list
         assertTrue(outOfBoundIndex.getZeroBased() < model.getStudyTracker().getStudySpotList().size());
 
-        DeleteCommand deleteCommand = new DeleteCommand(outOfBoundIndex);
+        DeleteCommand deleteCommand = new DeleteCommand(INVALID_NAME);
 
-        assertCommandFailure(deleteCommand, model, Messages.MESSAGE_INVALID_STUDYSPOT_DISPLAYED_INDEX);
+        assertCommandFailure(deleteCommand, model, Messages.MESSAGE_INVALID_NAME);
     }
 
     @Test
     public void equals() {
-        DeleteCommand deleteFirstCommand = new DeleteCommand(INDEX_FIRST_SPOT);
-        DeleteCommand deleteSecondCommand = new DeleteCommand(INDEX_SECOND_SPOT);
+        DeleteCommand deleteFirstCommand = new DeleteCommand(VALID_NAME_ONE);
+        DeleteCommand deleteSecondCommand = new DeleteCommand(VALID_NAME_TWO);
 
         // same object -> returns true
         assertTrue(deleteFirstCommand.equals(deleteFirstCommand));
 
         // same values -> returns true
-        DeleteCommand deleteFirstCommandCopy = new DeleteCommand(INDEX_FIRST_SPOT);
+        DeleteCommand deleteFirstCommandCopy = new DeleteCommand(VALID_NAME_ONE);
         assertTrue(deleteFirstCommand.equals(deleteFirstCommandCopy));
 
         // different types -> returns false
@@ -98,12 +101,4 @@ public class DeleteCommandTest {
         assertFalse(deleteFirstCommand.equals(deleteSecondCommand));
     }
 
-    /**
-     * Updates {@code model}'s filtered list to show no one.
-     */
-    private void showNoStudySpot(Model model) {
-        model.updateFilteredStudySpotList(p -> false);
-
-        assertTrue(model.getFilteredStudySpotList().isEmpty());
-    }
 }

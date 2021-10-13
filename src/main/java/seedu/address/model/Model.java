@@ -12,8 +12,8 @@ import seedu.address.model.studyspot.StudySpot;
  * The API of the Model component.
  */
 public interface Model {
-    /** {@code Predicate} that always evaluate to true */
-    Predicate<StudySpot> PREDICATE_SHOW_ALL_STUDYSPOTS = unused -> true;
+    Predicate<StudySpot> PREDICATE_SHOW_ALL_STUDYSPOTS = unused -> true; // always evaluate to true
+    Predicate<StudySpot> PREDICATE_SHOW_FAVOURITES = StudySpot::isFavourite;
 
     /**
      * Replaces user prefs data with the data in {@code userPrefs}.

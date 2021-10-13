@@ -5,7 +5,7 @@ import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 import static seedu.address.commons.core.Messages.MESSAGE_STUDYSPOT_LISTED_OVERVIEW;
 import static seedu.address.logic.commands.CommandTestUtil.assertCommandSuccess;
-import static seedu.address.testutil.TypicalStudySpots.FRONTIER;
+import static seedu.address.testutil.TypicalStudySpots.FRONTIER_CANTEEN;
 import static seedu.address.testutil.TypicalStudySpots.LT_17;
 import static seedu.address.testutil.TypicalStudySpots.PC_COMMONS;
 import static seedu.address.testutil.TypicalStudySpots.getTypicalStudyTracker;
@@ -71,7 +71,7 @@ public class FindCommandTest {
         FindCommand command = new FindCommand(predicate);
         expectedModel.updateFilteredStudySpotList(predicate);
         assertCommandSuccess(command, model, expectedMessage, expectedModel);
-        assertEquals(Arrays.asList(FRONTIER, PC_COMMONS, LT_17), model.getFilteredStudySpotList());
+        assertEquals(Arrays.asList(FRONTIER_CANTEEN, PC_COMMONS, LT_17), model.getFilteredStudySpotList());
     }
 
     /**
