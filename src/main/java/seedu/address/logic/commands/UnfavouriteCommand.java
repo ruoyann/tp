@@ -21,7 +21,7 @@ public class UnfavouriteCommand extends Command {
     public static final String MESSAGE_USAGE = COMMAND_WORD
             + ": Removes the study spot from favourites.\n"
             + "Parameters: "
-            + "[" + PREFIX_NAME + "NAME] (non-case sensitive) \n"
+            +  PREFIX_NAME + "NAME (non-case sensitive) \n"
             + "Example: " + COMMAND_WORD + " " + PREFIX_NAME + "tr3 ";
 
     public static final String MESSAGE_UNFAVOURITE_STUDYSPOT_SUCCESS = "Removed study spot from favourites: %1$s";

@@ -42,7 +42,7 @@ public class EditCommand extends Command {
             + "by its name (case-insensitive). "
             + "Existing values will be overwritten by the input values.\n"
             + "Parameters: "
-            + "[" + PREFIX_EDIT_SPOT + "NAME] (non-case sensitive) "
+            + PREFIX_EDIT_SPOT + "NAME (non-case sensitive) "
             + "[" + PREFIX_NAME + "NAME] "
             + "[" + PREFIX_RATING + "RATING] "
             + "[" + PREFIX_EMAIL + "EMAIL] "

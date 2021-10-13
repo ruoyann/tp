@@ -19,7 +19,7 @@ public class DeleteCommand extends Command {
 
     public static final String MESSAGE_USAGE = COMMAND_WORD
             + ": Deletes the study spot identified by the name used in the displayed study spot list.\n"
-            + "Parameters: NAME (must be a valid name in the StudyTracker)\n"
+            + "Parameters: n/NAME (must be a valid name in the StudyTracker)\n"
             + "Example: " + COMMAND_WORD + " n/ValidName";
 
     public static final String MESSAGE_DELETE_STUDYSPOT_SUCCESS = "Deleted study spot: %1$s";

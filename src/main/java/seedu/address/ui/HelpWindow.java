@@ -4,6 +4,7 @@ import java.awt.Desktop;
 import java.io.IOException;
 import java.net.URISyntaxException;
 import java.net.URL;
+import java.util.HashMap;
 import java.util.logging.Logger;
 
 import javafx.collections.ObservableList;
@@ -14,11 +15,10 @@ import javafx.scene.control.Label;
 import javafx.scene.control.ListView;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.StackPane;
-import javafx.scene.layout.VBox;
 import javafx.stage.Stage;
 import seedu.address.commons.core.LogsCenter;
 import seedu.address.logic.commands.Command;
-import seedu.address.logic.commands.CommandList;
+import seedu.address.logic.commands.util.CommandList;
 
 /**
  * Controller for a help page
@@ -32,7 +32,8 @@ public class HelpWindow extends UiPart<Stage> {
     private static final Logger logger = LogsCenter.getLogger(HelpWindow.class);
     private static final String FXML = "HelpWindow.fxml";
 
-    private ObservableList<Command> commandList = CommandList.COMMANDS;
+    private ObservableList<String> commandList = CommandList.COMMANDS;
+    private HashMap<String, String> commandToUsage = CommandList.getCommandToUsageMapping();
     private CommandInfoDisplay commandInfoDisplay;
 
     @FXML
@@ -45,7 +46,7 @@ public class HelpWindow extends UiPart<Stage> {
     private StackPane commandInfoDisplayPlaceholder;
 
     @FXML
-    private ListView<Command> commandListView;
+    private ListView<String> commandListView;
 
     /**
      * Creates a new HelpWindow.
@@ -129,8 +130,8 @@ public class HelpWindow extends UiPart<Stage> {
     private class HandleListView implements EventHandler<MouseEvent> {
         @Override
         public void handle(MouseEvent event) {
-            Command clickedCommand = commandListView.getSelectionModel().getSelectedItem();
-            String commandFormat = clickedCommand.getCommandUsage();
+            String clickedCommand = commandListView.getSelectionModel().getSelectedItem();
+            String commandFormat = commandToUsage.get(clickedCommand);
             commandInfoDisplay.setCommandInfo(commandFormat);
         }
     }

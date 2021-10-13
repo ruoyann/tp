@@ -21,6 +21,15 @@ public class CommandInfoDisplay extends UiPart<Region> {
 
     public void setCommandInfo(String info) {
         requireNonNull(info);
-        commandInfo.setText(info);
+        try {
+            String[] splitParameters = info.split("Parameters:");
+            String[] splitExample = splitParameters[1].split("Example:");
+            String shownInfo = splitParameters[0] + "\n";
+            shownInfo += "Parameters:" + splitExample[0] + "\n";
+            shownInfo += "Example:" + splitExample[1];
+            commandInfo.setText(shownInfo);
+        } catch (ArrayIndexOutOfBoundsException e) {
+            throw new AssertionError("Parameters missing from message usage!");
+        }
     }
 }
