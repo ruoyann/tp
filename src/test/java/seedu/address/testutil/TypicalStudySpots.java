@@ -27,29 +27,30 @@ public class TypicalStudySpots {
             .withAddress("UTown").withEmail("-")
             .withRating("4")
             .withTags("coffee")
-            .withAmenities("wifi", "charger")
+            .withAmenities("wifi", "charger", "food", "aircon")
             .build();
     public static final StudySpot CENTRAL_LIBRARY = new StudySpotBuilder().withName("Central library")
             .withAddress("NUS, Central Library")
             .withEmail("-").withRating("3")
             .withTags("cold", "quiet")
-            .withAmenities("wifi", "charger").build();
+            .withAmenities("wifi", "charger", "aircon").build();
     public static final StudySpot COM1 = new StudySpotBuilder().withName("COM1")
             .withRating("2")
             .withEmail("-")
             .withAddress("NUS Computing")
-            .withAmenities("wifi", "charger").build();
+            .withAmenities("wifi", "charger", "aircon").build();
     public static final StudySpot FRONTIER_CANTEEN = new StudySpotBuilder().withName("Frontier Canteen")
             .withRating("3")
             .withEmail("Frontier email")
             .withAddress("NUS Science Faculty")
-            .withTags("crowded").build();
+            .withTags("crowded")
+            .withAmenities("food").build();
     public static final StudySpot TOKYO_ROOM = new StudySpotBuilder().withName("Tokyo Room")
             .withRating("3")
             .withEmail("-")
             .withAddress("NUS, Yusof Ishak House Level 3")
             .withTags("cold")
-            .withAmenities("wifi").build();
+            .withAmenities("wifi", "aircon").build();
     public static final StudySpot PC_COMMONS = new StudySpotBuilder().withName("PC Commons")
             .withRating("4")
             .withEmail("-")

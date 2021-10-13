@@ -1,9 +1,6 @@
 package seedu.address.ui;
 
-import java.util.Arrays;
 import java.util.Comparator;
-import java.util.Set;
-import java.util.stream.Collectors;
 
 import javafx.fxml.FXML;
 import javafx.scene.control.Label;
@@ -11,7 +8,6 @@ import javafx.scene.layout.FlowPane;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.Region;
 import javafx.scene.shape.SVGPath;
-import seedu.address.model.amenity.Amenity;
 import seedu.address.model.studyspot.Rating;
 import seedu.address.model.studyspot.StudySpot;
 
@@ -32,6 +28,30 @@ public class StudySpotCard extends UiPart<Region> {
     private static final String SVGPATH_CHARGER_CONTENT = "M320,32a32,32,0,0,0-64,0v96h64Zm48,128H16A16,16,0,0,0,0,"
             + "176v32a16,16,0,0,0,16,16H32v32A160.07,160.07,0,0,0,160,412.8V512h64V412.8A160.07,160.07,0,0,0,352,"
             + "256V224h16a16,16,0,0,0,16-16V176A16,16,0,0,0,368,160ZM128,32a32,32,0,0,0-64,0v96h64Z";
+    private static final String SVGPATH_FOOD_CONTENT = "M207.9 15.2c.8 4.7 16.1 94.5 16.1 128.8 0 52.3-27.8 8"
+            + "9.6-68.9 104.6L168 486.7c.7 13.7-10.2 25.3-24 25.3H80c-13.7 0-24.7-11.5-24-25.3l12.9-238.1C2"
+            + "7.7 233.6 0 196.2 0 144 0 109.6 15.3 19.9 16.1 15.2 19.3-5.1 61.4-5.4 64 16.3v141.2c1.3 3.4 1"
+            + "5.1 3.2 16 0 1.4-25.3 7.9-139.2 8-141.8 3.3-20.8 44.7-20.8 47.9 0 .2 2.7 6.6 116.5 8 141.8.9 3.2 1"
+            + "4.8 3.4 16 0V16.3c2.6-21.6 44.8-21.4 48-1.1zm119.2 285.7l-15 185.1c-1.2 14 9.9 26 23.9 26h56c1"
+            + "3.3 0 24-10.7 24-24V24c0-13.2-10.7-24-24-24-82.5 0-221.4 178.5-64.9 300.9z";
+    private static final String SVGPATH_AIRCON_CONTENT = "M440.3 345.2l-33.8-19.5 26-7c8.2-2.2 13.1-10.7 10.9-18.9l-4-"
+            + "14.9c-2.2-8.2-10.7-13.1-18.9-10.9l-70.8 19-63.9-37 63.8-36.9 70.8 19c8.2 2.2 16.7-2.7 18.9-10.9l4-14.9c"
+            + "2.2-8.2-2.7-16.7-10.9-18.9l-26-7 33.8-19.5c7.4-4.3 9.9-13.7 5.7-21.1L430.4 119c-4.3-7.4-13.7-9.9-21.1-"
+            + "5.7l-33.8 19.5 7-26c2.2-8.2-2.7-16.7-10.9-18.9l-14.9-4c-8.2-2.2-16.7 2.7-18.9 10.9l-19 70.8-62.8 36.2v-7"
+            + "7.5l53.7-53.7c6.2-6.2 6.2-16.4 0-22.6l-11.3-11.3c-6.2-6.2-16.4-6.2-22.6 0L256 56.4V16c0-8.8-7.2-16-16-16"
+            + "h-32c-8.8 0-16 7.2-16 16v40.4l-19.7-19.7c-6.2-6.2-16.4-6.2-22.6 0L138.3 48c-6.3 6.2-6.3 16.4 0 22.6l53."
+            + "7 53.7v77.5l-62.8-36.2-19-70.8c-2.2-8.2-10.7-13.1-18.9-10.9l-14.9 4c-8.2 2.2-13.1 10.7-10.9 18.9l7 26-3"
+            + "3.8-19.5c-7.4-4.3-16.8-1.7-21.1 5.7L2.1 145.7c-4.3 7.4-1.7 16.8 5.7 21.1l33.8 19.5-26 7c-8.3 2.2-13.2 1"
+            + "0.7-11 19l4 14.9c2.2 8.2 10.7 13.1 18.9 10.9l70.8-19 63.8 36.9-63.8 36.9-70.8-19c-8.2-2.2-16.7 2.7-18."
+            + "9 10.9l-4 14.9c-2.2 8.2 2.7 16.7 10.9 18.9l26 7-33.8 19.6c-7.4 4.3-9.9 13.7-5.7 21.1l15.5 26.8c4.3 7.4 1"
+            + "3.7 9.9 21.1 5.7l33.8-19.5-7 26c-2.2 8.2 2.7 16.7 10.9 18.9l14.9 4c8.2 2.2 16.7-2.7 18.9-10.9l19-70.8 "
+            + "62.8-36.2v77.5l-53.7 53.7c-6.3 6.2-6.3 16.4 0 22.6l11.3 11.3c6.2 6.2 16.4 6.2 22.6 0l19.7-19.7V496c0 8."
+            + "8 7.2 16 16 16h32c8.8 0 16-7.2 16-16v-40.4l19.7 19.7c6.2 6.2 16.4 6.2 22.6 0l11.3-11.3c6.2-6.2 6.2-16."
+            + "4 0-22.6L256 387.7v-77.5l62.8 36.2 19 70.8c2.2 8.2 10.7 13.1 18.9 10.9l14.9-4c8.2-2.2 13.1-10.7 10.9-1"
+            + "8.9l-7-26 33.8 19.5c7.4 4.3 16.8 1.7 21.1-5.7l15.5-26.8c4.3-7.3 1.8-16.8-5.6-21z";
+    private static final String SVGPATH_HEART_CONTENT = "M462.3 62.6C407.5 15.9 326 24.3 275.7 76.2L256 "
+            + "96.5l-19.7-20.3C186.1 24.3 104.5 15.9 49.7 62.6c-62.8 53.6-66.1 149.8-9.9 207.9l193.5 199.8c12.5 12.9 "
+            + "32.8 12.9 45.3 0l193.5-199.8c56.3-58.1 53-154.3-9.8-207.9z";
 
     /**
      * Note: Certain keywords such as "location" and "resources" are reserved keywords in JavaFX.
@@ -50,8 +70,6 @@ public class StudySpotCard extends UiPart<Region> {
     @FXML
     private Label id;
     @FXML
-    private Label favourite;
-    @FXML
     private Label rating;
     @FXML
     private Label address;
@@ -60,7 +78,7 @@ public class StudySpotCard extends UiPart<Region> {
     @FXML
     private FlowPane tags;
     @FXML
-    private HBox amenities;
+    private HBox icons;
 
     /**
      * Creates a {@code StudySpotCode} with the given {@code StudySpot} and index to display.
@@ -71,14 +89,13 @@ public class StudySpotCard extends UiPart<Region> {
         id.setText(displayedIndex + ". ");
         name.setText(studySpot.getName().fullName);
         rating.setText(setRatingDisplay(studySpot.getRating()));
-        favourite.setVisible(studySpot.isFavourite());
-        rating.setText(setRatingDisplay(studySpot.getRating()));
         address.setText(studySpot.getAddress().value);
         email.setText(studySpot.getEmail().value);
         studySpot.getTags().stream()
                 .sorted(Comparator.comparing(tag -> tag.tagName))
                 .forEach(tag -> tags.getChildren().add(new Label(tag.tagName)));
-        setAmenitiesDisplay(amenities, studySpot);
+        setFavouriteDisplay(icons, studySpot.isFavourite());
+        setAmenitiesDisplay(icons, studySpot);
     }
 
     @Override
@@ -99,58 +116,66 @@ public class StudySpotCard extends UiPart<Region> {
                 && studySpot.equals(card.studySpot);
     }
 
-    private void setAmenitiesDisplay(HBox amenitiesDisplay, StudySpot studySpot) {
-        if (studySpot.getAmenities().isEmpty()) {
-            setDefaultAmenitiesDisplay(amenitiesDisplay);
-        } else {
-            setUpdatedAmenitiesDisplay(amenitiesDisplay, studySpot);
+    private void setFavouriteDisplay(HBox iconsDisplay, boolean isFavourite) {
+        if (isFavourite) {
+            HBox favouriteDisplay = new HBox();
+            favouriteDisplay.getStyleClass().add("icon_container");
+            favouriteDisplay.getChildren().add(getFavouriteIconLabel());
+            iconsDisplay.getChildren().add(favouriteDisplay);
         }
     }
 
-    private void setDefaultAmenitiesDisplay(HBox amenitiesDisplay) {
-        Arrays.stream(Amenity.VALID_TYPES)
-                .sorted()
-                .forEach(amenityType -> amenitiesDisplay.getChildren()
-                        .add(getAmenityIconLabel(amenityType, false)));
+    private void setAmenitiesDisplay(HBox iconsDisplay, StudySpot studySpot) {
+        if (!studySpot.getAmenities().isEmpty()) {
+            HBox amenitiesDisplay = new HBox();
+            amenitiesDisplay.getStyleClass().add("icon_container");
+            setUpdatedAmenitiesDisplay(amenitiesDisplay, studySpot);
+            iconsDisplay.getChildren().add(amenitiesDisplay);
+        }
     }
 
     private void setUpdatedAmenitiesDisplay(HBox amenitiesDisplay, StudySpot studySpot) {
-        Set<String> amenitiesPresent = studySpot.getAmenities().stream()
-                        .map(amenity -> amenity.amenityType).sorted().collect(Collectors.toSet());
-        Arrays.stream(Amenity.VALID_TYPES)
-                .sorted()
-                .forEach(amenityType -> {
-                    if (amenitiesPresent.contains(amenityType)) {
-                        amenitiesDisplay.getChildren().add(getAmenityIconLabel(amenityType, true));
-                    } else {
-                        amenitiesDisplay.getChildren().add(getAmenityIconLabel(amenityType, false));
-                    }
-                });
+        studySpot.getAmenities().stream()
+                .sorted(Comparator.comparing(amenity -> amenity.amenityType))
+                .forEach(amenity -> amenitiesDisplay.getChildren().add(getAmenityIconLabel(amenity.amenityType)));
     }
 
-    private Label getAmenityIconLabel(String amenityType, boolean isActive) {
+    private Label getFavouriteIconLabel() {
         Label result = new Label();
+        result.getStyleClass().add("icon_label");
+        result.setGraphic(getIcon(SVGPATH_HEART_CONTENT, 0.025));
+        return result;
+    }
 
-        SVGPath icon = new SVGPath();
-        icon.setScaleX(0.03);
-        icon.setScaleY(0.03);
-        icon.getStyleClass().add("svg_icon");
-        if (!isActive) {
-            icon.getStyleClass().add("cell_muted_label");
-        }
+    private Label getAmenityIconLabel(String amenityType) {
+        Label result = new Label();
+        result.getStyleClass().add("icon_label");
 
         switch (amenityType) {
         case "wifi":
-            icon.setContent(SVGPATH_WIFI_CONTENT);
-            result.setGraphic(icon);
+            result.setGraphic(getIcon(SVGPATH_WIFI_CONTENT, 0.03));
             return result;
         case "charger":
-            icon.setContent(SVGPATH_CHARGER_CONTENT);
-            result.setGraphic(icon);
+            result.setGraphic(getIcon(SVGPATH_CHARGER_CONTENT, 0.03));
+            return result;
+        case "food":
+            result.setGraphic(getIcon(SVGPATH_FOOD_CONTENT, 0.03));
+            return result;
+        case "aircon":
+            result.setGraphic(getIcon(SVGPATH_AIRCON_CONTENT, 0.03));
             return result;
         default:
-            throw new AssertionError("error occured");
+            throw new AssertionError("Amenity [\" + amenityType + \"] not found in StudySpotCard!");
         }
+    }
+
+    private SVGPath getIcon(String svgPathContent, double scale) {
+        SVGPath icon = new SVGPath();
+        icon.setScaleX(scale);
+        icon.setScaleY(scale);
+        icon.getStyleClass().add("svg_icon");
+        icon.setContent(svgPathContent);
+        return icon;
     }
 
     private String setRatingDisplay(Rating providedRating) {
