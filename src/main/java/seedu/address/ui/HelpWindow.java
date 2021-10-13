@@ -27,7 +27,7 @@ public class HelpWindow extends UiPart<Stage> {
 
     public static final String USERGUIDE_URL =
             "https://ay2122s1-cs2103t-t09-1.github.io/tp/UserGuide.html";
-    public static final String HELP_MESSAGE = "Help window";
+    public static final String HELP_MESSAGE = "Click to open User Guide in browser";
 
     private static final Logger logger = LogsCenter.getLogger(HelpWindow.class);
     private static final String FXML = "HelpWindow.fxml";

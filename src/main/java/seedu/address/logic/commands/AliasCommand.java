@@ -48,14 +48,6 @@ public class AliasCommand extends Command {
         this.alias = alias;
     }
 
-    /**
-     * Creates a default AliasCommand constructor for {@code CommandList}
-     */
-    public AliasCommand() {
-        this.isShowType = false;
-        this.alias = null;
-    }
-
     @Override
     public CommandResult execute(Model model) {
         if (this.isShowType) {

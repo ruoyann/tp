@@ -81,14 +81,6 @@ public class EditCommand extends Command {
         this.editStudySpotDescriptor = editStudySpotDescriptor;
     }
 
-    /**
-     * Creates a default EditCommand constructor for {@code CommandList}
-     */
-    public EditCommand() {
-        this.name = null;
-        this.editStudySpotDescriptor = null;
-    }
-
     @Override
     public CommandResult execute(Model model) throws CommandException {
         requireNonNull(model);

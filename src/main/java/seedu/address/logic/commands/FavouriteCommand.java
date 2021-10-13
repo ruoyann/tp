@@ -35,13 +35,6 @@ public class FavouriteCommand extends Command {
         this.name = name;
     }
 
-    /**
-     * Creates a default FavouriteCommand constructor for {@code CommandList}
-     */
-    public FavouriteCommand() {
-        this.name = null;
-    }
-
     @Override
     public CommandResult execute(Model model) throws CommandException {
         requireNonNull(model);

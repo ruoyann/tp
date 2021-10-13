@@ -11,7 +11,7 @@
 <?import javafx.scene.layout.StackPane?>
 <?import javafx.stage.Stage?>
 
-<fx:root title="Help" type="Stage" xmlns="http://javafx.com/javafx/16" xmlns:fx="http://javafx.com/fxml/1">
+<fx:root resizable="false" title="Help" type="Stage" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1">
     <scene>
         <Scene>
             <AnchorPane prefHeight="447.0" prefWidth="477.0">
@@ -30,10 +30,10 @@
                      </AnchorPane>
                  </items>
                </SplitPane>
-               <ButtonBar layoutX="123.0" layoutY="413.0" prefHeight="40.0" prefWidth="200.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="407.0">
+               <ButtonBar buttonMinWidth="30.0" layoutX="123.0" layoutY="413.0" minHeight="-Infinity" minWidth="-Infinity" prefHeight="40.0" prefWidth="200.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="407.0">
                  <buttons>
-                     <Label fx:id="helpMessage" text="Label" />
-                   <Button fx:id="copyButton" mnemonicParsing="false" onAction="#openWebpage" text="User Guide" />
+                     <Label fx:id="helpMessage" minHeight="-Infinity" minWidth="-Infinity" prefHeight="40.0" prefWidth="300.0" text="Label" />
+                   <Button fx:id="copyButton" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" mnemonicParsing="false" onAction="#openWebpage" prefHeight="30.0" prefWidth="20.0" text="User Guide" />
                  </buttons>
                   <padding>
                      <Insets right="10.0" />
