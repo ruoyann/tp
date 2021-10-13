@@ -22,6 +22,7 @@ public class CommandBox extends UiPart<Region> {
 
     private List<String> commandHistory = new ArrayList<>();
     private ListIterator<String> scroller;
+    private int lastCommandIndex = -1;
 
     private final CommandExecutor commandExecutor;
 
@@ -103,23 +104,44 @@ public class CommandBox extends UiPart<Region> {
     private void cycleThroughCommandHistory(String key) {
         boolean isUpArrow = key.equals("UP");
         boolean isDownArrow = key.equals("DOWN");
-        if (scroller == null) {
-            int len = commandHistory.size();
-            scroller = commandHistory.listIterator(isUpArrow ? len - 1 : len);
-        }
-        if (commandTextField.getText().equals("")) {
-            scroller = commandHistory.listIterator(commandHistory.size());
+        if (scroller == null || commandTextField.getText().equals("")) {
+            lastCommandIndex = commandHistory.size();
+            scroller = commandHistory.listIterator(lastCommandIndex);
         }
         if (scroller.hasPrevious() && isUpArrow) {
+            scrollUp();
+        }
+        if (scroller.hasNext() && isDownArrow) {
+            scrollDown();
+        }
+    }
+
+    private void scrollUp() {
+        if (scroller.hasPrevious()) {
+            int prevIndex = scroller.previousIndex();
             String prevCommand = scroller.previous();
+            if (scroller.hasPrevious() && prevIndex == lastCommandIndex) {
+                prevIndex = scroller.previousIndex();
+                prevCommand = scroller.previous();
+            }
+            lastCommandIndex = prevIndex;
             commandTextField.setText(prevCommand);
             commandTextField.end();
             if (!scroller.hasPrevious()) {
                 scroller.next();
             }
         }
-        if (scroller.hasNext() && isDownArrow) {
+    }
+
+    private void scrollDown() {
+        if (scroller.hasNext()) {
+            int nextIndex = scroller.nextIndex();
             String nextCommand = scroller.next();
+            if (scroller.hasNext() && nextIndex == lastCommandIndex) {
+                nextIndex = scroller.nextIndex();
+                nextCommand = scroller.next();
+            }
+            lastCommandIndex = nextIndex;
             commandTextField.setText(nextCommand);
             commandTextField.end();
             if (!scroller.hasNext()) {
