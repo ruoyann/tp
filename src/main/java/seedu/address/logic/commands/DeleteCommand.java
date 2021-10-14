@@ -20,7 +20,7 @@ public class DeleteCommand extends Command {
 
     public static final String MESSAGE_USAGE = COMMAND_WORD
             + ": Deletes the study spot identified by the study spot name used in the displayed study spot list.\n"
-            + "Parameters: n/Study Spot Name \n"
+            + "Parameters: n/NAME* \n"
             + "Example: " + COMMAND_WORD + " " + PREFIX_DELETE_SPOT + "starbucks";
 
     public static final String MESSAGE_DELETE_STUDYSPOT_SUCCESS = "Deleted study spot: %1$s";
@@ -61,13 +61,4 @@ public class DeleteCommand extends Command {
                 && name.equals(((DeleteCommand) other).name)); // state check
     }
 
-    @Override
-    public String toString() {
-        return "Delete";
-    }
-
-    @Override
-    public String getCommandUsage() {
-        return MESSAGE_USAGE;
-    }
 }

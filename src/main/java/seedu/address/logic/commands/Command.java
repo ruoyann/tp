@@ -17,6 +17,4 @@ public abstract class Command {
      */
     public abstract CommandResult execute(Model model) throws CommandException;
 
-    public abstract String getCommandUsage();
-
 }

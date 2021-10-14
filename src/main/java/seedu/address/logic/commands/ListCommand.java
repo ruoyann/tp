@@ -123,14 +123,6 @@ public class ListCommand extends Command {
                 && getTags().equals(c.getTags());
     }
 
-    @Override
-    public String toString() {
-        return "List";
-    }
 
-    @Override
-    public String getCommandUsage() {
-        return MESSAGE_USAGE;
-    }
 }
 

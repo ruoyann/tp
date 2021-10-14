@@ -33,7 +33,7 @@ public class HelpWindow extends UiPart<Stage> {
 
     private ObservableList<String> commandList = CommandList.COMMANDS;
     private HashMap<String, String> commandToUsage = CommandList.getCommandToUsageMapping();
-    private CommandInfoDisplay commandInfoDisplay;
+    private HelpCommandInfoDisplay helpCommandInfoDisplay;
 
     @FXML
     private Button copyButton;
@@ -58,8 +58,8 @@ public class HelpWindow extends UiPart<Stage> {
         commandListView.setItems(commandList);
         commandListView.setOnMouseClicked(new HandleListView());
 
-        this.commandInfoDisplay = new CommandInfoDisplay();
-        commandInfoDisplayPlaceholder.getChildren().add(commandInfoDisplay.getRoot());
+        this.helpCommandInfoDisplay = new HelpCommandInfoDisplay();
+        commandInfoDisplayPlaceholder.getChildren().add(helpCommandInfoDisplay.getRoot());
     }
 
     /**
@@ -131,7 +131,7 @@ public class HelpWindow extends UiPart<Stage> {
         public void handle(MouseEvent event) {
             String clickedCommand = commandListView.getSelectionModel().getSelectedItem();
             String commandFormat = commandToUsage.get(clickedCommand);
-            commandInfoDisplay.setCommandInfo(commandFormat);
+            helpCommandInfoDisplay.setCommandInfo(commandFormat);
         }
     }
 }

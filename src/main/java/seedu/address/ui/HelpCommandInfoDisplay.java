@@ -7,8 +7,8 @@ import javafx.scene.control.TextArea;
 import javafx.scene.layout.Region;
 
 
-public class CommandInfoDisplay extends UiPart<Region> {
-    private static final String FXML = "CommandInfoDisplay.fxml";
+public class HelpCommandInfoDisplay extends UiPart<Region> {
+    private static final String FXML = "HelpCommandInfoDisplay.fxml";
     private static final String DEFAULT_MESSAGE = "Click on a command to view info on the command.";
 
     @FXML
@@ -17,7 +17,7 @@ public class CommandInfoDisplay extends UiPart<Region> {
     /**
      * Creates a CommandInfoDisplay with the DEFAULT_MESSAGE as the label
      */
-    public CommandInfoDisplay() {
+    public HelpCommandInfoDisplay() {
         super(FXML);
         commandInfo.setText(DEFAULT_MESSAGE);
     }

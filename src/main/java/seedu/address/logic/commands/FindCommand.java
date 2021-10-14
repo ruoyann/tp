@@ -40,13 +40,5 @@ public class FindCommand extends Command {
                 && predicate.equals(((FindCommand) other).predicate)); // state check
     }
 
-    @Override
-    public String toString() {
-        return "Find";
-    }
 
-    @Override
-    public String getCommandUsage() {
-        return MESSAGE_USAGE;
-    }
 }

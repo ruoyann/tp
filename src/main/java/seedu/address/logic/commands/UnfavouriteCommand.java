@@ -68,13 +68,4 @@ public class UnfavouriteCommand extends Command {
                 && name.equals(((UnfavouriteCommand) other).name)); // state check
     }
 
-    @Override
-    public String toString() {
-        return "Unfavourite";
-    }
-
-    @Override
-    public String getCommandUsage() {
-        return MESSAGE_USAGE;
-    }
 }

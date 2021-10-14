@@ -20,13 +20,5 @@ public class HelpCommand extends Command {
         return new CommandResult(SHOWING_HELP_MESSAGE, true, false);
     }
 
-    @Override
-    public String toString() {
-        return "Help";
-    }
 
-    @Override
-    public String getCommandUsage() {
-        return MESSAGE_USAGE;
-    }
 }

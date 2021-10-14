@@ -21,11 +21,11 @@ public class AddCommand extends Command {
 
     public static final String MESSAGE_USAGE = COMMAND_WORD + ": Adds a study spot to the study tracker. \n"
             + "Parameters: "
-            + PREFIX_NAME + "NAME "
-            + PREFIX_RATING + "RATING "
+            + PREFIX_NAME + "NAME* "
+            + PREFIX_RATING + "RATING* "
             + PREFIX_EMAIL + "EMAIL "
             + PREFIX_ADDRESS + "ADDRESS "
-            + "[" + PREFIX_TAG + "TAG]..."
+            + "[" + PREFIX_TAG + "TAG]... "
             + "[" + PREFIX_AMENITY + "AMENITY]...\n"
             + "Example: " + COMMAND_WORD + " "
             + PREFIX_NAME + "COM1 "
@@ -68,13 +68,5 @@ public class AddCommand extends Command {
                 && toAdd.equals(((AddCommand) other).toAdd));
     }
 
-    @Override
-    public String toString() {
-        return "Add";
-    }
 
-    @Override
-    public String getCommandUsage() {
-        return MESSAGE_USAGE;
-    }
 }

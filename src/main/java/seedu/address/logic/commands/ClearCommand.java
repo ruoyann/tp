@@ -24,13 +24,4 @@ public class ClearCommand extends Command {
         return new CommandResult(MESSAGE_SUCCESS);
     }
 
-    @Override
-    public String toString() {
-        return "Clear";
-    }
-
-    @Override
-    public String getCommandUsage() {
-        return MESSAGE_USAGE;
-    }
 }
