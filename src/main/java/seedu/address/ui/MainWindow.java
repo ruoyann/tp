@@ -26,6 +26,7 @@ import seedu.address.logic.parser.exceptions.ParseException;
 public class MainWindow extends UiPart<Stage> {
 
     private static final String FXML = "MainWindow.fxml";
+    private static final String CSS_PATH = "/styles/";
 
     private final Logger logger = LogsCenter.getLogger(getClass());
 
@@ -37,6 +38,7 @@ public class MainWindow extends UiPart<Stage> {
     private ResultDisplay resultDisplay;
     private HelpWindow helpWindow;
     private InfoDisplay infoDisplay;
+    private SettingsWindow settingsWindow;
 
     @FXML
     private HBox commandBoxPlaceholder;
@@ -67,11 +69,16 @@ public class MainWindow extends UiPart<Stage> {
         this.logic = logic;
 
         // Configure the UI
+        setStylesheet("Main.css");
+        setStylesheet("Fonts.css");
+        setStylesheet("Extensions.css");
         setWindowDefaultSize(logic.getGuiSettings());
+        setThemeFromSettings(logic.getGuiSettings());
 
         setAccelerators();
 
         helpWindow = new HelpWindow();
+        settingsWindow = new SettingsWindow(logic);
     }
 
     public Stage getPrimaryStage() {
@@ -146,6 +153,43 @@ public class MainWindow extends UiPart<Stage> {
     }
 
     /**
+     * Sets the theme based on {@code guiSettings}.
+     */
+    private void setThemeFromSettings(GuiSettings guiSettings) {
+        primaryStage.getScene().getStylesheets().add(guiSettings.getStyleSheetPath());
+    }
+
+    /**
+     * Sets the stylesheet based on {@code file name}.
+     */
+    private void setStylesheet(String fileName) {
+        primaryStage.getScene().getStylesheets().add(CSS_PATH + fileName);
+    }
+
+    /**
+     * Updates theme to be the latest theme
+     */
+    private void updateTheme() {
+        int numberOfStyleSheets = primaryStage.getScene().getStylesheets().size() - 1;
+        primaryStage.getScene().getStylesheets().remove(numberOfStyleSheets);
+        primaryStage.getScene().getStylesheets().add(logic.getGuiSettings().getStyleSheetPath());
+    }
+
+    /**
+     * Opens the settings window or focuses on it if it's already opened.
+     * Will always update the theme.
+     */
+    @FXML
+    public void handleSettings() {
+        if (!settingsWindow.isShowing()) {
+            settingsWindow.showAndWait();
+        } else {
+            settingsWindow.focus();
+        }
+        updateTheme();
+    }
+
+    /**
      * Opens the help window or focuses on it if it's already opened.
      */
     @FXML
@@ -167,7 +211,7 @@ public class MainWindow extends UiPart<Stage> {
     @FXML
     private void handleExit() {
         GuiSettings guiSettings = new GuiSettings(primaryStage.getWidth(), primaryStage.getHeight(),
-                (int) primaryStage.getX(), (int) primaryStage.getY());
+                (int) primaryStage.getX(), (int) primaryStage.getY(), logic.getGuiSettings().getTheme());
         logic.setGuiSettings(guiSettings);
         helpWindow.hide();
         primaryStage.hide();

@@ -16,8 +16,8 @@
   <scene>
     <Scene>
       <stylesheets>
-        <URL value="@Fonts.css" />
-        <URL value="@HelpWindow.css" />
+        <URL value="@../styles/Fonts.css" />
+        <URL value="@../styles/HelpWindow.css" />
       </stylesheets>
 
       <HBox alignment="CENTER">

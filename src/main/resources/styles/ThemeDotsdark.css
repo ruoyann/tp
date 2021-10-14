@@ -1,0 +1,50 @@
+/* DotsDark Theme for StudyTracker */
+/* Inspired by GMK Dots by biip */
+/* Some colours from monkeytype https://github.com/Miodec/monkeytype/blob/3b6fb2d3b3bfb4e822db210f0183ed89fcf1b5a6/static/themes/dots.css */
+
+.root {
+    -fx-focus-color: transparent;
+    -fx-faint-focus-color: transparent;
+    fg-text: #ffffff;
+    bg-text: #f3f4f5;
+    accent-text: #111111;
+    fg-accent: #727a97;
+    fg-low: #3d4152;
+    fg-high: fg-accent;
+    -fx-text-base-color: fg-text;
+
+    -fx-base: #121520;
+    bg-low: #ffffff;
+    base-100: bg-low;
+    -fx-control-inner-background: derive(-fx-base, 35%);
+    -fx-control-inner-background-alt: -fx-control-inner-background;
+    -fx-default-button: #4ACB8A;
+}
+
+.button {
+    -fx-text-fill: accent-text;
+}
+
+.error {
+     -fx-text-fill: #f94348 !important;
+}
+
+.tag-accent-0 {
+    -fx-background-color: #ffd543 !important;
+}
+
+.tag-accent-1 {
+    -fx-background-color: #ff9349 !important;
+}
+
+.tag-accent-2 {
+    -fx-background-color: #4acb8a !important;
+}
+
+.tag-accent-3 {
+    -fx-background-color: #ab85ff !important;
+}
+
+.tag-accent-4 {
+    -fx-background-color: #3cc5f8 !important;
+}

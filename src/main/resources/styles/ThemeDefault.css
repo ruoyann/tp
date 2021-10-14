@@ -1,0 +1,19 @@
+/* Default Theme for StudyTracker */
+
+.root {
+    -fx-focus-color: transparent;
+    -fx-faint-focus-color: transparent;
+    fg-text: #ffffff;
+    bg-text: #000000;
+    accent-text: #202020;
+    fg-accent: #e47464;
+    fg-low: derive(#322e33, 10%); /* card color */
+    fg-high: fg-accent;
+    -fx-text-base-color: fg-text;
+
+    -fx-text-fill: bg-text;
+    -fx-base: derive(#dad7cd, -10%);
+    bg-low: #b3b2ac;
+    base-100: bg-low;
+    -fx-default-button: #66606b;
+}

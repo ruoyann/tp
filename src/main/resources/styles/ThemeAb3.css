@@ -1,0 +1,32 @@
+/* Dark Theme for StudyTracker */
+
+.root {
+    -fx-focus-color: transparent;
+    -fx-faint-focus-color: transparent;
+    fg-text: #eeeeee;
+    bg-text: #ffffff;
+    accent-text: #ffffff;
+    fg-accent: #3e7b91;
+    fg-low: #525252;
+    fg-high: fg-accent;
+    -fx-text-base-color: fg-text;
+
+    -fx-base: #383838;
+    bg-low: #474747;
+    base-100: bg-low;
+    -fx-control-inner-background: derive(-fx-base, 35%);
+    -fx-control-inner-background-alt: -fx-control-inner-background;
+    -fx-default-button: #282c34;
+}
+
+.list-cell:filled:even .card{
+    -fx-background-color: #3c3e3f;
+}
+
+.list-cell:filled:odd .card{
+    -fx-background-color: #515658;
+}
+
+.list-cell:filled:hover .card{
+    -fx-background-color: derive(fg-accent, -30%);
+}
