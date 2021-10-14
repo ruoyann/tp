@@ -3,26 +3,26 @@
 /* Some colours from monkeytype https://github.com/Miodec/monkeytype/blob/3b6fb2d3b3bfb4e822db210f0183ed89fcf1b5a6/static/themes/milkshake.css */
 
 .root {
-    -fx-focus-color: transparent;
-    -fx-faint-focus-color: transparent;
+    -fx-base: #e4e8f2;
+
+    fg-accent: #62cfe6;
+    fg-surface: #bbc5dd;
+    bg-surface: #92a2c9;
+
     fg-text: #212b43;
     bg-text: #212b42;
     accent-text: #121520;
-    fg-accent: #62cfe6;
-    fg-low: #bbc5dd;
-    fg-high: fg-accent;
     -fx-text-base-color: fg-text;
 
-    -fx-base: #e4e8f2;
-    bg-low: #92a2c9;
-    base-100: bg-low;
+    -fx-default-button: #73e4d0;
     -fx-control-inner-background: derive(-fx-base, 35%);
     -fx-control-inner-background-alt: -fx-control-inner-background;
-    -fx-default-button: #73e4d0;
+    -fx-focus-color: transparent;
+    -fx-faint-focus-color: transparent;
 }
 
 .list-cell:filled:hover .card{
-    -fx-background-color: derive(fg-low, -10%);
+    -fx-background-color: derive(fg-surface, 30%);
 }
 
 .error {
