@@ -21,7 +21,7 @@ public class FavouriteCommand extends Command {
     public static final String MESSAGE_USAGE = COMMAND_WORD
             + ": Adds the study spot to favourites.\n"
             + "Parameters: "
-            + "[" + PREFIX_NAME + "NAME] (non-case sensitive) "
+            + PREFIX_NAME + "NAME (non-case sensitive)* \n"
             + "Example: " + COMMAND_WORD + " " + PREFIX_NAME + "tr3 ";
 
     public static final String MESSAGE_FAVOURITE_STUDYSPOT_SUCCESS = "Added study spot to favourites: %1$s";
@@ -66,4 +66,6 @@ public class FavouriteCommand extends Command {
                 || (other instanceof FavouriteCommand // instanceof handles nulls
                 && name.equals(((FavouriteCommand) other).name)); // state check
     }
+
+
 }
