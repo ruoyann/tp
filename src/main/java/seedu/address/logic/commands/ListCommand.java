@@ -21,6 +21,10 @@ import seedu.address.model.tag.Tag;
 public class ListCommand extends Command {
 
     public static final String COMMAND_WORD = "list";
+
+    public static final String MESSAGE_USAGE = COMMAND_WORD + ": Shows all study spots. \n"
+            + "Parameters: None\n"
+            + "Example: " + COMMAND_WORD;
     public static final String FLAG_FAVOURITES = "f";
     public static final String FLAG_TAGS = "t";
     public static final List<String> FLAG_LIST = new ArrayList<>(Arrays.asList("f", "t"));
@@ -118,5 +122,7 @@ public class ListCommand extends Command {
         return (isFavFlagPresent == c.isFavFlagPresent)
                 && getTags().equals(c.getTags());
     }
+
+
 }
 
