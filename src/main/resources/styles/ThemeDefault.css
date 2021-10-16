@@ -1,0 +1,18 @@
+/* Default Theme for StudyTracker */
+
+.root {
+    -fx-base: derive(#dad7cd, -10%);
+
+    fg-accent: #e47464;
+    fg-surface: derive(#322e33, 10%);
+    bg-surface: #898880;
+
+    fg-text: #ffffff;
+    bg-text: #000000;
+    accent-text: #202020;
+    -fx-text-base-color: fg-text;
+
+    -fx-default-button: #66606b;
+    -fx-focus-color: transparent;
+    -fx-faint-focus-color: transparent;
+}

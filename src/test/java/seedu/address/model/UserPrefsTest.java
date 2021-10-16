@@ -40,7 +40,7 @@ public class UserPrefsTest {
         UserPrefs userPrefs = new UserPrefs(); // default values
         UserPrefs changedGuiSettings = new UserPrefs();
         changedGuiSettings.setGuiSettings(
-                new GuiSettings(2103, 2103, 21, 22));
+                new GuiSettings(2103, 2103, 21, 22, "default"));
         UserPrefs changedFilePath = new UserPrefs();
         changedFilePath.setStudyTrackerFilePath(Paths.get("hi"));
         UserPrefs changedAliasList = new UserPrefs();
@@ -74,7 +74,7 @@ public class UserPrefsTest {
         UserPrefs userPrefs = new UserPrefs(); // default values
         UserPrefs changedGuiSettings = new UserPrefs();
         changedGuiSettings.setGuiSettings(
-                new GuiSettings(2103, 2103, 21, 22));
+                new GuiSettings(2103, 2103, 21, 22, "dark"));
         UserPrefs changedFilePath = new UserPrefs();
         changedFilePath.setStudyTrackerFilePath(Paths.get("hi"));
         UserPrefs changedAliasList = new UserPrefs();
