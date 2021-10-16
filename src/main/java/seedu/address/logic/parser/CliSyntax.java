@@ -25,7 +25,7 @@ public class CliSyntax {
     /* Prefix definitions */
     public static final Prefix PREFIX_NAME = new Prefix("n/");
     public static final Prefix PREFIX_RATING = new Prefix("r/");
-    public static final Prefix PREFIX_EMAIL = new Prefix("e/");
+    public static final Prefix PREFIX_OPERATING_HOURS = new Prefix("o/");
     public static final Prefix PREFIX_ADDRESS = new Prefix("a/");
     public static final Prefix PREFIX_TAG = new Prefix("t/");
     public static final Prefix PREFIX_REMOVE_TAG = new Prefix("rt/");

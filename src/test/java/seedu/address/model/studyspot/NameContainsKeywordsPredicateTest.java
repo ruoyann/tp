@@ -70,6 +70,6 @@ public class NameContainsKeywordsPredicateTest {
         // Keywords match rating, email and address, but does not match name
         predicate = new NameContainsKeywordsPredicate(Arrays.asList("4", "email", "NUS", "Science"));
         assertFalse(predicate.test(new StudySpotBuilder().withName("Frontier").withRating("4")
-                .withEmail("email").withAddress("NUS Science").build()));
+                .withOperatingHours("email").withAddress("NUS Science").build()));
     }
 }

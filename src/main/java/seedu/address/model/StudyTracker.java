@@ -126,7 +126,7 @@ public class StudyTracker implements ReadOnlyStudyTracker {
     public StudySpot addStudySpotToFavourites(StudySpot studySpot) {
         assert(hasStudySpot(studySpot) == true);
         StudySpot favouriteStudySpot = new StudySpot(studySpot.getName(), studySpot.getRating(),
-                studySpot.getEmail(), studySpot.getAddress(), new Favourite(true),
+                studySpot.getOperatingHours(), studySpot.getAddress(), new Favourite(true),
                 studySpot.getTags(), studySpot.getAmenities());
         setStudySpot(studySpot, favouriteStudySpot);
         favouriteStudySpots.add(favouriteStudySpot);
@@ -143,7 +143,7 @@ public class StudyTracker implements ReadOnlyStudyTracker {
     public StudySpot removeStudySpotFromFavourites(StudySpot studySpot) {
         assert(hasStudySpot(studySpot) == true);
         StudySpot unfavouriteStudySpot = new StudySpot(studySpot.getName(), studySpot.getRating(),
-                studySpot.getEmail(), studySpot.getAddress(), new Favourite(false),
+                studySpot.getOperatingHours(), studySpot.getAddress(), new Favourite(false),
                 studySpot.getTags(), studySpot.getAmenities());
         setStudySpot(studySpot, unfavouriteStudySpot);
         favouriteStudySpots.remove(studySpot);

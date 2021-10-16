@@ -3,7 +3,7 @@ package seedu.address.logic;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static seedu.address.commons.core.Messages.MESSAGE_UNKNOWN_COMMAND;
 import static seedu.address.logic.commands.CommandTestUtil.ADDRESS_DESC_FRONTIER;
-import static seedu.address.logic.commands.CommandTestUtil.EMAIL_DESC_FRONTIER;
+import static seedu.address.logic.commands.CommandTestUtil.OPERATING_HOURS_DESC_FRONTIER;
 import static seedu.address.logic.commands.CommandTestUtil.NAME_DESC_FRONTIER;
 import static seedu.address.logic.commands.CommandTestUtil.RATING_DESC_FRONTIER;
 import static seedu.address.testutil.Assert.assertThrows;
@@ -79,7 +79,8 @@ public class LogicManagerTest {
         logic = new LogicManager(model, storage);
 
         // Execute add command
-        String addCommand = AddCommand.COMMAND_WORD + NAME_DESC_FRONTIER + RATING_DESC_FRONTIER + EMAIL_DESC_FRONTIER
+        String addCommand = AddCommand.COMMAND_WORD + NAME_DESC_FRONTIER + RATING_DESC_FRONTIER
+                + OPERATING_HOURS_DESC_FRONTIER
                 + ADDRESS_DESC_FRONTIER;
         StudySpot expectedStudySpot = new StudySpotBuilder(FRONTIER).withTags().build();
         ModelManager expectedModel = new ModelManager();

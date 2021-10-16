@@ -1,34 +1,7 @@
 package seedu.address.logic.parser;
 
 import static seedu.address.commons.core.Messages.MESSAGE_INVALID_COMMAND_FORMAT;
-import static seedu.address.logic.commands.CommandTestUtil.ADDRESS_DESC_DECK;
-import static seedu.address.logic.commands.CommandTestUtil.ADDRESS_DESC_FRONTIER;
-import static seedu.address.logic.commands.CommandTestUtil.AMENITY_DESC_WIFI;
-import static seedu.address.logic.commands.CommandTestUtil.EMAIL_DESC_DECK;
-import static seedu.address.logic.commands.CommandTestUtil.EMAIL_DESC_FRONTIER;
-import static seedu.address.logic.commands.CommandTestUtil.INVALID_ADDRESS_DESC;
-import static seedu.address.logic.commands.CommandTestUtil.INVALID_EMAIL_DESC;
-import static seedu.address.logic.commands.CommandTestUtil.INVALID_NAME_DESC;
-import static seedu.address.logic.commands.CommandTestUtil.INVALID_RATING_DESC;
-import static seedu.address.logic.commands.CommandTestUtil.INVALID_RATING_OUTOFRANGE_DESC;
-import static seedu.address.logic.commands.CommandTestUtil.INVALID_TAG_DESC;
-import static seedu.address.logic.commands.CommandTestUtil.NAME_DESC_FRONTIER;
-import static seedu.address.logic.commands.CommandTestUtil.RATING_DESC_DECK;
-import static seedu.address.logic.commands.CommandTestUtil.RATING_DESC_FRONTIER;
-import static seedu.address.logic.commands.CommandTestUtil.TAG_DESC_CROWDED;
-import static seedu.address.logic.commands.CommandTestUtil.TAG_DESC_QUIET;
-import static seedu.address.logic.commands.CommandTestUtil.TAG_DESC_REMOVE_QUIET;
-import static seedu.address.logic.commands.CommandTestUtil.VALID_ADDRESS_DECK;
-import static seedu.address.logic.commands.CommandTestUtil.VALID_ADDRESS_FRONTIER;
-import static seedu.address.logic.commands.CommandTestUtil.VALID_AMENITY_WIFI;
-import static seedu.address.logic.commands.CommandTestUtil.VALID_EMAIL_DECK;
-import static seedu.address.logic.commands.CommandTestUtil.VALID_EMAIL_FRONTIER;
-import static seedu.address.logic.commands.CommandTestUtil.VALID_NAME_DECK;
-import static seedu.address.logic.commands.CommandTestUtil.VALID_NAME_FRONTIER;
-import static seedu.address.logic.commands.CommandTestUtil.VALID_RATING_DECK;
-import static seedu.address.logic.commands.CommandTestUtil.VALID_RATING_FRONTIER;
-import static seedu.address.logic.commands.CommandTestUtil.VALID_TAG_CROWDED;
-import static seedu.address.logic.commands.CommandTestUtil.VALID_TAG_QUIET;
+import static seedu.address.logic.commands.CommandTestUtil.*;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_EDIT_SPOT;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_TAG;
 import static seedu.address.logic.parser.CommandParserTestUtil.assertParseFailure;
@@ -93,8 +66,9 @@ public class EditCommandParserTest {
         assertParseFailure(parser, " " + PREFIX_EDIT_SPOT + "Test" + INVALID_TAG_DESC,
                 Tag.MESSAGE_CONSTRAINTS); // invalid tag
 
-        // invalid rating followed by valid email
-        assertParseFailure(parser, " " + PREFIX_EDIT_SPOT + "Test" + INVALID_RATING_DESC + EMAIL_DESC_FRONTIER,
+        // invalid rating followed by valid operating hours
+        assertParseFailure(parser, " " + PREFIX_EDIT_SPOT + "Test" + INVALID_RATING_DESC
+                        + OPERATING_HOURS_DESC_FRONTIER,
                 Rating.MESSAGE_CONSTRAINTS);
 
         // valid rating followed by invalid rating. The test case for invalid rating followed by valid rating
@@ -113,7 +87,8 @@ public class EditCommandParserTest {
 
         // multiple invalid values, but only the first invalid value is captured
         assertParseFailure(parser, " " + PREFIX_EDIT_SPOT + "Test"
-                        + INVALID_NAME_DESC + INVALID_EMAIL_DESC + VALID_ADDRESS_FRONTIER + VALID_RATING_FRONTIER,
+                        + INVALID_NAME_DESC + INVALID_OPERATING_HOURS_DESC + VALID_ADDRESS_FRONTIER
+                        + VALID_RATING_FRONTIER,
                 Name.MESSAGE_CONSTRAINTS);
     }
 
@@ -121,27 +96,28 @@ public class EditCommandParserTest {
     public void parse_allFieldsSpecified_success() {
         Name targetName = new Name(VALID_NAME_FRONTIER);
         String userInput = " " + PREFIX_EDIT_SPOT + targetName.fullName + RATING_DESC_DECK
-                + EMAIL_DESC_FRONTIER + ADDRESS_DESC_FRONTIER + NAME_DESC_FRONTIER
+                + OPERATING_HOURS_DESC_FRONTIER + ADDRESS_DESC_FRONTIER + NAME_DESC_FRONTIER
                 + TAG_DESC_CROWDED + TAG_DESC_REMOVE_QUIET
-                + AMENITY_DESC_WIFI;
+                + AMENITY_DESC_WIFI + AMENITY_RM_DESC_FOOD;
 
         EditStudySpotDescriptor descriptor = new EditStudySpotDescriptorBuilder().withName(VALID_NAME_FRONTIER)
-                .withRating(VALID_RATING_DECK).withEmail(VALID_EMAIL_FRONTIER).withAddress(VALID_ADDRESS_FRONTIER)
+                .withRating(VALID_RATING_DECK).withOperatingHours(VALID_OPERATING_HOURS_FRONTIER)
+                .withAddress(VALID_ADDRESS_FRONTIER)
                 .withAddedTags(VALID_TAG_CROWDED).withRemovedTags(VALID_TAG_QUIET)
-                .withAddedAmenities(VALID_AMENITY_WIFI).build();
+                .withAddedAmenities(VALID_AMENITY_WIFI).withRemovedAmenities(VALID_AMENITY_FOOD).build();
         EditCommand expectedCommand = new EditCommand(targetName, descriptor);
 
         assertParseSuccess(parser, userInput, expectedCommand);
-        //todo add removal fields for other amenity types
     }
 
     @Test
     public void parse_someFieldsSpecified_success() {
         Name targetName = new Name(VALID_NAME_FRONTIER);
-        String userInput = " " + PREFIX_EDIT_SPOT + targetName.fullName + RATING_DESC_DECK + EMAIL_DESC_FRONTIER;
+        String userInput = " " + PREFIX_EDIT_SPOT + targetName.fullName + RATING_DESC_DECK
+                + OPERATING_HOURS_DESC_FRONTIER;
 
         EditStudySpotDescriptor descriptor = new EditStudySpotDescriptorBuilder().withRating(VALID_RATING_DECK)
-                .withEmail(VALID_EMAIL_FRONTIER).build();
+                .withOperatingHours(VALID_OPERATING_HOURS_FRONTIER).build();
         EditCommand expectedCommand = new EditCommand(targetName, descriptor);
 
         assertParseSuccess(parser, userInput, expectedCommand);
@@ -162,9 +138,9 @@ public class EditCommandParserTest {
         expectedCommand = new EditCommand(targetName, descriptor);
         assertParseSuccess(parser, userInput, expectedCommand);
 
-        // email
-        userInput = " " + PREFIX_EDIT_SPOT + targetName.fullName + EMAIL_DESC_FRONTIER;
-        descriptor = new EditStudySpotDescriptorBuilder().withEmail(VALID_EMAIL_FRONTIER).build();
+        // operating hours
+        userInput = " " + PREFIX_EDIT_SPOT + targetName.fullName + OPERATING_HOURS_DESC_FRONTIER;
+        descriptor = new EditStudySpotDescriptorBuilder().withOperatingHours(VALID_OPERATING_HOURS_FRONTIER).build();
         expectedCommand = new EditCommand(targetName, descriptor);
         assertParseSuccess(parser, userInput, expectedCommand);
 
@@ -186,13 +162,14 @@ public class EditCommandParserTest {
         Name targetName = new Name(VALID_NAME_FRONTIER);
         Name extraInputName = new Name(VALID_NAME_DECK);
         String userInput = " " + PREFIX_EDIT_SPOT + extraInputName.fullName + RATING_DESC_FRONTIER
-                + ADDRESS_DESC_FRONTIER + EMAIL_DESC_FRONTIER + TAG_DESC_CROWDED + RATING_DESC_FRONTIER
-                + ADDRESS_DESC_FRONTIER + EMAIL_DESC_FRONTIER + TAG_DESC_CROWDED + RATING_DESC_DECK + ADDRESS_DESC_DECK
-                + EMAIL_DESC_DECK + TAG_DESC_QUIET + " " + PREFIX_EDIT_SPOT + targetName.fullName;
+                + ADDRESS_DESC_FRONTIER + OPERATING_HOURS_DESC_FRONTIER + TAG_DESC_CROWDED + RATING_DESC_FRONTIER
+                + ADDRESS_DESC_FRONTIER + OPERATING_HOURS_DESC_FRONTIER + TAG_DESC_CROWDED + RATING_DESC_DECK
+                + ADDRESS_DESC_DECK
+                + OPERATING_HOURS_DESC_DECK + TAG_DESC_QUIET + " " + PREFIX_EDIT_SPOT + targetName.fullName;
 
         EditStudySpotDescriptor descriptor = new EditStudySpotDescriptorBuilder()
                 .withRating(VALID_RATING_DECK)
-                .withEmail(VALID_EMAIL_DECK)
+                .withOperatingHours(VALID_OPERATING_HOURS_DECK)
                 .withAddress(VALID_ADDRESS_DECK)
                 .withAddedTags(VALID_TAG_CROWDED, VALID_TAG_QUIET)
                 .build();
@@ -211,9 +188,10 @@ public class EditCommandParserTest {
         assertParseSuccess(parser, userInput, expectedCommand);
 
         // other valid values specified
-        userInput = " " + PREFIX_EDIT_SPOT + targetName.fullName + EMAIL_DESC_DECK + INVALID_RATING_DESC
+        userInput = " " + PREFIX_EDIT_SPOT + targetName.fullName + OPERATING_HOURS_DESC_DECK + INVALID_RATING_DESC
                 + ADDRESS_DESC_DECK + RATING_DESC_DECK;
-        descriptor = new EditStudySpotDescriptorBuilder().withRating(VALID_RATING_DECK).withEmail(VALID_EMAIL_DECK)
+        descriptor = new EditStudySpotDescriptorBuilder().withRating(VALID_RATING_DECK)
+                .withOperatingHours(VALID_OPERATING_HOURS_DECK)
                 .withAddress(VALID_ADDRESS_DECK).build();
         expectedCommand = new EditCommand(targetName, descriptor);
         assertParseSuccess(parser, userInput, expectedCommand);
@@ -229,4 +207,6 @@ public class EditCommandParserTest {
 
         assertParseSuccess(parser, userInput, expectedCommand);
     }
+
+    //todo reset amenities
 }

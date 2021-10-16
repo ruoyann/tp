@@ -4,12 +4,8 @@ import java.util.HashSet;
 import java.util.Set;
 
 import seedu.address.model.amenity.Amenity;
-import seedu.address.model.studyspot.Address;
-import seedu.address.model.studyspot.Email;
-import seedu.address.model.studyspot.Favourite;
-import seedu.address.model.studyspot.Name;
-import seedu.address.model.studyspot.Rating;
-import seedu.address.model.studyspot.StudySpot;
+import seedu.address.model.studyspot.*;
+import seedu.address.model.studyspot.OperatingHours;
 import seedu.address.model.tag.Tag;
 import seedu.address.model.util.SampleDataUtil;
 
@@ -20,13 +16,13 @@ public class StudySpotBuilder {
 
     public static final String DEFAULT_NAME = "COM1 Tech Hangout";
     public static final String DEFAULT_RATING = "3";
-    public static final String DEFAULT_EMAIL = "-";
+    public static final String DEFAULT_OPERATING_HOURS = "-";
     public static final String DEFAULT_ADDRESS = "NUS School of Computing";
     public static final boolean DEFAULT_FAVOURITE = false;
 
     private Name name;
     private Rating rating;
-    private Email email;
+    private OperatingHours operatingHours;
     private Address address;
     private Favourite favourite;
     private Set<Tag> tags;
@@ -38,7 +34,7 @@ public class StudySpotBuilder {
     public StudySpotBuilder() {
         name = new Name(DEFAULT_NAME);
         rating = new Rating(DEFAULT_RATING);
-        email = new Email(DEFAULT_EMAIL);
+        operatingHours = new OperatingHours(DEFAULT_OPERATING_HOURS);
         address = new Address(DEFAULT_ADDRESS);
         favourite = new Favourite(DEFAULT_FAVOURITE);
         tags = new HashSet<>();
@@ -51,7 +47,7 @@ public class StudySpotBuilder {
     public StudySpotBuilder(StudySpot studySpotToCopy) {
         name = studySpotToCopy.getName();
         rating = studySpotToCopy.getRating();
-        email = studySpotToCopy.getEmail();
+        operatingHours = studySpotToCopy.getOperatingHours();
         address = studySpotToCopy.getAddress();
         favourite = studySpotToCopy.getFavourite();
         tags = new HashSet<>(studySpotToCopy.getTags());
@@ -100,10 +96,10 @@ public class StudySpotBuilder {
     }
 
     /**
-     * Sets the {@code Email} of the {@code StudySpot} that we are building.
+     * Sets the {@code OperatingHours} of the {@code StudySpot} that we are building.
      */
-    public StudySpotBuilder withEmail(String email) {
-        this.email = new Email(email);
+    public StudySpotBuilder withOperatingHours(String operatingHours) {
+        this.operatingHours = new OperatingHours(operatingHours);
         return this;
     }
 
@@ -116,7 +112,7 @@ public class StudySpotBuilder {
     }
 
     public StudySpot build() {
-        return new StudySpot(name, rating, email, address, favourite, tags, amenities);
+        return new StudySpot(name, rating, operatingHours, address, favourite, tags, amenities);
     }
 
 }

@@ -7,11 +7,8 @@ import java.util.stream.Collectors;
 import seedu.address.model.ReadOnlyStudyTracker;
 import seedu.address.model.StudyTracker;
 import seedu.address.model.amenity.Amenity;
-import seedu.address.model.studyspot.Address;
-import seedu.address.model.studyspot.Email;
-import seedu.address.model.studyspot.Name;
-import seedu.address.model.studyspot.Rating;
-import seedu.address.model.studyspot.StudySpot;
+import seedu.address.model.studyspot.*;
+import seedu.address.model.studyspot.OperatingHours;
 import seedu.address.model.tag.Tag;
 
 /**
@@ -22,37 +19,37 @@ public class SampleDataUtil {
         return new StudySpot[] {
             new StudySpot(new Name("Starbucks UTown"),
                     new Rating("4"),
-                    new Email("Starbucks@Utown.com"),
+                    new OperatingHours("0900-2200, 0900-2200"),
                     new Address("Utown"),
                     getTagSet("coffee", "tea", "me"),
                     getAmenitySet("wifi", "charger", "food", "aircon")),
             new StudySpot(new Name("COM1 Tech Hangout"),
                     new Rating("4"),
-                    new Email("-"),
+                    new OperatingHours("unspecified"),
                     new Address("COM1"),
                     getTagSet("friendly", "noisy", "crowdedOnThursdays"),
                     getAmenitySet("wifi", "charger", "aircon")),
             new StudySpot(new Name("Central Library"),
                     new Rating("3"),
-                    new Email("clb@nus.com"),
+                    new OperatingHours("0900-2200, 0900-2200"),
                     new Address("Next to FASS"),
                     getTagSet("quiet", "cold"),
                     getAmenitySet("wifi", "charger", "aircon")),
             new StudySpot(new Name("Outside cool spot"),
                     new Rating("2"),
-                    new Email("-"),
+                    new OperatingHours("unspecified"),
                     new Address("NUS COM2"),
                     getTagSet("drinks", "warm"),
                     getAmenitySet("wifi", "charger", "food")),
             new StudySpot(new Name("Medicine library"),
                     new Rating("5"),
-                    new Email("-"),
+                    new OperatingHours("unspecified"),
                     new Address("NUS Medicine"),
                     getTagSet("awesome"),
                     getAmenitySet("wifi", "charger", "aircon")),
             new StudySpot(new Name("Mothers basement"),
                     new Rating("1"),
-                    new Email("mom@example.com"),
+                    new OperatingHours("0900-2200, 0900-2200"),
                     new Address("My house"),
                     getTagSet("warm"),
                     getAmenitySet("wifi", "charger"))
