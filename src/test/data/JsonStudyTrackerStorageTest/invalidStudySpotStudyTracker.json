@@ -2,7 +2,7 @@
   "studySpots": [ {
     "name": "Study Spot with invalid name field: *bucks @ ut0wN!",
     "rating": "2",
-    "operatingHours": "unspecified",
+    "operatingHours": "-",
     "address": "UTown Green",
     "favourite" : "false"
   } ]

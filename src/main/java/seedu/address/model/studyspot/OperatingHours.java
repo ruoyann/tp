@@ -13,7 +13,7 @@ public class OperatingHours {
             + "[HHmm-HHmm, HHmm-HHmm], "
             + "where the first argument represents operating hours in the weekdays, "
             + "while the second argument represents operating hours in the weekends.";
-    public static final String DEFAULT_OPERATING_HOURS = "unspecified";
+    public static final String DEFAULT_OPERATING_HOURS = "-";
 
     /** Ensures the time provided is valid and in the format hh:mm. */
     public static final String TIME_VALIDATION_REGEX = "([01]?[0-9]|2[0-3])[0-5][0-9]";
@@ -74,8 +74,38 @@ public class OperatingHours {
         if (separatedOperatingHour.length == 1) {
             return false;
         }
-        return separatedOperatingHour[0].trim().matches(TIME_VALIDATION_REGEX)
-                && separatedOperatingHour[1].trim().matches(TIME_VALIDATION_REGEX);
+
+        String openingHours = separatedOperatingHour[0].trim();
+        String closingHours = separatedOperatingHour[1].trim();
+        return openingHours.matches(TIME_VALIDATION_REGEX)
+                && closingHours.matches(TIME_VALIDATION_REGEX)
+                && isValidTimeInterval(openingHours, closingHours);
+    }
+
+    private static boolean isValidTimeInterval(String start, String end) {
+        assert start.matches(TIME_VALIDATION_REGEX);
+        assert end.matches(TIME_VALIDATION_REGEX);
+
+        // check if start and end time are the same
+        if (start.equals(end)) {
+            return false;
+        }
+
+        // check if hours are valid
+        int startHours = Integer.parseInt(start.substring(0, 2));
+        int endHours = Integer.parseInt(end.substring(0, 2));
+        if (endHours < startHours) {
+            return false;
+        }
+
+        // check if minutes are valid
+        int startMinutes = Integer.parseInt(start.substring(2, 4));
+        int endMinutes = Integer.parseInt(end.substring(2, 4));
+        if (endMinutes < startMinutes) {
+            return false;
+        }
+
+        return true;
     }
 
     @Override

@@ -20,7 +20,7 @@ public class StudySpotBuilder {
 
     public static final String DEFAULT_NAME = "COM1 Tech Hangout";
     public static final String DEFAULT_RATING = "3";
-    public static final String DEFAULT_OPERATING_HOURS = "unspecified";
+    public static final String DEFAULT_OPERATING_HOURS = "-";
     public static final String DEFAULT_ADDRESS = "NUS School of Computing";
     public static final boolean DEFAULT_FAVOURITE = false;
 

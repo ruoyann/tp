@@ -49,6 +49,10 @@ public class OperatingHoursTest {
         // invalid timings
         assertFalse(OperatingHours.isValidOperatingHours("0900-2400, 0900-2200"));
         assertFalse(OperatingHours.isValidOperatingHours("0900-2200, 0900-2260"));
+        // invalid time intervals
+        assertFalse(OperatingHours.isValidOperatingHours("0900-0900, 0900-2200"));
+        assertFalse(OperatingHours.isValidOperatingHours("1800-1000, 0900-2200"));
+        assertFalse(OperatingHours.isValidOperatingHours("0900-2200, 0930-0900"));
 
         // valid OperatingHours
         assertTrue(OperatingHours.isValidOperatingHours("0900-2200, 0900-2200"));

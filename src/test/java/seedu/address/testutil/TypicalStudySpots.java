@@ -24,19 +24,19 @@ import seedu.address.model.studyspot.StudySpot;
 public class TypicalStudySpots {
 
     public static final StudySpot STARBUCKS = new StudySpotBuilder().withName("Starbucks")
-            .withAddress("UTown").withOperatingHours("unspecified")
+            .withAddress("UTown").withOperatingHours("-")
             .withRating("4")
             .withTags("coffee")
             .withAmenities("wifi", "charger", "food", "aircon")
             .build();
     public static final StudySpot CENTRAL_LIBRARY = new StudySpotBuilder().withName("Central library")
             .withAddress("NUS, Central Library")
-            .withOperatingHours("unspecified").withRating("3")
+            .withOperatingHours("-").withRating("3")
             .withTags("cold", "quiet")
             .withAmenities("wifi", "charger", "aircon").build();
     public static final StudySpot COM1 = new StudySpotBuilder().withName("COM1")
             .withRating("2")
-            .withOperatingHours("unspecified")
+            .withOperatingHours("-")
             .withAddress("NUS Computing")
             .withAmenities("wifi", "charger", "aircon").build();
     public static final StudySpot FRONTIER_CANTEEN = new StudySpotBuilder().withName("Frontier Canteen")
@@ -47,27 +47,27 @@ public class TypicalStudySpots {
             .withAmenities("food").build();
     public static final StudySpot TOKYO_ROOM = new StudySpotBuilder().withName("Tokyo Room")
             .withRating("3")
-            .withOperatingHours("unspecified")
+            .withOperatingHours("-")
             .withAddress("NUS, Yusof Ishak House Level 3")
             .withTags("cold")
             .withAmenities("wifi", "aircon").build();
     public static final StudySpot PC_COMMONS = new StudySpotBuilder().withName("PC Commons")
             .withRating("4")
-            .withOperatingHours("unspecified")
+            .withOperatingHours("-")
             .withAddress("Utown").build();
     public static final StudySpot LT_17 = new StudySpotBuilder().withName("LT17")
             .withRating("5")
-            .withOperatingHours("unspecified")
+            .withOperatingHours("-")
             .withAddress("NUS COM2").build();
 
     // Manually added
     public static final StudySpot BIZ_PODS = new StudySpotBuilder().withName("Biz Pods")
             .withRating("1")
-            .withOperatingHours("unspecified")
+            .withOperatingHours("-")
             .withAddress("NUS BIZ 1").build();
     public static final StudySpot COMPUTING_LOUNGE = new StudySpotBuilder().withName("Computing Lounge")
             .withRating("1")
-            .withOperatingHours("unspecified")
+            .withOperatingHours("-")
             .withAddress("NUS COM1, Basement 1").build();
 
     // Manually added - StudySpot's details found in {@code CommandTestUtil}
