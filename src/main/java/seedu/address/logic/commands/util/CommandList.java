@@ -1,6 +1,8 @@
 package seedu.address.logic.commands.util;
 
+import java.util.Arrays;
 import java.util.HashMap;
+import java.util.stream.Collectors;
 
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
@@ -15,9 +17,6 @@ import seedu.address.logic.commands.HelpCommand;
 import seedu.address.logic.commands.ListCommand;
 import seedu.address.logic.commands.UnaliasCommand;
 import seedu.address.logic.commands.UnfavouriteCommand;
-
-
-
 
 /**
  * Contains a list of all the available commands
@@ -38,9 +37,13 @@ public class CommandList {
     /**
      * Returns the list of Commands available to users
      */
-    public static final ObservableList<String> COMMANDS = FXCollections.observableArrayList(ADD_COMMAND, ALIAS_COMMAND,
-            CLEAR_COMMAND, DELETE_COMMAND, EDIT_COMMAND, EXIT_COMMAND, FAVOURITE_COMMAND, HELP_COMMAND,
-            LIST_COMMAND, UNALIAS_COMMAND, UNFAVOURITE_COMMAND);
+    public static final ObservableList<String> COMMANDS = FXCollections.observableArrayList(
+            Arrays.asList(ADD_COMMAND, ALIAS_COMMAND,
+                    CLEAR_COMMAND, DELETE_COMMAND, EDIT_COMMAND, EXIT_COMMAND, FAVOURITE_COMMAND, HELP_COMMAND,
+                    LIST_COMMAND, UNALIAS_COMMAND, UNFAVOURITE_COMMAND).stream().map(cmd ->
+                    cmd.substring(0, 1).toUpperCase() + cmd.substring(1)
+            ).collect(Collectors.toList())
+    );
 
     public static HashMap<String, String> getCommandToUsageMapping() {
         HashMap<String, String> commandToUsage = new HashMap<>();
