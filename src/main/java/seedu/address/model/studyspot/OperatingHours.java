@@ -91,21 +91,17 @@ public class OperatingHours {
             return false;
         }
 
-        // check if hours are valid
+        // check if start hours are smaller than end hours
         int startHours = Integer.parseInt(start.substring(0, 2));
         int endHours = Integer.parseInt(end.substring(0, 2));
-        if (endHours < startHours) {
-            return false;
+        if (startHours != endHours) {
+            return endHours > startHours;
+        } else {
+            // check if minutes are valid when hours are the same
+            int startMinutes = Integer.parseInt(start.substring(2, 4));
+            int endMinutes = Integer.parseInt(end.substring(2, 4));
+            return endMinutes > startMinutes;
         }
-
-        // check if minutes are valid
-        int startMinutes = Integer.parseInt(start.substring(2, 4));
-        int endMinutes = Integer.parseInt(end.substring(2, 4));
-        if (endMinutes < startMinutes) {
-            return false;
-        }
-
-        return true;
     }
 
     @Override

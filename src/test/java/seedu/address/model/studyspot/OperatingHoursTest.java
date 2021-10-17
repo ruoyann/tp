@@ -57,5 +57,6 @@ public class OperatingHoursTest {
         // valid OperatingHours
         assertTrue(OperatingHours.isValidOperatingHours("0900-2200, 0900-2200"));
         assertTrue(OperatingHours.isValidOperatingHours("1000-2359, 1200-1830"));
+        assertTrue(OperatingHours.isValidOperatingHours("0930-1000, 0900-2200"));
     }
 }
