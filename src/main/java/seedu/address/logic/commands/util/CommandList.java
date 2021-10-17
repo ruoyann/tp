@@ -2,7 +2,9 @@ package seedu.address.logic.commands.util;
 
 import java.util.Arrays;
 import java.util.HashMap;
+import java.util.HashSet;
 import java.util.stream.Collectors;
+import java.util.stream.Stream;
 
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
@@ -13,6 +15,7 @@ import seedu.address.logic.commands.DeleteCommand;
 import seedu.address.logic.commands.EditCommand;
 import seedu.address.logic.commands.ExitCommand;
 import seedu.address.logic.commands.FavouriteCommand;
+import seedu.address.logic.commands.FindCommand;
 import seedu.address.logic.commands.HelpCommand;
 import seedu.address.logic.commands.ListCommand;
 import seedu.address.logic.commands.UnaliasCommand;
@@ -35,7 +38,9 @@ public class CommandList {
     public static final String UNFAVOURITE_COMMAND = UnfavouriteCommand.COMMAND_WORD;
 
     /**
-     * Returns the list of Commands available to users
+     * Returns the list of {@code COMMAND_WORD}s as Strings
+     *
+     * The default COMMAND_WORD is in lowercase format. We do some cleaning here to capitalize the COMMAND_WORD.
      */
     public static final ObservableList<String> COMMANDS = FXCollections.observableArrayList(
             Arrays.asList(ADD_COMMAND, ALIAS_COMMAND,
@@ -45,6 +50,27 @@ public class CommandList {
             ).collect(Collectors.toList())
     );
 
+    /**
+     *  Returns a HashSet of all {@code COMMAND_WORD}s
+     */
+    public static final HashSet<String> COMMAND_WORDS_LIST = Stream.of(
+            AddCommand.COMMAND_WORD,
+            AliasCommand.COMMAND_WORD,
+            ClearCommand.COMMAND_WORD,
+            DeleteCommand.COMMAND_WORD,
+            EditCommand.COMMAND_WORD,
+            ExitCommand.COMMAND_WORD,
+            FavouriteCommand.COMMAND_WORD,
+            FindCommand.COMMAND_WORD,
+            HelpCommand.COMMAND_WORD,
+            ListCommand.COMMAND_WORD,
+            UnaliasCommand.COMMAND_WORD,
+            UnfavouriteCommand.COMMAND_WORD
+    ).collect(Collectors.toCollection(HashSet::new));
+
+    /**
+     * Returns a HashMap mapping COMMAND_WORD to the respective MESSAGE_USAGE
+     */
     public static HashMap<String, String> getCommandToUsageMapping() {
         HashMap<String, String> commandToUsage = new HashMap<>();
         commandToUsage.put(ADD_COMMAND, AddCommand.MESSAGE_USAGE);

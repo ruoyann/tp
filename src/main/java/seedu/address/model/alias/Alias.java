@@ -7,7 +7,7 @@ import java.util.Objects;
 
 import seedu.address.logic.commands.AliasCommand;
 import seedu.address.logic.commands.UnaliasCommand;
-import seedu.address.logic.parser.CliSyntax;
+import seedu.address.logic.commands.util.CommandList;
 
 /**
  * Represents an Alias in the study tracker program.
@@ -58,7 +58,7 @@ public class Alias {
      */
     public static boolean isValidUserAlias(String userAlias) {
         return userAlias != null && !userAlias.isBlank()
-                && userAlias.matches(VALIDATION_REGEX) && !CliSyntax.COMMAND_WORDS_LIST.contains(userAlias);
+                && userAlias.matches(VALIDATION_REGEX) && !CommandList.COMMAND_WORDS_LIST.contains(userAlias);
     }
 
     /**
@@ -68,7 +68,7 @@ public class Alias {
     public static boolean isValidCommandWord(String commandWord) {
         if (commandWord != null) {
             String firstWord = commandWord.split(" ")[0];
-            return CliSyntax.COMMAND_WORDS_LIST.contains(firstWord);
+            return CommandList.COMMAND_WORDS_LIST.contains(firstWord);
         }
 
         return false;
