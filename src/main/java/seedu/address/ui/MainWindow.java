@@ -160,7 +160,7 @@ public class MainWindow extends UiPart<Stage> {
     }
 
     /**
-     * Sets the stylesheet based on {@code file name}.
+     * Sets the stylesheet based on {@code fileName}.
      */
     private void setStylesheet(String fileName) {
         primaryStage.getScene().getStylesheets().add(CSS_PATH + fileName);

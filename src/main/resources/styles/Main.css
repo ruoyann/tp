@@ -14,6 +14,7 @@
     bg-text: #000000;
     accent-text: #202020;
     -fx-text-base-color: fg-text;
+    -fx-text-fill: fg-text;
 
     /* Control colors */
     -fx-default-button: #66606b;
@@ -45,6 +46,11 @@
 .text-field {
     -fx-font-size: 12pt;
     -fx-font-family: "Open Sans Semibold";
+}
+
+.italics {
+    -fx-font-family: "Open Sans Italic";
+    -fx-font-style: italic;
 }
 
 /* Tables (we have no tables now) */
