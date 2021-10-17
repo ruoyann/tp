@@ -9,7 +9,9 @@ public class HelpCommand extends Command {
 
     public static final String COMMAND_WORD = "help";
 
-    public static final String MESSAGE_USAGE = "Try the help command to show program usage instructions.\n";
+    public static final String MESSAGE_USAGE = COMMAND_WORD + ": Shows the Help Window\n"
+            + "Parameters: None\n"
+            + "Example: " + COMMAND_WORD;
 
     public static final String SHOWING_HELP_MESSAGE = "Opened help window.";
 
@@ -17,4 +19,6 @@ public class HelpCommand extends Command {
     public CommandResult execute(Model model) {
         return new CommandResult(SHOWING_HELP_MESSAGE, true, false);
     }
+
+
 }

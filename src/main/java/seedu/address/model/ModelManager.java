@@ -222,5 +222,4 @@ public class ModelManager implements Model {
     public ObservableList<StudySpot> getFullList() {
         return studyTracker.getStudySpotList();
     }
-
 }

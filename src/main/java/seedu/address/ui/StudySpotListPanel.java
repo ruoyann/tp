@@ -16,6 +16,7 @@ import seedu.address.model.studyspot.StudySpot;
  */
 public class StudySpotListPanel extends UiPart<Region> {
     private static final String FXML = "StudySpotListPanel.fxml";
+    private static final String DEFAULT_MESSAGE = "Add a study spot here to get started!";
     private final Logger logger = LogsCenter.getLogger(StudySpotListPanel.class);
 
     @FXML
@@ -24,6 +25,9 @@ public class StudySpotListPanel extends UiPart<Region> {
     @FXML
     private Label studySpotListCount;
 
+    @FXML
+    private Label studySpotListViewDefaultMessage;
+
     /**
      * Creates a {@code StudySpotListPanel} with the given {@code ObservableList} and {@code totalStudySpots}.
      */
@@ -31,18 +35,24 @@ public class StudySpotListPanel extends UiPart<Region> {
         super(FXML);
         studySpotListView.setItems(filteredStudySpots);
         studySpotListView.setCellFactory(listView -> new StudySpotListViewCell());
-        studySpotListCount.setText(getInitialStudySpotCountDisplay(totalStudySpots));
+        getInitialStudySpotCountDisplay(totalStudySpots);
     }
 
     /**
      * Updates {@code studySpotListCount} with the given {@code filteredStudySpots} and {@code totalStudySpots}.
      */
     public void updateStudySpotCountDisplay(int filteredStudySpots, int totalStudySpots) {
-        studySpotListCount.setText(filteredStudySpots + "/" + totalStudySpots);
+        if (totalStudySpots == 0) {
+            studySpotListCount.setText("0");
+            studySpotListViewDefaultMessage.setText(DEFAULT_MESSAGE);
+        } else {
+            studySpotListViewDefaultMessage.setText("");
+            studySpotListCount.setText(filteredStudySpots + "/" + totalStudySpots);
+        }
     }
 
-    private String getInitialStudySpotCountDisplay(int studySpotCount) {
-        return studySpotCount + "/" + studySpotCount;
+    private void getInitialStudySpotCountDisplay(int studySpotCount) {
+        updateStudySpotCountDisplay(studySpotCount, studySpotCount);
     }
 
     /**

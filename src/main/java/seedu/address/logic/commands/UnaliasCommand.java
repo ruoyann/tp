@@ -16,7 +16,7 @@ public class UnaliasCommand extends Command {
 
     public static final String MESSAGE_USAGE = COMMAND_WORD + ": Remove aliases.\n"
             + "Parameters: "
-            + PREFIX_ALIAS + "ALIAS\n"
+            + PREFIX_ALIAS + "ALIAS*\n"
             + "Example: "
             + COMMAND_WORD + " " + PREFIX_ALIAS + "pwd";
 
@@ -55,4 +55,6 @@ public class UnaliasCommand extends Command {
         }
         return false;
     }
+
+
 }

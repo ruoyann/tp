@@ -19,14 +19,14 @@ public class AddCommand extends Command {
 
     public static final String COMMAND_WORD = "add";
 
-    public static final String MESSAGE_USAGE = COMMAND_WORD + ": Adds a study spot to the study tracker. "
+    public static final String MESSAGE_USAGE = COMMAND_WORD + ": Adds a study spot to the study tracker. \n"
             + "Parameters: "
-            + PREFIX_NAME + "NAME "
-            + PREFIX_RATING + "RATING "
+            + PREFIX_NAME + "NAME* "
+            + PREFIX_RATING + "RATING* "
             + PREFIX_OPERATING_HOURS + "OPERATING HOURS "
             + PREFIX_ADDRESS + "ADDRESS "
-            + "[" + PREFIX_TAG + "TAG]..."
-            + "[" + PREFIX_AMENITY + "AMENITY]..."
+            + "[" + PREFIX_TAG + "TAG]... "
+            + "[" + PREFIX_AMENITY + "AMENITY]...\n"
             + "Example: " + COMMAND_WORD + " "
             + PREFIX_NAME + "COM1 "
             + PREFIX_RATING + "5 "

@@ -8,6 +8,7 @@ import static seedu.address.logic.parser.CliSyntax.PREFIX_NAME;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_OPERATING_HOURS;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_RATING;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_REMOVE_AMENITY;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_REMOVE_TAG;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_TAG;
 import static seedu.address.model.Model.PREDICATE_SHOW_ALL_STUDYSPOTS;
 
@@ -42,14 +43,15 @@ public class EditCommand extends Command {
             + "by its name (case-insensitive). "
             + "Existing values will be overwritten by the input values.\n"
             + "Parameters: "
-            + "[" + PREFIX_EDIT_SPOT + "NAME] (non-case sensitive) "
-            + "[" + PREFIX_NAME + "NAME] "
-            + "[" + PREFIX_RATING + "RATING] "
-            + "[" + PREFIX_OPERATING_HOURS + "OPERATING HOURS] "
-            + "[" + PREFIX_ADDRESS + "ADDRESS] "
+            + PREFIX_EDIT_SPOT + "NAME* (non-case sensitive) "
+            + PREFIX_NAME + "NAME "
+            + PREFIX_RATING + "RATING "
+            + PREFIX_OPERATING_HOURS + "OPERATING HOURS "
+            + PREFIX_ADDRESS + "ADDRESS "
             + "[" + PREFIX_TAG + "TAG]..."
-            + "[" + PREFIX_AMENITY + "NEW AMENITY]..."
-            + "[" + PREFIX_REMOVE_AMENITY + "OLD AMENITY]...\n"
+            + "[" + PREFIX_AMENITY + "NEW AMENITY]... "
+            + "[" + PREFIX_REMOVE_TAG + "OLD TAG]... "
+            + "[" + PREFIX_REMOVE_AMENITY + "OLD AMENITY]... \n"
             + "Example: " + COMMAND_WORD + " " + PREFIX_EDIT_SPOT + "tr3 "
             + PREFIX_RATING + "5 ";
 

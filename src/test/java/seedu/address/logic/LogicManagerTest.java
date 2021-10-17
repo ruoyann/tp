@@ -16,6 +16,7 @@ import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.io.TempDir;
 
+import seedu.address.commons.core.GuiSettings;
 import seedu.address.commons.core.Messages;
 import seedu.address.logic.commands.AddCommand;
 import seedu.address.logic.commands.CommandResult;
@@ -49,6 +50,35 @@ public class LogicManagerTest {
         StorageManager storage = new StorageManager(studyTrackerStorage, userPrefsStorage);
         logic = new LogicManager(model, storage);
     }
+
+    @Test
+    public void getStudyTracker() {
+        assertEquals(model.getStudyTracker(), logic.getStudyTracker());
+    }
+
+    @Test
+    public void getFullList() {
+        assertEquals(model.getFullList(), logic.getFullList());
+    }
+
+    @Test
+    public void getStudyTrackerFilePath() {
+        assertEquals(model.getStudyTrackerFilePath(), logic.getStudyTrackerFilePath());
+    }
+
+    @Test
+    public void getGuiSettings() {
+        assertEquals(model.getGuiSettings(), logic.getGuiSettings());
+    }
+
+    @Test
+    public void setGuiSettings() {
+        GuiSettings newGuiSettings = new GuiSettings(1, 2, 3, 4, "default");
+        assertEquals(model.getGuiSettings(), logic.getGuiSettings());
+        logic.setGuiSettings(newGuiSettings);
+        assertEquals(newGuiSettings, logic.getGuiSettings());
+    }
+
 
     @Test
     public void execute_invalidCommandFormat_throwsParseException() {

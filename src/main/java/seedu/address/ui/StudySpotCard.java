@@ -93,7 +93,7 @@ public class StudySpotCard extends UiPart<Region> {
         operatingHours.setText(studySpot.getOperatingHours().toString());
         studySpot.getTags().stream()
                 .sorted(Comparator.comparing(tag -> tag.tagName))
-                .forEach(tag -> tags.getChildren().add(new Label(tag.tagName)));
+                .forEach(tag -> tags.getChildren().add(getStyledTagLabel(tag.tagName)));
         setFavouriteDisplay(icons, studySpot.isFavourite());
         setAmenitiesDisplay(icons, studySpot);
     }
@@ -186,5 +186,23 @@ public class StudySpotCard extends UiPart<Region> {
             rating -= 1;
         }
         return result.toString();
+    }
+
+    /**
+     * Generate a Label that has an accent colour based on its contents.
+     */
+    private Label getStyledTagLabel(String tagName) {
+        Label newLabel = new Label(tagName);
+        newLabel.getStyleClass().add(getAccentFromTag(tagName));
+        return newLabel;
+    }
+
+    /**
+     * Given a String tagName, hash it to return an accent colour from 0-5.
+     * Used in some themes.
+     */
+    private String getAccentFromTag(String tagName) {
+        int accent = Math.abs(tagName.hashCode() % 5);
+        return "tag-accent-" + accent;
     }
 }
