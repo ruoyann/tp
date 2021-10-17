@@ -6,8 +6,11 @@ import java.util.stream.Stream;
 
 import seedu.address.logic.commands.EditCommand.EditStudySpotDescriptor;
 import seedu.address.model.amenity.Amenity;
-import seedu.address.model.studyspot.*;
+import seedu.address.model.studyspot.Address;
+import seedu.address.model.studyspot.Name;
 import seedu.address.model.studyspot.OperatingHours;
+import seedu.address.model.studyspot.Rating;
+import seedu.address.model.studyspot.StudySpot;
 import seedu.address.model.tag.Tag;
 
 /**

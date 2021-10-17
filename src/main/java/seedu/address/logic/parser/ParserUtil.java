@@ -18,8 +18,11 @@ import seedu.address.commons.util.StringUtil;
 import seedu.address.logic.commands.ListCommand;
 import seedu.address.logic.parser.exceptions.ParseException;
 import seedu.address.model.amenity.Amenity;
-import seedu.address.model.studyspot.*;
+import seedu.address.model.studyspot.Address;
+import seedu.address.model.studyspot.Name;
 import seedu.address.model.studyspot.OperatingHours;
+import seedu.address.model.studyspot.Rating;
+import seedu.address.model.studyspot.StudySpot;
 import seedu.address.model.tag.Tag;
 
 /**

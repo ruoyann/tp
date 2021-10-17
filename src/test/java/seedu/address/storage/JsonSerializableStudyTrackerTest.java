@@ -27,7 +27,6 @@ public class JsonSerializableStudyTrackerTest {
                 JsonSerializableStudyTracker.class).get();
         StudyTracker studyTrackerFromFile = dataFromFile.toModelType();
         StudyTracker typicalStudySpotsStudyTracker = TypicalStudySpots.getTypicalStudyTracker();
-        boolean a = studyTrackerFromFile.equals(typicalStudySpotsStudyTracker);
         assertEquals(studyTrackerFromFile, typicalStudySpotsStudyTracker);
     }
 

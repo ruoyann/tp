@@ -1,7 +1,29 @@
 package seedu.address.logic.parser;
 
 import static seedu.address.commons.core.Messages.MESSAGE_INVALID_COMMAND_FORMAT;
-import static seedu.address.logic.commands.CommandTestUtil.*;
+import static seedu.address.logic.commands.CommandTestUtil.ADDRESS_DESC_DECK;
+import static seedu.address.logic.commands.CommandTestUtil.ADDRESS_DESC_FRONTIER;
+import static seedu.address.logic.commands.CommandTestUtil.INVALID_ADDRESS_DESC;
+import static seedu.address.logic.commands.CommandTestUtil.INVALID_NAME_DESC;
+import static seedu.address.logic.commands.CommandTestUtil.INVALID_OPERATING_HOURS_DESC;
+import static seedu.address.logic.commands.CommandTestUtil.INVALID_RATING_DESC;
+import static seedu.address.logic.commands.CommandTestUtil.INVALID_TAG_DESC;
+import static seedu.address.logic.commands.CommandTestUtil.NAME_DESC_DECK;
+import static seedu.address.logic.commands.CommandTestUtil.NAME_DESC_FRONTIER;
+import static seedu.address.logic.commands.CommandTestUtil.OPERATING_HOURS_DESC_DECK;
+import static seedu.address.logic.commands.CommandTestUtil.OPERATING_HOURS_DESC_FRONTIER;
+import static seedu.address.logic.commands.CommandTestUtil.PREAMBLE_NON_EMPTY;
+import static seedu.address.logic.commands.CommandTestUtil.PREAMBLE_WHITESPACE;
+import static seedu.address.logic.commands.CommandTestUtil.RATING_DESC_DECK;
+import static seedu.address.logic.commands.CommandTestUtil.RATING_DESC_FRONTIER;
+import static seedu.address.logic.commands.CommandTestUtil.TAG_DESC_CROWDED;
+import static seedu.address.logic.commands.CommandTestUtil.TAG_DESC_QUIET;
+import static seedu.address.logic.commands.CommandTestUtil.VALID_ADDRESS_DECK;
+import static seedu.address.logic.commands.CommandTestUtil.VALID_NAME_DECK;
+import static seedu.address.logic.commands.CommandTestUtil.VALID_OPERATING_HOURS_DECK;
+import static seedu.address.logic.commands.CommandTestUtil.VALID_RATING_DECK;
+import static seedu.address.logic.commands.CommandTestUtil.VALID_TAG_CROWDED;
+import static seedu.address.logic.commands.CommandTestUtil.VALID_TAG_QUIET;
 import static seedu.address.logic.parser.CommandParserTestUtil.assertParseFailure;
 import static seedu.address.logic.parser.CommandParserTestUtil.assertParseSuccess;
 import static seedu.address.testutil.TypicalStudySpots.DECK;
@@ -10,7 +32,11 @@ import static seedu.address.testutil.TypicalStudySpots.FRONTIER;
 import org.junit.jupiter.api.Test;
 
 import seedu.address.logic.commands.AddCommand;
-import seedu.address.model.studyspot.*;
+import seedu.address.model.studyspot.Address;
+import seedu.address.model.studyspot.Name;
+import seedu.address.model.studyspot.OperatingHours;
+import seedu.address.model.studyspot.Rating;
+import seedu.address.model.studyspot.StudySpot;
 import seedu.address.model.tag.Tag;
 import seedu.address.testutil.StudySpotBuilder;
 

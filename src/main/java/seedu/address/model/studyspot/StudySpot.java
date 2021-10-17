@@ -30,7 +30,8 @@ public class StudySpot {
     /**
      * Every field must be present and not null.
      */
-    public StudySpot(Name name, Rating rating, OperatingHours operatingHours, Address address, Set<Tag> tags, Set<Amenity> amenities) {
+    public StudySpot(Name name, Rating rating, OperatingHours operatingHours, Address address, Set<Tag> tags,
+                     Set<Amenity> amenities) {
         requireAllNonNull(name, rating, operatingHours, address, tags, amenities);
         this.name = name;
         this.rating = rating;

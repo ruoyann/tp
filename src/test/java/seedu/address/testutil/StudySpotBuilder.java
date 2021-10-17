@@ -4,8 +4,12 @@ import java.util.HashSet;
 import java.util.Set;
 
 import seedu.address.model.amenity.Amenity;
-import seedu.address.model.studyspot.*;
+import seedu.address.model.studyspot.Address;
+import seedu.address.model.studyspot.Favourite;
+import seedu.address.model.studyspot.Name;
 import seedu.address.model.studyspot.OperatingHours;
+import seedu.address.model.studyspot.Rating;
+import seedu.address.model.studyspot.StudySpot;
 import seedu.address.model.tag.Tag;
 import seedu.address.model.util.SampleDataUtil;
 
@@ -16,7 +20,7 @@ public class StudySpotBuilder {
 
     public static final String DEFAULT_NAME = "COM1 Tech Hangout";
     public static final String DEFAULT_RATING = "3";
-    public static final String DEFAULT_OPERATING_HOURS = "-";
+    public static final String DEFAULT_OPERATING_HOURS = "unspecified";
     public static final String DEFAULT_ADDRESS = "NUS School of Computing";
     public static final boolean DEFAULT_FAVOURITE = false;
 

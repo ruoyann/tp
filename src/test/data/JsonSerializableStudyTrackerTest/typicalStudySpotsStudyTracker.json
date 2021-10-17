@@ -27,7 +27,7 @@
   }, {
     "name" : "Frontier Canteen",
     "rating" : "3",
-    "operatingHours" : "0900-2200, 0900-2200",
+    "operatingHours" : "0900-1800, 0900-1800",
     "address" : "NUS Science Faculty",
     "favourite" : "false",
     "tagged" : [ "crowded" ],

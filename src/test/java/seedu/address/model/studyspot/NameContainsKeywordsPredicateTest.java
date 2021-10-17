@@ -67,9 +67,9 @@ public class NameContainsKeywordsPredicateTest {
         predicate = new NameContainsKeywordsPredicate(Arrays.asList("Deck"));
         assertFalse(predicate.test(new StudySpotBuilder().withName("Frontier Canteen").build()));
 
-        // Keywords match rating, email and address, but does not match name
-        predicate = new NameContainsKeywordsPredicate(Arrays.asList("4", "email", "NUS", "Science"));
+        // Keywords match rating, operating hours and address, but does not match name
+        predicate = new NameContainsKeywordsPredicate(Arrays.asList("4", "0900-2200", "0900-1800", "NUS", "Science"));
         assertFalse(predicate.test(new StudySpotBuilder().withName("Frontier").withRating("4")
-                .withOperatingHours("email").withAddress("NUS Science").build()));
+                .withOperatingHours("0900-2200, 0900-1800").withAddress("NUS Science").build()));
     }
 }

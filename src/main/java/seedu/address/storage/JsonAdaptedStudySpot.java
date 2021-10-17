@@ -11,8 +11,12 @@ import com.fasterxml.jackson.annotation.JsonProperty;
 
 import seedu.address.commons.exceptions.IllegalValueException;
 import seedu.address.model.amenity.Amenity;
-import seedu.address.model.studyspot.*;
+import seedu.address.model.studyspot.Address;
+import seedu.address.model.studyspot.Favourite;
+import seedu.address.model.studyspot.Name;
 import seedu.address.model.studyspot.OperatingHours;
+import seedu.address.model.studyspot.Rating;
+import seedu.address.model.studyspot.StudySpot;
 import seedu.address.model.tag.Tag;
 
 /**
@@ -101,7 +105,8 @@ class JsonAdaptedStudySpot {
         final Rating modelRating = new Rating(rating);
 
         if (operatingHours == null) {
-            throw new IllegalValueException(String.format(MISSING_FIELD_MESSAGE_FORMAT, OperatingHours.class.getSimpleName()));
+            throw new IllegalValueException(String.format(MISSING_FIELD_MESSAGE_FORMAT,
+                    OperatingHours.class.getSimpleName()));
         }
         if (!OperatingHours.isValidOperatingHours(operatingHours)) {
             throw new IllegalValueException(OperatingHours.MESSAGE_CONSTRAINTS);

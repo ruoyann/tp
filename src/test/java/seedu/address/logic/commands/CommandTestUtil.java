@@ -2,7 +2,16 @@ package seedu.address.logic.commands;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertTrue;
-import static seedu.address.logic.parser.CliSyntax.*;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_ADDRESS;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_ALIAS;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_ALIAS_COMMAND;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_AMENITY;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_NAME;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_OPERATING_HOURS;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_RATING;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_REMOVE_AMENITY;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_REMOVE_TAG;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_TAG;
 import static seedu.address.testutil.Assert.assertThrows;
 
 import java.util.ArrayList;
@@ -72,7 +81,7 @@ public class CommandTestUtil {
     public static final String INVALID_NAME_DESC = " " + PREFIX_NAME + "LT27&"; // '&' not allowed in names
     public static final String INVALID_RATING_DESC = " " + PREFIX_RATING + "911a"; // digits not from '1-5' not allowed
     public static final String INVALID_RATING_OUTOFRANGE_DESC = " " + PREFIX_RATING + "9";
-    public static final String INVALID_OPERATING_HOURS_DESC = "9-10, 9-6";
+    public static final String INVALID_OPERATING_HOURS_DESC = " " + PREFIX_OPERATING_HOURS + "9-10, 9-6";
     public static final String INVALID_ADDRESS_DESC = " " + PREFIX_ADDRESS; // empty string not allowed for addresses
     public static final String INVALID_TAG_DESC = " " + PREFIX_TAG + "bringJacket*"; // '*' not allowed in tags
     public static final String INVALID_USER_ALIAS = " " + PREFIX_ALIAS + "list"; // alias cannot be a command word
@@ -87,7 +96,7 @@ public class CommandTestUtil {
 
     static {
         DESC_FRONTIER = new EditStudySpotDescriptorBuilder().withName(VALID_NAME_FRONTIER)
-                .withRating(VALID_RATING_FRONTIER).withOperatingHours(VALID_OPERATING_HOURS_FRONTIER)
+                .withRating(VALID_RATING_FRONTIER)
                 .withAddress(VALID_ADDRESS_FRONTIER)
                 .withAddedTags(VALID_TAG_CROWDED).build();
         DESC_DECK = new EditStudySpotDescriptorBuilder().withName(VALID_NAME_DECK)
