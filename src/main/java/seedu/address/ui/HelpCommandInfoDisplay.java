@@ -3,8 +3,10 @@ package seedu.address.ui;
 import static java.util.Objects.requireNonNull;
 
 import javafx.fxml.FXML;
-import javafx.scene.control.TextArea;
 import javafx.scene.layout.Region;
+import javafx.scene.layout.VBox;
+import javafx.scene.text.Text;
+import javafx.scene.text.TextFlow;
 
 
 public class HelpCommandInfoDisplay extends UiPart<Region> {
@@ -12,14 +14,17 @@ public class HelpCommandInfoDisplay extends UiPart<Region> {
     private static final String DEFAULT_MESSAGE = "Click on a command to view info on the command.";
 
     @FXML
-    private TextArea commandInfo;
+    private TextFlow commandInfo;
+
+    @FXML
+    private VBox commandInfoContainer;
 
     /**
-     * Creates a CommandInfoDisplay with the DEFAULT_MESSAGE as the label
+     * Creates a HelpCommandInfoDisplay with the DEFAULT_MESSAGE as the label
      */
     public HelpCommandInfoDisplay() {
         super(FXML);
-        commandInfo.setText(DEFAULT_MESSAGE);
+        commandInfo.getChildren().add(new Text(DEFAULT_MESSAGE));
     }
 
     /**
@@ -28,12 +33,29 @@ public class HelpCommandInfoDisplay extends UiPart<Region> {
     public void setCommandInfo(String info) {
         requireNonNull(info);
         try {
-            String[] splitParameters = info.split("Parameters:");
-            String[] splitExample = splitParameters[1].split("Example:");
-            String shownInfo = splitParameters[0] + "\n";
-            shownInfo += "Parameters:" + splitExample[0] + "\n";
-            shownInfo += "Example:" + splitExample[1];
-            commandInfo.setText(shownInfo);
+            String cmdName = info.split(": ")[0];
+            String cmdInfo = info.split(": ")[1].split("\n")[0];
+            String cmdParameters = info.split("Parameters: ")[1].split("\n")[0];
+            String cmdExample = info.split("Example: ")[1];
+
+            Text textCmdName = new Text(cmdName + "\n");
+            textCmdName.getStyleClass().add("command-info__command-name");
+            Text textCmdInfo = new Text(cmdInfo);
+            textCmdInfo.getStyleClass().add("command-info__command-info");
+            Text textCmdParameters = new Text(cmdParameters);
+            textCmdParameters.getStyleClass().add("command-info__command-info");
+            Text textCmdExample = new Text(cmdExample);
+            textCmdExample.getStyleClass().add("command-info__command-info");
+            Text textParameterHeader = new Text("\n\nParameters:\n");
+            textParameterHeader.getStyleClass().add("command-info__command-header");
+            Text textExampleHeader = new Text("\n\nExample:\n");
+            textExampleHeader.getStyleClass().add("command-info__command-header");
+
+            commandInfo.getChildren().clear();
+            commandInfo.getStyleClass().add("command-info");
+            commandInfo.getChildren().addAll(textCmdName, textCmdInfo,
+                    textParameterHeader, textCmdParameters,
+                    textExampleHeader, textCmdExample);
         } catch (ArrayIndexOutOfBoundsException e) {
             throw new AssertionError("Parameters missing from message usage!");
         }

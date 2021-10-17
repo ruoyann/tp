@@ -53,6 +53,11 @@
     -fx-font-style: italic;
 }
 
+.bg-text {
+    -fx-text-fill: bg-text;
+}
+
+
 /* Tables (we have no tables now) */
 
 .table-view {
@@ -328,4 +333,45 @@
 
 #settings-window .label {
     -fx-text-fill: bg-text;
+}
+
+#help-window .list-cell:filled {
+    -fx-padding: 4 16 4 16;
+}
+
+#help-window .list-cell:filled:hover {
+    -fx-cursor: hand;
+}
+
+#help-window .list-cell:filled:selected {
+    -fx-background-color: fg-accent;
+    -fx-text-fill: accent-text;
+}
+
+#help-window {
+    -fx-font-family: "Open Sans Regular";
+    -fx-font-size: 14;
+}
+
+.command-info > * {
+    -fx-fill: bg-text;
+    -fx-font-size: 15;
+}
+
+.command-info__command-name {
+    -fx-font-family: "Open Sans Bold";
+    -fx-font-weight: bold;
+    -fx-font-size: 19;
+}
+
+.command-info__command-header {
+    -fx-fill: -fx-default-button;
+    -fx-font-family: "Open Sans Bold";
+    -fx-font-weight: bold;
+    -fx-font-size: 15;
+}
+
+.split-pane *.split-pane-divider {
+    -fx-padding: 0 0 0 0; /* hide split pane in help window */
+    -fx-box-border: transparent;
 }
