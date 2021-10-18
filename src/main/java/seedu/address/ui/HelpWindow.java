@@ -10,13 +10,12 @@ import java.util.logging.Logger;
 import javafx.collections.ObservableList;
 import javafx.event.EventHandler;
 import javafx.fxml.FXML;
-import javafx.scene.control.Button;
-import javafx.scene.control.Label;
 import javafx.scene.control.ListView;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.StackPane;
 import javafx.stage.Stage;
 import seedu.address.commons.core.LogsCenter;
+import seedu.address.logic.Logic;
 import seedu.address.logic.commands.util.CommandList;
 
 /**
@@ -26,20 +25,16 @@ public class HelpWindow extends UiPart<Stage> {
 
     public static final String USERGUIDE_URL =
             "https://ay2122s1-cs2103t-t09-1.github.io/tp/UserGuide.html";
-    public static final String HELP_MESSAGE = "Click to open User Guide in browser";
+    public static final String DEVELOPERGUIDE_URL =
+            "https://ay2122s1-cs2103t-t09-1.github.io/tp/DeveloperGuide.html";
 
     private static final Logger logger = LogsCenter.getLogger(HelpWindow.class);
     private static final String FXML = "HelpWindow.fxml";
 
     private ObservableList<String> commandList = CommandList.COMMANDS;
     private HashMap<String, String> commandToUsage = CommandList.getCommandToUsageMapping();
-    private HelpCommandInfoDisplay helpCommandInfoDisplay;
-
-    @FXML
-    private Button copyButton;
-
-    @FXML
-    private Label helpMessage;
+    private HelpCommandInfoDisplay commandInfoDisplay;
+    private Logic logic;
 
     @FXML
     private StackPane commandInfoDisplayPlaceholder;
@@ -54,19 +49,24 @@ public class HelpWindow extends UiPart<Stage> {
      */
     public HelpWindow(Stage root) {
         super(FXML, root);
-        helpMessage.setText(HELP_MESSAGE);
         commandListView.setItems(commandList);
         commandListView.setOnMouseClicked(new HandleListView());
 
-        this.helpCommandInfoDisplay = new HelpCommandInfoDisplay();
-        commandInfoDisplayPlaceholder.getChildren().add(helpCommandInfoDisplay.getRoot());
+        this.commandInfoDisplay = new HelpCommandInfoDisplay();
+        commandInfoDisplayPlaceholder.getChildren().add(commandInfoDisplay.getRoot());
     }
 
     /**
      * Creates a new HelpWindow.
      */
-    public HelpWindow() {
+    public HelpWindow(Logic logic) {
         this(new Stage());
+        this.logic = logic;
+
+        this.getRoot().getScene().getStylesheets().add("/styles/Fonts.css");
+        this.getRoot().getScene().getStylesheets().add("/styles/Main.css");
+        this.getRoot().getScene().getStylesheets().add("/styles/Extensions.css");
+        this.getRoot().getScene().getStylesheets().add(logic.getGuiSettings().getStyleSheetPath());
     }
 
     /**
@@ -88,7 +88,11 @@ public class HelpWindow extends UiPart<Stage> {
      * </ul>
      */
     public void show() {
+        int numberOfStyleSheets = getRoot().getScene().getStylesheets().size() - 1;
         logger.fine("Showing help page about the application.");
+
+        getRoot().getScene().getStylesheets().remove(numberOfStyleSheets);
+        getRoot().getScene().getStylesheets().add(logic.getGuiSettings().getStyleSheetPath());
         getRoot().show();
         getRoot().centerOnScreen();
     }
@@ -114,13 +118,22 @@ public class HelpWindow extends UiPart<Stage> {
         getRoot().requestFocus();
     }
 
+    @FXML
+    private void openUserGuide() {
+        openWebpage(USERGUIDE_URL);
+    }
+
+    @FXML
+    private void openDeveloperGuide() {
+        openWebpage(DEVELOPERGUIDE_URL);
+    }
+
     /**
      * Opens the URL in a web browser
      */
-    @FXML
-    private void openWebpage() {
+    private void openWebpage(String urlToOpen) {
         try {
-            Desktop.getDesktop().browse(new URL(USERGUIDE_URL).toURI());
+            Desktop.getDesktop().browse(new URL(urlToOpen).toURI());
         } catch (IOException | URISyntaxException e) {
             e.printStackTrace();
         }
@@ -129,9 +142,9 @@ public class HelpWindow extends UiPart<Stage> {
     private class HandleListView implements EventHandler<MouseEvent> {
         @Override
         public void handle(MouseEvent event) {
-            String clickedCommand = commandListView.getSelectionModel().getSelectedItem();
+            String clickedCommand = commandListView.getSelectionModel().getSelectedItem().toLowerCase();
             String commandFormat = commandToUsage.get(clickedCommand);
-            helpCommandInfoDisplay.setCommandInfo(commandFormat);
+            commandInfoDisplay.setCommandInfo(commandFormat);
         }
     }
 }

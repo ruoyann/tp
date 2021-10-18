@@ -14,6 +14,6 @@
   </HBox>
   <StackPane>
     <ListView fx:id="studySpotListView" VBox.vgrow="ALWAYS" />
-    <Label fx:id="studySpotListViewDefaultMessage" styleClass="italics"/>
+    <Label fx:id="studySpotListViewDefaultMessage" styleClass="italics, bg-text"/>
   </StackPane>
 </VBox>

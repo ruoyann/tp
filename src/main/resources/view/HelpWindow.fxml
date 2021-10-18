@@ -4,42 +4,58 @@
 <?import javafx.scene.Scene?>
 <?import javafx.scene.control.Button?>
 <?import javafx.scene.control.ButtonBar?>
-<?import javafx.scene.control.Label?>
 <?import javafx.scene.control.ListView?>
 <?import javafx.scene.control.SplitPane?>
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.layout.StackPane?>
 <?import javafx.stage.Stage?>
 
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.layout.HBox?>
 <fx:root resizable="false" title="Help" type="Stage" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1">
+    <icons>
+        <Image url="@/images/help_icon.png" />
+    </icons>
     <scene>
         <Scene>
-            <AnchorPane prefHeight="447.0" prefWidth="477.0">
-            <children>
-               <SplitPane dividerPositions="0.29797979797979796" layoutX="60.0" layoutY="115.0" prefHeight="417.0" prefWidth="477.0" AnchorPane.bottomAnchor="40.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
-                 <items>
-                   <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="160.0" prefWidth="100.0">
-                        <children>
-                           <ListView fx:id="commandListView" layoutX="-30.0" layoutY="59.0" prefHeight="405.0" prefWidth="139.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0" />
-                        </children>
-                     </AnchorPane>
-                   <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="412.0" prefWidth="330.0">
-                        <children>
-                           <StackPane fx:id="commandInfoDisplayPlaceholder" layoutX="65.0" layoutY="113.0" prefHeight="405.0" prefWidth="330.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0" />
-                        </children>
-                     </AnchorPane>
-                 </items>
-               </SplitPane>
-               <ButtonBar buttonMinWidth="30.0" layoutX="123.0" layoutY="413.0" minHeight="-Infinity" minWidth="-Infinity" prefHeight="40.0" prefWidth="200.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="407.0">
-                 <buttons>
-                     <Label fx:id="helpMessage" minHeight="-Infinity" minWidth="-Infinity" prefHeight="40.0" prefWidth="300.0" text="Label" />
-                   <Button fx:id="copyButton" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" mnemonicParsing="false" onAction="#openWebpage" prefHeight="30.0" prefWidth="20.0" text="User Guide" />
-                 </buttons>
-                  <padding>
-                     <Insets right="10.0" />
-                  </padding>
-               </ButtonBar>
-            </children></AnchorPane>
+            <AnchorPane prefHeight="447.0" prefWidth="477.0" id="help-window">
+                <children>
+                    <SplitPane dividerPositions="0.297"
+                               layoutX="60.0"
+                               layoutY="115.0"
+                               prefHeight="417.0"
+                               prefWidth="477.0"
+                               AnchorPane.bottomAnchor="40.0"
+                               AnchorPane.leftAnchor="0.0"
+                               AnchorPane.rightAnchor="0.0"
+                               AnchorPane.topAnchor="0.0">
+                        <items>
+                            <AnchorPane minHeight="417.0" minWidth="140.0" prefHeight="417.0" prefWidth="147.0">
+                                <children>
+                                    <ListView fx:id="commandListView" layoutX="-30.0" layoutY="59.0" prefHeight="405.0" prefWidth="139.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0" />
+                                </children>
+                            </AnchorPane>
+                            <AnchorPane minHeight="417.0" minWidth="330.0" prefHeight="412.0" prefWidth="330.0">
+                                <children>
+                                    <StackPane fx:id="commandInfoDisplayPlaceholder" layoutX="65.0" layoutY="113.0" prefHeight="405.0" prefWidth="330.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0" />
+                                </children>
+                            </AnchorPane>
+                        </items>
+                    </SplitPane>
+                    <HBox alignment="CENTER"
+                          spacing="8.0"
+                          minHeight="30.0"
+                          AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="407.0">
+
+                        <Button fx:id="dgButton" mnemonicParsing="false" onAction="#openDeveloperGuide" text="Open Developer Guide" />
+                        <Button fx:id="ugButton" mnemonicParsing="false" onAction="#openUserGuide" text="Open User Guide" />
+
+                        <padding>
+                            <Insets top="12.0"/>
+                        </padding>
+                    </HBox>
+                </children>
+            </AnchorPane>
         </Scene>
     </scene>
 </fx:root>
