@@ -155,89 +155,108 @@ Classes used by multiple components are in the `seedu.addressbook.commons` packa
 
 This section describes some noteworthy details on how certain features are implemented.
 
-### \[Proposed\] Undo/redo feature
+### Alias feature
 
-#### Proposed Implementation
+#### Overview
 
-The proposed undo/redo mechanism is facilitated by `VersionedAddressBook`. It extends `AddressBook` with an undo/redo history, stored internally as an `addressBookStateList` and `currentStatePointer`. Additionally, it implements the following operations:
+The Alias command supports user-defined aliases for commands.
+These aliases are string values that will be replaced by commands (i.e. *command expansion*) during the execution of command.
 
-* `VersionedAddressBook#commit()` — Saves the current study tracker state in its history.
-* `VersionedAddressBook#undo()` — Restores the previous study tracker state from its history.
-* `VersionedAddressBook#redo()` — Restores a previously undone study tracker state from its history.
+Aliases are stored in the `UserPrefs` object.
 
-These operations are exposed in the `Model` interface as `Model#commitAddressBook()`, `Model#undoAddressBook()` and `Model#redoAddressBook()` respectively.
+#### Key terms
 
-Given below is an example usage scenario and how the undo/redo mechanism behaves at each step.
+* **Aliases** — A user-specified string that is mapped to a **command**.
+  Aliases **cannot** be defined to existing command words.
+* **Commands** — A command must contain exactly one command word and optional arguments. 
+  When executed, an action is performed.
+* **Command Words** — The main "verbs" representing commands in StudyTracker.
+  A command word by itself is a **command**.
+  
+  Example: `list`, `edit`, `find` are command words.
 
-Step 1. The user launches the application for the first time. The `VersionedAddressBook` will be initialized with the initial study tracker state, and the `currentStatePointer` pointing to that single study tracker state.
+* **Well-formed command** — A command is well-formed if it has exactly one command word (or alias) and optional arguments.
+    
+Examples:
+  
+- `list` - well-formed
+- `add n/Starbucks`  —  well-formed, since it contains command word `add` and argument `n/Starbucks`.
+    However, it is invalid (i.e. will throw and error when executed), since it is missing required argument `rating`.
+- `myAdd t/cold`  —  well-formed, since it contains alias `myAdd` and argument `t/cold`.
+  `myAdd` will itself expand to another well-formed command (by definition of Alias).
+- `add list find n/Starbucks r/5`  —  not well-formed, since it has 3 command words (only should have one).
+- `myAdd add n/Starbucks r/5`  —  not well-formed, since it has both 1 alias and 1 command word (only should have one).
 
-![UndoRedoState0](images/UndoRedoState0.png)
+#### Implementation of Alias feature
 
-Step 2. The user executes `delete 5` command to delete the 5th person in the study tracker. The `delete` command calls `Model#commitAddressBook()`, causing the modified state of the study tracker after the `delete 5` command executes to be saved in the `addressBookStateList`, and the `currentStatePointer` is shifted to the newly inserted study tracker state.
+The Alias feature is facilitated by three key classes: `Alias.java`, `StudyTrackerParser.java`, and `UserPrefs.java`.
 
-![UndoRedoState1](images/UndoRedoState1.png)
+`Alias.java` is responsible for creating new Aliases. It implements the following operations:
 
-Step 3. The user executes `add n/David …​` to add a new person. The `add` command also calls `Model#commitAddressBook()`, causing another modified study tracker state to be saved into the `addressBookStateList`.
+* `Alias#isValidUserAlias()` — checks if Alias is valid (i.e whether it is a command word)
+* `Alias#isValidCommandWord()` — checks if Alias maps to a valid command word in the StudyTracker list of commands.
 
-![UndoRedoState2](images/UndoRedoState2.png)
+`StudyTrackerParser.java` is responsible for parsing user commands. The key operations needed for Aliases are:
 
-<div markdown="span" class="alert alert-info">:information_source: **Note:** If a command fails its execution, it will not call `Model#commitAddressBook()`, so the study tracker state will not be saved into the `addressBookStateList`.
+* `StudyTrackerParser#isInvokingAlias()` —  checks if the user input is a normal command, an Alias belonging in `UserPrefs`, or invalid.  
+* `StudyTrackerParser#expandAlias()` —  parses the Alias into its corresponding command.
+StudyTrackerParser will prepend the arguments from the expanded command before the arguments in user input, if any.
 
+`UserPrefs.java` is responsible for storing and reading Aliases from disk. The key operations needed for Aliases are:
+* `UserPrefs#getUserAliases()` — Returns the list of Aliases defined by the user. 
+* `UserPrefs#setUserAliases()` — Saves the current list of Aliases defined by the user.
+
+Given below is an example usage scenario and how the Alias feature behaves at each step.
+
+Step 1. The user launches the application for the first time. The program loads with default Aliases.
+
+![AliasState0](images/AliasState0.png)
+
+Step 2. The user executes `alias al/myAdd cmd/add r/5 n/` which creates an alias `myAdd` with command `add r/5 n/`.
+The `alias` command calls `Model#addAlias()`, adding this newly created alias to the Model and in UserPrefs.
+
+![UndoRedoState1](images/AliasState1.png)
+
+<div markdown="span" class="alert alert-info">:information_source: 
+**Note:** Observe how the command is incomplete!
+It is a well-formed command, but requires the completion of the `n/` argument to be valid.
+
+However, this is allowed, as it is one of the key features for the flexibility of the Alias feature.
 </div>
 
-Step 4. The user now decides that adding the person was a mistake, and decides to undo that action by executing the `undo` command. The `undo` command will call `Model#undoAddressBook()`, which will shift the `currentStatePointer` once to the left, pointing it to the previous study tracker state, and restores the study tracker to that state.
+Step 3. The user executes `myAdd Starbucks t/cold` to add a new study spot.
+Within `StudyTrackerParser`, alias parsing takes place by fetching user alias information in `Model`.
 
-![UndoRedoState3](images/UndoRedoState3.png)
+The command is expanded to `add r/5 n/Starbucks t/cold`.
+The string is then passed to the corresponding `AddCommandParser`, and an `AddCommand` is created.
 
-<div markdown="span" class="alert alert-info">:information_source: **Note:** If the `currentStatePointer` is at index 0, pointing to the initial AddressBook state, then there are no previous AddressBook states to restore. The `undo` command uses `Model#canUndoAddressBook()` to check if this is the case. If so, it will return an error to the user rather
-than attempting to perform the undo.
+The following sequence diagram demonstrates how StudyTrackerParser parses the input with an alias:
 
+![AliasSequenceDiagram](images/AliasSequenceDiagram.png)
+
+<div markdown="span" class="alert alert-info">:information_source:
+**Note:** If a command fails its execution, the respective CommandParser will throw a `ParseException`.
 </div>
-
-The following sequence diagram shows how the undo operation works:
-
-![UndoSequenceDiagram](images/UndoSequenceDiagram.png)
-
-<div markdown="span" class="alert alert-info">:information_source: **Note:** The lifeline for `UndoCommand` should end at the destroy marker (X) but due to a limitation of PlantUML, the lifeline reaches the end of diagram.
-
-</div>
-
-The `redo` command does the opposite — it calls `Model#redoAddressBook()`, which shifts the `currentStatePointer` once to the right, pointing to the previously undone state, and restores the study tracker to that state.
-
-<div markdown="span" class="alert alert-info">:information_source: **Note:** If the `currentStatePointer` is at index `addressBookStateList.size() - 1`, pointing to the latest study tracker state, then there are no undone AddressBook states to restore. The `redo` command uses `Model#canRedoAddressBook()` to check if this is the case. If so, it will return an error to the user rather than attempting to perform the redo.
-
-</div>
-
-Step 5. The user then decides to execute the command `list`. Commands that do not modify the study tracker, such as `list`, will usually not call `Model#commitAddressBook()`, `Model#undoAddressBook()` or `Model#redoAddressBook()`. Thus, the `addressBookStateList` remains unchanged.
-
-![UndoRedoState4](images/UndoRedoState4.png)
-
-Step 6. The user executes `clear`, which calls `Model#commitAddressBook()`. Since the `currentStatePointer` is not pointing at the end of the `addressBookStateList`, all study tracker states after the `currentStatePointer` will be purged. Reason: It no longer makes sense to redo the `add n/David …​` command. This is the behavior that most modern desktop applications follow.
-
-![UndoRedoState5](images/UndoRedoState5.png)
 
 The following activity diagram summarizes what happens when a user executes a new command:
 
-<img src="images/CommitActivityDiagram.png" width="250" />
+<img src="images/AliasActivityDiagram.png" width="350" />
 
 #### Design considerations:
 
-**Aspect: How undo & redo executes:**
+**Aspect: What aliases should be allowed:**
 
-* **Alternative 1 (current choice):** Saves the entire study tracker.
+* **Alternative 1:** Aliases only map to a single command word.
     * Pros: Easy to implement.
-    * Cons: May have performance issues in terms of memory usage.
+    * Cons: Not particularly useful for the user.
 
-* **Alternative 2:** Individual command knows how to undo/redo by
-  itself.
-    * Pros: Will use less memory (e.g. for `delete`, just save the person being deleted).
-    * Cons: We must ensure that the implementation of each individual command are correct.
-
-_{more aspects and alternatives to be added}_
-
-### \[Proposed\] Data archiving
-
-_{Explain here how the data archiving feature will be implemented}_
+* **Alternative 2 (current choice):** Aliases can map to commands, not just command words.
+    * Pros: User has more freedom to implement powerful commands.
+    * Cons: Implementation is slightly more challenging.
+    
+* **Alternative 3:** Aliases can map to commands, including other aliases.
+    * Pros: User has even more freedom.
+    * Cons: Implementation is much more challenging (e.g. how to prevent recursion?).
 
 
 --------------------------------------------------------------------------------------------------------------------

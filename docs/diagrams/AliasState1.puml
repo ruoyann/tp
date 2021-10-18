@@ -1,0 +1,28 @@
+@startuml
+!include style.puml
+skinparam ClassFontColor #000000
+skinparam ClassBorderColor #000000
+show fields
+
+title Adding new Alias
+
+package List<Aliases> {
+    object "__:Alias__" as aliasLs {
+        alias = "ls"
+        command = "list"
+    }
+    object "__:Alias__" as aliasBye {
+        alias = "bye"
+        command = "exit"
+    }
+    object "__:Alias__" as aliasQuit {
+        alias = "quit"
+        command = "exit"
+    }
+    object "__:Alias__" as aliasMyAdd {
+        alias = "myAdd"
+        command = "add r/5 n/"
+    }
+}
+
+@end
