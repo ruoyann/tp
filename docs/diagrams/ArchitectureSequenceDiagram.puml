@@ -13,7 +13,7 @@ activate ui UI_COLOR
 ui -[UI_COLOR]> logic : execute("delete n/Central Library")
 activate logic LOGIC_COLOR
 
-logic -[LOGIC_COLOR]> model : deletePerson(p)
+logic -[LOGIC_COLOR]> model : deleteStudySpot(p)
 activate model MODEL_COLOR
 
 model -[MODEL_COLOR]-> logic
