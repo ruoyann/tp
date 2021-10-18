@@ -12,9 +12,9 @@ import com.fasterxml.jackson.annotation.JsonProperty;
 import seedu.address.commons.exceptions.IllegalValueException;
 import seedu.address.model.amenity.Amenity;
 import seedu.address.model.studyspot.Address;
-import seedu.address.model.studyspot.Email;
 import seedu.address.model.studyspot.Favourite;
 import seedu.address.model.studyspot.Name;
+import seedu.address.model.studyspot.OperatingHours;
 import seedu.address.model.studyspot.Rating;
 import seedu.address.model.studyspot.StudySpot;
 import seedu.address.model.tag.Tag;
@@ -28,7 +28,7 @@ class JsonAdaptedStudySpot {
 
     private final String name;
     private final String rating;
-    private final String email;
+    private final String operatingHours;
     private final String address;
     private final String favourite;
     private final List<JsonAdaptedTag> tagged = new ArrayList<>();
@@ -39,12 +39,12 @@ class JsonAdaptedStudySpot {
      */
     @JsonCreator
     public JsonAdaptedStudySpot(@JsonProperty("name") String name, @JsonProperty("rating") String rating,
-            @JsonProperty("email") String email, @JsonProperty("address") String address,
+            @JsonProperty("operatingHours") String operatingHours, @JsonProperty("address") String address,
             @JsonProperty("favourite") String favourite, @JsonProperty("tagged") List<JsonAdaptedTag> tagged,
             @JsonProperty("amenities") List<JsonAdaptedAmenity> amenities) {
         this.name = name;
         this.rating = rating;
-        this.email = email;
+        this.operatingHours = operatingHours;
         this.address = address;
         this.favourite = favourite;
         if (tagged != null) {
@@ -61,7 +61,7 @@ class JsonAdaptedStudySpot {
     public JsonAdaptedStudySpot(StudySpot source) {
         name = source.getName().fullName;
         rating = source.getRating().value;
-        email = source.getEmail().value;
+        operatingHours = source.getOperatingHours().value;
         address = source.getAddress().value;
         favourite = source.getFavourite().value;
         tagged.addAll(source.getTags().stream()
@@ -104,13 +104,14 @@ class JsonAdaptedStudySpot {
         }
         final Rating modelRating = new Rating(rating);
 
-        if (email == null) {
-            throw new IllegalValueException(String.format(MISSING_FIELD_MESSAGE_FORMAT, Email.class.getSimpleName()));
+        if (operatingHours == null) {
+            throw new IllegalValueException(String.format(MISSING_FIELD_MESSAGE_FORMAT,
+                    OperatingHours.class.getSimpleName()));
         }
-        if (!Email.isValidEmail(email)) {
-            throw new IllegalValueException(Email.MESSAGE_CONSTRAINTS);
+        if (!OperatingHours.isValidOperatingHours(operatingHours)) {
+            throw new IllegalValueException(OperatingHours.MESSAGE_CONSTRAINTS);
         }
-        final Email modelEmail = new Email(email);
+        final OperatingHours modelOperatingHours = new OperatingHours(operatingHours);
 
         if (address == null) {
             throw new IllegalValueException(String.format(MISSING_FIELD_MESSAGE_FORMAT, Address.class.getSimpleName()));
@@ -131,7 +132,7 @@ class JsonAdaptedStudySpot {
 
         final Set<Tag> modelTags = new HashSet<>(studySpotTags);
         final Set<Amenity> modelAmenities = new HashSet<>(studySpotAmenities);
-        return new StudySpot(modelName, modelRating, modelEmail, modelAddress, modelFavourite,
+        return new StudySpot(modelName, modelRating, modelOperatingHours, modelAddress, modelFavourite,
                 modelTags, modelAmenities);
     }
 

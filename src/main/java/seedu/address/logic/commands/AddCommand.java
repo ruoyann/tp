@@ -3,8 +3,8 @@ package seedu.address.logic.commands;
 import static java.util.Objects.requireNonNull;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_ADDRESS;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_AMENITY;
-import static seedu.address.logic.parser.CliSyntax.PREFIX_EMAIL;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_NAME;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_OPERATING_HOURS;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_RATING;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_TAG;
 
@@ -23,14 +23,14 @@ public class AddCommand extends Command {
             + "Parameters: "
             + PREFIX_NAME + "NAME* "
             + PREFIX_RATING + "RATING* "
-            + PREFIX_EMAIL + "EMAIL "
+            + PREFIX_OPERATING_HOURS + "OPERATING HOURS "
             + PREFIX_ADDRESS + "ADDRESS "
             + "[" + PREFIX_TAG + "TAG]... "
             + "[" + PREFIX_AMENITY + "AMENITY]...\n"
             + "Example: " + COMMAND_WORD + " "
             + PREFIX_NAME + "COM1 "
             + PREFIX_RATING + "5 "
-            + PREFIX_EMAIL + "johnd@example.com "
+            + PREFIX_OPERATING_HOURS + "0900-2200, 0900-2200 "
             + PREFIX_ADDRESS + "SoC "
             + PREFIX_TAG + "cold "
             + PREFIX_TAG + "quiet"
@@ -67,6 +67,4 @@ public class AddCommand extends Command {
                 || (other instanceof AddCommand // instanceof handles nulls
                 && toAdd.equals(((AddCommand) other).toAdd));
     }
-
-
 }

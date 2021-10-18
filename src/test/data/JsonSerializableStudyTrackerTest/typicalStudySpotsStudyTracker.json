@@ -3,7 +3,7 @@
   "studySpots" : [ {
     "name" : "Starbucks",
     "rating" : "4",
-    "email" : "-",
+    "operatingHours" : "-",
     "address" : "UTown",
     "favourite" : "false",
     "tagged" : [ "coffee" ],
@@ -11,7 +11,7 @@
   }, {
     "name" : "Central library",
     "rating" : "3",
-    "email" : "-",
+    "operatingHours" : "-",
     "address" : "NUS, Central Library",
     "favourite" : "false",
     "tagged" : [ "cold", "quiet" ],
@@ -19,7 +19,7 @@
   }, {
     "name" : "COM1",
     "rating" : "2",
-    "email" : "-",
+    "operatingHours" : "-",
     "address" : "NUS Computing",
     "favourite" : "false",
     "tagged" : [ ],
@@ -27,7 +27,7 @@
   }, {
     "name" : "Frontier Canteen",
     "rating" : "3",
-    "email" : "Frontier email",
+    "operatingHours" : "0900-1800, 0900-1800",
     "address" : "NUS Science Faculty",
     "favourite" : "false",
     "tagged" : [ "crowded" ],
@@ -35,7 +35,7 @@
   }, {
     "name" : "Tokyo Room",
     "rating" : "3",
-    "email" : "-",
+    "operatingHours" : "-",
     "address" : "NUS, Yusof Ishak House Level 3",
     "favourite" : "false",
     "tagged" : [ "cold" ],
@@ -43,7 +43,7 @@
   },{
     "name" : "PC Commons",
     "rating" : "4",
-    "email" : "-",
+    "operatingHours" : "-",
     "address" : "Utown",
     "favourite" : "false",
     "tagged" : [ ],
@@ -51,7 +51,7 @@
   }, {
     "name" : "LT17",
     "rating" : "5",
-    "email" : "-",
+    "operatingHours" : "-",
     "address" : "NUS COM2",
     "favourite" : "false",
     "tagged" : [ ],

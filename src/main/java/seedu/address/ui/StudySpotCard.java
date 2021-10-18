@@ -74,7 +74,7 @@ public class StudySpotCard extends UiPart<Region> {
     @FXML
     private Label address;
     @FXML
-    private Label email;
+    private Label operatingHours;
     @FXML
     private FlowPane tags;
     @FXML
@@ -90,7 +90,7 @@ public class StudySpotCard extends UiPart<Region> {
         name.setText(studySpot.getName().fullName);
         rating.setText(setRatingDisplay(studySpot.getRating()));
         address.setText(studySpot.getAddress().value);
-        email.setText(studySpot.getEmail().value);
+        operatingHours.setText(studySpot.getOperatingHours().toString());
         studySpot.getTags().stream()
                 .sorted(Comparator.comparing(tag -> tag.tagName))
                 .forEach(tag -> tags.getChildren().add(getStyledTagLabel(tag.tagName)));

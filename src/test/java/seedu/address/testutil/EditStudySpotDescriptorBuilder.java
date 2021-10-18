@@ -7,8 +7,8 @@ import java.util.stream.Stream;
 import seedu.address.logic.commands.EditCommand.EditStudySpotDescriptor;
 import seedu.address.model.amenity.Amenity;
 import seedu.address.model.studyspot.Address;
-import seedu.address.model.studyspot.Email;
 import seedu.address.model.studyspot.Name;
+import seedu.address.model.studyspot.OperatingHours;
 import seedu.address.model.studyspot.Rating;
 import seedu.address.model.studyspot.StudySpot;
 import seedu.address.model.tag.Tag;
@@ -35,7 +35,7 @@ public class EditStudySpotDescriptorBuilder {
         descriptor = new EditStudySpotDescriptor();
         descriptor.setName(studySpot.getName());
         descriptor.setRating(studySpot.getRating());
-        descriptor.setEmail(studySpot.getEmail());
+        descriptor.setOperatingHours(studySpot.getOperatingHours());
         descriptor.setAddress(studySpot.getAddress());
         descriptor.setAddedTags(studySpot.getTags());
         descriptor.setAddedAmenities(studySpot.getAmenities());
@@ -58,10 +58,10 @@ public class EditStudySpotDescriptorBuilder {
     }
 
     /**
-     * Sets the {@code Email} of the {@code EditStudySpotDescriptor} that we are building.
+     * Sets the {@code OperatingHours} of the {@code EditStudySpotDescriptor} that we are building.
      */
-    public EditStudySpotDescriptorBuilder withEmail(String email) {
-        descriptor.setEmail(new Email(email));
+    public EditStudySpotDescriptorBuilder withOperatingHours(String operatingHours) {
+        descriptor.setOperatingHours(new OperatingHours(operatingHours));
         return this;
     }
 

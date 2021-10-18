@@ -2,14 +2,14 @@
   "studySpots": [ {
     "name": "COM2 Tech Hangout",
     "rating": "3",
-    "email": "-",
+    "operatingHours": "-",
     "address": "SoC COM2, B1",
     "favourite" : "false",
     "tagged": [ "noisy" ]
   }, {
     "name": "COM2 Tech Hangout",
     "rating": "2",
-    "email": "-",
+    "operatingHours": "-",
     "address": "NUS School of Computing, COM2, Basement 1",
     "favourite" : "false"
   } ]

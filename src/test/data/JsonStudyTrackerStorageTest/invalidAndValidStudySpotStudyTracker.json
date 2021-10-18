@@ -2,13 +2,13 @@
   "studySpots": [ {
     "name": "Valid Study Spot",
     "rating": "3",
-    "email": "blank email",
+    "operatingHours": "-",
     "address": "NUS",
     "favourite" : "false"
   }, {
     "name": "Study Spot With Invalid rating Field",
     "rating": "100 amazing",
-    "email": "blank email",
+    "operatingHours": "-",
     "address": "NUS",
     "favourite" : "false"
   } ]

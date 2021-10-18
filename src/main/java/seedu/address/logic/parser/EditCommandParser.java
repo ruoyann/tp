@@ -5,8 +5,8 @@ import static seedu.address.commons.core.Messages.MESSAGE_INVALID_COMMAND_FORMAT
 import static seedu.address.logic.parser.CliSyntax.PREFIX_ADDRESS;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_AMENITY;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_EDIT_SPOT;
-import static seedu.address.logic.parser.CliSyntax.PREFIX_EMAIL;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_NAME;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_OPERATING_HOURS;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_RATING;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_REMOVE_AMENITY;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_REMOVE_TAG;
@@ -39,7 +39,7 @@ public class EditCommandParser implements Parser<EditCommand> {
         requireNonNull(args);
         ArgumentMultimap argMultimap =
                 ArgumentTokenizer.tokenize(args, PREFIX_EDIT_SPOT, PREFIX_NAME,
-                        PREFIX_RATING, PREFIX_EMAIL, PREFIX_ADDRESS, PREFIX_TAG, PREFIX_REMOVE_TAG,
+                        PREFIX_RATING, PREFIX_OPERATING_HOURS, PREFIX_ADDRESS, PREFIX_TAG, PREFIX_REMOVE_TAG,
                         PREFIX_AMENITY, PREFIX_REMOVE_AMENITY);
 
         Name toBeChangedSpot;
@@ -57,8 +57,9 @@ public class EditCommandParser implements Parser<EditCommand> {
         if (argMultimap.getValue(PREFIX_RATING).isPresent()) {
             editStudySpotDescriptor.setRating(ParserUtil.parseRating(argMultimap.getValue(PREFIX_RATING).get()));
         }
-        if (argMultimap.getValue(PREFIX_EMAIL).isPresent()) {
-            editStudySpotDescriptor.setEmail(ParserUtil.parseEmail(argMultimap.getValue(PREFIX_EMAIL).get()));
+        if (argMultimap.getValue(PREFIX_OPERATING_HOURS).isPresent()) {
+            editStudySpotDescriptor.setOperatingHours(ParserUtil
+                    .parseOperatingHours(argMultimap.getValue(PREFIX_OPERATING_HOURS).get()));
         }
         if (argMultimap.getValue(PREFIX_ADDRESS).isPresent()) {
             editStudySpotDescriptor.setAddress(ParserUtil.parseAddress(argMultimap.getValue(PREFIX_ADDRESS).get()));
