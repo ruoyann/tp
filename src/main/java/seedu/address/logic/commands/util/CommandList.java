@@ -3,8 +3,8 @@ package seedu.address.logic.commands.util;
 import java.util.Arrays;
 import java.util.HashMap;
 import java.util.HashSet;
+import java.util.List;
 import java.util.stream.Collectors;
-import java.util.stream.Stream;
 
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
@@ -25,17 +25,25 @@ import seedu.address.logic.commands.UnfavouriteCommand;
  * Contains a list of all the available commands
  */
 public class CommandList {
-    public static final String ADD_COMMAND = AddCommand.COMMAND_WORD;
-    public static final String ALIAS_COMMAND = AliasCommand.COMMAND_WORD;
-    public static final String CLEAR_COMMAND = ClearCommand.COMMAND_WORD;
-    public static final String DELETE_COMMAND = DeleteCommand.COMMAND_WORD;
-    public static final String EDIT_COMMAND = EditCommand.COMMAND_WORD;
-    public static final String EXIT_COMMAND = ExitCommand.COMMAND_WORD;
-    public static final String FAVOURITE_COMMAND = FavouriteCommand.COMMAND_WORD;
-    public static final String HELP_COMMAND = HelpCommand.COMMAND_WORD;
-    public static final String LIST_COMMAND = ListCommand.COMMAND_WORD;
-    public static final String UNALIAS_COMMAND = UnaliasCommand.COMMAND_WORD;
-    public static final String UNFAVOURITE_COMMAND = UnfavouriteCommand.COMMAND_WORD;
+    private static final String ADD_COMMAND = AddCommand.COMMAND_WORD;
+    private static final String ALIAS_COMMAND = AliasCommand.COMMAND_WORD;
+    private static final String CLEAR_COMMAND = ClearCommand.COMMAND_WORD;
+    private static final String DELETE_COMMAND = DeleteCommand.COMMAND_WORD;
+    private static final String EDIT_COMMAND = EditCommand.COMMAND_WORD;
+    private static final String EXIT_COMMAND = ExitCommand.COMMAND_WORD;
+    private static final String FIND_COMMAND = FindCommand.COMMAND_WORD;
+    private static final String FAVOURITE_COMMAND = FavouriteCommand.COMMAND_WORD;
+    private static final String HELP_COMMAND = HelpCommand.COMMAND_WORD;
+    private static final String LIST_COMMAND = ListCommand.COMMAND_WORD;
+    private static final String UNALIAS_COMMAND = UnaliasCommand.COMMAND_WORD;
+    private static final String UNFAVOURITE_COMMAND = UnfavouriteCommand.COMMAND_WORD;
+
+    private static final List<String> commandWords = Arrays.asList(
+        ADD_COMMAND, ALIAS_COMMAND,
+        CLEAR_COMMAND, DELETE_COMMAND, EDIT_COMMAND, EXIT_COMMAND,
+        FIND_COMMAND, FAVOURITE_COMMAND, HELP_COMMAND,
+        LIST_COMMAND, UNALIAS_COMMAND, UNFAVOURITE_COMMAND
+    );
 
     /**
      * Returns the list of {@code COMMAND_WORD}s as Strings
@@ -43,9 +51,7 @@ public class CommandList {
      * The default COMMAND_WORD is in lowercase format. We do some cleaning here to capitalize the COMMAND_WORD.
      */
     public static final ObservableList<String> COMMANDS = FXCollections.observableArrayList(
-            Arrays.asList(ADD_COMMAND, ALIAS_COMMAND,
-                    CLEAR_COMMAND, DELETE_COMMAND, EDIT_COMMAND, EXIT_COMMAND, FAVOURITE_COMMAND, HELP_COMMAND,
-                    LIST_COMMAND, UNALIAS_COMMAND, UNFAVOURITE_COMMAND).stream().map(cmd ->
+            commandWords.stream().map(cmd ->
                     cmd.substring(0, 1).toUpperCase() + cmd.substring(1)
             ).collect(Collectors.toList())
     );
@@ -53,20 +59,7 @@ public class CommandList {
     /**
      *  Returns a HashSet of all {@code COMMAND_WORD}s
      */
-    public static final HashSet<String> COMMAND_WORDS_LIST = Stream.of(
-            AddCommand.COMMAND_WORD,
-            AliasCommand.COMMAND_WORD,
-            ClearCommand.COMMAND_WORD,
-            DeleteCommand.COMMAND_WORD,
-            EditCommand.COMMAND_WORD,
-            ExitCommand.COMMAND_WORD,
-            FavouriteCommand.COMMAND_WORD,
-            FindCommand.COMMAND_WORD,
-            HelpCommand.COMMAND_WORD,
-            ListCommand.COMMAND_WORD,
-            UnaliasCommand.COMMAND_WORD,
-            UnfavouriteCommand.COMMAND_WORD
-    ).collect(Collectors.toCollection(HashSet::new));
+    public static final HashSet<String> COMMAND_WORDS_LIST = new HashSet<>(commandWords);
 
     /**
      * Returns a HashMap mapping COMMAND_WORD to the respective MESSAGE_USAGE
@@ -80,6 +73,7 @@ public class CommandList {
         commandToUsage.put(EDIT_COMMAND, EditCommand.MESSAGE_USAGE);
         commandToUsage.put(EXIT_COMMAND, ExitCommand.MESSAGE_USAGE);
         commandToUsage.put(FAVOURITE_COMMAND, FavouriteCommand.MESSAGE_USAGE);
+        commandToUsage.put(FIND_COMMAND, FindCommand.MESSAGE_USAGE);
         commandToUsage.put(HELP_COMMAND, HelpCommand.MESSAGE_USAGE);
         commandToUsage.put(LIST_COMMAND, ListCommand.MESSAGE_USAGE);
         commandToUsage.put(UNALIAS_COMMAND, UnaliasCommand.MESSAGE_USAGE);
