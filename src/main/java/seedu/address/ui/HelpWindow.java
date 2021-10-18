@@ -10,7 +10,6 @@ import java.util.logging.Logger;
 import javafx.collections.ObservableList;
 import javafx.event.EventHandler;
 import javafx.fxml.FXML;
-import javafx.scene.control.Button;
 import javafx.scene.control.ListView;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.StackPane;
@@ -36,12 +35,6 @@ public class HelpWindow extends UiPart<Stage> {
     private HashMap<String, String> commandToUsage = CommandList.getCommandToUsageMapping();
     private HelpCommandInfoDisplay commandInfoDisplay;
     private Logic logic;
-
-    @FXML
-    private Button ugButton;
-
-    @FXML
-    private Button dgButton;
 
     @FXML
     private StackPane commandInfoDisplayPlaceholder;
