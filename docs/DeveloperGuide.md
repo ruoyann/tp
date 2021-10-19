@@ -310,7 +310,7 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
 (For all use cases below, the **System** is the `StudyTracker` and the **Actor** is the `user`, unless specified otherwise)
 
-**Use case: Delete a StudySpot**
+**UC01 - Delete a StudySpot**
 
 **MSS**
 
@@ -332,8 +332,33 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
     * 3a1. StudyTracker shows an error message.
 
       Use case resumes at step 2.
+    
 
-*{More to be added}*
+**UC02 - Add and use an alias**
+
+**MSS**
+
+1. User requests to add an alias
+2. StudyTracker adds the custom alias 
+3. User uses the alias
+4. StudyTracker parses the alias into its intended command, and executes that command.
+
+    Use case ends.
+
+**Extensions**
+* 1a. Alias is already defined.
+    * 1a1. StudyTracker will overwrite the existing definition
+    
+      Use case resumes at step 2.
+* 1b. The given alias is invalid.
+    * 1b1. StudyTracker shows an error message.
+    
+      Use case resumes at step 1.
+* 4a. Command executes with error.
+    * 4a1. StudyTracker shows an error message.
+      
+      Use case ends.
+
 
 ### Non-Functional Requirements
 
@@ -401,7 +426,35 @@ testers are expected to do more *exploratory* testing.
     1. Other incorrect delete commands to try: `delete`, `delete x`, `...` (where x is larger than the list size)<br>
        Expected: Similar to previous.
 
-1. _{ more test cases …​ }_
+
+### Adding and using aliases
+
+1. Adding a custom alias
+    1. Test case:
+        1. `alias al/myAdd cmd/add r/5 n/`
+        1. `myAdd myPlace` 
+    
+        Expected: A new study spot 'myPlace' with rating 5 is added.
+    Details of this new study spot is shown in the GUI.
+   1. Test case:
+        1. `myAdd`
+        
+        Expected: No study spot is added.
+      Error details shown in the status message.
+1. Overwriting an existing alias
+   1. Test case:
+        1. `alias al/myAdd cmd/list`
+        1. `myAdd`
+    
+        Expected: All study spots are listed (i.e. the List command has been executed)
+1. Removing an alias
+    1. Test case:
+        1. `unalias al/myAdd`
+        1. `myAdd`
+    
+        Expected: Unknown command execution.
+        Error details  shown in the status message.
+        
 
 ### Saving data
 
