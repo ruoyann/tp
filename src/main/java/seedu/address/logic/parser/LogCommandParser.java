@@ -1,18 +1,27 @@
 package seedu.address.logic.parser;
 
-import seedu.address.logic.commands.LogCommand;
-import seedu.address.logic.parser.exceptions.ParseException;
-import seedu.address.model.studyspot.Name;
-import seedu.address.model.studyspot.StudiedHours;
-
-import java.util.NoSuchElementException;
-
 import static seedu.address.commons.core.Messages.MESSAGE_INVALID_COMMAND_FORMAT;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_FLAG;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_HOURS;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_NAME;
 
+import java.util.NoSuchElementException;
+
+import seedu.address.logic.commands.LogCommand;
+import seedu.address.logic.parser.exceptions.ParseException;
+import seedu.address.model.studyspot.Name;
+import seedu.address.model.studyspot.StudiedHours;
+
+
+/**
+ * Parses input arguments and creates a new LogCommand object
+ */
 public class LogCommandParser implements Parser<LogCommand> {
+    /**
+     * Parses the given {@code String} of arguments in context of the LogCommand
+     * and returns a LogCommand object for execution
+     * @throws ParseException if the user input does not conform to the expected format
+     */
     public LogCommand parse(String args) throws ParseException {
         ArgumentMultimap argMultimap =
                 ArgumentTokenizer.tokenize(args, PREFIX_FLAG, PREFIX_NAME, PREFIX_HOURS);
@@ -26,7 +35,8 @@ public class LogCommandParser implements Parser<LogCommand> {
             if (argMultimap.getValue(PREFIX_FLAG).isPresent()) {
                 // Only one flag should be present
                 if (argMultimap.getAllValues(PREFIX_FLAG).size() != 1) {
-                    throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT, LogCommand.MESSAGE_ONE_FLAG));
+                    throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT,
+                            LogCommand.MESSAGE_ONE_FLAG));
                 }
                 String flag = argMultimap.getValue(PREFIX_FLAG).get();
                 assert(flag.equals(LogCommand.FLAG_RESET) || flag.equals(LogCommand.FLAG_OVERRIDE));

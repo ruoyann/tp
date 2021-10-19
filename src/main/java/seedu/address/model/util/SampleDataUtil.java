@@ -7,7 +7,13 @@ import java.util.stream.Collectors;
 import seedu.address.model.ReadOnlyStudyTracker;
 import seedu.address.model.StudyTracker;
 import seedu.address.model.amenity.Amenity;
-import seedu.address.model.studyspot.*;
+import seedu.address.model.studyspot.Address;
+import seedu.address.model.studyspot.Favourite;
+import seedu.address.model.studyspot.Name;
+import seedu.address.model.studyspot.OperatingHours;
+import seedu.address.model.studyspot.Rating;
+import seedu.address.model.studyspot.StudiedHours;
+import seedu.address.model.studyspot.StudySpot;
 import seedu.address.model.tag.Tag;
 
 /**

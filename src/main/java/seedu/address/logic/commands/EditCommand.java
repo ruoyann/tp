@@ -23,7 +23,13 @@ import seedu.address.commons.util.CollectionUtil;
 import seedu.address.logic.commands.exceptions.CommandException;
 import seedu.address.model.Model;
 import seedu.address.model.amenity.Amenity;
-import seedu.address.model.studyspot.*;
+import seedu.address.model.studyspot.Address;
+import seedu.address.model.studyspot.Favourite;
+import seedu.address.model.studyspot.Name;
+import seedu.address.model.studyspot.OperatingHours;
+import seedu.address.model.studyspot.Rating;
+import seedu.address.model.studyspot.StudiedHours;
+import seedu.address.model.studyspot.StudySpot;
 import seedu.address.model.tag.Tag;
 
 
@@ -162,7 +168,6 @@ public class EditCommand extends Command {
         private Rating rating;
         private OperatingHours operatingHours;
         private Address address;
-        private StudiedHours studiedHours;
         private Favourite favourite;
         private Set<Tag> tags;
         private Set<Tag> addedTags;

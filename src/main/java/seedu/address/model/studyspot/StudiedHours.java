@@ -9,9 +9,15 @@ public class StudiedHours {
     //Regex should allow any integer value
     public static final String VALIDATION_REGEX = "^[0-9]\\d*$";
     public static final String DEFAULT_VALUE = "0";
-    private final int loggedHours;
-    public String value;
 
+    public final String value;
+
+    private final int loggedHours;
+
+
+    /**
+     * Returns the number of studied hours based on the given {@code string}.
+     */
     public StudiedHours(String loggedHours) {
         requireNonNull(loggedHours);
         checkArgument(isValidLoggedHours(loggedHours), MESSAGE_CONSTRAINTS);
@@ -27,11 +33,17 @@ public class StudiedHours {
         this.value = Integer.toString(loggedHours);
     }
 
+    /**
+     * Checks if the given str is a valid input.
+     */
     public static boolean isValidLoggedHours(String str) {
         requireNonNull(str);
         return str.matches(VALIDATION_REGEX);
     }
 
+    /**
+     * Adds hours of the given StudiedHours to the current object and returns a new StudiedHours object
+     */
     public StudiedHours addHours(StudiedHours hours) {
         int totalHours = this.loggedHours + hours.loggedHours;
         return new StudiedHours(totalHours);

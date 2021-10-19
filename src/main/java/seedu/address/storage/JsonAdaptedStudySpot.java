@@ -11,7 +11,13 @@ import com.fasterxml.jackson.annotation.JsonProperty;
 
 import seedu.address.commons.exceptions.IllegalValueException;
 import seedu.address.model.amenity.Amenity;
-import seedu.address.model.studyspot.*;
+import seedu.address.model.studyspot.Address;
+import seedu.address.model.studyspot.Favourite;
+import seedu.address.model.studyspot.Name;
+import seedu.address.model.studyspot.OperatingHours;
+import seedu.address.model.studyspot.Rating;
+import seedu.address.model.studyspot.StudiedHours;
+import seedu.address.model.studyspot.StudySpot;
 import seedu.address.model.tag.Tag;
 
 /**
@@ -37,7 +43,8 @@ class JsonAdaptedStudySpot {
     public JsonAdaptedStudySpot(@JsonProperty("name") String name, @JsonProperty("rating") String rating,
             @JsonProperty("operatingHours") String operatingHours, @JsonProperty("address") String address,
             @JsonProperty("favourite") String favourite, @JsonProperty("studiedHours") String studiedHours,
-            @JsonProperty("tagged") List<JsonAdaptedTag> tagged, @JsonProperty("amenities") List<JsonAdaptedAmenity> amenities) {
+            @JsonProperty("tagged") List<JsonAdaptedTag> tagged,
+            @JsonProperty("amenities") List<JsonAdaptedAmenity> amenities) {
         this.name = name;
         this.rating = rating;
         this.operatingHours = operatingHours;

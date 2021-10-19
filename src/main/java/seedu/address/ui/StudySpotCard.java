@@ -100,7 +100,9 @@ public class StudySpotCard extends UiPart<Region> {
         StudiedHours hours = studySpot.getStudiedHours();
         if (Integer.parseInt(hours.value) != 0) {
             studiedHours.setText(hours.value);
-        } else hoursText.setText("");
+        } else {
+            hoursText.setText("");
+        }
 
         operatingHours.setText(studySpot.getOperatingHours().toString());
         studySpot.getTags().stream()
