@@ -19,6 +19,6 @@ public class CliSyntax {
     public static final Prefix PREFIX_DELETE_SPOT = new Prefix("n/");
     public static final Prefix PREFIX_ALIAS = new Prefix("al/");
     public static final Prefix PREFIX_ALIAS_COMMAND = new Prefix("cmd/");
-    public static final Prefix PREFIX_LOG_COMMAND = new Prefix("log/");
+    public static final Prefix PREFIX_HOURS = new Prefix("hr/");
 
 }

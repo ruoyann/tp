@@ -25,7 +25,7 @@ public class AddCommandParser implements Parser<AddCommand> {
     public AddCommand parse(String args) throws ParseException {
         ArgumentMultimap argMultimap =
                 ArgumentTokenizer.tokenize(args, PREFIX_NAME, PREFIX_RATING, PREFIX_OPERATING_HOURS, PREFIX_ADDRESS,
-                        PREFIX_TAG, PREFIX_AMENITY, PREFIX_LOG_COMMAND);
+                        PREFIX_TAG, PREFIX_AMENITY, PREFIX_HOURS);
 
         if (!arePrefixesPresent(argMultimap, PREFIX_NAME, PREFIX_RATING)
                 || !argMultimap.getPreamble().isEmpty()) {
@@ -39,7 +39,7 @@ public class AddCommandParser implements Parser<AddCommand> {
         OperatingHours operatingHours = ParserUtil.parseOperatingHours(argMultimap.getValue(PREFIX_OPERATING_HOURS)
                 .orElse(OperatingHours.DEFAULT_OPERATING_HOURS));
         Address address = ParserUtil.parseAddress(argMultimap.getValue(PREFIX_ADDRESS).orElse(Address.DEFAULT_VALUE));
-        StudiedHours studiedHours = ParserUtil.parseStudiedHours(argMultimap.getValue(PREFIX_LOG_COMMAND)
+        StudiedHours studiedHours = ParserUtil.parseStudiedHours(argMultimap.getValue(PREFIX_HOURS)
                 .orElse(StudiedHours.DEFAULT_VALUE));
         Set<Tag> tagList = ParserUtil.parseTags(argMultimap.getAllValues(PREFIX_TAG));
         Set<Amenity> amenityList = ParserUtil.parseAmenities(argMultimap.getAllValues(PREFIX_AMENITY));

@@ -31,7 +31,7 @@ public class EditCommandParser implements Parser<EditCommand> {
         requireNonNull(args);
         ArgumentMultimap argMultimap =
                 ArgumentTokenizer.tokenize(args, PREFIX_EDIT_SPOT, PREFIX_NAME, PREFIX_RATING,
-                        PREFIX_OPERATING_HOURS, PREFIX_ADDRESS,PREFIX_LOG_COMMAND, PREFIX_TAG, PREFIX_REMOVE_TAG,
+                        PREFIX_OPERATING_HOURS, PREFIX_ADDRESS, PREFIX_HOURS, PREFIX_TAG, PREFIX_REMOVE_TAG,
                         PREFIX_AMENITY, PREFIX_REMOVE_AMENITY);
 
         Name toBeChangedSpot;
@@ -56,9 +56,9 @@ public class EditCommandParser implements Parser<EditCommand> {
         if (argMultimap.getValue(PREFIX_ADDRESS).isPresent()) {
             editStudySpotDescriptor.setAddress(ParserUtil.parseAddress(argMultimap.getValue(PREFIX_ADDRESS).get()));
         }
-        if (argMultimap.getValue(PREFIX_LOG_COMMAND).isPresent()) {
+        if (argMultimap.getValue(PREFIX_HOURS).isPresent()) {
             editStudySpotDescriptor.setStudiedHours(ParserUtil
-                    .parseStudiedHours(argMultimap.getValue(PREFIX_LOG_COMMAND).get()));
+                    .parseStudiedHours(argMultimap.getValue(PREFIX_HOURS).get()));
         }
 
         parseTagsForEdit(argMultimap.getAllValues(PREFIX_TAG))

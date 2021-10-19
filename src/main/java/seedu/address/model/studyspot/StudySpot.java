@@ -162,7 +162,9 @@ public class StudySpot {
                 .append("; Address: ")
                 .append(getAddress())
                 .append("; Favourite: ")
-                .append(getFavourite());
+                .append(getFavourite())
+                .append("; Studied Hours: ")
+                .append(getStudiedHours());
 
         Set<Tag> tags = getTags();
         if (!tags.isEmpty()) {
