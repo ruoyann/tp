@@ -76,9 +76,12 @@ public class StudySpotCard extends UiPart<Region> {
     @FXML
     private Label operatingHours;
     @FXML
+    private Label studiedHours;
+    @FXML
     private FlowPane tags;
     @FXML
     private HBox icons;
+
 
     /**
      * Creates a {@code StudySpotCode} with the given {@code StudySpot} and index to display.
@@ -90,6 +93,7 @@ public class StudySpotCard extends UiPart<Region> {
         name.setText(studySpot.getName().fullName);
         rating.setText(setRatingDisplay(studySpot.getRating()));
         address.setText(studySpot.getAddress().value);
+        studiedHours.setText(studySpot.getStudiedHours().value);
         operatingHours.setText(studySpot.getOperatingHours().toString());
         studySpot.getTags().stream()
                 .sorted(Comparator.comparing(tag -> tag.tagName))

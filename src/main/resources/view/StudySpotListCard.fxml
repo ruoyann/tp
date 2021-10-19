@@ -61,7 +61,7 @@
         </HBox>
         <Region VBox.vgrow="ALWAYS" /> <!-- spacer -->
         <HBox spacing="4" alignment="CENTER_RIGHT">
-          <Label styleClass="cell_big_label" text="30" />
+          <Label fx:id="studiedHours" styleClass="cell_big_label"/>
           <Label styleClass="cell_small_label, cell_muted_label" text="hours" />
         </HBox>
         <Label fx:id="rating" styleClass="icon_container, cell_small_label" text="\$rating" textAlignment="RIGHT" alignment="BOTTOM_RIGHT"/>

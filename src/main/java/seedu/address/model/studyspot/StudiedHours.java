@@ -15,6 +15,7 @@ public class StudiedHours {
     public StudiedHours(String loggedHours) {
         requireNonNull(loggedHours);
         checkArgument(isValidLoggedHours(loggedHours), MESSAGE_CONSTRAINTS);
+        this.value = loggedHours;
         this.loggedHours = Integer.parseInt(loggedHours);
     }
 
@@ -23,6 +24,7 @@ public class StudiedHours {
      */
     private StudiedHours(int loggedHours) {
         this.loggedHours = loggedHours;
+        this.value = Integer.toString(loggedHours);
     }
 
     public static boolean isValidLoggedHours(String str) {
