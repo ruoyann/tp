@@ -144,6 +144,19 @@
     -fx-text-fill: fg-text;
 }
 
+.cell_hours_label {
+    -fx-font-family: "Open Sans Regular";
+    -fx-font-size: 16px;
+    -fx-text-fill: fg-text;
+}
+
+.cell_hour_digit_label {
+    -fx-font-family: "Open Sans Bold";
+    -fx-font-weight: bold;
+    -fx-font-size: 22px;
+    -fx-text-fill: fg-text;
+}
+
 .icon_container {
     -fx-spacing: 10;
     -fx-font-size: 12px;
