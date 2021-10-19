@@ -27,16 +27,20 @@ public class StudySpot {
     private final Set<Tag> tags = new HashSet<>();
     private final Set<Amenity> amenities = new HashSet<>();
 
+    //Statistic fields
+    private final StudiedHours studiedHours;
+
     /**
      * Every field must be present and not null.
      */
-    public StudySpot(Name name, Rating rating, OperatingHours operatingHours, Address address, Set<Tag> tags,
-                     Set<Amenity> amenities) {
+    public StudySpot(Name name, Rating rating, OperatingHours operatingHours, Address address,
+                     StudiedHours studiedHours, Set<Tag> tags, Set<Amenity> amenities) {
         requireAllNonNull(name, rating, operatingHours, address, tags, amenities);
         this.name = name;
         this.rating = rating;
         this.operatingHours = operatingHours;
         this.address = address;
+        this.studiedHours = studiedHours;
         this.tags.addAll(tags);
         this.amenities.addAll(amenities);
         this.favourite = new Favourite(false);
@@ -46,17 +50,19 @@ public class StudySpot {
      * Overloaded constructor with favourite specified.
      * Every field must be present and not null.
      */
-    public StudySpot(Name name, Rating rating, OperatingHours operatingHours, Address address, Favourite favourite,
-                     Set<Tag> tags, Set<Amenity> amenities) {
+    public StudySpot(Name name, Rating rating, OperatingHours operatingHours, Address address,
+                     StudiedHours studiedHours, Favourite favourite, Set<Tag> tags, Set<Amenity> amenities) {
         requireAllNonNull(name, rating, operatingHours, address, tags, amenities);
         this.name = name;
         this.rating = rating;
         this.operatingHours = operatingHours;
         this.address = address;
+        this.studiedHours = studiedHours;
         this.tags.addAll(tags);
         this.amenities.addAll(amenities);
         this.favourite = favourite;
     }
+
 
     public Name getName() {
         return name;
@@ -68,6 +74,10 @@ public class StudySpot {
 
     public OperatingHours getOperatingHours() {
         return operatingHours;
+    }
+
+    public StudiedHours getStudiedHours() {
+        return studiedHours;
     }
 
     public Address getAddress() {

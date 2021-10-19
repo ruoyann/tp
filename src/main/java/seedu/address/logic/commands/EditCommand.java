@@ -23,12 +23,7 @@ import seedu.address.commons.util.CollectionUtil;
 import seedu.address.logic.commands.exceptions.CommandException;
 import seedu.address.model.Model;
 import seedu.address.model.amenity.Amenity;
-import seedu.address.model.studyspot.Address;
-import seedu.address.model.studyspot.Favourite;
-import seedu.address.model.studyspot.Name;
-import seedu.address.model.studyspot.OperatingHours;
-import seedu.address.model.studyspot.Rating;
-import seedu.address.model.studyspot.StudySpot;
+import seedu.address.model.studyspot.*;
 import seedu.address.model.tag.Tag;
 
 
@@ -127,14 +122,15 @@ public class EditCommand extends Command {
         OperatingHours updatedOperatingHours = editStudySpotDescriptor.getOperatingHours()
                 .orElse(studySpotToEdit.getOperatingHours());
         Address updatedAddress = editStudySpotDescriptor.getAddress().orElse(studySpotToEdit.getAddress());
+        StudiedHours studiedHours = editStudySpotDescriptor.getStudiedHours().orElse(studySpotToEdit.getStudiedHours());
         Set<Tag> updatedTags = editStudySpotDescriptor.updateTags(studySpotToEdit.getTags())
                 .getTags().orElse(studySpotToEdit.getTags());
         Set<Amenity> updatedAmenities = editStudySpotDescriptor.updateAmenities(studySpotToEdit.getAmenities())
                 .getAmenities().orElse(studySpotToEdit.getAmenities());
         Favourite updatedFavourite = editStudySpotDescriptor.getFavourite().orElse(studySpotToEdit.getFavourite());
 
-        return new StudySpot(updatedName, updatedRating, updatedOperatingHours, updatedAddress, updatedFavourite,
-                updatedTags, updatedAmenities);
+        return new StudySpot(updatedName, updatedRating, updatedOperatingHours, updatedAddress, studiedHours,
+                updatedFavourite, updatedTags, updatedAmenities);
     }
 
     @Override
@@ -164,6 +160,7 @@ public class EditCommand extends Command {
         private Rating rating;
         private OperatingHours operatingHours;
         private Address address;
+        private StudiedHours studiedHours;
         private Favourite favourite;
         private Set<Tag> tags;
         private Set<Tag> addedTags;
@@ -190,6 +187,7 @@ public class EditCommand extends Command {
             setAmenities(toCopy.amenities);
             setAddedAmenities(toCopy.addedAmenities);
             setRemovedAmenities(toCopy.removedAmenities);
+            setStudiedHours(toCopy.studiedHours);
         }
 
         /**
@@ -230,6 +228,14 @@ public class EditCommand extends Command {
 
         public Optional<Address> getAddress() {
             return Optional.ofNullable(address);
+        }
+
+        public void setStudiedHours(StudiedHours studiedHours) {
+            this.studiedHours = studiedHours;
+        }
+
+        public Optional<StudiedHours> getStudiedHours() {
+            return Optional.ofNullable(studiedHours);
         }
 
         public void setFavourite(Favourite favourite) {
@@ -572,7 +578,8 @@ public class EditCommand extends Command {
                     && getRemovedTags().equals(e.getRemovedTags())
                     && getAmenities().equals(e.getAmenities())
                     && getAddedAmenities().equals(e.getAddedAmenities())
-                    && getRemovedAmenities().equals(e.getRemovedAmenities());
+                    && getRemovedAmenities().equals(e.getRemovedAmenities())
+                    && getStudiedHours().equals(e.getStudiedHours());
         }
 
     }

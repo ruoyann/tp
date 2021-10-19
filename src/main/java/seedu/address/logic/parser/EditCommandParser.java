@@ -2,15 +2,7 @@ package seedu.address.logic.parser;
 
 import static java.util.Objects.requireNonNull;
 import static seedu.address.commons.core.Messages.MESSAGE_INVALID_COMMAND_FORMAT;
-import static seedu.address.logic.parser.CliSyntax.PREFIX_ADDRESS;
-import static seedu.address.logic.parser.CliSyntax.PREFIX_AMENITY;
-import static seedu.address.logic.parser.CliSyntax.PREFIX_EDIT_SPOT;
-import static seedu.address.logic.parser.CliSyntax.PREFIX_NAME;
-import static seedu.address.logic.parser.CliSyntax.PREFIX_OPERATING_HOURS;
-import static seedu.address.logic.parser.CliSyntax.PREFIX_RATING;
-import static seedu.address.logic.parser.CliSyntax.PREFIX_REMOVE_AMENITY;
-import static seedu.address.logic.parser.CliSyntax.PREFIX_REMOVE_TAG;
-import static seedu.address.logic.parser.CliSyntax.PREFIX_TAG;
+import static seedu.address.logic.parser.CliSyntax.*;
 
 import java.util.Collection;
 import java.util.Collections;
@@ -38,8 +30,8 @@ public class EditCommandParser implements Parser<EditCommand> {
     public EditCommand parse(String args) throws ParseException {
         requireNonNull(args);
         ArgumentMultimap argMultimap =
-                ArgumentTokenizer.tokenize(args, PREFIX_EDIT_SPOT, PREFIX_NAME,
-                        PREFIX_RATING, PREFIX_OPERATING_HOURS, PREFIX_ADDRESS, PREFIX_TAG, PREFIX_REMOVE_TAG,
+                ArgumentTokenizer.tokenize(args, PREFIX_EDIT_SPOT, PREFIX_NAME, PREFIX_RATING,
+                        PREFIX_OPERATING_HOURS, PREFIX_ADDRESS,PREFIX_LOG_COMMAND, PREFIX_TAG, PREFIX_REMOVE_TAG,
                         PREFIX_AMENITY, PREFIX_REMOVE_AMENITY);
 
         Name toBeChangedSpot;
@@ -63,6 +55,10 @@ public class EditCommandParser implements Parser<EditCommand> {
         }
         if (argMultimap.getValue(PREFIX_ADDRESS).isPresent()) {
             editStudySpotDescriptor.setAddress(ParserUtil.parseAddress(argMultimap.getValue(PREFIX_ADDRESS).get()));
+        }
+        if (argMultimap.getValue(PREFIX_LOG_COMMAND).isPresent()) {
+            editStudySpotDescriptor.setStudiedHours(ParserUtil
+                    .parseStudiedHours(argMultimap.getValue(PREFIX_LOG_COMMAND).get()));
         }
 
         parseTagsForEdit(argMultimap.getAllValues(PREFIX_TAG))

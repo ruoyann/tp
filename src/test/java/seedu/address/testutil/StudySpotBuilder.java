@@ -116,7 +116,7 @@ public class StudySpotBuilder {
     }
 
     public StudySpot build() {
-        return new StudySpot(name, rating, operatingHours, address, favourite, tags, amenities);
+        return new StudySpot(name, rating, operatingHours, address, , favourite, tags, amenities);
     }
 
 }

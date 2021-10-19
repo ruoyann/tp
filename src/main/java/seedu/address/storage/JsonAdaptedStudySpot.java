@@ -11,12 +11,7 @@ import com.fasterxml.jackson.annotation.JsonProperty;
 
 import seedu.address.commons.exceptions.IllegalValueException;
 import seedu.address.model.amenity.Amenity;
-import seedu.address.model.studyspot.Address;
-import seedu.address.model.studyspot.Favourite;
-import seedu.address.model.studyspot.Name;
-import seedu.address.model.studyspot.OperatingHours;
-import seedu.address.model.studyspot.Rating;
-import seedu.address.model.studyspot.StudySpot;
+import seedu.address.model.studyspot.*;
 import seedu.address.model.tag.Tag;
 
 /**
@@ -31,6 +26,7 @@ class JsonAdaptedStudySpot {
     private final String operatingHours;
     private final String address;
     private final String favourite;
+    private final String studiedHours;
     private final List<JsonAdaptedTag> tagged = new ArrayList<>();
     private final List<JsonAdaptedAmenity> amenities = new ArrayList<>();
 
@@ -40,12 +36,13 @@ class JsonAdaptedStudySpot {
     @JsonCreator
     public JsonAdaptedStudySpot(@JsonProperty("name") String name, @JsonProperty("rating") String rating,
             @JsonProperty("operatingHours") String operatingHours, @JsonProperty("address") String address,
-            @JsonProperty("favourite") String favourite, @JsonProperty("tagged") List<JsonAdaptedTag> tagged,
-            @JsonProperty("amenities") List<JsonAdaptedAmenity> amenities) {
+            @JsonProperty("favourite") String favourite, @JsonProperty("studiedHours") String studiedHours,
+            @JsonProperty("tagged") List<JsonAdaptedTag> tagged, @JsonProperty("amenities") List<JsonAdaptedAmenity> amenities) {
         this.name = name;
         this.rating = rating;
         this.operatingHours = operatingHours;
         this.address = address;
+        this.studiedHours = studiedHours;
         this.favourite = favourite;
         if (tagged != null) {
             this.tagged.addAll(tagged);
@@ -63,6 +60,7 @@ class JsonAdaptedStudySpot {
         rating = source.getRating().value;
         operatingHours = source.getOperatingHours().value;
         address = source.getAddress().value;
+        studiedHours = source.getStudiedHours().value;
         favourite = source.getFavourite().value;
         tagged.addAll(source.getTags().stream()
                 .map(JsonAdaptedTag::new)
@@ -121,6 +119,15 @@ class JsonAdaptedStudySpot {
         }
         final Address modelAddress = new Address(address);
 
+        if (studiedHours == null) {
+            throw new IllegalValueException(String.format(MISSING_FIELD_MESSAGE_FORMAT,
+                    StudiedHours.class.getSimpleName()));
+        }
+        if (!StudiedHours.isValidLoggedHours(studiedHours)) {
+            throw new IllegalValueException(StudiedHours.MESSAGE_CONSTRAINTS);
+        }
+        final StudiedHours modelStudiedHours = new StudiedHours(studiedHours);
+
         if (favourite == null) {
             throw new IllegalValueException(String.format(MISSING_FIELD_MESSAGE_FORMAT,
                     Favourite.class.getSimpleName()));
@@ -132,8 +139,8 @@ class JsonAdaptedStudySpot {
 
         final Set<Tag> modelTags = new HashSet<>(studySpotTags);
         final Set<Amenity> modelAmenities = new HashSet<>(studySpotAmenities);
-        return new StudySpot(modelName, modelRating, modelOperatingHours, modelAddress, modelFavourite,
-                modelTags, modelAmenities);
+        return new StudySpot(modelName, modelRating, modelOperatingHours, modelAddress, modelStudiedHours,
+                modelFavourite, modelTags, modelAmenities);
     }
 
 }
