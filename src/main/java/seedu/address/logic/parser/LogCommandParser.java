@@ -18,23 +18,28 @@ public class LogCommandParser implements Parser<LogCommand> {
                 ArgumentTokenizer.tokenize(args, PREFIX_FLAG, PREFIX_NAME, PREFIX_HOURS);
         Name studySpot;
         StudiedHours hoursStudied;
+        boolean isOverride = false;
 
         try {
             studySpot = ParserUtil.parseName(argMultimap.getValue(PREFIX_NAME).get());
 
-            String flag = null;
             if (argMultimap.getValue(PREFIX_FLAG).isPresent()) {
                 // Only one flag should be present
                 if (argMultimap.getAllValues(PREFIX_FLAG).size() != 1) {
                     throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT, LogCommand.MESSAGE_ONE_FLAG));
                 }
-                flag = argMultimap.getValue(PREFIX_FLAG).get();
+                String flag = argMultimap.getValue(PREFIX_FLAG).get();
+                assert(flag.equals(LogCommand.FLAG_RESET) || flag.equals(LogCommand.FLAG_OVERRIDE));
+
+                //Reset should ignore any hour provided, and should not throw an error even if hour is null
                 if (flag.equals("r")) {
-                    return new LogCommand(studySpot, null, flag);
+                    return new LogCommand(studySpot, null, true, false);
                 }
+                isOverride = true;
             }
+
             hoursStudied = ParserUtil.parseStudiedHours(argMultimap.getValue(PREFIX_HOURS).get());
-            return new LogCommand(studySpot, hoursStudied, flag);
+            return new LogCommand(studySpot, hoursStudied, false, isOverride);
         } catch (NoSuchElementException e) {
             throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT, LogCommand.MESSAGE_USAGE));
         }

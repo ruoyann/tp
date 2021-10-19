@@ -27,25 +27,15 @@ public class LogCommand extends Command {
 
     private final Name nameOfStudySpot;
     private final StudiedHours studiedHours;
-    private final String flag;
-    private final boolean isFlagPresent;
+    private final boolean isReset;
+    private final boolean isOverride;
 
-    public LogCommand(Name nameOfStudySpot, StudiedHours studiedHours) {
+
+    public LogCommand(Name nameOfStudySpot, StudiedHours studiedHours, boolean isReset, boolean isOverride) {
         this.nameOfStudySpot = nameOfStudySpot;
         this.studiedHours = studiedHours;
-        this.flag = null;
-        this.isFlagPresent = false;
-    }
-
-    public LogCommand(Name nameOfStudySpot, StudiedHours studiedHours, String flag) {
-        this.nameOfStudySpot = nameOfStudySpot;
-        this.studiedHours = studiedHours;
-        this.flag = flag;
-        if (flag == null) {
-            isFlagPresent = false;
-        } else {
-            isFlagPresent = true;
-        }
+        this.isReset = isReset;
+        this.isOverride = isOverride;
     }
 
     @Override
@@ -67,30 +57,39 @@ public class LogCommand extends Command {
         }
 
         StudiedHours initialHours = studySpotToAddHours.getStudiedHours();
-        StudiedHours newHours = null;
+        StudiedHours newHours;
         CommandResult result = null;
-        if (!isFlagPresent) {
-            newHours = initialHours.addHours(studiedHours);
-            result = new CommandResult(String.format(MESSAGE_SUCCESS_DEFAULT, studiedHours, studySpotToAddHours.getName()));
-        } else {
-            if (flag.equals("o")) {
-                newHours = studiedHours;
-                result = new CommandResult(String.format(MESSAGE_SUCCESS_OVERRIDE, studiedHours, studySpotToAddHours.getName()));
-            }
-
-            if (flag.equals("r")) {
-                newHours = new StudiedHours("0");
-                result = new CommandResult(String.format(MESSAGE_SUCCESS_RESET, studySpotToAddHours.getName()));
-            }
+        if (isReset) {
+            result = handleReset(model, studySpotToAddHours);
+            return result;
         }
-        assert newHours != null;
-        assert result != null;
+        if (isOverride) {
+            result = handleOverride(model, studySpotToAddHours, studiedHours);
+            return result;
+        }
+        newHours = initialHours.addHours(studiedHours);
         StudySpot updatedStudySpot = addHoursToStudySpot(studySpotToAddHours, newHours);
 
         model.setStudySpot(studySpotToAddHours, updatedStudySpot);
         model.updateFilteredStudySpotList(Model.PREDICATE_SHOW_ALL_STUDYSPOTS);
-        return result;
+        return new CommandResult(String.format(MESSAGE_SUCCESS_DEFAULT, studiedHours, nameOfStudySpot));
     }
+
+    private CommandResult handleReset(Model model, StudySpot studySpot) {
+        StudiedHours newHours = new StudiedHours("0");
+        StudySpot newStudySpot = addHoursToStudySpot(studySpot, newHours);
+        model.setStudySpot(studySpot, newStudySpot);
+        model.updateFilteredStudySpotList(Model.PREDICATE_SHOW_ALL_STUDYSPOTS);
+        return new CommandResult(String.format(MESSAGE_SUCCESS_RESET, nameOfStudySpot));
+    }
+
+    private CommandResult handleOverride(Model model, StudySpot studySpot, StudiedHours studiedHours) {
+        StudySpot newStudySpot = addHoursToStudySpot(studySpot, studiedHours);
+        model.setStudySpot(studySpot, newStudySpot);
+        model.updateFilteredStudySpotList(Model.PREDICATE_SHOW_ALL_STUDYSPOTS);
+        return new CommandResult(String.format(MESSAGE_SUCCESS_OVERRIDE, studiedHours, nameOfStudySpot));
+    }
+
 
     private static StudySpot addHoursToStudySpot(StudySpot studySpotToAddHours,
                                                  StudiedHours hoursAfterAddition) {
