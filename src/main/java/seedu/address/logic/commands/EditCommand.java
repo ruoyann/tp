@@ -37,6 +37,7 @@ public class EditCommand extends Command {
     public static final String MESSAGE_USAGE = COMMAND_WORD + ": Edits the details of the study spot identified "
             + "by its name (case-insensitive). "
             + "Existing values will be overwritten by the input values.\n"
+            + "Note that study hours cannot be changed with edit, use log command instead. \n"
             + "Parameters: "
             + PREFIX_EDIT_SPOT + "NAME* (non-case sensitive) "
             + PREFIX_NAME + "NAME "
@@ -122,7 +123,8 @@ public class EditCommand extends Command {
         OperatingHours updatedOperatingHours = editStudySpotDescriptor.getOperatingHours()
                 .orElse(studySpotToEdit.getOperatingHours());
         Address updatedAddress = editStudySpotDescriptor.getAddress().orElse(studySpotToEdit.getAddress());
-        StudiedHours studiedHours = editStudySpotDescriptor.getStudiedHours().orElse(studySpotToEdit.getStudiedHours());
+        //Studied hours should not be changeable via Edit, so return same value
+        StudiedHours studiedHours = studySpotToEdit.getStudiedHours();
         Set<Tag> updatedTags = editStudySpotDescriptor.updateTags(studySpotToEdit.getTags())
                 .getTags().orElse(studySpotToEdit.getTags());
         Set<Amenity> updatedAmenities = editStudySpotDescriptor.updateAmenities(studySpotToEdit.getAmenities())
@@ -187,7 +189,6 @@ public class EditCommand extends Command {
             setAmenities(toCopy.amenities);
             setAddedAmenities(toCopy.addedAmenities);
             setRemovedAmenities(toCopy.removedAmenities);
-            setStudiedHours(toCopy.studiedHours);
         }
 
         /**
@@ -228,14 +229,6 @@ public class EditCommand extends Command {
 
         public Optional<Address> getAddress() {
             return Optional.ofNullable(address);
-        }
-
-        public void setStudiedHours(StudiedHours studiedHours) {
-            this.studiedHours = studiedHours;
-        }
-
-        public Optional<StudiedHours> getStudiedHours() {
-            return Optional.ofNullable(studiedHours);
         }
 
         public void setFavourite(Favourite favourite) {
@@ -578,8 +571,7 @@ public class EditCommand extends Command {
                     && getRemovedTags().equals(e.getRemovedTags())
                     && getAmenities().equals(e.getAmenities())
                     && getAddedAmenities().equals(e.getAddedAmenities())
-                    && getRemovedAmenities().equals(e.getRemovedAmenities())
-                    && getStudiedHours().equals(e.getStudiedHours());
+                    && getRemovedAmenities().equals(e.getRemovedAmenities());
         }
 
     }
