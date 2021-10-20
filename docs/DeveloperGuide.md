@@ -147,7 +147,7 @@ The `Storage` component,
 
 ### Common classes
 
-Classes used by multiple components are in the `seedu.addressbook.commons` package.
+Classes used by multiple components are in the `seedu.address.commons` package.
 
 --------------------------------------------------------------------------------------------------------------------
 
@@ -262,28 +262,42 @@ The following activity diagram summarizes what happens when a user executes a ne
 
 ### Enhanced List Command
 
+#### Overview
+
+The List Command is enhanced to support filtering of favourites and tags.
+
 #### Implementation
-The `Model` component stores the currently 'selected' `StudySpot` objects as a separate filtered list which is exposed 
-to outsiders as an unmodifiable `ObservableList<StudySpot>` that can be 'observed'. The filter of this list can be
-updated using `Model#updateFilteredStudySpotList(Predicate<StudySpot> predicate)`.
+
+The `Model` component stores the currently 'selected' `StudySpot` objects as a separate filtered list. The filter of this list can be updated using `Model#updateFilteredStudySpotList(Predicate<StudySpot> predicate)`.
 
 Given below is an example usage scenario and how the list mechanism behaves at every step.
 
 Step 1. The user executes `list -f` command to show all favourites in the StudyTracker. `StudyTrackerParser` class
 creates a `ListCommandParser` to parse the command and creates a `ListCommand` object with a `Predicate<StudySpot>`
-that filters for favourite StudySpots.
+that filters for favourite `StudySpots`.
 
 
-Step 2. LogicManager executes the `ListCommand` object, calling 
+Step 2. `LogicManager` executes the `ListCommand` object, calling 
 `Model#updateFilteredStudySpotList(Predicate<StudySpot> predicate)`. This updates the model in StudyTracker to show
-only favourite StudySpots to the user. 
+only favourite `StudySpots` to the user. 
 
-The following sequence diagram demonstrates how StudyTrackerParser parses the command.
+The following sequence diagram demonstrates how `StudyTrackerParser` parses the command.
 
 ![ListSequenceDiagram](images/ListSequenceDiagram.png)
 
 
 #### Design considerations:
+
+**Behaviour of filters with multiple tags:**
+* **Current choice:** Filtering by tags show StudySpots that all specified tags.
+* **Alternative 1:** Filtering by tags show StudySpots that contain at least one of the specified tags.
+
+
+We felt that our choice would be the most intuitive behaviour of filter. 
+
+#### Future Extensions:
+
+A future extension would be for ListCommand to filter amenities as well.
 
 --------------------------------------------------------------------------------------------------------------------
 
@@ -386,6 +400,21 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
       Use case ends.
 
 
+**UC03 - List by favourites**
+
+**MSS**
+
+1. User requests to view list by favourites.
+2. StudyTracker shows all favourite StudySpots.
+
+   Use case ends.
+
+**Extensions**
+* 1a. Invalid flag is given
+    * 1a1. StudyTracker shows an error message.
+
+      Use case ends.
+    
 ### Non-Functional Requirements
 
 1.  Should work on any _mainstream OS_ as long as it has Java `11` or above installed.
@@ -437,9 +466,9 @@ testers are expected to do more *exploratory* testing.
 
 1. _{ more test cases …​ }_
 
-### Deleting a person
+### Deleting a StudySpot
 
-1. Deleting a person while all study spots are being shown
+1. Deleting a StudySpot while all study spots are being shown
 
     1. Prerequisites: Have at least 1 StudySpot in the list. 
 
