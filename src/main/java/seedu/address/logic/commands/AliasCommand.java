@@ -17,12 +17,15 @@ public class AliasCommand extends Command {
     public static final String COMMAND_WORD = "alias";
 
     public static final String MESSAGE_USAGE = COMMAND_WORD + ": Define or display aliases.\n"
+            + "The -s flag will show all aliases\n"
             + "Parameters: "
             + PREFIX_ALIAS + "ALIAS* "
             + PREFIX_ALIAS_COMMAND + "COMMAND* \n"
             + "Example: "
             + COMMAND_WORD + " " + PREFIX_ALIAS + "e " + PREFIX_ALIAS_COMMAND + "edit\n"
             + COMMAND_WORD + " " + PREFIX_ALIAS + "editStarbucks " + PREFIX_ALIAS_COMMAND + "edit spot/Starbucks\n";
+
+    public static final String FLAG_SHOW = "s";
 
     public static final String MESSAGE_SUCCESS_SET = "Added alias %1$s.";
     public static final String MESSAGE_SUCCESS_SHOW = "Here are your aliases:\n%1$s.";
