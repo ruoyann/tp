@@ -246,7 +246,6 @@ The following activity diagram summarizes what happens when a user executes a ne
 
 <img src="images/AliasActivityDiagram.png" width="350" />
 
-
 #### Design considerations:
 
 **Aspect: What aliases should be allowed:**
@@ -263,6 +262,45 @@ The following activity diagram summarizes what happens when a user executes a ne
     * Pros: User has even more freedom.
     * Cons: Implementation is much more challenging (e.g. how to prevent recursion?).
 
+### Themes
+
+#### Overview
+
+Themes allow users to customize the colours of the GUI of StudyTracker.
+
+![GUI Themes](images/UiThemes.gif)
+
+#### Implementation of Themes
+
+The GuiSettings class handles information about GUI width, height, position, and theme.
+These settings are stored by `UserPrefs` in the Model.
+
+Themes are stored as Strings representing the theme name.
+The `MainWindow` Ui component is able to communicate with the Logic class to retrieve and write the currently selected themes.
+Then, the `MainWindow` will take the stored theme and load the corresponding CSS files to set the colours of the JavaFX app.
+
+The following activity diagram summarizes the process of customizing themes.
+
+![Themes Activity Diagram](images/ThemesActivityDiagram.png)
+
+
+#### Themes style guide
+
+Each theme file is named `Theme[Themenamesentencecase].css`
+
+It contains 8 theme colours, utilizing CSS variables support of JavaFX.
+
+The following are examples showing the `Default` and `DotsDark` theme.
+
+![Themes default](images/ThemeDefault.png)
+![Themes dotsdark](images/ThemeDotsDark.png)
+
+* `-fx-base` — base colour of the theme and StudyTracker GUI
+* `fg-surface` — surface colour to place primary content
+* `bg-surface` — surface colour to place secondary content
+* `fg-accent` — contrasting colour to act as accenting colour
+* `fg-text`, `bg-text`, `accent-text` — text colour for `fg-surface`, `bg-surface` and `fg-accent` respectively.
+* `button` — button colour
 
 --------------------------------------------------------------------------------------------------------------------
 
