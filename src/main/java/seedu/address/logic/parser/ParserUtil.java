@@ -118,10 +118,14 @@ public class ParserUtil {
     public static StudiedHours parseStudiedHours(String studiedHours) throws ParseException {
         requireNonNull(studiedHours);
         String trimmedStudiedHours = studiedHours.trim();
-        if (!StudiedHours.isValidLoggedHours(studiedHours)) {
+        if (!StudiedHours.isValidLoggedHours(trimmedStudiedHours)) {
             throw new ParseException(StudiedHours.MESSAGE_CONSTRAINTS);
         }
-
+        try {
+            Integer.parseInt(studiedHours);
+        } catch (NumberFormatException e) {
+            throw new ParseException(StudiedHours.MESSAGE_INTEGER_OVERFLOW);
+        }
         return new StudiedHours(studiedHours);
     }
 

@@ -36,15 +36,16 @@ public class CommandList {
     private static final String FAVOURITE_COMMAND = FavouriteCommand.COMMAND_WORD;
     private static final String HELP_COMMAND = HelpCommand.COMMAND_WORD;
     private static final String LIST_COMMAND = ListCommand.COMMAND_WORD;
+    private static final String LOG_COMMAND = LogCommand.COMMAND_WORD;
     private static final String UNALIAS_COMMAND = UnaliasCommand.COMMAND_WORD;
     private static final String UNFAVOURITE_COMMAND = UnfavouriteCommand.COMMAND_WORD;
-    private static final String LOG_COMMAND = LogCommand.COMMAND_WORD;
+
 
     private static final List<String> commandWords = Arrays.asList(
         ADD_COMMAND, ALIAS_COMMAND,
         CLEAR_COMMAND, DELETE_COMMAND, EDIT_COMMAND, EXIT_COMMAND,
         FIND_COMMAND, FAVOURITE_COMMAND, HELP_COMMAND,
-        LIST_COMMAND, UNALIAS_COMMAND, UNFAVOURITE_COMMAND, LOG_COMMAND
+        LIST_COMMAND, LOG_COMMAND, UNALIAS_COMMAND, UNFAVOURITE_COMMAND
     );
 
     /**
@@ -78,9 +79,9 @@ public class CommandList {
         commandToUsage.put(FIND_COMMAND, FindCommand.MESSAGE_USAGE);
         commandToUsage.put(HELP_COMMAND, HelpCommand.MESSAGE_USAGE);
         commandToUsage.put(LIST_COMMAND, ListCommand.MESSAGE_USAGE);
+        commandToUsage.put(LOG_COMMAND, LogCommand.MESSAGE_USAGE);
         commandToUsage.put(UNALIAS_COMMAND, UnaliasCommand.MESSAGE_USAGE);
         commandToUsage.put(UNFAVOURITE_COMMAND, UnfavouriteCommand.MESSAGE_USAGE);
-        commandToUsage.put(LOG_COMMAND, LogCommand.MESSAGE_USAGE);
         return commandToUsage;
     }
 }

@@ -3,8 +3,13 @@ package seedu.address.model.studyspot;
 import static java.util.Objects.requireNonNull;
 import static seedu.address.commons.util.AppUtil.checkArgument;
 
+import seedu.address.commons.exceptions.IllegalValueException;
+
 public class StudiedHours {
-    public static final String MESSAGE_CONSTRAINTS = "Logged hours should only be an integer!";
+    public static final String MESSAGE_CONSTRAINTS = "Logged hours should only be a positive integer!";
+    public static final String MESSAGE_INTEGER_OVERFLOW = "Given hours exceed integer limit!";
+    public static final String MESSAGE_HOURS_IS_FULL = "The Study Spot has reached integer limit, please "
+            + "reset or override!";
 
     //Regex should allow any integer value
     public static final String VALIDATION_REGEX = "^[0-9]\\d*$";
@@ -44,8 +49,11 @@ public class StudiedHours {
     /**
      * Adds hours of the given StudiedHours to the current object and returns a new StudiedHours object
      */
-    public StudiedHours addHours(StudiedHours hours) {
+    public StudiedHours addHours(StudiedHours hours) throws IllegalValueException {
         int totalHours = this.loggedHours + hours.loggedHours;
+        if (totalHours <= 0) {
+            throw new IllegalValueException(MESSAGE_HOURS_IS_FULL);
+        }
         return new StudiedHours(totalHours);
     }
 

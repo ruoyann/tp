@@ -8,6 +8,7 @@ import java.util.List;
 import java.util.Set;
 
 import seedu.address.commons.core.Messages;
+import seedu.address.commons.exceptions.IllegalValueException;
 import seedu.address.logic.commands.exceptions.CommandException;
 import seedu.address.model.Model;
 import seedu.address.model.amenity.Amenity;
@@ -27,13 +28,13 @@ import seedu.address.model.tag.Tag;
 public class LogCommand extends Command {
     public static final String COMMAND_WORD = "log";
     public static final String MESSAGE_USAGE = COMMAND_WORD + ": Adds to the studied hours at the "
-            + "study spot identified by its name (case-insensitive).\n "
-            + "If -o is added, it will set the studied hours to the value provided\n"
-            + "If -r is added, regardless of what value is provided, the value will be reset to 0\n"
+            + "study spot identified by its name (case-insensitive).\n"
+            + "The -o flag will override the studied hours to the value provided\n"
+            + "The -r will reset the studied hours to 0\n"
             + "Parameters: "
             + PREFIX_NAME + "NAME* (case-insensitive) "
             + PREFIX_HOURS + "ADDED_HOURS* (required if -r is not input) "
-            + "[-t] [-o]\n"
+            + "[-r] [-o]\n"
             + "Example: " + COMMAND_WORD + " " + PREFIX_NAME + "Starbucks" + " " + PREFIX_HOURS + "4 ";
     public static final String MESSAGE_SUCCESS_DEFAULT = "Logged %1$S hours at %2$S!";
     public static final String MESSAGE_ONE_FLAG = "Please only use one flag!";
@@ -92,11 +93,16 @@ public class LogCommand extends Command {
             result = handleOverride(model, studySpotToAddHours, studiedHours);
             return result;
         }
-        newHours = initialHours.addHours(studiedHours);
-        StudySpot updatedStudySpot = addHoursToStudySpot(studySpotToAddHours, newHours);
+        try {
+            newHours = initialHours.addHours(studiedHours);
+            StudySpot updatedStudySpot = addHoursToStudySpot(studySpotToAddHours, newHours);
 
-        model.setStudySpot(studySpotToAddHours, updatedStudySpot);
-        model.updateFilteredStudySpotList(Model.PREDICATE_SHOW_ALL_STUDYSPOTS);
+
+            model.setStudySpot(studySpotToAddHours, updatedStudySpot);
+            model.updateFilteredStudySpotList(Model.PREDICATE_SHOW_ALL_STUDYSPOTS);
+        } catch (IllegalValueException e) {
+            throw new CommandException(StudiedHours.MESSAGE_HOURS_IS_FULL);
+        }
         return new CommandResult(String.format(MESSAGE_SUCCESS_DEFAULT, studiedHours, nameOfStudySpot));
     }
 
