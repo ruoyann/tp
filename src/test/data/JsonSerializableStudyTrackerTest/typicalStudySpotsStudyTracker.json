@@ -5,6 +5,7 @@
     "rating" : "4",
     "operatingHours" : "-",
     "address" : "UTown",
+    "studiedHours" : "3",
     "favourite" : "false",
     "tagged" : [ "coffee" ],
     "amenities" : [ "wifi", "charger", "food", "aircon"]
@@ -14,6 +15,7 @@
     "operatingHours" : "-",
     "address" : "NUS, Central Library",
     "favourite" : "false",
+    "studiedHours" : "2",
     "tagged" : [ "cold", "quiet" ],
     "amenities" : [ "wifi", "charger", "aircon"]
   }, {
@@ -22,6 +24,7 @@
     "operatingHours" : "-",
     "address" : "NUS Computing",
     "favourite" : "false",
+    "studiedHours" : "23",
     "tagged" : [ ],
     "amenities" : [ "wifi", "charger", "aircon"]
   }, {
@@ -30,6 +33,7 @@
     "operatingHours" : "0900-1800, 0900-1800",
     "address" : "NUS Science Faculty",
     "favourite" : "false",
+    "studiedHours" : "15",
     "tagged" : [ "crowded" ],
     "amenities" : ["food"]
   }, {
@@ -38,6 +42,7 @@
     "operatingHours" : "-",
     "address" : "NUS, Yusof Ishak House Level 3",
     "favourite" : "false",
+    "studiedHours" : "26",
     "tagged" : [ "cold" ],
     "amenities" : [ "wifi", "aircon"]
   },{
@@ -46,6 +51,7 @@
     "operatingHours" : "-",
     "address" : "Utown",
     "favourite" : "false",
+    "studiedHours" : "30",
     "tagged" : [ ],
     "amenities" : [ ]
   }, {
@@ -54,6 +60,7 @@
     "operatingHours" : "-",
     "address" : "NUS COM2",
     "favourite" : "false",
+    "studiedHours" : "13",
     "tagged" : [ ],
     "amenities" : []
   } ]

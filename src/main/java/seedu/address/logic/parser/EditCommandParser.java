@@ -38,8 +38,8 @@ public class EditCommandParser implements Parser<EditCommand> {
     public EditCommand parse(String args) throws ParseException {
         requireNonNull(args);
         ArgumentMultimap argMultimap =
-                ArgumentTokenizer.tokenize(args, PREFIX_EDIT_SPOT, PREFIX_NAME,
-                        PREFIX_RATING, PREFIX_OPERATING_HOURS, PREFIX_ADDRESS, PREFIX_TAG, PREFIX_REMOVE_TAG,
+                ArgumentTokenizer.tokenize(args, PREFIX_EDIT_SPOT, PREFIX_NAME, PREFIX_RATING,
+                        PREFIX_OPERATING_HOURS, PREFIX_ADDRESS, PREFIX_TAG, PREFIX_REMOVE_TAG,
                         PREFIX_AMENITY, PREFIX_REMOVE_AMENITY);
 
         Name toBeChangedSpot;

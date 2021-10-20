@@ -9,6 +9,7 @@ import javafx.scene.layout.HBox;
 import javafx.scene.layout.Region;
 import javafx.scene.shape.SVGPath;
 import seedu.address.model.studyspot.Rating;
+import seedu.address.model.studyspot.StudiedHours;
 import seedu.address.model.studyspot.StudySpot;
 
 /**
@@ -76,9 +77,14 @@ public class StudySpotCard extends UiPart<Region> {
     @FXML
     private Label operatingHours;
     @FXML
+    private Label studiedHours;
+    @FXML
+    private Label hoursText;
+    @FXML
     private FlowPane tags;
     @FXML
     private HBox icons;
+
 
     /**
      * Creates a {@code StudySpotCode} with the given {@code StudySpot} and index to display.
@@ -90,6 +96,14 @@ public class StudySpotCard extends UiPart<Region> {
         name.setText(studySpot.getName().fullName);
         rating.setText(setRatingDisplay(studySpot.getRating()));
         address.setText(studySpot.getAddress().value);
+
+        StudiedHours hours = studySpot.getStudiedHours();
+        if (Integer.parseInt(hours.value) != 0) {
+            studiedHours.setText(hours.value);
+        } else {
+            hoursText.setText("");
+        }
+
         operatingHours.setText(studySpot.getOperatingHours().toString());
         studySpot.getTags().stream()
                 .sorted(Comparator.comparing(tag -> tag.tagName))
