@@ -22,6 +22,7 @@ import seedu.address.model.studyspot.Address;
 import seedu.address.model.studyspot.Name;
 import seedu.address.model.studyspot.OperatingHours;
 import seedu.address.model.studyspot.Rating;
+import seedu.address.model.studyspot.StudiedHours;
 import seedu.address.model.studyspot.StudySpot;
 import seedu.address.model.tag.Tag;
 
@@ -106,6 +107,26 @@ public class ParserUtil {
             throw new ParseException(OperatingHours.MESSAGE_CONSTRAINTS);
         }
         return new OperatingHours(trimmedOperatingHours);
+    }
+
+    /**
+     * Parse a {@code String studiedHours} into an {@code StudiedHours}.
+     * Leading and trailing whitespaces will be trimmed.
+     *
+     * @throws ParseException if given {@code studiedHours} is invalid.
+     */
+    public static StudiedHours parseStudiedHours(String studiedHours) throws ParseException {
+        requireNonNull(studiedHours);
+        String trimmedStudiedHours = studiedHours.trim();
+        if (!StudiedHours.isValidLoggedHours(trimmedStudiedHours)) {
+            throw new ParseException(StudiedHours.MESSAGE_CONSTRAINTS);
+        }
+        try {
+            Integer.parseInt(studiedHours);
+        } catch (NumberFormatException e) {
+            throw new ParseException(StudiedHours.MESSAGE_INTEGER_OVERFLOW);
+        }
+        return new StudiedHours(studiedHours);
     }
 
     /**

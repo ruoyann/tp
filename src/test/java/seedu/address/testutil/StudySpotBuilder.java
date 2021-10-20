@@ -9,6 +9,7 @@ import seedu.address.model.studyspot.Favourite;
 import seedu.address.model.studyspot.Name;
 import seedu.address.model.studyspot.OperatingHours;
 import seedu.address.model.studyspot.Rating;
+import seedu.address.model.studyspot.StudiedHours;
 import seedu.address.model.studyspot.StudySpot;
 import seedu.address.model.tag.Tag;
 import seedu.address.model.util.SampleDataUtil;
@@ -22,6 +23,7 @@ public class StudySpotBuilder {
     public static final String DEFAULT_RATING = "3";
     public static final String DEFAULT_OPERATING_HOURS = "-";
     public static final String DEFAULT_ADDRESS = "NUS School of Computing";
+    public static final String DEFAULT_STUDIED_HOURS = "5";
     public static final boolean DEFAULT_FAVOURITE = false;
 
     private Name name;
@@ -29,6 +31,7 @@ public class StudySpotBuilder {
     private OperatingHours operatingHours;
     private Address address;
     private Favourite favourite;
+    private StudiedHours studiedHours;
     private Set<Tag> tags;
     private Set<Amenity> amenities;
 
@@ -41,6 +44,7 @@ public class StudySpotBuilder {
         operatingHours = new OperatingHours(DEFAULT_OPERATING_HOURS);
         address = new Address(DEFAULT_ADDRESS);
         favourite = new Favourite(DEFAULT_FAVOURITE);
+        studiedHours = new StudiedHours(DEFAULT_STUDIED_HOURS);
         tags = new HashSet<>();
         amenities = new HashSet<>();
     }
@@ -54,6 +58,7 @@ public class StudySpotBuilder {
         operatingHours = studySpotToCopy.getOperatingHours();
         address = studySpotToCopy.getAddress();
         favourite = studySpotToCopy.getFavourite();
+        studiedHours = studySpotToCopy.getStudiedHours();
         tags = new HashSet<>(studySpotToCopy.getTags());
         amenities = new HashSet<>(studySpotToCopy.getAmenities());
     }
@@ -115,8 +120,16 @@ public class StudySpotBuilder {
         return this;
     }
 
+    /**
+     * Sets the {@code StudiedHours} of the {@code StudySpot} that we are building.
+     */
+    public StudySpotBuilder withStudiedHours(String studiedHours) {
+        this.studiedHours = new StudiedHours(studiedHours);
+        return this;
+    }
+
     public StudySpot build() {
-        return new StudySpot(name, rating, operatingHours, address, favourite, tags, amenities);
+        return new StudySpot(name, rating, operatingHours, address, studiedHours, favourite, tags, amenities);
     }
 
 }

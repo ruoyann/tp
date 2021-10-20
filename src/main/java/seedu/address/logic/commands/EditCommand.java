@@ -28,6 +28,7 @@ import seedu.address.model.studyspot.Favourite;
 import seedu.address.model.studyspot.Name;
 import seedu.address.model.studyspot.OperatingHours;
 import seedu.address.model.studyspot.Rating;
+import seedu.address.model.studyspot.StudiedHours;
 import seedu.address.model.studyspot.StudySpot;
 import seedu.address.model.tag.Tag;
 
@@ -42,6 +43,7 @@ public class EditCommand extends Command {
     public static final String MESSAGE_USAGE = COMMAND_WORD + ": Edits the details of the study spot identified "
             + "by its name (case-insensitive). "
             + "Existing values will be overwritten by the input values.\n"
+            + "Note that study hours cannot be changed with edit, use log command instead. \n"
             + "Parameters: "
             + PREFIX_EDIT_SPOT + "NAME* (non-case sensitive) "
             + PREFIX_NAME + "NAME "
@@ -127,14 +129,16 @@ public class EditCommand extends Command {
         OperatingHours updatedOperatingHours = editStudySpotDescriptor.getOperatingHours()
                 .orElse(studySpotToEdit.getOperatingHours());
         Address updatedAddress = editStudySpotDescriptor.getAddress().orElse(studySpotToEdit.getAddress());
+        //Studied hours should not be changeable via Edit, so return same value
+        StudiedHours studiedHours = studySpotToEdit.getStudiedHours();
         Set<Tag> updatedTags = editStudySpotDescriptor.updateTags(studySpotToEdit.getTags())
                 .getTags().orElse(studySpotToEdit.getTags());
         Set<Amenity> updatedAmenities = editStudySpotDescriptor.updateAmenities(studySpotToEdit.getAmenities())
                 .getAmenities().orElse(studySpotToEdit.getAmenities());
         Favourite updatedFavourite = editStudySpotDescriptor.getFavourite().orElse(studySpotToEdit.getFavourite());
 
-        return new StudySpot(updatedName, updatedRating, updatedOperatingHours, updatedAddress, updatedFavourite,
-                updatedTags, updatedAmenities);
+        return new StudySpot(updatedName, updatedRating, updatedOperatingHours, updatedAddress, studiedHours,
+                updatedFavourite, updatedTags, updatedAmenities);
     }
 
     @Override
