@@ -53,10 +53,12 @@ Here is how to read the command format:**
 
 ### Command Structure
 Commands use a multipart structure that must be specified in this order:
-1. Command word which may be user-created aliases (detailed further in [Aliases](#setting-command-aliases--alias-unalias)). <br>
-2. Parameters and Flags
+1. **Command word** which may be user-created aliases (detailed further in [Aliases](#setting-command-aliases--alias-unalias)). <br>
+2. **Parameters** and **Flags**
 
-`<command> [parameters and flags]`
+```
+ <COMMAND> [parameters and flags]
+ ```
 
 ### Flags
 
@@ -72,7 +74,7 @@ e.g. the `NAME` parameter has a delimiter `n/` and the `AMENITY` parameter has a
 * Words in `UPPER_CASE` are the parameters to be supplied by the user.<br>
   e.g. in `add n/NAME*`, `NAME` is a parameter which can be used as `add n/COM1 Basement`.
 
-* Parameters with an asterisk `*` are required while those without an asterisk are optional.<br>
+* Parameters with an asterisk `*` are **required** while those without an asterisk are optional.<br>
   e.g `n/NAME* m/AMENITY...` can be used as `n/COM1 Basement m/wifi` or as `n/COM1 Basement`.
 
 * Parameters with `…`​ after them can be used multiple times including zero times.<br>
@@ -81,9 +83,9 @@ e.g. the `NAME` parameter has a delimiter `n/` and the `AMENITY` parameter has a
 * Parameters can be in any order.<br>
   e.g. if the command specifies `n/NAME* a/ADDRESS`, `a/ADDRESS n/NAME*` is also acceptable.
 
-<div markdown="block" class="alert alert-warning">:exclamation: **Caution:**
+<div markdown="block" class="alert alert-warning">:exclamation: **Note:**
 
-* If a parameter is expected only once in the command, but you specified it multiple times, only the last occurrence of the parameter will be taken.<br>
+* If a parameter is expected only once in the command, but you specified it multiple times, only the **last occurrence** of the parameter will be taken.<br>
   e.g. if you specify `n/COM1 n/CLB`, only `n/CLB` will be taken.
 
 * Extraneous parameters for commands that do not take in parameters (such as `help`, `list`, `exit` and `clear`) will be ignored.<br>
