@@ -99,9 +99,9 @@ How the `Logic` component works:
 1. The command can communicate with the `Model` when it is executed (e.g. to add a person).
 1. The result of the command execution is encapsulated as a `CommandResult` object which is returned back from `Logic`.
 
-The Sequence Diagram below illustrates the interactions within the `Logic` component for the `execute("delete 1")` API call.
+The Sequence Diagram below illustrates the interactions within the `Logic` component for the `execute("delete n/Central Library")` API call.
 
-![Interactions Inside the Logic Component for the `delete 1` Command](images/DeleteSequenceDiagram.png)
+![Interactions Inside the Logic Component for the `delete n/Central Library` Command](images/DeleteSequenceDiagram.png)
 
 <div markdown="span" class="alert alert-info">:information_source: **Note:** The lifeline for `DeleteCommandParser` should end at the destroy marker (X) but due to a limitation of PlantUML, the lifeline reaches the end of diagram.
 </div>
@@ -315,9 +315,9 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 **MSS**
 
 1.  User requests to list StudySpots
-2.  StudyTracker shows a list of persons
+2.  StudyTracker shows a list of StudySpots 
 3.  User requests to delete a specific StudySpot in the list
-4.  StudyTracker deletes the person
+4.  StudyTracker deletes the StudySpot 
 
     Use case ends.
 
@@ -415,17 +415,18 @@ testers are expected to do more *exploratory* testing.
 
 1. Deleting a person while all study spots are being shown
 
-    1. Prerequisites: List all study spots using the `list` command. Multiple study spots in the list.
+    1. Prerequisites: Have at least 1 StudySpot in the list. 
 
-    1. Test case: `delete 1`<br>
-       Expected: First contact is deleted from the list. Details of the deleted contact shown in the status message. Timestamp in the status bar is updated.
+    1. Test case: `delete n/Central Library`<br>
+       Expected: The StudySpot named COM1 is deleted from the list. Details of the deleted StudySpot shown in the status message.
 
-    1. Test case: `delete 0`<br>
-       Expected: No person is deleted. Error details shown in the status message. Status bar remains the same.
+    1. Test case: `delete n/INVALID`<br>
+       Expected: No StudySpot is deleted as there does not exist a StudySpot named 'INVALID'. Error details shown in the status message. Similiar error message will show if user tries to delete a StudySpot that does not exist in the list. 
 
-    1. Other incorrect delete commands to try: `delete`, `delete x`, `...` (where x is larger than the list size)<br>
+    1. Other incorrect delete commands to try: `delete Central Library`, `delete spot/Central Library`<br>
        Expected: Similar to previous.
-
+       
+1. _{ more test cases …​ }_
 
 ### Adding and using aliases
 
