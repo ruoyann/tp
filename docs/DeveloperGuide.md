@@ -257,6 +257,20 @@ The following activity diagram summarizes what happens when a user executes a ne
 * **Alternative 3:** Aliases can map to commands, including other aliases.
     * Pros: User has even more freedom.
     * Cons: Implementation is much more challenging (e.g. how to prevent recursion?).
+    
+
+### Log feature
+
+#### Overview
+
+The number of hours that a user spends at a StudySpot is shown on the GUI. This number can be changed by making use
+of the Log command. 
+
+The number of hours that a user spends at a StudySpot is saved as a field in `StudySpot`, as `StudiedHours`.
+
+#### Implementation of Log feature
+
+The Log feature is facilitated by `LogCommandParser.java`, `LogCommand.java`  
 
 
 --------------------------------------------------------------------------------------------------------------------
