@@ -282,13 +282,15 @@ Added alias myList: [list]
 * running `myList` will run the `list` command.
 
 <div markdown="span" class="alert alert-primary">:bulb: **Tip:**
-Aliases can be chained to make more powerful commands! <br>
+Aliases can be chained to make more powerful commands! <br> <br>
 
 **Example:** <br>
 
 ```
 alias al/Rate5 cmd/edit r/5 spot/
-
+```
+<br>
+```
 Added alias Rate5: [edit r/5 spot/]
 ```
 <br>
