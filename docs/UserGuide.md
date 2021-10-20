@@ -288,10 +288,12 @@ Aliases can be chained to make more powerful commands! <br>
 
 ```
 alias al/Rate5 cmd/edit r/5 spot/
+
 Added alias Rate5: [edit r/5 spot/]
 ```
 <br>
-will set alias `Rate5` to expand to the command `edit r/5 spot/`. <br>
+will set alias `Rate5` to expand to the command `edit r/5 spot/`.
+<br><br>
 
 Running `Rate5 Bishan Library` would then result in `edit r/5 spot/Bishan Library`!
 </div>
