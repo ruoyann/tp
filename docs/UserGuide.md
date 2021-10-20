@@ -95,7 +95,35 @@ Some examples of **invalid** user inputs for the *add command* are provided belo
 
 </div>
 
-## Features
+## GUI Features
+
+This section introduces the Graphical User Interface (GUI) of StudyTracker.
+
+![Gui annotated](images/guiAnnotated.png)
+
+On the right side of the interface, the **Study Spot List** and **Command Box** can be found.
+
+The **Study Spot List** contains **Cards** representing every study spot in StudyTracker.
+The `Total` tag at the top shows current visible study spots/total number of study spots in StudyTracker.
+Scroll down the list to view all the study spots!
+* `Name` — name of study spot
+* `Tags` — user-defined tags for the study spot
+* `Address` — address of study spot
+* `Operating Hours` — operating hours of study spot, weekdays and weekends
+* `Favourite` — this icon shows if the study spot is added to favourites
+* `Amenities` — the icons represent the amenities present in study spot.
+From left to right, the amenities are **aircon, charger, food, wifi**.
+* `Hours` — total number of hours studied at study spot
+* `Rating` — user-defined rating for the study spot
+
+The **Command Box** is where to enter commands in StudyTracker.
+
+* `Command Box` — type in your commands here
+* `Display` — results of commands and error messages are shown here.
+
+## Commands
+
+This section introduces all the commands in StudyTracker.
 
 ### Viewing help : `help`
 
@@ -312,7 +340,7 @@ unalias al/myAdd
 Removed alias 'myAdd'
 ```
 
-### Saving the data
+### Saving data
 
 StudyTracker data are saved in the hard disk automatically after any command that changes the data. There is no need to save manually.
 
@@ -324,9 +352,18 @@ StudyTracker data are saved as a JSON file `[home folder]/data/studytracker.json
 If your changes to the data file makes its format invalid, StudyTracker will discard all data and start with an empty data file at the next run.
 </div>
 
+### Changing themes
+
+From `File > Settings`, select the colour theme you want to use.
+Themes are saved in your user preferences.
+
+![Gui Themes](images/UiThemes.gif)
+
 --------------------------------------------------------------------------------------------------------------------
 
 ## FAQ
+
+This section contains frequently asked questions (FAQs) about StudyTracker.
 
 **Q**: How do I transfer my data to another Computer?<br>
 **A**: Install the app in the other computer and overwrite the empty **data** file it creates with the file that contains the data of your previous StudyTracker home folder.
