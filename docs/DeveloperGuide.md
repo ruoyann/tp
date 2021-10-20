@@ -215,7 +215,7 @@ Given below is an example usage scenario and how the Alias feature behaves at ea
 **Step 2.** The user executes `alias al/myAdd cmd/add r/5 n/` which creates an alias `myAdd` with command `add r/5 n/`.
 The `alias` command calls `Model#addAlias()`, adding this newly created alias to the Model and in UserPrefs.
 
-![UndoRedoState1](images/AliasState1.png)
+![AliasState1](images/AliasState1.png)
 
 <div markdown="span" class="alert alert-info">:information_source: 
 **Note:** Observe how the command is incomplete!
@@ -276,8 +276,12 @@ The GuiSettings class handles information about GUI width, height, position, and
 These settings are stored by `UserPrefs` in the Model.
 
 Themes are stored as Strings representing the theme name.
-The `MainWindow` Ui component is able to communicate with the Logic class to retrieve and write the currently selected themes.
-Then, the `MainWindow` will take the stored theme and load the corresponding CSS files to set the colours of the JavaFX app.
+For example, `"default"` represents the default theme.
+
+The `MainWindow` Ui component communicates with the Logic class to read and write the currently selected theme.
+Then, the `MainWindow` takes the stored theme and injects the corresponding CSS file to set the colours of the JavaFX app.
+
+In the example, `"default"` will be parsed to `ThemeDefault.css`, which is injected into the JavaFX stage.
 
 The following activity diagram summarizes the process of customizing themes.
 
