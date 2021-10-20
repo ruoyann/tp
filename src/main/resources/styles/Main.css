@@ -371,6 +371,10 @@
     -fx-font-size: 15;
 }
 
+.command-info__command-info {
+    -fx-line-spacing: 300;
+}
+
 .command-info__command-name {
     -fx-font-family: "Open Sans Bold";
     -fx-font-weight: bold;
