@@ -208,11 +208,11 @@ StudyTrackerParser will prepend the arguments from the expanded command before t
 
 Given below is an example usage scenario and how the Alias feature behaves at each step.
 
-Step 1. The user launches the application for the first time. The program loads with default Aliases.
+**Step 1.** The user launches the application for the first time. The program loads with default Aliases.
 
 ![AliasState0](images/AliasState0.png)
 
-Step 2. The user executes `alias al/myAdd cmd/add r/5 n/` which creates an alias `myAdd` with command `add r/5 n/`.
+**Step 2.** The user executes `alias al/myAdd cmd/add r/5 n/` which creates an alias `myAdd` with command `add r/5 n/`.
 The `alias` command calls `Model#addAlias()`, adding this newly created alias to the Model and in UserPrefs.
 
 ![UndoRedoState1](images/AliasState1.png)
@@ -224,7 +224,7 @@ It is a well-formed command, but requires the completion of the `n/` argument to
 However, this is allowed, as it is one of the key features for the flexibility of the Alias feature.
 </div>
 
-Step 3. The user executes `myAdd Starbucks t/cold` to add a new study spot.
+**Step 3.** The user executes `myAdd Starbucks t/cold` to add a new study spot.
 Within `StudyTrackerParser`, alias parsing takes place by fetching user alias information in `Model`.
 
 The command is expanded to `add r/5 n/Starbucks t/cold`.
