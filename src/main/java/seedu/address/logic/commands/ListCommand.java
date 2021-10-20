@@ -22,8 +22,10 @@ public class ListCommand extends Command {
 
     public static final String COMMAND_WORD = "list";
 
-    public static final String MESSAGE_USAGE = COMMAND_WORD + ": Shows all study spots. \n"
-            + "Parameters: None\n"
+    public static final String MESSAGE_USAGE = COMMAND_WORD + ": Shows all study spots.\n"
+            + "The -f flag lists all favourite study spots\n"
+            + "The -t flag lists study spots that match given tags\n"
+            + "Parameters: [-f] [-t t/TAG...]\n"
             + "Example: " + COMMAND_WORD;
     public static final String FLAG_FAVOURITES = "f";
     public static final String FLAG_TAGS = "t";
@@ -125,4 +127,3 @@ public class ListCommand extends Command {
 
 
 }
-

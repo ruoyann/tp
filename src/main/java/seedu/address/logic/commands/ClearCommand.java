@@ -11,8 +11,7 @@ import seedu.address.model.StudyTracker;
 public class ClearCommand extends Command {
 
     public static final String COMMAND_WORD = "clear";
-    public static final String MESSAGE_USAGE = COMMAND_WORD
-            + ": Removes ALL study spots from the StudyTracker.\n"
+    public static final String MESSAGE_USAGE = COMMAND_WORD + ": Removes ALL study spots from the StudyTracker.\n"
             + "Parameters: None\n"
             + "Example: " + COMMAND_WORD;
     public static final String MESSAGE_SUCCESS = "StudyTracker has been cleared!";

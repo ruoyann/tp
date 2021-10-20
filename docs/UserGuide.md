@@ -3,14 +3,22 @@ layout: page
 title: User Guide
 ---
 
-StudyTracker is a **desktop app that lets you save your favourite study spots, optimized for use via Command Line Interface (CLI).** It allows you to keep track of different study spots you’ve visited and record your past experiences at these study spots. Key information such as amenities available can be recorded to plan your future visits.
+StudyTracker is a **desktop app** that **tracks your most productive study spots**, optimized for **Command Line Interface (CLI) users.**
+
+With detailed data recording, and statistics of study time & effectiveness,
+**StudyTracker aims to maximise your productivity by making it easy to find the best place to study.**
+
+## Table of Contents
 
 * Table of Contents
 {:toc}
 
---------------------------------------------------------------------------------------------------------------------
+---
 
 ## Quick start
+
+StudyTracker comes with sample data.
+Let's explore how to add a new study spot and track our study time with it!
 
 1. Ensure you have Java `11` or above installed in your Computer.
 
@@ -19,59 +27,66 @@ StudyTracker is a **desktop app that lets you save your favourite study spots, o
 1. Copy the file to the folder you want to use as the _home folder_ for your StudyTracker.
 
 1. Double-click the file to start the app. The GUI similar to the below should appear in a few seconds. Note how the app contains some sample data.<br>
-   ![Ui](images/Uisketch.png)
+   ![Ui](images/Ui.png)
 
 1. Type the command in the command box and press Enter to execute it. e.g. typing **`help`** and pressing Enter will open the help window.<br>
-   Some example commands you can try:
+   Some commands you can try:
 
-   * **`list`** : Lists all study locations.
+   1. **`list`** : Lists all study spots.
+    Study spots are shown in cards on the right panel of the program.
 
-   * **`add`**` n/COM1 r/5` : Adds a study location named `COM1` to the StudyTracker.
+   1. **`add`** `n/COM1 r/5 m/aircon` : Adds a study location named `COM1`, with a rating of 5 and 'aircon' amenity to the StudyTracker.
+    You'll see it if you scroll down the list of study locations!
 
-   * **`delete`**`n/COM1` : Deletes the location named `COM1` from the StudyTracker.
+   1. **`log`** `n/COM1 h/3` : Logs 3 hours of study time at `COM1`.
+    The study hours should be reflected on the card.
 
-   * **`clear`** : Deletes all study spots.
+   1. **`exit`** : Exits the app.
 
-   * **`exit`** : Exits the app.
+1. Refer to the [Features](#features) below for more commands and features!
 
-1. Refer to the [Features](#features) below for details of each command.
-
---------------------------------------------------------------------------------------------------------------------
-
+---
 ## Command Syntax
 
 <div markdown="block" class="alert alert-info">
 
-**:information_source: Throughout the User Guide, you may see commands to enter into the bot. Here is how to read the command format:**<br>
+**:information_source: Throughout the User Guide, you'll see commands to enter into StudyTracker.
+Here is how to read the command format:**<br>
 
-* The first word of every line *always* specifies the **command word**. Command words are single words. Commands may have aliases, which are shortened versions of the command word. <br>
-  e.g. `add` has the alias `new`.
+* The first word of each command *always* specifies the **command word**.
+  Commands words may be user-created aliases, which are detailed further in [Aliases](#setting-command-aliases--alias-unalias). <br>
 
-* The subsequent blocks are known as **parameters**. Each parameter has a delimiter. <br>
+* Commands may require **flags**.
+  Flags are represented by a dash, and a sequence of characters. <br>
+  e.g. the `list` command has a `-f` flag to list only favourites.
+
+* The subsequent blocks are known as **parameters**.
+  Each parameter may have a delimiter. <br>
   e.g. the `NAME` parameter has a delimiter `n` and the `AMENITY` parameter has a delimiter `m`.
 
-* Slashes are required for user input. Words in `UPPER_CASE` are the parameters to be supplied by the user.<br>
+* Slashes are required for parameter input.
+  Words in `UPPER_CASE` are the parameters to be supplied by the user.<br>
   e.g. in `add n/NAME*`, `NAME` is a parameter which can be used as `add n/COM1 Basement`.
 
 * Parameters with an asterisk `*` are required while those without an asterisk are optional.<br>
   e.g `n/NAME* m/AMENITY...` can be used as `n/COM1 Basement m/wifi` or as `n/COM1 Basement`.
 
-* Items with `…`​ after them can be used multiple times including zero times.<br>
+* Parameters with `…`​ after them can be used multiple times including zero times.<br>
   e.g. `t/TAG...​` can be used as ` ` (i.e. 0 times), `t/noisy`, `t/mosquitos t/sunny` etc.
 
 * Parameters can be in any order.<br>
   e.g. if the command specifies `n/NAME* a/ADDRESS`, `a/ADDRESS n/NAME*` is also acceptable.
 
 * If a parameter is expected only once in the command, but you specified it multiple times, only the last occurrence of the parameter will be taken.<br>
-  e.g. if you specify `a/COM1 a/CLB`, only `a/CLB` will be taken.
+  e.g. if you specify `n/COM1 n/CLB`, only `n/CLB` will be taken.
 
 * Extraneous parameters for commands that do not take in parameters (such as `help`, `list`, `exit` and `clear`) will be ignored.<br>
   e.g. if the command specifies `help 123`, it will be interpreted as `help`.
 
 Some examples of **valid** user inputs for the *add command* are provided below:
-* `add n/PC Commons a/UTown t/very crowded m/toilet r/4`
-* `add n/COM2 Basement a/SoC` (optional arguments are not required)
-* `new n/TR3 a/Yusof Ishak House m/food m/socket` (multiple amenities are acceptable)
+* `add n/PC Commons a/UTown t/veryCrowded m/toilet r/4`
+* `add n/COM2 Basement r/3` (optional arguments are not required)
+* `add n/TR3 a/Yusof Ishak House m/wifi m/aircon` (multiple amenities are acceptable)
 
 Some examples of **invalid** user inputs for the *add command* are provided below:
 * `add n/PC Commons` (missing `RATING` parameter)
@@ -80,128 +95,156 @@ Some examples of **invalid** user inputs for the *add command* are provided belo
 
 </div>
 
-## Features
+## GUI Features
 
+This section introduces the Graphical User Interface (GUI) of StudyTracker.
 
+![Gui annotated](images/GuiAnnotated.png)
+
+On the right side of the interface, the **Study Spot List** and **Command Box** can be found.
+
+The **Study Spot List** contains **Cards** representing every study spot in StudyTracker.
+The `Total` tag at the top shows current visible study spots/total number of study spots in StudyTracker.
+Scroll down the list to view all the study spots!
+* `Name` — name of study spot
+* `Tags` — user-defined tags for the study spot
+* `Address` — address of study spot
+* `Operating Hours` — operating hours of study spot, weekdays and weekends
+* `Favourite` — this icon shows if the study spot is added to favourites
+* `Amenities` — the icons represent the amenities present in study spot.
+From left to right, the amenities are **aircon, charger, food, wifi**.
+* `Hours` — total number of hours studied at study spot
+* `Rating` — user-defined rating for the study spot
+
+The **Command Box** is where to enter commands in StudyTracker.
+
+* `Command Box` — type in your commands here
+* `Display` — results of commands and error messages are shown here.
+
+## Commands
+
+This section introduces all the commands in StudyTracker.
 
 ### Viewing help : `help`
 
-Provides a link to the full User Guide that users can visit by clicking on the button 'Open in  Browser'.
-
-![help message](images/helpMessage.png)
+Provides a reference for commands in StudyTracker.
+You can also visit the User Guide and Developer Guide by clicking on the buttons in the window.
+![Help window](images/helpMessage.png)
 
 Format: `help`
 
+<div markdown="span" class="alert alert-primary">:bulb: **Tip:**
+View the help window anytime by using the F1 shortcut!
+Alternatively, click on 'Help' in the menu bar!
+</div>
 
 ### Adding a study spot: `add`
 
 Adds a study spot to the StudyTracker.
 
-Format: `add n/NAME* r/RATING* a/ADDRESS t/TAG... m/AMENITY...`
+**Format:** `add n/NAME* r/RATING* a/ADDRESS t/TAG... m/AMENITY...`
 
 <div markdown="span" class="alert alert-primary">:bulb: **Tip:**
 Tags, amenities and address are all optional.
 </div>
 
-Examples:
+**Examples:**
 ```
 add n/COM1 Basement r/5
-New study spot “COM1 Basement” added to list!
+New study spot added: COM1 Basement
 
-add n/Starbucks at U-Town r/4 t/noisy m/wifi
-New study spot “Starbucks at U-Town” added to list!
+add n/Starbucks at UTown r/4 t/noisy m/wifi
+New study spot added: Starbucks at UTown
 ```
 
 ### Listing study spots : `list`
 
 Shows saved study spots in the StudyTracker.
 
-Format: `list` to show all study spots
+**Format:** `list` to show all study spots
 
-Format: `list -f` to show all favourite study spots
+**Format:** `list -f` to show all favourite study spots
 
-Format: `list -t t/TAG...` to show study spots with specified tags
+**Format:** `list -t t/TAG...` to show study spots with specified tags
 
-* Multiple flags can be used at once
+<div markdown="span" class="alert alert-primary">:bulb: **Tip:**
+Multiple flags can be used at once.
+</div>
 
-Examples:
+**Examples:**
 ```
 list 
-Your study spots are:
-  1. COM1 Basement
-  2. TR3
-  3. PC Commons
-  4. CLB
+Listed all study spots
   
-list -f -t t/cold 
-Your study spots are:
-  1. TR3
-  2. PC Commons
+list -f -t t/cold
+Listed all study spots in Favourites with Tags: [cold]
 ```
 
 <div markdown="span" class="alert alert-primary">:bulb: **Tip:**
 Make use of command aliases to speed up typing your inputs!
 </div>
 
-Default command alias :`ls`
+**Command alias:** `ls`
 
 ### Editing a study spot : `edit`
 
 Edits the details of a single study spot.
 
-Format: `edit spot/NAME* n/NEW_NAME a/NEW_ADDRESS t/NEW_TAG m/NEW_AMENITY r/NEW_RATING`
+**Format:** `edit spot/NAME* n/NEW_NAME a/NEW_ADDRESS t/NEW_TAG m/NEW_AMENITY r/NEW_RATING`
 
-* Edits the study spot with the same name. The name, while not case-sensitive, **must match the name in the list**.
+* Edits the study spot matching `NAME`.
+  Provided `NAME` is not case-sensitive and **must fully match the study spot name**.
 * At least one of the optional fields must be provided.
-* Existing values will be updated to the input values.
-* When editing tags, the existing tags of the study spot will be removed i.e adding of tags is not cumulative.
-* You can remove all the study spot’s tags by typing `t/` without
+* Name, rating, address will be updated.
+* When editing tags and amenities, `t/` or `m/` will append to existing tags and amenities.
+* You can remove a specific tag or amenity with the `rt/` or `rm/` parameter.
+* You can remove all the study spot’s tags by typing `t/` or `m/` without
     specifying any tags after it.
 
-Examples:
+**Examples:**
 ```
 edit spot/tr3 n/Training Room 3
-Study spot “TR3” has been edited to “Training Room 3”
+Edited study spot: Training Room 3
 ```
 
 ### Adding a study spot to Favourites: `fav`
 
 Adds a study spot to the StudyTracker's Favourites.
 
-Format: `fav n/NAME*`
+**Format:** `fav n/NAME*`
 
-Examples:
+**Examples:**
 ```
 fav n/COM1 Basement
-Study spot "COM1 Basement" added to favourites!
+Added study spot to favourites: COM1 Basement
 ```
 
 ### Removing a study spot from Favourites: `unfav`
 
 Removes a study spot from the StudyTracker's Favourites.
 
-Format: `unfav n/NAME*`
+**Format:** `unfav n/NAME*`
 
-Examples:
+**Examples:**
 ```
 unfav n/COM1 Basement
-Study spot "COM1 Basement" removed from favourites!
+Removed study spot from favourites: COM1 Basement
 ```
 
 ### Locating a study spot by name: `find`
 
 Finds study spots whose names contain any of the given keywords.
 
-Format: `find KEYWORD* [MORE KEYWORDS]`
+**Format:** `find KEYWORD* [MORE KEYWORDS]`
 
-* The search is case-insensitive. e.g `hans` will match `Hans`
-* Only full words will be matched. e.g. `Han` will not match `Hans`
+* The search is case-insensitive. e.g `library` will match `Library`
+* Only full words will be matched. e.g. `Lib` will not match `Library`
 * Study spots matching at least one keyword will be returned.
 
-Examples:
+**Examples:**
 ```
 find library
-Found the following study spots matching “library”:
+3 study spot(s) listed!
   1. Central Library
   2. Hon Sui Sen Memorial Library
   3. Jurong Library
@@ -211,15 +254,14 @@ Found the following study spots matching “library”:
 
 Deletes the specified study spot from the StudyTracker.
 
-Format: `delete n/NAME*`
+**Format:** `delete n/NAME*`
 
 * Deletes the study spot with the specified **name**.
 
-
-Examples:
+**Examples:**
 ```
 delete n/COM1
-COM1 has been deleted.
+Deleted study spot: COM1
 ```
 
 ### Clearing all entries : `clear`
@@ -230,79 +272,102 @@ Clears all entries from the StudyTracker.
 This command is irreversible!
 </div>
 
-Format: `clear`
+**Format:** `clear`
 
-Example:
+**Example:**
 ```
 clear
-All study spots have been cleared.
+All study spots have been cleared
 ```
 
 ### Exiting the program : `exit`
 
 Closes the StudyTracker.
 
-Format: `exit`
+**Format:** `exit`
 
-Example:
+**Example:**
 ```
 exit
 Goodbye!
 ```
 
-Command alias: `bye`, `quit`
+**Command alias:** `bye`, `quit`
 
 ### Setting command aliases : `alias`, `unalias`
 
 Adds or shows user-defined aliases.
 
-Format: `alias show` to show all aliases
+**Format:** `alias -s` to show all aliases
 
-Format: `alias al/ALIAS* cmd/COMMAND*` to set alias
+**Format:** `alias al/ALIAS* cmd/COMMAND*` to set alias
 
-Format `unalias al/ALIAS*` to remove alias
-
-Example:
+**Example:**
 ```
 alias al/myList cmd/list
+Added alias myList: [list]
 ```
-running `myList` will run the `list` command.
+* running `myList` will run the `list` command.
 
 <div markdown="span" class="alert alert-primary">:bulb: **Tip:**
-Aliases can be chained to make more powerful commands!
+Aliases can be chained to make more powerful commands! <br> <br>
 
-Example:
-```
-alias al/Rate5 cmd/edit r/5
-```
-will set alias `Rate5` to expand to the command `edit r/5`.
+**Example:** <br>
 
-Running `Rate5 spot/Bishan Library` would then result in `edit r/5 spot/Bishan Library`!
+```
+alias al/Rate5 cmd/edit r/5 spot/
+```
+<br>
+```
+Added alias Rate5: [edit r/5 spot/]
+```
+<br>
+will set alias `Rate5` to expand to the command `edit r/5 spot/`.
+<br><br>
+
+Running `Rate5 Bishan Library` would then result in `edit r/5 spot/Bishan Library`!
 </div>
 
+### Removing command aliases: `unalias`
 
-### Saving the data
+Removes user-defined aliases.
+
+**Format** `unalias al/ALIAS*` to remove alias
+
+**Example:**
+```
+unalias al/myAdd
+Removed alias 'myAdd'
+```
+
+### Saving data
 
 StudyTracker data are saved in the hard disk automatically after any command that changes the data. There is no need to save manually.
 
 ### Editing the data file
 
-StudyTracker data are saved as a JSON file `[JAR file location]/data/studytracker.json`. Advanced users are welcome to update data directly by editing that data file.
+StudyTracker data are saved as a JSON file `[home folder]/data/studytracker.json`. Advanced users are welcome to update data directly by editing that data file.
 
 <div markdown="span" class="alert alert-warning">:exclamation: **Caution:**
 If your changes to the data file makes its format invalid, StudyTracker will discard all data and start with an empty data file at the next run.
 </div>
 
-### Archiving data files `[coming in v2.0]`
+### Changing themes
 
-_Details coming soon ..._
+From `File > Settings`, select the colour theme you want to use.
+Themes are saved in your user preferences.
+
+![Gui Themes](images/UiThemes.gif)
 
 --------------------------------------------------------------------------------------------------------------------
 
 ## FAQ
 
+This section contains frequently asked questions (FAQs) about StudyTracker.
+
 **Q**: How do I transfer my data to another Computer?<br>
-**A**: Install the app in the other computer and overwrite the empty **data** file it creates with the file that contains the data of your previous StudyTracker home folder. You may also copy the **preferences.json** file to keep your user preferences.
+**A**: Install the app in the other computer and overwrite the empty **data** file it creates with the file that contains the data of your previous StudyTracker home folder.
+You may also copy the **preferences.json** file to keep your user preferences.
 
 --------------------------------------------------------------------------------------------------------------------
 
@@ -310,12 +375,14 @@ _Details coming soon ..._
 
 Action | Format, Examples
 --------|------------------
-**Add** | `add n/NAME* r/RATING* a/ADDRESS t/TAG... m/AMENITY...` <br> e.g., `add n/COM1 r/5`
+**Add** | `add n/NAME* r/RATING* a/ADDRESS t/TAG... m/AMENITY...` <br> e.g. `add n/COM1 r/5`
+**Alias** | `alias al/ALIAS* cmd/COMMAND*`<br> e.g. `alias al/home cmd/find home`
 **Clear** | `clear`
-**Delete** | `delete n/NAME*` <br> e.g., `delete n/COM1`
+**Delete** | `delete n/NAME*` <br> e.g. `delete n/COM1`
 **Edit** | `edit n/NAME* n/NEW_NAME a/NEW_ADDRESS t/NEW_TAG m/NEW_AMENITY r/NEW_RATING`<br> e.g.,`edit n/tr3 n/Training Room 3`
 **Favourite**  |  `fav n/NAME*` <br> e.g. `fav n/COM1`
-**Find** | `find n/NAME*`<br> e.g., `find n/lib`
-**Alias** | `alias al/ALIAS* cmd/COMMAND*`<br> e.g., `alias al/home cmd/find n/home`
-**List** | `list -f -t t/TAG...`
+**Find** | `find n/NAME*`<br> e.g. `find n/lib`
 **Help** | `help`
+**List** | `list -f -t t/TAG...`
+**Unalias** | `unalias al/ALIAS*`
+**Unfav** | `unfav n/NAME*`

@@ -239,9 +239,14 @@ The following sequence diagram demonstrates how StudyTrackerParser parses the in
 **Note:** If a command fails its execution, the respective CommandParser will throw a `ParseException`.
 </div>
 
+<div markdown="span" class="alert alert-info">:information_source:
+**Note:** This sequence diagram does not show the subsequent execution of the created AddCommand.
+</div>
+
 The following activity diagram summarizes what happens when a user executes a new command:
 
 <img src="images/AliasActivityDiagram.png" width="350" />
+
 
 #### Design considerations:
 
