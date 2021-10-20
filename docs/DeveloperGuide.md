@@ -263,7 +263,27 @@ The following activity diagram summarizes what happens when a user executes a ne
 ### Enhanced List Command
 
 #### Implementation
-The `Model` component stores the currently 'selected' `StudySpot` objects as a separate filtered list which is exposed to outsiders as an unmodifiable `ObservableList<StudySpot>` that can be 'observed'.
+The `Model` component stores the currently 'selected' `StudySpot` objects as a separate filtered list which is exposed 
+to outsiders as an unmodifiable `ObservableList<StudySpot>` that can be 'observed'. The filter of this list can be
+updated using `Model#updateFilteredStudySpotList(Predicate<StudySpot> predicate)`.
+
+Given below is an example usage scenario and how the list mechanism behaves at every step.
+
+Step 1. The user executes `list -f` command to show all favourites in the StudyTracker. `StudyTrackerParser` class
+creates a `ListCommandParser` to parse the command and creates a `ListCommand` object with a `Predicate<StudySpot>`
+that filters for favourite StudySpots.
+
+
+Step 2. LogicManager executes the `ListCommand` object, calling 
+`Model#updateFilteredStudySpotList(Predicate<StudySpot> predicate)`. This updates the model in StudyTracker to show
+only favourite StudySpots to the user. 
+
+The following sequence diagram demonstrates how StudyTrackerParser parses the command.
+
+![ListSequenceDiagram](images/ListSequenceDiagram.png)
+
+
+#### Design considerations:
 
 --------------------------------------------------------------------------------------------------------------------
 

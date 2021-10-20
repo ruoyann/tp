@@ -1,0 +1,69 @@
+@startuml
+!include style.puml
+
+box Logic LOGIC_COLOR_T1
+participant ":LogicManager" as LogicManager LOGIC_COLOR
+participant ":StudyTrackerParser" as StudyTrackerParser LOGIC_COLOR
+participant ":ListCommandParser" as ListCommandParser LOGIC_COLOR
+participant ":ListCommand" as ListCommand LOGIC_COLOR
+participant ":CommandResult" as CommandResult LOGIC_COLOR
+end box
+
+box Model MODEL_COLOR_T1
+participant ":Model" as Model MODEL_COLOR
+end box
+
+[-> LogicManager : execute("list -f")
+activate LogicManager
+
+LogicManager -> StudyTrackerParser : parseCommand("list -f")
+activate StudyTrackerParser
+
+create ListCommandParser
+StudyTrackerParser -> ListCommandParser
+activate ListCommandParser
+
+ListCommandParser --> StudyTrackerParser
+deactivate ListCommandParser
+
+StudyTrackerParser -> ListCommandParser : parse("list -f")
+activate ListCommandParser
+
+create ListCommand
+ListCommandParser -> ListCommand
+activate ListCommand
+
+ListCommand --> ListCommandParser
+deactivate ListCommand
+
+ListCommandParser --> StudyTrackerParser
+deactivate ListCommandParser
+'Hidden arrow to position the destroy marker below the end of the activation bar.
+ListCommandParser -[hidden]-> StudyTrackerParser
+destroy ListCommandParser
+
+StudyTrackerParser --> LogicManager
+deactivate StudyTrackerParser
+
+LogicManager -> ListCommand : execute()
+activate ListCommand
+
+ListCommand -> Model : updateFilteredStudySpotList(predicate)
+activate Model
+
+Model --> ListCommand
+deactivate Model
+
+create CommandResult
+ListCommand -> CommandResult
+activate CommandResult
+
+CommandResult --> ListCommand
+deactivate CommandResult
+
+ListCommand --> LogicManager : result
+deactivate ListCommand
+
+[<--LogicManager
+deactivate LogicManager
+@enduml
