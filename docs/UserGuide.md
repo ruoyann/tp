@@ -8,10 +8,12 @@ StudyTracker is a **desktop app** that **tracks your most productive study spots
 With detailed data recording, and statistics of study time & effectiveness,
 **StudyTracker aims to maximise your productivity by making it easy to find the best place to study.**
 
+## Table of Contents
+
 * Table of Contents
 {:toc}
 
---------------------------------------------------------------------------------------------------------------------
+---
 
 ## Quick start
 
@@ -43,8 +45,7 @@ Let's explore how to add a new study spot and track our study time with it!
 
 1. Refer to the [Features](#features) below for more commands and features!
 
---------------------------------------------------------------------------------------------------------------------
-
+---
 ## Command Syntax
 
 <div markdown="block" class="alert alert-info">
@@ -103,6 +104,11 @@ You can also visit the User Guide and Developer Guide by clicking on the buttons
 ![Help window](images/helpMessage.png)
 
 Format: `help`
+
+<div markdown="span" class="alert alert-primary">:bulb: **Tip:**
+View the help window anytime by using the F1 shortcut!
+Alternatively, click on 'Help' in the menu bar!
+</div>
 
 ### Adding a study spot: `add`
 
@@ -243,7 +249,7 @@ This command is irreversible!
 **Example:**
 ```
 clear
-All study spots have been cleared.
+All study spots have been cleared
 ```
 
 ### Exiting the program : `exit`
@@ -271,21 +277,23 @@ Adds or shows user-defined aliases.
 **Example:**
 ```
 alias al/myList cmd/list
-Added alias myList: [list].
+Added alias myList: [list]
 ```
 * running `myList` will run the `list` command.
 
 <div markdown="span" class="alert alert-primary">:bulb: **Tip:**
 Aliases can be chained to make more powerful commands! <br>
 
-**Example:**
+**Example:** <br>
+
 ```
 alias al/Rate5 cmd/edit r/5 spot/
-Added alias Rate5: [edit r/5 spot/].
+Added alias Rate5: [edit r/5 spot/]
 ```
+<br>
 will set alias `Rate5` to expand to the command `edit r/5 spot/`. <br>
 
-* Running `Rate5 Bishan Library` would then result in `edit r/5 spot/Bishan Library`!
+Running `Rate5 Bishan Library` would then result in `edit r/5 spot/Bishan Library`!
 </div>
 
 ### Removing command aliases: `unalias`
@@ -297,7 +305,7 @@ Removes user-defined aliases.
 **Example:**
 ```
 unalias al/myAdd
-Removed alias 'myAdd'.
+Removed alias 'myAdd'
 ```
 
 ### Saving the data
