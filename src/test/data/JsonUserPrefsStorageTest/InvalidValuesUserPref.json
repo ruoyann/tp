@@ -1,0 +1,22 @@
+{
+  "guiSettings" : {
+    "windowWidth" : 880.0,
+    "windowHeight" : 740.0,
+    "windowCoordinates" : {
+      "x" : 300,
+      "y" : 100
+    },
+    "theme" : "default"
+  },
+  "studyTrackerFilePath" : 15,
+  "userAliases" : [ {
+    "userAlias" : "ls",
+    "aliasCommandWord" : "list"
+  }, {
+    "userAlias" : "ls",
+    "aliasCommandWord" : "exit"
+  }, {
+    "userAlias" : "quit",
+    "aliasCommandWord" : "exit"
+  } ]
+}
