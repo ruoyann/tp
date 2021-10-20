@@ -28,7 +28,7 @@ import seedu.address.model.tag.Tag;
 public class LogCommand extends Command {
     public static final String COMMAND_WORD = "log";
     public static final String MESSAGE_USAGE = COMMAND_WORD + ": Adds to the studied hours at the "
-            + "study spot identified by its name (case-insensitive).\n"
+            + "specified study spot (case-insensitive).\n"
             + "The -o flag will override the studied hours to the value provided\n"
             + "The -r will reset the studied hours to 0\n"
             + "Parameters: "
