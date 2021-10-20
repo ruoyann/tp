@@ -1,0 +1,23 @@
+@startuml
+title StudyTrackerParser parsing LogCommand
+
+start
+:User executes command;
+
+'Since the beta syntax does not support placing the condition outside the
+'diamond we place it as the true branch instead.
+
+if () then ([command contains flag])
+    : Ensure there is only
+     one flag;
+    :Ensure flag is
+    "-o" or "-r";
+else ([else])
+endif
+
+:Create new Command
+based on command word
+and arguments;
+
+stop
+@enduml
