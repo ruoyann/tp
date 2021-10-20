@@ -99,7 +99,7 @@ Some examples of **invalid** user inputs for the *add command* are provided belo
 
 This section introduces the Graphical User Interface (GUI) of StudyTracker.
 
-![Gui annotated](images/guiAnnotated.png)
+![Gui annotated](images/GuiAnnotated.png)
 
 On the right side of the interface, the **Study Spot List** and **Command Box** can be found.
 
