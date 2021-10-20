@@ -297,7 +297,7 @@ We felt that our choice would be the most intuitive behaviour of filter.
 
 #### Future Extensions:
 
-A future extension would be for ListCommand to filter amenities as well.
+A future extension would be for List to support filtering of amenities as well.
 
 --------------------------------------------------------------------------------------------------------------------
 
