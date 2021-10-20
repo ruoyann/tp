@@ -209,11 +209,11 @@ StudyTrackerParser will prepend the arguments from the expanded command before t
 
 Given below is an example usage scenario and how the Alias feature behaves at each step.
 
-Step 1. The user launches the application for the first time. The program loads with default Aliases.
+**Step 1.** The user launches the application for the first time. The program loads with default Aliases.
 
 ![AliasState0](images/AliasState0.png)
 
-Step 2. The user executes `alias al/myAdd cmd/add r/5 n/` which creates an alias `myAdd` with command `add r/5 n/`.
+**Step 2.** The user executes `alias al/myAdd cmd/add r/5 n/` which creates an alias `myAdd` with command `add r/5 n/`.
 The `alias` command calls `Model#addAlias()`, adding this newly created alias to the Model and in UserPrefs.
 
 ![UndoRedoState1](images/AliasState1.png)
@@ -225,7 +225,7 @@ It is a well-formed command, but requires the completion of the `n/` argument to
 However, this is allowed, as it is one of the key features for the flexibility of the Alias feature.
 </div>
 
-Step 3. The user executes `myAdd Starbucks t/cold` to add a new study spot.
+**Step 3.** The user executes `myAdd Starbucks t/cold` to add a new study spot.
 Within `StudyTrackerParser`, alias parsing takes place by fetching user alias information in `Model`.
 
 The command is expanded to `add r/5 n/Starbucks t/cold`.
@@ -247,7 +247,6 @@ The following activity diagram summarizes what happens when a user executes a ne
 
 <img src="images/AliasActivityDiagram.png" width="350" />
 
-
 #### Design considerations:
 
 **Aspect: What aliases should be allowed:**
@@ -264,6 +263,45 @@ The following activity diagram summarizes what happens when a user executes a ne
     * Pros: User has even more freedom.
     * Cons: Implementation is much more challenging (e.g. how to prevent recursion?).
 
+### Themes
+
+#### Overview
+
+Themes allow users to customize the colours of the GUI of StudyTracker.
+
+![GUI Themes](images/UiThemes.gif)
+
+#### Implementation of Themes
+
+The GuiSettings class handles information about GUI width, height, position, and theme.
+These settings are stored by `UserPrefs` in the Model.
+
+Themes are stored as Strings representing the theme name.
+The `MainWindow` Ui component is able to communicate with the Logic class to retrieve and write the currently selected themes.
+Then, the `MainWindow` will take the stored theme and load the corresponding CSS files to set the colours of the JavaFX app.
+
+The following activity diagram summarizes the process of customizing themes.
+
+![Themes Activity Diagram](images/ThemesActivityDiagram.png)
+
+
+#### Themes style guide
+
+Each theme file is named `Theme[Themenamesentencecase].css`
+
+It contains 8 theme colours, utilizing CSS variables support of JavaFX.
+
+The following are examples showing the `Default` and `DotsDark` theme.
+
+![Themes default](images/ThemeDefault.png)
+![Themes dotsdark](images/ThemeDotsDark.png)
+
+* `-fx-base` — base colour of the theme and StudyTracker GUI
+* `fg-surface` — surface colour to place primary content
+* `bg-surface` — surface colour to place secondary content
+* `fg-accent` — contrasting colour to act as accenting colour
+* `fg-text`, `bg-text`, `accent-text` — text colour for `fg-surface`, `bg-surface` and `fg-accent` respectively.
+* `button` — button colour
 
 ### Enhanced List Command
 
