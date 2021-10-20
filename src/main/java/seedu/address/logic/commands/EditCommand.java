@@ -4,8 +4,8 @@ import static java.util.Objects.requireNonNull;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_ADDRESS;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_AMENITY;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_EDIT_SPOT;
-import static seedu.address.logic.parser.CliSyntax.PREFIX_EMAIL;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_NAME;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_OPERATING_HOURS;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_RATING;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_REMOVE_AMENITY;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_REMOVE_TAG;
@@ -24,10 +24,11 @@ import seedu.address.logic.commands.exceptions.CommandException;
 import seedu.address.model.Model;
 import seedu.address.model.amenity.Amenity;
 import seedu.address.model.studyspot.Address;
-import seedu.address.model.studyspot.Email;
 import seedu.address.model.studyspot.Favourite;
 import seedu.address.model.studyspot.Name;
+import seedu.address.model.studyspot.OperatingHours;
 import seedu.address.model.studyspot.Rating;
+import seedu.address.model.studyspot.StudiedHours;
 import seedu.address.model.studyspot.StudySpot;
 import seedu.address.model.tag.Tag;
 
@@ -42,16 +43,17 @@ public class EditCommand extends Command {
     public static final String MESSAGE_USAGE = COMMAND_WORD + ": Edits the details of the study spot identified "
             + "by its name (case-insensitive). "
             + "Existing values will be overwritten by the input values.\n"
+            + "Note that study hours cannot be changed with edit, use log command instead. \n"
             + "Parameters: "
             + PREFIX_EDIT_SPOT + "NAME* (non-case sensitive) "
             + PREFIX_NAME + "NAME "
             + PREFIX_RATING + "RATING "
-            + PREFIX_EMAIL + "EMAIL "
+            + PREFIX_OPERATING_HOURS + "OPERATING HOURS "
             + PREFIX_ADDRESS + "ADDRESS "
             + "[" + PREFIX_TAG + "TAG]..."
             + "[" + PREFIX_AMENITY + "NEW AMENITY]... "
-            + "[" + PREFIX_REMOVE_AMENITY + "OLD AMENITY]... "
-            + "[" + PREFIX_REMOVE_TAG + "OLD TAG]... \n"
+            + "[" + PREFIX_REMOVE_TAG + "OLD TAG]... "
+            + "[" + PREFIX_REMOVE_AMENITY + "OLD AMENITY]... \n"
             + "Example: " + COMMAND_WORD + " " + PREFIX_EDIT_SPOT + "tr3 "
             + PREFIX_RATING + "5 ";
 
@@ -124,16 +126,19 @@ public class EditCommand extends Command {
 
         Name updatedName = editStudySpotDescriptor.getName().orElse(studySpotToEdit.getName());
         Rating updatedRating = editStudySpotDescriptor.getRating().orElse(studySpotToEdit.getRating());
-        Email updatedEmail = editStudySpotDescriptor.getEmail().orElse(studySpotToEdit.getEmail());
+        OperatingHours updatedOperatingHours = editStudySpotDescriptor.getOperatingHours()
+                .orElse(studySpotToEdit.getOperatingHours());
         Address updatedAddress = editStudySpotDescriptor.getAddress().orElse(studySpotToEdit.getAddress());
+        //Studied hours should not be changeable via Edit, so return same value
+        StudiedHours studiedHours = studySpotToEdit.getStudiedHours();
         Set<Tag> updatedTags = editStudySpotDescriptor.updateTags(studySpotToEdit.getTags())
                 .getTags().orElse(studySpotToEdit.getTags());
         Set<Amenity> updatedAmenities = editStudySpotDescriptor.updateAmenities(studySpotToEdit.getAmenities())
                 .getAmenities().orElse(studySpotToEdit.getAmenities());
         Favourite updatedFavourite = editStudySpotDescriptor.getFavourite().orElse(studySpotToEdit.getFavourite());
 
-        return new StudySpot(updatedName, updatedRating, updatedEmail, updatedAddress, updatedFavourite,
-                updatedTags, updatedAmenities);
+        return new StudySpot(updatedName, updatedRating, updatedOperatingHours, updatedAddress, studiedHours,
+                updatedFavourite, updatedTags, updatedAmenities);
     }
 
     @Override
@@ -154,7 +159,6 @@ public class EditCommand extends Command {
                 && editStudySpotDescriptor.equals(e.editStudySpotDescriptor);
     }
 
-
     /**
      * Stores the details to edit the study spot with. Each non-empty field value will replace the
      * corresponding field value of the study spot.
@@ -162,7 +166,7 @@ public class EditCommand extends Command {
     public static class EditStudySpotDescriptor {
         private Name name;
         private Rating rating;
-        private Email email;
+        private OperatingHours operatingHours;
         private Address address;
         private Favourite favourite;
         private Set<Tag> tags;
@@ -181,7 +185,7 @@ public class EditCommand extends Command {
         public EditStudySpotDescriptor(EditStudySpotDescriptor toCopy) {
             setName(toCopy.name);
             setRating(toCopy.rating);
-            setEmail(toCopy.email);
+            setOperatingHours(toCopy.operatingHours);
             setAddress(toCopy.address);
             setFavourite(toCopy.favourite);
             setTags(toCopy.tags);
@@ -196,7 +200,7 @@ public class EditCommand extends Command {
          * Returns true if at least one field is edited.
          */
         public boolean isAnyFieldEdited() {
-            return CollectionUtil.isAnyNonNull(name, rating, email, address, tags, addedTags, removedTags,
+            return CollectionUtil.isAnyNonNull(name, rating, operatingHours, address, tags, addedTags, removedTags,
                     amenities, addedAmenities, removedAmenities);
         }
 
@@ -216,12 +220,12 @@ public class EditCommand extends Command {
             return Optional.ofNullable(rating);
         }
 
-        public void setEmail(Email email) {
-            this.email = email;
+        public void setOperatingHours(OperatingHours operatingHours) {
+            this.operatingHours = operatingHours;
         }
 
-        public Optional<Email> getEmail() {
-            return Optional.ofNullable(email);
+        public Optional<OperatingHours> getOperatingHours() {
+            return Optional.ofNullable(operatingHours);
         }
 
         public void setAddress(Address address) {
@@ -564,7 +568,7 @@ public class EditCommand extends Command {
             EditStudySpotDescriptor e = (EditStudySpotDescriptor) other;
             return getName().equals(e.getName())
                     && getRating().equals(e.getRating())
-                    && getEmail().equals(e.getEmail())
+                    && getOperatingHours().equals(e.getOperatingHours())
                     && getAddress().equals(e.getAddress())
                     && getFavourite().equals(e.getFavourite())
                     && getTags().equals(e.getTags())

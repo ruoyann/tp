@@ -6,8 +6,8 @@ import static seedu.address.logic.parser.CliSyntax.PREFIX_ADDRESS;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_ALIAS;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_ALIAS_COMMAND;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_AMENITY;
-import static seedu.address.logic.parser.CliSyntax.PREFIX_EMAIL;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_NAME;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_OPERATING_HOURS;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_RATING;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_REMOVE_AMENITY;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_REMOVE_TAG;
@@ -35,8 +35,8 @@ public class CommandTestUtil {
     public static final String VALID_NAME_DECK = "The Deck Canteen";
     public static final String VALID_RATING_FRONTIER = "3";
     public static final String VALID_RATING_DECK = "2";
-    public static final String VALID_EMAIL_FRONTIER = "Frontier email";
-    public static final String VALID_EMAIL_DECK = "Deck email";
+    public static final String VALID_OPERATING_HOURS_FRONTIER = "0900-1800, 0900-1800";
+    public static final String VALID_OPERATING_HOURS_DECK = "1200-1800, 1200-1800";
     public static final String VALID_ADDRESS_FRONTIER = "NUS Science Faculty";
     public static final String VALID_ADDRESS_DECK = "NUS FASS";
     public static final String VALID_TAG_QUIET = "quiet";
@@ -56,8 +56,9 @@ public class CommandTestUtil {
     public static final String NAME_DESC_DECK = " " + PREFIX_NAME + VALID_NAME_DECK;
     public static final String RATING_DESC_FRONTIER = " " + PREFIX_RATING + VALID_RATING_FRONTIER;
     public static final String RATING_DESC_DECK = " " + PREFIX_RATING + VALID_RATING_DECK;
-    public static final String EMAIL_DESC_FRONTIER = " " + PREFIX_EMAIL + VALID_EMAIL_FRONTIER;
-    public static final String EMAIL_DESC_DECK = " " + PREFIX_EMAIL + VALID_EMAIL_DECK;
+    public static final String OPERATING_HOURS_DESC_FRONTIER = " " + PREFIX_OPERATING_HOURS
+            + VALID_OPERATING_HOURS_FRONTIER;
+    public static final String OPERATING_HOURS_DESC_DECK = " " + PREFIX_OPERATING_HOURS + VALID_OPERATING_HOURS_DECK;
     public static final String ADDRESS_DESC_FRONTIER = " " + PREFIX_ADDRESS + VALID_ADDRESS_FRONTIER;
     public static final String ADDRESS_DESC_DECK = " " + PREFIX_ADDRESS + VALID_ADDRESS_DECK;
     public static final String TAG_DESC_CROWDED = " " + PREFIX_TAG + VALID_TAG_CROWDED;
@@ -80,7 +81,7 @@ public class CommandTestUtil {
     public static final String INVALID_NAME_DESC = " " + PREFIX_NAME + "LT27&"; // '&' not allowed in names
     public static final String INVALID_RATING_DESC = " " + PREFIX_RATING + "911a"; // digits not from '1-5' not allowed
     public static final String INVALID_RATING_OUTOFRANGE_DESC = " " + PREFIX_RATING + "9";
-    public static final String INVALID_EMAIL_DESC = ""; // no email
+    public static final String INVALID_OPERATING_HOURS_DESC = " " + PREFIX_OPERATING_HOURS + "9-10, 9-6";
     public static final String INVALID_ADDRESS_DESC = " " + PREFIX_ADDRESS; // empty string not allowed for addresses
     public static final String INVALID_TAG_DESC = " " + PREFIX_TAG + "bringJacket*"; // '*' not allowed in tags
     public static final String INVALID_USER_ALIAS = " " + PREFIX_ALIAS + "list"; // alias cannot be a command word
@@ -95,10 +96,12 @@ public class CommandTestUtil {
 
     static {
         DESC_FRONTIER = new EditStudySpotDescriptorBuilder().withName(VALID_NAME_FRONTIER)
-                .withRating(VALID_RATING_FRONTIER).withEmail(VALID_EMAIL_FRONTIER).withAddress(VALID_ADDRESS_FRONTIER)
+                .withRating(VALID_RATING_FRONTIER)
+                .withAddress(VALID_ADDRESS_FRONTIER)
                 .withAddedTags(VALID_TAG_CROWDED).build();
         DESC_DECK = new EditStudySpotDescriptorBuilder().withName(VALID_NAME_DECK)
-                .withRating(VALID_RATING_DECK).withEmail(VALID_EMAIL_DECK).withAddress(VALID_ADDRESS_DECK)
+                .withRating(VALID_RATING_DECK).withOperatingHours(VALID_OPERATING_HOURS_DECK)
+                .withAddress(VALID_ADDRESS_DECK)
                 .withAddedTags(VALID_TAG_QUIET, VALID_TAG_CROWDED).build();
     }
 

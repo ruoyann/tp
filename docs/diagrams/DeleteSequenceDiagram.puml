@@ -48,7 +48,7 @@ deactivate StudyTrackerParser
 LogicManager -> DeleteCommand : execute()
 activate DeleteCommand
 
-DeleteCommand -> Model : deleteStudySpot(studySpot)
+DeleteCommand -> Model : deleteStudySpot(Central Library)
 activate Model
 
 Model --> DeleteCommand

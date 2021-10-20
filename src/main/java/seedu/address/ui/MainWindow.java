@@ -77,7 +77,7 @@ public class MainWindow extends UiPart<Stage> {
 
         setAccelerators();
 
-        helpWindow = new HelpWindow();
+        helpWindow = new HelpWindow(logic);
         settingsWindow = new SettingsWindow(logic);
     }
 
@@ -160,7 +160,7 @@ public class MainWindow extends UiPart<Stage> {
     }
 
     /**
-     * Sets the stylesheet based on {@code fileName}.
+     * Sets the stylesheet based on {@code file name}.
      */
     private void setStylesheet(String fileName) {
         primaryStage.getScene().getStylesheets().add(CSS_PATH + fileName);

@@ -12,10 +12,11 @@ import com.fasterxml.jackson.annotation.JsonProperty;
 import seedu.address.commons.exceptions.IllegalValueException;
 import seedu.address.model.amenity.Amenity;
 import seedu.address.model.studyspot.Address;
-import seedu.address.model.studyspot.Email;
 import seedu.address.model.studyspot.Favourite;
 import seedu.address.model.studyspot.Name;
+import seedu.address.model.studyspot.OperatingHours;
 import seedu.address.model.studyspot.Rating;
+import seedu.address.model.studyspot.StudiedHours;
 import seedu.address.model.studyspot.StudySpot;
 import seedu.address.model.tag.Tag;
 
@@ -28,9 +29,10 @@ class JsonAdaptedStudySpot {
 
     private final String name;
     private final String rating;
-    private final String email;
+    private final String operatingHours;
     private final String address;
     private final String favourite;
+    private final String studiedHours;
     private final List<JsonAdaptedTag> tagged = new ArrayList<>();
     private final List<JsonAdaptedAmenity> amenities = new ArrayList<>();
 
@@ -39,13 +41,15 @@ class JsonAdaptedStudySpot {
      */
     @JsonCreator
     public JsonAdaptedStudySpot(@JsonProperty("name") String name, @JsonProperty("rating") String rating,
-            @JsonProperty("email") String email, @JsonProperty("address") String address,
-            @JsonProperty("favourite") String favourite, @JsonProperty("tagged") List<JsonAdaptedTag> tagged,
+            @JsonProperty("operatingHours") String operatingHours, @JsonProperty("address") String address,
+            @JsonProperty("favourite") String favourite, @JsonProperty("studiedHours") String studiedHours,
+            @JsonProperty("tagged") List<JsonAdaptedTag> tagged,
             @JsonProperty("amenities") List<JsonAdaptedAmenity> amenities) {
         this.name = name;
         this.rating = rating;
-        this.email = email;
+        this.operatingHours = operatingHours;
         this.address = address;
+        this.studiedHours = studiedHours;
         this.favourite = favourite;
         if (tagged != null) {
             this.tagged.addAll(tagged);
@@ -61,8 +65,9 @@ class JsonAdaptedStudySpot {
     public JsonAdaptedStudySpot(StudySpot source) {
         name = source.getName().fullName;
         rating = source.getRating().value;
-        email = source.getEmail().value;
+        operatingHours = source.getOperatingHours().value;
         address = source.getAddress().value;
+        studiedHours = source.getStudiedHours().value;
         favourite = source.getFavourite().value;
         tagged.addAll(source.getTags().stream()
                 .map(JsonAdaptedTag::new)
@@ -104,13 +109,14 @@ class JsonAdaptedStudySpot {
         }
         final Rating modelRating = new Rating(rating);
 
-        if (email == null) {
-            throw new IllegalValueException(String.format(MISSING_FIELD_MESSAGE_FORMAT, Email.class.getSimpleName()));
+        if (operatingHours == null) {
+            throw new IllegalValueException(String.format(MISSING_FIELD_MESSAGE_FORMAT,
+                    OperatingHours.class.getSimpleName()));
         }
-        if (!Email.isValidEmail(email)) {
-            throw new IllegalValueException(Email.MESSAGE_CONSTRAINTS);
+        if (!OperatingHours.isValidOperatingHours(operatingHours)) {
+            throw new IllegalValueException(OperatingHours.MESSAGE_CONSTRAINTS);
         }
-        final Email modelEmail = new Email(email);
+        final OperatingHours modelOperatingHours = new OperatingHours(operatingHours);
 
         if (address == null) {
             throw new IllegalValueException(String.format(MISSING_FIELD_MESSAGE_FORMAT, Address.class.getSimpleName()));
@@ -119,6 +125,15 @@ class JsonAdaptedStudySpot {
             throw new IllegalValueException(Address.MESSAGE_CONSTRAINTS);
         }
         final Address modelAddress = new Address(address);
+
+        if (studiedHours == null) {
+            throw new IllegalValueException(String.format(MISSING_FIELD_MESSAGE_FORMAT,
+                    StudiedHours.class.getSimpleName()));
+        }
+        if (!StudiedHours.isValidLoggedHours(studiedHours)) {
+            throw new IllegalValueException(StudiedHours.MESSAGE_CONSTRAINTS);
+        }
+        final StudiedHours modelStudiedHours = new StudiedHours(studiedHours);
 
         if (favourite == null) {
             throw new IllegalValueException(String.format(MISSING_FIELD_MESSAGE_FORMAT,
@@ -131,8 +146,8 @@ class JsonAdaptedStudySpot {
 
         final Set<Tag> modelTags = new HashSet<>(studySpotTags);
         final Set<Amenity> modelAmenities = new HashSet<>(studySpotAmenities);
-        return new StudySpot(modelName, modelRating, modelEmail, modelAddress, modelFavourite,
-                modelTags, modelAmenities);
+        return new StudySpot(modelName, modelRating, modelOperatingHours, modelAddress, modelStudiedHours,
+                modelFavourite, modelTags, modelAmenities);
     }
 
 }

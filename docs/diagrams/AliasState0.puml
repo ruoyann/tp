@@ -1,0 +1,24 @@
+@startuml
+!include style.puml
+skinparam ClassFontColor #000000
+skinparam ClassBorderColor #000000
+show fields
+
+title Default Aliases
+
+package List<Aliases> {
+    object "__:Alias__" as aliasLs {
+        alias = "ls"
+        command = "list"
+    }
+    object "__:Alias__" as aliasBye {
+        alias = "bye"
+        command = "exit"
+    }
+    object "__:Alias__" as aliasQuit {
+        alias = "quit"
+        command = "exit"
+    }
+}
+
+@end

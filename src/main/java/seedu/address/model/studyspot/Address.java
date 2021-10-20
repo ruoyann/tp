@@ -16,6 +16,7 @@ public class Address {
      * otherwise " " (a blank string) becomes a valid input.
      */
     public static final String VALIDATION_REGEX = "[^\\s].*";
+    public static final String DEFAULT_VALUE = "-";
 
     public final String value;
 

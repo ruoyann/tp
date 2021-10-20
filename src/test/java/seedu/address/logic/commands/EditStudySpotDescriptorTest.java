@@ -5,8 +5,8 @@ import static org.junit.jupiter.api.Assertions.assertTrue;
 import static seedu.address.logic.commands.CommandTestUtil.DESC_DECK;
 import static seedu.address.logic.commands.CommandTestUtil.DESC_FRONTIER;
 import static seedu.address.logic.commands.CommandTestUtil.VALID_ADDRESS_DECK;
-import static seedu.address.logic.commands.CommandTestUtil.VALID_EMAIL_DECK;
 import static seedu.address.logic.commands.CommandTestUtil.VALID_NAME_DECK;
+import static seedu.address.logic.commands.CommandTestUtil.VALID_OPERATING_HOURS_FRONTIER;
 import static seedu.address.logic.commands.CommandTestUtil.VALID_RATING_DECK;
 import static seedu.address.logic.commands.CommandTestUtil.VALID_TAG_QUIET;
 
@@ -46,7 +46,8 @@ public class EditStudySpotDescriptorTest {
         assertFalse(DESC_FRONTIER.equals(editedFrontier));
 
         // different email -> returns false
-        editedFrontier = new EditStudySpotDescriptorBuilder(DESC_FRONTIER).withEmail(VALID_EMAIL_DECK).build();
+        editedFrontier = new EditStudySpotDescriptorBuilder(DESC_FRONTIER)
+                .withOperatingHours(VALID_OPERATING_HOURS_FRONTIER).build();
         assertFalse(DESC_FRONTIER.equals(editedFrontier));
 
         // different address -> returns false

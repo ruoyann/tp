@@ -36,7 +36,7 @@ Given below is a quick overview of main components and how they interact with ea
 
 **Main components of the architecture**
 
-**`Main`** has two classes called [`Main`](https://github.com/se-edu/addressbook-level3/tree/master/src/main/java/seedu/address/Main.java) and [`MainApp`](https://github.com/se-edu/addressbook-level3/tree/master/src/main/java/seedu/address/MainApp.java). It is responsible for,
+**`Main`** has two classes called [`Main`](https://github.com/AY2122S1-CS2103T-T09-1/tp/blob/master/src/main/java/seedu/address/Main.java) and [`MainApp`](https://github.com/AY2122S1-CS2103T-T09-1/tp/blob/master/src/main/java/seedu/address/MainApp.java). It is responsible for,
 * At app launch: Initializes the components in the correct sequence, and connects them up with each other.
 * At shut down: Shuts down the components and invokes cleanup methods where necessary.
 
@@ -52,7 +52,7 @@ The rest of the App consists of four components.
 
 **How the architecture components interact with each other**
 
-The *Sequence Diagram* below shows how the components interact with each other for the scenario where the user issues the command `delete 1`.
+The *Sequence Diagram* below shows how the components interact with each other for the scenario where the user issues the command `delete n/Central Library`.
 
 <img src="images/ArchitectureSequenceDiagram.png" width="574" />
 
@@ -61,7 +61,8 @@ Each of the four main components (also shown in the diagram above),
 * defines its *API* in an `interface` with the same name as the Component.
 * implements its functionality using a concrete `{Component Name}Manager` class (which follows the corresponding API `interface` mentioned in the previous point.
 
-For example, the `Logic` component defines its API in the `Logic.java` interface and implements its functionality using the `LogicManager.java` class which follows the `Logic` interface. Other components interact with a given component through its interface rather than the concrete class (reason: to prevent outside component's being coupled to the implementation of a component), as illustrated in the (partial) class diagram below.
+For example, the `Logic` component defines its API in the [`Logic.java`](https://github.com/AY2122S1-CS2103T-T09-1/tp/blob/master/src/main/java/seedu/address/logic/Logic.java) interface and implements its functionality using the [`LogicManager.java`](https://github.com/AY2122S1-CS2103T-T09-1/tp/tree/master/src/main/java/seedu/address/logic) class which follows the `Logic` interface.
+Other components interact with a given component through its interface rather than the concrete class (reason: to prevent outside component's being coupled to the implementation of a component), as illustrated in the (partial) class diagram below.
 
 <img src="images/ComponentManagers.png" width="300" />
 
@@ -69,7 +70,7 @@ The sections below give more details of each component.
 
 ### UI component
 
-The **API** of this component is specified in [`Ui.java`](https://github.com/se-edu/addressbook-level3/tree/master/src/main/java/seedu/address/ui/Ui.java)
+The **API** of this component is specified in [`Ui.java`](https://github.com/AY2122S1-CS2103T-T09-1/tp/tree/master/src/main/java/seedu/address/ui/Ui.java)
 
 ![Structure of the UI Component](images/UiClassDiagram.png)
 
@@ -86,7 +87,7 @@ The `UI` component,
 
 ### Logic component
 
-**API** : [`Logic.java`](https://github.com/se-edu/addressbook-level3/tree/master/src/main/java/seedu/address/logic/Logic.java)
+**API** : [`Logic.java`](https://github.com/AY2122S1-CS2103T-T09-1/tp/blob/master/src/main/java/seedu/address/logic/Logic.java)
 
 Here's a (partial) class diagram of the `Logic` component:
 
@@ -154,97 +155,115 @@ Classes used by multiple components are in the `seedu.addressbook.commons` packa
 
 This section describes some noteworthy details on how certain features are implemented.
 
+ 
+### Alias feature
+
+#### Overview
+
+The Alias command supports user-defined aliases for commands.
+These aliases are string values that will be replaced by commands (i.e. *command expansion*) during the execution of command.
+
+Aliases are stored in the `UserPrefs` object.
+
+#### Key terms
+
+* **Aliases** — A user-specified string that is mapped to a **command**.
+  Aliases **cannot** be defined to existing command words.
+* **Commands** — A command must contain exactly one command word and optional arguments. 
+  When executed, an action is performed.
+* **Command Words** — The main "verbs" representing commands in StudyTracker.
+  A command word by itself is a **command**.
+  
+  Example: `list`, `edit`, `find` are command words.
+
+* **Well-formed command** — A command is well-formed if it has exactly one command word (or alias) and optional arguments.
+    
+Examples:
+  
+- `list` - well-formed
+- `add n/Starbucks`  —  well-formed, since it contains command word `add` and argument `n/Starbucks`.
+    However, it is invalid (i.e. will throw and error when executed), since it is missing required argument `rating`.
+- `myAdd t/cold`  —  well-formed, since it contains alias `myAdd` and argument `t/cold`.
+  `myAdd` will itself expand to another well-formed command (by definition of Alias).
+- `add list find n/Starbucks r/5`  —  not well-formed, since it has 3 command words (only should have one).
+- `myAdd add n/Starbucks r/5`  —  not well-formed, since it has both 1 alias and 1 command word (only should have one).
+
+#### Implementation of Alias feature
+
+The Alias feature is facilitated by three key classes: `Alias.java`, `StudyTrackerParser.java`, and `UserPrefs.java`.
+
+`Alias.java` is responsible for creating new Aliases. It implements the following operations:
+
+* `Alias#isValidUserAlias()` — checks if Alias is valid (i.e whether it is a command word)
+* `Alias#isValidCommandWord()` — checks if Alias maps to a valid command word in the StudyTracker list of commands.
+
+`StudyTrackerParser.java` is responsible for parsing user commands. The key operations needed for Aliases are:
+
+* `StudyTrackerParser#isInvokingAlias()` —  checks if the user input is a normal command, an Alias belonging in `UserPrefs`, or invalid.  
+* `StudyTrackerParser#expandAlias()` —  parses the Alias into its corresponding command.
+StudyTrackerParser will prepend the arguments from the expanded command before the arguments in user input, if any.
+
+`UserPrefs.java` is responsible for storing and reading Aliases from disk. The key operations needed for Aliases are:
+* `UserPrefs#getUserAliases()` — Returns the list of Aliases defined by the user. 
+* `UserPrefs#setUserAliases()` — Saves the current list of Aliases defined by the user.
+
+Given below is an example usage scenario and how the Alias feature behaves at each step.
+
+Step 1. The user launches the application for the first time. The program loads with default Aliases.
+
+![AliasState0](images/AliasState0.png)
+
+Step 2. The user executes `alias al/myAdd cmd/add r/5 n/` which creates an alias `myAdd` with command `add r/5 n/`.
+The `alias` command calls `Model#addAlias()`, adding this newly created alias to the Model and in UserPrefs.
+
+![UndoRedoState1](images/AliasState1.png)
+
+<div markdown="span" class="alert alert-info">:information_source: 
+**Note:** Observe how the command is incomplete!
+It is a well-formed command, but requires the completion of the `n/` argument to be valid.
+
+However, this is allowed, as it is one of the key features for the flexibility of the Alias feature.
+</div>
+
+Step 3. The user executes `myAdd Starbucks t/cold` to add a new study spot.
+Within `StudyTrackerParser`, alias parsing takes place by fetching user alias information in `Model`.
+
+The command is expanded to `add r/5 n/Starbucks t/cold`.
+The string is then passed to the corresponding `AddCommandParser`, and an `AddCommand` is created.
+
+The following sequence diagram demonstrates how StudyTrackerParser parses the input with an alias:
+
+![AliasSequenceDiagram](images/AliasSequenceDiagram.png)
+
+<div markdown="span" class="alert alert-info">:information_source:
+**Note:** If a command fails its execution, the respective CommandParser will throw a `ParseException`.
+</div>
+
+The following activity diagram summarizes what happens when a user executes a new command:
+
+<img src="images/AliasActivityDiagram.png" width="350" />
+
+#### Design considerations:
+
+**Aspect: What aliases should be allowed:**
+
+* **Alternative 1:** Aliases only map to a single command word.
+    * Pros: Easy to implement.
+    * Cons: Not particularly useful for the user.
+
+* **Alternative 2 (current choice):** Aliases can map to commands, not just command words.
+    * Pros: User has more freedom to implement powerful commands.
+    * Cons: Implementation is slightly more challenging.
+    
+* **Alternative 3:** Aliases can map to commands, including other aliases.
+    * Pros: User has even more freedom.
+    * Cons: Implementation is much more challenging (e.g. how to prevent recursion?).
+
+
 ### Enhanced List Command
 
 #### Implementation
 The `Model` component stores the currently 'selected' `StudySpot` objects as a separate filtered list which is exposed to outsiders as an unmodifiable `ObservableList<StudySpot>` that can be 'observed'.
-
- 
-
-### \[Proposed\] Undo/redo feature
-
-#### Proposed Implementation
-
-The proposed undo/redo mechanism is facilitated by `VersionedAddressBook`. It extends `AddressBook` with an undo/redo history, stored internally as an `addressBookStateList` and `currentStatePointer`. Additionally, it implements the following operations:
-
-* `VersionedAddressBook#commit()` — Saves the current study tracker state in its history.
-* `VersionedAddressBook#undo()` — Restores the previous study tracker state from its history.
-* `VersionedAddressBook#redo()` — Restores a previously undone study tracker state from its history.
-
-These operations are exposed in the `Model` interface as `Model#commitAddressBook()`, `Model#undoAddressBook()` and `Model#redoAddressBook()` respectively.
-
-Given below is an example usage scenario and how the undo/redo mechanism behaves at each step.
-
-Step 1. The user launches the application for the first time. The `VersionedAddressBook` will be initialized with the initial study tracker state, and the `currentStatePointer` pointing to that single study tracker state.
-
-![UndoRedoState0](images/UndoRedoState0.png)
-
-Step 2. The user executes `delete 5` command to delete the 5th person in the study tracker. The `delete` command calls `Model#commitAddressBook()`, causing the modified state of the study tracker after the `delete 5` command executes to be saved in the `addressBookStateList`, and the `currentStatePointer` is shifted to the newly inserted study tracker state.
-
-![UndoRedoState1](images/UndoRedoState1.png)
-
-Step 3. The user executes `add n/David …​` to add a new person. The `add` command also calls `Model#commitAddressBook()`, causing another modified study tracker state to be saved into the `addressBookStateList`.
-
-![UndoRedoState2](images/UndoRedoState2.png)
-
-<div markdown="span" class="alert alert-info">:information_source: **Note:** If a command fails its execution, it will not call `Model#commitAddressBook()`, so the study tracker state will not be saved into the `addressBookStateList`.
-
-</div>
-
-Step 4. The user now decides that adding the person was a mistake, and decides to undo that action by executing the `undo` command. The `undo` command will call `Model#undoAddressBook()`, which will shift the `currentStatePointer` once to the left, pointing it to the previous study tracker state, and restores the study tracker to that state.
-
-![UndoRedoState3](images/UndoRedoState3.png)
-
-<div markdown="span" class="alert alert-info">:information_source: **Note:** If the `currentStatePointer` is at index 0, pointing to the initial AddressBook state, then there are no previous AddressBook states to restore. The `undo` command uses `Model#canUndoAddressBook()` to check if this is the case. If so, it will return an error to the user rather
-than attempting to perform the undo.
-
-</div>
-
-The following sequence diagram shows how the undo operation works:
-
-![UndoSequenceDiagram](images/UndoSequenceDiagram.png)
-
-<div markdown="span" class="alert alert-info">:information_source: **Note:** The lifeline for `UndoCommand` should end at the destroy marker (X) but due to a limitation of PlantUML, the lifeline reaches the end of diagram.
-
-</div>
-
-The `redo` command does the opposite — it calls `Model#redoAddressBook()`, which shifts the `currentStatePointer` once to the right, pointing to the previously undone state, and restores the study tracker to that state.
-
-<div markdown="span" class="alert alert-info">:information_source: **Note:** If the `currentStatePointer` is at index `addressBookStateList.size() - 1`, pointing to the latest study tracker state, then there are no undone AddressBook states to restore. The `redo` command uses `Model#canRedoAddressBook()` to check if this is the case. If so, it will return an error to the user rather than attempting to perform the redo.
-
-</div>
-
-Step 5. The user then decides to execute the command `list`. Commands that do not modify the study tracker, such as `list`, will usually not call `Model#commitAddressBook()`, `Model#undoAddressBook()` or `Model#redoAddressBook()`. Thus, the `addressBookStateList` remains unchanged.
-
-![UndoRedoState4](images/UndoRedoState4.png)
-
-Step 6. The user executes `clear`, which calls `Model#commitAddressBook()`. Since the `currentStatePointer` is not pointing at the end of the `addressBookStateList`, all study tracker states after the `currentStatePointer` will be purged. Reason: It no longer makes sense to redo the `add n/David …​` command. This is the behavior that most modern desktop applications follow.
-
-![UndoRedoState5](images/UndoRedoState5.png)
-
-The following activity diagram summarizes what happens when a user executes a new command:
-
-<img src="images/CommitActivityDiagram.png" width="250" />
-
-#### Design considerations:
-
-**Aspect: How undo & redo executes:**
-
-* **Alternative 1 (current choice):** Saves the entire study tracker.
-    * Pros: Easy to implement.
-    * Cons: May have performance issues in terms of memory usage.
-
-* **Alternative 2:** Individual command knows how to undo/redo by
-  itself.
-    * Pros: Will use less memory (e.g. for `delete`, just save the person being deleted).
-    * Cons: We must ensure that the implementation of each individual command are correct.
-
-_{more aspects and alternatives to be added}_
-
-### \[Proposed\] Data archiving
-
-_{Explain here how the data archiving feature will be implemented}_
-
 
 --------------------------------------------------------------------------------------------------------------------
 
@@ -297,14 +316,14 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
 (For all use cases below, the **System** is the `StudyTracker` and the **Actor** is the `user`, unless specified otherwise)
 
-**Use case: Delete a StudySpot**
+**UC01 - Delete a StudySpot**
 
 **MSS**
 
 1.  User requests to list StudySpots
-2.  StudyTracker shows a list of persons
+2.  StudyTracker shows a list of StudySpots 
 3.  User requests to delete a specific StudySpot in the list
-4.  StudyTracker deletes the person
+4.  StudyTracker deletes the StudySpot 
 
     Use case ends.
 
@@ -319,8 +338,33 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
     * 3a1. StudyTracker shows an error message.
 
       Use case resumes at step 2.
+    
 
-*{More to be added}*
+**UC02 - Add and use an alias**
+
+**MSS**
+
+1. User requests to add an alias
+2. StudyTracker adds the custom alias 
+3. User uses the alias
+4. StudyTracker parses the alias into its intended command, and executes that command.
+
+    Use case ends.
+
+**Extensions**
+* 1a. Alias is already defined.
+    * 1a1. StudyTracker will overwrite the existing definition
+    
+      Use case resumes at step 2.
+* 1b. The given alias is invalid.
+    * 1b1. StudyTracker shows an error message.
+    
+      Use case resumes at step 1.
+* 4a. Command executes with error.
+    * 4a1. StudyTracker shows an error message.
+      
+      Use case ends.
+
 
 ### Non-Functional Requirements
 
@@ -377,18 +421,47 @@ testers are expected to do more *exploratory* testing.
 
 1. Deleting a person while all study spots are being shown
 
-    1. Prerequisites: List all study spots using the `list` command. Multiple study spots in the list.
+    1. Prerequisites: Have at least 1 StudySpot in the list. 
 
-    1. Test case: `delete 1`<br>
-       Expected: First contact is deleted from the list. Details of the deleted contact shown in the status message. Timestamp in the status bar is updated.
+    1. Test case: `delete n/Central Library`<br>
+       Expected: The StudySpot named COM1 is deleted from the list. Details of the deleted StudySpot shown in the status message.
 
-    1. Test case: `delete 0`<br>
-       Expected: No person is deleted. Error details shown in the status message. Status bar remains the same.
+    1. Test case: `delete n/INVALID`<br>
+       Expected: No StudySpot is deleted as there does not exist a StudySpot named 'INVALID'. Error details shown in the status message. Similar error message will show if user tries to delete a StudySpot that does not exist in the list. 
 
-    1. Other incorrect delete commands to try: `delete`, `delete x`, `...` (where x is larger than the list size)<br>
+    1. Other incorrect delete commands to try: `delete Central Library`, `delete spot/Central Library`<br>
        Expected: Similar to previous.
-
+       
 1. _{ more test cases …​ }_
+
+### Adding and using aliases
+
+1. Adding a custom alias
+    1. Test case:
+        1. `alias al/myAdd cmd/add r/5 n/`
+        1. `myAdd myPlace` 
+    
+        Expected: A new study spot 'myPlace' with rating 5 is added.
+    Details of this new study spot is shown in the GUI.
+   1. Test case:
+        1. `myAdd`
+        
+        Expected: No study spot is added.
+      Error details shown in the status message.
+1. Overwriting an existing alias
+   1. Test case:
+        1. `alias al/myAdd cmd/list`
+        1. `myAdd`
+    
+        Expected: All study spots are listed (i.e. the List command has been executed)
+1. Removing an alias
+    1. Test case:
+        1. `unalias al/myAdd`
+        1. `myAdd`
+    
+        Expected: Unknown command execution.
+        Error details  shown in the status message.
+        
 
 ### Saving data
 

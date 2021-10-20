@@ -3,8 +3,8 @@ package seedu.address.model.studyspot;
 import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 import static seedu.address.logic.commands.CommandTestUtil.VALID_ADDRESS_DECK;
-import static seedu.address.logic.commands.CommandTestUtil.VALID_EMAIL_DECK;
 import static seedu.address.logic.commands.CommandTestUtil.VALID_NAME_DECK;
+import static seedu.address.logic.commands.CommandTestUtil.VALID_OPERATING_HOURS_DECK;
 import static seedu.address.logic.commands.CommandTestUtil.VALID_RATING_DECK;
 import static seedu.address.logic.commands.CommandTestUtil.VALID_TAG_QUIET;
 import static seedu.address.testutil.Assert.assertThrows;
@@ -33,7 +33,7 @@ public class StudySpotTest {
 
         // same name, all other attributes different -> returns true
         StudySpot editedStarbucks = new StudySpotBuilder(STARBUCKS)
-                .withRating(VALID_RATING_DECK).withEmail(VALID_EMAIL_DECK)
+                .withRating(VALID_RATING_DECK).withOperatingHours(VALID_OPERATING_HOURS_DECK)
                 .withAddress(VALID_ADDRESS_DECK).withFavourite(true).withTags(VALID_TAG_QUIET).build();
         assertTrue(STARBUCKS.isSameStudySpot(editedStarbucks));
 
@@ -77,8 +77,8 @@ public class StudySpotTest {
         editedStarbucks = new StudySpotBuilder(STARBUCKS).withRating(VALID_RATING_DECK).build();
         assertFalse(STARBUCKS.equals(editedStarbucks));
 
-        // different email -> returns false
-        editedStarbucks = new StudySpotBuilder(STARBUCKS).withEmail(VALID_EMAIL_DECK).build();
+        // different OPERATING_HOURS -> returns false
+        editedStarbucks = new StudySpotBuilder(STARBUCKS).withOperatingHours(VALID_OPERATING_HOURS_DECK).build();
         assertFalse(STARBUCKS.equals(editedStarbucks));
 
         // different address -> returns false

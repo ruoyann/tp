@@ -19,7 +19,7 @@ public class StudySpot {
     // Identity fields
     private final Name name;
     private final Rating rating;
-    private final Email email;
+    private final OperatingHours operatingHours;
     private final Favourite favourite;
 
     // Data fields
@@ -27,15 +27,20 @@ public class StudySpot {
     private final Set<Tag> tags = new HashSet<>();
     private final Set<Amenity> amenities = new HashSet<>();
 
+    //Statistic fields
+    private final StudiedHours studiedHours;
+
     /**
      * Every field must be present and not null.
      */
-    public StudySpot(Name name, Rating rating, Email email, Address address, Set<Tag> tags, Set<Amenity> amenities) {
-        requireAllNonNull(name, rating, email, address, tags, amenities);
+    public StudySpot(Name name, Rating rating, OperatingHours operatingHours, Address address,
+                     StudiedHours studiedHours, Set<Tag> tags, Set<Amenity> amenities) {
+        requireAllNonNull(name, rating, operatingHours, address, tags, amenities);
         this.name = name;
         this.rating = rating;
-        this.email = email;
+        this.operatingHours = operatingHours;
         this.address = address;
+        this.studiedHours = studiedHours;
         this.tags.addAll(tags);
         this.amenities.addAll(amenities);
         this.favourite = new Favourite(false);
@@ -45,17 +50,19 @@ public class StudySpot {
      * Overloaded constructor with favourite specified.
      * Every field must be present and not null.
      */
-    public StudySpot(Name name, Rating rating, Email email, Address address, Favourite favourite,
-                     Set<Tag> tags, Set<Amenity> amenities) {
-        requireAllNonNull(name, rating, email, address, tags, amenities);
+    public StudySpot(Name name, Rating rating, OperatingHours operatingHours, Address address,
+                     StudiedHours studiedHours, Favourite favourite, Set<Tag> tags, Set<Amenity> amenities) {
+        requireAllNonNull(name, rating, operatingHours, address, tags, amenities);
         this.name = name;
         this.rating = rating;
-        this.email = email;
+        this.operatingHours = operatingHours;
         this.address = address;
+        this.studiedHours = studiedHours;
         this.tags.addAll(tags);
         this.amenities.addAll(amenities);
         this.favourite = favourite;
     }
+
 
     public Name getName() {
         return name;
@@ -65,8 +72,12 @@ public class StudySpot {
         return rating;
     }
 
-    public Email getEmail() {
-        return email;
+    public OperatingHours getOperatingHours() {
+        return operatingHours;
+    }
+
+    public StudiedHours getStudiedHours() {
+        return studiedHours;
     }
 
     public Address getAddress() {
@@ -127,7 +138,7 @@ public class StudySpot {
         StudySpot otherStudySpot = (StudySpot) other;
         return otherStudySpot.getName().equals(getName())
                 && otherStudySpot.getRating().equals(getRating())
-                && otherStudySpot.getEmail().equals(getEmail())
+                && otherStudySpot.getOperatingHours().equals(getOperatingHours())
                 && otherStudySpot.getAddress().equals(getAddress())
                 && otherStudySpot.getFavourite().equals(getFavourite())
                 && otherStudySpot.getTags().equals(getTags())
@@ -137,7 +148,7 @@ public class StudySpot {
     @Override
     public int hashCode() {
         // use this method for custom fields hashing instead of implementing your own
-        return Objects.hash(name, rating, email, address, tags, amenities);
+        return Objects.hash(name, rating, operatingHours, address, tags, amenities);
     }
 
     @Override
@@ -146,12 +157,14 @@ public class StudySpot {
         builder.append(getName())
                 .append("; Rating: ")
                 .append(getRating())
-                .append("; Email: ")
-                .append(getEmail())
+                .append("; Operating Hours: ")
+                .append(getOperatingHours())
                 .append("; Address: ")
                 .append(getAddress())
                 .append("; Favourite: ")
-                .append(getFavourite());
+                .append(getFavourite())
+                .append("; Studied Hours: ")
+                .append(getStudiedHours());
 
         Set<Tag> tags = getTags();
         if (!tags.isEmpty()) {
