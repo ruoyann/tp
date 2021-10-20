@@ -3,12 +3,13 @@ package seedu.address.logic.parser;
 import static java.util.Objects.requireNonNull;
 import static seedu.address.commons.core.Messages.MESSAGE_INVALID_ALIAS_ARGUMENTS;
 import static seedu.address.commons.core.Messages.MESSAGE_INVALID_COMMAND_FORMAT;
-import static seedu.address.logic.parser.CliSyntax.PREFIX_ALIAS;
-import static seedu.address.logic.parser.CliSyntax.PREFIX_ALIAS_COMMAND;
+import static seedu.address.logic.parser.CliSyntax.*;
 
+import java.util.List;
 import java.util.stream.Stream;
 
 import seedu.address.logic.commands.AliasCommand;
+import seedu.address.logic.commands.ListCommand;
 import seedu.address.logic.parser.exceptions.ParseException;
 import seedu.address.model.alias.Alias;
 
@@ -25,9 +26,11 @@ public class AliasCommandParser implements Parser<AliasCommand> {
     public AliasCommand parse(String args) throws ParseException {
         requireNonNull(args);
         ArgumentMultimap argMultimap =
-                ArgumentTokenizer.tokenize(args, PREFIX_ALIAS, PREFIX_ALIAS_COMMAND);
+                ArgumentTokenizer.tokenize(args, PREFIX_ALIAS, PREFIX_ALIAS_COMMAND, PREFIX_FLAG);
+        List<String> flagsList = argMultimap.getAllValues(PREFIX_FLAG);
+        boolean isShowFlagPresent = ParserUtil.isFlagPresent(flagsList, AliasCommand.FLAG_SHOW);
 
-        if (argMultimap.getPreamble().equals("show")) {
+        if (isShowFlagPresent) {
             return new AliasCommand(true);
         }
 
