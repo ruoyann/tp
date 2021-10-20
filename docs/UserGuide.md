@@ -83,9 +83,9 @@ Here is how to read the command format:**<br>
   e.g. if the command specifies `help 123`, it will be interpreted as `help`.
 
 Some examples of **valid** user inputs for the *add command* are provided below:
-* `add n/PC Commons a/UTown t/very crowded m/toilet r/4`
-* `add n/COM2 Basement a/SoC` (optional arguments are not required)
-* `new n/TR3 a/Yusof Ishak House m/food m/socket` (multiple amenities are acceptable)
+* `add n/PC Commons a/UTown t/veryCrowded m/toilet r/4`
+* `add n/COM2 Basement r/3` (optional arguments are not required)
+* `add n/TR3 a/Yusof Ishak House m/wifi m/aircon` (multiple amenities are acceptable)
 
 Some examples of **invalid** user inputs for the *add command* are provided below:
 * `add n/PC Commons` (missing `RATING` parameter)
@@ -117,10 +117,10 @@ Tags, amenities and address are all optional.
 **Examples:**
 ```
 add n/COM1 Basement r/5
-New study spot “COM1 Basement” added to list!
+New study spot added: COM1 Basement
 
 add n/Starbucks at UTown r/4 t/noisy m/wifi
-New study spot “Starbucks at UTown” added to list!
+New study spot added: Starbucks at UTown
 ```
 
 ### Listing study spots : `list`
@@ -140,16 +140,10 @@ Multiple flags can be used at once.
 **Examples:**
 ```
 list 
-Your study spots are:
-  1. COM1 Basement
-  2. TR3
-  3. PC Commons
-  4. CLB
+Listed all study spots
   
-list -f -t t/cold 
-Your study spots are:
-  1. TR3
-  2. PC Commons
+list -f -t t/cold
+Listed all study spots in Favourites with Tags: [cold]
 ```
 
 <div markdown="span" class="alert alert-primary">:bulb: **Tip:**
@@ -176,7 +170,7 @@ Edits the details of a single study spot.
 **Examples:**
 ```
 edit spot/tr3 n/Training Room 3
-Study spot “TR3” has been edited to “Training Room 3”
+Edited study spot: Training Room 3
 ```
 
 ### Adding a study spot to Favourites: `fav`
@@ -188,7 +182,7 @@ Adds a study spot to the StudyTracker's Favourites.
 **Examples:**
 ```
 fav n/COM1 Basement
-Study spot "COM1 Basement" added to favourites!
+Added study spot to favourites: COM1 Basement
 ```
 
 ### Removing a study spot from Favourites: `unfav`
@@ -200,7 +194,7 @@ Removes a study spot from the StudyTracker's Favourites.
 **Examples:**
 ```
 unfav n/COM1 Basement
-Study spot "COM1 Basement" removed from favourites!
+Removed study spot from favourites: COM1 Basement
 ```
 
 ### Locating a study spot by name: `find`
@@ -216,7 +210,7 @@ Finds study spots whose names contain any of the given keywords.
 **Examples:**
 ```
 find library
-Found the following study spots matching “library”:
+3 study spot(s) listed!
   1. Central Library
   2. Hon Sui Sen Memorial Library
   3. Jurong Library
@@ -233,7 +227,7 @@ Deletes the specified study spot from the StudyTracker.
 **Examples:**
 ```
 delete n/COM1
-COM1 has been deleted.
+Deleted study spot: COM1
 ```
 
 ### Clearing all entries : `clear`
@@ -277,6 +271,7 @@ Adds or shows user-defined aliases.
 **Example:**
 ```
 alias al/myList cmd/list
+Added alias myList: [list].
 ```
 * running `myList` will run the `list` command.
 
@@ -286,6 +281,7 @@ Aliases can be chained to make more powerful commands! <br>
 **Example:**
 ```
 alias al/Rate5 cmd/edit r/5 spot/
+Added alias Rate5: [edit r/5 spot/].
 ```
 will set alias `Rate5` to expand to the command `edit r/5 spot/`. <br>
 
@@ -330,13 +326,13 @@ You may also copy the **preferences.json** file to keep your user preferences.
 
 Action | Format, Examples
 --------|------------------
-**Add** | `add n/NAME* r/RATING* a/ADDRESS t/TAG... m/AMENITY...` <br> e.g., `add n/COM1 r/5`
-**Alias** | `alias al/ALIAS* cmd/COMMAND*`<br> e.g., `alias al/home cmd/find home`
+**Add** | `add n/NAME* r/RATING* a/ADDRESS t/TAG... m/AMENITY...` <br> e.g. `add n/COM1 r/5`
+**Alias** | `alias al/ALIAS* cmd/COMMAND*`<br> e.g. `alias al/home cmd/find home`
 **Clear** | `clear`
-**Delete** | `delete n/NAME*` <br> e.g., `delete n/COM1`
+**Delete** | `delete n/NAME*` <br> e.g. `delete n/COM1`
 **Edit** | `edit n/NAME* n/NEW_NAME a/NEW_ADDRESS t/NEW_TAG m/NEW_AMENITY r/NEW_RATING`<br> e.g.,`edit n/tr3 n/Training Room 3`
 **Favourite**  |  `fav n/NAME*` <br> e.g. `fav n/COM1`
-**Find** | `find n/NAME*`<br> e.g., `find n/lib`
+**Find** | `find n/NAME*`<br> e.g. `find n/lib`
 **Help** | `help`
 **List** | `list -f -t t/TAG...`
 **Unalias** | `unalias al/ALIAS*`
