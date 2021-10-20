@@ -247,7 +247,7 @@ The following activity diagram summarizes what happens when a user executes a ne
 
 <img src="images/AliasActivityDiagram.png" width="350" />
 
-#### Design considerations:
+#### Design considerations
 
 **Aspect: What aliases should be allowed:**
 
@@ -329,7 +329,7 @@ The following sequence diagram demonstrates how `StudyTrackerParser` parses the 
 ![ListSequenceDiagram](images/ListSequenceDiagram.png)
 
 
-#### Design considerations:
+#### Design considerations
 
 **Behaviour of filters with multiple tags:**
 * **Current choice:** Filtering by tags show study spots that all specified tags.
@@ -338,9 +338,46 @@ The following sequence diagram demonstrates how `StudyTrackerParser` parses the 
 
 We felt that our choice would be the most intuitive behaviour of filter. 
 
-#### Future Extensions:
+#### Future Extensions
 
 A future extension would be for List to support filtering of amenities as well.
+
+### Enhanced Edit Command
+
+#### Overview
+
+The Edit Command is enhanced to support the removal of specific tags and amenities.
+
+#### Implementation
+
+The Edit Command is facilitated by two classes: `EditCommand.java` and `EditCommandParser.java`.
+
+Given below is an example usage scenario of removing a tag from a study spot and how the mechanism behaves.
+
+Step 1. The user executes `edit spot/com rt/noisy` to remove `noisy:Tag` from `com:StudySpot`.
+`StudyTrackerParser` class creates a `EditCommandParser` to parse the command. `EditCommandParser` then parses the 
+user input to find the `Name` object of the study spot using `ParserUtil#parseName(String name)`. An `EditStudySpotDescriptor`
+object is also created and since a tag is to be removed, `EditStudySpotDescriptor#setRemovedTags(Set<Tag> removedTags)`
+is called. Both the `Name` and `EditStudySpotDescriptor` objects are then passed as arguments to construct 
+an `EditCommand` object.
+
+Step 2. `LogicManager` executes the `EditCommand` object and calls 
+`EditCommand#createEditedStudySpot(StudySpot studySpotToEdit, EditStudySpotDescriptor editStudySpotDescriptor)` which
+creates an `StudySpot` object with the edited fields. `Model#setStudySpot(StudySpot target, StudySpot editedStudySpot)`
+and `Model#updateFilteredStudySpotList(Predicate<StudySpot> predicate)` is then called to update the model 
+in StudyTracker.
+
+The following sequence diagram demonstrates how `StudyTrackerParser` parses the command.
+
+![Edit RemoveTagSequenceDiagram](images/EditRemoveTagSequenceDiagram.png)
+
+
+#### Design considerations
+
+**Aspect: How to increase the ease of removing fields in a study spot:**
+- Alternative 1 (current choice): Users can directly remove a tag or an amenity they specify.
+- Alternative 2: Users have to retype existing tags or amenities if they wish to retain them.
+
 
 --------------------------------------------------------------------------------------------------------------------
 
