@@ -89,7 +89,6 @@ public class CommandTestUtil {
 
     public static final String PREAMBLE_WHITESPACE = "\t  \r  \n";
     public static final String PREAMBLE_NON_EMPTY = "NonEmptyPreamble";
-    public static final String PREAMBLE_ALIAS_SHOW = "show";
 
     public static final EditCommand.EditStudySpotDescriptor DESC_FRONTIER;
     public static final EditCommand.EditStudySpotDescriptor DESC_DECK;

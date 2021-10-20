@@ -31,19 +31,21 @@ StudyTrackerParser -> StudyTrackerParser : expandAlias()
 activate StudyTrackerParser
 deactivate StudyTrackerParser
 
+create AddCommandParser
+StudyTrackerParser -> AddCommandParser
 StudyTrackerParser -> AddCommandParser : parse("r/5 n/Starbucks t/cold")
 activate AddCommandParser
 
 create AddCommand
 AddCommandParser -> AddCommand
 activate AddCommand
-AddCommand --> AddCommandParser
+AddCommand --> AddCommandParser : a
 deactivate AddCommand
 
-AddCommandParser --> StudyTrackerParser
+AddCommandParser --> StudyTrackerParser : a
 deactivate AddCommandParser
 
-StudyTrackerParser --> LogicManager
+StudyTrackerParser --> LogicManager : a
 deactivate StudyTrackerParser
 [<--LogicManager
 

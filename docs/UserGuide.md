@@ -298,7 +298,7 @@ Goodbye!
 
 Adds or shows user-defined aliases.
 
-**Format:** `alias show` to show all aliases
+**Format:** `alias -s` to show all aliases
 
 **Format:** `alias al/ALIAS* cmd/COMMAND*` to set alias
 
