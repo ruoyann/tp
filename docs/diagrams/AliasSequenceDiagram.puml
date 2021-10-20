@@ -1,0 +1,52 @@
+@startuml
+!include style.puml
+
+box Logic LOGIC_COLOR_T1
+participant ":LogicManager" as LogicManager LOGIC_COLOR
+participant ":StudyTrackerParser" as StudyTrackerParser LOGIC_COLOR
+participant ":AddCommandParser" as AddCommandParser LOGIC_COLOR
+participant "a:AddCommand" as AddCommand LOGIC_COLOR
+end box
+
+box Model MODEL_COLOR_T1
+participant ":Model" as Model MODEL_COLOR
+participant ":UserPrefs" as UserPrefs MODEL_COLOR
+end box
+[-> LogicManager : execute("myAdd Starbucks t/cold")
+activate LogicManager
+
+LogicManager -> StudyTrackerParser : parseCommand("myAdd Starbucks t/cold")
+activate StudyTrackerParser
+
+StudyTrackerParser -> StudyTrackerParser : isInvokingAlias()
+activate StudyTrackerParser
+
+StudyTrackerParser -> Model : getUserPrefs()
+Model -> UserPrefs : getUserAliases()
+UserPrefs --> StudyTrackerParser
+
+deactivate StudyTrackerParser
+
+StudyTrackerParser -> StudyTrackerParser : expandAlias()
+activate StudyTrackerParser
+deactivate StudyTrackerParser
+
+StudyTrackerParser -> AddCommandParser : parse("r/5 n/Starbucks t/cold")
+activate AddCommandParser
+
+create AddCommand
+AddCommandParser -> AddCommand
+activate AddCommand
+AddCommand --> AddCommandParser
+deactivate AddCommand
+
+AddCommandParser --> StudyTrackerParser
+deactivate AddCommandParser
+
+StudyTrackerParser --> LogicManager
+deactivate StudyTrackerParser
+[<--LogicManager
+
+deactivate LogicManager
+
+@enduml
