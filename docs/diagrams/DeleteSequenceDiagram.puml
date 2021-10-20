@@ -3,7 +3,7 @@
 
 box Logic LOGIC_COLOR_T1
 participant ":LogicManager" as LogicManager LOGIC_COLOR
-participant ":Parser" as Parser LOGIC_COLOR
+participant ":StudyTrackerParser" as StudyTrackerParser LOGIC_COLOR
 participant ":DeleteCommandParser" as DeleteCommandParser LOGIC_COLOR
 participant "d:DeleteCommand" as DeleteCommand LOGIC_COLOR
 participant ":CommandResult" as CommandResult LOGIC_COLOR
@@ -16,17 +16,17 @@ end box
 [-> LogicManager : execute("delete n/Central Library")
 activate LogicManager
 
-LogicManager -> Parser : parseCommand("delete n/Central Library")
-activate Parser
+LogicManager -> StudyTrackerParser : parseCommand("delete n/Central Library")
+activate StudyTrackerParser
 
 create DeleteCommandParser
-Parser -> DeleteCommandParser
+StudyTrackerParser -> DeleteCommandParser
 activate DeleteCommandParser
 
-DeleteCommandParser --> Parser
+DeleteCommandParser --> StudyTrackerParser
 deactivate DeleteCommandParser
 
-Parser -> DeleteCommandParser : parse("n/Central Library")
+StudyTrackerParser -> DeleteCommandParser : parse("n/Central Library")
 activate DeleteCommandParser
 
 create DeleteCommand
@@ -36,14 +36,14 @@ activate DeleteCommand
 DeleteCommand --> DeleteCommandParser : d
 deactivate DeleteCommand
 
-DeleteCommandParser --> Parser : d
+DeleteCommandParser --> StudyTrackerParser : d
 deactivate DeleteCommandParser
 'Hidden arrow to position the destroy marker below the end of the activation bar.
-DeleteCommandParser -[hidden]-> Parser
+DeleteCommandParser -[hidden]-> StudyTrackerParser
 destroy DeleteCommandParser
 
-Parser --> LogicManager : d
-deactivate Parser
+StudyTrackerParser --> LogicManager : d
+deactivate StudyTrackerParser
 
 LogicManager -> DeleteCommand : execute()
 activate DeleteCommand
