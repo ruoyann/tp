@@ -421,7 +421,7 @@ testers are expected to do more *exploratory* testing.
        Expected: The StudySpot named COM1 is deleted from the list. Details of the deleted StudySpot shown in the status message.
 
     1. Test case: `delete n/INVALID`<br>
-       Expected: No StudySpot is deleted as there does not exist a StudySpot named 'INVALID'. Error details shown in the status message. Similiar error message will show if user tries to delete a StudySpot that does not exist in the list. 
+       Expected: No StudySpot is deleted as there does not exist a StudySpot named 'INVALID'. Error details shown in the status message. Similar error message will show if user tries to delete a StudySpot that does not exist in the list. 
 
     1. Other incorrect delete commands to try: `delete Central Library`, `delete spot/Central Library`<br>
        Expected: Similar to previous.
