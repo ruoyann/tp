@@ -234,8 +234,8 @@ public class MainWindow extends UiPart<Stage> {
             studySpotListPanel.updateStudySpotCountDisplay(logic.getFilteredStudySpotList().size(),
                     logic.getFullList().size());
 
-            handleHelp();
             if (commandResult.isShowHelp()) {
+                handleHelp();
             }
 
             if (commandResult.isExit()) {
