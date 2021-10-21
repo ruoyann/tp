@@ -298,7 +298,7 @@ The following sequence diagram demonstrates how `StudyTrackerParser` parses the 
 * **Alternative 1:** Filtering by tags show study spots that contain at least one of the specified tags.
 
 
-We felt that our choice would be the most intuitive behaviour of filter. 
+The current choice was chosen as it is intuitive and most modern desktop applications follow this behaviour. 
 
 #### Future Extensions:
 
