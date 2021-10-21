@@ -9,7 +9,6 @@ import static seedu.address.logic.commands.CommandTestUtil.ALIAS_USER_COMMAND_EX
 import static seedu.address.logic.commands.CommandTestUtil.ALIAS_USER_COMMAND_LIST;
 import static seedu.address.logic.commands.CommandTestUtil.INVALID_ALIAS_COMMAND;
 import static seedu.address.logic.commands.CommandTestUtil.INVALID_USER_ALIAS;
-import static seedu.address.logic.commands.CommandTestUtil.PREAMBLE_ALIAS_SHOW;
 import static seedu.address.logic.commands.CommandTestUtil.PREAMBLE_WHITESPACE;
 import static seedu.address.logic.commands.CommandTestUtil.TAG_DESC_CROWDED;
 import static seedu.address.logic.commands.CommandTestUtil.VALID_ALIAS_COMMAND_LIST;
@@ -31,16 +30,16 @@ class AliasCommandParserTest {
         AliasCommand expectedNoShowCommand = new AliasCommand(false, expectedAlias);
         AliasCommand expectedShowCommand = new AliasCommand(true);
 
-        // show preamble, no arguments
-        assertParseSuccess(parser, PREAMBLE_ALIAS_SHOW,
+        // has show flag, no arguments
+        assertParseSuccess(parser, " -s",
                 expectedShowCommand);
 
-        // show preamble, arguments correctly ignored
-        assertParseSuccess(parser, PREAMBLE_ALIAS_SHOW + ALIAS_USER_ALIAS_LS + ALIAS_USER_COMMAND_LIST,
+        // has show flag, arguments correctly ignored
+        assertParseSuccess(parser, " -s" + ALIAS_USER_ALIAS_LS + ALIAS_USER_COMMAND_LIST,
                 expectedShowCommand);
 
-        // show preamble, incorrect arguments also correctly ignored
-        assertParseSuccess(parser, PREAMBLE_ALIAS_SHOW + ALIAS_USER_ALIAS_LS + ALIAS_USER_COMMAND_LIST
+        // has show flag, incorrect arguments also correctly ignored
+        assertParseSuccess(parser, " -s" + ALIAS_USER_ALIAS_LS + ALIAS_USER_COMMAND_LIST
                 + ADDRESS_DESC_DECK + TAG_DESC_CROWDED,
                 expectedShowCommand);
 

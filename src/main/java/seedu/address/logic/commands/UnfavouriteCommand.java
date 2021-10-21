@@ -18,8 +18,7 @@ public class UnfavouriteCommand extends Command {
 
     public static final String COMMAND_WORD = "unfav";
 
-    public static final String MESSAGE_USAGE = COMMAND_WORD
-            + ": Removes the study spot from favourites.\n"
+    public static final String MESSAGE_USAGE = COMMAND_WORD + ": Removes the specified study spot from favourites.\n"
             + "Parameters: "
             + PREFIX_NAME + "NAME (non-case sensitive) \n"
             + "Example: " + COMMAND_WORD + " " + PREFIX_NAME + "tr3 ";

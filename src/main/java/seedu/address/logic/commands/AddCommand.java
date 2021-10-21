@@ -3,6 +3,7 @@ package seedu.address.logic.commands;
 import static java.util.Objects.requireNonNull;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_ADDRESS;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_AMENITY;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_HOURS;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_NAME;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_OPERATING_HOURS;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_RATING;
@@ -19,18 +20,20 @@ public class AddCommand extends Command {
 
     public static final String COMMAND_WORD = "add";
 
-    public static final String MESSAGE_USAGE = COMMAND_WORD + ": Adds a study spot to the study tracker. \n"
+    public static final String MESSAGE_USAGE = COMMAND_WORD + ": Adds a study spot to the study tracker.\n"
             + "Parameters: "
             + PREFIX_NAME + "NAME* "
             + PREFIX_RATING + "RATING* "
             + PREFIX_OPERATING_HOURS + "OPERATING HOURS "
             + PREFIX_ADDRESS + "ADDRESS "
+            + PREFIX_HOURS + "STUDIED HOURS "
             + "[" + PREFIX_TAG + "TAG]... "
             + "[" + PREFIX_AMENITY + "AMENITY]...\n"
             + "Example: " + COMMAND_WORD + " "
             + PREFIX_NAME + "COM1 "
             + PREFIX_RATING + "5 "
             + PREFIX_OPERATING_HOURS + "0900-2200, 0900-2200 "
+            + PREFIX_HOURS + "5 "
             + PREFIX_ADDRESS + "SoC "
             + PREFIX_TAG + "cold "
             + PREFIX_TAG + "quiet"

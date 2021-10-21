@@ -34,7 +34,7 @@ public class HelpCommandInfoDisplay extends UiPart<Region> {
         requireNonNull(info);
         try {
             String cmdName = info.split(": ")[0];
-            String cmdInfo = info.split(": ")[1].split("\n")[0];
+            String cmdInfo = info.split(": ")[1].split("\nParameters")[0];
             String cmdParameters = info.split("Parameters: ")[1].split("\n")[0];
             String cmdExample = info.split("Example: ")[1];
 

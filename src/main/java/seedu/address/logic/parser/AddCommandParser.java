@@ -3,6 +3,7 @@ package seedu.address.logic.parser;
 import static seedu.address.commons.core.Messages.MESSAGE_INVALID_COMMAND_FORMAT;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_ADDRESS;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_AMENITY;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_HOURS;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_NAME;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_OPERATING_HOURS;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_RATING;
@@ -18,6 +19,7 @@ import seedu.address.model.studyspot.Address;
 import seedu.address.model.studyspot.Name;
 import seedu.address.model.studyspot.OperatingHours;
 import seedu.address.model.studyspot.Rating;
+import seedu.address.model.studyspot.StudiedHours;
 import seedu.address.model.studyspot.StudySpot;
 import seedu.address.model.tag.Tag;
 
@@ -34,7 +36,7 @@ public class AddCommandParser implements Parser<AddCommand> {
     public AddCommand parse(String args) throws ParseException {
         ArgumentMultimap argMultimap =
                 ArgumentTokenizer.tokenize(args, PREFIX_NAME, PREFIX_RATING, PREFIX_OPERATING_HOURS, PREFIX_ADDRESS,
-                        PREFIX_TAG, PREFIX_AMENITY);
+                        PREFIX_TAG, PREFIX_AMENITY, PREFIX_HOURS);
 
         if (!arePrefixesPresent(argMultimap, PREFIX_NAME, PREFIX_RATING)
                 || !argMultimap.getPreamble().isEmpty()) {
@@ -46,12 +48,14 @@ public class AddCommandParser implements Parser<AddCommand> {
         Name name = ParserUtil.parseName(argMultimap.getValue(PREFIX_NAME).get());
         Rating rating = ParserUtil.parseRating(argMultimap.getValue(PREFIX_RATING).get());
         OperatingHours operatingHours = ParserUtil.parseOperatingHours(argMultimap.getValue(PREFIX_OPERATING_HOURS)
-                .orElse("-"));
-        Address address = ParserUtil.parseAddress(argMultimap.getValue(PREFIX_ADDRESS).orElse("-"));
+                .orElse(OperatingHours.DEFAULT_OPERATING_HOURS));
+        Address address = ParserUtil.parseAddress(argMultimap.getValue(PREFIX_ADDRESS).orElse(Address.DEFAULT_VALUE));
+        StudiedHours studiedHours = ParserUtil.parseStudiedHours(argMultimap.getValue(PREFIX_HOURS)
+                .orElse(StudiedHours.DEFAULT_VALUE));
         Set<Tag> tagList = ParserUtil.parseTags(argMultimap.getAllValues(PREFIX_TAG));
         Set<Amenity> amenityList = ParserUtil.parseAmenities(argMultimap.getAllValues(PREFIX_AMENITY));
 
-        StudySpot spot = new StudySpot(name, rating, operatingHours, address, tagList, amenityList);
+        StudySpot spot = new StudySpot(name, rating, operatingHours, address, studiedHours, tagList, amenityList);
 
         return new AddCommand(spot);
     }
