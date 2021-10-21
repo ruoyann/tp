@@ -329,6 +329,7 @@ The following object diagram illustrates the `OperatingHours` object created.
 
 ![Add OperatingHoursObjectDiagram](images/AddOperatingHoursObjectDiagram.png)
 
+
 Step 2. `LogicManager` executes the `AddCommand` object, calling `Model#addStudySpot(StudySpot studySpot)` so that 
 a new study spot is added to the model in StudyTracker.
 
