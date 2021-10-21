@@ -385,7 +385,7 @@ The following are examples showing the `Default` and `DotsDark` theme.
 * `fg-text`, `bg-text`, `accent-text` — text colour for `fg-surface`, `bg-surface` and `fg-accent` respectively.
 * `button` — button colour
 
-### Enhanced List Command
+### Enhanced List feature
 
 #### Overview
 
