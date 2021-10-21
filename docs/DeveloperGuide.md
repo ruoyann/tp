@@ -457,9 +457,38 @@ The following sequence diagram demonstrates how `StudyTrackerParser` parses the 
 
 The current choice was chosen as it is intuitive and most modern desktop applications follow this behaviour. 
 
-#### Future Extensions:
+#### Future Extensions
 
 A future extension would be for List to support filtering of amenities as well.
+
+### Enhanced Edit Command
+
+#### Overview
+
+The Edit Command is enhanced to support the removal of specific tags and amenities.
+
+#### Implementation
+
+The Edit Command is facilitated by two classes: `EditCommand.java` and `EditCommandParser.java`.
+
+Given below is an example usage scenario of removing a tag from a study spot and how the mechanism behaves.
+
+Step 1. The user executes `edit spot/com rt/noisy` to remove the Tag `noisy` from the StudySpot `com`. 
+`StudyTrackerParser` then parses this input and creates an `EditCommand` object.
+
+Step 2. `LogicManager` executes the `EditCommand` object and updates the model in StudyTracker with the edited study
+spot.
+
+The following sequence diagram demonstrates how `StudyTrackerParser` parses the command.
+
+![Edit RemoveTagSequenceDiagram](images/EditRemoveTagSequenceDiagram.png)
+
+
+#### Design considerations
+
+**Aspect: How to increase the ease of removing fields in a study spot:**
+- Alternative 1 (current choice): Users can directly remove a tag or an amenity they specify.
+- Alternative 2: Users have to retype existing tags or amenities if they wish to retain them.
 
 
 --------------------------------------------------------------------------------------------------------------------
