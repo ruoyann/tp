@@ -26,7 +26,7 @@ Let's explore how to add a new study spot and track our study time with it!
 
 1. Copy the file to the folder you want to use as the _home folder_ for your StudyTracker.
 
-1. Double-click the file to start the app. The GUI similar to the below should appear in a few seconds. Note how the app contains some sample data.<br>
+1. Double-click the file to start the app. The GUI similar to the one below should appear in a few seconds. Note how the app contains some sample data.<br>
    ![Ui](images/Ui.png)
 
 1. Type the command in the command box and press Enter to execute it. e.g. typing **`help`** and pressing Enter will open the help window.<br>
@@ -48,27 +48,33 @@ Let's explore how to add a new study spot and track our study time with it!
 ---
 ## Command Syntax
 
-<div markdown="block" class="alert alert-info">
+**Throughout the User Guide, you'll see commands to enter into StudyTracker.
+Here is how to read the command format:**
 
-**:information_source: Throughout the User Guide, you'll see commands to enter into StudyTracker.
-Here is how to read the command format:**<br>
+### Command Structure
+Commands use a multipart structure that must be specified in this order:
+1. **Command word** which may be user-created aliases (detailed further in [Aliases](#setting-command-aliases--alias-unalias)). <br>
+2. **Parameters** and **Flags**
 
-* The first word of each command *always* specifies the **command word**.
-  Commands words may be user-created aliases, which are detailed further in [Aliases](#setting-command-aliases--alias-unalias). <br>
+```
+ <COMMAND> [parameters and flags]
+ ```
 
-* Commands may require **flags**.
+### Flags
+
+Commands may require **flags**.
   Flags are represented by a dash, and a sequence of characters. <br>
   e.g. the `list` command has a `-f` flag to list only favourites.
 
-* The subsequent blocks are known as **parameters**.
-  Each parameter may have a delimiter. <br>
-  e.g. the `NAME` parameter has a delimiter `n` and the `AMENITY` parameter has a delimiter `m`.
+### Parameters
 
-* Slashes are required for parameter input.
-  Words in `UPPER_CASE` are the parameters to be supplied by the user.<br>
+* Each parameter may have a delimiter. <br>
+e.g. the `NAME` parameter has a delimiter `n/` and the `AMENITY` parameter has a delimiter `m/`.
+  
+* Words in `UPPER_CASE` are the parameters to be supplied by the user.<br>
   e.g. in `add n/NAME*`, `NAME` is a parameter which can be used as `add n/COM1 Basement`.
 
-* Parameters with an asterisk `*` are required while those without an asterisk are optional.<br>
+* Parameters with an asterisk `*` are **required** while those without an asterisk are optional.<br>
   e.g `n/NAME* m/AMENITY...` can be used as `n/COM1 Basement m/wifi` or as `n/COM1 Basement`.
 
 * Parameters with `…`​ after them can be used multiple times including zero times.<br>
@@ -77,23 +83,27 @@ Here is how to read the command format:**<br>
 * Parameters can be in any order.<br>
   e.g. if the command specifies `n/NAME* a/ADDRESS`, `a/ADDRESS n/NAME*` is also acceptable.
 
-* If a parameter is expected only once in the command, but you specified it multiple times, only the last occurrence of the parameter will be taken.<br>
+<div markdown="block" class="alert alert-warning">:exclamation: **Note:**
+
+* If a parameter is expected only once in the command, but you specified it multiple times, only the **last occurrence** of the parameter will be taken.<br>
   e.g. if you specify `n/COM1 n/CLB`, only `n/CLB` will be taken.
 
 * Extraneous parameters for commands that do not take in parameters (such as `help`, `list`, `exit` and `clear`) will be ignored.<br>
   e.g. if the command specifies `help 123`, it will be interpreted as `help`.
+</div>
 
-Some examples of **valid** user inputs for the *add command* are provided below:
+
+### Examples
+Some **valid** user inputs for the *add command* are provided below:
 * `add n/PC Commons a/UTown t/veryCrowded m/toilet r/4`
 * `add n/COM2 Basement r/3` (optional arguments are not required)
 * `add n/TR3 a/Yusof Ishak House m/wifi m/aircon` (multiple amenities are acceptable)
 
-Some examples of **invalid** user inputs for the *add command* are provided below:
+Some **invalid** user inputs for the *add command* are provided below:
 * `add n/PC Commons` (missing `RATING` parameter)
 * `add PC Commons /UTown /very crowded /toilet /4*` (delimiters and slashes missing from parameters, unnecessary asterisk added outside of parameters)
 * `n/PC Commons a/UTown r/4` (missing command word `add`)
 
-</div>
 
 ## GUI Features
 
