@@ -83,7 +83,7 @@ The `UI` component,
 * executes user commands using the `Logic` component.
 * listens for changes to `Model` data so that the UI can be updated with the modified data.
 * keeps a reference to the `Logic` component, because the `UI` relies on the `Logic` to execute commands.
-* depends on some classes in the `Model` component, as it displays `Person` object residing in the `Model`.
+* depends on some classes in the `Model` component, as it displays `StudySpot` object residing in the `Model`.
 
 ### Logic component
 
@@ -94,10 +94,10 @@ Here's a (partial) class diagram of the `Logic` component:
 <img src="images/LogicClassDiagram.png" width="550"/>
 
 How the `Logic` component works:
-1. When `Logic` is called upon to execute a command, it uses the `AddressBookParser` class to parse the user command.
+1. When `Logic` is called upon to execute a command, it uses the `StudyTrackerParser` class to parse the user command.
 1. This results in a `Command` object (more precisely, an object of one of its subclasses e.g., `AddCommand`) which is executed by the `LogicManager`.
-1. The command can communicate with the `Model` when it is executed (e.g. to add a person).
-1. The result of the command execution is encapsulated as a `CommandResult` object which is returned back from `Logic`.
+1. The command can communicate with the `Model` when it is executed (e.g. to add a `StudySpot`).
+1. The result of the command execution is encapsulated as a `CommandResult` object which is returned from `Logic`.
 
 The Sequence Diagram below illustrates the interactions within the `Logic` component for the `execute("delete n/Central Library")` API call.
 
@@ -111,11 +111,11 @@ Here are the other classes in `Logic` (omitted from the class diagram above) tha
 <img src="images/ParserClasses.png" width="600"/>
 
 How the parsing works:
-* When called upon to parse a user command, the `AddressBookParser` class creates an `XYZCommandParser` (`XYZ` is a placeholder for the specific command name e.g., `AddCommandParser`) which uses the other classes shown above to parse the user command and create a `XYZCommand` object (e.g., `AddCommand`) which the `AddressBookParser` returns back as a `Command` object.
+* When called upon to parse a user command, the `StudyTrackerParser` class creates an `XYZCommandParser` (`XYZ` is a placeholder for the specific command name e.g., `AddCommandParser`) which uses the other classes shown above to parse the user command and create a `XYZCommand` object (e.g., `AddCommand`) which the `StudyTrackerParser` returns back as a `Command` object.
 * All `XYZCommandParser` classes (e.g., `AddCommandParser`, `DeleteCommandParser`, ...) inherit from the `Parser` interface so that they can be treated similarly where possible e.g, during testing.
 
 ### Model component
-**API** : [`Model.java`](https://github.com/se-edu/addressbook-level3/tree/master/src/main/java/seedu/address/model/Model.java)
+**API** : [`Model.java`](https://github.com/AY2122S1-CS2103T-T09-1/tp/blob/master/src/main/java/seedu/address/model/Model.java)
 
 <img src="images/ModelClassDiagram.png" width="450" />
 
@@ -136,18 +136,18 @@ The `Model` component,
 
 ### Storage component
 
-**API** : [`Storage.java`](https://github.com/se-edu/addressbook-level3/tree/master/src/main/java/seedu/address/storage/Storage.java)
+**API** : [`Storage.java`](https://github.com/AY2122S1-CS2103T-T09-1/tp/blob/master/src/main/java/seedu/address/storage/Storage.java)
 
 <img src="images/StorageClassDiagram.png" width="550" />
 
 The `Storage` component,
 * can save both study tracker data and user preference data in json format, and read them back into corresponding objects.
-* inherits from both `AddressBookStorage` and `UserPrefStorage`, which means it can be treated as either one (if only the functionality of only one is needed).
+* inherits from both `StudyTrackerStorage` and `UserPrefStorage`, which means it can be treated as either one (if only the functionality of only one is needed).
 * depends on some classes in the `Model` component (because the `Storage` component's job is to save/retrieve objects that belong to the `Model`)
 
 ### Common classes
 
-Classes used by multiple components are in the `seedu.addressbook.commons` package.
+Classes used by multiple components are in the `seedu.address.commons` package.
 
 --------------------------------------------------------------------------------------------------------------------
 
@@ -155,6 +155,7 @@ Classes used by multiple components are in the `seedu.addressbook.commons` packa
 
 This section describes some noteworthy details on how certain features are implemented.
 
+ 
 ### Alias feature
 
 #### Overview
@@ -261,6 +262,88 @@ The following activity diagram summarizes what happens when a user executes a ne
 * **Alternative 3:** Aliases can map to commands, including other aliases.
     * Pros: User has even more freedom.
     * Cons: Implementation is much more challenging (e.g. how to prevent recursion?).
+    
+
+### Log feature
+
+#### Overview
+
+The number of hours that a user spends at a StudySpot is shown on the GUI. It is saved as a field of `StudySpot`, known
+as `StudiedHours`. This number can be changed by making use of the Log feature.
+
+
+#### Implementation of Log feature
+
+The Log feature is facilitated by `LogCommand.java`, `StudiedHours`.
+
+`StudiedHours.java` is a statistical field in `StudySpot`. It is responsible for storing the hours a user studies at a
+StudySpot. It implements the following operations: 
+- `StudiedHours#isValidLoggedHours()` -- checks if a given input in a Log Command is a positive integer, and that there
+is no integer overflow.
+- `StudiedHours#addHours(StudiedHours toBeAdded)` -- Takes in another `StudiedHours` and adds the two values
+ together, returning a new `StudiedHour`. It also ensures that there is no integer overflow.
+
+`LogCommand.java` is responsible for changing the `StudiedHours` field in a given `StudySpot` (given by its `Name`). 
+It has 3 different ways of doing so:
+- By default, it adds the given input value to the current value.
+    - E.g. If the current StudiedHours is 4, and the user logs 3 more hours, it adds 4 and 3 together to give 7 hours.
+- By using the `-o` flag in the input, it **overrides** the original value and replaces it with the given value.
+    - E.g. If the current StudiedHours is 4, and the user logs 3 with the `-o` flag, it will override the existing 4
+      and replace it with 3.
+- By using the `-r` flag in the input, it **resets** the original value to 0.
+    - E.g. If the current StudiedHours is 4, and the user logs with the `-r` flag, the value will be reset to 0.
+    
+Given below is an example usage scenario and how the Log feature behaves at each step:
+
+1. The user launches the application. The program loads with the given `StudySpots`.
+
+![PartialStudyTrackerDiagram](images/PartialStudyTracker.png)
+
+1. The user executes `log -r n/Starbucks UTown` which resets the `StudiedHours` at Starbucks to 0.
+
+1. After studying for 3 hours at Starbucks, the user executes `log n/Starbucks UTown hr/4`, which adds 5 hours to 0,
+ resulting in the `StudiedHours` to become 5.
+
+1. The user realises he made a mistake, and executes `log -o n/Starbucks UTown hr/3`, which hard changes the 
+`StudiedHours` to 3.
+   
+The following sequence diagram demonstrates the flow from the given input:
+
+![LogSequenceDiagram](images/LogSequenceDiagram.png)
+
+![LogSequenceDiagramOverride](images/LogSequenceDiagramWithFlagO.png)
+
+Sequence diagram for `-r` flag is the same as `-o` but with handleReset() instead of handleOverride()
+
+The following activity diagram summarizes what happens when a user executes a new command:
+
+
+![LogActivityDiagram](images/LogActivityDiagram.png)
+
+### Design considerations
+
+Initially, Log Command was designed for users to keep track of how long they studied somewhere, and was supposed to 
+only add the value provided by the user to the current value (which is the default behaviour of the log command).
+
+Some things were considered while implementing the Log Command:
+1. What if a user enters an incorrect input?
+2. What happens if there is an integer overflow for the number of hours?
+3. Should users be able to change logged hours with Edit command?
+
+To tackle these issues, the following solutions were implemented:
+1. Introduction of flags
+    - Two useful flags, `-o` for override, and `-r` for reset.
+    - Use of these flags will result in a simpler solution that is user-friendly too.
+2. Limiting the number of hours that each `StudySpot` can hold
+    - Prohibiting the addition of hours exceeding `INTEGER_MAX_VALUE`, which is already an unreasonable 
+      amount of hours to be studying anyway.
+    - Furthermore, if a user wishes to log more hours while already having `INTEGER_MAX_VALUE`hours at a location,
+    it will prompt the user to use either `-o` or `-r` to set or reset the value.
+3. Disallowing Edit to change logged hours
+    - Log is intended to be a command for users to use at the end of a study session at a study spot, if they wish
+    to keep track of how long they studied there.
+    - Using Edit on `StudiedHours` should provide a similar effect to the `-o` flag of Log, it was agreed that it was
+     not natural and unintuitive to use Edit for this purpose.
 
 ### Themes
 
@@ -305,6 +388,81 @@ The following are examples showing the `Default` and `DotsDark` theme.
 * `fg-accent` — contrasting colour to act as accenting colour
 * `fg-text`, `bg-text`, `accent-text` — text colour for `fg-surface`, `bg-surface` and `fg-accent` respectively.
 * `button` — button colour
+
+### Operating Hours
+
+#### Overview
+
+Operating hours allow users to specify the opening and closing hours of a study spot.
+
+#### Implementation
+
+Operating hours is facilitated by these classes: `OperatingHours.java`, `StudySpot.java`, `AddCommand.java`
+and `EditCommand.java`.
+
+`OperatingHours.java` is responsible for creating `OperatingHours` objects. A `StudySpot` object contains 
+an `operatingHours` attribute. A study spot with an `OperatingHours` object can be initialised with an Add command 
+or the `operatingHours` attribute can be edited with an Edit command.
+
+Given below is an example usage scenario of adding a study spot with operating hours and how the mechanism behaves.
+
+Step 1. The user executes `add n/com r/5 o/0900-2200, 0900-1800` to add a new study spot. `StudyTrackerParser` class
+creates an `AddCommandParser` to parse the command. Since operating hours are provided in the command, 
+`ParserUtil#parseOperatingHours(String operatingHours)` is called. An `AddCommand` object with the study spot to be 
+added is then created.
+
+The following object diagram illustrates the `OperatingHours` object created.
+
+![Add OperatingHoursObjectDiagram](images/AddOperatingHoursObjectDiagram.png)
+
+
+Step 2. `LogicManager` executes the `AddCommand` object, calling `Model#addStudySpot(StudySpot studySpot)` so that 
+a new study spot is added to the model in StudyTracker.
+
+The following sequence diagram demonstrates how `StudyTrackerParser` parses the command.
+
+![Add OperatingHoursSequenceDiagram](images/AddOperatingHoursSequenceDiagram.png)
+
+
+### Enhanced List Command
+
+#### Overview
+
+The List Command is enhanced to support filtering of favourites and tags.
+
+#### Implementation
+
+The `Model` component stores the currently 'selected' `StudySpot` objects as a separate filtered list. The filter of this list can be updated using `Model#updateFilteredStudySpotList(Predicate<StudySpot> predicate)`.
+
+Given below is an example usage scenario and how the list mechanism behaves at every step.
+
+Step 1. The user executes `list -f` command to show all favourites in the StudyTracker. `StudyTrackerParser` class
+creates a `ListCommandParser` to parse the command and creates a `ListCommand` object with a `Predicate<StudySpot>`
+that filters for favourite `StudySpots`.
+
+
+Step 2. `LogicManager` executes the `ListCommand` object, calling 
+`Model#updateFilteredStudySpotList(Predicate<StudySpot> predicate)`. This updates the model in StudyTracker to show
+only favourite `StudySpots` to the user. 
+
+The following sequence diagram demonstrates how `StudyTrackerParser` parses the command.
+
+![ListSequenceDiagram](images/ListSequenceDiagram.png)
+
+
+#### Design considerations:
+
+**Behaviour of filters with multiple tags:**
+* **Current choice:** Filtering by tags show study spots that all specified tags.
+* **Alternative 1:** Filtering by tags show study spots that contain at least one of the specified tags.
+
+
+We felt that our choice would be the most intuitive behaviour of filter. 
+
+#### Future Extensions:
+
+A future extension would be for List to support filtering of amenities as well.
+
 
 --------------------------------------------------------------------------------------------------------------------
 
@@ -357,14 +515,14 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
 (For all use cases below, the **System** is the `StudyTracker` and the **Actor** is the `user`, unless specified otherwise)
 
-**UC01 - Delete a StudySpot**
+**UC01 - Delete a study spot**
 
 **MSS**
 
-1.  User requests to list StudySpots
-2.  StudyTracker shows a list of StudySpots 
-3.  User requests to delete a specific StudySpot in the list
-4.  StudyTracker deletes the StudySpot 
+1.  User requests to list study spots
+2.  StudyTracker shows a list of study spots 
+3.  User requests to delete a specific study spot in the list
+4.  StudyTracker deletes the study spot 
 
     Use case ends.
 
@@ -407,6 +565,21 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
       Use case ends.
 
 
+**UC03 - List by favourites**
+
+**MSS**
+
+1. User requests to view list by favourites.
+2. StudyTracker shows all favourite study spots.
+
+   Use case ends.
+
+**Extensions**
+* 1a. Invalid flag is given
+    * 1a1. StudyTracker shows an error message.
+
+      Use case ends.
+    
 ### Non-Functional Requirements
 
 1.  Should work on any _mainstream OS_ as long as it has Java `11` or above installed.
@@ -417,7 +590,7 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 6.  Should have documentation for users to get them familiar with the basics of the program.
 7.  Should have documentation for potential developers to get them familiar with the basics of developing the program.
 8.  Should be able to save user data into human-readable and human-editable text files.
-9.  Should be able to hold up to 1000 StudySpots without a noticeable sluggishness in performance for typical usage.
+9.  Should be able to hold up to 1000 study spots without a noticeable sluggishness in performance for typical usage.
 10. Should be designed for use by a single user
 11. A user with above average typing speed for regular English text (i.e. not code, not system admin commands) should be able to accomplish most of the tasks faster using commands than using the mouse.
 12. StudyTracker is offered as a Free, Open Source Software (FOSS) program, licensed under the MIT License.
@@ -458,17 +631,17 @@ testers are expected to do more *exploratory* testing.
 
 1. _{ more test cases …​ }_
 
-### Deleting a person
+### Deleting a study spot
 
-1. Deleting a person while all study spots are being shown
+1. Deleting a study spot while all study spots are being shown
 
-    1. Prerequisites: Have at least 1 StudySpot in the list. 
+    1. Prerequisites: Have at least 1 study spot in the list. 
 
     1. Test case: `delete n/Central Library`<br>
-       Expected: The StudySpot named COM1 is deleted from the list. Details of the deleted StudySpot shown in the status message.
+       Expected: The study spot named COM1 is deleted from the list. Details of the deleted study spot shown in the status message.
 
     1. Test case: `delete n/INVALID`<br>
-       Expected: No StudySpot is deleted as there does not exist a StudySpot named 'INVALID'. Error details shown in the status message. Similar error message will show if user tries to delete a StudySpot that does not exist in the list. 
+       Expected: No study spot is deleted as there does not exist a study spot named 'INVALID'. Error details shown in the status message. Similar error message will show if user tries to delete a study spot that does not exist in the list. 
 
     1. Other incorrect delete commands to try: `delete Central Library`, `delete spot/Central Library`<br>
        Expected: Similar to previous.

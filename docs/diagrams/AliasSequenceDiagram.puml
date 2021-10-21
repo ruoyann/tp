@@ -18,6 +18,13 @@ activate LogicManager
 LogicManager -> StudyTrackerParser : parseCommand("myAdd Starbucks t/cold")
 activate StudyTrackerParser
 
+create AddCommandParser
+StudyTrackerParser -> AddCommandParser
+activate AddCommandParser
+
+AddCommandParser --> StudyTrackerParser
+deactivate AddCommandParser
+
 StudyTrackerParser -> StudyTrackerParser : isInvokingAlias()
 activate StudyTrackerParser
 

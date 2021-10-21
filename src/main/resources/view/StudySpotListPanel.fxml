@@ -12,7 +12,7 @@
     <Label text="StudyTracker" styleClass="h1-size"/>
     <Label fx:id="studySpotListCount" styleClass="icon_container" text="0"/>
   </HBox>
-  <StackPane>
+  <StackPane VBox.vgrow="ALWAYS">
     <ListView fx:id="studySpotListView" VBox.vgrow="ALWAYS" />
     <Label fx:id="studySpotListViewDefaultMessage" styleClass="italics, bg-text"/>
   </StackPane>

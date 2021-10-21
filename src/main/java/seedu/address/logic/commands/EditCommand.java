@@ -40,10 +40,9 @@ public class EditCommand extends Command {
 
     public static final String COMMAND_WORD = "edit";
 
-    public static final String MESSAGE_USAGE = COMMAND_WORD + ": Edits the details of the study spot identified "
-            + "by its name (case-insensitive). "
+    public static final String MESSAGE_USAGE = COMMAND_WORD + ": Edits the specified study spot (case-insensitive).\n"
             + "Existing values will be overwritten by the input values.\n"
-            + "Note that study hours cannot be changed with edit, use log command instead. \n"
+            + "Note that study hours cannot be changed with edit, use log command instead.\n"
             + "Parameters: "
             + PREFIX_EDIT_SPOT + "NAME* (non-case sensitive) "
             + PREFIX_NAME + "NAME "

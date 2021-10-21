@@ -18,8 +18,7 @@ public class DeleteCommand extends Command {
 
     public static final String COMMAND_WORD = "delete";
 
-    public static final String MESSAGE_USAGE = COMMAND_WORD
-            + ": Deletes the study spot identified by the study spot name used in the displayed study spot list.\n"
+    public static final String MESSAGE_USAGE = COMMAND_WORD + ": Deletes the specified study spot\n"
             + "Parameters: n/NAME* \n"
             + "Example: " + COMMAND_WORD + " " + PREFIX_DELETE_SPOT + "starbucks";
 

@@ -1,0 +1,33 @@
+@startuml
+!include style.puml
+skinparam ClassFontColor #000000
+skinparam ClassBorderColor #000000
+show fields
+
+title Partial Default StudyTracker
+
+package List<StudySpots> {
+    object "__:StudySpot__" as Starbucks {
+        name : "Starbucks UTown"
+        rating : "4"
+        operatingHours : "0900-2200, 0900-2200"
+        address : "University Town, ERC, 138608"
+        favourite : "true"
+        studiedHours : "0"
+        tagged : [ "tea", "coffee", "smellsGood" ]
+        "amenities" : [ "wifi", "charger", "aircon", "food" ]
+    }
+    object "__:StudySpot__" as aliasBye {
+        name : "COM1 Tech Hangout",
+        rating : "4",
+        operatingHours : "-",
+        address : "B1-01, COM1",
+        favourite : "false",
+        studiedHours : "3",
+        tagged : [ "crowdedOnThursdays", "friendly", "noisy" ],
+        amenities : [ "wifi", "charger", "aircon" ]
+    }
+
+}
+
+@end
