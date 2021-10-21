@@ -13,10 +13,10 @@ box Model MODEL_COLOR_T1
 participant ":Model" as Model MODEL_COLOR
 end box
 
-[-> LogicManager : execute("log n/Starbucks hr/5")
+[-> LogicManager : execute("log -o n/Starbucks hr/3")
 activate LogicManager
 
-LogicManager -> StudyTrackerParser : parseCommand("log n/Starbucks hr/5")
+LogicManager -> StudyTrackerParser : parseCommand("log -o n/Starbucks hr/3")
 activate StudyTrackerParser
 
 create LogCommandParser
@@ -26,7 +26,7 @@ activate LogCommandParser
 LogCommandParser --> StudyTrackerParser
 deactivate LogCommandParser
 
-StudyTrackerParser -> LogCommandParser : parse("n/Starbucks hr/5")
+StudyTrackerParser -> LogCommandParser : parse("-o n/Starbucks hr/5")
 activate LogCommandParser
 
 create LogCommand
@@ -48,18 +48,29 @@ deactivate StudyTrackerParser
 LogicManager -> LogCommand : execute()
 activate LogCommand
 
+LogCommand -> LogCommand : handleOverride()
+activate LogCommand
+
 LogCommand -> Model : setStudySpot(Starbucks, updatedStarbucks)
 activate Model
 
 Model --> LogCommand
 deactivate Model
-
 create CommandResult
 LogCommand -> CommandResult
 activate CommandResult
 
 CommandResult --> LogCommand
 deactivate CommandResult
+
+LogCommand --> LogCommand : result
+deactivate LogCommand
+
+
+
+
+
+
 
 LogCommand --> LogicManager : result
 deactivate LogCommand

@@ -280,17 +280,17 @@ is no integer overflow.
 
 `LogCommand.java` is responsible for changing the `StudiedHours` field in a given `StudySpot` (given by its `Name`). 
 It has 3 different ways of doing so:
-- By default, it appends the given input value to the current value.
-    - E.g. If the current StudiedHours is 4, and I log 3 more hours, it adds 4 and 3 together to give 7 hours.
+- By default, it adds the given input value to the current value.
+    - E.g. If the current StudiedHours is 4, and the user logs 3 more hours, it adds 4 and 3 together to give 7 hours.
 - By using the `-o` flag in the input, it **overrides** the original value and replaces it with the given value.
-    - E.g. If the current StudiedHours is 4, and I log 3 with the `-o` flag, it will override the existing 4 and replace
-     it with 3.
+    - E.g. If the current StudiedHours is 4, and the user logs 3 with the `-o` flag, it will override the existing 4
+      and replace it with 3.
 - By using the `-r` flag in the input, it **resets** the original value to 0.
-    - E.g. If the current StudiedHours is 4, and I log with the `-r` flag, the value will be reset to 0.
+    - E.g. If the current StudiedHours is 4, and the user logs with the `-r` flag, the value will be reset to 0.
     
 Given below is an example usage scenario and how the Log feature behaves at each step:
 
-1. The user launches the application for the first time. The program loads with default `StudySpots`.
+1. The user launches the application. The program loads with the given `StudySpots`.
 
 ![PartialStudyTrackerDiagram](images/PartialStudyTracker.png)
 
@@ -302,9 +302,13 @@ Given below is an example usage scenario and how the Log feature behaves at each
 1. The user realises he made a mistake, and executes `log -o n/Starbucks UTown hr/3`, which hard changes the 
 `StudiedHours` to 3.
    
-The following sequence diagram demonstrates the flow from the given input.
+The following sequence diagram demonstrates the flow from the given input:
 
 ![LogSequenceDiagram](images/LogSequenceDiagram.png)
+
+![LogSequenceDiagramOverride](images/LogSequenceDiagramWithFlagO.png)
+
+Sequence diagram for `-r` flag is the same as `-o` but with handleReset() instead of handleOverride()
 
 The following activity diagram summarizes what happens when a user executes a new command:
 
@@ -312,29 +316,28 @@ The following activity diagram summarizes what happens when a user executes a ne
 
 ### Design considerations
 
-Initially while designing the Log Command as a way for users to keep track of how long they studied somewhere, we 
-wanted to just add the value provided by the user to the current value (the default behaviour of log command). 
+Initially, Log Command was designed for users to keep track of how long they studied somewhere, and was supposed to 
+only add the value provided by the user to the current value (which is the default behaviour of the log command).
 
-We considered some things while implementing the Log Command:
-1. What if a user puts in an incorrect input?
+Some things were considered while implementing the Log Command:
+1. What if a user enters an incorrect input?
 2. What happens if there is an integer overflow for the number of hours?
 3. Should users be able to change logged hours with Edit command?
 
-To tackle these issues, we came up with the following solutions:
+To tackle these issues, the following solutions were implemented:
 1. Introduction of flags
-    - We thought of two possibly useful flags, `-o` for override, and `-r` for reset
-    - Use of these flags will be result in a not so convoluted solution such as creating a new command for users to
-    remember
+    - Two useful flags, `-o` for override, and `-r` for reset.
+    - Use of these flags will result in a simpler solution that is user-friendly too.
 2. Limiting the number of hours that each `StudySpot` can hold
-    - We will prohibit the addition of hours exceeding `INTEGER_MAX_VALUE`, which is already an unreasonable 
-      amount of hours to be studying anyway
+    - Prohibiting the addition of hours exceeding `INTEGER_MAX_VALUE`, which is already an unreasonable 
+      amount of hours to be studying anyway.
     - Furthermore, if a user wishes to log more hours while already having `INTEGER_MAX_VALUE`hours at a location,
-    it will prompt the user to use either `-o` or `-r` to set the value
-3. We disallow Edit to change logged hours
+    it will prompt the user to use either `-o` or `-r` to set or reset the value.
+3. Disallowing Edit to change logged hours
     - Log is intended to be a command for users to use at the end of a study session at a study spot, if they wish
-    to keep track of how long they studied there
-    - Using Edit on `StudiedHours` should provide a similar effect to the `-o` flag of Log, and we felt that it was
-    not natural and unintuitive to use Edit for this purpose
+    to keep track of how long they studied there.
+    - Using Edit on `StudiedHours` should provide a similar effect to the `-o` flag of Log, it was agreed that it was
+     not natural and unintuitive to use Edit for this purpose.
 
 --------------------------------------------------------------------------------------------------------------------
 
