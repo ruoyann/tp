@@ -9,17 +9,20 @@ package Storage{
 package "UserPrefs Storage" #F4F6F6{
 Interface UserPrefsStorage <<Interface>>
 Class JsonUserPrefsStorage
+Class JsonSerializableUserPrefs
+Class JsonAdaptedAlias
 }
 
 Interface Storage <<Interface>>
 Class StorageManager
 
-package "AddressBook Storage" #F4F6F6{
-Interface AddressBookStorage <<Interface>>
-Class JsonAddressBookStorage
-Class JsonSerializableAddressBook
-Class JsonAdaptedPerson
+package "StudyTracker Storage" #F4F6F6{
+Interface StudyTrackerStorage <<Interface>>
+Class JsonStudyTrackerStorage
+Class JsonSerializableStudyTracker
+Class JsonAdaptedStudySpot
 Class JsonAdaptedTag
+Class JsonAdaptedAmenity
 }
 
 }
@@ -29,15 +32,20 @@ HiddenOutside ..> Storage
 
 StorageManager .up.|> Storage
 StorageManager -up-> "1" UserPrefsStorage
-StorageManager -up-> "1" AddressBookStorage
+StorageManager -up-> "1" StudyTrackerStorage
 
 Storage -left-|> UserPrefsStorage
-Storage -right-|> AddressBookStorage
+Storage -right-|> StudyTrackerStorage
 
 JsonUserPrefsStorage .up.|> UserPrefsStorage
-JsonAddressBookStorage .up.|> AddressBookStorage
-JsonAddressBookStorage ..> JsonSerializableAddressBook
-JsonSerializableAddressBook --> "*" JsonAdaptedPerson
-JsonAdaptedPerson --> "*" JsonAdaptedTag
+JsonUserPrefsStorage ..> JsonSerializableUserPrefs
+JsonSerializableUserPrefs --> "*" JsonAdaptedAlias
+
+JsonStudyTrackerStorage .up.|> StudyTrackerStorage
+JsonStudyTrackerStorage ..> JsonSerializableStudyTracker
+JsonSerializableStudyTracker --> "*" JsonAdaptedStudySpot
+JsonAdaptedStudySpot --> "*" JsonAdaptedTag
+JsonAdaptedStudySpot --> "*" JsonAdaptedAmenity
+
 
 @enduml
