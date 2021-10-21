@@ -247,7 +247,7 @@ The following activity diagram summarizes what happens when a user executes a ne
 
 <img src="images/AliasActivityDiagram.png" width="350" />
 
-#### Design considerations:
+#### Design considerations
 
 **Aspect: What aliases should be allowed:**
 
@@ -320,7 +320,7 @@ The following activity diagram summarizes what happens when a user executes a ne
 
 ![LogActivityDiagram](images/LogActivityDiagram.png)
 
-### Design considerations
+#### Design considerations
 
 Initially, Log Command was designed for users to keep track of how long they studied somewhere, and was supposed to 
 only add the value provided by the user to the current value (which is the default behaviour of the log command).
@@ -450,7 +450,7 @@ The following sequence diagram demonstrates how `StudyTrackerParser` parses the 
 ![ListSequenceDiagram](images/ListSequenceDiagram.png)
 
 
-#### Design considerations:
+#### Design considerations
 
 **Behaviour of filters with multiple tags:**
 * **Current choice:** Filtering by tags show study spots that all specified tags.
