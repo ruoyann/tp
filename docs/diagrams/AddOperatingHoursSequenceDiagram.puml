@@ -27,7 +27,7 @@ activate AddCommandParser
 AddCommandParser --> StudyTrackerParser
 deactivate AddCommandParser
 
-StudyTrackerParser -> AddCommandParser : parse("add n/com r/5 o/0900-2200, 0900-1800")
+StudyTrackerParser -> AddCommandParser : parse("n/com r/5 o/0900-2200, 0900-1800")
 activate AddCommandParser
 
 AddCommandParser -> ParserUtil : parseOperatingHours("0900-2200, 0900-1800")
