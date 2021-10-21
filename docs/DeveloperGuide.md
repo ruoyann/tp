@@ -83,7 +83,7 @@ The `UI` component,
 * executes user commands using the `Logic` component.
 * listens for changes to `Model` data so that the UI can be updated with the modified data.
 * keeps a reference to the `Logic` component, because the `UI` relies on the `Logic` to execute commands.
-* depends on some classes in the `Model` component, as it displays `Person` object residing in the `Model`.
+* depends on some classes in the `Model` component, as it displays `StudySpot` object residing in the `Model`.
 
 ### Logic component
 
@@ -142,7 +142,7 @@ The `Model` component,
 
 The `Storage` component,
 * can save both study tracker data and user preference data in json format, and read them back into corresponding objects.
-* inherits from both `AddressBookStorage` and `UserPrefStorage`, which means it can be treated as either one (if only the functionality of only one is needed).
+* inherits from both `StudyTrackerStorage` and `UserPrefStorage`, which means it can be treated as either one (if only the functionality of only one is needed).
 * depends on some classes in the `Model` component (because the `Storage` component's job is to save/retrieve objects that belong to the `Model`)
 
 ### Common classes
@@ -177,16 +177,16 @@ Aliases are stored in the `UserPrefs` object.
   Example: `list`, `edit`, `find` are command words.
 
 * **Well-formed command** — A command is well-formed if it has exactly one command word (or alias) and optional arguments.
-    
-Examples:
+
+    Examples:
   
-- `list` - well-formed
-- `add n/Starbucks`  —  well-formed, since it contains command word `add` and argument `n/Starbucks`.
+    * `list` - well-formed
+    * `add n/Starbucks`  —  well-formed, since it contains command word `add` and argument `n/Starbucks`.
     However, it is invalid (i.e. will throw and error when executed), since it is missing required argument `rating`.
-- `myAdd t/cold`  —  well-formed, since it contains alias `myAdd` and argument `t/cold`.
+    * `myAdd t/cold`  —  well-formed, since it contains alias `myAdd` and argument `t/cold`.
   `myAdd` will itself expand to another well-formed command (by definition of Alias).
-- `add list find n/Starbucks r/5`  —  not well-formed, since it has 3 command words (only should have one).
-- `myAdd add n/Starbucks r/5`  —  not well-formed, since it has both 1 alias and 1 command word (only should have one).
+    * `add list find n/Starbucks r/5`  —  not well-formed, since it has 3 command words (only should have one).
+    * `myAdd add n/Starbucks r/5`  —  not well-formed, since it has both 1 alias and 1 command word (only should have one).
 
 #### Implementation of Alias feature
 
@@ -216,7 +216,7 @@ Given below is an example usage scenario and how the Alias feature behaves at ea
 **Step 2.** The user executes `alias al/myAdd cmd/add r/5 n/` which creates an alias `myAdd` with command `add r/5 n/`.
 The `alias` command calls `Model#addAlias()`, adding this newly created alias to the Model and in UserPrefs.
 
-![UndoRedoState1](images/AliasState1.png)
+![AliasState1](images/AliasState1.png)
 
 <div markdown="span" class="alert alert-info">:information_source: 
 **Note:** Observe how the command is incomplete!
@@ -231,7 +231,7 @@ Within `StudyTrackerParser`, alias parsing takes place by fetching user alias in
 The command is expanded to `add r/5 n/Starbucks t/cold`.
 The string is then passed to the corresponding `AddCommandParser`, and an `AddCommand` is created.
 
-The following sequence diagram demonstrates how StudyTrackerParser parses the input with an alias:
+The following sequence diagram demonstrates how StudyTrackerParser parses the input with this new `myAdd` alias:
 
 ![AliasSequenceDiagram](images/AliasSequenceDiagram.png)
 
@@ -262,6 +262,88 @@ The following activity diagram summarizes what happens when a user executes a ne
 * **Alternative 3:** Aliases can map to commands, including other aliases.
     * Pros: User has even more freedom.
     * Cons: Implementation is much more challenging (e.g. how to prevent recursion?).
+    
+
+### Log feature
+
+#### Overview
+
+The number of hours that a user spends at a StudySpot is shown on the GUI. It is saved as a field of `StudySpot`, known
+as `StudiedHours`. This number can be changed by making use of the Log feature.
+
+
+#### Implementation of Log feature
+
+The Log feature is facilitated by `LogCommand.java`, `StudiedHours`.
+
+`StudiedHours.java` is a statistical field in `StudySpot`. It is responsible for storing the hours a user studies at a
+StudySpot. It implements the following operations: 
+- `StudiedHours#isValidLoggedHours()` -- checks if a given input in a Log Command is a positive integer, and that there
+is no integer overflow.
+- `StudiedHours#addHours(StudiedHours toBeAdded)` -- Takes in another `StudiedHours` and adds the two values
+ together, returning a new `StudiedHour`. It also ensures that there is no integer overflow.
+
+`LogCommand.java` is responsible for changing the `StudiedHours` field in a given `StudySpot` (given by its `Name`). 
+It has 3 different ways of doing so:
+- By default, it adds the given input value to the current value.
+    - E.g. If the current StudiedHours is 4, and the user logs 3 more hours, it adds 4 and 3 together to give 7 hours.
+- By using the `-o` flag in the input, it **overrides** the original value and replaces it with the given value.
+    - E.g. If the current StudiedHours is 4, and the user logs 3 with the `-o` flag, it will override the existing 4
+      and replace it with 3.
+- By using the `-r` flag in the input, it **resets** the original value to 0.
+    - E.g. If the current StudiedHours is 4, and the user logs with the `-r` flag, the value will be reset to 0.
+    
+Given below is an example usage scenario and how the Log feature behaves at each step:
+
+1. The user launches the application. The program loads with the given `StudySpots`.
+
+![PartialStudyTrackerDiagram](images/PartialStudyTracker.png)
+
+1. The user executes `log -r n/Starbucks UTown` which resets the `StudiedHours` at Starbucks to 0.
+
+1. After studying for 3 hours at Starbucks, the user executes `log n/Starbucks UTown hr/4`, which adds 5 hours to 0,
+ resulting in the `StudiedHours` to become 5.
+
+1. The user realises he made a mistake, and executes `log -o n/Starbucks UTown hr/3`, which hard changes the 
+`StudiedHours` to 3.
+   
+The following sequence diagram demonstrates the flow from the given input:
+
+![LogSequenceDiagram](images/LogSequenceDiagram.png)
+
+![LogSequenceDiagramOverride](images/LogSequenceDiagramWithFlagO.png)
+
+Sequence diagram for `-r` flag is the same as `-o` but with handleReset() instead of handleOverride()
+
+The following activity diagram summarizes what happens when a user executes a new command:
+
+
+![LogActivityDiagram](images/LogActivityDiagram.png)
+
+#### Design considerations
+
+Initially, Log Command was designed for users to keep track of how long they studied somewhere, and was supposed to 
+only add the value provided by the user to the current value (which is the default behaviour of the log command).
+
+Some things were considered while implementing the Log Command:
+1. What if a user enters an incorrect input?
+2. What happens if there is an integer overflow for the number of hours?
+3. Should users be able to change logged hours with Edit command?
+
+To tackle these issues, the following solutions were implemented:
+1. Introduction of flags
+    - Two useful flags, `-o` for override, and `-r` for reset.
+    - Use of these flags will result in a simpler solution that is user-friendly too.
+2. Limiting the number of hours that each `StudySpot` can hold
+    - Prohibiting the addition of hours exceeding `INTEGER_MAX_VALUE`, which is already an unreasonable 
+      amount of hours to be studying anyway.
+    - Furthermore, if a user wishes to log more hours while already having `INTEGER_MAX_VALUE`hours at a location,
+    it will prompt the user to use either `-o` or `-r` to set or reset the value.
+3. Disallowing Edit to change logged hours
+    - Log is intended to be a command for users to use at the end of a study session at a study spot, if they wish
+    to keep track of how long they studied there.
+    - Using Edit on `StudiedHours` should provide a similar effect to the `-o` flag of Log, it was agreed that it was
+     not natural and unintuitive to use Edit for this purpose.
 
 ### Themes
 
@@ -277,8 +359,12 @@ The GuiSettings class handles information about GUI width, height, position, and
 These settings are stored by `UserPrefs` in the Model.
 
 Themes are stored as Strings representing the theme name.
-The `MainWindow` Ui component is able to communicate with the Logic class to retrieve and write the currently selected themes.
-Then, the `MainWindow` will take the stored theme and load the corresponding CSS files to set the colours of the JavaFX app.
+For example, `"default"` represents the default theme.
+
+The `MainWindow` Ui component communicates with the Logic class to read and write the currently selected theme.
+Then, the `MainWindow` takes the stored theme and injects the corresponding CSS file to set the colours of the JavaFX app.
+
+In the example, `"default"` will be parsed to `ThemeDefault.css`, which is injected into the JavaFX stage.
 
 The following activity diagram summarizes the process of customizing themes.
 
@@ -303,8 +389,41 @@ The following are examples showing the `Default` and `DotsDark` theme.
 * `fg-text`, `bg-text`, `accent-text` — text colour for `fg-surface`, `bg-surface` and `fg-accent` respectively.
 * `button` — button colour
 
-### Enhanced List Command
+### Operating Hours
+#### Overview
 
+Operating hours allow users to specify the opening and closing hours of a study spot.
+
+#### Implementation
+
+Operating hours is facilitated by these classes: `OperatingHours.java`, `StudySpot.java`, `AddCommand.java`
+and `EditCommand.java`.
+
+`OperatingHours.java` is responsible for creating `OperatingHours` objects. A `StudySpot` object contains 
+an `operatingHours` attribute. A study spot with an `OperatingHours` object can be initialised with an Add command 
+or the `operatingHours` attribute can be edited with an Edit command.
+
+Given below is an example usage scenario of adding a study spot with operating hours and how the mechanism behaves.
+
+Step 1. The user executes `add n/com r/5 o/0900-2200, 0900-1800` to add a new study spot. `StudyTrackerParser` class
+creates an `AddCommandParser` to parse the command. Since operating hours are provided in the command, 
+`ParserUtil#parseOperatingHours(String operatingHours)` is called. An `AddCommand` object with the study spot to be 
+added is then created.
+
+The following object diagram illustrates the `OperatingHours` object created.
+
+![Add OperatingHoursObjectDiagram](images/AddOperatingHoursObjectDiagram.png)
+
+
+Step 2. `LogicManager` executes the `AddCommand` object, calling `Model#addStudySpot(StudySpot studySpot)` so that 
+a new study spot is added to the model in StudyTracker.
+
+The following sequence diagram demonstrates how `StudyTrackerParser` parses the command.
+
+![Add OperatingHoursSequenceDiagram](images/AddOperatingHoursSequenceDiagram.png)
+
+
+### Enhanced List feature
 #### Overview
 
 The List Command is enhanced to support filtering of favourites and tags.
@@ -336,7 +455,7 @@ The following sequence diagram demonstrates how `StudyTrackerParser` parses the 
 * **Alternative 1:** Filtering by tags show study spots that contain at least one of the specified tags.
 
 
-We felt that our choice would be the most intuitive behaviour of filter. 
+The current choice was chosen as it is intuitive and most modern desktop applications follow this behaviour. 
 
 #### Future Extensions
 

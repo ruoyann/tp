@@ -1,0 +1,12 @@
+@startuml
+!include style.puml
+skinparam ClassFontColor #000000
+skinparam ClassBorderColor #000000
+show fields
+
+object "__:OperatingHours__" as OperatingHours {
+        value = "0900-2200, 0900-1800"
+        weekdaysValue = "0900-2200"
+        weekendsValue = "0900-1800"
+    }
+@enduml

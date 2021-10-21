@@ -1,0 +1,23 @@
+@startuml
+!include style.puml
+skinparam ClassFontColor #000000
+skinparam ClassBorderColor #000000
+show fields
+
+title Partial Default StudyTracker (Only name and hours)
+
+package List<StudySpots> {
+    object "__:StudySpot__" as Starbucks {
+        name : "Starbucks UTown"
+        studiedHours : "5"
+        ...
+    }
+    object "__:StudySpot__" as aliasBye {
+        name : "COM1 Tech Hangout",
+        studiedHours : "3"
+        ...
+    }
+
+}
+
+@end
