@@ -52,7 +52,7 @@ StudySpot *--> Address
 StudySpot *--> Amenities
 StudySpot *--> StudiedHours
 StudySpot *--> Favourite
-Person *--> "*" Tag
+StudySpot *--> "*" Tag
 
 Name -[hidden]right-> Rating
 Rating -[hidden]right-> Address
