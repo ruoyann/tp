@@ -354,18 +354,11 @@ The Edit Command is facilitated by two classes: `EditCommand.java` and `EditComm
 
 Given below is an example usage scenario of removing a tag from a study spot and how the mechanism behaves.
 
-Step 1. The user executes `edit spot/com rt/noisy` to remove `noisy:Tag` from `com:StudySpot`.
-`StudyTrackerParser` class creates a `EditCommandParser` to parse the command. `EditCommandParser` then parses the 
-user input to find the `Name` object of the study spot using `ParserUtil#parseName(String name)`. An `EditStudySpotDescriptor`
-object is also created and since a tag is to be removed, `EditStudySpotDescriptor#setRemovedTags(Set<Tag> removedTags)`
-is called. Both the `Name` and `EditStudySpotDescriptor` objects are then passed as arguments to construct 
-an `EditCommand` object.
+Step 1. The user executes `edit spot/com rt/noisy` to remove the Tag `noisy` from the StudySpot `com`. 
+`StudyTrackerParser` then parses this input and creates an `EditCommand` object.
 
-Step 2. `LogicManager` executes the `EditCommand` object and calls 
-`EditCommand#createEditedStudySpot(StudySpot studySpotToEdit, EditStudySpotDescriptor editStudySpotDescriptor)` which
-creates an `StudySpot` object with the edited fields. `Model#setStudySpot(StudySpot target, StudySpot editedStudySpot)`
-and `Model#updateFilteredStudySpotList(Predicate<StudySpot> predicate)` is then called to update the model 
-in StudyTracker.
+Step 2. `LogicManager` executes the `EditCommand` object and updates the model in StudyTracker with the edited study
+spot.
 
 The following sequence diagram demonstrates how `StudyTrackerParser` parses the command.
 
