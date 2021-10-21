@@ -386,7 +386,6 @@ The following are examples showing the `Default` and `DotsDark` theme.
 * `button` — button colour
 
 ### Operating Hours
-
 #### Overview
 
 Operating hours allow users to specify the opening and closing hours of a study spot.
@@ -420,8 +419,7 @@ The following sequence diagram demonstrates how `StudyTrackerParser` parses the 
 ![Add OperatingHoursSequenceDiagram](images/AddOperatingHoursSequenceDiagram.png)
 
 
-### Enhanced List Command
-
+### Enhanced List feature
 #### Overview
 
 The List Command is enhanced to support filtering of favourites and tags.
@@ -453,7 +451,7 @@ The following sequence diagram demonstrates how `StudyTrackerParser` parses the 
 * **Alternative 1:** Filtering by tags show study spots that contain at least one of the specified tags.
 
 
-We felt that our choice would be the most intuitive behaviour of filter. 
+The current choice was chosen as it is intuitive and most modern desktop applications follow this behaviour. 
 
 #### Future Extensions:
 
