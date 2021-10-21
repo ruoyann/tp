@@ -337,10 +337,6 @@ The following sequence diagram demonstrates how `StudyTrackerParser` parses the 
 ![Add OperatingHoursSequenceDiagram](images/AddOperatingHoursSequenceDiagram.png)
 
 
-
-
-
-
 ### Enhanced List Command
 
 #### Overview

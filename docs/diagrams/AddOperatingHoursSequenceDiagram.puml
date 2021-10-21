@@ -1,11 +1,76 @@
 @startuml
-'https://plantuml.com/sequence-diagram
+!include style.puml
 
-autonumber
+box Logic LOGIC_COLOR_T1
+participant ":LogicManager" as LogicManager LOGIC_COLOR
+participant ":StudyTrackerParser" as StudyTrackerParser LOGIC_COLOR
+participant ":AddCommandParser" as AddCommandParser LOGIC_COLOR
+participant ":ParserUtil" as ParserUtil LOGIC_COLOR
+participant ":AddCommand" as AddCommand LOGIC_COLOR
+participant ":CommandResult" as CommandResult LOGIC_COLOR
+end box
 
-Alice -> Bob: Authentication Request
-Bob --> Alice: Authentication Response
+box Model MODEL_COLOR_T1
+participant ":Model" as Model MODEL_COLOR
+end box
 
-Alice -> Bob: Another authentication Request
-Alice <-- Bob: another authentication Response
+[-> LogicManager : execute("add n/com r/5 o/0900-2200, 0900-1800")
+activate LogicManager
+
+LogicManager -> StudyTrackerParser : parseCommand("add n/com r/5 o/0900-2200, 0900-1800")
+activate StudyTrackerParser
+
+create AddCommandParser
+StudyTrackerParser -> AddCommandParser
+activate AddCommandParser
+
+AddCommandParser --> StudyTrackerParser
+deactivate AddCommandParser
+
+StudyTrackerParser -> AddCommandParser : parse("add n/com r/5 o/0900-2200, 0900-1800")
+activate AddCommandParser
+
+AddCommandParser -> ParserUtil : parseOperatingHours("0900-2200, 0900-1800")
+activate ParserUtil
+
+ParserUtil --> AddCommandParser
+deactivate ParserUtil
+
+create AddCommand
+AddCommandParser -> AddCommand
+activate AddCommand
+
+AddCommand --> AddCommandParser
+deactivate AddCommand
+
+AddCommandParser --> StudyTrackerParser
+deactivate AddCommandParser
+'Hidden arrow to position the destroy marker below the end of the activation bar.
+AddCommandParser -[hidden]-> StudyTrackerParser
+destroy AddCommandParser
+
+StudyTrackerParser --> LogicManager
+deactivate StudyTrackerParser
+
+LogicManager -> AddCommand : execute()
+activate AddCommand
+
+AddCommand -> Model : addStudySpot(study spot)
+activate Model
+
+Model --> AddCommand
+deactivate Model
+
+create CommandResult
+AddCommand -> CommandResult
+activate CommandResult
+
+CommandResult --> AddCommand
+deactivate CommandResult
+
+AddCommand --> LogicManager : result
+deactivate AddCommand
+
+[<--LogicManager
+deactivate LogicManager
 @enduml
