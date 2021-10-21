@@ -14,10 +14,10 @@ box Model MODEL_COLOR_T1
 participant ":Model" as Model MODEL_COLOR
 end box
 
-[-> LogicManager : execute("add n/com r/5 o/0900-2200, 0900-1800")
+[-> LogicManager : execute("add n/com r/5 \no/0900-2200, 0900-1800")
 activate LogicManager
 
-LogicManager -> StudyTrackerParser : parseCommand("add n/com r/5 o/0900-2200, 0900-1800")
+LogicManager -> StudyTrackerParser : parseCommand("add n/com r/5 \no/0900-2200, 0900-1800")
 activate StudyTrackerParser
 
 create AddCommandParser
@@ -27,7 +27,7 @@ activate AddCommandParser
 AddCommandParser --> StudyTrackerParser
 deactivate AddCommandParser
 
-StudyTrackerParser -> AddCommandParser : parse("n/com r/5 o/0900-2200, 0900-1800")
+StudyTrackerParser -> AddCommandParser : parse("n/com r/5 \no/0900-2200, 0900-1800")
 activate AddCommandParser
 
 AddCommandParser -> ParserUtil : parseOperatingHours("0900-2200, 0900-1800")

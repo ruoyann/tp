@@ -15,15 +15,8 @@ end box
 [-> LogicManager : execute("myAdd Starbucks t/cold")
 activate LogicManager
 
-LogicManager -> StudyTrackerParser : parseCommand("myAdd Starbucks t/cold")
+LogicManager -> StudyTrackerParser : parseCommand("myAdd \nStarbucks t/cold")
 activate StudyTrackerParser
-
-create AddCommandParser
-StudyTrackerParser -> AddCommandParser
-activate AddCommandParser
-
-AddCommandParser --> StudyTrackerParser
-deactivate AddCommandParser
 
 StudyTrackerParser -> StudyTrackerParser : isInvokingAlias()
 activate StudyTrackerParser

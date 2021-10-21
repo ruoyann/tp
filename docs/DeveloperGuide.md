@@ -177,16 +177,16 @@ Aliases are stored in the `UserPrefs` object.
   Example: `list`, `edit`, `find` are command words.
 
 * **Well-formed command** — A command is well-formed if it has exactly one command word (or alias) and optional arguments.
-    
-Examples:
+
+    Examples:
   
-- `list` - well-formed
-- `add n/Starbucks`  —  well-formed, since it contains command word `add` and argument `n/Starbucks`.
+    * `list` - well-formed
+    * `add n/Starbucks`  —  well-formed, since it contains command word `add` and argument `n/Starbucks`.
     However, it is invalid (i.e. will throw and error when executed), since it is missing required argument `rating`.
-- `myAdd t/cold`  —  well-formed, since it contains alias `myAdd` and argument `t/cold`.
+    * `myAdd t/cold`  —  well-formed, since it contains alias `myAdd` and argument `t/cold`.
   `myAdd` will itself expand to another well-formed command (by definition of Alias).
-- `add list find n/Starbucks r/5`  —  not well-formed, since it has 3 command words (only should have one).
-- `myAdd add n/Starbucks r/5`  —  not well-formed, since it has both 1 alias and 1 command word (only should have one).
+    * `add list find n/Starbucks r/5`  —  not well-formed, since it has 3 command words (only should have one).
+    * `myAdd add n/Starbucks r/5`  —  not well-formed, since it has both 1 alias and 1 command word (only should have one).
 
 #### Implementation of Alias feature
 
@@ -216,7 +216,7 @@ Given below is an example usage scenario and how the Alias feature behaves at ea
 **Step 2.** The user executes `alias al/myAdd cmd/add r/5 n/` which creates an alias `myAdd` with command `add r/5 n/`.
 The `alias` command calls `Model#addAlias()`, adding this newly created alias to the Model and in UserPrefs.
 
-![UndoRedoState1](images/AliasState1.png)
+![AliasState1](images/AliasState1.png)
 
 <div markdown="span" class="alert alert-info">:information_source: 
 **Note:** Observe how the command is incomplete!
@@ -231,7 +231,7 @@ Within `StudyTrackerParser`, alias parsing takes place by fetching user alias in
 The command is expanded to `add r/5 n/Starbucks t/cold`.
 The string is then passed to the corresponding `AddCommandParser`, and an `AddCommand` is created.
 
-The following sequence diagram demonstrates how StudyTrackerParser parses the input with an alias:
+The following sequence diagram demonstrates how StudyTrackerParser parses the input with this new `myAdd` alias:
 
 ![AliasSequenceDiagram](images/AliasSequenceDiagram.png)
 
@@ -247,7 +247,7 @@ The following activity diagram summarizes what happens when a user executes a ne
 
 <img src="images/AliasActivityDiagram.png" width="350" />
 
-#### Design considerations:
+#### Design considerations
 
 **Aspect: What aliases should be allowed:**
 
@@ -320,7 +320,7 @@ The following activity diagram summarizes what happens when a user executes a ne
 
 ![LogActivityDiagram](images/LogActivityDiagram.png)
 
-### Design considerations
+#### Design considerations
 
 Initially, Log Command was designed for users to keep track of how long they studied somewhere, and was supposed to 
 only add the value provided by the user to the current value (which is the default behaviour of the log command).
@@ -359,8 +359,12 @@ The GuiSettings class handles information about GUI width, height, position, and
 These settings are stored by `UserPrefs` in the Model.
 
 Themes are stored as Strings representing the theme name.
-The `MainWindow` Ui component is able to communicate with the Logic class to retrieve and write the currently selected themes.
-Then, the `MainWindow` will take the stored theme and load the corresponding CSS files to set the colours of the JavaFX app.
+For example, `"default"` represents the default theme.
+
+The `MainWindow` Ui component communicates with the Logic class to read and write the currently selected theme.
+Then, the `MainWindow` takes the stored theme and injects the corresponding CSS file to set the colours of the JavaFX app.
+
+In the example, `"default"` will be parsed to `ThemeDefault.css`, which is injected into the JavaFX stage.
 
 The following activity diagram summarizes the process of customizing themes.
 
@@ -444,7 +448,7 @@ The following sequence diagram demonstrates how `StudyTrackerParser` parses the 
 ![ListSequenceDiagram](images/ListSequenceDiagram.png)
 
 
-#### Design considerations:
+#### Design considerations
 
 **Behaviour of filters with multiple tags:**
 * **Current choice:** Filtering by tags show study spots that all specified tags.

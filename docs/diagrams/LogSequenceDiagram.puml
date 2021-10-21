@@ -5,7 +5,7 @@ box Logic LOGIC_COLOR_T1
 participant ":LogicManager" as LogicManager LOGIC_COLOR
 participant ":StudyTrackerParser" as StudyTrackerParser LOGIC_COLOR
 participant ":LogCommandParser" as LogCommandParser LOGIC_COLOR
-participant "logCommand:LogCommand" as LogCommand LOGIC_COLOR
+participant "lc:LogCommand" as LogCommand LOGIC_COLOR
 participant ":CommandResult" as CommandResult LOGIC_COLOR
 end box
 
@@ -13,10 +13,10 @@ box Model MODEL_COLOR_T1
 participant ":Model" as Model MODEL_COLOR
 end box
 
-[-> LogicManager : execute("log n/Starbucks hr/5")
+[-> LogicManager : execute("log \nn/Starbucks hr/5")
 activate LogicManager
 
-LogicManager -> StudyTrackerParser : parseCommand("log n/Starbucks hr/5")
+LogicManager -> StudyTrackerParser : parseCommand("log \nn/Starbucks hr/5")
 activate StudyTrackerParser
 
 create LogCommandParser
@@ -33,22 +33,22 @@ create LogCommand
 LogCommandParser -> LogCommand
 activate LogCommand
 
-LogCommand --> LogCommandParser : logCommand
+LogCommand --> LogCommandParser : lc
 deactivate LogCommand
 
-LogCommandParser --> StudyTrackerParser : logCommand
+LogCommandParser --> StudyTrackerParser : lc
 deactivate LogCommandParser
 'Hidden arrow to position the destroy marker below the end of the activation bar.
 LogCommandParser -[hidden]-> StudyTrackerParser
 destroy LogCommandParser
 
-StudyTrackerParser --> LogicManager : logCommand
+StudyTrackerParser --> LogicManager : lc
 deactivate StudyTrackerParser
 
 LogicManager -> LogCommand : execute()
 activate LogCommand
 
-LogCommand -> Model : setStudySpot(Starbucks, updatedStarbucks)
+LogCommand -> Model : setStudySpot(Starbucks,\n updatedStarbucks)
 activate Model
 
 Model --> LogCommand

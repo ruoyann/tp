@@ -1,5 +1,5 @@
 @startuml
-title StudyTrackerParser parsing Aliases
+title Activity: StudyTrackerParser parsing Aliases
 
 start
 :User executes command;
@@ -8,7 +8,7 @@ start
 'diamond we place it as the true branch instead.
 
 if () then ([command contains alias])
-    :Get expanded
+    :Parser gets expanded
     command from alias;
     :Prepend expanded
     command to initial
@@ -17,7 +17,7 @@ else ([else])
 endif
 
 :Create new Command
-based on command word
+from command word
 and arguments;
 
 stop
