@@ -176,16 +176,16 @@ Aliases are stored in the `UserPrefs` object.
   Example: `list`, `edit`, `find` are command words.
 
 * **Well-formed command** — A command is well-formed if it has exactly one command word (or alias) and optional arguments.
-    
-Examples:
+
+    Examples:
   
-- `list` - well-formed
-- `add n/Starbucks`  —  well-formed, since it contains command word `add` and argument `n/Starbucks`.
+    * `list` - well-formed
+    * `add n/Starbucks`  —  well-formed, since it contains command word `add` and argument `n/Starbucks`.
     However, it is invalid (i.e. will throw and error when executed), since it is missing required argument `rating`.
-- `myAdd t/cold`  —  well-formed, since it contains alias `myAdd` and argument `t/cold`.
+    * `myAdd t/cold`  —  well-formed, since it contains alias `myAdd` and argument `t/cold`.
   `myAdd` will itself expand to another well-formed command (by definition of Alias).
-- `add list find n/Starbucks r/5`  —  not well-formed, since it has 3 command words (only should have one).
-- `myAdd add n/Starbucks r/5`  —  not well-formed, since it has both 1 alias and 1 command word (only should have one).
+    * `add list find n/Starbucks r/5`  —  not well-formed, since it has 3 command words (only should have one).
+    * `myAdd add n/Starbucks r/5`  —  not well-formed, since it has both 1 alias and 1 command word (only should have one).
 
 #### Implementation of Alias feature
 
@@ -230,7 +230,7 @@ Within `StudyTrackerParser`, alias parsing takes place by fetching user alias in
 The command is expanded to `add r/5 n/Starbucks t/cold`.
 The string is then passed to the corresponding `AddCommandParser`, and an `AddCommand` is created.
 
-The following sequence diagram demonstrates how StudyTrackerParser parses the input with an alias:
+The following sequence diagram demonstrates how StudyTrackerParser parses the input with this new `myAdd` alias:
 
 ![AliasSequenceDiagram](images/AliasSequenceDiagram.png)
 
