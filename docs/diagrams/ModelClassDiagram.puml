@@ -42,7 +42,7 @@ ModelManager -right-> "1" UserPrefs
 UserPrefs .up.|> ReadOnlyUserPrefs
 
 StudyTracker *--> "1" UniqueStudySpotListList
-StudyTracker *--> "1" UniqueFavouriteStudySpotListList
+StudyTracker *--> "1" UniqueFavouriteStudySpotList
 UniqueStudySpotList --> "~* all" StudySpot
 UniqueFavouriteStudySpotList --> "*" StudySpot
 StudySpot *--> Name
