@@ -10,6 +10,7 @@ Class "{abstract}\nUiPart" as UiPart
 Class UiManager
 Class MainWindow
 Class HelpWindow
+Class SettingsWindow
 Class ResultDisplay
 Class StudySpotListPanel
 Class StudySpotCard
@@ -35,6 +36,7 @@ MainWindow *-down-> "1" ResultDisplay
 MainWindow *-down-> "1" StudySpotListPanel
 MainWindow *-down-> "1" StatusBarFooter
 MainWindow --> "0..1" HelpWindow
+MainWindow --> "0..1" SettingsWindow
 
 StudySpotListPanel -down-> "*" StudySpotCard
 
@@ -51,7 +53,8 @@ StudySpotCard ..> Model
 UiManager -right-> Logic
 MainWindow -left-> Logic
 
-StudySpotListPanel -[hidden]left- HelpWindow
+StudySpotListPanel -[hidden]left- SettingsWindow
+SettingsWindow -[hidden]left- HelpWindow
 HelpWindow -[hidden]left- CommandBox
 CommandBox -[hidden]left- ResultDisplay
 ResultDisplay -[hidden]left- StatusBarFooter
