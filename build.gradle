@@ -24,6 +24,10 @@ run {
     enableAssertions = true
 }
 
+run {
+    enableAssertions = true
+}
+
 test {
     useJUnitPlatform()
     finalizedBy jacocoTestReport

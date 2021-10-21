@@ -5,23 +5,26 @@ skinparam arrowColor MODEL_COLOR
 skinparam classBackgroundColor MODEL_COLOR
 
 Package Model <<Rectangle>>{
-Interface ReadOnlyAddressBook <<Interface>>
+Interface ReadOnlyStudyTracker <<Interface>>
 Interface ReadOnlyUserPrefs <<Interface>>
 Interface Model <<Interface>>
-Class AddressBook
-Class ReadOnlyAddressBook
+Class StudyTracker
+Class ReadOnlyStudyTracker
 Class Model
 Class ModelManager
 Class UserPrefs
 Class ReadOnlyUserPrefs
 
-
-Class UniquePersonList
-Class Person
-Class Address
-Class Email
+Class UniqueStudySpotList
+Class UniqueFavouriteStudySpotList
+Class StudySpot
 Class Name
-Class Phone
+Class Rating
+Class Address
+Class OperatingHours
+Class Amenities
+Class StudiedHours
+Class Favourite
 Class Tag
 
 }
@@ -29,26 +32,31 @@ Class Tag
 Class HiddenOutside #FFFFFF
 HiddenOutside ..> Model
 
-AddressBook .up.|> ReadOnlyAddressBook
+StudyTracker .up.|> ReadOnlyStudyTracker
 
 ModelManager .up.|> Model
 Model .right.> ReadOnlyUserPrefs
-Model .left.> ReadOnlyAddressBook
-ModelManager -left-> "1" AddressBook
+Model .left.> ReadOnlyStudyTracker
+ModelManager -left-> "1" StudyTracker
 ModelManager -right-> "1" UserPrefs
 UserPrefs .up.|> ReadOnlyUserPrefs
 
-AddressBook *--> "1" UniquePersonList
-UniquePersonList --> "~* all" Person
-Person *--> Name
-Person *--> Phone
-Person *--> Email
-Person *--> Address
+StudyTracker *--> "1" UniqueStudySpotListList
+StudyTracker *--> "1" UniqueFavouriteStudySpotListList
+UniqueStudySpotList --> "~* all" StudySpot
+UniqueFavouriteStudySpotList --> "*" StudySpot
+StudySpot *--> Name
+StudySpot *--> Rating
+StudySpot *--> OperatingHours
+StudySpot *--> Address
+StudySpot *--> Amenities
+StudySpot *--> StudiedHours
+StudySpot *--> Favourite
 Person *--> "*" Tag
 
-Name -[hidden]right-> Phone
-Phone -[hidden]right-> Address
-Address -[hidden]right-> Email
+Name -[hidden]right-> Rating
+Rating -[hidden]right-> Address
+Address -[hidden]right-> OperatingHours
 
-ModelManager -->"~* filtered" Person
+ModelManager -->"~* filtered" StudySpot
 @enduml
