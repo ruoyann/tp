@@ -1,0 +1,79 @@
+@startuml
+!include style.puml
+
+box Logic LOGIC_COLOR_T1
+participant ":LogicManager" as LogicManager LOGIC_COLOR
+participant ":StudyTrackerParser" as StudyTrackerParser LOGIC_COLOR
+participant ":AddCommandParser" as AddCommandParser LOGIC_COLOR
+participant ":ParserUtil" as ParserUtil LOGIC_COLOR
+participant "a:AddCommand" as AddCommand LOGIC_COLOR
+participant ":CommandResult" as CommandResult LOGIC_COLOR
+end box
+
+box Model MODEL_COLOR_T1
+participant ":Model" as Model MODEL_COLOR
+end box
+
+[-> LogicManager : execute("add n/COM1 r/5 m/wifi")
+activate LogicManager
+
+LogicManager -> StudyTrackerParser : parseCommand("add n/COM1 r/5 m/wifi")
+activate StudyTrackerParser
+
+create AddCommandParser
+StudyTrackerParser -> AddCommandParser
+activate AddCommandParser
+
+AddCommandParser --> StudyTrackerParser
+deactivate AddCommandParser
+
+StudyTrackerParser -> AddCommandParser : parse("n/COM1 r/5 m/wifi")
+activate AddCommandParser
+
+deactivate ParserUtil
+
+AddCommandParser -> ParserUtil : parseAmenity("wifi")
+activate ParserUtil
+ParserUtil --> AddCommandParser
+deactivate ParserUtil
+
+create AddCommand
+AddCommandParser -> AddCommand
+activate AddCommand
+
+AddCommand --> AddCommandParser : a
+AddCommandParser --> StudyTrackerParser : a
+deactivate AddCommand
+
+StudyTrackerParser --> LogicManager : a
+deactivate AddCommandParser
+'Hidden arrow to position the destroy marker below the end of the activation bar. DeleteCommandParser -[hidden]-> StudyTrackerParser
+AddCommandParser -[hidden]-> StudyTrackerParser
+destroy AddCommandParser
+
+LogicManager -> AddCommand : execute()
+activate AddCommand
+
+AddCommand -> Model : addStudySpot(COM1)
+activate Model
+deactivate StudyTrackerParser
+
+Model --> AddCommand
+deactivate Model
+
+create CommandResult
+AddCommand -> CommandResult
+activate CommandResult
+
+CommandResult --> AddCommand
+deactivate CommandResult
+
+AddCommand --> LogicManager : result
+deactivate AddCommand
+deactivate AddCommandParser
+'Hidden arrow to position the destroy marker below the end of the activation bar.
+AddCommandParser -[hidden]-> StudyTrackerParser
+
+[<--LogicManager
+deactivate LogicManager
+@enduml
