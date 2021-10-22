@@ -129,7 +129,7 @@ The `Model` component,
 
 <div markdown="span" class="alert alert-info">:information_source: **Note:** An alternative (arguably, a more OOP) model is given below. It has a `Tag` list in the `StudyTracker`, which `StudySpot` references. This allows `StudyTracker` to only require one `Tag` object per unique tag, instead of each `StudySpot` needing their own `Tag` objects.<br>
 
-<img src="images/BetterModelClassDiagram.png" width="550" />
+<img src="images/BetterModelClassDiagram.png" width="600" />
 
 </div>
 
