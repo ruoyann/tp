@@ -30,8 +30,6 @@ deactivate AddCommandParser
 StudyTrackerParser -> AddCommandParser : parse("n/COM1 r/5 m/wifi")
 activate AddCommandParser
 
-deactivate ParserUtil
-
 AddCommandParser -> ParserUtil : parseAmenity("wifi")
 activate ParserUtil
 ParserUtil --> AddCommandParser
@@ -42,21 +40,22 @@ AddCommandParser -> AddCommand
 activate AddCommand
 
 AddCommand --> AddCommandParser : a
-AddCommandParser --> StudyTrackerParser : a
 deactivate AddCommand
 
-StudyTrackerParser --> LogicManager : a
+AddCommandParser --> StudyTrackerParser : a
 deactivate AddCommandParser
-'Hidden arrow to position the destroy marker below the end of the activation bar. DeleteCommandParser -[hidden]-> StudyTrackerParser
+'Hidden arrow to position the destroy marker below the end of the activation bar.
 AddCommandParser -[hidden]-> StudyTrackerParser
 destroy AddCommandParser
+
+StudyTrackerParser --> LogicManager : a
+deactivate StudyTrackerParser
 
 LogicManager -> AddCommand : execute()
 activate AddCommand
 
 AddCommand -> Model : addStudySpot(COM1)
 activate Model
-deactivate StudyTrackerParser
 
 Model --> AddCommand
 deactivate Model
