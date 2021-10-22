@@ -342,12 +342,41 @@ Running `Rate5 Bishan Library` would then result in `edit r/5 spot/Bishan Librar
 
 Removes user-defined aliases.
 
-**Format** `unalias al/ALIAS*` to remove alias
+**Format:** `unalias al/ALIAS*` to remove alias
 
 **Example:**
 ```
 unalias al/myAdd
 Removed alias 'myAdd'
+```
+
+### Logging study hours: `log`
+
+After studying at a certain StudySpot, you can log how many hours you have studied at this location. You can also reset 
+the value to 0, or hard set it to the value of your choice by using the `-r` and `-o` flags respectively, as shown 
+below .
+
+**Format:** `log n/NAME* hr/NUM_OF_HOURS*` to log additional hours at the study spot
+
+**Format** `log -o n/NAME* hr/NUM_OF_HOURS*` to replace the current studied hours at the study spot with the input value
+
+**Format** `log -r n/NAME*` to reset the studied hours at the study spot to 0
+
+<div markdown="span" class="alert alert-primary">:bulb: **Tip:**
+The flag `-o` stands for override, to override the studied hours with what is input
+The flag `-r` stands for reset, which resets the value to 0
+</div>
+
+**Example:**
+```
+log n/Starbucks hr/5
+Logged 5 hours at Starbucks!
+
+log -o n/Starbucks hr/5
+Changed hours to 5 at Starbucks!
+
+log -r n/Starbucks
+Reset hours at Starbucks!
 ```
 
 ### Saving data
@@ -394,5 +423,6 @@ Action | Format, Examples
 **Find** | `find n/NAME*`<br> e.g. `find n/lib`
 **Help** | `help`
 **List** | `list -f -t t/TAG...`
+**Log** | `log -o n/NAME* hr/NUM_OF_HOURS*` <br> e.g. `log -o n/Starbucks hr/5`
 **Unalias** | `unalias al/ALIAS*`
 **Unfav** | `unfav n/NAME*`
