@@ -255,9 +255,6 @@ Finds study spots whose names contain any of the given keywords.
 ```
 find library
 3 study spot(s) listed!
-  1. Central Library
-  2. Hon Sui Sen Memorial Library
-  3. Jurong Library
 ```
 
 ### Deleting a study spot : `delete`
