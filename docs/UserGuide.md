@@ -346,8 +346,8 @@ Removes user-defined aliases.
 
 **Example:**
 ```
-unalias al/myAdd
-Removed alias 'myAdd'
+unalias al/myList
+Removed alias 'myList'
 ```
 
 ### Saving data

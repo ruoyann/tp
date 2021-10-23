@@ -27,7 +27,7 @@ public class AliasCommand extends Command {
 
     public static final String FLAG_SHOW = "s";
 
-    public static final String MESSAGE_SUCCESS_SET = "Added alias %1$s.";
+    public static final String MESSAGE_SUCCESS_SET = "Added alias %1$s";
     public static final String MESSAGE_SUCCESS_SHOW = "Here are your aliases:\n%1$s.";
 
     private final boolean isShowType;
