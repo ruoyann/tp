@@ -33,6 +33,9 @@ public interface Logic {
     /** Returns an unmodifiable view of the filtered list of study spots */
     ObservableList<StudySpot> getFilteredStudySpotList();
 
+    /** Returns an unmodifiable view of the list of favourite study spots */
+    ObservableList<StudySpot> getFavouriteStudySpotList();
+
     /**
      * Returns an unmodifiable view of the non filtered study spot list
      */

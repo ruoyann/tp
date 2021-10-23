@@ -43,6 +43,13 @@
     -fx-font-weight: bold;
 }
 
+.h2-size {
+    -fx-font-size: 18pt;
+    -fx-font-family: "Open Sans Bold";
+    -fx-text-fill: bg-text;
+    -fx-font-weight: bold;
+}
+
 .text-field {
     -fx-font-size: 12pt;
     -fx-font-family: "Open Sans Semibold";
@@ -138,9 +145,22 @@
     -fx-opacity: 0.6;
 }
 
-.cell_small_label {
+.cell_medium_label {
     -fx-font-family: "Open Sans Regular";
     -fx-font-size: 13px;
+    -fx-text-fill: fg-text;
+}
+
+.cell_small_label {
+    -fx-font-family: "Open Sans Regular";
+    -fx-font-size: 12px;
+    -fx-text-fill: fg-text;
+}
+
+.cell_medium_bold_label {
+    -fx-font-family: "Open Sans Bold";
+    -fx-font-weight: bold;
+    -fx-font-size: 16px;
     -fx-text-fill: fg-text;
 }
 
@@ -150,10 +170,23 @@
     -fx-text-fill: fg-text;
 }
 
+.cell_hours_small_label {
+    -fx-font-family: "Open Sans Regular";
+    -fx-font-size: 10px;
+    -fx-text-fill: fg-text;
+}
+
 .cell_hour_digit_label {
     -fx-font-family: "Open Sans Bold";
     -fx-font-weight: bold;
     -fx-font-size: 22px;
+    -fx-text-fill: fg-text;
+}
+
+.cell_hour_digit_small_label {
+    -fx-font-family: "Open Sans Bold";
+    -fx-font-weight: bold;
+    -fx-font-size: 14px;
     -fx-text-fill: fg-text;
 }
 
@@ -166,6 +199,17 @@
     -fx-opacity: 0.85;
     -fx-min-height: 24;
     -fx-max-height: 24;
+}
+
+.icon_small_container {
+    -fx-spacing: 10;
+    -fx-font-size: 10px;
+    -fx-background-color: derive(fg-surface, 20%);
+    -fx-padding: 4 16 4 16;
+    -fx-background-radius: 10;
+    -fx-opacity: 0.85;
+    -fx-min-height: 20;
+    -fx-max-height: 20;
 }
 
 .svg_icon {
@@ -227,13 +271,13 @@
 
 /* Info display */
 
-.info-display .label {
-    -fx-font-family: "Open Sans Bold";
-    -fx-font-size: 18pt;
-    -fx-text-fill: bg-text;
-    -fx-font-weight: bold;
-    -fx-font-style: italic;
-}
+/*.info-display .label {*/
+/*    -fx-font-family: "Open Sans Bold";*/
+/*    -fx-font-size: 18pt;*/
+/*    -fx-text-fill: bg-text;*/
+/*    -fx-font-weight: bold;*/
+/*    -fx-font-style: italic;*/
+/*}*/
 
 /* Result pane (the box conatining ResultDisplay and CommandBox */
 .result-pane {

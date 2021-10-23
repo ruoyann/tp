@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.ListView?>
+<?import javafx.scene.layout.VBox?>
+
+<?import javafx.scene.control.Label?>
+
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.StackPane?>
+<VBox xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1">
+    <HBox alignment="CENTER_LEFT" spacing="24">
+        <Label text="Favourites" styleClass="h2-size"/>
+        <Label fx:id="favouritesListCount" styleClass="icon_container" text="0"/>
+    </HBox>
+    <StackPane VBox.vgrow="ALWAYS">
+        <ListView fx:id="favouritesListView" VBox.vgrow="ALWAYS"/>
+        <Label fx:id="favouritesListViewDefaultMessage" styleClass="italics, bg-text, text-field" wrapText="true" textAlignment="CENTER"/>
+    </StackPane>
+</VBox>

@@ -87,7 +87,7 @@ public class StudySpotCard extends UiPart<Region> {
 
 
     /**
-     * Creates a {@code StudySpotCode} with the given {@code StudySpot} and index to display.
+     * Creates a {@code StudySpotCard} with the given {@code StudySpot} and index to display.
      */
     public StudySpotCard(StudySpot studySpot, int displayedIndex) {
         super(FXML);
@@ -110,6 +110,40 @@ public class StudySpotCard extends UiPart<Region> {
                 .forEach(tag -> tags.getChildren().add(getStyledTagLabel(tag.tagName)));
         setFavouriteDisplay(icons, studySpot.isFavourite());
         setAmenitiesDisplay(icons, studySpot);
+    }
+
+    /**
+     * Sets the display of amenities in a HBox with the given {@code iconsDisplay} and {@code studySpot}.
+     */
+    public static void setAmenitiesDisplay(HBox iconsDisplay, StudySpot studySpot) {
+        if (!studySpot.getAmenities().isEmpty()) {
+            HBox amenitiesDisplay = new HBox();
+            amenitiesDisplay.getStyleClass().add("icon_container");
+            setUpdatedAmenitiesDisplay(amenitiesDisplay, studySpot);
+            iconsDisplay.getChildren().add(amenitiesDisplay);
+        }
+    }
+
+    /**
+     * Returns a String representation of a Rating.
+     */
+    public static String setRatingDisplay(Rating providedRating) {
+        int rating = Integer.parseInt(providedRating.value);
+        StringBuilder result = new StringBuilder();
+        for (int i = 0; i < 5; i++) {
+            result.append(rating > 0 ? "★" : "☆");
+            rating -= 1;
+        }
+        return result.toString();
+    }
+
+    /**
+     * Generate a Label that has an accent colour based on its contents.
+     */
+    public static Label getStyledTagLabel(String tagName) {
+        Label newLabel = new Label(tagName);
+        newLabel.getStyleClass().add(getAccentFromTag(tagName));
+        return newLabel;
     }
 
     @Override
@@ -139,16 +173,7 @@ public class StudySpotCard extends UiPart<Region> {
         }
     }
 
-    private void setAmenitiesDisplay(HBox iconsDisplay, StudySpot studySpot) {
-        if (!studySpot.getAmenities().isEmpty()) {
-            HBox amenitiesDisplay = new HBox();
-            amenitiesDisplay.getStyleClass().add("icon_container");
-            setUpdatedAmenitiesDisplay(amenitiesDisplay, studySpot);
-            iconsDisplay.getChildren().add(amenitiesDisplay);
-        }
-    }
-
-    private void setUpdatedAmenitiesDisplay(HBox amenitiesDisplay, StudySpot studySpot) {
+    private static void setUpdatedAmenitiesDisplay(HBox amenitiesDisplay, StudySpot studySpot) {
         studySpot.getAmenities().stream()
                 .sorted(Comparator.comparing(amenity -> amenity.amenityType))
                 .forEach(amenity -> amenitiesDisplay.getChildren().add(getAmenityIconLabel(amenity.amenityType)));
@@ -161,7 +186,7 @@ public class StudySpotCard extends UiPart<Region> {
         return result;
     }
 
-    private Label getAmenityIconLabel(String amenityType) {
+    private static Label getAmenityIconLabel(String amenityType) {
         Label result = new Label();
         result.getStyleClass().add("icon_label");
 
@@ -183,7 +208,7 @@ public class StudySpotCard extends UiPart<Region> {
         }
     }
 
-    private SVGPath getIcon(String svgPathContent, double scale) {
+    private static SVGPath getIcon(String svgPathContent, double scale) {
         SVGPath icon = new SVGPath();
         icon.setScaleX(scale);
         icon.setScaleY(scale);
@@ -192,30 +217,11 @@ public class StudySpotCard extends UiPart<Region> {
         return icon;
     }
 
-    private String setRatingDisplay(Rating providedRating) {
-        int rating = Integer.parseInt(providedRating.value);
-        StringBuilder result = new StringBuilder();
-        for (int i = 0; i < 5; i++) {
-            result.append(rating > 0 ? "★" : "☆");
-            rating -= 1;
-        }
-        return result.toString();
-    }
-
-    /**
-     * Generate a Label that has an accent colour based on its contents.
-     */
-    private Label getStyledTagLabel(String tagName) {
-        Label newLabel = new Label(tagName);
-        newLabel.getStyleClass().add(getAccentFromTag(tagName));
-        return newLabel;
-    }
-
     /**
      * Given a String tagName, hash it to return an accent colour from 0-5.
      * Used in some themes.
      */
-    private String getAccentFromTag(String tagName) {
+    private static String getAccentFromTag(String tagName) {
         int accent = Math.abs(tagName.hashCode() % 5);
         return "tag-accent-" + accent;
     }

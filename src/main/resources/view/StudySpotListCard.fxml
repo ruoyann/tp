@@ -68,7 +68,7 @@
                           scaleX="0.03" scaleY="0.03" styleClass="svg_icon, cell_muted_label" GridPane.halignment="LEFT" />
                 </graphic>
               </Label>
-              <Label fx:id="address" styleClass="cell_small_label" text="\$address" wrapText="true" />
+              <Label fx:id="address" styleClass="cell_medium_label" text="\$address" wrapText="true" />
               <VBox.margin>
                 <Insets left="16.0" />
               </VBox.margin>
@@ -81,7 +81,7 @@
                            scaleX="0.028" scaleY="0.028" styleClass="svg_icon, cell_muted_label" GridPane.halignment="LEFT" />
                 </graphic>
               </Label>
-              <Label fx:id="operatingHours" styleClass="cell_small_label" text="\$operatingHours" wrapText="true" />
+              <Label fx:id="operatingHours" styleClass="cell_medium_label" text="\$operatingHours" wrapText="true" />
             <VBox.margin>
               <Insets left="16.0" />
             </VBox.margin>
@@ -96,7 +96,7 @@
             <Label fx:id="studiedHours" styleClass="cell_hour_digit_label" />
             <Label fx:id="hoursText" styleClass="cell_hours_label, cell_muted_label" text="hours" />
           </HBox>
-          <Label fx:id="rating" alignment="BOTTOM_RIGHT" styleClass="icon_container, cell_small_label" text="\$rating" textAlignment="RIGHT" />
+          <Label fx:id="rating" alignment="BOTTOM_RIGHT" styleClass="icon_container, cell_medium_label" text="\$rating" textAlignment="RIGHT" />
         </children>
       </VBox>
     </GridPane>

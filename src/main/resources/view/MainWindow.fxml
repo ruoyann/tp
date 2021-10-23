@@ -33,7 +33,7 @@
 
           <VBox fx:id="infoDisplay" prefWidth="350.0" minWidth="250.0" styleClass="pane">
             <padding>
-              <Insets top="0" right="20" bottom="10" left="20" />
+              <Insets top="0" right="10" bottom="10" left="10" />
             </padding>
 
             <VBox fx:id="infoDisplayPlaceholder" VBox.vgrow="ALWAYS" />
