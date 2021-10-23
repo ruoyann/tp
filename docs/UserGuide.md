@@ -292,15 +292,9 @@ All study spots have been cleared
 
 ### Exiting the program : `exit`
 
-Closes the StudyTracker.
+Closes the StudyTracker immediately upon entering the command.
 
 **Format:** `exit`
-
-**Example:**
-```
-exit
-Goodbye!
-```
 
 **Command alias:** `bye`, `quit`
 
