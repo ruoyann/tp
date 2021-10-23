@@ -36,10 +36,10 @@ public class LogCommand extends Command {
             + PREFIX_HOURS + "ADDED_HOURS* (required if -r is not input) "
             + "[-r] [-o]\n"
             + "Example: " + COMMAND_WORD + " " + PREFIX_NAME + "Starbucks" + " " + PREFIX_HOURS + "4 ";
-    public static final String MESSAGE_SUCCESS_DEFAULT = "Logged %1$S hours at %2$S!";
+    public static final String MESSAGE_SUCCESS_DEFAULT = "Logged %1$S hours at %2$s!";
     public static final String MESSAGE_ONE_FLAG = "Please only use one flag!";
-    public static final String MESSAGE_SUCCESS_RESET = "Reset hours at %1$S!";
-    public static final String MESSAGE_SUCCESS_OVERRIDE = "Changed hours to %1$S at %2$S!";
+    public static final String MESSAGE_SUCCESS_RESET = "Reset hours at %1$s!";
+    public static final String MESSAGE_SUCCESS_OVERRIDE = "Changed hours to %1$S at %2$s!";
 
     public static final String FLAG_RESET = "r";
     public static final String FLAG_OVERRIDE = "o";
@@ -103,7 +103,8 @@ public class LogCommand extends Command {
         } catch (IllegalValueException e) {
             throw new CommandException(StudiedHours.MESSAGE_HOURS_IS_FULL);
         }
-        return new CommandResult(String.format(MESSAGE_SUCCESS_DEFAULT, studiedHours, nameOfStudySpot));
+        System.out.println(studySpotToAddHours.getName());
+        return new CommandResult(String.format(MESSAGE_SUCCESS_DEFAULT, studiedHours, studySpotToAddHours.getName()));
     }
 
     private CommandResult handleReset(Model model, StudySpot studySpot) {
