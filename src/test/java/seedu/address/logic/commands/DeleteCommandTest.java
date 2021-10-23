@@ -36,7 +36,8 @@ public class DeleteCommandTest {
         StudySpot studySpotToDelete = model.getFilteredStudySpotList().get(0);
         DeleteCommand deleteCommand = new DeleteCommand(VALID_NAME_ONE);
 
-        String expectedMessage = String.format(DeleteCommand.MESSAGE_DELETE_STUDYSPOT_SUCCESS, studySpotToDelete);
+        String expectedMessage = String.format(DeleteCommand.MESSAGE_DELETE_STUDYSPOT_SUCCESS,
+                studySpotToDelete.getName());
 
         ModelManager expectedModel = new ModelManager(model.getStudyTracker(), new UserPrefs());
         expectedModel.deleteStudySpot(studySpotToDelete);
@@ -57,7 +58,8 @@ public class DeleteCommandTest {
         StudySpot studySpotToDelete = model.getFilteredStudySpotList().get(INDEX_FIRST_SPOT.getZeroBased());
         DeleteCommand deleteCommand = new DeleteCommand(VALID_NAME_ONE);
 
-        String expectedMessage = String.format(DeleteCommand.MESSAGE_DELETE_STUDYSPOT_SUCCESS, studySpotToDelete);
+        String expectedMessage = String.format(DeleteCommand.MESSAGE_DELETE_STUDYSPOT_SUCCESS,
+                studySpotToDelete.getName());
 
         Model expectedModel = new ModelManager(model.getStudyTracker(), new UserPrefs());
         expectedModel.deleteStudySpot(studySpotToDelete);
