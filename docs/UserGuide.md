@@ -287,7 +287,7 @@ This command is irreversible!
 **Example:**
 ```
 clear
-All study spots have been cleared
+StudyTracker has been cleared!
 ```
 
 ### Exiting the program : `exit`
