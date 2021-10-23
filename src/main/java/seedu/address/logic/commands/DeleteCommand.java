@@ -50,7 +50,7 @@ public class DeleteCommand extends Command {
         }
 
         model.deleteStudySpot(studySpotToDelete);
-        return new CommandResult(String.format(MESSAGE_DELETE_STUDYSPOT_SUCCESS, studySpotToDelete));
+        return new CommandResult(String.format(MESSAGE_DELETE_STUDYSPOT_SUCCESS, studySpotToDelete.getName()));
     }
 
     @Override

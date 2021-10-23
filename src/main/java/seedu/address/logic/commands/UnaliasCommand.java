@@ -20,7 +20,7 @@ public class UnaliasCommand extends Command {
             + "Example: "
             + COMMAND_WORD + " " + PREFIX_ALIAS + "pwd";
 
-    public static final String MESSAGE_SUCCESS_UNALIAS = "Removed alias %1$s.";
+    public static final String MESSAGE_SUCCESS_UNALIAS = "Removed alias '%1$s'";
     public static final String MESSAGE_NOT_FOUND = "Alias '%1$s' was not found in list of aliases.";
 
     private final Alias alias;

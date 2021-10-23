@@ -153,18 +153,33 @@ public class StudySpot {
 
     @Override
     public String toString() {
+
         final StringBuilder builder = new StringBuilder();
         builder.append(getName())
                 .append("; Rating: ")
-                .append(getRating())
+                .append(getRating());
+
+        if (!getOperatingHours().toString().equals("-")) {
+            builder
                 .append("; Operating Hours: ")
-                .append(getOperatingHours())
+                .append(getOperatingHours());
+        }
+
+        if (!getAddress().toString().equals("-")) {
+            builder
                 .append("; Address: ")
-                .append(getAddress())
-                .append("; Favourite: ")
-                .append(getFavourite())
-                .append("; Studied Hours: ")
-                .append(getStudiedHours());
+                .append(getAddress());
+        }
+
+        if (getFavourite().isFavourite()) {
+            builder.append("; Favourite: ")
+                    .append(getFavourite());
+        }
+
+        if (getStudiedHours().getHours() > 0) {
+            builder.append("; Studied Hours: ")
+                    .append(getStudiedHours());
+        }
 
         Set<Tag> tags = getTags();
         if (!tags.isEmpty()) {

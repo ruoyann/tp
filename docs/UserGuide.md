@@ -161,10 +161,10 @@ Tags, amenities and address are all optional.
 **Examples:**
 ```
 add n/COM1 Basement r/5
-New study spot added: COM1 Basement
+New study spot added: COM1 Basement; Rating: 5; Favourite: false; Studied Hours: 0
 
 add n/Starbucks at UTown r/4 t/noisy m/wifi
-New study spot added: Starbucks at UTown
+New study spot added: Starbucks at UTown; Rating: 4; Favourite: false; Studied Hours: 0; Tags: [noisy]; Amenities: [wifi]
 ```
 
 ### Listing study spots : `list`
@@ -213,8 +213,8 @@ Edits the details of a single study spot.
 
 **Examples:**
 ```
-edit spot/tr3 n/Training Room 3
-Edited study spot: Training Room 3
+edit spot/COM1 Basement n/Basement
+Edited study spot: Basement; Rating: 5; Favourite: false; Studied Hours: 0
 ```
 
 ### Adding a study spot to Favourites: `fav`
@@ -255,9 +255,6 @@ Finds study spots whose names contain any of the given keywords.
 ```
 find library
 3 study spot(s) listed!
-  1. Central Library
-  2. Hon Sui Sen Memorial Library
-  3. Jurong Library
 ```
 
 ### Deleting a study spot : `delete`
@@ -270,8 +267,8 @@ Deletes the specified study spot from the StudyTracker.
 
 **Examples:**
 ```
-delete n/COM1
-Deleted study spot: COM1
+delete n/Basement
+Deleted study spot: Basement 
 ```
 
 ### Clearing all entries : `clear`
@@ -287,20 +284,14 @@ This command is irreversible!
 **Example:**
 ```
 clear
-All study spots have been cleared
+StudyTracker has been cleared!
 ```
 
 ### Exiting the program : `exit`
 
-Closes the StudyTracker.
+Closes the StudyTracker immediately upon entering the command.
 
 **Format:** `exit`
-
-**Example:**
-```
-exit
-Goodbye!
-```
 
 **Command alias:** `bye`, `quit`
 
@@ -346,8 +337,8 @@ Removes user-defined aliases.
 
 **Example:**
 ```
-unalias al/myAdd
-Removed alias 'myAdd'
+unalias al/myList
+Removed alias 'myList'
 ```
 
 ### Saving data
