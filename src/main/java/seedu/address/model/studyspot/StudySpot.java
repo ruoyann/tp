@@ -171,11 +171,15 @@ public class StudySpot {
                 .append(getAddress());
         }
 
-        builder.append("; Favourite: ")
-                .append(getFavourite());
+        if (getFavourite().isFavourite()) {
+            builder.append("; Favourite: ")
+                    .append(getFavourite());
+        }
 
-        builder.append("; Studied Hours: ")
-                .append(getStudiedHours());
+        if (getStudiedHours().getHours() > 0) {
+            builder.append("; Studied Hours: ")
+                    .append(getStudiedHours());
+        }
 
         Set<Tag> tags = getTags();
         if (!tags.isEmpty()) {

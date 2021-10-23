@@ -57,6 +57,15 @@ public class StudiedHours {
         return new StudiedHours(totalHours);
     }
 
+    /**
+     * Returns integer that represents the number of studied hours
+     * @return int
+     */
+
+    public int getHours() {
+        return this.loggedHours;
+    }
+
     @Override
     public String toString() {
         return String.valueOf(loggedHours);
