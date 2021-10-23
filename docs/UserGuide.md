@@ -131,24 +131,13 @@ The **Command Box** is where to enter commands in StudyTracker.
 * `Command Box` — type in your commands here
 * `Display` — results of commands and error messages are shown here.
 
-## Commands
+## Features
 
-This section introduces all the commands in StudyTracker.
+This section introduces all the features in StudyTracker.
 
-### Viewing help : `help`
+### Managing study spots 
 
-Provides a reference for commands in StudyTracker.
-You can also visit the User Guide and Developer Guide by clicking on the buttons in the window.
-![Help window](images/helpMessage.png)
-
-Format: `help`
-
-<div markdown="span" class="alert alert-primary">:bulb: **Tip:**
-View the help window anytime by using the F1 shortcut!
-Alternatively, click on 'Help' in the menu bar!
-</div>
-
-### Adding a study spot: `add`
+#### Adding a study spot: `add`
 
 Adds a study spot to the StudyTracker.
 
@@ -167,7 +156,70 @@ add n/Starbucks at UTown r/4 t/noisy m/wifi
 New study spot added: Starbucks at UTown; Rating: 4; Favourite: false; Studied Hours: 0; Tags: [noisy]; Amenities: [wifi]
 ```
 
-### Listing study spots : `list`
+
+#### Editing a study spot : `edit`
+
+Edits the details of a single study spot.
+
+**Format:** `edit spot/NAME* n/NEW_NAME a/NEW_ADDRESS t/NEW_TAG m/NEW_AMENITY r/NEW_RATING`
+
+* Edits the study spot matching `NAME`.
+  Provided `NAME` is not case-sensitive and **must fully match the study spot name**.
+* At least one of the optional fields must be provided.
+* Name, rating, address will be updated.
+* When editing tags and amenities, `t/` or `m/` will append to existing tags and amenities.
+* You can remove a specific tag or amenity with the `rt/` or `rm/` parameter.
+* You can remove all the study spot’s tags by typing `t/` or `m/` without
+  specifying any tags after it.
+
+**Examples:**
+```
+edit spot/COM1 Basement n/Basement
+Edited study spot: Basement; Rating: 5; Favourite: false; Studied Hours: 0
+```
+
+#### Adding a study spot to Favourites: `fav`
+
+Adds a study spot to the StudyTracker's Favourites.
+
+**Format:** `fav n/NAME*`
+
+**Examples:**
+```
+fav n/COM1 Basement
+Added study spot to favourites: COM1 Basement
+```
+
+#### Removing a study spot from Favourites: `unfav`
+
+Removes a study spot from the StudyTracker's Favourites.
+
+**Format:** `unfav n/NAME*`
+
+**Examples:**
+```
+unfav n/COM1 Basement
+Removed study spot from favourites: COM1 Basement
+```
+
+#### Deleting a study spot : `delete`
+
+Deletes the specified study spot from the StudyTracker.
+
+**Format:** `delete n/NAME*`
+
+* Deletes the study spot with the specified **name**.
+
+**Examples:**
+```
+delete n/Basement
+Deleted study spot: Basement 
+```
+
+
+### Managing StudyTracker list
+
+#### Listing study spots : `list`
 
 Shows saved study spots in the StudyTracker.
 
@@ -196,52 +248,7 @@ Make use of command aliases to speed up typing your inputs!
 
 **Command alias:** `ls`
 
-### Editing a study spot : `edit`
-
-Edits the details of a single study spot.
-
-**Format:** `edit spot/NAME* n/NEW_NAME a/NEW_ADDRESS t/NEW_TAG m/NEW_AMENITY r/NEW_RATING`
-
-* Edits the study spot matching `NAME`.
-  Provided `NAME` is not case-sensitive and **must fully match the study spot name**.
-* At least one of the optional fields must be provided.
-* Name, rating, address will be updated.
-* When editing tags and amenities, `t/` or `m/` will append to existing tags and amenities.
-* You can remove a specific tag or amenity with the `rt/` or `rm/` parameter.
-* You can remove all the study spot’s tags by typing `t/` or `m/` without
-    specifying any tags after it.
-
-**Examples:**
-```
-edit spot/COM1 Basement n/Basement
-Edited study spot: Basement; Rating: 5; Favourite: false; Studied Hours: 0
-```
-
-### Adding a study spot to Favourites: `fav`
-
-Adds a study spot to the StudyTracker's Favourites.
-
-**Format:** `fav n/NAME*`
-
-**Examples:**
-```
-fav n/COM1 Basement
-Added study spot to favourites: COM1 Basement
-```
-
-### Removing a study spot from Favourites: `unfav`
-
-Removes a study spot from the StudyTracker's Favourites.
-
-**Format:** `unfav n/NAME*`
-
-**Examples:**
-```
-unfav n/COM1 Basement
-Removed study spot from favourites: COM1 Basement
-```
-
-### Locating a study spot by name: `find`
+#### Locating a study spot by name: `find`
 
 Finds study spots whose names contain any of the given keywords.
 
@@ -257,45 +264,38 @@ find library
 3 study spot(s) listed!
 ```
 
-### Deleting a study spot : `delete`
+### Logging study hours: `log`
 
-Deletes the specified study spot from the StudyTracker.
+After studying at a certain StudySpot, you can log how many hours you have studied at this location. You can also reset
+the value to 0, or hard set it to the value of your choice by using the `-r` and `-o` flags respectively, as shown
+below .
 
-**Format:** `delete n/NAME*`
+**Format:** `log n/NAME* hr/NUM_OF_HOURS*` to log additional hours at the study spot
 
-* Deletes the study spot with the specified **name**.
+**Format** `log -o n/NAME* hr/NUM_OF_HOURS*` to replace the current studied hours at the study spot with the input value
 
-**Examples:**
-```
-delete n/Basement
-Deleted study spot: Basement 
-```
+**Format** `log -r n/NAME*` to reset the studied hours at the study spot to 0
 
-### Clearing all entries : `clear`
-
-Clears all entries from the StudyTracker.
-
-<div markdown="span" class="alert alert-primary">:exclamation: **NOTE:**
-This command is irreversible!
+<div markdown="span" class="alert alert-primary">:bulb: **Tip:**
+The flag `-o` stands for override, to override the studied hours with what is input
+The flag `-r` stands for reset, which resets the value to 0
 </div>
-
-**Format:** `clear`
 
 **Example:**
 ```
-clear
-StudyTracker has been cleared!
+log n/Starbucks hr/5
+Logged 5 hours at Starbucks!
+
+log -o n/Starbucks hr/5
+Changed hours to 5 at Starbucks!
+
+log -r n/Starbucks
+Reset hours at Starbucks!
 ```
 
-### Exiting the program : `exit`
+### Setting Command Aliases
 
-Closes the StudyTracker immediately upon entering the command.
-
-**Format:** `exit`
-
-**Command alias:** `bye`, `quit`
-
-### Setting command aliases : `alias`, `unalias`
+#### Adding command aliases : `alias`, `unalias`
 
 Adds or shows user-defined aliases.
 
@@ -329,7 +329,7 @@ will set alias `Rate5` to expand to the command `edit r/5 spot/`.
 Running `Rate5 Bishan Library` would then result in `edit r/5 spot/Bishan Library`!
 </div>
 
-### Removing command aliases: `unalias`
+#### Removing command aliases: `unalias`
 
 Removes user-defined aliases.
 
@@ -341,53 +341,66 @@ unalias al/myList
 Removed alias 'myList'
 ```
 
-### Logging study hours: `log`
+### Changing Themes
 
-After studying at a certain StudySpot, you can log how many hours you have studied at this location. You can also reset 
-the value to 0, or hard set it to the value of your choice by using the `-r` and `-o` flags respectively, as shown 
-below .
+From `File > Settings`, select the colour theme you want to use.
+Themes are saved in your user preferences.
 
-**Format:** `log n/NAME* hr/NUM_OF_HOURS*` to log additional hours at the study spot
+![Gui Themes](images/UiThemes.gif)
 
-**Format** `log -o n/NAME* hr/NUM_OF_HOURS*` to replace the current studied hours at the study spot with the input value
 
-**Format** `log -r n/NAME*` to reset the studied hours at the study spot to 0
+### Clearing all entries : `clear`
 
-<div markdown="span" class="alert alert-primary">:bulb: **Tip:**
-The flag `-o` stands for override, to override the studied hours with what is input
-The flag `-r` stands for reset, which resets the value to 0
+Clears all entries from the StudyTracker.
+
+<div markdown="span" class="alert alert-primary">:exclamation: **NOTE:**
+This command is irreversible!
 </div>
+
+**Format:** `clear`
 
 **Example:**
 ```
-log n/Starbucks hr/5
-Logged 5 hours at Starbucks!
-
-log -o n/Starbucks hr/5
-Changed hours to 5 at Starbucks!
-
-log -r n/Starbucks
-Reset hours at Starbucks!
+clear
+StudyTracker has been cleared!
 ```
 
-### Saving data
+### Viewing help : `help`
+
+Provides a reference for commands in StudyTracker.
+You can also visit the User Guide and Developer Guide by clicking on the buttons in the window.
+![Help window](images/helpMessage.png)
+
+Format: `help`
+
+<div markdown="span" class="alert alert-primary">:bulb: **Tip:**
+View the help window anytime by using the F1 shortcut!
+Alternatively, click on 'Help' in the menu bar!
+</div>
+
+
+### Exiting the program : `exit`
+
+Closes the StudyTracker immediately upon entering the command.
+
+**Format:** `exit`
+
+**Command alias:** `bye`, `quit`
+
+
+### Data
+
+#### Saving data
 
 StudyTracker data are saved in the hard disk automatically after any command that changes the data. There is no need to save manually.
 
-### Editing the data file
+#### Editing the data file
 
 StudyTracker data are saved as a JSON file `[home folder]/data/studytracker.json`. Advanced users are welcome to update data directly by editing that data file.
 
 <div markdown="span" class="alert alert-warning">:exclamation: **Caution:**
 If your changes to the data file makes its format invalid, StudyTracker will discard all data and start with an empty data file at the next run.
 </div>
-
-### Changing themes
-
-From `File > Settings`, select the colour theme you want to use.
-Themes are saved in your user preferences.
-
-![Gui Themes](images/UiThemes.gif)
 
 --------------------------------------------------------------------------------------------------------------------
 
