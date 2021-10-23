@@ -370,13 +370,13 @@ The flag `-r` stands for reset, which resets the value to 0
 **Example:**
 ```
 log n/Starbucks hr/5
-Logged 5 hours at Starbucks!
+Logged 5 hours at STARBUCKS!
 
 log -o n/Starbucks hr/5
-Changed hours to 5 at Starbucks!
+Changed hours to 5 at STARBUCKS!
 
 log -r n/Starbucks
-Reset hours at Starbucks!
+Reset hours at STARBUCKS!
 ```
 
 ### Saving data
