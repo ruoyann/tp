@@ -14,7 +14,9 @@ Using detailed data records, and personalised statistics of study time & effecti
 
 Throughout this **User Guide**, you'll find step-by-step information to use StudyTracker.
 
-Want to contribute to development? Check out the [**Developer Guide**](DeveloperGuide.html) instead
+Want to contribute to development? Check out the [**Developer Guide**](DeveloperGuide.html) instead.
+
+<div style="page-break-after: always;"></div>
 
 ## Table of Contents
 
@@ -22,6 +24,8 @@ Want to contribute to development? Check out the [**Developer Guide**](Developer
 {:toc}
 
 ---
+
+<div style="page-break-after: always;"></div>
 
 ## Quick start
 
@@ -128,6 +132,7 @@ Some **invalid** user inputs for the *add command* are provided below:
 * `add PC Commons /UTown /very crowded /toilet /4*` (delimiters and slashes missing from parameters, unnecessary asterisk added outside of parameters)
 * `n/PC Commons a/UTown r/4` (missing command word `add`)
 
+<div style="page-break-after: always;"></div>
 
 ## GUI Layout
 
@@ -184,6 +189,7 @@ add n/Starbucks at UTown r/4 t/noisy m/wifi
 New study spot added: Starbucks at UTown; Rating: 4; Favourite: false; Studied Hours: 0; Tags: [noisy]; Amenities: [wifi]
 ```
 
+<div style="page-break-after: always;"></div>
 
 #### Editing a study spot : `edit`
 
@@ -206,6 +212,8 @@ edit spot/COM1 Basement n/Basement
 Edited study spot: Basement; Rating: 5; Favourite: false; Studied Hours: 0
 ```
 
+<div style="page-break-after: always;"></div>
+
 #### Adding a study spot to Favourites: `fav`
 
 Adds a study spot to the StudyTracker's Favourites.
@@ -218,7 +226,9 @@ fav n/COM1 Basement
 Added study spot to favourites: COM1 Basement
 ```
 
-![Favourites](images/add_favourites.png)
+<img src="images/add_favourites.png" alt="favourites" height="700"/>
+
+<div style="page-break-after: always;"></div>
 
 #### Removing a study spot from Favourites: `unfav`
 
@@ -246,6 +256,7 @@ delete n/Basement
 Deleted study spot: Basement 
 ```
 
+<div style="page-break-after: always;"></div>
 
 ### Managing StudyTracker list
 
@@ -272,7 +283,7 @@ list -f -t t/cold
 Listed all study spots in Favourites with Tags: [cold]
 ```
 
-![List cold study spots](images/list_tags_cold.png)
+<img src="images/list_tags_cold.png" alt="cold tags" height="700"/>
 
 <div markdown="span" class="alert alert-primary">:bulb: **Tip:**
 Make use of command aliases to speed up typing your inputs!
@@ -308,7 +319,7 @@ below .
 
 **Format** `log -r n/NAME*` to reset the studied hours at the study spot to 0
 
-![Log Hours](images/log_hours.png)
+<img src="images/log_hours.png" alt="log hours" height="700"/>
 
 <div markdown="span" class="alert alert-primary">:information_source: **Note:**
 The flag `-o` stands for override, to override the studied hours with what is input
@@ -391,6 +402,8 @@ clear
 StudyTracker has been cleared!
 ```
 
+<div style="page-break-after: always;"></div>
+
 ### Viewing help : `help`
 
 Provides a reference for commands in StudyTracker.
@@ -413,6 +426,7 @@ Closes the StudyTracker immediately upon entering the command.
 
 **Command alias:** `bye`, `quit`
 
+<div style="page-break-after: always;"></div>
 
 ### Managing Themes
 
@@ -420,6 +434,8 @@ From `File > Settings`, select the colour theme you want to use.
 Themes are saved in your user preferences.
 
 ![Gui Themes](images/UiThemes.png)
+
+<div style="page-break-after: always;"></div>
 
 ### Data
 
