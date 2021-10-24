@@ -215,6 +215,8 @@ fav n/COM1 Basement
 Added study spot to favourites: COM1 Basement
 ```
 
+![Favourites](images/add_favourites.png)
+
 #### Removing a study spot from Favourites: `unfav`
 
 Removes a study spot from the StudyTracker's Favourites.
@@ -267,6 +269,8 @@ list -f -t t/cold
 Listed all study spots in Favourites with Tags: [cold]
 ```
 
+![List cold study spots](images/list_tags_cold.png)
+
 <div markdown="span" class="alert alert-primary">:bulb: **Tip:**
 Make use of command aliases to speed up typing your inputs!
 </div>
@@ -300,6 +304,8 @@ below .
 **Format** `log -o n/NAME* hr/NUM_OF_HOURS*` to replace the current studied hours at the study spot with the input value
 
 **Format** `log -r n/NAME*` to reset the studied hours at the study spot to 0
+
+![Log Hours](images/log_hours.png)
 
 <div markdown="span" class="alert alert-primary">:information_source: **Note:**
 The flag `-o` stands for override, to override the studied hours with what is input
@@ -370,7 +376,7 @@ Removed alias 'myList'
 
 Clears all entries from the StudyTracker.
 
-<div markdown="span" class="alert alert-primary">:warning: **Caution:**
+<div markdown="span" class="alert alert-warning">:warning: **Caution:**
 This command is irreversible!
 </div>
 
@@ -441,6 +447,9 @@ You may also copy the **preferences.json** file to keep your user preferences.
 
 **Q**: How do I receive updates for this app?
 **A**: Currently, the app does not automatically update. You can check out the latest version [here](https://github.com/AY2122S1-CS2103T-T09-1/tp/releases). Simply replace your current JAR file with the latest version.
+
+**Q**: Can I contribute to the code as well?
+**A**: Yes, of course! We're open-source and are open to new ideas. You can contact anyone in the team on [Github](https://github.com/AY2122S1-CS2103T-T09-1/tp) and create a pull request [here](https://github.com/AY2122S1-CS2103T-T09-1/tp/pulls).
 
 **Q**: What do I do when I encounter bugs?<br>
 **A**: As much as possible, we rigorously test our application before it is released. However, should you encounter bugs, you can raise issues to our team [here](https://github.com/AY2122S1-CS2103T-T09-1/tp/issues) and we would look to fix them in upcoming patches.
