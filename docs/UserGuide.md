@@ -238,6 +238,8 @@ unfav n/COM1 Basement
 Removed study spot from favourites: COM1 Basement
 ```
 
+<div style="page-break-after: always;"></div>
+
 #### Deleting a study spot : `delete`
 
 Deletes the specified study spot from the StudyTracker.
@@ -369,6 +371,8 @@ will set alias `Rate5` to expand to the command `edit r/5 spot/`.
 Running `Rate5 Bishan Library` would then result in `edit r/5 spot/Bishan Library`!
 </div>
 
+<div style="page-break-after: always;"></div>
+
 #### Removing command aliases: `unalias`
 
 Removes user-defined aliases.
@@ -397,6 +401,8 @@ clear
 StudyTracker has been cleared!
 ```
 
+<div style="page-break-after: always;"></div>
+
 ### Viewing help : `help`
 
 Provides a reference for commands in StudyTracker.
@@ -419,6 +425,7 @@ Closes the StudyTracker immediately upon entering the command.
 
 **Command alias:** `bye`, `quit`
 
+<div style="page-break-after: always;"></div>
 
 ### Managing Themes
 
