@@ -48,3 +48,8 @@
 .tag-accent-4 {
     -fx-background-color: #3cc5f8 !important;
 }
+
+#help-window .list-cell:filled:selected {
+    -fx-background-color: -fx-default-button;
+    -fx-text-fill: accent-text;
+}

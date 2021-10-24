@@ -40,7 +40,6 @@ public class SettingsWindow extends UiPart<Stage> {
 
         this.getRoot().getScene().getStylesheets().add("/styles/Fonts.css");
         this.getRoot().getScene().getStylesheets().add("/styles/Main.css");
-        this.getRoot().getScene().getStylesheets().add("/styles/Extensions.css");
         this.getRoot().getScene().getStylesheets().add(logic.getGuiSettings().getStyleSheetPath());
 
         themeChoiceBox.getItems().addAll("Ab3", "Default", "Dotsdark", "Dotslight", "Milkshake");

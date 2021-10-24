@@ -48,3 +48,7 @@
 .tag-accent-4 {
     -fx-background-color: #ba96db !important;
 }
+
+.command-info__command-header {
+    -fx-fill: derive(bg-surface, -5%);
+}
