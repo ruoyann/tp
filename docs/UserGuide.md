@@ -187,6 +187,7 @@ add n/Starbucks at UTown r/4 t/noisy m/wifi
 New study spot added: Starbucks at UTown; Rating: 4; Favourite: false; Studied Hours: 0; Tags: [noisy]; Amenities: [wifi]
 ```
 
+<div style="page-break-after: always;"></div>
 
 #### Editing a study spot : `edit`
 
@@ -208,6 +209,8 @@ Edits the details of a single study spot.
 edit spot/COM1 Basement n/Basement
 Edited study spot: Basement; Rating: 5; Favourite: false; Studied Hours: 0
 ```
+
+<div style="page-break-after: always;"></div>
 
 #### Adding a study spot to Favourites: `fav`
 
@@ -423,6 +426,8 @@ From `File > Settings`, select the colour theme you want to use.
 Themes are saved in your user preferences.
 
 ![Gui Themes](images/UiThemes.png)
+
+<div style="page-break-after: always;"></div>
 
 ### Data
 
