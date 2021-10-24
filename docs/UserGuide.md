@@ -94,7 +94,7 @@ Commands may require **flags**.
 * Each parameter may have a delimiter. <br>
 e.g. the `NAME` parameter has a delimiter `n/` and the `AMENITY` parameter has a delimiter `m/`.
 
-* User will supply words in `UPPER_CASE` as the parameters.<br>
+* You will supply words in `UPPER_CASE` as the parameters.<br>
   e.g. in `add n/NAME*`, `NAME` is a parameter which can be used as `add n/COM1 Basement`.
 
 * You are **required** to enter parameters with an asterisk `*`, while those without an asterisk are 
