@@ -4,7 +4,7 @@
 <?import javafx.scene.control.Label?>
 <?import javafx.scene.layout.VBox?>
 
-<VBox fx:id="infoDisplay" alignment="CENTER" prefHeight="300.0" styleClass="info-display" xmlns="http://javafx.com/javafx/16" xmlns:fx="http://javafx.com/fxml/1">
-   <PieChart fx:id="infoDisplayChart" />
+<VBox fx:id="infoDisplay" alignment="CENTER" prefHeight="300.0" styleClass="info-display" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1">
+   <PieChart fx:id="infoDisplayChart" prefHeight="300" />
     <Label fx:id="statusString" textAlignment="CENTER" wrapText="true" />
 </VBox>

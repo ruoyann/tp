@@ -1,5 +1,7 @@
 package seedu.address.ui;
 
+import java.util.HashMap;
+
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
@@ -10,8 +12,6 @@ import javafx.scene.image.ImageView;
 import javafx.scene.layout.Region;
 import seedu.address.model.studyspot.StudySpot;
 
-import java.util.ArrayList;
-import java.util.HashMap;
 
 /**
  * A ui for the info panel that is displayed on the left side of the application.
@@ -21,13 +21,13 @@ public class InfoDisplay extends UiPart<Region> {
 
     private Image iconImage = new Image(this.getClass().getResourceAsStream("/images/books.png"));
 
-    @javafx.fxml.FXML
+    @FXML
     private Label statusString;
 
-    @javafx.fxml.FXML
+    @FXML
     private ImageView appIcon;
 
-    @javafx.fxml.FXML
+    @FXML
     private PieChart infoDisplayChart;
 
     /**
@@ -47,10 +47,13 @@ public class InfoDisplay extends UiPart<Region> {
 
         ObservableList<PieChart.Data> pieData = FXCollections.observableArrayList();
         for (String name: nameHourMap.keySet()) {
+            System.out.println(nameHourMap.get(name));
+            System.out.println(name);
             pieData.add(new PieChart.Data(name, nameHourMap.get(name)));
         }
 
-        infoDisplayChart = new PieChart();
         infoDisplayChart.setData(pieData);
+        infoDisplayChart.autosize();
+        infoDisplayChart.setLabelsVisible(false);
     }
 }
