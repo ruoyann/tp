@@ -232,6 +232,7 @@ public class MainWindow extends UiPart<Stage> {
             resultDisplay.setFeedbackToUser(commandResult.getFeedbackToUser());
             studySpotListPanel.updateStudySpotCountDisplay(logic.getFilteredStudySpotList().size(),
                     logic.getFullList().size());
+            infoDisplay.updatePieChartInfo(logic.getTopFiveStudySpotList());
 
             if (commandResult.isShowHelp()) {
                 handleHelp();

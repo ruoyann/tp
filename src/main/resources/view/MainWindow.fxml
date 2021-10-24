@@ -31,9 +31,9 @@
 
         <HBox HBox.hgrow="ALWAYS" VBox.vgrow="ALWAYS">
 
-          <VBox fx:id="infoDisplay" prefWidth="350.0" minWidth="250.0" styleClass="pane">
+          <VBox fx:id="infoDisplay" prefWidth="400.0" minWidth="400.0" styleClass="pane">
             <padding>
-              <Insets top="0" right="20" bottom="10" left="20" />
+              <Insets top="20" right="20" bottom="0" left="20" />
             </padding>
 
             <VBox fx:id="infoDisplayPlaceholder" VBox.vgrow="ALWAYS" />

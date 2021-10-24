@@ -22,7 +22,7 @@
 }
 
 .list-cell:filled:hover .card{
-    -fx-background-color: derive(fg-surface, 30%);
+    -fx-background-color: derive(fg-surface, -5%);
 }
 
 .error {
