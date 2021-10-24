@@ -3,7 +3,7 @@ layout: page
 title: User Guide
 ---
 
-<img src="images/study_tracker_logo.png" alt="logo" width = "600" />
+<img src="images/study_tracker_logo.png" alt="logo"/>
 
 StudyTracker is a **desktop app** that **tracks your most productive study spots**, optimized for **Command Line Interface (CLI) users.**
 
@@ -48,12 +48,27 @@ Let's explore how to add a new study spot and track our study time with it!
 1. Refer to the [Features](#features) below for more commands and features!
 
 ---
-## Command Syntax
+
+## Format and Usage
+
+Before diving deeper into our user guide, we encourage you to look through this section as it will provide tips on reading this document.
+
+There are many things you can use StudyTracker for. This user guide is structured so that it is easy for you to find what you need. [Command Syntax](#Command-Syntax) section explains the commands you'll be seeing throughout this guide. This is followed by the [GUI Layout](#GUI-Layout) and [Features](#Features) in StudyTracker.
+
+### Common Symbols
+
+| Symbol | Description |
+| --- | ----------- |
+| :information_source: | This symbol indicates that something important to take note of. |
+| :bulb: | This symbol indicates that a tip is being mentioned. |
+| :warning: | This symbol indicates something to be careful of. |
+
+### Command Syntax
 
 **Throughout the User Guide, you'll see commands to enter into StudyTracker.
 Here is how to read the command format:**
 
-### Command Structure
+#### Command Structure
 Commands use a multipart structure that must be specified in this order:
 1. **Command word** which may be user-created aliases (detailed further in [Aliases](#setting-command-aliases--alias-unalias)). <br>
 2. **Parameters** and **Flags**
@@ -62,13 +77,13 @@ Commands use a multipart structure that must be specified in this order:
  <COMMAND> [parameters and flags]
  ```
 
-### Flags
+#### Flags
 
 Commands may require **flags**.
   Flags are represented by a dash, and a sequence of characters. <br>
   e.g. the `list` command has a `-f` flag to list only favourites.
 
-### Parameters
+#### Parameters
 
 * Each parameter may have a delimiter. <br>
 e.g. the `NAME` parameter has a delimiter `n/` and the `AMENITY` parameter has a delimiter `m/`.
@@ -95,7 +110,7 @@ e.g. the `NAME` parameter has a delimiter `n/` and the `AMENITY` parameter has a
 </div>
 
 
-### Examples
+#### Examples
 Some **valid** user inputs for the *add command* are provided below:
 * `add n/PC Commons a/UTown t/veryCrowded m/toilet r/4`
 * `add n/COM2 Basement r/3` (optional arguments are not required)
@@ -107,7 +122,7 @@ Some **invalid** user inputs for the *add command* are provided below:
 * `n/PC Commons a/UTown r/4` (missing command word `add`)
 
 
-## GUI Features
+## GUI Layout
 
 This section introduces the Graphical User Interface (GUI) of StudyTracker.
 
