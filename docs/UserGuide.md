@@ -47,7 +47,7 @@ Let's explore how to add a new study spot and track our study time with it!
     You'll see it if you scroll down the list of study locations!
 
    1. **`log`** `n/COM1 h/3` : Logs 3 hours of study time at `COM1`.
-    The study hours should be reflected on the card.
+    The card will reflect the study hours. 
 
    1. **`exit`** : Exits the app.
 
@@ -66,7 +66,7 @@ There are many things you can use StudyTracker for. This user guide is structure
 | Symbol | Description |
 | --- | ----------- |
 | :information_source: | This symbol indicates that something important to take note of. |
-| :bulb: | This symbol indicates that a tip is being mentioned. |
+| :bulb: | This symbol indicates that we are mentioning a tip. |
 | :warning: | This symbol indicates something to be careful of. |
 
 ### Command Syntax
@@ -93,15 +93,16 @@ Commands may require **flags**.
 
 * Each parameter may have a delimiter. <br>
 e.g. the `NAME` parameter has a delimiter `n/` and the `AMENITY` parameter has a delimiter `m/`.
-  
-* Words in `UPPER_CASE` are the parameters to be supplied by the user.<br>
+
+* You will supply words in `UPPER_CASE` as the parameters.<br>
   e.g. in `add n/NAME*`, `NAME` is a parameter which can be used as `add n/COM1 Basement`.
 
-* Parameters with an asterisk `*` are **required** while those without an asterisk are optional.<br>
-  e.g `n/NAME* m/AMENITY...` can be used as `n/COM1 Basement m/wifi` or as `n/COM1 Basement`.
+* You are **required** to enter parameters with an asterisk `*`, while those without an asterisk are 
+  optional.<br>
+  e.g You can use `n/NAME* m/AMENITY...` as `n/COM1 Basement m/wifi` or as `n/COM1 Basement`.
 
 * Parameters with `…`​ after them can be used multiple times including zero times.<br>
-  e.g. `t/TAG...​` can be used as ` ` (i.e. 0 times), `t/noisy`, `t/mosquitos t/sunny` etc.
+  e.g. You can use `t/TAG...​` as ` ` (i.e. 0 times), `t/noisy`, `t/mosquitos t/sunny` etc.
 
 * Parameters can be in any order.<br>
   e.g. if the command specifies `n/NAME* a/ADDRESS`, `a/ADDRESS n/NAME*` is also acceptable.
@@ -109,7 +110,7 @@ e.g. the `NAME` parameter has a delimiter `n/` and the `AMENITY` parameter has a
 <div markdown="block" class="alert alert-warning">:warning: **Caution:**
 
 * If a parameter is expected only once in the command, but you specified it multiple times, only the **last occurrence** of the parameter will be taken.<br>
-  e.g. if you specify `n/COM1 n/CLB`, only `n/CLB` will be taken.
+  e.g. if you specify `n/COM1 n/CLB`, StudyTracker will only take `n/CLB`.
 
 * Extraneous parameters for commands that do not take in parameters (such as `help`, `list`, `exit` and `clear`) will be ignored.<br>
   e.g. if the command specifies `help 123`, it will be interpreted as `help`.
@@ -134,7 +135,7 @@ This section introduces the Graphical User Interface (GUI) of StudyTracker.
 
 ![Gui annotated](images/GuiAnnotated.png)
 
-On the right side of the interface, the **Study Spot List** and **Command Box** can be found.
+On the right side of the interface, you can find the **Study Spot List** and **Command Box**.
 
 The **Study Spot List** contains **Cards** representing every study spot in StudyTracker.
 The `Total` tag at the top shows current visible study spots/total number of study spots in StudyTracker.
@@ -192,8 +193,8 @@ Edits the details of a single study spot.
 
 * Edits the study spot matching `NAME`.
   Provided `NAME` is not case-sensitive and **must fully match the study spot name**.
-* At least one of the optional fields must be provided.
-* Name, rating, address will be updated.
+* You must provide at least one of the optional fields.
+* StudyTracker will update Name, rating, address.
 * When editing tags and amenities, `t/` or `m/` will append to existing tags and amenities.
 * You can remove a specific tag or amenity with the `rt/` or `rm/` parameter.
 * You can remove all the study spot’s tags by typing `t/` or `m/` without
@@ -259,7 +260,7 @@ Shows saved study spots in the StudyTracker.
 **Format:** `list -t t/TAG...` to show study spots with specified tags
 
 <div markdown="span" class="alert alert-primary">:information_source: **Note:**
-Multiple flags can be used at once.
+You can use multiple flags at once.
 </div>
 
 **Examples:**
@@ -286,8 +287,8 @@ Finds study spots whose names contain any of the given keywords.
 **Format:** `find KEYWORD* [MORE KEYWORDS]`
 
 * The search is case-insensitive. e.g `library` will match `Library`
-* Only full words will be matched. e.g. `Lib` will not match `Library`
-* Study spots matching at least one keyword will be returned.
+* StudyTracker will only match full words. e.g. `Lib` will not match `Library`
+* StudyTracker will return study spots matching at least one keyword.
 
 **Examples:**
 ```
@@ -344,7 +345,7 @@ Added alias myList: [list]
 * running `myList` will run the `list` command.
 
 <div markdown="span" class="alert alert-primary">:bulb: **Tip:**
-Aliases can be chained to make more powerful commands! <br> <br>
+You can chain aliases to make more powerful commands! <br> <br>
 
 **Example:** <br>
 
