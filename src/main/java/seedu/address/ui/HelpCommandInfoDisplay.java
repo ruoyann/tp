@@ -24,6 +24,7 @@ public class HelpCommandInfoDisplay extends UiPart<Region> {
      */
     public HelpCommandInfoDisplay() {
         super(FXML);
+        commandInfo.getStyleClass().add("command-info");
         commandInfo.getChildren().add(new Text(DEFAULT_MESSAGE));
     }
 
@@ -52,7 +53,6 @@ public class HelpCommandInfoDisplay extends UiPart<Region> {
             textExampleHeader.getStyleClass().add("command-info__command-header");
 
             commandInfo.getChildren().clear();
-            commandInfo.getStyleClass().add("command-info");
             commandInfo.getChildren().addAll(textCmdName, textCmdInfo,
                     textParameterHeader, textCmdParameters,
                     textExampleHeader, textCmdExample);

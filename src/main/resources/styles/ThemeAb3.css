@@ -10,7 +10,7 @@
     fg-text: #eeeeee;
     bg-text: #ffffff;
     accent-text: #ffffff;
-    -fx-text-base-color: fg-text;
+    -fx-text-base-color: bg-text;
 
     -fx-default-button: #282c34;
     -fx-control-inner-background: derive(-fx-base, 35%);
@@ -29,4 +29,8 @@
 
 .list-cell:filled:hover .card{
     -fx-background-color: derive(fg-accent, -30%);
+}
+
+.command-info__command-header {
+    -fx-fill: accent-text;
 }

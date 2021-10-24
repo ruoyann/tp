@@ -57,6 +57,10 @@
     -fx-text-fill: bg-text;
 }
 
+.error {
+    -fx-text-fill: #d06651 !important; /* The error class should always override the default text-fill style */
+}
+
 
 /* Tables (we have no tables now) */
 
@@ -366,7 +370,7 @@
     -fx-font-size: 14;
 }
 
-.command-info > * {
+.command-info > Text {
     -fx-fill: bg-text;
     -fx-font-size: 15;
 }

@@ -65,7 +65,6 @@ public class HelpWindow extends UiPart<Stage> {
 
         this.getRoot().getScene().getStylesheets().add("/styles/Fonts.css");
         this.getRoot().getScene().getStylesheets().add("/styles/Main.css");
-        this.getRoot().getScene().getStylesheets().add("/styles/Extensions.css");
         this.getRoot().getScene().getStylesheets().add(logic.getGuiSettings().getStyleSheetPath());
     }
 
