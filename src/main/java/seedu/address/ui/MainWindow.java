@@ -130,7 +130,7 @@ public class MainWindow extends UiPart<Stage> {
         resultDisplay = new ResultDisplay();
         resultDisplayPlaceholder.getChildren().add(resultDisplay.getRoot());
 
-        infoDisplay = new InfoDisplay();
+        infoDisplay = new InfoDisplay(logic.getTopFiveStudySpotList());
         infoDisplayPlaceholder.getChildren().add(infoDisplay.getRoot());
 
         StatusBarFooter statusBarFooter = new StatusBarFooter(logic.getStudyTrackerFilePath());
