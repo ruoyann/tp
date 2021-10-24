@@ -5,10 +5,14 @@ title: User Guide
 
 <img src="images/study_tracker_logo.png" alt="logo"/>
 
-StudyTracker is a **desktop app** that **tracks your most productive study spots**, optimized for **Command Line Interface (CLI) users.**
+StudyTracker is a **desktop app** that **tracks your most productive study spots**, optimized for students who are familiar with **Command Line Interface (CLI)**.
 
-With detailed data recording, and statistics of study time & effectiveness,
+With StudyTracker, you can **add your favourite study spots**, **track your study hours** and **find information about your study spots with ease**.
+
+Using detailed data recording, and personalised statistics of study time & effectiveness,
 **StudyTracker aims to maximise your productivity by making it easy to find the best place to study.**
+
+
 
 ## Table of Contents
 
@@ -53,7 +57,7 @@ Let's explore how to add a new study spot and track our study time with it!
 
 Before diving deeper into our user guide, we encourage you to look through this section as it will provide tips on reading this document.
 
-There are many things you can use StudyTracker for. This user guide is structured so that it is easy for you to find what you need. [Command Syntax](#Command-Syntax) section explains the commands you'll be seeing throughout this guide. This is followed by the [GUI Layout](#GUI-Layout) and [Features](#Features) in StudyTracker.
+There are many things you can use StudyTracker for. This user guide is structured so that it is easy for you to find what you need. [Common Symbols](#Common-Symbols) and [Command Syntax](#Command-Syntax) section will help you in understanding this document better. You can then look at the [GUI Layout](#GUI-Layout) and [Features](#Features) sections on how to use StudyTracker.
 
 ### Common Symbols
 
@@ -100,7 +104,7 @@ e.g. the `NAME` parameter has a delimiter `n/` and the `AMENITY` parameter has a
 * Parameters can be in any order.<br>
   e.g. if the command specifies `n/NAME* a/ADDRESS`, `a/ADDRESS n/NAME*` is also acceptable.
 
-<div markdown="block" class="alert alert-warning">:exclamation: **Note:**
+<div markdown="block" class="alert alert-warning">:warning: **Caution:**
 
 * If a parameter is expected only once in the command, but you specified it multiple times, only the **last occurrence** of the parameter will be taken.<br>
   e.g. if you specify `n/COM1 n/CLB`, only `n/CLB` will be taken.
@@ -148,6 +152,10 @@ The **Command Box** is where to enter commands in StudyTracker.
 * `Command Box` — type in your commands here
 * `Display` — results of commands and error messages are shown here.
 
+<div markdown="span" class="alert alert-primary">:bulb: **Tip:**
+Check out <a href="#managing-themes">Managing Themes</a> section to change the theme of the GUI!
+</div>
+
 ## Features
 
 This section introduces all the features in StudyTracker.
@@ -160,7 +168,7 @@ Adds a study spot to the StudyTracker.
 
 **Format:** `add n/NAME* r/RATING* a/ADDRESS t/TAG... m/AMENITY...`
 
-<div markdown="span" class="alert alert-primary">:bulb: **Tip:**
+<div markdown="span" class="alert alert-primary">:information_source: **Note:**
 Tags, amenities and address are all optional.
 </div>
 
@@ -246,7 +254,7 @@ Shows saved study spots in the StudyTracker.
 
 **Format:** `list -t t/TAG...` to show study spots with specified tags
 
-<div markdown="span" class="alert alert-primary">:bulb: **Tip:**
+<div markdown="span" class="alert alert-primary">:information_source: **Note:**
 Multiple flags can be used at once.
 </div>
 
@@ -293,7 +301,7 @@ below .
 
 **Format** `log -r n/NAME*` to reset the studied hours at the study spot to 0
 
-<div markdown="span" class="alert alert-primary">:bulb: **Tip:**
+<div markdown="span" class="alert alert-primary">:information_source: **Note:**
 The flag `-o` stands for override, to override the studied hours with what is input
 The flag `-r` stands for reset, which resets the value to 0
 </div>
@@ -358,19 +366,11 @@ unalias al/myList
 Removed alias 'myList'
 ```
 
-### Changing Themes
-
-From `File > Settings`, select the colour theme you want to use.
-Themes are saved in your user preferences.
-
-![Gui Themes](images/UiThemes.gif)
-
-
 ### Clearing all entries : `clear`
 
 Clears all entries from the StudyTracker.
 
-<div markdown="span" class="alert alert-primary">:exclamation: **NOTE:**
+<div markdown="span" class="alert alert-primary">:warning: **Caution:**
 This command is irreversible!
 </div>
 
@@ -405,6 +405,13 @@ Closes the StudyTracker immediately upon entering the command.
 **Command alias:** `bye`, `quit`
 
 
+### Managing Themes
+
+From `File > Settings`, select the colour theme you want to use.
+Themes are saved in your user preferences.
+
+![Gui Themes](images/UiThemes.gif)
+
 ### Data
 
 #### Saving data
@@ -415,7 +422,7 @@ StudyTracker data are saved in the hard disk automatically after any command tha
 
 StudyTracker data are saved as a JSON file `[home folder]/data/studytracker.json`. Advanced users are welcome to update data directly by editing that data file.
 
-<div markdown="span" class="alert alert-warning">:exclamation: **Caution:**
+<div markdown="span" class="alert alert-warning">:warning: **Caution:**
 If your changes to the data file makes its format invalid, StudyTracker will discard all data and start with an empty data file at the next run.
 </div>
 
@@ -429,6 +436,20 @@ This section contains frequently asked questions (FAQs) about StudyTracker.
 **A**: Install the app in the other computer and overwrite the empty **data** file it creates with the file that contains the data of your previous StudyTracker home folder.
 You may also copy the **preferences.json** file to keep your user preferences.
 
+**Q**: How should tags be used? <br>
+**A**: Tags are short bites of information about study spots. It is up to you to define how you use them. One way is to use `list` to filter for study spots with a specified tag. You can refer to [List](#listing-study-spots--list) for more details.
+
+**Q**: How do I receive updates for this app?
+**A**: Currently, the app does not automatically update. You can check out the latest version [here](https://github.com/AY2122S1-CS2103T-T09-1/tp/releases). Simply replace your current JAR file with the latest version.
+
+**Q**: What do I do when I encounter bugs?<br>
+**A**: As much as possible, we rigorously test our application before it is released. However, should you encounter bugs, you can raise issues to our team [here](https://github.com/AY2122S1-CS2103T-T09-1/tp/issues) and we would look to fix them in upcoming patches.
+
+
+
+
+
+
 --------------------------------------------------------------------------------------------------------------------
 
 ## Command summary
@@ -436,14 +457,15 @@ You may also copy the **preferences.json** file to keep your user preferences.
 Action | Format, Examples
 --------|------------------
 **Add** | `add n/NAME* r/RATING* a/ADDRESS t/TAG... m/AMENITY...` <br> e.g. `add n/COM1 r/5`
-**Alias** | `alias al/ALIAS* cmd/COMMAND*`<br> e.g. `alias al/home cmd/find home`
-**Clear** | `clear`
-**Delete** | `delete n/NAME*` <br> e.g. `delete n/COM1`
 **Edit** | `edit n/NAME* n/NEW_NAME a/NEW_ADDRESS t/NEW_TAG m/NEW_AMENITY r/NEW_RATING`<br> e.g.,`edit n/tr3 n/Training Room 3`
 **Favourite**  |  `fav n/NAME*` <br> e.g. `fav n/COM1`
-**Find** | `find n/NAME*`<br> e.g. `find n/lib`
-**Help** | `help`
+**Unfavourite** | `unfav n/NAME*`
+**Delete** | `delete n/NAME*` <br> e.g. `delete n/COM1`
 **List** | `list -f -t t/TAG...`
+**Find** | `find n/NAME*`<br> e.g. `find n/lib`
 **Log** | `log -o n/NAME* hr/NUM_OF_HOURS*` <br> e.g. `log -o n/Starbucks hr/5`
+**Alias** | `alias al/ALIAS* cmd/COMMAND*`<br> e.g. `alias al/home cmd/find home`
 **Unalias** | `unalias al/ALIAS*`
-**Unfav** | `unfav n/NAME*`
+**Clear** | `clear`
+**Help** | `help`
+**Exit** | `exit`
