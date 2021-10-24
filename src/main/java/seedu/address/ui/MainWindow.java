@@ -130,7 +130,7 @@ public class MainWindow extends UiPart<Stage> {
         resultDisplay = new ResultDisplay();
         resultDisplayPlaceholder.getChildren().add(resultDisplay.getRoot());
 
-        infoDisplay = new InfoDisplay(logic.getTopFiveStudySpotList());
+        infoDisplay = new InfoDisplay(logic.getTopFiveStudySpotList(), logic.getFullList());
         infoDisplayPlaceholder.getChildren().add(infoDisplay.getRoot());
 
         StatusBarFooter statusBarFooter = new StatusBarFooter(logic.getStudyTrackerFilePath());
@@ -233,6 +233,7 @@ public class MainWindow extends UiPart<Stage> {
             resultDisplay.setFeedbackToUser(commandResult.getFeedbackToUser());
             studySpotListPanel.updateStudySpotCountDisplay(logic.getFilteredStudySpotList().size(),
                     logic.getFullList().size());
+            infoDisplay.updatePieChart(logic.getTopFiveStudySpotList(), logic.getFullList());
 
             if (commandResult.isShowHelp()) {
                 handleHelp();
