@@ -20,6 +20,14 @@
     -fx-default-button: #66606b;
     -fx-focus-color: transparent;
     -fx-faint-focus-color: transparent;
+
+    /* Accent colors */
+    accent-0: #bf3722;
+    accent-1: #792315;
+    accent-2: #e47464;
+    accent-3: #9f4132;
+    accent-4: #e3a664;
+    accent-5: #8f3b2e;
 }
 
 .background {
@@ -237,6 +245,7 @@
 /* Info display pie chart */
 
 .info-chart__caption {
+    -fx-text-fill: derive(black, 10%) !important;
     -fx-font-size: 10pt !important;
     -fx-font-family: "Open Sans Bold";
     -fx-font-weight: bold;
@@ -245,7 +254,7 @@
 .info-chart__hours {
     -fx-font-family: "Open Sans Bold";
     -fx-font-weight: bold;
-    -fx-font-size: 36pt;
+    -fx-font-size: 42pt;
 }
 
 .info-chart__hours-text {
@@ -258,21 +267,19 @@
 }
 
 .chart-line-symbol {
-    -fx-background-color: -fx-base, derive(-fx-base, 50%);
+    -fx-background-color: -fx-base, derive(white, 50%);
 }
 
-.default-color0.chart-pie { -fx-pie-color: turquoise; }
-.default-color1.chart-pie { -fx-pie-color: aquamarine; }
-.default-color2 { -fx-pie-color: cornflowerblue; }
-.default-color3 { -fx-pie-color: blue; }
-.default-color4 { -fx-pie-color: cadetblue; }
-.default-color5 { -fx-pie-color: navy; }
-.default-color6 { -fx-pie-color: deepskyblue; }
-.default-color7 { -fx-pie-color: cyan; }
-.default-color8 { -fx-pie-color: steelblue; }
-.default-color9 { -fx-pie-color: teal; }
-.default-color10  { -fx-pie-color: royalblue; }
-.default-color11  { -fx-pie-color: dodgerblue; }
+.default-color0 { -fx-pie-color: accent-0; }
+.default-color1 { -fx-pie-color: accent-1; }
+.default-color2 { -fx-pie-color: accent-2; }
+.default-color3 { -fx-pie-color: accent-3; }
+.default-color4 { -fx-pie-color: accent-4; }
+.default-color5 { -fx-pie-color: accent-5; }
+.default-color6 { -fx-pie-color: derive(accent-2, 45%); }
+.default-color7 { -fx-pie-color: derive(accent-5, 45%); }
+.default-color8 { -fx-pie-color: derive(accent-1, 45%); }
+.default-color9 { -fx-pie-color: derive(accent-3, 45%); }
 
 /* Result pane (the box containing ResultDisplay and CommandBox */
 .result-pane {

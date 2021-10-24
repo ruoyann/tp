@@ -12,7 +12,7 @@
         <PieChart fx:id="infoDisplayChart" />
         <Circle styleClass="info-chart__donut-hole" radius="120.0" />
         <VBox mouseTransparent="true" alignment="CENTER">
-            <Label text="5" styleClass="info-chart__hours"/>
+            <Label fx:id="infoChartHours" styleClass="info-chart__hours"/>
             <Label text="HOURS STUDIED" styleClass="cell_muted_label, info-chart__hours-text"/>
         </VBox>
         <Label fx:id="caption" styleClass="info-chart__caption"/>
