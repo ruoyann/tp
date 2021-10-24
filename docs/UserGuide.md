@@ -14,7 +14,9 @@ Using detailed data records, and personalised statistics of study time & effecti
 
 Throughout this **User Guide**, you'll find step-by-step information to use StudyTracker.
 
-Want to contribute to development? Check out the [**Developer Guide**](DeveloperGuide.html) instead
+Want to contribute to development? Check out the [**Developer Guide**](DeveloperGuide.html) instead.
+
+<div style="page-break-after: always;"></div>
 
 ## Table of Contents
 
@@ -22,6 +24,8 @@ Want to contribute to development? Check out the [**Developer Guide**](Developer
 {:toc}
 
 ---
+
+<div style="page-break-after: always;"></div>
 
 ## Quick start
 
@@ -217,7 +221,7 @@ fav n/COM1 Basement
 Added study spot to favourites: COM1 Basement
 ```
 
-![Favourites](images/add_favourites.png)
+<img src="images/add_favourites.png" alt="favourites" height="700"/>
 
 #### Removing a study spot from Favourites: `unfav`
 
@@ -271,7 +275,7 @@ list -f -t t/cold
 Listed all study spots in Favourites with Tags: [cold]
 ```
 
-![List cold study spots](images/list_tags_cold.png)
+<img src="images/list_tags_cold.png" alt="cold tags" height="700"/>
 
 <div markdown="span" class="alert alert-primary">:bulb: **Tip:**
 Make use of command aliases to speed up typing your inputs!
@@ -307,7 +311,7 @@ below .
 
 **Format** `log -r n/NAME*` to reset the studied hours at the study spot to 0
 
-![Log Hours](images/log_hours.png)
+<img src="images/log_hours.png" alt="log hours" height="700"/>
 
 <div markdown="span" class="alert alert-primary">:information_source: **Note:**
 The flag `-o` stands for override, to override the studied hours with what is input
