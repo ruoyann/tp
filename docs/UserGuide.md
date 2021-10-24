@@ -3,6 +3,8 @@ layout: page
 title: User Guide
 ---
 
+<img src="images/study_tracker_logo.png" alt="logo" width = "600" />
+
 StudyTracker is a **desktop app** that **tracks your most productive study spots**, optimized for **Command Line Interface (CLI) users.**
 
 With detailed data recording, and statistics of study time & effectiveness,
