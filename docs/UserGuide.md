@@ -131,6 +131,7 @@ Some **invalid** user inputs for the *add command* are provided below:
 * `add PC Commons /UTown /very crowded /toilet /4*` (delimiters and slashes missing from parameters, unnecessary asterisk added outside of parameters)
 * `n/PC Commons a/UTown r/4` (missing command word `add`)
 
+<div style="page-break-after: always;"></div>
 
 ## GUI Layout
 
@@ -226,6 +227,8 @@ Added study spot to favourites: COM1 Basement
 
 <img src="images/add_favourites.png" alt="favourites" height="700"/>
 
+<div style="page-break-after: always;"></div>
+
 #### Removing a study spot from Favourites: `unfav`
 
 Removes a study spot from the StudyTracker's Favourites.
@@ -237,8 +240,6 @@ Removes a study spot from the StudyTracker's Favourites.
 unfav n/COM1 Basement
 Removed study spot from favourites: COM1 Basement
 ```
-
-<div style="page-break-after: always;"></div>
 
 #### Deleting a study spot : `delete`
 
@@ -254,6 +255,7 @@ delete n/Basement
 Deleted study spot: Basement 
 ```
 
+<div style="page-break-after: always;"></div>
 
 ### Managing StudyTracker list
 
@@ -370,8 +372,6 @@ will set alias `Rate5` to expand to the command `edit r/5 spot/`.
 
 Running `Rate5 Bishan Library` would then result in `edit r/5 spot/Bishan Library`!
 </div>
-
-<div style="page-break-after: always;"></div>
 
 #### Removing command aliases: `unalias`
 
