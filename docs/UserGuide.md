@@ -9,10 +9,12 @@ StudyTracker is a **desktop app** that **tracks your most productive study spots
 
 With StudyTracker, you can **add your favourite study spots**, **track your study hours** and **find information about your study spots with ease**.
 
-Using detailed data recording, and personalised statistics of study time & effectiveness,
-**StudyTracker aims to maximise your productivity by making it easy to find the best place to study.**
+Using detailed data records, and personalised statistics of study time & effectiveness,
+**StudyTracker aims to maximise students' productivity by making it easy to find the best place to study.**
 
+Throughout this **User Guide**, you'll find step-by-step information to use StudyTracker.
 
+Want to contribute to development? Check out the [**Developer Guide**](DeveloperGuide.html) instead
 
 ## Table of Contents
 
@@ -416,7 +418,7 @@ Closes the StudyTracker immediately upon entering the command.
 From `File > Settings`, select the colour theme you want to use.
 Themes are saved in your user preferences.
 
-![Gui Themes](images/UiThemes.gif)
+![Gui Themes](images/UiThemes.png)
 
 ### Data
 
@@ -445,10 +447,10 @@ You may also copy the **preferences.json** file to keep your user preferences.
 **Q**: How should tags be used? <br>
 **A**: Tags are short bites of information about study spots. It is up to you to define how you use them. One way is to use `list` to filter for study spots with a specified tag. You can refer to [List](#listing-study-spots--list) for more details.
 
-**Q**: How do I receive updates for this app?
+**Q**: How do I receive updates for this app? <br>
 **A**: Currently, the app does not automatically update. You can check out the latest version [here](https://github.com/AY2122S1-CS2103T-T09-1/tp/releases). Simply replace your current JAR file with the latest version.
 
-**Q**: Can I contribute to the code as well?
+**Q**: Can I contribute to the code as well? <br>
 **A**: Yes, of course! We're open-source and are open to new ideas. You can contact anyone in the team on [Github](https://github.com/AY2122S1-CS2103T-T09-1/tp) and create a pull request [here](https://github.com/AY2122S1-CS2103T-T09-1/tp/pulls).
 
 **Q**: What do I do when I encounter bugs?<br>
