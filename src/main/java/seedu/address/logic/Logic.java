@@ -39,6 +39,11 @@ public interface Logic {
     ObservableList<StudySpot> getFullList();
 
     /**
+     * Returns an unmodifiable view of the top 5 studied spots, based off hours
+     */
+    ObservableList<StudySpot> getTopFiveStudySpotList();
+
+    /**
      * Returns the user prefs' study tracker file path.
      */
     Path getStudyTrackerFilePath();

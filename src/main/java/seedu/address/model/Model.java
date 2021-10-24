@@ -128,4 +128,9 @@ public interface Model {
      * Returns an unmodifiable view of the non filtered study spot list
      */
     ObservableList<StudySpot> getFullList();
+
+    /**
+     * Returns the top 5 {@code StudySpots} based off the studied hours
+     */
+    ObservableList<StudySpot> getTopFiveStudySpotList();
 }

@@ -6,6 +6,7 @@ import javafx.event.EventHandler;
 import javafx.fxml.FXML;
 import javafx.scene.Group;
 import javafx.scene.Node;
+import javafx.fxml.FXML;
 import javafx.scene.chart.PieChart;
 import javafx.scene.control.Label;
 import javafx.scene.image.Image;
@@ -33,7 +34,7 @@ public class InfoDisplay extends UiPart<Region> {
     /**
      * Initializes the {@code InfoDisplay}.
      */
-    public InfoDisplay() {
+    public InfoDisplay(ObservableList<StudySpot> topFiveSpots) {
         super(FXML);
 
         caption.setVisible(false);
