@@ -203,7 +203,7 @@ Click on the groups to view clear, step-by-step usage instructions!
 | **[Setting aliases](#setting-command-aliases)**| Commands to create and remove aliases <br> **Commands**: alias, unalias |
 | **[Viewing help](#viewing-help--help)** | View the built-in help manual <br> **Commands**: help |
 | **[Exiting the program](#exiting-the-program--exit)**| Exit StudyTracker <br> **Commands**: exit |
-| **[Managing themes](#managing themes)**| Customize the look of StudyTracker |
+| **[Managing themes](#managing-themes)**| Customize the look of StudyTracker |
 | **[Data](#data)** | Manage and save user data and user preferences |
 
 ### Managing study spots 
