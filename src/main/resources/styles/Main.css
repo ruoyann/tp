@@ -20,6 +20,14 @@
     -fx-default-button: #66606b;
     -fx-focus-color: transparent;
     -fx-faint-focus-color: transparent;
+
+    /* Accent colors */
+    accent-0: #bf3722;
+    accent-1: #792315;
+    accent-2: #e47464;
+    accent-3: #9f4132;
+    accent-4: #e3a664;
+    accent-5: #8f3b2e;
 }
 
 .background {
@@ -62,6 +70,10 @@
 
 .bg-text {
     -fx-text-fill: bg-text;
+}
+
+.error {
+    -fx-text-fill: #d06651 !important; /* The error class should always override the default text-fill style */
 }
 
 
@@ -269,16 +281,50 @@
 }
 
 /* Info display */
+.info-display .label {
+    -fx-text-fill: bg-text;
+}
 
-/*.info-display .label {*/
-/*    -fx-font-family: "Open Sans Bold";*/
-/*    -fx-font-size: 18pt;*/
-/*    -fx-text-fill: bg-text;*/
-/*    -fx-font-weight: bold;*/
-/*    -fx-font-style: italic;*/
-/*}*/
+/* Info display pie chart */
 
-/* Result pane (the box conatining ResultDisplay and CommandBox */
+.info-chart__caption {
+    -fx-text-fill: derive(black, 10%) !important;
+    -fx-font-size: 10pt !important;
+    -fx-font-family: "Open Sans Bold";
+    -fx-font-weight: bold;
+}
+
+.info-chart__hours {
+    -fx-font-family: "Open Sans Bold";
+    -fx-font-weight: bold;
+    -fx-font-size: 42pt;
+}
+
+.info-chart__hours-text {
+    -fx-font-family: "Open Sans SemiBold";
+    -fx-font-size: 12pt;
+}
+
+.info-chart__donut-hole {
+    -fx-fill: -fx-base;
+}
+
+.chart-line-symbol {
+    -fx-background-color: -fx-base, derive(white, 50%);
+}
+
+.default-color0 { -fx-pie-color: accent-0; }
+.default-color1 { -fx-pie-color: accent-1; }
+.default-color2 { -fx-pie-color: accent-2; }
+.default-color3 { -fx-pie-color: accent-3; }
+.default-color4 { -fx-pie-color: accent-4; }
+.default-color5 { -fx-pie-color: accent-5; }
+.default-color6 { -fx-pie-color: derive(accent-2, 45%); }
+.default-color7 { -fx-pie-color: derive(accent-5, 45%); }
+.default-color8 { -fx-pie-color: derive(accent-1, 45%); }
+.default-color9 { -fx-pie-color: derive(accent-3, 45%); }
+
+/* Result pane (the box containing ResultDisplay and CommandBox */
 .result-pane {
     -fx-background-color: derive(-fx-base, 50%);
 }
@@ -424,7 +470,7 @@
     -fx-font-size: 14;
 }
 
-.command-info > * {
+.command-info > Text {
     -fx-fill: bg-text;
     -fx-font-size: 15;
 }

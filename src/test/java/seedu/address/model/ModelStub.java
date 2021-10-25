@@ -122,4 +122,9 @@ public class ModelStub implements Model {
     public ObservableList<StudySpot> getFullList() {
         throw new AssertionError("This method should not be called.");
     }
+
+    @Override
+    public ObservableList<StudySpot> getTopFiveStudySpotList() {
+        throw new AssertionError("This method should not be called.");
+    }
 }

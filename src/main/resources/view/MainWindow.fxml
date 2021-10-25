@@ -31,11 +31,10 @@
 
         <HBox HBox.hgrow="ALWAYS" VBox.vgrow="ALWAYS">
 
-          <VBox HBox.hgrow="ALWAYS">
-            <VBox fx:id="infoDisplay" prefWidth="350.0" minWidth="250.0" styleClass="pane">
-              <padding>
-                <Insets top="0" right="10" bottom="10" left="10" />
-              </padding>
+          <VBox fx:id="infoDisplay" prefWidth="400.0" minWidth="400.0" styleClass="pane">
+            <padding>
+              <Insets top="20" right="20" bottom="0" left="20" />
+            </padding>
 
               <VBox fx:id="infoDisplayPlaceholder" VBox.vgrow="ALWAYS" />
             </VBox>
@@ -46,7 +45,6 @@
               <StackPane fx:id="favouritesListPanelPlaceholder" VBox.vgrow="ALWAYS"/>
             </VBox>
           </VBox>
-
 
           <VBox HBox.hgrow="ALWAYS">
             <VBox fx:id="studySpotList" styleClass="pane" minWidth="340" prefWidth="340" VBox.vgrow="ALWAYS">

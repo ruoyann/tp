@@ -4,10 +4,13 @@ import static java.util.Objects.requireNonNull;
 import static seedu.address.commons.util.CollectionUtil.requireAllNonNull;
 
 import java.nio.file.Path;
+import java.util.Comparator;
 import java.util.List;
+import java.util.PriorityQueue;
 import java.util.function.Predicate;
 import java.util.logging.Logger;
 
+import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.collections.transformation.FilteredList;
 import seedu.address.commons.core.GuiSettings;
@@ -152,8 +155,6 @@ public class ModelManager implements Model {
 
     /**
      * Returns true if a study spot with the same identity as {@code studySpot} is a favourite in the study tracker.
-     *
-     * @param studySpot
      */
     @Override
     public boolean isFavouriteStudySpot(StudySpot studySpot) {
@@ -175,8 +176,6 @@ public class ModelManager implements Model {
     /**
      * Removes the given study spot from favourites.
      * {@code study spot} must already exist in the study tracker.
-     *
-     * @param studySpot
      */
     @Override
     public StudySpot removeStudySpotFromFavourites(StudySpot studySpot) {
@@ -199,6 +198,36 @@ public class ModelManager implements Model {
     public void updateFilteredStudySpotList(Predicate<StudySpot> predicate) {
         requireNonNull(predicate);
         filteredStudySpots.setPredicate(predicate);
+    }
+
+    /**
+     * Returns an unmodifiable view of the list of the top 5 Studied {@code StudySpot}
+     */
+    @Override
+    public ObservableList<StudySpot> getTopFiveStudySpotList() {
+        int numOfSpots = 0;
+        ObservableList<StudySpot> result = FXCollections.observableArrayList();
+        Comparator<StudySpot> comparator = (spotA, spotB) -> {
+            int spotAStudiedHours = spotA.getStudiedHours().getHours();
+            int spotBStudiedHours = spotB.getStudiedHours().getHours();
+            return spotBStudiedHours - spotAStudiedHours;
+        };
+
+        //Priority queue based off studied hours, greater the studied hours the greater priority
+        PriorityQueue<StudySpot> queue = new PriorityQueue<>(5, comparator);
+        ObservableList<StudySpot> fullList = studyTracker.getStudySpotList();
+
+        //Add all elements from fullList into priority queue
+        queue.addAll(fullList);
+
+        while (!queue.isEmpty()) {
+            if (numOfSpots == 5) {
+                break;
+            }
+            result.add(queue.remove());
+            numOfSpots++;
+        }
+        return result;
     }
 
     //=========== Favourite StudySpots ===============================================================================

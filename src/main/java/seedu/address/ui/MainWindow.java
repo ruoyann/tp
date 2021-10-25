@@ -75,7 +75,6 @@ public class MainWindow extends UiPart<Stage> {
         // Configure the UI
         setStylesheet("Main.css");
         setStylesheet("Fonts.css");
-        setStylesheet("Extensions.css");
         setWindowDefaultSize(logic.getGuiSettings());
         setThemeFromSettings(logic.getGuiSettings());
 
@@ -134,7 +133,7 @@ public class MainWindow extends UiPart<Stage> {
         resultDisplay = new ResultDisplay();
         resultDisplayPlaceholder.getChildren().add(resultDisplay.getRoot());
 
-        infoDisplay = new InfoDisplay();
+        infoDisplay = new InfoDisplay(logic.getTopFiveStudySpotList(), logic.getFullList());
         infoDisplayPlaceholder.getChildren().add(infoDisplay.getRoot());
 
         favouritesListPanel = new FavouritesListPanel(logic.getFavouriteStudySpotList());
@@ -243,6 +242,10 @@ public class MainWindow extends UiPart<Stage> {
             favouritesListPanel.updateFavouritesCountDisplay(logic.getFavouriteStudySpotList().size());
             // favouritesListPanel.updateFavourites(logic.getFavouriteStudySpotList());
 
+
+            if (commandResult.isLogHours()) {
+                infoDisplay.updatePieChart(logic.getTopFiveStudySpotList(), logic.getFullList());
+            }
 
             if (commandResult.isShowHelp()) {
                 handleHelp();

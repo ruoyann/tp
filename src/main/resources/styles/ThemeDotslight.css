@@ -17,6 +17,13 @@
     -fx-control-inner-background-alt: -fx-control-inner-background;
     -fx-focus-color: transparent;
     -fx-faint-focus-color: transparent;
+
+    accent-0: #ffd543;
+    accent-1: #ff9349;
+    accent-2: #4acb8a;
+    accent-3: #f94348;
+    accent-4: #ab85ff;
+    accent-5: #3cc5f8;
 }
 
 .list-cell:filled:hover .card{
@@ -28,21 +35,21 @@
 }
 
 .tag-accent-0 {
-    -fx-background-color: #ffd543 !important;
+    -fx-background-color: accent-0 !important;
 }
 
 .tag-accent-1 {
-    -fx-background-color: #ff9349 !important;
+    -fx-background-color: accent-1 !important;
 }
 
 .tag-accent-2 {
-    -fx-background-color: #4acb8a !important;
+    -fx-background-color: accent-2 !important;
 }
 
 .tag-accent-3 {
-    -fx-background-color: #ab85ff !important;
+    -fx-background-color: accent-3 !important;
 }
 
 .tag-accent-4 {
-    -fx-background-color: #3cc5f8 !important;
+    -fx-background-color: accent-4 !important;
 }
