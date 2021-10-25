@@ -31,14 +31,15 @@
 
         <HBox HBox.hgrow="ALWAYS" VBox.vgrow="ALWAYS">
 
-          <VBox fx:id="infoDisplay" prefWidth="400.0" minWidth="400.0" styleClass="pane">
-            <padding>
-              <Insets top="20" right="20" bottom="0" left="20" />
-            </padding>
+          <VBox HBox.hgrow="ALWAYS">
+            <VBox fx:id="infoDisplay" prefWidth="400.0" minWidth="400.0" styleClass="pane">
+              <padding>
+                <Insets top="20" right="20" bottom="0" left="20" />
+              </padding>
 
               <VBox fx:id="infoDisplayPlaceholder" VBox.vgrow="ALWAYS" />
             </VBox>
-            <VBox fx:id="favouritesList" styleClass="pane" minWidth="250" prefWidth="350" VBox.vgrow="ALWAYS">
+            <VBox fx:id="favouritesList" styleClass="pane" minWidth="400.0" prefWidth="400.0" VBox.vgrow="ALWAYS">
               <padding>
                 <Insets top="8" right="8" bottom="16" left="20" />
               </padding>

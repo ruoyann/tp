@@ -11,7 +11,7 @@
             <ColumnConstraints hgrow="SOMETIMES" minWidth="10" />
         </columnConstraints>
 
-        <VBox minHeight="100.0" styleClass="card" GridPane.columnIndex="0">
+        <VBox minHeight="90.0" styleClass="card" GridPane.columnIndex="0">
 
             <GridPane hgap="6" HBox.hgrow="ALWAYS">
 
@@ -30,15 +30,18 @@
                 </padding>
 
                 <VBox alignment="TOP_LEFT" spacing="4" GridPane.columnIndex="0">
-                    <!-- name and tags -->
+                    <!-- name -->
                     <Label fx:id="name" styleClass="cell_medium_bold_label" text="\$first" wrapText="true" />
-                    <FlowPane fx:id="tagsForFavourites" />
-                    <Region VBox.vgrow="ALWAYS" minHeight="10.0" /> <!-- spacer -->
                 </VBox>
 
                 <VBox alignment="TOP_RIGHT" GridPane.columnIndex="1">
                     <!-- amenities -->
                     <HBox fx:id="amenitiesDisplay" alignment="TOP_RIGHT" spacing="4" />
+                </VBox>
+
+                <VBox alignment="BOTTOM_LEFT" spacing="4" GridPane.columnIndex="0" GridPane.rowIndex="1">
+                    <!-- tags -->
+                    <FlowPane fx:id="tags" />
                 </VBox>
 
                 <HBox alignment="BOTTOM_RIGHT" spacing="4" GridPane.columnIndex="1" GridPane.rowIndex="1">

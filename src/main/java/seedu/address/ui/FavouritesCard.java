@@ -30,7 +30,7 @@ public class FavouritesCard extends UiPart<Region> {
     @FXML
     private Label hoursText;
     @FXML
-    private FlowPane tagsForFavourites;
+    private FlowPane tags;
     @FXML
     private HBox amenitiesDisplay;
 
@@ -51,7 +51,7 @@ public class FavouritesCard extends UiPart<Region> {
 
         studySpot.getTags().stream()
                 .sorted(Comparator.comparing(tag -> tag.tagName))
-                .forEach(tag -> tagsForFavourites.getChildren().add(getStyledTagLabel(tag.tagName)));
+                .forEach(tag -> tags.getChildren().add(getStyledTagLabel(tag.tagName)));
 
         setAmenitiesDisplay(amenitiesDisplay, studySpot);
     }
