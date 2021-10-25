@@ -5,14 +5,21 @@ title: User Guide
 
 <img src="images/study_tracker_logo.png" alt="logo"/>
 
-StudyTracker is a **desktop app** that **tracks your most productive study spots**, optimized for students who are familiar with **Command Line Interface (CLI)**.
+StudyTracker is a **desktop app** that **tracks your most productive study spots**, optimized for students who are familiar with **Command Line Interfaces (CLI)**.
 
-With StudyTracker, you can **add your favourite study spots**, **track your study hours** and **find information about your study spots with ease**.
+**StudyTracker was built to solve the problem of not finding productive study spots**.
+We aim to **maximise students' productivity** by **making it easy to find the best place to study.**
 
-Using detailed data records, and personalised statistics of study time & effectiveness,
-**StudyTracker aims to maximise students' productivity by making it easy to find the best place to study.**
+Overview of main features:
+- **Make informed decisions** of where to study —  every study spot includes details about amenities like sockets, aircon, and crowd level, and more!
+- **Data-driven statistics** to **track time spent studying** ensures that you know where to go to be productive
+- Made a mistake? Found out something new? **Editing details is quick and simple!**
+- **Powerful customization** with user-defined aliases and custom themes!
+- **Built for cross-platform use** with JavaFX. Bring your StudyTracker data with you to any Windows, Mac, or Linux device!
 
-Throughout this **User Guide**, you'll find step-by-step information to use StudyTracker.
+StudyTracker is full of features, but don't worry!
+This **User Guide** provides clear, step-by-step information to use StudyTracker.
+**Open up StudyTracker, and let's get on the right track to productivity!**
 
 Want to contribute to development? Check out the [**Developer Guide**](DeveloperGuide.html) instead.
 
@@ -27,10 +34,12 @@ Want to contribute to development? Check out the [**Developer Guide**](Developer
 
 <div style="page-break-after: always;"></div>
 
-## Quick start
+## Quick Start
 
 StudyTracker comes with sample data.
-Let's explore how to add a new study spot and track our study time with it!
+In this **Quick Start** section, we'll go through **a tutorial to try the essential features of StudyTracker.**
+
+Let's explore how we **add a new study spot** and **track our study time** with it:
 
 1. Ensure you have Java `11` or above installed in your Computer.
 
@@ -42,30 +51,46 @@ Let's explore how to add a new study spot and track our study time with it!
    ![Ui](images/Ui.png)
 
 1. Type the command in the command box and press Enter to execute it. e.g. typing **`help`** and pressing Enter will open the help window.<br>
-   Some commands you can try:
+
+    Do the following commands in sequence:
 
    1. **`list`** : Lists all study spots.
     Study spots are shown in cards on the right panel of the program.
 
-   1. **`add`** `n/COM1 r/5 m/aircon` : Adds a study location named `COM1`, with a rating of 5 and 'aircon' amenity to the StudyTracker.
+   1. **`add`** `n/COM1 r/5 m/aircon` : **Adds a study location** named `COM1`, with a rating of 5 and 'aircon' amenity to the StudyTracker.
     You'll see it if you scroll down the list of study locations!
 
-   1. **`log`** `n/COM1 h/3` : Logs 3 hours of study time at `COM1`.
-    The card will reflect the study hours. 
+   1. **`log`** `n/COM1 h/3` : **Logs 3 hours of study time** at `COM1`.
+    The card will update with the new study hours. 
 
    1. **`exit`** : Exits the app.
 
-1. Refer to the [Features](#features) below for more commands and features!
+1. Congratulations! You've just added a new study spot, and logged your study time!
+You're on the right track to productivity!
+
+1. Refer to the [Features](#features) section for more commands and features in StudyTracker.
+
+<div markdown="span" class="alert alert-primary">:bulb: **Tip:**
+Check out **<a href="#command-structure">How to read Commands in StudyTracker</a>** section if you are unfamiliar with CLI syntax!
+</div>    
+
+<div style="page-break-after: always;"></div>
 
 ---
+## How to use this User Guide
 
-## Format and Usage
+This section provides tips on reading this document, as well as how to navigate it.
 
-Before diving deeper into our user guide, we encourage you to look through this section as it will provide tips on reading this document.
+This User Guide is structured so that it is easy for you to find what you need.
 
-There are many things you can use StudyTracker for. This user guide is structured so that it is easy for you to find what you need. [Common Symbols](#Common-Symbols) and [Command Syntax](#Command-Syntax) section will help you in understanding this document better. You can then look at the [GUI Layout](#GUI-Layout) and [Features](#Features) sections on how to use StudyTracker.
+It is recommended that you have our StudyTracker application open, so you can try out the commands and features!
 
-### Common Symbols
+The [Table of Contents](#table-of-contents) contains links to all the sections of the guide.
+
+[Common Symbols found in this guide](#common-symbols-found-in-this-guide) and [How to read Commands in StudyTracker](#how-to-read-commands-in-studytracker) section will help you understand this document better.
+You can then look at the [GUI Layout](#gui-layout) and [Features](#features) sections for clear instructions for using StudyTracker.
+
+### Common Symbols found in this guide
 
 | Symbol | Description |
 | --- | ----------- |
@@ -73,10 +98,10 @@ There are many things you can use StudyTracker for. This user guide is structure
 | :bulb: | This symbol indicates that we are mentioning a tip. |
 | :warning: | This symbol indicates something to be careful of. |
 
-### Command Syntax
+### How to read Commands in StudyTracker
 
-**Throughout the User Guide, you'll see commands to enter into StudyTracker.
-Here is how to read the command format:**
+Throughout the User Guide, you'll see commands to enter into StudyTracker.
+Here is how to read the command format:
 
 #### Command Structure
 Commands use a multipart structure that must be specified in this order:
@@ -168,6 +193,21 @@ Check out <a href="#managing-themes">Managing Themes</a> section to change the t
 
 This section introduces all the features in StudyTracker.
 
+Features are grouped according to usage.
+Click on the groups to view clear, step-by-step usage instructions!
+
+
+| Features | Usage and commands|
+|----------|------------------ |
+| **[Managing study spots](#managing-study-spots)** | Commands that manage the study spots in this app <br> **Commands**: add, edit, fav, unfav, delete, clear |
+| **[Managing StudyTracker list](#managing-studytracker-list)** | Commands to filter and view specific study spots <br> **Commands**: list, find |
+| **[Logging study hours](#logging-study-hours-log)**| Commands to log study hours <br> **Commands**: log |
+| **[Setting aliases](#setting-command-aliases)**| Commands to create and remove aliases <br> **Commands**: alias, unalias |
+| **[Viewing help](#viewing-help--help)** | View the built-in help manual <br> **Commands**: help |
+| **[Exiting the program](#exiting-the-program--exit)**| Exit StudyTracker <br> **Commands**: exit |
+| **[Managing themes](#managing-themes)**| Customize the look of StudyTracker |
+| **[Data](#data)** | Manage and save user data and user preferences |
+
 ### Managing study spots 
 
 #### Adding a study spot: `add`
@@ -254,6 +294,22 @@ Deletes the specified study spot from the StudyTracker.
 ```
 delete n/Basement
 Deleted study spot: Basement 
+```
+
+### Clearing all entries : `clear`
+
+Clears all entries from the StudyTracker.
+
+<div markdown="span" class="alert alert-warning">:warning: **Caution:**
+This command is irreversible!
+</div>
+
+**Format:** `clear`
+
+**Example:**
+```
+clear
+StudyTracker has been cleared!
 ```
 
 <div style="page-break-after: always;"></div>
@@ -386,27 +442,14 @@ unalias al/myList
 Removed alias 'myList'
 ```
 
-### Clearing all entries : `clear`
-
-Clears all entries from the StudyTracker.
-
-<div markdown="span" class="alert alert-warning">:warning: **Caution:**
-This command is irreversible!
-</div>
-
-**Format:** `clear`
-
-**Example:**
-```
-clear
-StudyTracker has been cleared!
-```
-
 <div style="page-break-after: always;"></div>
 
 ### Viewing help : `help`
 
 Provides a reference for commands in StudyTracker.
+
+Click on each command on the left panel to view usage instructions of each command.
+
 You can also visit the User Guide and Developer Guide by clicking on the buttons in the window.
 ![Help window](images/helpMessage.png)
 
@@ -417,6 +460,7 @@ View the help window anytime by using the F1 shortcut!
 Alternatively, click on 'Help' in the menu bar!
 </div>
 
+<div style="page-break-after: always;"></div>
 
 ### Exiting the program : `exit`
 
