@@ -50,11 +50,14 @@ public class StudiedHours {
      * Adds hours of the given StudiedHours to the current object and returns a new StudiedHours object
      */
     public StudiedHours addHours(StudiedHours hours) throws IllegalValueException {
-        int totalHours = this.loggedHours + hours.loggedHours;
-        if (totalHours <= 0) {
+        if (hours.loggedHours == 0) {
+            throw new IllegalValueException(MESSAGE_CONSTRAINTS);
+        }
+        long totalHours = (long) this.loggedHours + (long) hours.loggedHours;
+        if (totalHours > Integer.MAX_VALUE) {
             throw new IllegalValueException(MESSAGE_HOURS_IS_FULL);
         }
-        return new StudiedHours(totalHours);
+        return new StudiedHours((int) totalHours);
     }
 
     /**
