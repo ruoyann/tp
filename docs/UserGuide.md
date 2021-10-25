@@ -88,7 +88,7 @@ It is recommended that you have a copy of StudyTracker open, so you can try out 
 The [Table of Contents](#table-of-contents) contains links to all the sections of the guide.
 
 [Common Symbols](#Common-Symbols) and [Command Syntax](#Command-Syntax) section will help you understand this document better.
-You can then look at the [GUI Layout](#GUI-Layout) and [Features](#Features) sections for clear instructions for using StudyTracker.
+You can then look at the [GUI Layout](#gui-layout) and [Features](#features) sections for clear instructions for using StudyTracker.
 
 ### Common Symbols found in this guide
 
