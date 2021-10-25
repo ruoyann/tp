@@ -35,14 +35,6 @@ public class FavouritesListPanel extends UiPart<Region> {
         getInitialFavouritesCountDisplay(filteredStudySpots.size());
     }
 
-    //    /**
-    //     * Updates the favourite study spots in {@code favouritesListView}.
-    //     */
-    //    public void updateFavourites(ObservableList<StudySpot> updatedFavourites) {
-    //        favouritesListView.setItems(updatedFavourites);
-    //        favouritesListView.setCellFactory(listView -> new FavouritesListViewCell());
-    //    }
-
     /**
      * Updates {@code favouritesListCount} with the given {@code favouritesCount}.
      */
