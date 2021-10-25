@@ -69,6 +69,9 @@ public class InfoDisplay extends UiPart<Region> {
 
         topFiveSpots = newTopFiveSpots;
         pieChartData.forEach(this::addInteractivity);
+
+        //Sorts pie chart based off largest hours to smallest hours
+        pieChartData.sort((spot1, spot2) -> (int) (spot2.getPieValue() - spot1.getPieValue()));
         infoChartHours.setText(String.valueOf(getTotalStudiedHours(fullList)));
     }
 
