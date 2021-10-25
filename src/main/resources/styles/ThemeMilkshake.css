@@ -19,10 +19,17 @@
     -fx-control-inner-background-alt: -fx-control-inner-background;
     -fx-focus-color: transparent;
     -fx-faint-focus-color: transparent;
+
+    accent-0: #f19dac;
+    accent-1: #fbf4a0;
+    accent-2: #73e4d0;
+    accent-3: #62cfe6;
+    accent-4: #ba96db;
+    accent-5: #92a2c9;
 }
 
 .list-cell:filled:hover .card{
-    -fx-background-color: derive(fg-surface, 30%);
+    -fx-background-color: derive(fg-surface, -5%);
 }
 
 .error {
@@ -30,23 +37,23 @@
 }
 
 .tag-accent-0 {
-    -fx-background-color: #f19dac !important;
+    -fx-background-color: accent-0 !important;
 }
 
 .tag-accent-1 {
-    -fx-background-color: #fbf4a0 !important;
+    -fx-background-color: accent-1 !important;
 }
 
 .tag-accent-2 {
-    -fx-background-color: #73e4d0 !important;
+    -fx-background-color: accent-2 !important;
 }
 
 .tag-accent-3 {
-    -fx-background-color: #61cfe6 !important;
+    -fx-background-color: accent-3 !important;
 }
 
 .tag-accent-4 {
-    -fx-background-color: #ba96db !important;
+    -fx-background-color: accent-4 !important;
 }
 
 .command-info__command-header {

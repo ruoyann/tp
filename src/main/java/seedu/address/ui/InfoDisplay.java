@@ -5,7 +5,7 @@ import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
 import javafx.scene.chart.PieChart;
 import javafx.scene.control.Label;
-import javafx.scene.image.ImageView;
+import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.Region;
 import seedu.address.model.studyspot.StudySpot;
 
@@ -15,44 +15,31 @@ import seedu.address.model.studyspot.StudySpot;
  */
 public class InfoDisplay extends UiPart<Region> {
     private static final String FXML = "InfoDisplay.fxml";
-    private static final String TOTAL_STUDIED_HOURS = "Total Studied Hours: %1$S";
-
-    @FXML
-    private Label statusString;
-
-    @FXML
-    private ImageView appIcon;
 
     @FXML
     private PieChart infoDisplayChart;
+
+    @FXML
+    private Label caption;
+
+    @FXML
+    private Label infoChartHours;
 
     /**
      * Initializes the {@code InfoDisplay}.
      */
     public InfoDisplay(ObservableList<StudySpot> topFiveSpots, ObservableList<StudySpot> fullList) {
         super(FXML);
-        statusString.setMinHeight(Label.USE_PREF_SIZE);
-        statusString.setText("Welcome to StudyTracker!");
 
-        ObservableList<PieChart.Data> pieData = FXCollections.observableArrayList();
-        for (StudySpot s : topFiveSpots) {
-            String name = s.getName().fullName;
-            int hours = s.getStudiedHours().getHours();
-            pieData.add(new PieChart.Data(name, hours));
-        }
+        caption.setVisible(false);
+        caption.getStyleClass().add("chart-line-symbol");
 
-        infoDisplayChart.setData(pieData);
-        infoDisplayChart.autosize();
+        // Setting Pie Chart information
+        infoDisplayChart.setLegendVisible(false);
         infoDisplayChart.setLabelsVisible(false);
-        infoDisplayChart.setTitle(String.format(TOTAL_STUDIED_HOURS, getTotalStudiedHours(fullList)));
-    }
-
-    private int getTotalStudiedHours(ObservableList<StudySpot> fullList) {
-        int totalHours = 0;
-        for (StudySpot s : fullList) {
-            totalHours += s.getStudiedHours().getHours();
-        }
-        return totalHours;
+        infoDisplayChart.setStartAngle(90.0);
+        infoDisplayChart.autosize();
+        updatePieChart(topFiveSpots, fullList);
     }
 
     /**
@@ -67,6 +54,44 @@ public class InfoDisplay extends UiPart<Region> {
         }
 
         infoDisplayChart.setData(pieData);
-        infoDisplayChart.setTitle(String.format(TOTAL_STUDIED_HOURS, getTotalStudiedHours(fullList)));
+        infoChartHours.setText(String.valueOf(getTotalStudiedHours(fullList)));
+        pieData.forEach(this::addInteractivity);
+    }
+
+    /**
+     * Turns each of the data points in the pie chart to show data on hover
+     *
+     * @@author jewlsea, Zombkey
+     * Reused from https://stackoverflow.com/questions/30662190/javafx-pichart-my-hover-values-blink
+     */
+    private void addInteractivity(PieChart.Data data) {
+        data.getNode().addEventHandler(MouseEvent.MOUSE_ENTERED, e -> {
+            caption.setMouseTransparent(true);
+            caption.setTranslateX(e.getX() + 20);
+            caption.setTranslateY(e.getY() - 20);
+            caption.setText(String.valueOf(data.getName() + "\n"
+                    + data.getPieValue() + " hours"));
+            caption.setVisible(true);
+        });
+
+        data.getNode().addEventHandler(MouseEvent.MOUSE_MOVED, e -> {
+            caption.setTranslateX(e.getX() + 20);
+            caption.setTranslateY(e.getY() - 20);
+        });
+
+        data.getNode().addEventHandler(MouseEvent.MOUSE_EXITED, e -> {
+            caption.setVisible(false);
+        });
+    }
+
+    /**
+     * Given a list of study spots, add up total studied hours
+     */
+    private int getTotalStudiedHours(ObservableList<StudySpot> fullList) {
+        int totalHours = 0;
+        for (StudySpot s : fullList) {
+            totalHours += s.getStudiedHours().getHours();
+        }
+        return totalHours;
     }
 }

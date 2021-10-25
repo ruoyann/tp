@@ -232,7 +232,10 @@ public class MainWindow extends UiPart<Stage> {
             resultDisplay.setFeedbackToUser(commandResult.getFeedbackToUser());
             studySpotListPanel.updateStudySpotCountDisplay(logic.getFilteredStudySpotList().size(),
                     logic.getFullList().size());
-            infoDisplay.updatePieChart(logic.getTopFiveStudySpotList(), logic.getFullList());
+
+            if (commandResult.isLogHours()) {
+                infoDisplay.updatePieChart(logic.getTopFiveStudySpotList(), logic.getFullList());
+            }
 
             if (commandResult.isShowHelp()) {
                 handleHelp();

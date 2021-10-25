@@ -17,6 +17,13 @@
     -fx-control-inner-background-alt: -fx-control-inner-background;
     -fx-focus-color: transparent;
     -fx-faint-focus-color: transparent;
+
+    accent-0: #49a099;
+    accent-1: #3e7b91;
+    accent-2: #4ebc89;
+    accent-3: #88de77;
+    accent-4: #3b427f;
+    accent-5: #635396;
 }
 
 .list-cell:filled:even .card{

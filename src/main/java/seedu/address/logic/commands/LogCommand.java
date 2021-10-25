@@ -104,7 +104,9 @@ public class LogCommand extends Command {
             throw new CommandException(StudiedHours.MESSAGE_HOURS_IS_FULL);
         }
         System.out.println(studySpotToAddHours.getName());
-        return new CommandResult(String.format(MESSAGE_SUCCESS_DEFAULT, studiedHours, studySpotToAddHours.getName()));
+        return new CommandResult(String.format(MESSAGE_SUCCESS_DEFAULT, studiedHours, studySpotToAddHours.getName()),
+                true, false, false
+        );
     }
 
     private CommandResult handleReset(Model model, StudySpot studySpot) {
@@ -112,14 +114,16 @@ public class LogCommand extends Command {
         StudySpot newStudySpot = addHoursToStudySpot(studySpot, newHours);
         model.setStudySpot(studySpot, newStudySpot);
         model.updateFilteredStudySpotList(Model.PREDICATE_SHOW_ALL_STUDYSPOTS);
-        return new CommandResult(String.format(MESSAGE_SUCCESS_RESET, nameOfStudySpot));
+        return new CommandResult(String.format(MESSAGE_SUCCESS_RESET, nameOfStudySpot),
+                true, false, false);
     }
 
     private CommandResult handleOverride(Model model, StudySpot studySpot, StudiedHours studiedHours) {
         StudySpot newStudySpot = addHoursToStudySpot(studySpot, studiedHours);
         model.setStudySpot(studySpot, newStudySpot);
         model.updateFilteredStudySpotList(Model.PREDICATE_SHOW_ALL_STUDYSPOTS);
-        return new CommandResult(String.format(MESSAGE_SUCCESS_OVERRIDE, studiedHours, nameOfStudySpot));
+        return new CommandResult(String.format(MESSAGE_SUCCESS_OVERRIDE, studiedHours, nameOfStudySpot),
+                true, false, false);
     }
 
 
