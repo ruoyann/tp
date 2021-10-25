@@ -83,7 +83,7 @@ This section provides tips on reading this document, as well as how to navigate 
 
 This User Guide is structured so that it is easy for you to find what you need.
 
-It is recommended that you have a copy of StudyTracker open, so you can try out the commands and features!
+It is recommended that you have our StudyTracker application open, so you can try out the commands and features!
 
 The [Table of Contents](#table-of-contents) contains links to all the sections of the guide.
 
