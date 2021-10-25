@@ -51,11 +51,8 @@ Let's explore how we **add a new study spot** and **track our study time** with 
    ![Ui](images/Ui.png)
 
 1. Type the command in the command box and press Enter to execute it. e.g. typing **`help`** and pressing Enter will open the help window.<br>
-   Do the following commands in sequence:
 
-<div markdown="span" class="alert alert-primary">:bulb: **Tip:**
-Check out <a href="#command-structure">How to read Commands in StudyTracker</a> section if you are unfamiliar with CLI syntax!
-</div>
+    Do the following commands in sequence:
 
    1. **`list`** : Lists all study spots.
     Study spots are shown in cards on the right panel of the program.
@@ -67,15 +64,17 @@ Check out <a href="#command-structure">How to read Commands in StudyTracker</a> 
     The card will update with the new study hours. 
 
    1. **`exit`** : Exits the app.
+
+<div markdown="span" class="alert alert-primary">:bulb: **Tip:**
+Check out <a href="#command-structure">How to read Commands in StudyTracker</a> section if you are unfamiliar with CLI syntax!
+</div>    
+
 1. Congratulations! You've just added a new study spot, and logged your study time!
 You're on the right track to productivity!
 
 1. Refer to the [Features](#features) section for more commands and features in StudyTracker.
 
 ---
-If you are unfamiliar with CLI, this tutorial will get you up to speed!
-(See the [Command Structure](#how-to-read-commands-in-studytracker) to learn more about CLI)
-
 ## How to use this User Guide
 
 This section provides tips on reading this document, as well as how to navigate it.
@@ -196,8 +195,8 @@ Features are grouped according to usage.
 Click on the groups to view clear, step-by-step usage instructions!
 
 
-Features | Usage
---------|------------------
+| Features | Usage and commands|
+|----------|------------------ |
 | **[Managing study spots](#managing-study-spots)** | Commands that manage the study spots in this app <br> **Commands**: add, edit, fav, unfav, delete, clear |
 | **[Managing StudyTracker list](#managing-studytracker-list)** | Commands to filter and view specific study spots <br> **Commands**: list, find |
 | **[Logging study hours](#logging-study-hours-log)**| Commands to log study hours <br> **Commands**: log |
