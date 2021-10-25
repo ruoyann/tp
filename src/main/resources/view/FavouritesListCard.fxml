@@ -32,18 +32,18 @@
                 <VBox alignment="TOP_LEFT" spacing="4" GridPane.columnIndex="0">
                     <!-- name and tags -->
                     <Label fx:id="name" styleClass="cell_medium_bold_label" text="\$first" wrapText="true" />
-                    <FlowPane fx:id="tags" />
+                    <FlowPane fx:id="tagsForFavourites" />
                     <Region VBox.vgrow="ALWAYS" minHeight="10.0" /> <!-- spacer -->
                 </VBox>
 
                 <VBox alignment="TOP_RIGHT" GridPane.columnIndex="1">
                     <!-- amenities -->
-                    <HBox fx:id="icons" alignment="TOP_RIGHT" spacing="4"/>
+                    <HBox fx:id="amenitiesDisplay" alignment="TOP_RIGHT" styleClass="icon_small_container"/>
                 </VBox>
 
-                <VBox alignment="BOTTOM_LEFT" spacing="4" GridPane.rowIndex="1" HBox.hgrow="ALWAYS">
+                <VBox alignment="BOTTOM_LEFT" GridPane.rowIndex="1" HBox.hgrow="ALWAYS">
                     <!-- rating -->
-                    <Label fx:id="rating" alignment="BASELINE_CENTER" styleClass="icon_small_container, cell_small_label" text="\$rating" textAlignment="JUSTIFY" />
+                    <HBox fx:id="rating" styleClass="icon_small_container"/>
                 </VBox>
 
                 <HBox alignment="BOTTOM_RIGHT" spacing="4" GridPane.columnIndex="1" GridPane.rowIndex="1">

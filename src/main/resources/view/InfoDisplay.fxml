@@ -6,7 +6,6 @@
 <?import javafx.scene.layout.VBox?>
 
 <?import javafx.geometry.Insets?>
-<?import javafx.scene.layout.StackPane?>
 <VBox fx:id="infoDisplay" styleClass="info-display"
       alignment="CENTER"
       xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1">
@@ -14,12 +13,6 @@
     <ImageView fx:id="appIcon" fitHeight="150.0" fitWidth="150.0" pickOnBounds="true" preserveRatio="true"/>
     <Label fx:id="statusString" wrapText="true" textAlignment="CENTER" styleClass="italics, h2-size"/>
     <padding>
-        <Insets top="4" right="6" bottom="4" left="8"/>
+        <Insets top="4" right="8" bottom="4" left="8"/>
     </padding>
-    <VBox fx:id="favouritesList" styleClass="pane" minWidth="200" prefWidth="200" VBox.vgrow="ALWAYS">
-        <padding>
-            <Insets top="10" right="4" bottom="4" left="4"/>
-        </padding>
-        <StackPane fx:id="favouritesListPanelPlaceholder" VBox.vgrow="ALWAYS"/>
-    </VBox>
 </VBox>

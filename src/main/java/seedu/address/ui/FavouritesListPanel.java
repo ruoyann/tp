@@ -28,12 +28,20 @@ public class FavouritesListPanel extends UiPart<Region> {
     /**
      * Creates a {@code FavouritesListPanel} with the given {@code ObservableList} and {@code favouritesCount}.
      */
-    public FavouritesListPanel(ObservableList<StudySpot> filteredStudySpots, int favouritesCount) {
+    public FavouritesListPanel(ObservableList<StudySpot> filteredStudySpots) {
         super(FXML);
         favouritesListView.setItems(filteredStudySpots);
-        favouritesListView.setCellFactory(listView -> new FavouritesListPanel.FavouritesListViewCell());
-        getInitialFavouritesCountDisplay(favouritesCount);
+        favouritesListView.setCellFactory(listView -> new FavouritesListViewCell());
+        getInitialFavouritesCountDisplay(filteredStudySpots.size());
     }
+
+//    /**
+//     * Updates the favourite study spots in {@code favouritesListView}.
+//     */
+//    public void updateFavourites(ObservableList<StudySpot> updatedFavourites) {
+//        favouritesListView.setItems(updatedFavourites);
+//        favouritesListView.setCellFactory(listView -> new FavouritesListViewCell());
+//    }
 
     /**
      * Updates {@code favouritesListCount} with the given {@code favouritesCount}.
@@ -45,7 +53,6 @@ public class FavouritesListPanel extends UiPart<Region> {
         } else {
             favouritesListCount.setText(String.valueOf(favouritesCount));
             favouritesListViewDefaultMessage.setText("");
-
         }
     }
 
