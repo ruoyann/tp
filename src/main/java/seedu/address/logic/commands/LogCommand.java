@@ -93,7 +93,7 @@ public class LogCommand extends Command {
             return new CommandResult(String.format(MESSAGE_SUCCESS_DEFAULT, studiedHours,
                     studySpotToAddHours.getName()), true, false, false);
         } catch (IllegalValueException e) {
-            throw new CommandException(StudiedHours.MESSAGE_HOURS_IS_FULL);
+            throw new CommandException(e.getMessage());
         }
     }
 
@@ -119,10 +119,9 @@ public class LogCommand extends Command {
         StudySpot newStudySpot = addHoursToStudySpot(studySpot, studiedHours);
         model.setStudySpot(studySpot, newStudySpot);
         model.updateFilteredStudySpotList(Model.PREDICATE_SHOW_ALL_STUDYSPOTS);
-        return new CommandResult(String.format(MESSAGE_SUCCESS_OVERRIDE, studiedHours, name),
+        return new CommandResult(String.format(MESSAGE_SUCCESS_OVERRIDE, studiedHours, studySpot.getName()),
                 true, false, false);
     }
-
 
     private static StudySpot addHoursToStudySpot(StudySpot studySpotToAddHours,
                                                  StudiedHours hoursAfterAddition) {

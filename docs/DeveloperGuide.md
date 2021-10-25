@@ -351,7 +351,7 @@ To tackle these issues, the following solutions were implemented:
 
 Themes allow users to customize the colours of the GUI of StudyTracker.
 
-![GUI Themes](images/UiThemes.gif)
+![GUI Themes](images/UiThemes.png)
 
 #### Implementation of Themes
 
