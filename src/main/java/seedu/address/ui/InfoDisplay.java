@@ -124,6 +124,7 @@ public class InfoDisplay extends UiPart<Region> {
     public void handleNewSpot(StudySpot newSpot) {
         // Method should only be called if pie chart has less than 5 elements
         assert pieChartData.size() < 5;
+        int pieChartInitialSize = pieChartData.size();
         String name = newSpot.getName().fullName;
         int hours = newSpot.getStudiedHours().getHours();
         PieChart.Data data = new PieChart.Data(name, hours);
@@ -137,6 +138,10 @@ public class InfoDisplay extends UiPart<Region> {
             index++;
         }
 
+        // Was not added in during above for loop because it was smaller than all other hours
+        if (pieChartInitialSize == pieChartData.size()) {
+            pieChartData.add(data);
+        }
     }
 
     public boolean isSameSpots(ObservableList<StudySpot> comparedList) {
