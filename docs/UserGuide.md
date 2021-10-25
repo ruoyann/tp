@@ -65,14 +65,16 @@ Let's explore how we **add a new study spot** and **track our study time** with 
 
    1. **`exit`** : Exits the app.
 
- <div markdown="span" class="alert alert-primary">:bulb: **Tip:**
- Check out <a href="#command-structure">How to read Commands in StudyTracker</a> section if you are unfamiliar with CLI syntax!
- </div>    
-
-6. Congratulations! You've just added a new study spot, and logged your study time!
+1. Congratulations! You've just added a new study spot, and logged your study time!
 You're on the right track to productivity!
 
-7. Refer to the [Features](#features) section for more commands and features in StudyTracker.
+1. Refer to the [Features](#features) section for more commands and features in StudyTracker.
+
+<div markdown="span" class="alert alert-primary">:bulb: **Tip:**
+Check out **<a href="#command-structure">How to read Commands in StudyTracker</a>** section if you are unfamiliar with CLI syntax!
+</div>    
+
+<div style="page-break-after: always;"></div>
 
 ---
 ## How to use this User Guide
