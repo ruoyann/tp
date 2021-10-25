@@ -1,10 +1,10 @@
 package seedu.address.logic.parser;
 
 import static seedu.address.commons.core.Messages.MESSAGE_INVALID_COMMAND_FORMAT;
-import static seedu.address.logic.parser.CliSyntax.PREFIX_NAME;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_HOURS;
-import static seedu.address.logic.parser.CommandParserTestUtil.assertParseSuccess;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_NAME;
 import static seedu.address.logic.parser.CommandParserTestUtil.assertParseFailure;
+import static seedu.address.logic.parser.CommandParserTestUtil.assertParseSuccess;
 import static seedu.address.testutil.TypicalStudySpots.STARBUCKS;
 
 import org.junit.jupiter.api.Test;
@@ -35,6 +35,7 @@ public class LogCommandParserTest {
     public void parse_moreThanOneFlag_failure() {
         Name name = STARBUCKS.getName();
         String userInput = " -r " + "-o " + PREFIX_NAME + name.fullName;
-        assertParseFailure(parser, userInput, String.format(MESSAGE_INVALID_COMMAND_FORMAT, LogCommand.MESSAGE_ONE_FLAG));
+        assertParseFailure(parser, userInput, String.format(MESSAGE_INVALID_COMMAND_FORMAT, 
+                                                            LogCommand.MESSAGE_ONE_FLAG));
     }
 }
