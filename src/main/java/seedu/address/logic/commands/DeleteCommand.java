@@ -1,11 +1,9 @@
 package seedu.address.logic.commands;
 
 import static java.util.Objects.requireNonNull;
+import static seedu.address.commons.core.Messages.MESSAGE_INVALID_NAME;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_DELETE_SPOT;
 
-import java.util.List;
-
-import seedu.address.commons.core.Messages;
 import seedu.address.logic.commands.exceptions.CommandException;
 import seedu.address.model.Model;
 import seedu.address.model.studyspot.Name;
@@ -33,20 +31,9 @@ public class DeleteCommand extends Command {
     @Override
     public CommandResult execute(Model model) throws CommandException {
         requireNonNull(model);
-        List<StudySpot> lastShownList = model.getFilteredStudySpotList();
-
-        boolean isPresent = false;
-        StudySpot studySpotToDelete = null;
-        for (StudySpot current: lastShownList) {
-            if (current.isSameName(name)) {
-                studySpotToDelete = current;
-                isPresent = true;
-                break;
-            }
-        }
-
-        if (!isPresent) {
-            throw new CommandException(Messages.MESSAGE_INVALID_NAME);
+        StudySpot studySpotToDelete = model.findStudySpot(name);
+        if (studySpotToDelete == null) {
+            throw new CommandException(MESSAGE_INVALID_NAME);
         }
 
         model.deleteStudySpot(studySpotToDelete);

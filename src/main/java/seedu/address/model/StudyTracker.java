@@ -6,6 +6,7 @@ import java.util.List;
 
 import javafx.collections.ObservableList;
 import seedu.address.model.studyspot.Favourite;
+import seedu.address.model.studyspot.Name;
 import seedu.address.model.studyspot.StudySpot;
 import seedu.address.model.studyspot.UniqueStudySpotList;
 
@@ -76,6 +77,23 @@ public class StudyTracker implements ReadOnlyStudyTracker {
     public boolean hasStudySpot(StudySpot studySpot) {
         requireNonNull(studySpot);
         return studySpots.contains(studySpot);
+    }
+
+    /**
+     * Returns StudySpot with the specified {@code Name} in the study tracker.
+     * Otherwise, returns null.
+     *
+     * @param name
+     */
+    public StudySpot findStudySpot(Name name) {
+        StudySpot studySpot = null;
+        for (StudySpot current: studySpots) {
+            if (current.isSameName(name)) {
+                studySpot = current;
+                break;
+            }
+        }
+        return studySpot;
     }
 
     /**

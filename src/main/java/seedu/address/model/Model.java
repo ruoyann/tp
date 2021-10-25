@@ -6,6 +6,7 @@ import java.util.function.Predicate;
 import javafx.collections.ObservableList;
 import seedu.address.commons.core.GuiSettings;
 import seedu.address.model.alias.Alias;
+import seedu.address.model.studyspot.Name;
 import seedu.address.model.studyspot.StudySpot;
 
 /**
@@ -72,6 +73,12 @@ public interface Model {
      * Returns true if a study spot with the same identity as {@code studySpot} exists in the study tracker.
      */
     boolean hasStudySpot(StudySpot studySpot);
+
+    /**
+     * Returns StudySpot with the specified {@code Name} in the study tracker.
+     * Otherwise, returns null.
+     */
+    StudySpot findStudySpot(Name name);
 
     /**
      * Deletes the given study spot.

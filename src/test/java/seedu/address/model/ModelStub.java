@@ -6,6 +6,7 @@ import java.util.function.Predicate;
 import javafx.collections.ObservableList;
 import seedu.address.commons.core.GuiSettings;
 import seedu.address.model.alias.Alias;
+import seedu.address.model.studyspot.Name;
 import seedu.address.model.studyspot.StudySpot;
 
 /**
@@ -74,6 +75,11 @@ public class ModelStub implements Model {
 
     @Override
     public boolean hasStudySpot(StudySpot studySpot) {
+        throw new AssertionError("This method should not be called.");
+    }
+
+    @Override
+    public StudySpot findStudySpot(Name name) {
         throw new AssertionError("This method should not be called.");
     }
 

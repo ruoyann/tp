@@ -16,6 +16,7 @@ import javafx.collections.transformation.FilteredList;
 import seedu.address.commons.core.GuiSettings;
 import seedu.address.commons.core.LogsCenter;
 import seedu.address.model.alias.Alias;
+import seedu.address.model.studyspot.Name;
 import seedu.address.model.studyspot.StudySpot;
 
 /**
@@ -128,6 +129,17 @@ public class ModelManager implements Model {
     public boolean hasStudySpot(StudySpot studySpot) {
         requireNonNull(studySpot);
         return studyTracker.hasStudySpot(studySpot);
+    }
+
+    /**
+     * Returns StudySpot with the specified {@code Name} in the study tracker.
+     * Otherwise, returns null.
+     *
+     * @param name
+     */
+    @Override
+    public StudySpot findStudySpot(Name name) {
+        return studyTracker.findStudySpot(name);
     }
 
     @Override
