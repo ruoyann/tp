@@ -67,6 +67,7 @@ public class InfoDisplay extends UiPart<Region> {
             handleDifferentSpots(newTopFiveSpots);
         }
 
+        topFiveSpots = newTopFiveSpots;
         pieChartData.forEach(this::addInteractivity);
         infoChartHours.setText(String.valueOf(getTotalStudiedHours(fullList)));
     }
@@ -126,7 +127,15 @@ public class InfoDisplay extends UiPart<Region> {
         String name = newSpot.getName().fullName;
         int hours = newSpot.getStudiedHours().getHours();
         PieChart.Data data = new PieChart.Data(name, hours);
-        pieChartData.add(data);
+
+        int index = 0;
+        for (PieChart.Data d : pieChartData) {
+            if (d.getPieValue() < hours) {
+                pieChartData.add(index, data);
+                break;
+            }
+            index++;
+        }
 
     }
 
