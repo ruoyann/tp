@@ -38,12 +38,7 @@
 
                 <VBox alignment="TOP_RIGHT" GridPane.columnIndex="1">
                     <!-- amenities -->
-                    <HBox fx:id="amenitiesDisplay" alignment="TOP_RIGHT" styleClass="icon_small_container"/>
-                </VBox>
-
-                <VBox alignment="BOTTOM_LEFT" GridPane.rowIndex="1" HBox.hgrow="ALWAYS">
-                    <!-- rating -->
-                    <HBox fx:id="rating" styleClass="icon_small_container"/>
+                    <HBox fx:id="amenitiesDisplay" alignment="TOP_RIGHT" spacing="4" />
                 </VBox>
 
                 <HBox alignment="BOTTOM_RIGHT" spacing="4" GridPane.columnIndex="1" GridPane.rowIndex="1">

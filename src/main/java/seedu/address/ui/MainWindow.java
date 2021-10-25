@@ -241,7 +241,7 @@ public class MainWindow extends UiPart<Stage> {
             studySpotListPanel.updateStudySpotCountDisplay(logic.getFilteredStudySpotList().size(),
                     logic.getFullList().size());
             favouritesListPanel.updateFavouritesCountDisplay(logic.getFavouriteStudySpotList().size());
-//            favouritesListPanel.updateFavourites(logic.getFavouriteStudySpotList());
+            // favouritesListPanel.updateFavourites(logic.getFavouriteStudySpotList());
 
 
             if (commandResult.isShowHelp()) {

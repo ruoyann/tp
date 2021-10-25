@@ -3,9 +3,6 @@ package seedu.address.ui;
 import static seedu.address.ui.StudySpotCard.SVGPATH_AIRCON_CONTENT;
 import static seedu.address.ui.StudySpotCard.SVGPATH_CHARGER_CONTENT;
 import static seedu.address.ui.StudySpotCard.SVGPATH_FOOD_CONTENT;
-import static seedu.address.ui.StudySpotCard.SVGPATH_HEART_CONTENT;
-import static seedu.address.ui.StudySpotCard.SVGPATH_STAR_FILLED_CONTENT;
-import static seedu.address.ui.StudySpotCard.SVGPATH_STAR_UNFILLED_CONTENT;
 import static seedu.address.ui.StudySpotCard.SVGPATH_WIFI_CONTENT;
 
 import java.util.Comparator;
@@ -16,7 +13,6 @@ import javafx.scene.layout.FlowPane;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.Region;
 import javafx.scene.shape.SVGPath;
-import seedu.address.model.studyspot.Rating;
 import seedu.address.model.studyspot.StudiedHours;
 import seedu.address.model.studyspot.StudySpot;
 
@@ -29,8 +25,6 @@ public class FavouritesCard extends UiPart<Region> {
     private HBox cardPane;
     @FXML
     private Label name;
-    @FXML
-    private HBox rating;
     @FXML
     private Label studiedHours;
     @FXML
@@ -58,7 +52,7 @@ public class FavouritesCard extends UiPart<Region> {
         studySpot.getTags().stream()
                 .sorted(Comparator.comparing(tag -> tag.tagName))
                 .forEach(tag -> tagsForFavourites.getChildren().add(getStyledTagLabel(tag.tagName)));
-        setRatingDisplay(rating, studySpot.getRating());
+
         setAmenitiesDisplay(amenitiesDisplay, studySpot);
     }
 
@@ -88,18 +82,6 @@ public class FavouritesCard extends UiPart<Region> {
         }
     }
 
-    private void setRatingDisplay(HBox ratingDisplay, Rating providedRating) {
-        int rating = Integer.parseInt(providedRating.value);
-        for (int i = 0; i < 5; i++) {
-            if (rating > 0) {
-                ratingDisplay.getChildren().add(getStarIconLabel(true));
-            } else {
-                ratingDisplay.getChildren().add(getStarIconLabel(false));
-            }
-            rating -= 1;
-        }
-    }
-
     /**
      * Generate a Label that has an accent colour based on its contents.
      */
@@ -109,43 +91,36 @@ public class FavouritesCard extends UiPart<Region> {
         return newLabel;
     }
 
-    private void setUpdatedAmenitiesDisplay(HBox amenitiesDisplay, StudySpot studySpot) {
+    private void setUpdatedAmenitiesDisplay(HBox iconContainer, StudySpot studySpot) {
+        HBox amenitiesDisplay = new HBox();
+        amenitiesDisplay.getStyleClass().add("icon_container");
+
         studySpot.getAmenities().stream()
                 .sorted(Comparator.comparing(amenity -> amenity.amenityType))
                 .forEach(amenity -> amenitiesDisplay.getChildren().add(getAmenityIconLabel(amenity.amenityType)));
+        iconContainer.getChildren().add(amenitiesDisplay);
     }
 
     private Label getAmenityIconLabel(String amenityType) {
         Label result = new Label();
-        result.getStyleClass().add("icon_small_label");
+        result.getStyleClass().add("icon_label");
 
         switch (amenityType) {
         case "wifi":
-            result.setGraphic(getIcon(SVGPATH_WIFI_CONTENT, 0.02));
+            result.setGraphic(getIcon(SVGPATH_WIFI_CONTENT, 0.03));
             return result;
         case "charger":
-            result.setGraphic(getIcon(SVGPATH_CHARGER_CONTENT, 0.02));
+            result.setGraphic(getIcon(SVGPATH_CHARGER_CONTENT, 0.03));
             return result;
         case "food":
-            result.setGraphic(getIcon(SVGPATH_FOOD_CONTENT, 0.02));
+            result.setGraphic(getIcon(SVGPATH_FOOD_CONTENT, 0.03));
             return result;
         case "aircon":
-            result.setGraphic(getIcon(SVGPATH_AIRCON_CONTENT, 0.02));
+            result.setGraphic(getIcon(SVGPATH_AIRCON_CONTENT, 0.03));
             return result;
         default:
             throw new AssertionError("Amenity [\" + amenityType + \"] not found in StudySpotCard!");
         }
-    }
-
-    private Label getStarIconLabel(boolean isFilled) {
-        Label result = new Label();
-        result.getStyleClass().add("icon_small_label");
-        if (isFilled) {
-            result.setGraphic(getIcon(SVGPATH_STAR_FILLED_CONTENT, 0.015));
-        } else {
-            result.setGraphic(getIcon(SVGPATH_STAR_UNFILLED_CONTENT, 0.015));
-        }
-        return result;
     }
 
     private SVGPath getIcon(String svgPathContent, double scale) {

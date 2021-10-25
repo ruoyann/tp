@@ -201,17 +201,6 @@
     -fx-max-height: 24;
 }
 
-.icon_small_container {
-    -fx-spacing: 10;
-    -fx-font-size: 11px;
-    -fx-background-color: derive(fg-surface, 20%);
-    -fx-padding: 4 12 4 12;
-    -fx-background-radius: 10;
-    -fx-opacity: 0.85;
-    -fx-min-height: 22;
-    -fx-max-height: 22;
-}
-
 .svg_icon {
     -fx-fill: fg-text;
 }
