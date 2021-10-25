@@ -10,13 +10,20 @@
     fg-text: #eeeeee;
     bg-text: #ffffff;
     accent-text: #ffffff;
-    -fx-text-base-color: fg-text;
+    -fx-text-base-color: bg-text;
 
     -fx-default-button: #282c34;
     -fx-control-inner-background: derive(-fx-base, 35%);
     -fx-control-inner-background-alt: -fx-control-inner-background;
     -fx-focus-color: transparent;
     -fx-faint-focus-color: transparent;
+
+    accent-0: #49a099;
+    accent-1: #3e7b91;
+    accent-2: #4ebc89;
+    accent-3: #88de77;
+    accent-4: #3b427f;
+    accent-5: #635396;
 }
 
 .list-cell:filled:even .card{
@@ -29,4 +36,8 @@
 
 .list-cell:filled:hover .card{
     -fx-background-color: derive(fg-accent, -30%);
+}
+
+.command-info__command-header {
+    -fx-fill: accent-text;
 }

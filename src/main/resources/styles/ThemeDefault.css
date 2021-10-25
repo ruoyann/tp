@@ -15,4 +15,11 @@
     -fx-default-button: #66606b;
     -fx-focus-color: transparent;
     -fx-faint-focus-color: transparent;
+
+    accent-0: #bf3722;
+    accent-1: #792315;
+    accent-2: #e47464;
+    accent-3: #9f4132;
+    accent-4: #e3a664;
+    accent-5: #8f3b2e;
 }

@@ -71,7 +71,6 @@ public class MainWindow extends UiPart<Stage> {
         // Configure the UI
         setStylesheet("Main.css");
         setStylesheet("Fonts.css");
-        setStylesheet("Extensions.css");
         setWindowDefaultSize(logic.getGuiSettings());
         setThemeFromSettings(logic.getGuiSettings());
 
@@ -130,7 +129,7 @@ public class MainWindow extends UiPart<Stage> {
         resultDisplay = new ResultDisplay();
         resultDisplayPlaceholder.getChildren().add(resultDisplay.getRoot());
 
-        infoDisplay = new InfoDisplay();
+        infoDisplay = new InfoDisplay(logic.getTopFiveStudySpotList(), logic.getFullList());
         infoDisplayPlaceholder.getChildren().add(infoDisplay.getRoot());
 
         StatusBarFooter statusBarFooter = new StatusBarFooter(logic.getStudyTrackerFilePath());
@@ -233,6 +232,10 @@ public class MainWindow extends UiPart<Stage> {
             resultDisplay.setFeedbackToUser(commandResult.getFeedbackToUser());
             studySpotListPanel.updateStudySpotCountDisplay(logic.getFilteredStudySpotList().size(),
                     logic.getFullList().size());
+
+            if (commandResult.isLogHours()) {
+                infoDisplay.updatePieChart(logic.getTopFiveStudySpotList(), logic.getFullList());
+            }
 
             if (commandResult.isShowHelp()) {
                 handleHelp();
