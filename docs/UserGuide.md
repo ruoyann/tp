@@ -69,10 +69,10 @@ Let's explore how we **add a new study spot** and **track our study time** with 
 Check out <a href="#command-structure">How to read Commands in StudyTracker</a> section if you are unfamiliar with CLI syntax!
 </div>    
 
-1. Congratulations! You've just added a new study spot, and logged your study time!
+6. Congratulations! You've just added a new study spot, and logged your study time!
 You're on the right track to productivity!
 
-1. Refer to the [Features](#features) section for more commands and features in StudyTracker.
+7. Refer to the [Features](#features) section for more commands and features in StudyTracker.
 
 ---
 ## How to use this User Guide
