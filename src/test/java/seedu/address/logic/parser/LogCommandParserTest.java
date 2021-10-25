@@ -8,7 +8,7 @@ import static seedu.address.logic.parser.CommandParserTestUtil.assertParseSucces
 import static seedu.address.testutil.TypicalStudySpots.STARBUCKS;
 
 import org.junit.jupiter.api.Test;
-import seedu.address.logic.commands.FavouriteCommand;
+
 import seedu.address.logic.commands.LogCommand;
 import seedu.address.model.studyspot.Name;
 import seedu.address.model.studyspot.StudiedHours;
@@ -21,7 +21,7 @@ public class LogCommandParserTest {
         Name name = STARBUCKS.getName();
         StudiedHours studiedHours = new StudiedHours("5");
         String userInput = " " + PREFIX_NAME + name.fullName + " " + PREFIX_HOURS + "5";
-        assertParseSuccess(parser, userInput, new LogCommand(STARBUCKS.getName(), studiedHours, false, false ));
+        assertParseSuccess(parser, userInput, new LogCommand(STARBUCKS.getName(), studiedHours, false, false));
     }
 
     @Test
