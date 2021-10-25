@@ -61,7 +61,49 @@ public class InfoDisplay extends UiPart<Region> {
      * Updates the pie chart with new top five spots
      */
     public void updatePieChart(ObservableList<StudySpot> newTopFiveSpots, ObservableList<StudySpot> fullList) {
-        for (StudySpot s : newTopFiveSpots) {
+        if (isSameSpots(newTopFiveSpots)) {
+            handleSameSpots(newTopFiveSpots);
+        } else {
+            handleDifferentSpots(newTopFiveSpots);
+        }
+
+        pieChartData.forEach(this::addInteractivity);
+        infoChartHours.setText(String.valueOf(getTotalStudiedHours(fullList)));
+    }
+
+    public void handleSameSpots(ObservableList<StudySpot> updatedStudySpots) {
+        assert isSameSpots(updatedStudySpots);
+        for (StudySpot s : updatedStudySpots) {
+            String name = s.getName().fullName;
+            int updatedHours = s.getStudiedHours().getHours();
+            for (PieChart.Data d : pieChartData) {
+                if (d.getName().equals(name)) {
+                    d.setPieValue(updatedHours);
+                    break;
+                }
+            }
+        }
+    }
+
+    public void handleDifferentSpots(ObservableList<StudySpot> updatedStudySpots) {
+        assert !isSameSpots(updatedStudySpots);
+        StudySpot spotToBeRemoved = null;
+        for (StudySpot s : topFiveSpots) {
+            if (!updatedStudySpots.contains(s)) {
+                spotToBeRemoved = s;
+                break;
+            }
+        }
+
+        assert spotToBeRemoved != null;
+        for (PieChart.Data d : pieChartData) {
+            if (d.getName().equals(spotToBeRemoved.getName().fullName)) {
+                pieChartData.remove(d);
+                break;
+            }
+        }
+
+        for (StudySpot s : updatedStudySpots) {
             String name = s.getName().fullName;
             int hours = s.getStudiedHours().getHours();
 
@@ -76,36 +118,27 @@ public class InfoDisplay extends UiPart<Region> {
                 handleNewSpot(s);
             }
         }
-        pieChartData.forEach(this::addInteractivity);
-        infoChartHours.setText(String.valueOf(getTotalStudiedHours(fullList)));
     }
 
     public void handleNewSpot(StudySpot newSpot) {
+        // Method should only be called if pie chart has less than 5 elements
+        assert pieChartData.size() < 5;
         String name = newSpot.getName().fullName;
         int hours = newSpot.getStudiedHours().getHours();
         PieChart.Data data = new PieChart.Data(name, hours);
-        if (pieChartData.size() < 5) {
-            pieChartData.add(data);
-            return;
-        }
+        pieChartData.add(data);
 
-        //Last value of pieChartData should be less than new spots hours
-        assert pieChartData.get(4).getPieValue() < hours;
+    }
 
-        pieChartData.remove(4);
-        int index = 0;
-        for (PieChart.Data d : pieChartData) {
-            if (d.getPieValue() < hours) {
-                pieChartData.add(index, data);
+    public boolean isSameSpots(ObservableList<StudySpot> comparedList) {
+        boolean result = true;
+        for (StudySpot s : comparedList) {
+            if (!this.topFiveSpots.contains(s)) {
+                result = false;
                 break;
             }
-            index++;
         }
-
-        // If still not 5, means that it was not added in the above for loop
-        if (pieChartData.size() != 5) {
-            pieChartData.add(data);
-        }
+        return result;
     }
 
     /**
