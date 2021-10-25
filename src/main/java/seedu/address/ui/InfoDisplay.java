@@ -72,6 +72,9 @@ public class InfoDisplay extends UiPart<Region> {
         infoChartHours.setText(String.valueOf(getTotalStudiedHours(fullList)));
     }
 
+    /**
+     * Handles updating the pie chart if the spots are the same
+     */
     public void handleSameSpots(ObservableList<StudySpot> updatedStudySpots) {
         assert isSameSpots(updatedStudySpots);
         for (StudySpot s : updatedStudySpots) {
@@ -86,6 +89,9 @@ public class InfoDisplay extends UiPart<Region> {
         }
     }
 
+    /**
+     * Handles updating the pie chart if there are differing top five spots
+     */
     public void handleDifferentSpots(ObservableList<StudySpot> updatedStudySpots) {
         assert !isSameSpots(updatedStudySpots);
         StudySpot spotToBeRemoved = null;
@@ -121,6 +127,9 @@ public class InfoDisplay extends UiPart<Region> {
         }
     }
 
+    /**
+     * Handles the addition of a new study spot into the pie chart
+     */
     public void handleNewSpot(StudySpot newSpot) {
         // Method should only be called if pie chart has less than 5 elements
         assert pieChartData.size() < 5;
@@ -144,6 +153,9 @@ public class InfoDisplay extends UiPart<Region> {
         }
     }
 
+    /**
+     * Checks if the given list is the same as the current top five spots
+     */
     public boolean isSameSpots(ObservableList<StudySpot> comparedList) {
         boolean result = true;
         for (StudySpot s : comparedList) {
