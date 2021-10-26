@@ -4,8 +4,6 @@ import static java.util.Objects.requireNonNull;
 import static seedu.address.commons.core.Messages.MESSAGE_INVALID_NAME;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_NAME;
 
-import java.util.List;
-
 import seedu.address.logic.commands.exceptions.CommandException;
 import seedu.address.model.Model;
 import seedu.address.model.studyspot.Name;
@@ -36,18 +34,9 @@ public class UnfavouriteCommand extends Command {
     @Override
     public CommandResult execute(Model model) throws CommandException {
         requireNonNull(model);
-        List<StudySpot> lastShownList = model.getFullList();
 
-        boolean isPresent = false;
-        StudySpot studySpotToUnfavourite = null;
-        for (StudySpot current: lastShownList) {
-            if (current.isSameName(name)) {
-                studySpotToUnfavourite = current;
-                isPresent = true;
-                break;
-            }
-        }
-        if (!isPresent) {
+        StudySpot studySpotToUnfavourite = model.findStudySpot(name);
+        if (studySpotToUnfavourite == null) {
             throw new CommandException(MESSAGE_INVALID_NAME);
         }
 
