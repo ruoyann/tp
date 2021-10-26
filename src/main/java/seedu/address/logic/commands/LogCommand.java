@@ -47,7 +47,7 @@ public class LogCommand extends Command {
 
     private final Name name;
     private final StudiedHours studiedHours;
-    private final boolean isReset;
+    private final boolean isResetStudySpot;
     private final boolean isResetAll;
     private final boolean isOverride;
 
@@ -55,15 +55,15 @@ public class LogCommand extends Command {
     /**
      * @param name name of study spot to add hours to
      * @param studiedHours number of hours studied
-     * @param isReset resets the number of hours to zero
+     * @param isResetStudySpot resets the number of hours to zero
      * @param isOverride changes the number of hours to studiedHours
      * @param isResetAll resets all study spots' hours to zero
      */
-    public LogCommand(Name name, StudiedHours studiedHours, boolean isReset, boolean isOverride,
+    public LogCommand(Name name, StudiedHours studiedHours, boolean isResetStudySpot, boolean isOverride,
                       boolean isResetAll) {
         this.name = name;
         this.studiedHours = studiedHours;
-        this.isReset = isReset;
+        this.isResetStudySpot = isResetStudySpot;
         this.isOverride = isOverride;
         this.isResetAll = isResetAll;
     }
@@ -78,7 +78,7 @@ public class LogCommand extends Command {
         if (studySpotToAddHours == null) {
             throw new CommandException(MESSAGE_INVALID_NAME);
         }
-        if (isReset) {
+        if (isResetStudySpot) {
             return handleReset(model, studySpotToAddHours);
         }
         if (isOverride) {
