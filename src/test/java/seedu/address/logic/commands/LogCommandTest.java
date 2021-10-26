@@ -11,15 +11,13 @@ import org.junit.jupiter.api.Test;
 
 import seedu.address.commons.core.Messages;
 import seedu.address.logic.commands.exceptions.CommandException;
-import seedu.address.model.Model;
-import seedu.address.model.ModelManager;
-import seedu.address.model.ModelStub;
-import seedu.address.model.StudyTracker;
-import seedu.address.model.UserPrefs;
+import seedu.address.model.*;
 import seedu.address.model.studyspot.Name;
 import seedu.address.model.studyspot.StudiedHours;
 import seedu.address.model.studyspot.StudySpot;
 import seedu.address.testutil.StudySpotBuilder;
+
+import java.util.ArrayList;
 
 /**
  * Contains integration tests (interaction with the Model) and unit tests for LogCommand.
@@ -28,74 +26,33 @@ public class LogCommandTest {
 
     private Model model = new ModelManager(getTypicalStudyTracker(), new UserPrefs());
 
-
-    /**
-     * A Model stub that contains a single study spot.
-     */
-    private class ModelStubWithStudySpot extends ModelStub {
-        private final StudySpot studySpot;
-
-        ModelStubWithStudySpot(StudySpot studySpot) {
-            requireNonNull(studySpot);
-            this.studySpot = studySpot;
-        }
-
-        @Override
-        public boolean hasStudySpot(StudySpot studySpot) {
-            requireNonNull(studySpot);
-            return this.studySpot.isSameStudySpot(studySpot);
-        }
-    }
-
     @Test
-    public void execute_validInitialLog_logSuccessful() throws CommandException {
+    public void execute_validLogCommand_logSuccessful() throws CommandException {
         StudySpot studySpotToLog = new StudySpotBuilder().withName("Starbucks").build();
         Model expectedModel = new ModelManager(new StudyTracker(model.getStudyTracker()), new UserPrefs());
 
         Name name = new Name("Starbucks");
         StudiedHours studiedHours = new StudiedHours("4");
-        CommandResult commandResult = new LogCommand(name, studiedHours, false, false).execute(expectedModel);
+        CommandResult commandResultInitial = new LogCommand(name, studiedHours, false, false).execute(expectedModel);
+        CommandResult commandResultReset = new LogCommand(name, studiedHours, true, false).execute(expectedModel);
+        CommandResult commandResultOverride = new LogCommand(name, studiedHours, false, true).execute(expectedModel);
 
-        String expectedCommand = String.format(LogCommand.MESSAGE_SUCCESS_DEFAULT, studiedHours.toString(),
+        String expectedCommandInitial = String.format(LogCommand.MESSAGE_SUCCESS_DEFAULT, studiedHours.toString(),
                 name.toString());
+        String expectedCommandReset = String.format(LogCommand.MESSAGE_SUCCESS_RESET, name.toString());
+        String expectedCommandOverride = String.format(LogCommand.MESSAGE_SUCCESS_OVERRIDE, studiedHours,
+                name);
 
-        assertEquals(String.format(expectedCommand, studySpotToLog),
-                commandResult.getFeedbackToUser());
+        assertEquals(String.format(expectedCommandInitial, studySpotToLog),
+                commandResultInitial.getFeedbackToUser());
+        assertEquals(String.format(expectedCommandReset, studySpotToLog),
+                commandResultReset.getFeedbackToUser());
+        assertEquals(String.format(expectedCommandOverride, studySpotToLog),
+                commandResultOverride.getFeedbackToUser());
     }
 
     @Test
-    public void execute_validHandleResetLog_logSuccessful() throws CommandException {
-        StudySpot studySpotToLog = new StudySpotBuilder().withName("Starbucks").build();
-        Model expectedModel = new ModelManager(new StudyTracker(model.getStudyTracker()), new UserPrefs());
-
-        Name name = new Name("Starbucks");
-        StudiedHours studiedHours = new StudiedHours("4");
-        CommandResult commandResult = new LogCommand(name, studiedHours, true, false).execute(expectedModel);
-
-        String expectedCommand = String.format(LogCommand.MESSAGE_SUCCESS_RESET, name.toString());
-
-        assertEquals(String.format(expectedCommand, studySpotToLog),
-                commandResult.getFeedbackToUser());
-    }
-
-    @Test
-    public void execute_validHandleOverrideLog_logSuccessful() throws CommandException {
-        StudySpot studySpotToLog = new StudySpotBuilder().withName("Starbucks").build();
-        Model expectedModel = new ModelManager(new StudyTracker(model.getStudyTracker()), new UserPrefs());
-
-        Name name = new Name("Starbucks");
-        StudiedHours studiedHours = new StudiedHours("4");
-        CommandResult commandResult = new LogCommand(name, studiedHours, false, true).execute(expectedModel);
-
-        String expectedCommand = String.format(LogCommand.MESSAGE_SUCCESS_OVERRIDE, studiedHours.toString(),
-                name.toString());
-
-        assertEquals(String.format(expectedCommand, studySpotToLog),
-                commandResult.getFeedbackToUser());
-    }
-
-    @Test
-    public void execute_invalidStudySpotIndex_failure() {
+    public void execute_invalidStudySpotName_failure() {
         Name notInTypicalStudySpots = new Name("Invalid Name");
         StudiedHours studiedHours = new StudiedHours("4");
         LogCommand logCommand = new LogCommand(notInTypicalStudySpots, studiedHours, false, false);
@@ -111,7 +68,7 @@ public class LogCommandTest {
         StudiedHours studiedHours = new StudiedHours("2147483647");
         LogCommand logCommand = new LogCommand(name, studiedHours, false, false);
 
-        assertCommandFailure(logCommand, model, StudiedHours.MESSAGE_HOURS_IS_FULL);
+        assertCommandFailure(logCommand, expectedModel, StudiedHours.MESSAGE_HOURS_IS_FULL);
     }
 
     @Test
