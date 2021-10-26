@@ -76,7 +76,4 @@ public class CommandResult {
     public int hashCode() {
         return Objects.hash(feedbackToUser, logHours, showHelp, exit);
     }
-
-//    public boolean isClearCommand() {
-//    }
 }

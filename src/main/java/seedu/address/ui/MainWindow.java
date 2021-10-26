@@ -242,12 +242,6 @@ public class MainWindow extends UiPart<Stage> {
             favouritesListPanel.updateFavouritesCountDisplay(logic.getFavouriteStudySpotList().size());
             infoDisplay.updatePieChart(logic.getTopFiveStudySpotList(), logic.getFullList());
 
-//            if (commandResult.isLogHours()
-//                    || commandResult.getFeedbackToUser().equals("StudyTracker has been cleared!")
-//                    || commandResult.getFeedbackToUser().contains("New study spot added")) {
-//                infoDisplay.updatePieChart(logic.getTopFiveStudySpotList(), logic.getFullList());
-//            }
-
             if (commandResult.isShowHelp()) {
                 handleHelp();
             }

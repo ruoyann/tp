@@ -101,6 +101,12 @@ public class InfoDisplay extends UiPart<Region> {
         infoChartHours.setText(String.valueOf(totalStudiedHours));
     }
 
+    /**
+     * Adds a spot into the TopFiveStudySpot.
+     *
+     * The updatedStudySpots should have a study spot that was not originally in topFiveSpots,
+     * and also the topFiveStudySpots should not already be full.
+     */
     public void handleAddingSpotIntoTopFive(ObservableList<StudySpot> updatedStudySpots) {
         assert(updatedStudySpots.size() > topFiveSpots.size()) : "Updated should be bigger than old!";
 
