@@ -108,6 +108,7 @@ Commands use a multipart structure that must be specified in this order:
 1. **Command word** which may be user-created aliases (detailed further in [Aliases](#setting-command-aliases--alias-unalias)). <br>
 2. **Parameters** and **Flags**
 
+<img src="images/commandStructure.png" alt="commandStructure" height="500"/>
 ```
  <COMMAND> [parameters and flags]
  ```
