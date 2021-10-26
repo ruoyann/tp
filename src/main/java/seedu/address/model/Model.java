@@ -118,6 +118,9 @@ public interface Model {
     /** Returns an unmodifiable view of the filtered study spot list */
     ObservableList<StudySpot> getFilteredStudySpotList();
 
+    /** Returns an unmodifiable view of the favourite study spots list */
+    ObservableList<StudySpot> getFavouriteStudySpotList();
+
     /**
      * Updates the filter of the filtered study spot list to filter by the given {@code predicate}.
      * @throws NullPointerException if {@code predicate} is null.

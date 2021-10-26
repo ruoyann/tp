@@ -71,6 +71,9 @@ public class SampleDataUtil {
         StudyTracker sampleSt = new StudyTracker();
         for (StudySpot sampleStudySpot : getSampleStudySpots()) {
             sampleSt.addStudySpot(sampleStudySpot);
+            if (sampleStudySpot.isFavourite()) {
+                sampleSt.addStudySpotToFavourites(sampleStudySpot);
+            }
         }
         return sampleSt;
     }

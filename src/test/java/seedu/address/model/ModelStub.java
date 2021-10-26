@@ -109,6 +109,11 @@ public class ModelStub implements Model {
     }
 
     @Override
+    public ObservableList<StudySpot> getFavouriteStudySpotList() {
+        throw new AssertionError("This method should not be called.");
+    }
+
+    @Override
     public void updateFilteredStudySpotList(Predicate<StudySpot> predicate) {
         throw new AssertionError("This method should not be called.");
     }

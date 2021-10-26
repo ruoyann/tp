@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.ListView?>
+<?import javafx.scene.layout.VBox?>
+
+<?import javafx.scene.control.Label?>
+
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.StackPane?>
+<?import javafx.scene.shape.SVGPath?>
+<VBox xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1">
+    <HBox alignment="CENTER_LEFT" spacing="20">
+        <Label alignment="CENTER" maxHeight="20" maxWidth="20" minHeight="20" minWidth="20">
+            <graphic>
+                <SVGPath
+                        content="M462.3 62.6C407.5 15.9 326 24.3 275.7 76.2L256 96.5l-19.7-20.3C186.1 24.3 104.5 15.9 49.7 62.6c-62.8 53.6-66.1 149.8-9.9 207.9l193.5 199.8c12.5 12.9 32.8 12.9 45.3 0l193.5-199.8c56.3-58.1 53-154.3-9.8-207.9z"
+                        scaleX="0.04" scaleY="0.04" styleClass="svg_icon, cell_muted_label"/>
+            </graphic>
+        </Label>
+        <Label text="Favourites" styleClass="h2-size"/>
+        <Label fx:id="favouritesListCount" styleClass="icon_container" text="0"/>
+    </HBox>
+    <StackPane VBox.vgrow="ALWAYS">
+        <ListView fx:id="favouritesListView" VBox.vgrow="ALWAYS"/>
+        <Label fx:id="favouritesListViewDefaultMessage" styleClass="italics, bg-text, text-field" wrapText="true"
+               textAlignment="CENTER"/>
+    </StackPane>
+</VBox>

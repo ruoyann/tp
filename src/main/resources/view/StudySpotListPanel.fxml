@@ -8,12 +8,12 @@
 <?import javafx.scene.layout.HBox?>
 <?import javafx.scene.layout.StackPane?>
 <VBox xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1">
-  <HBox alignment="CENTER_LEFT" spacing="48">
-    <Label text="StudyTracker" styleClass="h1-size"/>
-    <Label fx:id="studySpotListCount" styleClass="icon_container" text="0"/>
-  </HBox>
-  <StackPane VBox.vgrow="ALWAYS">
-    <ListView fx:id="studySpotListView" VBox.vgrow="ALWAYS" />
-    <Label fx:id="studySpotListViewDefaultMessage" styleClass="italics, bg-text"/>
-  </StackPane>
+    <HBox alignment="CENTER_LEFT" spacing="48">
+        <Label text="StudyTracker" styleClass="h1-size"/>
+        <Label fx:id="studySpotListCount" styleClass="icon_container" text="0"/>
+    </HBox>
+    <StackPane VBox.vgrow="ALWAYS">
+        <ListView fx:id="studySpotListView" VBox.vgrow="ALWAYS"/>
+        <Label fx:id="studySpotListViewDefaultMessage" styleClass="italics, bg-text"/>
+    </StackPane>
 </VBox>
