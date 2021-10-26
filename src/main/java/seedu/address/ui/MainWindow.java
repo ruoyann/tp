@@ -240,10 +240,13 @@ public class MainWindow extends UiPart<Stage> {
             studySpotListPanel.updateStudySpotCountDisplay(logic.getFilteredStudySpotList().size(),
                     logic.getFullList().size());
             favouritesListPanel.updateFavouritesCountDisplay(logic.getFavouriteStudySpotList().size());
+            infoDisplay.updatePieChart(logic.getTopFiveStudySpotList(), logic.getFullList());
 
-            if (commandResult.isLogHours()) {
-                infoDisplay.updatePieChart(logic.getTopFiveStudySpotList(), logic.getFullList());
-            }
+//            if (commandResult.isLogHours()
+//                    || commandResult.getFeedbackToUser().equals("StudyTracker has been cleared!")
+//                    || commandResult.getFeedbackToUser().contains("New study spot added")) {
+//                infoDisplay.updatePieChart(logic.getTopFiveStudySpotList(), logic.getFullList());
+//            }
 
             if (commandResult.isShowHelp()) {
                 handleHelp();

@@ -77,4 +77,6 @@ public class CommandResult {
         return Objects.hash(feedbackToUser, logHours, showHelp, exit);
     }
 
+//    public boolean isClearCommand() {
+//    }
 }
