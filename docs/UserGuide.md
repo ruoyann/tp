@@ -109,6 +109,7 @@ Commands use a multipart structure that must be specified in this order:
 2. **Parameters** and **Flags**
 
 <img src="images/commandStructure.png" alt="commandStructure" height="300"/>
+
 ```
  <COMMAND> [parameters and flags]
  ```
