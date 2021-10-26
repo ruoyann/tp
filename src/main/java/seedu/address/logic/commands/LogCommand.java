@@ -103,6 +103,7 @@ public class LogCommand extends Command {
         } catch (IllegalValueException e) {
             throw new CommandException(e.getMessage());
         }
+
         return new CommandResult(String.format(MESSAGE_SUCCESS_DEFAULT, studiedHours, studySpotToAddHours.getName()),
                 true, false, false
         );
@@ -125,7 +126,6 @@ public class LogCommand extends Command {
                 true, false, false);
     }
 
-
     private static StudySpot addHoursToStudySpot(StudySpot studySpotToAddHours,
                                                  StudiedHours hoursAfterAddition) {
         assert studySpotToAddHours != null;
@@ -139,5 +139,38 @@ public class LogCommand extends Command {
         Favourite favourite = studySpotToAddHours.getFavourite();
 
         return new StudySpot(name, rating, operatingHours, address, studiedHours, favourite, tags, amenities);
+    }
+
+    public Name getName() {
+        return this.nameOfStudySpot;
+    }
+
+    public StudiedHours getStudiedHours() {
+        return this.studiedHours;
+    }
+
+    public boolean getIsReset() {
+        return this.isReset;
+    }
+
+    public boolean getIsOverride() {
+        return this.isOverride;
+    }
+
+    @Override
+    public boolean equals(Object other) {
+        // short circuit if same object
+        if (other == this) {
+            return true;
+        } else {
+            if (other instanceof LogCommand) {
+                LogCommand e = (LogCommand) other;
+                return getName().equals(e.getName())
+                        && getStudiedHours().toString().equals(e.getStudiedHours().toString())
+                        && getIsReset() == (e.getIsReset())
+                        && getIsOverride() == (e.getIsOverride());
+            }
+        }
+        return false;
     }
 }
