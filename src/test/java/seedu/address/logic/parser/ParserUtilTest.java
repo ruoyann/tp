@@ -26,6 +26,7 @@ public class ParserUtilTest {
     private static final String INVALID_ADDRESS = " ";
     private static final String INVALID_OPERATING_HOURS = "9-10, 9-6";
     private static final String INVALID_TAG = "#friend";
+    private static final String INVALID_STUDIED_HOURS = "hour";
 
     private static final String VALID_NAME = "Rachel Walker";
     private static final String VALID_RATING = "3";
@@ -192,5 +193,10 @@ public class ParserUtilTest {
         Set<Tag> expectedTagSet = new HashSet<Tag>(Arrays.asList(new Tag(VALID_TAG_1), new Tag(VALID_TAG_2)));
 
         assertEquals(expectedTagSet, actualTagSet);
+    }
+
+    @Test
+    public void parseStudiedHours_invalidValue() {
+        assertThrows(ParseException.class, () -> ParserUtil.parseStudiedHours(INVALID_STUDIED_HOURS));
     }
 }
