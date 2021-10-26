@@ -12,8 +12,8 @@
 ![Ui](docs/images/Ui.png)
 
 ## Features
-1. **Make informed decisions** with full details of each study spot — track amenities like sockets, aircon, and crowd level 
-2. **Data-driven statistics** of time spent studying ensures that you know where to go to be productive
+1. **Make informed decisions** of where to study —  every study spot includes details about amenities like sockets, aircon, and crowd level, and more!
+2. **Data-driven statistics** to **track time spent studying** ensures that you know where to go to be productive
 3. Made a mistake? Found out something new? **Editing details is quick and simple!**
 4. **Powerful customization** with user-defined aliases and custom themes!
 5. **Built for cross-platform use** with JavaFX. Bring your StudyTracker data with you to any device!

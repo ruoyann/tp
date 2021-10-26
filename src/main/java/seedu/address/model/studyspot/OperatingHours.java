@@ -83,8 +83,8 @@ public class OperatingHours {
     }
 
     private static boolean isValidTimeInterval(String start, String end) {
-        assert start.matches(TIME_VALIDATION_REGEX);
-        assert end.matches(TIME_VALIDATION_REGEX);
+        assert start.matches(TIME_VALIDATION_REGEX) : "Invalid operating hours!";
+        assert end.matches(TIME_VALIDATION_REGEX) : "Invalid operating hours!";
 
         // check if start and end time are the same
         if (start.equals(end)) {

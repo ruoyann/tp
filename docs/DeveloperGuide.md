@@ -2,6 +2,25 @@
 layout: page
 title: Developer Guide
 ---
+
+<img src="images/study_tracker_logo.png" alt="logo"/>
+
+StudyTracker is a **desktop app** that **tracks your most productive study spots**, optimized for students who are familiar with **Command Line Interface (CLI)**.
+
+After reading this **Developer Guide**, you will:
+
+1. be familiarized with the code base of StudyTracker
+2. understand the functional and non-functional requirements of the app
+3. understand how certain features work and their design considerations
+
+This **Developer Guide** assumes that developers are familiar with **Java 8**, **JavaFX**, **UML Diagrams**, and **Object Oriented Programming Principles**.
+
+Only want to know how to use StudyTracker? Check out the [**User Guide**](UserGuide.html) instead.
+
+<div style="page-break-after: always;"></div>
+
+## Table of Contents
+
 * Table of Contents
 {:toc}
 
@@ -9,17 +28,21 @@ title: Developer Guide
 
 ## **Acknowledgements**
 
-* {list here sources of all reused/adapted ideas, code, documentation, and third-party libraries -- include links to the original source as well}
+* Libraries used: [JavaFX](https://openjfx.io/), [Jackson](https://github.com/FasterXML/jackson), [JUnit5](https://github.com/junit-team/junit5)
+* StudyTracker is an application developed based on the `AddressBook Level 3` application created by the [SE-EDU initiative](https://se-education.org).
+* Graphics acknowledgements can be found [here](https://github.com/AY2122S1-CS2103T-T09-1/tp/blob/master/copyright.txt)
 
 --------------------------------------------------------------------------------------------------------------------
 
 ## **Setting up, getting started**
 
-Refer to the guide [_Setting up and getting started_](SettingUp.md).
+To set up your development environment for StudyTracker, refer to this guide [_Setting up and getting started_](SettingUp.md).
 
 --------------------------------------------------------------------------------------------------------------------
 
 ## **Design**
+
+This segment introduces the general architecture of StudyTracker.
 
 <div markdown="span" class="alert alert-primary">
 
