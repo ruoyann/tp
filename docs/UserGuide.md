@@ -219,10 +219,10 @@ Click on the groups to view clear, step-by-step usage instructions!
 
 Adds a study spot to the StudyTracker.
 
-**Format:** `add n/NAME* r/RATING* a/ADDRESS t/TAG... m/AMENITY...`
+**Format:** `add n/NAME* r/RATING* a/ADDRESS t/TAG... m/AMENITY... o/OPERATING_HOURS`
 
 <div markdown="span" class="alert alert-primary">:information_source: **Note:**
-Tags, amenities and address are all optional.
+Tags, amenities, address and operating hours are all optional.
 </div>
 
 **Examples:**
@@ -230,8 +230,8 @@ Tags, amenities and address are all optional.
 add n/COM1 Basement r/5
 New study spot added: COM1 Basement; Rating: 5; Favourite: false; Studied Hours: 0
 
-add n/Starbucks at UTown r/4 t/noisy m/wifi
-New study spot added: Starbucks at UTown; Rating: 4; Favourite: false; Studied Hours: 0; Tags: [noisy]; Amenities: [wifi]
+add n/Starbucks at UTown r/4 t/noisy m/wifi o/0800-2000,0900-2200
+New study spot added: Starbucks at UTown; Rating: 4; Operating Hours: Weekdays: 0800-2000, Weekends: 0900-2200; Tags: [noisy]; Amenities: [wifi]
 ```
 
 <div style="page-break-after: always;"></div>
@@ -240,12 +240,12 @@ New study spot added: Starbucks at UTown; Rating: 4; Favourite: false; Studied H
 
 Edits the details of a single study spot.
 
-**Format:** `edit spot/NAME* n/NEW_NAME a/NEW_ADDRESS t/NEW_TAG m/NEW_AMENITY r/NEW_RATING`
+**Format:** `edit spot/NAME* n/NEW_NAME a/NEW_ADDRESS t/NEW_TAG m/NEW_AMENITY r/NEW_RATING o/NEW_OPERATING_HOURS`
 
 * Edits the study spot matching `NAME`.
   Provided `NAME` is not case-sensitive and **must fully match the study spot name**.
 * You must provide at least one of the optional fields.
-* StudyTracker will update Name, rating, address.
+* StudyTracker will update Name, rating, address and operating hours.
 * When editing tags and amenities, `t/` or `m/` will append to existing tags and amenities.
 * You can remove a specific tag or amenity with the `rt/` or `rm/` parameter.
 * You can remove all the study spot’s tags by typing `t/` or `m/` without
@@ -530,8 +530,8 @@ You may also copy the **preferences.json** file to keep your user preferences.
 
 Action | Format, Examples
 --------|------------------
-**Add** | `add n/NAME* r/RATING* a/ADDRESS t/TAG... m/AMENITY...` <br> e.g. `add n/COM1 r/5`
-**Edit** | `edit n/NAME* n/NEW_NAME a/NEW_ADDRESS t/NEW_TAG m/NEW_AMENITY r/NEW_RATING`<br> e.g.,`edit n/tr3 n/Training Room 3`
+**Add** | `add n/NAME* r/RATING* a/ADDRESS t/TAG... m/AMENITY... o/OPERATING_HOURS` <br> e.g. `add n/COM1 r/5`
+**Edit** | `edit spot/NAME* n/NEW_NAME a/NEW_ADDRESS t/NEW_TAG m/NEW_AMENITY r/NEW_RATING o/NEW_OPERATING_HOURS`<br> e.g.,`edit n/tr3 n/Training Room 3`
 **Favourite**  |  `fav n/NAME*` <br> e.g. `fav n/COM1`
 **Unfavourite** | `unfav n/NAME*`
 **Delete** | `delete n/NAME*` <br> e.g. `delete n/COM1`
