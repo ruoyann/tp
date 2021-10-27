@@ -240,10 +240,7 @@ public class MainWindow extends UiPart<Stage> {
             studySpotListPanel.updateStudySpotCountDisplay(logic.getFilteredStudySpotList().size(),
                     logic.getFullList().size());
             favouritesListPanel.updateFavouritesCountDisplay(logic.getFavouriteStudySpotList().size());
-
-            if (commandResult.isLogHours()) {
-                infoDisplay.updatePieChart(logic.getTopFiveStudySpotList(), logic.getFullList());
-            }
+            infoDisplay.updatePieChart(logic.getTopFiveStudySpotList(), logic.getFullList());
 
             if (commandResult.isShowHelp()) {
                 handleHelp();
