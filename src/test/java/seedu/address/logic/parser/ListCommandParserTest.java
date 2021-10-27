@@ -61,6 +61,6 @@ public class ListCommandParserTest {
         Amenity charger = new Amenity("charger");
         Set<Amenity> amenitySet = new HashSet<>(Arrays.asList(wifi, charger));
         Predicate<StudySpot> predicate = containsAmenity(wifi).and(containsAmenity(charger));
-        assertParseSuccess(parser, " -m m/wifi m/charger", new ListCommand(predicate, false, null, amenitySet,null));
+        assertParseSuccess(parser, " -m m/wifi m/charger", new ListCommand(predicate, false, null, amenitySet, null));
     }
 }
