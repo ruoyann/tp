@@ -328,6 +328,10 @@ Shows saved study spots in the StudyTracker.
 
 **Format:** `list -t t/TAG...` to show study spots with specified tags
 
+**Format:** `list -m m/AMENITY...` to show study spots with specified amenities 
+
+**Format:** `list -r r/RATING` to show study spots with specified rating 
+
 <div markdown="span" class="alert alert-primary">:information_source: **Note:**
 You can use multiple flags at once.
 </div>
@@ -337,8 +341,8 @@ You can use multiple flags at once.
 list 
 Listed all study spots
   
-list -f -t t/cold
-Listed all study spots in Favourites with Tags: [cold]
+list -f -t t/cold -m m/wifi -r r/5
+Listed all study spots in Favourites with Tags: [cold] with Amenities: [wifi] with Rating: 5
 ```
 
 <img src="images/list_tags_cold.png" alt="cold tags" height="700"/>
