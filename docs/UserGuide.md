@@ -421,10 +421,9 @@ The flag `-o` stands for override, which overrides the studied hours with the pr
 The flag `-r` stands for reset, which resets the hours to 0
 </div>
 
-<figure>
-<img src="images/log_hours.png" alt="log hours" height="500"/>
-  <figcaption>Logging 5 hours to 'Starbucks UTown' with the command `log n/starbucks utown hr/2` would update the study spot card, and also the pie chart on the info display panel of the GUI. </figcaption>
-</figure>
+<img src="images/log_hours.png" alt="log hours" />
+
+Logging 5 hours to 'Starbucks UTown' with the command `log n/starbucks utown hr/2` would update the **study spot card**, as well as statistics on the **pie chart**.
 
 
 **Example:**
