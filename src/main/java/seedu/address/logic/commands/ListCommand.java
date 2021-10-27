@@ -43,7 +43,7 @@ public class ListCommand extends Command {
     public static final String MESSAGE_MISSING_TAGS = "Please enter a tag. e.g. t/cold";
     public static final String MESSAGE_MISSING_AMENITIES = "Please enter an amenity. e.g. m/wifi";
     public static final String MESSAGE_MISSING_RATING = "Please enter a rating. e.g. r/5";
-    public static final String MESSAGE_UNKNOWN_FLAGS = "Unknown flags given";
+    public static final String MESSAGE_UNKNOWN_FLAGS = "Unknown flags given. Valid flags: -t -m -r";
 
     private final Predicate<StudySpot> predicate;
     private final boolean isFavFlagPresent;
