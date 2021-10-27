@@ -26,7 +26,7 @@ This **User Guide** provides clear, step-by-step information to use StudyTracker
 Want to contribute to development? Check out the [**Developer Guide**](DeveloperGuide.html) instead.
 
 <div style="page-break-after: always;"></div>
-
+---
 **Table of Contents**
 
 * Table of Contents
@@ -110,7 +110,7 @@ Here is how to read the command format:
 
 #### Command Structure
 Commands use a multipart structure that must be specified in this order:
-1. **Command word** which may be user-created aliases (detailed further in [Aliases](#setting-command-aliases--alias-unalias)). <br>
+1. **Command word** which may be user-created aliases (detailed further in [**Aliases**](#setting-command-aliases--alias-unalias)). <br>
 2. **Parameters** and **Flags**. A command may have more than one flag and/or parameters.
 
 <img src="images/commandStructure.png" alt="commandStructure" height="300"/>
