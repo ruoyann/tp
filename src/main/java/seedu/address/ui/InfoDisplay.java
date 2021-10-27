@@ -81,10 +81,6 @@ public class InfoDisplay extends UiPart<Region> {
             pieChartData.clear();
         }
 
-        if (newTopFiveSpots.size() > topFiveSpots.size()) {
-            handleAddingSpotIntoTopFive(newTopFiveSpots);
-        }
-
         if (isSameSpotsByName(newTopFiveSpots)) {
             handleSameSpots(newTopFiveSpots);
             checkFavourites(newTopFiveSpots);
@@ -92,6 +88,10 @@ public class InfoDisplay extends UiPart<Region> {
 
         if (!isSameSpotsByName(newTopFiveSpots) && newTopFiveSpots.size() <= topFiveSpots.size()) {
             handleOvertakingSpots(newTopFiveSpots);
+        }
+
+        if (newTopFiveSpots.size() > topFiveSpots.size()) {
+            handleAddingSpotIntoTopFive(newTopFiveSpots);
         }
 
         topFiveSpots = newTopFiveSpots;
@@ -239,6 +239,11 @@ public class InfoDisplay extends UiPart<Region> {
      */
     public boolean isSameSpotsByName(ObservableList<StudySpot> comparedList) {
         boolean result = true;
+
+        //If the two lists are different size, it means that they dont have the same names already
+        if (pieChartData.size() != comparedList.size()) {
+            return false;
+        }
         for (PieChart.Data d : pieChartData) {
             String name = d.getName();
 
