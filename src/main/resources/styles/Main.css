@@ -257,7 +257,7 @@
 }
 
 .info-chart__hours {
-    -fx-font-family: initial;
+    -fx-font-family: "Open Sans";
     -fx-font-weight: bold;
     -fx-font-size: 42pt;
 }
