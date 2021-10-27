@@ -20,7 +20,7 @@
 
         <VBox alignment="BOTTOM_CENTER" mouseTransparent="true"> <!-- default message -->
             <Region VBox.vgrow="ALWAYS" minHeight="230.0"/>
-            <Label fx:id="infoDisplayDefaultMessage" alignment="BOTTOM_CENTER" styleClass="italics, bg-text" />
+            <Label fx:id="infoDisplayDefaultMessage" alignment="BOTTOM_CENTER" styleClass="italic, bg-text" />
             <Region VBox.vgrow="NEVER" minHeight="80.0" maxHeight="80.0"/>
         </VBox>
 
