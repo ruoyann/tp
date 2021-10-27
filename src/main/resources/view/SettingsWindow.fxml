@@ -31,8 +31,6 @@
                         <Label text="Settings" styleClass="h1-size"/>
                         <Label text="Theme" GridPane.rowIndex="1" />
                         <ChoiceBox fx:id="themeChoiceBox" prefWidth="150.0" GridPane.columnIndex="1" GridPane.rowIndex="1" />
-                        <Label text="Myopia mode (coming soon!)" GridPane.rowIndex="2" />
-                        <CheckBox GridPane.columnIndex="1" GridPane.rowIndex="2" disable="true"/>
                     </children>
                     <VBox.margin>
                         <Insets />

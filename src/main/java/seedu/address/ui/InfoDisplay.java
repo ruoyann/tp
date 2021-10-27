@@ -23,7 +23,7 @@ public class InfoDisplay extends UiPart<Region> {
     private PieChart infoDisplayChart;
 
     @FXML
-    private Label caption;
+    private Label infoChartCaption;
 
     @FXML
     private Label infoChartHours;
@@ -38,8 +38,8 @@ public class InfoDisplay extends UiPart<Region> {
         super(FXML);
 
         this.topFiveSpots = topFiveSpots;
-        caption.setVisible(false);
-        caption.getStyleClass().add("chart-line-symbol");
+        infoChartCaption.setVisible(false);
+        infoChartCaption.getStyleClass().add("chart-line-symbol");
 
         // Setting Pie Chart information
         infoDisplayChart.setLegendVisible(false);
@@ -261,28 +261,30 @@ public class InfoDisplay extends UiPart<Region> {
     }
 
     /**
-     * Turns each of the data points in the pie chart to show data on hover
+     * Turns each of the data points in the pie chart to show data on hover.
+     * There is a single {@code infoChartCaption} Label, and it appears on mousehover.
+     * The data shown on this {@code infoChartCaption} is dynamically populated based on what is being hovered.
      *
      * @@author jewlsea, Zombkey
      * Reused from https://stackoverflow.com/questions/30662190/javafx-pichart-my-hover-values-blink
      */
     private void addInteractivity(PieChart.Data data) {
         data.getNode().addEventHandler(MouseEvent.MOUSE_ENTERED, e -> {
-            caption.setMouseTransparent(true);
-            caption.setTranslateX(e.getX() + 20);
-            caption.setTranslateY(e.getY() - 20);
-            caption.setText(String.valueOf(data.getName() + "\n"
+            infoChartCaption.setMouseTransparent(true);
+            infoChartCaption.setTranslateX(e.getX() + 20);
+            infoChartCaption.setTranslateY(e.getY() - 20);
+            infoChartCaption.setText(String.valueOf(data.getName() + "\n"
                     + data.getPieValue() + " hours"));
-            caption.setVisible(true);
+            infoChartCaption.setVisible(true);
         });
 
         data.getNode().addEventHandler(MouseEvent.MOUSE_MOVED, e -> {
-            caption.setTranslateX(e.getX() + 20);
-            caption.setTranslateY(e.getY() - 20);
+            infoChartCaption.setTranslateX(e.getX() + 20);
+            infoChartCaption.setTranslateY(e.getY() - 20);
         });
 
         data.getNode().addEventHandler(MouseEvent.MOUSE_EXITED, e -> {
-            caption.setVisible(false);
+            infoChartCaption.setVisible(false);
         });
     }
 

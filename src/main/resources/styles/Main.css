@@ -9,12 +9,14 @@
     fg-surface: derive(#322e33, 10%);
     bg-surface: #898880;
 
-    /* Text colors */
+    /* Typography */
     fg-text: #ffffff;
     bg-text: #000000;
     accent-text: #202020;
     -fx-text-base-color: fg-text;
     -fx-text-fill: fg-text;
+    -fx-font-family: "Open Sans";
+    -fx-font-smoothing-type: gray; /* nicer anti aliasing */
 
     /* Control colors */
     -fx-default-button: #66606b;
@@ -45,26 +47,21 @@
 }
 
 .h1-size {
+    -fx-font-family: "Open Sans";
     -fx-font-size: 26pt;
-    -fx-font-family: "Open Sans Bold";
     -fx-text-fill: bg-text;
     -fx-font-weight: bold;
 }
 
 .h2-size {
+    -fx-font-family: "Open Sans";
     -fx-font-size: 20pt;
-    -fx-font-family: "Open Sans Bold";
     -fx-text-fill: bg-text;
     -fx-font-weight: bold;
 }
 
-.text-field {
-    -fx-font-size: 12pt;
-    -fx-font-family: "Open Sans Semibold";
-}
-
-.italics {
-    -fx-font-family: "Open Sans Italic";
+.italic {
+    -fx-font-family: "Open Sans";
     -fx-font-style: italic;
 }
 
@@ -74,39 +71,6 @@
 
 .error {
     -fx-text-fill: #d06651 !important; /* The error class should always override the default text-fill style */
-}
-
-
-/* Tables (we have no tables now) */
-
-.table-view {
-    -fx-table-cell-border-color: transparent;
-    -fx-table-header-border-color: transparent;
-    -fx-padding: 5;
-}
-
-.table-view .column-header-background {
-    -fx-background-color: transparent;
-}
-
-.table-view .column-header, .table-view .filler {
-    -fx-size: 35;
-    -fx-border-width: 0 0 1 0;
-    -fx-background-color: transparent;
-    -fx-border-color: transparent;
-    -fx-border-insets: 0 10 1 0;
-}
-
-.table-view .column-header .label {
-    -fx-font-size: 20pt;
-    -fx-font-family: "Open Sans Light";
-    -fx-text-fill: fg-text;
-    -fx-alignment: center-left;
-    -fx-opacity: 1;
-}
-
-.table-view:focused .table-row-cell:filled:focused:selected {
-    -fx-background-color: -fx-focus-color;
 }
 
 /* Context menu */
@@ -147,7 +111,8 @@
 }
 
 .cell_big_label {
-    -fx-font-family: "Open Sans Bold";
+    -fx-font-family: initial;
+    -fx-font-family: "Open Sans";
     -fx-font-weight: bold;
     -fx-font-size: 18px;
     -fx-text-fill: fg-text;
@@ -158,45 +123,42 @@
 }
 
 .cell_medium_label {
-    -fx-font-family: "Open Sans Regular";
+    -fx-font-family: initial;
     -fx-font-size: 13px;
     -fx-text-fill: fg-text;
 }
 
 .cell_small_label {
-    -fx-font-family: "Open Sans Regular";
     -fx-font-size: 12px;
     -fx-text-fill: fg-text;
 }
 
 .cell_medium_bold_label {
-    -fx-font-family: "Open Sans Bold";
+    -fx-font-family: "Open Sans";
     -fx-font-weight: bold;
     -fx-font-size: 18px;
     -fx-text-fill: fg-text;
 }
 
 .cell_hours_label {
-    -fx-font-family: "Open Sans Regular";
     -fx-font-size: 16px;
     -fx-text-fill: fg-text;
 }
 
 .cell_hours_small_label {
-    -fx-font-family: "Open Sans Regular";
     -fx-font-size: 14px;
     -fx-text-fill: fg-text;
 }
 
 .cell_hour_digit_label {
-    -fx-font-family: "Open Sans Bold";
+    -fx-font-family: "Open Sans";
     -fx-font-weight: bold;
     -fx-font-size: 22px;
     -fx-text-fill: fg-text;
 }
 
 .cell_hour_digit_small_label {
-    -fx-font-family: "Open Sans Bold";
+    -fx-font-family: "Open Sans";
     -fx-font-weight: bold;
     -fx-font-size: 18px;
     -fx-text-fill: fg-text;
@@ -290,12 +252,12 @@
 .info-chart__caption {
     -fx-text-fill: derive(black, 10%) !important;
     -fx-font-size: 10pt !important;
-    -fx-font-family: "Open Sans Bold";
+    -fx-font-family: initial;
     -fx-font-weight: bold;
 }
 
 .info-chart__hours {
-    -fx-font-family: "Open Sans Bold";
+    -fx-font-family: "Open Sans";
     -fx-font-weight: bold;
     -fx-font-size: 42pt;
 }
@@ -333,7 +295,6 @@
 
 .result-display {
     -fx-background-color: derive(-fx-base, 50%); /* only sets the border color */
-    -fx-font-family: "Open Sans Regular";
     -fx-font-size: 12pt;
     -fx-text-fill: bg-text;
 }
@@ -389,7 +350,6 @@
     -fx-background-radius: 0;
     -fx-background-color: -fx-default-button;
     -fx-border-width: 0;
-    -fx-font-family: "Open Sans Regular";
     -fx-font-size: 11pt;
     -fx-text-fill: fg-text;
 }
@@ -412,7 +372,6 @@
 
 #commandTextField {
     -fx-background-color: derive(-fx-base, 80%);
-    -fx-font-family: "Open Sans Regular";
     -fx-font-size: 12pt;
     -fx-prompt-text-fill: bg-surface;
     -fx-text-fill: bg-text;
@@ -424,7 +383,7 @@
 }
 
 #tags .label {
-    -fx-font-family: "Open Sans Semibold";
+    -fx-font-family: "Open Sans SemiBold";
     -fx-text-fill: accent-text;
     -fx-background-color: fg-accent;
     -fx-padding: 1 3 1 3;
@@ -451,7 +410,6 @@
 }
 
 #help-window {
-    -fx-font-family: "Open Sans Regular";
     -fx-font-size: 14;
 }
 
@@ -465,14 +423,14 @@
 }
 
 .command-info__command-name {
-    -fx-font-family: "Open Sans Bold";
+    -fx-font-family: "Open Sans";
     -fx-font-weight: bold;
     -fx-font-size: 19;
 }
 
 .command-info__command-header {
     -fx-fill: -fx-default-button;
-    -fx-font-family: "Open Sans Bold";
+    -fx-font-family: "Open Sans";
     -fx-font-weight: bold;
     -fx-font-size: 15;
 }
