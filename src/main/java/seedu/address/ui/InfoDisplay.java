@@ -85,11 +85,12 @@ public class InfoDisplay extends UiPart<Region> {
             handleAddingSpotIntoTopFive(newTopFiveSpots);
         }
 
-        if (isSameSpots(newTopFiveSpots)) {
+        if (isSameSpotsByName(newTopFiveSpots)) {
             handleSameSpots(newTopFiveSpots);
+            checkFavourites(newTopFiveSpots);
         }
 
-        if (!isSameSpots(newTopFiveSpots) && newTopFiveSpots.size() <= topFiveSpots.size()) {
+        if (!isSameSpotsByName(newTopFiveSpots) && newTopFiveSpots.size() <= topFiveSpots.size()) {
             handleOvertakingSpots(newTopFiveSpots);
         }
 
@@ -121,7 +122,7 @@ public class InfoDisplay extends UiPart<Region> {
      * Handles updating the pie chart if the spots are the same
      */
     public void handleSameSpots(ObservableList<StudySpot> updatedStudySpots) {
-        assert (isSameSpots(updatedStudySpots)) : "Spots should be the same";
+        assert (isSameSpotsByName(updatedStudySpots)) : "Spots should be the same";
         for (StudySpot s : updatedStudySpots) {
             String name = s.getName().fullName;
             int updatedHours = s.getStudiedHours().getHours();
@@ -135,10 +136,43 @@ public class InfoDisplay extends UiPart<Region> {
     }
 
     /**
+     * Checks if any of the study spots changed due to favourites
+     */
+    public void checkFavourites(ObservableList<StudySpot> studySpots) {
+        assert(isSameSpotsByName(studySpots)) : "This method should only be called if the two lists have the "
+                + "same names!";
+
+        // Assume that since both study spots should have the same name, if a spot is not "contained" in the list,
+        // that is the spot to be replaced
+        boolean isFound = false;
+        StudySpot newSpot = null;
+        int indexToBeRemoved = 0;
+        int indexOfNewSpot = 0;
+        for (int i = 0; i < topFiveSpots.size(); i++) {
+            StudySpot curr = topFiveSpots.get(i);
+            for (int n = 0; n < studySpots.size(); n++) {
+                StudySpot compare = studySpots.get(n);
+                if (curr.getName().fullName.equals(compare.getName().fullName) && !curr.equals(compare)) {
+                    indexToBeRemoved = i;
+                    indexOfNewSpot = n;
+                    newSpot = compare;
+                    isFound = true;
+                    break;
+                }
+            }
+            if (isFound) {
+                break;
+            }
+        }
+        topFiveSpots.remove(indexToBeRemoved);
+        topFiveSpots.add(indexOfNewSpot, newSpot);
+    }
+
+    /**
      * Handles updating the pie chart if one spot over took another
      */
     public void handleOvertakingSpots(ObservableList<StudySpot> updatedStudySpots) {
-        assert (!isSameSpots(updatedStudySpots)) : "Spots should not be the same";
+        assert (!isSameSpotsByName(updatedStudySpots)) : "Spots should not be the same";
         StudySpot spotToBeRemoved = null;
         for (StudySpot s : topFiveSpots) {
             if (!updatedStudySpots.contains(s)) {
@@ -201,16 +235,23 @@ public class InfoDisplay extends UiPart<Region> {
     }
 
     /**
-     * Checks if the given list is the same as the current top five spots
+     * Checks if the given list is the same (same name) as the current top five spots
      */
-    public boolean isSameSpots(ObservableList<StudySpot> comparedList) {
+    public boolean isSameSpotsByName(ObservableList<StudySpot> comparedList) {
         boolean result = true;
-        for (StudySpot s : comparedList) {
-            if (!this.topFiveSpots.contains(s)) {
+        for (PieChart.Data d : pieChartData) {
+            String name = d.getName();
+
+            //Turns the comparedList into a stream containing the names of the StudySpots, then checks if none of the
+            //names matches the name of the current data being checked
+            if (comparedList.stream()
+                    .map((spot) -> spot.getName().fullName)
+                    .noneMatch(curr -> curr.equals(name))) {
                 result = false;
                 break;
             }
         }
+
         return result;
     }
 
