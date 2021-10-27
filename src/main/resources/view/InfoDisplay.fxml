@@ -15,6 +15,6 @@
             <Label fx:id="infoChartHours" styleClass="info-chart__hours"/>
             <Label text="HOURS STUDIED" styleClass="cell_muted_label, info-chart__hours-text"/>
         </VBox>
-        <Label fx:id="caption" styleClass="info-chart__caption"/>
+        <Label fx:id="infoChartCaption" styleClass="info-chart__caption"/>
     </StackPane>
 </VBox>
