@@ -11,7 +11,7 @@
             <ColumnConstraints hgrow="SOMETIMES" minWidth="10" />
         </columnConstraints>
 
-        <VBox minHeight="90.0" styleClass="card" GridPane.columnIndex="0">
+        <VBox minHeight="65.0" styleClass="card" GridPane.columnIndex="0">
 
             <GridPane hgap="6" HBox.hgrow="ALWAYS">
 
@@ -26,7 +26,7 @@
                 </rowConstraints>
 
                 <padding>
-                    <Insets bottom="12" left="20" right="20" top="12" />
+                    <Insets bottom="8" left="20" right="20" top="8" />
                 </padding>
 
                 <VBox alignment="TOP_LEFT" spacing="4" GridPane.columnIndex="0">
@@ -43,7 +43,6 @@
                     <!-- tags -->
                     <FlowPane fx:id="tags" />
                 </VBox>
-
                 <HBox alignment="BOTTOM_RIGHT" spacing="4" GridPane.columnIndex="1" GridPane.rowIndex="1">
                     <!-- hours -->
                     <Label fx:id="studiedHours" styleClass="cell_hour_digit_small_label" />
