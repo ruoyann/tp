@@ -32,7 +32,7 @@ public class ListCommandParserTest {
 
     @Test
     public void parse_validArgs_returnsListCommand() {
-        assertParseSuccess(parser, "1", new ListCommand(PREDICATE_SHOW_ALL_STUDYSPOTS, false, null, null));
+        assertParseSuccess(parser, "1", new ListCommand(PREDICATE_SHOW_ALL_STUDYSPOTS, false, null, null, null));
     }
 
     @Test
@@ -43,7 +43,7 @@ public class ListCommandParserTest {
     @Test
     public void parse_favouriteFlag_returnsListCommand() {
         assertParseSuccess(parser, " -f", new ListCommand(PREDICATE_SHOW_ALL_STUDYSPOTS.and(PREDICATE_SHOW_FAVOURITES),
-                true, null, null));
+                true, null, null, null));
     }
 
     @Test
@@ -52,7 +52,7 @@ public class ListCommandParserTest {
         Tag warmTag = new Tag("warm");
         Set<Tag> tagSet = new HashSet<Tag>(Arrays.asList(coldTag, warmTag));
         Predicate<StudySpot> predicate = containsTag(coldTag).and(containsTag(warmTag));
-        assertParseSuccess(parser, " -t t/cold t/warm", new ListCommand(predicate, false, tagSet, null));
+        assertParseSuccess(parser, " -t t/cold t/warm", new ListCommand(predicate, false, tagSet, null, null));
     }
 
     @Test
@@ -61,6 +61,6 @@ public class ListCommandParserTest {
         Amenity charger = new Amenity("charger");
         Set<Amenity> amenitySet = new HashSet<>(Arrays.asList(wifi, charger));
         Predicate<StudySpot> predicate = containsAmenity(wifi).and(containsAmenity(charger));
-        assertParseSuccess(parser, " -m m/wifi m/charger", new ListCommand(predicate, false, null, amenitySet));
+        assertParseSuccess(parser, " -m m/wifi m/charger", new ListCommand(predicate, false, null, amenitySet,null));
     }
 }

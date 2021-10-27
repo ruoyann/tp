@@ -13,6 +13,7 @@ import java.util.stream.Collectors;
 
 import seedu.address.model.Model;
 import seedu.address.model.amenity.Amenity;
+import seedu.address.model.studyspot.Rating;
 import seedu.address.model.studyspot.StudySpot;
 import seedu.address.model.tag.Tag;
 
@@ -40,14 +41,15 @@ public class ListCommand extends Command {
     public static final String MESSAGE_CONSTRAINTS = "Only valid flags are accepted as extra parameters";
     public static final String MESSAGE_SUCCESS = "Listed all study spots";
     public static final String MESSAGE_MISSING_TAGS = "Please enter a tag. e.g. t/cold";
-    public static final String MESSAGE_MISSING_AMENITIES = "Please enter a tag. e.g. m/wifi";
-    public static final String MESSAGE_MISSING_RATING = "Please enter a tag. e.g. r/5";
+    public static final String MESSAGE_MISSING_AMENITIES = "Please enter an amenity. e.g. m/wifi";
+    public static final String MESSAGE_MISSING_RATING = "Please enter a rating. e.g. r/5";
     public static final String MESSAGE_UNKNOWN_FLAGS = "Unknown flags given";
 
     private final Predicate<StudySpot> predicate;
     private final boolean isFavFlagPresent;
     private final Set<Tag> tags;
     private final Set<Amenity> amenities;
+    private final Rating rating;
 
     /**
      * Creates a ListCommand.
@@ -56,11 +58,12 @@ public class ListCommand extends Command {
      * @param tags List of tags that study spots are being filtered by.
      */
     public ListCommand(Predicate<StudySpot> predicate, boolean isFavFlagPresent, Set<Tag> tags,
-                       Set<Amenity> amenities) {
+                       Set<Amenity> amenities, Rating rating) {
         this.predicate = predicate;
         this.isFavFlagPresent = isFavFlagPresent;
         this.tags = tags;
         this.amenities = amenities;
+        this.rating = rating;
     }
 
     @Override
@@ -69,7 +72,7 @@ public class ListCommand extends Command {
         model.updateFilteredStudySpotList(predicate);
         StringBuilder sb = new StringBuilder();
         sb.append(MESSAGE_SUCCESS);
-        String msg = getFilterMessage(isFavFlagPresent, tags, amenities);
+        String msg = getFilterMessage(isFavFlagPresent, tags, amenities, rating);
         if (!msg.isBlank()) {
             sb.append(msg);
         }
@@ -81,7 +84,7 @@ public class ListCommand extends Command {
      * @param isFavFlag
      * @param tagSet
      */
-    public static String getFilterMessage(boolean isFavFlag, Set<Tag> tagSet, Set<Amenity> amenitySet) {
+    public static String getFilterMessage(boolean isFavFlag, Set<Tag> tagSet, Set<Amenity> amenitySet, Rating rating) {
         StringBuilder sb = new StringBuilder();
         if (isFavFlag) {
             sb.append(" in Favourites");
@@ -95,6 +98,9 @@ public class ListCommand extends Command {
             sb.append(" with Amenities: ");
             String str = String.join(", ", amenitySet.stream().map(Object::toString).collect(Collectors.toSet()));
             sb.append(str);
+        }
+        if (rating != null) {
+            sb.append(" with Rating: " + rating);
         }
         return sb.toString();
     }
@@ -115,6 +121,10 @@ public class ListCommand extends Command {
      */
     public Optional<Set<Amenity>> getAmenities() {
         return (amenities != null) ? Optional.of(Collections.unmodifiableSet(amenities)) : Optional.empty();
+    }
+
+    public Optional<Rating> getRating() {
+        return (rating != null) ? Optional.of(rating) : Optional.empty();
     }
 
     /**
@@ -145,6 +155,20 @@ public class ListCommand extends Command {
         return studySpotContainAmenity;
     }
 
+    /**
+     * Returns a Predicate that checks if a studySpot contains the rating queried.
+     * @param queryRating
+     */
+    public static Predicate<StudySpot> containsRating(Rating queryRating) {
+        Predicate<StudySpot> studySpotContainRating = new Predicate<StudySpot>() {
+            @Override
+            public boolean test(StudySpot studySpot) {
+                return studySpot.getRating().equals(queryRating);
+            }
+        };
+        return studySpotContainRating;
+    }
+
     @Override
     public boolean equals(Object other) {
         // short circuit if same object
@@ -162,6 +186,7 @@ public class ListCommand extends Command {
         ListCommand c = (ListCommand) other;
         return (isFavFlagPresent == c.isFavFlagPresent)
                 && getTags().equals(c.getTags())
-                && getAmenities().equals(c.getAmenities());
+                && getAmenities().equals(c.getAmenities())
+                && getRating().equals(c.getRating());
     }
 }
