@@ -1,7 +1,9 @@
 package seedu.address.logic.parser;
 
 import static java.util.Objects.requireNonNull;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_AMENITY;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_FLAG;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_RATING;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_TAG;
 import static seedu.address.model.Model.PREDICATE_SHOW_ALL_STUDYSPOTS;
 
@@ -149,6 +151,23 @@ public class ParserUtil {
             List<Predicate<StudySpot>> tagsPredicate =
                     tags.stream().map(tag -> ListCommand.containsTag(tag)).collect(Collectors.toList());
             predicateList.addAll(tagsPredicate);
+        }
+
+        if (isFlagPresent(flags, ListCommand.FLAG_AMENITIES)) {
+            Set<Amenity> amenities = parseAmenities(argMultiMap.getAllValues(PREFIX_AMENITY));
+            List<Predicate<StudySpot>> amenitiesPredicate =
+                    amenities.stream().map(amenity-> ListCommand.containsAmenity(amenity)).collect(Collectors.toList());
+            predicateList.addAll(amenitiesPredicate);
+        }
+
+        if (isFlagPresent(flags, ListCommand.FLAG_RATING)) {
+            Rating rating = parseRating(argMultiMap.getValue(PREFIX_RATING)
+                    .orElseThrow(() -> new ParseException(ListCommand.MESSAGE_MISSING_RATING)));
+            Set<Rating> ratings = new HashSet<>();
+            ratings.add(rating);
+            List<Predicate<StudySpot>> ratingsPredicate =
+                    ratings.stream().map(r -> ListCommand.containsRating(r)).collect(Collectors.toList());
+            predicateList.addAll(ratingsPredicate);
         }
         return predicateList.stream().reduce(Predicate::and).get();
     }
