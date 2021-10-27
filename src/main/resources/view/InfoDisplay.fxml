@@ -6,7 +6,6 @@
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.shape.Circle?>
 
-<?import javafx.geometry.Insets?>
 <?import javafx.scene.layout.Region?>
 <VBox fx:id="infoDisplay" alignment="CENTER" styleClass="info-display" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1">
     <StackPane>
@@ -18,14 +17,12 @@
             <Label styleClass="cell_muted_label, info-chart__hours-text" text="HOURS STUDIED" />
         </VBox>
         <Label fx:id="infoChartCaption" styleClass="info-chart__caption"/>
-      
+
         <VBox alignment="BOTTOM_CENTER" mouseTransparent="true"> <!-- default message -->
             <Region VBox.vgrow="ALWAYS" minHeight="230.0"/>
-           <children>
-              <Label fx:id="infoDisplayDefaultMessage" alignment="BOTTOM_CENTER" styleClass="italics, bg-text" />
-           </children>
+            <Label fx:id="infoDisplayDefaultMessage" alignment="BOTTOM_CENTER" styleClass="italics, bg-text" />
             <Region VBox.vgrow="NEVER" minHeight="80.0" maxHeight="80.0"/>
         </VBox>
-      
+
     </StackPane>
 </VBox>
