@@ -162,12 +162,7 @@ public class ParserUtil {
         }
 
         if (isFlagPresent(flags, ListCommand.FLAG_RATING)) {
-            Rating rating;
-            try {
-                rating = parseRating(argMultiMap.getValue(PREFIX_RATING).get());
-            } catch (NoSuchElementException e) {
-                throw new ParseException(ListCommand.MESSAGE_MISSING_RATING);
-            }
+            Rating rating = parseRating(argMultiMap.getValue(PREFIX_RATING).orElseThrow(() -> new ParseException(ListCommand.MESSAGE_MISSING_RATING)));
             Set<Rating> ratings = new HashSet<>();
             ratings.add(rating);
             List<Predicate<StudySpot>> ratingsPredicate =

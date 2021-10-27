@@ -29,7 +29,6 @@ public class ListCommandParser implements Parser<ListCommand> {
      */
     public ListCommand parse(String args) throws ParseException {
         requireNonNull(args);
-        System.out.println(args);
         ArgumentMultimap argMultimap = ArgumentTokenizer.tokenize(args, PREFIX_FLAG, PREFIX_TAG, PREFIX_AMENITY,
                 PREFIX_RATING);
         Predicate<StudySpot> predicate = ParserUtil.parseFlags(argMultimap);
@@ -46,11 +45,8 @@ public class ListCommandParser implements Parser<ListCommand> {
                 ? ParserUtil.parseAmenities(argMultimap.getAllValues(PREFIX_AMENITY))
                 : null;
 
-        if (isRatingFlagPresent && !args.contains("r/")) {
-            throw new ParseException(ListCommand.MESSAGE_MISSING_RATING);
-        }
-
-        Rating rating = isRatingFlagPresent ? ParserUtil.parseRating(argMultimap.getValue(PREFIX_RATING).get())
+        Rating rating = isRatingFlagPresent ?
+                ParserUtil.parseRating(argMultimap.getValue(PREFIX_RATING).orElseThrow(() -> new ParseException(ListCommand.MESSAGE_MISSING_RATING)))
                 : null;
 
         if (isTagFlagPresent && tagList.isEmpty()) {
