@@ -2,19 +2,27 @@
 
 <?import javafx.scene.chart.PieChart?>
 <?import javafx.scene.control.Label?>
-<?import javafx.scene.layout.VBox?>
-
 <?import javafx.scene.layout.StackPane?>
+<?import javafx.scene.layout.VBox?>
 <?import javafx.scene.shape.Circle?>
-<VBox fx:id="infoDisplay" alignment="CENTER" styleClass="info-display"
-      xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1">
+
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.layout.Region?>
+<VBox fx:id="infoDisplay" alignment="CENTER" styleClass="info-display" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1">
     <StackPane>
         <PieChart fx:id="infoDisplayChart" />
-        <Circle styleClass="info-chart__donut-hole" radius="120.0" />
-        <VBox mouseTransparent="true" alignment="CENTER">
-            <Label fx:id="infoChartHours" styleClass="info-chart__hours"/>
-            <Label text="HOURS STUDIED" styleClass="cell_muted_label, info-chart__hours-text"/>
+        <Circle radius="120.0" styleClass="info-chart__donut-hole" />
+        <VBox alignment="CENTER" mouseTransparent="true">
+            <Label fx:id="infoChartHours" styleClass="info-chart__hours" />
+            <Label styleClass="cell_muted_label, info-chart__hours-text" text="HOURS STUDIED" />
         </VBox>
-        <Label fx:id="caption" styleClass="info-chart__caption"/>
+        <Label fx:id="caption" styleClass="info-chart__caption" />
+      <VBox alignment="BOTTOM_CENTER" mouseTransparent="true">
+          <Region VBox.vgrow="ALWAYS" minHeight="230.0"/>
+         <children>
+            <Label fx:id="infoDisplayDefaultMessage" alignment="BOTTOM_CENTER" text="Label" styleClass="info-chart__hours-text" />
+         </children>
+          <Region VBox.vgrow="NEVER" minHeight="80.0" maxHeight="80.0"/>
+      </VBox>
     </StackPane>
 </VBox>
