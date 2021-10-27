@@ -12,7 +12,7 @@ We aim to **maximise students' productivity** by **making it easy to find the be
 
 Overview of main features:
 - **Make informed decisions** of where to study —  every study spot includes details about amenities like sockets, aircon, and crowd level, and more!
-- **Data-driven statistics** to **track time spent studying** ensures that you know where to go to be productive
+- **Data-driven statistics** to **track time spent studying** ensures you know where to go to be productive
 - Made a mistake? Found out something new? **Editing details is quick and simple!**
 - **Powerful customization** with user-defined aliases and custom themes!
 - **Built for cross-platform use** with JavaFX. Bring your StudyTracker data with you to any Windows, Mac, or Linux device!
@@ -48,7 +48,8 @@ Let's explore how we **add a new study spot** and **track our study time** with 
 1. Copy the file to the folder you want to use as the _home folder_ for your StudyTracker.
 
 1. Double-click the file to start the app. The GUI similar to the one below should appear in a few seconds. Note how the app contains some sample data.<br>
-   ![Ui](images/Ui.png)
+
+    <img src="images/Ui.png" alt="Default Ui" width="550"/>
 
 1. Type the command in the command box and press Enter to execute it. e.g. typing **`help`** and pressing Enter will open the help window.<br>
 
@@ -57,13 +58,14 @@ Let's explore how we **add a new study spot** and **track our study time** with 
    1. **`list`** : Lists all study spots.
     Study spots are shown in cards on the right panel of the program.
 
-   1. **`add`** `n/COM1 r/5 m/aircon` : **Adds a study location** named `COM1`, with a rating of 5 and 'aircon' amenity to the StudyTracker.
-    You'll see it if you scroll down the list of study locations!
+   1. **`add`** `n/FASS Benches r/5 m/aircon` : **Adds a study location** named `FASS Benches`, with a rating of 5 and 'aircon' amenity to the StudyTracker.
+   You'll see it if you scroll down the list of study locations!
 
-   1. **`log`** `n/COM1 h/3` : **Logs 3 hours of study time** at `COM1`.
-    The card will update with the new study hours. 
+   1. **`log`** `n/FASS Benches hr/3` : **Logs 3 hours of study time** at `FASS Benches`.
+    The card will update with the new study hours. Notice how the pie chart on the left of the GUI updates with the hours spent!
+    Try hovering over the pie chart to find your newly-added study spot!
 
-   1. **`exit`** : Exits the app.
+   2. **`exit`** : Exits the app.
 
 1. Congratulations! You've just added a new study spot, and logged your study time!
 You're on the right track to productivity!
@@ -106,13 +108,9 @@ Here is how to read the command format:
 #### Command Structure
 Commands use a multipart structure that must be specified in this order:
 1. **Command word** which may be user-created aliases (detailed further in [Aliases](#setting-command-aliases--alias-unalias)). <br>
-2. **Parameters** and **Flags**
+2. **Parameters** and **Flags**. A command may have more than one flag and/or parameters.
 
 <img src="images/commandStructure.png" alt="commandStructure" height="300"/>
-
-```
- <COMMAND> [parameters and flags]
- ```
 
 #### Flags
 
@@ -170,7 +168,37 @@ This section introduces the Graphical User Interface (GUI) of StudyTracker.
 
 ![Gui annotated](images/GuiAnnotated.png)
 
-On the right side of the interface, you can find the **Study Spot List** and **Command Box**.
+The top of the interface contains the **Menu Bar**. Clicking on `File` or `Help` will open up the [Settings menu](#managing-themes) and the [Help window](#viewing-help--help).
+
+On the left side of the interface, you can find the [**Info Display**](#info-display).
+
+On the right side of the interface, you can find the [**Study Spot List**](#study-spot-list) and [**Command Box**](#study-spot-list).
+
+### Info Display
+
+The **Info Display** contains the **Pie Chart** and **Favourites List**.
+
+![Gui annotated](images/GuiInfoDisplayAnnotated.png)
+
+The **Hours Studied Pie Chart** displays statistics of time spent studying at the *top five most frequented* study spots.
+
+* Moving your cursor over any segment of the pie chart will show a `Study Spot Caption` with details of the corresponding study spot
+* `Total hours studied` will show the total number of hours studied over all study spots
+
+The **Favourites List** contains **Cards** representing all [**favourited**](#adding-a-study-spot-to-favourites-fav) study spots in StudyTracker.
+The `Total` tag at the top shows total number of favourited study spots in StudyTracker.
+
+* `Name` — name of study spot
+* `Tags` — user-defined tags for the study spot
+* `Amenities` — the icons represent the amenities present in study spot.
+From left to right, the amenities are **aircon, charger, food, wifi**.
+* `Hours studied` — total number of hours studied at study spot
+
+
+### Study Spot List
+
+
+![Gui annotated](images/GuiStudySpotListAnnotated.png)
 
 The **Study Spot List** contains **Cards** representing every study spot in StudyTracker.
 The `Total` tag at the top shows current visible study spots/total number of study spots in StudyTracker.
@@ -185,7 +213,7 @@ From left to right, the amenities are **aircon, charger, food, wifi**.
 * `Hours` — total number of hours studied at study spot
 * `Rating` — user-defined rating for the study spot
 
-The **Command Box** is where to enter commands in StudyTracker.
+The **Command Box** is where to enter [**commands**](#how-to-read-commands-in-studytracker) in StudyTracker.
 
 * `Command Box` — type in your commands here
 * `Display` — results of commands and error messages are shown here.
@@ -376,9 +404,9 @@ find library
 
 ### Logging study hours: `log`
 
-After studying at a certain StudySpot, you can log how many hours you have studied at this location. You can also reset
-the value to 0, or hard set it to the value of your choice by using the `-r` and `-o` flags respectively, as shown
-below .
+After studying at a certain StudySpot, you can log how many hours you have studied at this location.
+There are also various flags you can use to reset or override hours to the value of your choice by using the `-r` and `-o` flags respectively, as shown
+below:
 
 **Format:** `log n/NAME* hr/NUM_OF_HOURS*` to log additional hours at the study spot
 
@@ -386,12 +414,18 @@ below .
 
 **Format** `log -r n/NAME*` to reset the studied hours at the study spot to 0
 
-<img src="images/log_hours.png" alt="log hours" height="700"/>
+**Format** `log -r` to reset the studied hours at **all** study spots
 
 <div markdown="span" class="alert alert-primary">:information_source: **Note:**
-The flag `-o` stands for override, to override the studied hours with what is input
-The flag `-r` stands for reset, which resets the value to 0
+The flag `-o` stands for override, which overrides the studied hours with the provided value <br>
+The flag `-r` stands for reset, which resets the hours to 0
 </div>
+
+<figure>
+<img src="images/log_hours.png" alt="log hours" height="500"/>
+  <figcaption>Logging 5 hours to 'Starbucks UTown' with the command `log n/starbucks utown hr/2` would update the study spot card, and also the pie chart on the info display panel of the GUI. </figcaption>
+</figure>
+
 
 **Example:**
 ```
@@ -403,6 +437,9 @@ Changed hours to 5 at Starbucks!
 
 log -r n/Starbucks
 Reset hours at Starbucks!
+
+log -r
+Reset hours for all study spots!
 ```
 
 ### Setting Command Aliases
@@ -428,17 +465,17 @@ You can chain aliases to make more powerful commands! <br> <br>
 **Example:** <br>
 
 ```
-alias al/Rate5 cmd/edit r/5 spot/
+alias al/LogCLB cmd/log n/Central Library hr/
 ```
 <br>
 ```
-Added alias Rate5: [edit r/5 spot/]
+Added alias LogCLB: [log n/Central Library hr/]
 ```
 <br>
-will set alias `Rate5` to expand to the command `edit r/5 spot/`.
+will set alias `LogCLB` to expand to the command `log n/Central Library hr/`.
 <br><br>
 
-Running `Rate5 Bishan Library` would then result in `edit r/5 spot/Bishan Library`!
+Running `LogCLB 3` would then result in `log n/Central Library hr/3`, allowing you to log a variable number of study hours to 'Central Library'!
 </div>
 
 #### Removing command aliases: `unalias`
