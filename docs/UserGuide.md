@@ -159,6 +159,9 @@ Some **invalid** user inputs for the *add command* are provided below:
 * `add PC Commons /UTown /very crowded /toilet /4*` (delimiters and slashes missing from parameters, unnecessary asterisk added outside of parameters)
 * `n/PC Commons a/UTown r/4` (missing command word `add`)
 
+If you accidentally entered a wrong command, don't worry! A comprehensive error messages that will show up 
+in the display immediately to guide you to entering the correct command.
+
 <div style="page-break-after: always;"></div>
 
 ## GUI Layout
@@ -320,11 +323,13 @@ StudyTracker has been cleared!
 
 #### Listing study spots : `list`
 
-Shows saved study spots in the StudyTracker.
+Shows saved study spots in the StudyTracker. <br>
+
+You can get creative with using this command by using flags relevant to what you wish to search for. 
 
 **Format:** `list` to show all study spots
 
-**Format:** `list -f` to show all favourite study spots
+**Format:** `list -f` to show all favourited study spots
 
 **Format:** `list -t t/TAG...` to show study spots with specified tags
 
