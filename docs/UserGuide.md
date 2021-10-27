@@ -18,14 +18,16 @@ Overview of main features:
 - **Built for cross-platform use** with JavaFX. Bring your StudyTracker data with you to any Windows, Mac, or Linux device!
 
 StudyTracker is full of features, but don't worry!
-This **User Guide** provides clear, step-by-step information to use StudyTracker.
+This **User Guide** provides clear, step-by-step information to use StudyTracker. If this is your first time using StudyTracker, [**How to use this guide**](#how-to-use-this-user-guide) is the perfect place to start.
+
+
 **Open up StudyTracker, and let's get on the right track to productivity!**
 
 Want to contribute to development? Check out the [**Developer Guide**](DeveloperGuide.html) instead.
 
 <div style="page-break-after: always;"></div>
 
-## Table of Contents
+**Table of Contents**
 
 * Table of Contents
 {:toc}
@@ -58,14 +60,14 @@ Let's explore how we **add a new study spot** and **track our study time** with 
    1. **`list`** : Lists all study spots.
     Study spots are shown in cards on the right panel of the program.
 
-   1. **`add`** `n/FASS Benches r/5 m/aircon` : **Adds a study location** named `FASS Benches`, with a rating of 5 and 'aircon' amenity to the StudyTracker.
+   1. **`add`** `n/FASS Benches r/5 m/wifi` : **Adds a study location** named `FASS Benches`, with a rating of 5 and 'wifi' amenity to the StudyTracker.
    You'll see it if you scroll down the list of study locations!
 
    1. **`log`** `n/FASS Benches hr/3` : **Logs 3 hours of study time** at `FASS Benches`.
     The card will update with the new study hours. Notice how the pie chart on the left of the GUI updates with the hours spent!
     Try hovering over the pie chart to find your newly-added study spot!
 
-   2. **`exit`** : Exits the app.
+   1. **`exit`** : Exits the app.
 
 1. Congratulations! You've just added a new study spot, and logged your study time!
 You're on the right track to productivity!
@@ -84,13 +86,14 @@ Check out **<a href="#command-structure">How to read Commands in StudyTracker</a
 This section provides tips on reading this document, as well as how to navigate it.
 
 This User Guide is structured so that it is easy for you to find what you need.
+If this is your first time using StudyTracker, we recommend reading the User Guide in order, starting from this section.
 
-It is recommended that you have our StudyTracker application open, so you can try out the commands and features!
+It is recommended that you have the StudyTracker application open, so you can try out the commands and features!
 
-The [Table of Contents](#table-of-contents) contains links to all the sections of the guide.
+The [**Table of Contents**](#table-of-contents) contains links to all the sections of the guide.
 
-[Common Symbols found in this guide](#common-symbols-found-in-this-guide) and [How to read Commands in StudyTracker](#how-to-read-commands-in-studytracker) section will help you understand this document better.
-You can then look at the [GUI Layout](#gui-layout) and [Features](#features) sections for clear instructions for using StudyTracker.
+[**Common Symbols found in this guide**](#common-symbols-found-in-this-guide) and [**How to read Commands in StudyTracker**](#how-to-read-commands-in-studytracker) section will help you understand this document better.
+You can then look at the [**GUI Layout**](#gui-layout) and [**Features**](#features) sections for clear instructions for using StudyTracker.
 
 ### Common Symbols found in this guide
 
@@ -405,7 +408,8 @@ find library
 ### Logging study hours: `log`
 
 After studying at a certain StudySpot, you can log how many hours you have studied at this location.
-There are also various flags you can use to reset or override hours to the value of your choice by using the `-r` and `-o` flags respectively, as shown
+There are also various flags you can use to reset or override hours to the value of your choice.
+Use the `-r` and `-o` flags respectively, as shown
 below:
 
 **Format:** `log n/NAME* hr/NUM_OF_HOURS*` to log additional hours at the study spot
