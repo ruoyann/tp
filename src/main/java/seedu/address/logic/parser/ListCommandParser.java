@@ -45,8 +45,9 @@ public class ListCommandParser implements Parser<ListCommand> {
                 ? ParserUtil.parseAmenities(argMultimap.getAllValues(PREFIX_AMENITY))
                 : null;
 
-        Rating rating = isRatingFlagPresent ?
-                ParserUtil.parseRating(argMultimap.getValue(PREFIX_RATING).orElseThrow(() -> new ParseException(ListCommand.MESSAGE_MISSING_RATING)))
+        Rating rating = isRatingFlagPresent
+                ? ParserUtil.parseRating(argMultimap.getValue(PREFIX_RATING)
+                .orElseThrow(() -> new ParseException(ListCommand.MESSAGE_MISSING_RATING)))
                 : null;
 
         if (isTagFlagPresent && tagList.isEmpty()) {
