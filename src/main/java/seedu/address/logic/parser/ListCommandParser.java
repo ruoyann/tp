@@ -32,7 +32,9 @@ public class ListCommandParser implements Parser<ListCommand> {
         ArgumentMultimap argMultimap = ArgumentTokenizer.tokenize(args, PREFIX_FLAG, PREFIX_TAG, PREFIX_AMENITY,
                 PREFIX_RATING);
         Predicate<StudySpot> predicate = ParserUtil.parseFlags(argMultimap);
+
         List<String> flagsList = argMultimap.getAllValues(PREFIX_FLAG);
+
         boolean isFavFlagPresent = ParserUtil.isFlagPresent(flagsList, ListCommand.FLAG_FAVOURITES);
         boolean isTagFlagPresent = ParserUtil.isFlagPresent(flagsList, ListCommand.FLAG_TAGS);
         boolean isAmenityFlagPresent = ParserUtil.isFlagPresent(flagsList, ListCommand.FLAG_AMENITIES);
@@ -43,8 +45,10 @@ public class ListCommandParser implements Parser<ListCommand> {
                 ? ParserUtil.parseAmenities(argMultimap.getAllValues(PREFIX_AMENITY))
                 : null;
 
-        Rating rating = isRatingFlagPresent ? ParserUtil.parseRating(argMultimap.getValue(PREFIX_RATING).get()) : null;
-
+        Rating rating = isRatingFlagPresent
+                ? ParserUtil.parseRating(argMultimap.getValue(PREFIX_RATING)
+                .orElseThrow(() -> new ParseException(ListCommand.MESSAGE_MISSING_RATING)))
+                : null;
 
         if (isTagFlagPresent && tagList.isEmpty()) {
             throw new ParseException(ListCommand.MESSAGE_MISSING_TAGS);
@@ -53,10 +57,8 @@ public class ListCommandParser implements Parser<ListCommand> {
         if (isAmenityFlagPresent && amenityList.isEmpty()) {
             throw new ParseException(ListCommand.MESSAGE_MISSING_AMENITIES);
         }
-        if (isRatingFlagPresent && rating == null) {
-            throw new ParseException(ListCommand.MESSAGE_MISSING_RATING);
-        }
-        for (String flag: flagsList) {
+
+        for (String flag : flagsList) {
             if (!ListCommand.FLAG_LIST.contains(flag)) {
                 throw new ParseException(ListCommand.MESSAGE_UNKNOWN_FLAGS);
             }
