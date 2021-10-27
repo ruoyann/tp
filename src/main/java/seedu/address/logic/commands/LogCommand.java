@@ -137,4 +137,37 @@ public class LogCommand extends Command {
 
         return new StudySpot(name, rating, operatingHours, address, studiedHours, favourite, tags, amenities);
     }
+
+    public Name getName() {
+        return this.name;
+    }
+
+    public StudiedHours getStudiedHours() {
+        return this.studiedHours;
+    }
+
+    public boolean getIsReset() {
+        return this.isResetStudySpot;
+    }
+
+    public boolean getIsOverride() {
+        return this.isOverride;
+    }
+
+    @Override
+    public boolean equals(Object other) {
+        // short circuit if same object
+        if (other == this) {
+            return true;
+        } else {
+            if (other instanceof LogCommand) {
+                LogCommand e = (LogCommand) other;
+                return getName().equals(e.getName())
+                        && getStudiedHours().toString().equals(e.getStudiedHours().toString())
+                        && getIsReset() == (e.getIsReset())
+                        && getIsOverride() == (e.getIsOverride());
+            }
+        }
+        return false;
+    }
 }

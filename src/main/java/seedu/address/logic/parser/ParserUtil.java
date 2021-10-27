@@ -161,8 +161,9 @@ public class ParserUtil {
         }
 
         if (isFlagPresent(flags, ListCommand.FLAG_RATING)) {
-            Rating rating = parseRating(argMultiMap.getValue(PREFIX_RATING).get());
-            Set<Rating> ratings = new HashSet<Rating>();
+            Rating rating = parseRating(argMultiMap.getValue(PREFIX_RATING)
+                    .orElseThrow(() -> new ParseException(ListCommand.MESSAGE_MISSING_RATING)));
+            Set<Rating> ratings = new HashSet<>();
             ratings.add(rating);
             List<Predicate<StudySpot>> ratingsPredicate =
                     ratings.stream().map(r -> ListCommand.containsRating(r)).collect(Collectors.toList());

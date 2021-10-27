@@ -73,8 +73,8 @@ public class MainWindow extends UiPart<Stage> {
         this.logic = logic;
 
         // Configure the UI
-        setStylesheet("Main.css");
         setStylesheet("Fonts.css");
+        setStylesheet("Main.css");
         setWindowDefaultSize(logic.getGuiSettings());
         setThemeFromSettings(logic.getGuiSettings());
 

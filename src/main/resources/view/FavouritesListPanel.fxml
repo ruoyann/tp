@@ -22,7 +22,7 @@
     </HBox>
     <StackPane VBox.vgrow="ALWAYS">
         <ListView fx:id="favouritesListView" VBox.vgrow="ALWAYS"/>
-        <Label fx:id="favouritesListViewDefaultMessage" styleClass="italics, bg-text, text-field" wrapText="true"
+        <Label fx:id="favouritesListViewDefaultMessage" styleClass="italic, bg-text" wrapText="true"
                textAlignment="CENTER"/>
     </StackPane>
 </VBox>
