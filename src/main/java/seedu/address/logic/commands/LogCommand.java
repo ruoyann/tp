@@ -95,9 +95,6 @@ public class LogCommand extends Command {
         } catch (IllegalValueException e) {
             throw new CommandException(e.getMessage());
         }
-        return new CommandResult(String.format(MESSAGE_SUCCESS_DEFAULT, studiedHours, studySpotToAddHours.getName()),
-                true, false, false
-        );
     }
 
     private CommandResult handleReset(Model model, StudySpot studySpot) {
@@ -142,7 +139,7 @@ public class LogCommand extends Command {
     }
 
     public Name getName() {
-        return this.nameOfStudySpot;
+        return this.name;
     }
 
     public StudiedHours getStudiedHours() {
@@ -150,7 +147,7 @@ public class LogCommand extends Command {
     }
 
     public boolean getIsReset() {
-        return this.isReset;
+        return this.isResetStudySpot;
     }
 
     public boolean getIsOverride() {

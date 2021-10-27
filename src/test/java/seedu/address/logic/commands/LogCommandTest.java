@@ -33,20 +33,28 @@ public class LogCommandTest {
 
         Name name = new Name("Starbucks");
         StudiedHours studiedHours = new StudiedHours("4");
-        CommandResult commandResultInitial = new LogCommand(name, studiedHours, false, false).execute(expectedModel);
-        CommandResult commandResultReset = new LogCommand(name, studiedHours, true, false).execute(expectedModel);
-        CommandResult commandResultOverride = new LogCommand(name, studiedHours, false, true).execute(expectedModel);
+        CommandResult commandResultInitial =
+                new LogCommand(name, studiedHours, false, false, false).execute(expectedModel);
+        CommandResult commandResultResetStudySpot =
+                new LogCommand(name, studiedHours, true, false, false).execute(expectedModel);
+        CommandResult commandResultResetAll =
+                new LogCommand(name, studiedHours, false, false, true).execute(expectedModel);
+        CommandResult commandResultOverride =
+                new LogCommand(name, studiedHours, false, true, false).execute(expectedModel);
 
         String expectedCommandInitial = String.format(LogCommand.MESSAGE_SUCCESS_DEFAULT, studiedHours.toString(),
                 name.toString());
-        String expectedCommandReset = String.format(LogCommand.MESSAGE_SUCCESS_RESET, name.toString());
+        String expectedCommandResetStudySpot = String.format(LogCommand.MESSAGE_SUCCESS_RESET, name.toString());
+        String expectedCommandResetAll = String.format(LogCommand.MESSAGE_SUCCESS_RESET_ALL, name.toString());
         String expectedCommandOverride = String.format(LogCommand.MESSAGE_SUCCESS_OVERRIDE, studiedHours,
                 name);
 
         assertEquals(String.format(expectedCommandInitial, studySpotToLog),
                 commandResultInitial.getFeedbackToUser());
-        assertEquals(String.format(expectedCommandReset, studySpotToLog),
-                commandResultReset.getFeedbackToUser());
+        assertEquals(String.format(expectedCommandResetStudySpot, studySpotToLog),
+                commandResultResetStudySpot.getFeedbackToUser());
+        assertEquals(String.format(expectedCommandResetAll, studySpotToLog),
+                commandResultResetAll.getFeedbackToUser());
         assertEquals(String.format(expectedCommandOverride, studySpotToLog),
                 commandResultOverride.getFeedbackToUser());
     }
@@ -55,7 +63,7 @@ public class LogCommandTest {
     public void execute_invalidStudySpotName_failure() {
         Name notInTypicalStudySpots = new Name("Invalid Name");
         StudiedHours studiedHours = new StudiedHours("4");
-        LogCommand logCommand = new LogCommand(notInTypicalStudySpots, studiedHours, false, false);
+        LogCommand logCommand = new LogCommand(notInTypicalStudySpots, studiedHours, false, false, false);
 
         assertCommandFailure(logCommand, model, Messages.MESSAGE_INVALID_NAME);
     }
@@ -66,7 +74,7 @@ public class LogCommandTest {
 
         Name name = new Name("Starbucks");
         StudiedHours studiedHours = new StudiedHours("2147483647");
-        LogCommand logCommand = new LogCommand(name, studiedHours, false, false);
+        LogCommand logCommand = new LogCommand(name, studiedHours, false, false, false);
 
         assertCommandFailure(logCommand, expectedModel, StudiedHours.MESSAGE_HOURS_IS_FULL);
     }
@@ -76,14 +84,14 @@ public class LogCommandTest {
         Name firstStudySpotInTypicalStudySpots = new Name("Starbucks");
         StudiedHours studiedHours = new StudiedHours("4");
         final LogCommand standardCommand = new LogCommand(firstStudySpotInTypicalStudySpots, studiedHours, false,
-                false);
+                false, false);
 
         // same values -> returns true
         Name secondStudySpotInTypicalStudySpots = new Name("Central library");
         StudiedHours copyStudiedHours = new StudiedHours("4");
         StudiedHours differentStudiedHours = new StudiedHours("7");
         LogCommand commandWithSameValues = new LogCommand(firstStudySpotInTypicalStudySpots, copyStudiedHours,
-                false, false);
+                false, false, false);
         assertTrue(standardCommand.equals(commandWithSameValues));
 
         // same object -> returns true
@@ -97,10 +105,10 @@ public class LogCommandTest {
 
         // different index -> returns false
         assertFalse(standardCommand.equals(new LogCommand(secondStudySpotInTypicalStudySpots, copyStudiedHours,
-                false, false)));
+                false, false, false)));
 
         // different descriptor -> returns false
         assertFalse(standardCommand.equals(new LogCommand(secondStudySpotInTypicalStudySpots, differentStudiedHours,
-                false, false)));
+                false, false, false)));
     }
 }

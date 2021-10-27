@@ -21,7 +21,7 @@ public class LogCommandParserTest {
         Name name = STARBUCKS.getName();
         StudiedHours studiedHours = new StudiedHours("5");
         String userInput = " " + PREFIX_NAME + name.fullName + " " + PREFIX_HOURS + "5";
-        assertParseSuccess(parser, userInput, new LogCommand(STARBUCKS.getName(), studiedHours, false, false));
+        assertParseSuccess(parser, userInput, new LogCommand(STARBUCKS.getName(), studiedHours, false, false, false));
     }
 
     @Test
