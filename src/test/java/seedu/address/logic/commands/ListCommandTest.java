@@ -22,6 +22,7 @@ import seedu.address.model.Model;
 import seedu.address.model.ModelManager;
 import seedu.address.model.UserPrefs;
 import seedu.address.model.amenity.Amenity;
+import seedu.address.model.studyspot.Rating;
 import seedu.address.model.studyspot.StudySpot;
 import seedu.address.model.tag.Tag;
 
@@ -58,13 +59,14 @@ public class ListCommandTest {
         Set<Tag> tagSet = new HashSet<>(Arrays.asList(coffee));
         Amenity wifi = new Amenity("wifi");
         Set<Amenity> amenitySet = new HashSet<>(Arrays.asList(wifi));
+        Rating rating = new Rating("5");
         StudySpot studySpot = model.getFilteredStudySpotList().get(INDEX_FIRST_SPOT.getZeroBased());
         assertTrue(studySpot.getTags().contains(coffee));
         showStudySpotAtIndex(model, INDEX_FIRST_SPOT);
         showStudySpotAtIndex(expectedModel, INDEX_FIRST_SPOT);
         Predicate<StudySpot> predicate = ListCommand.containsTag(coffee);
-        assertCommandSuccess(new ListCommand(predicate, false, tagSet, amenitySet, null), model,
-                ListCommand.MESSAGE_SUCCESS + ListCommand.getFilterMessage(false, tagSet, amenitySet, null),
+        assertCommandSuccess(new ListCommand(predicate, true, tagSet, amenitySet, rating), model,
+                ListCommand.MESSAGE_SUCCESS + ListCommand.getFilterMessage(true, tagSet, amenitySet, rating),
                 expectedModel);
     }
 
