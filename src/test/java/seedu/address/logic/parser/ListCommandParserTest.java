@@ -1,5 +1,6 @@
 package seedu.address.logic.parser;
 
+import static seedu.address.logic.commands.ListCommand.containsAmenity;
 import static seedu.address.logic.commands.ListCommand.containsTag;
 import static seedu.address.logic.parser.CommandParserTestUtil.assertParseFailure;
 import static seedu.address.logic.parser.CommandParserTestUtil.assertParseSuccess;
@@ -14,6 +15,7 @@ import java.util.function.Predicate;
 import org.junit.jupiter.api.Test;
 
 import seedu.address.logic.commands.ListCommand;
+import seedu.address.model.amenity.Amenity;
 import seedu.address.model.studyspot.StudySpot;
 import seedu.address.model.tag.Tag;
 
@@ -30,7 +32,7 @@ public class ListCommandParserTest {
 
     @Test
     public void parse_validArgs_returnsListCommand() {
-        assertParseSuccess(parser, "1", new ListCommand(PREDICATE_SHOW_ALL_STUDYSPOTS, false, null));
+        assertParseSuccess(parser, "1", new ListCommand(PREDICATE_SHOW_ALL_STUDYSPOTS, false, null, null));
     }
 
     @Test
@@ -41,7 +43,7 @@ public class ListCommandParserTest {
     @Test
     public void parse_favouriteFlag_returnsListCommand() {
         assertParseSuccess(parser, " -f", new ListCommand(PREDICATE_SHOW_ALL_STUDYSPOTS.and(PREDICATE_SHOW_FAVOURITES),
-                true, null));
+                true, null, null));
     }
 
     @Test
@@ -50,7 +52,15 @@ public class ListCommandParserTest {
         Tag warmTag = new Tag("warm");
         Set<Tag> tagSet = new HashSet<Tag>(Arrays.asList(coldTag, warmTag));
         Predicate<StudySpot> predicate = containsTag(coldTag).and(containsTag(warmTag));
-        assertParseSuccess(parser, " -t t/cold t/warm", new ListCommand(predicate, false, tagSet));
+        assertParseSuccess(parser, " -t t/cold t/warm", new ListCommand(predicate, false, tagSet, null));
+    }
 
+    @Test
+    public void parse_amenities_returnsListCommand() {
+        Amenity wifi = new Amenity("wifi");
+        Amenity charger = new Amenity("charger");
+        Set<Amenity> amenitySet = new HashSet<>(Arrays.asList(wifi, charger));
+        Predicate<StudySpot> predicate = containsAmenity(wifi).and(containsAmenity(charger));
+        assertParseSuccess(parser, " -m m/wifi m/charger", new ListCommand(predicate, false, null, amenitySet));
     }
 }

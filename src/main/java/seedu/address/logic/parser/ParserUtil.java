@@ -1,8 +1,7 @@
 package seedu.address.logic.parser;
 
 import static java.util.Objects.requireNonNull;
-import static seedu.address.logic.parser.CliSyntax.PREFIX_FLAG;
-import static seedu.address.logic.parser.CliSyntax.PREFIX_TAG;
+import static seedu.address.logic.parser.CliSyntax.*;
 import static seedu.address.model.Model.PREDICATE_SHOW_ALL_STUDYSPOTS;
 
 import java.util.ArrayList;
@@ -149,6 +148,13 @@ public class ParserUtil {
             List<Predicate<StudySpot>> tagsPredicate =
                     tags.stream().map(tag -> ListCommand.containsTag(tag)).collect(Collectors.toList());
             predicateList.addAll(tagsPredicate);
+        }
+
+        if (isFlagPresent(flags, ListCommand.FLAG_AMENITIES)) {
+            Set<Amenity> amenities = parseAmenities(argMultiMap.getAllValues(PREFIX_AMENITY));
+            List<Predicate<StudySpot>> amenitiesPredicate =
+                    amenities.stream().map(amenity-> ListCommand.containsAmenity(amenity)).collect(Collectors.toList());
+            predicateList.addAll(amenitiesPredicate);
         }
         return predicateList.stream().reduce(Predicate::and).get();
     }
