@@ -1,7 +1,9 @@
 package seedu.address.logic.parser;
 
 import static java.util.Objects.requireNonNull;
-import static seedu.address.logic.parser.CliSyntax.*;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_AMENITY;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_FLAG;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_TAG;
 
 import java.util.List;
 import java.util.Set;
@@ -25,12 +27,6 @@ public class ListCommandParser implements Parser<ListCommand> {
      */
     public ListCommand parse(String args) throws ParseException {
         requireNonNull(args);
-//        ArgumentMultimap argMultimapTag = ArgumentTokenizer.tokenize(args, PREFIX_FLAG, PREFIX_TAG);
-//        ArgumentMultimap argMultimapAmenity = ArgumentTokenizer.tokenize(args, PREFIX_FLAG, PREFIX_AMENITY);
-//        Predicate<StudySpot> predicateTag = ParserUtil.parseFlags(argMultimapTag);
-//        Predicate<StudySpot> predicateAmenity = ParserUtil.parseFlags(argMultimapAmenity);
-//        List<String> flagsListTag = argMultimapTag.getAllValues(PREFIX_FLAG);
-//        List<String> flagsListAmenity = argMultimapAmenity.getAllValues(PREFIX_FLAG);
         ArgumentMultimap argMultimap = ArgumentTokenizer.tokenize(args, PREFIX_FLAG, PREFIX_TAG, PREFIX_AMENITY);
         Predicate<StudySpot> predicate = ParserUtil.parseFlags(argMultimap);
         List<String> flagsList = argMultimap.getAllValues(PREFIX_FLAG);
@@ -39,9 +35,9 @@ public class ListCommandParser implements Parser<ListCommand> {
         boolean isAmenityFlagPresent = ParserUtil.isFlagPresent(flagsList, ListCommand.FLAG_AMENITIES);
 
         Set<Tag> tagList = isTagFlagPresent ? ParserUtil.parseTags(argMultimap.getAllValues(PREFIX_TAG)) : null;
-        Set<Amenity> amenityList = isAmenityFlagPresent ?
-                ParserUtil.parseAmenities(argMultimap.getAllValues(PREFIX_AMENITY)) :
-                null;
+        Set<Amenity> amenityList = isAmenityFlagPresent
+                ? ParserUtil.parseAmenities(argMultimap.getAllValues(PREFIX_AMENITY))
+                : null;
 
         if (isTagFlagPresent && tagList.isEmpty()) {
             throw new ParseException(ListCommand.MESSAGE_MISSING_TAGS);
