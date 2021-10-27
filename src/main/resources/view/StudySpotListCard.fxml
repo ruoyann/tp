@@ -60,7 +60,7 @@
             spacing="4">
         <!-- information -->
         <children>
-          <HBox alignment="CENTER_LEFT" prefWidth="280.0" spacing="8">
+          <HBox alignment="CENTER_LEFT" prefWidth="220.0" spacing="8">
               <!-- address and icon -->
               <Label alignment="CENTER" maxHeight="20" maxWidth="20" minHeight="20" minWidth="20">
                 <graphic>
@@ -73,7 +73,7 @@
                 <Insets left="16.0" />
               </VBox.margin>
           </HBox>
-          <HBox alignment="CENTER_LEFT" prefWidth="280.0" spacing="8">
+          <HBox alignment="CENTER_LEFT" prefWidth="220.0" spacing="8">
           <!-- operating hours and icon -->
               <Label alignment="BASELINE_CENTER" maxHeight="20" maxWidth="20" minHeight="20" minWidth="20">
                 <graphic>

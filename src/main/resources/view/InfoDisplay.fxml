@@ -9,7 +9,7 @@
 <VBox fx:id="infoDisplay" alignment="CENTER" styleClass="info-display"
       xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1">
     <StackPane>
-        <PieChart fx:id="infoDisplayChart" />
+        <PieChart fx:id="infoDisplayChart" minHeight="320.0" maxHeight="350.0"/>
         <Circle styleClass="info-chart__donut-hole" radius="120.0" />
         <VBox mouseTransparent="true" alignment="CENTER">
             <Label fx:id="infoChartHours" styleClass="info-chart__hours"/>
