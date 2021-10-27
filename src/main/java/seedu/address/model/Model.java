@@ -6,6 +6,7 @@ import java.util.function.Predicate;
 import javafx.collections.ObservableList;
 import seedu.address.commons.core.GuiSettings;
 import seedu.address.model.alias.Alias;
+import seedu.address.model.studyspot.Name;
 import seedu.address.model.studyspot.StudySpot;
 
 /**
@@ -74,6 +75,12 @@ public interface Model {
     boolean hasStudySpot(StudySpot studySpot);
 
     /**
+     * Returns StudySpot with the specified {@code Name} in the study tracker.
+     * Otherwise, returns null.
+     */
+    StudySpot findStudySpot(Name name);
+
+    /**
      * Deletes the given study spot.
      * The study spot must exist in the study tracker.
      */
@@ -117,6 +124,9 @@ public interface Model {
 
     /** Returns an unmodifiable view of the filtered study spot list */
     ObservableList<StudySpot> getFilteredStudySpotList();
+
+    /** Returns an unmodifiable view of the favourite study spots list */
+    ObservableList<StudySpot> getFavouriteStudySpotList();
 
     /**
      * Updates the filter of the filtered study spot list to filter by the given {@code predicate}.

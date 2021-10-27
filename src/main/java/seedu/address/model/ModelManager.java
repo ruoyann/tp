@@ -16,6 +16,7 @@ import javafx.collections.transformation.FilteredList;
 import seedu.address.commons.core.GuiSettings;
 import seedu.address.commons.core.LogsCenter;
 import seedu.address.model.alias.Alias;
+import seedu.address.model.studyspot.Name;
 import seedu.address.model.studyspot.StudySpot;
 
 /**
@@ -27,6 +28,7 @@ public class ModelManager implements Model {
     private final StudyTracker studyTracker;
     private final UserPrefs userPrefs;
     private final FilteredList<StudySpot> filteredStudySpots;
+    private final FilteredList<StudySpot> favouriteStudySpots;
 
     /**
      * Initializes a ModelManager with the given studyTracker and userPrefs.
@@ -40,6 +42,7 @@ public class ModelManager implements Model {
         this.studyTracker = new StudyTracker(studyTracker);
         this.userPrefs = new UserPrefs(userPrefs);
         filteredStudySpots = new FilteredList<>(this.studyTracker.getStudySpotList());
+        favouriteStudySpots = new FilteredList<>(this.studyTracker.getFavouriteStudySpotList());
     }
 
     public ModelManager() {
@@ -128,6 +131,17 @@ public class ModelManager implements Model {
     public boolean hasStudySpot(StudySpot studySpot) {
         requireNonNull(studySpot);
         return studyTracker.hasStudySpot(studySpot);
+    }
+
+    /**
+     * Returns StudySpot with the specified {@code Name} in the study tracker.
+     * Otherwise, returns null.
+     *
+     * @param name
+     */
+    @Override
+    public StudySpot findStudySpot(Name name) {
+        return studyTracker.findStudySpot(name);
     }
 
     @Override
@@ -226,6 +240,17 @@ public class ModelManager implements Model {
             numOfSpots++;
         }
         return result;
+    }
+
+    //=========== Favourite StudySpots ===============================================================================
+
+    /**
+     * Returns an unmodifiable view of the list of favourite {@code StudySpot} backed by the internal list of
+     * {@code versionedStudyTracker}
+     */
+    @Override
+    public ObservableList<StudySpot> getFavouriteStudySpotList() {
+        return favouriteStudySpots;
     }
 
     @Override

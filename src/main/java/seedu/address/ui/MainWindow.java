@@ -35,6 +35,7 @@ public class MainWindow extends UiPart<Stage> {
 
     // Independent Ui parts residing in this Ui container
     private StudySpotListPanel studySpotListPanel;
+    private FavouritesListPanel favouritesListPanel;
     private ResultDisplay resultDisplay;
     private HelpWindow helpWindow;
     private InfoDisplay infoDisplay;
@@ -48,6 +49,9 @@ public class MainWindow extends UiPart<Stage> {
 
     @FXML
     private StackPane studySpotListPanelPlaceholder;
+
+    @FXML
+    private StackPane favouritesListPanelPlaceholder;
 
     @FXML
     private StackPane resultDisplayPlaceholder;
@@ -131,6 +135,9 @@ public class MainWindow extends UiPart<Stage> {
 
         infoDisplay = new InfoDisplay(logic.getTopFiveStudySpotList(), logic.getFullList());
         infoDisplayPlaceholder.getChildren().add(infoDisplay.getRoot());
+
+        favouritesListPanel = new FavouritesListPanel(logic.getFavouriteStudySpotList());
+        favouritesListPanelPlaceholder.getChildren().add(favouritesListPanel.getRoot());
 
         StatusBarFooter statusBarFooter = new StatusBarFooter(logic.getStudyTrackerFilePath());
         statusbarPlaceholder.getChildren().add(statusBarFooter.getRoot());
@@ -232,10 +239,8 @@ public class MainWindow extends UiPart<Stage> {
             resultDisplay.setFeedbackToUser(commandResult.getFeedbackToUser());
             studySpotListPanel.updateStudySpotCountDisplay(logic.getFilteredStudySpotList().size(),
                     logic.getFullList().size());
-
-            if (commandResult.isLogHours()) {
-                infoDisplay.updatePieChart(logic.getTopFiveStudySpotList(), logic.getFullList());
-            }
+            favouritesListPanel.updateFavouritesCountDisplay(logic.getFavouriteStudySpotList().size());
+            infoDisplay.updatePieChart(logic.getTopFiveStudySpotList(), logic.getFullList());
 
             if (commandResult.isShowHelp()) {
                 handleHelp();

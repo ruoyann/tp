@@ -46,8 +46,8 @@ public class StudySpotListPanel extends UiPart<Region> {
             studySpotListCount.setText("0");
             studySpotListViewDefaultMessage.setText(DEFAULT_MESSAGE);
         } else {
-            studySpotListViewDefaultMessage.setText("");
             studySpotListCount.setText(filteredStudySpots + "/" + totalStudySpots);
+            studySpotListViewDefaultMessage.setText("");
         }
     }
 

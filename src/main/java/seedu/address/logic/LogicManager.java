@@ -66,6 +66,11 @@ public class LogicManager implements Logic {
     }
 
     @Override
+    public ObservableList<StudySpot> getFavouriteStudySpotList() {
+        return model.getFavouriteStudySpotList();
+    }
+
+    @Override
     public ObservableList<StudySpot> getFullList() {
         return model.getFullList();
     }

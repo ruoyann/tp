@@ -6,6 +6,7 @@ import java.util.function.Predicate;
 import javafx.collections.ObservableList;
 import seedu.address.commons.core.GuiSettings;
 import seedu.address.model.alias.Alias;
+import seedu.address.model.studyspot.Name;
 import seedu.address.model.studyspot.StudySpot;
 
 /**
@@ -78,6 +79,11 @@ public class ModelStub implements Model {
     }
 
     @Override
+    public StudySpot findStudySpot(Name name) {
+        throw new AssertionError("This method should not be called.");
+    }
+
+    @Override
     public void deleteStudySpot(StudySpot target) {
         throw new AssertionError("This method should not be called.");
     }
@@ -105,6 +111,11 @@ public class ModelStub implements Model {
 
     @Override
     public ObservableList<StudySpot> getFilteredStudySpotList() {
+        throw new AssertionError("This method should not be called.");
+    }
+
+    @Override
+    public ObservableList<StudySpot> getFavouriteStudySpotList() {
         throw new AssertionError("This method should not be called.");
     }
 

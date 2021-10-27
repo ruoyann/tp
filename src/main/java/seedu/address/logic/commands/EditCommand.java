@@ -1,6 +1,7 @@
 package seedu.address.logic.commands;
 
 import static java.util.Objects.requireNonNull;
+import static seedu.address.commons.core.Messages.MESSAGE_INVALID_NAME;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_ADDRESS;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_AMENITY;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_EDIT_SPOT;
@@ -14,11 +15,9 @@ import static seedu.address.model.Model.PREDICATE_SHOW_ALL_STUDYSPOTS;
 
 import java.util.Collections;
 import java.util.HashSet;
-import java.util.List;
 import java.util.Optional;
 import java.util.Set;
 
-import seedu.address.commons.core.Messages;
 import seedu.address.commons.util.CollectionUtil;
 import seedu.address.logic.commands.exceptions.CommandException;
 import seedu.address.model.Model;
@@ -87,20 +86,10 @@ public class EditCommand extends Command {
     @Override
     public CommandResult execute(Model model) throws CommandException {
         requireNonNull(model);
-        List<StudySpot> lastShownList = model.getFullList();
 
-        boolean isPresent = false;
-        StudySpot studySpotToEdit = null;
-        for (StudySpot current: lastShownList) {
-            if (current.isSameName(name)) {
-                studySpotToEdit = current;
-                isPresent = true;
-                break;
-            }
-        }
-
-        if (!isPresent) {
-            throw new CommandException(Messages.MESSAGE_INVALID_NAME);
+        StudySpot studySpotToEdit = model.findStudySpot(name);
+        if (studySpotToEdit == null) {
+            throw new CommandException(MESSAGE_INVALID_NAME);
         }
 
         StudySpot editedStudySpot = createEditedStudySpot(studySpotToEdit, editStudySpotDescriptor);
