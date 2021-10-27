@@ -26,7 +26,9 @@ This **User Guide** provides clear, step-by-step information to use StudyTracker
 Want to contribute to development? Check out the [**Developer Guide**](DeveloperGuide.html) instead.
 
 <div style="page-break-after: always;"></div>
+
 ---
+
 **Table of Contents**
 
 * Table of Contents
