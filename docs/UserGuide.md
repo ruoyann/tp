@@ -420,7 +420,7 @@ below:
 
 **Format** `log -r n/NAME*` to reset the studied hours at the study spot to 0
 
-**Format** `log -r` to reset the studied hours at **all** study spots
+**Format** `log -r` to reset the studied hours for **all** study spots
 
 <div markdown="span" class="alert alert-primary">:information_source: **Note:**
 The flag `-o` stands for override, which overrides the studied hours with the provided value <br>
