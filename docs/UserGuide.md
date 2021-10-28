@@ -55,7 +55,7 @@ Let's explore how we **add a new study spot** and **track our study time** with 
 
     <img src="images/Ui.png" alt="Default Ui" width="550"/>
 
-1. Type the command in the command box and press Enter to execute it. e.g. typing **`help`** and pressing Enter will open the help window.<br>
+1. Type the command in the [command box](#study-spot-list) and press Enter to execute it. e.g. typing **`help`** and pressing Enter will open the help window.<br>
 
     Do the following commands in sequence:
 
@@ -151,8 +151,14 @@ e.g. the `NAME` parameter has a delimiter `n/` and the `AMENITY` parameter has a
 </div>
 
 
-#### Examples
-Some **valid** user inputs for the *add command* are provided below:
+### How to use these Commands in Command Line Interface
+If this is your first time using *Command Line Interface (CLI)*, fret not and we will guide you step-by-step on how to use CLI!
+
+You tell the *Command Line Interface* exactly what you want it to do! However, if you input something that the CLI does not understand, 
+then the program will not be able to help you. Inputs that the CLI understand are called **valid**, while those that are not understood are
+called **invalid**.
+
+Some **valid** user inputs for the [*add command*](#adding-a-study-spot-add) are provided below:
 * `add n/PC Commons a/UTown t/veryCrowded m/toilet r/4`
 * `add n/COM2 Basement r/3` (optional arguments are not required)
 * `add n/TR3 a/Yusof Ishak House m/wifi m/aircon` (multiple amenities are acceptable)
@@ -162,8 +168,20 @@ Some **invalid** user inputs for the *add command* are provided below:
 * `add PC Commons /UTown /very crowded /toilet /4*` (delimiters and slashes missing from parameters, unnecessary asterisk added outside of parameters)
 * `n/PC Commons a/UTown r/4` (missing command word `add`)
 
-If you accidentally entered a wrong command, don't worry! A comprehensive error messages that will show up 
+If you accidentally entered a wrong command, don't worry! A comprehensive error message will show up 
 in the display immediately to guide you to entering the correct command.
+
+1. In the [Graphical User Interface Layout](#gui-layout), the **Command Box** can be found at the bottom. This is where you will
+tell the program what to do.
+   
+1. Click on the box that says "Enter command here...", and simply type in whatever input you want.
+
+1. Press enter (or click the send button) to submit the command to the program. Remember that the input should be valid! Or else
+the program will not know what to do :crying-face:.
+   
+1. After pressing enter, your command has successfully been given to StudyTracker to be processed! You have just successfully **executed** a command.
+
+Congragulations:party_popper:! You should now know how to use CLI. Now all you need to know are the **commands** you can give to the CLI to play around with it.
 
 <div style="page-break-after: always;"></div>
 
@@ -250,59 +268,131 @@ Click on the groups to view clear, step-by-step usage instructions!
 
 #### Adding a study spot: `add`
 
-Adds a study spot to the StudyTracker.
+You can add a study spot to StudyTracker by making use of this command.
 
 **Format:** `add n/NAME* r/RATING* a/ADDRESS t/TAG... m/AMENITY... o/OPERATING_HOURS`
 
 <div markdown="span" class="alert alert-primary">:information_source: **Note:**
 Tags, amenities, address and operating hours are all optional.
 </div>
+<div markdown="span" class="alert alert-primary">:bulb: **Tip:**
+Not sure how to use the Command Line Interface? Check <a href="How-to-use-these-Commands-in-Command-Line-Interface">this</a> guide out!
+</div>
 
-**Examples:**
-```
-add n/COM1 Basement r/5
-New study spot added: COM1 Basement; Rating: 5; Favourite: false; Studied Hours: 0
+**Examples:** You can try executing the commands in the **input** rows and check if you get the corresponding **output**!
 
-add n/Starbucks at UTown r/4 t/noisy m/wifi o/0800-2000,0900-2200
-New study spot added: Starbucks at UTown; Rating: 4; Operating Hours: Weekdays: 0800-2000, Weekends: 0900-2200; Tags: [noisy]; Amenities: [wifi]
-```
+<table>
+  <tr>
+    <th width="90" align="left">Input 1</th>
+    <td >
+
+`add n/COM1 Basement r/5`
+
+</td>
+  </tr>
+  <tr align="left">
+    <th>Output 1</th>
+    <td>
+
+`New study spot added: COM1 Basement; Rating: 5; Favourite: false; Studied Hours: 0`
+
+</td>
+  </tr>
+  <tr align="left">
+    <th>Input 2</th>
+    <td>
+
+```add n/Starbucks at UTown r/4 t/noisy m/wifi o/0800-2000,0900-2200```
+
+</td>
+  </tr>
+  <tr align="left">
+    <th>Output 2</th>
+    <td>
+
+`New study spot added: Starbucks at UTown; Rating: 4; Operating Hours: Weekdays: 0800-2000, Weekends: 0900-2200; Tags: [noisy]; Amenities: [wifi]`
+
+</td>
+  </tr>
+</table>
+
 
 <div style="page-break-after: always;"></div>
 
 #### Editing a study spot : `edit`
 
-Edits the details of a single study spot.
+If you made a mistake in your add command, or wish to change the details of a study spot, 
+you can easily do so by making use of the edit command!
 
 **Format:** `edit spot/NAME* n/NEW_NAME a/NEW_ADDRESS t/NEW_TAG m/NEW_AMENITY r/NEW_RATING o/NEW_OPERATING_HOURS`
 
 * Edits the study spot matching `NAME`.
-  Provided `NAME` is not case-sensitive and **must fully match the study spot name**.
-* You must provide at least one of the optional fields.
-* StudyTracker will update Name, rating, address and operating hours.
-* When editing tags and amenities, `t/` or `m/` will append to existing tags and amenities.
+  The provided `NAME` is not case-sensitive and **must fully match the study spot name**.
+* You must provide **at least one** of the optional fields.
+* StudyTracker will update the details of the given study spot with the provided `NEW_NAME`, `NEW_ADDRESS`, `NEW_RATING` or `NEW_OPERATING HOURS`.
+* When editing tags and amenities, `t/` or `m/` will be adding on top of existing tags and amenities.
 * You can remove a specific tag or amenity with the `rt/` or `rm/` parameter.
 * You can remove all the study spot’s tags by typing `t/` or `m/` without
   specifying any tags after it.
 
-**Examples:**
-```
-edit spot/COM1 Basement n/Basement
-Edited study spot: Basement; Rating: 5; Favourite: false; Studied Hours: 0
-```
+**Examples:** You can try executing the commands in the **input** rows and check if you get the corresponding **output**!
+
+<table>
+  <tr>
+    <th width="90" align="left">Input 1</th>
+    <td >
+
+`edit spot/COM1 Basement n/Basement`
+
+</td>
+  </tr>
+  <tr align="left">
+    <th>Output 1</th>
+    <td>
+
+`Edited study spot: Basement; Rating: 5; Favourite: false; Studied Hours: 0`
+
+</td>
+</table>
+
+<div markdown="span" class="alert alert-primary">:information_source: **Note:**
+The above input assumes that there is already a study spot named "COM1 Basement" in the Study Tracker!
+This input only changes the name from "COM1 Basement" to "Basement".
+</div>
 
 <div style="page-break-after: always;"></div>
 
 #### Adding a study spot to Favourites: `fav`
 
-Adds a study spot to the StudyTracker's Favourites.
+Really enjoyed studying somewhere? You can add this study spot to your favourites by using the fav command! This will 
+make the Study Spot appear in the [Favourites List](#info-display), reminding you of the place every time you open StudyTracker.
+
+<div markdown="span" class="alert alert-primary">:information_source: **Note:**
+Don't forget to add the spot to your StudyTracker before using the fav command! Alternatively, you could use the 
+add command and directly mark it as a favourite using that command!
+</div>
 
 **Format:** `fav n/NAME*`
 
-**Examples:**
-```
-fav n/COM1 Basement
-Added study spot to favourites: COM1 Basement
-```
+**Examples:** You can try executing the commands in the **input** rows and check if you get the corresponding **output**!
+
+<table>
+  <tr>
+    <th width="90" align="left">Input 1</th>
+    <td >
+
+`fav n/COM1 Basement`
+
+</td>
+  </tr>
+  <tr align="left">
+    <th>Output 1</th>
+    <td>
+
+`Added study spot to favourites: COM1 Basement`
+
+</td>
+</table>
 
 <img src="images/add_favourites.png" alt="favourites" height="700"/>
 
@@ -310,33 +400,67 @@ Added study spot to favourites: COM1 Basement
 
 #### Removing a study spot from Favourites: `unfav`
 
-Removes a study spot from the StudyTracker's Favourites.
+Did one of your favourite study spots suddenly decide to ban students from studying there, and you decide it is time to unfavourite a spot?
+You can make use of the unfav command to do so.
+
+<div markdown="span" class="alert alert-primary">:information_source: **Note:**
+The study spot you are trying to unfavourite should originally be a favourite!
+</div>
 
 **Format:** `unfav n/NAME*`
 
-**Examples:**
-```
-unfav n/COM1 Basement
-Removed study spot from favourites: COM1 Basement
-```
+**Examples:** You can try executing the commands in the **input** rows and check if you get the corresponding **output**!
+
+<table>
+  <tr>
+    <th width="90" align="left">Input 1</th>
+    <td >
+
+`unfav n/COM1 Basement`
+
+</td>
+  </tr>
+  <tr align="left">
+    <th>Output 1</th>
+    <td>
+
+`Removed study spot from favourites: COM1 Basement`
+
+</td>
+</table>
 
 #### Deleting a study spot : `delete`
 
-Deletes the specified study spot from the StudyTracker.
+Want to get rid of study spots that you don't wish to remember? You can use the delete command to do so.
 
 **Format:** `delete n/NAME*`
 
 * Deletes the study spot with the specified **name**.
 
-**Examples:**
-```
-delete n/Basement
-Deleted study spot: Basement 
-```
+**Examples:** You can try executing the commands in the **input** rows and check if you get the corresponding **output**!
+
+<table>
+  <tr>
+    <th width="90" align="left">Input 1</th>
+    <td >
+
+`delete n/Basement`
+
+</td>
+  </tr>
+  <tr align="left">
+    <th>Output 1</th>
+    <td>
+
+`Deleted study spot: Basement `
+
+</td>
+</table>
 
 ### Clearing all entries : `clear`
 
-Clears all entries from the StudyTracker.
+Moving to a new location and decide to start your list afresh? You can make use of the clear command to clear the entire list of
+study spots.
 
 <div markdown="span" class="alert alert-warning">:warning: **Caution:**
 This command is irreversible!
@@ -344,11 +468,31 @@ This command is irreversible!
 
 **Format:** `clear`
 
-**Example:**
-```
-clear
-StudyTracker has been cleared!
-```
+**Example:** You can try executing the commands in the **input** rows and check if you get the corresponding **output**!
+
+<table>
+  <tr>
+    <th width="90" align="left">Input 1</th>
+    <td >
+
+`clear`
+
+</td>
+  </tr>
+  <tr align="left">
+    <th>Output 1</th>
+    <td>
+
+`StudyTracker has been cleared!`
+
+</td>
+</table>
+
+<div markdown="span" class="alert alert-primary">:bulb: **Tip:**
+If you wish to clear all your study spots while keeping the data you originally stored, you can make a copy of the 
+studytracker.json file which should be found within the data folder of the file with StudyTracker!
+</div>
+
 
 <div style="page-break-after: always;"></div>
 
@@ -356,25 +500,24 @@ StudyTracker has been cleared!
 
 #### Listing study spots : `list`
 
-Shows saved study spots in the StudyTracker. <br>
+Want to find all the study spots that have the amenity "aircon"? Or perhaps list all the study spots you tagged with 
+"freewater"? You can make use of the list command and its various different [flags](#flags) to get what you want.
 
-You can get creative with using this command by using flags relevant to what you wish to search for. 
+Below shows the corresponding flag to its function.
 
-**Format:** `list` to show all study spots
-
-**Format:** `list -f` to show all favourited study spots
-
-**Format:** `list -t t/TAG...` to show study spots with specified tags
-
-**Format:** `list -m m/AMENITY...` to show study spots with specified amenities 
-
-**Format:** `list -r r/RATING` to show study spots with specified rating 
+| Flag     | Function |
+| ----------- | ----------- |
+| No flag (i.e. `list`)      | Lists out all study spots (clears any filters previously applied)       |
+| `-f`   | Shows all favourited study spots        |
+| `-t t/TAG` | Shows all study spots with the specified tags |
+| `-m m/AMENITY` | Shows all study spots with the specified amenities |
+| `-r r/RATING` | Shows all study spots with the given rating |
 
 <div markdown="span" class="alert alert-primary">:information_source: **Note:**
 You can use multiple flags at once.
 </div>
 
-**Examples:**
+**Examples:** You can try executing the commands in the **input** rows and check if you get the corresponding **output**!
 ```
 list 
 Listed all study spots
@@ -383,17 +526,51 @@ list -f -t t/cold -m m/wifi -r r/5
 Listed all study spots in Favourites with Tags: [cold] with Amenities: [wifi] with Rating: 5
 ```
 
+<table>
+  <tr>
+    <th width="90" align="left">Input 1</th>
+    <td >
+
+`list `
+
+</td>
+  </tr>
+  <tr align="left">
+    <th>Output 1</th>
+    <td>
+
+`Listed all study spots`
+
+</td>
+  </tr>
+  <tr align="left">
+    <th>Input 2</th>
+    <td>
+
+`list -f -t t/cold -m m/wifi -r r/5`
+
+</td>
+  </tr>
+  <tr align="left">
+    <th>Output 2</th>
+    <td>
+
+`Listed all study spots in Favourites with Tags: [cold] with Amenities: [wifi] with Rating: 5`
+</td>
+  </tr>
+</table>
+
 <img src="images/list_tags_cold.png" alt="cold tags" height="700"/>
 
 <div markdown="span" class="alert alert-primary">:bulb: **Tip:**
 Make use of command aliases to speed up typing your inputs!
 </div>
 
-**Command alias:** `ls`
+[**Default Command alias:**](#setting-command-aliases) `ls`
 
 #### Locating a study spot by name: `find`
 
-Finds study spots whose names contain any of the given keywords.
+Trying to find a study spot by it's name? You can use the find command to easily do so!
 
 **Format:** `find KEYWORD* [MORE KEYWORDS]`
 
@@ -401,11 +578,29 @@ Finds study spots whose names contain any of the given keywords.
 * StudyTracker will only match full words. e.g. `Lib` will not match `Library`
 * StudyTracker will return study spots matching at least one keyword.
 
-**Examples:**
+**Examples:** You can try executing the commands in the **input** rows and check if you get the corresponding **output**!
 ```
 find library
 3 study spot(s) listed!
 ```
+
+<table>
+  <tr>
+    <th width="90" align="left">Input 1</th>
+    <td >
+
+`find library`
+
+</td>
+  </tr>
+  <tr align="left">
+    <th>Output 1</th>
+    <td>
+
+`3 study spot(s) listed!`
+
+</td>
+</table>
 
 ### Logging study hours: `log`
 
@@ -414,13 +609,12 @@ There are also various flags you can use to reset or override hours to the value
 Use the `-r` and `-o` flags respectively, as shown
 below:
 
-**Format:** `log n/NAME* hr/NUM_OF_HOURS*` to log additional hours at the study spot
-
-**Format** `log -o n/NAME* hr/NUM_OF_HOURS*` to replace the current studied hours at the study spot with the input value
-
-**Format** `log -r n/NAME*` to reset the studied hours at the study spot to 0
-
-**Format** `log -r` to reset the studied hours for **all** study spots
+| Format     | Function |
+| ----------- | ----------- |
+| `log n/NAME* hr/NUM_OF_HOURS*` | Adds the given `NUM_OF_HOURS` to the original studied hours at a study spot |
+| `log -o n/NAME* hr/NUM_OF_HOURS*` | Overrides the current studied hours with the given `NUM_OF_HOURS`  |
+| `log -r n/NAME*` | Resets the number of studied hours at a study spot to 0 |
+| `log -r` | Resets studied hours of **ALL** study spots to 0 |
 
 <div markdown="span" class="alert alert-primary">:information_source: **Note:**
 The flag `-o` stands for override, which overrides the studied hours with the provided value <br>
@@ -432,30 +626,91 @@ The flag `-r` stands for reset, which resets the hours to 0
 Logging 5 hours to 'Starbucks UTown' with the command `log n/starbucks utown hr/2` would update the **study spot card**, as well as statistics on the **pie chart**.
 
 
-**Example:**
-```
-log n/Starbucks hr/5
-Logged 5 hours at Starbucks!
+**Example:** You can try executing the commands in the **input** rows and check if you get the corresponding **output**!
 
-log -o n/Starbucks hr/5
-Changed hours to 5 at Starbucks!
+<table>
+  <tr>
+    <th width="90" align="left">Input 1</th>
+    <td >
 
-log -r n/Starbucks
-Reset hours at Starbucks!
+`log n/Starbucks hr/5`
 
-log -r
-Reset hours for all study spots!
-```
+</td>
+  </tr>
+  <tr align="left">
+    <th>Output 1</th>
+    <td>
+
+`Logged 5 hours at Starbucks!`
+
+</td>
+  </tr>
+  <tr align="left">
+    <th>Input 2</th>
+    <td>
+
+`log -o n/Starbucks hr/5`
+
+</td>
+  </tr>
+  <tr align="left">
+    <th>Output 2</th>
+    <td>
+
+`Changed hours to 5 at Starbucks!`
+</td>
+  </tr>
+  <tr align="left">
+    <th>Input 3</th>
+    <td>
+
+`log -r n/Starbucks`
+
+</td>
+  </tr>
+  <tr align="left">
+    <th>Output 3</th>
+    <td>
+
+`Reset hours at Starbucks!`
+</td>
+  </tr>
+  <tr align="left">
+    <th>Input 4</th>
+    <td>
+
+`log -r`
+
+</td>
+  </tr>
+  <tr align="left">
+    <th>Output 4</th>
+    <td>
+
+`Reset hours for all study spots!`
+</td>
+  </tr>
+</table>
+
+<div markdown="span" class="alert alert-primary">:bulb: **Tip:**
+Use the log command at the end of a study session to keep track of how long you studied somewhere!
+</div>
 
 ### Setting Command Aliases
 
 #### Adding command aliases : `alias`, `unalias`
 
-Adds or shows user-defined aliases.
+Do you find yourself using certain commands so often that you wish you could "code-name" it so you don't need to type so much? 
+Alias is the command for you. The alias command can help you to shorten input commands to whatever you want it to be. 
 
 **Format:** `alias -s` to show all aliases
 
 **Format:** `alias al/ALIAS* cmd/COMMAND*` to set alias
+
+| Format     | Function |
+| ----------- | ----------- |
+| `alias -s` | Shows all aliases that you have set |
+| `alias al/ALIAS* cmd/COMMAND*` | Sets and alias, where `ALIAS` is the shortcut and `COMMAND` is the given input you wish to alias  |
 
 **Example:**
 ```
@@ -485,7 +740,7 @@ Running `LogCLB 3` would then result in `log n/Central Library hr/3`, allowing y
 
 #### Removing command aliases: `unalias`
 
-Removes user-defined aliases.
+If you do not like an alias you originally set, you can use unalias to remove that alias.
 
 **Format:** `unalias al/ALIAS*` to remove alias
 
@@ -499,7 +754,7 @@ Removed alias 'myList'
 
 ### Viewing help : `help`
 
-Provides a reference for commands in StudyTracker.
+Forgot a command? You can make use of the help command to get a quick overview of all commands available in StudyTracker!
 
 Click on each command on the left panel to view usage instructions of each command.
 
@@ -517,18 +772,19 @@ Alternatively, click on 'Help' in the menu bar!
 
 ### Exiting the program : `exit`
 
-Closes the StudyTracker immediately upon entering the command.
+Hands off the mouse and want to quickly close the app without getting your hands off the keyboard? Simply execute the exit command!
 
 **Format:** `exit`
 
-**Command alias:** `bye`, `quit`
+**Default Command alias:** `bye`, `quit`
 
 <div style="page-break-after: always;"></div>
 
 ### Managing Themes
+Personality matters, and you should be given a way to select a theme that speaks to you!
 
-From `File > Settings`, select the colour theme you want to use.
-Themes are saved in your user preferences.
+From `File > Settings`, select the colour theme you wish to use. Themes are saved in your user preferences, so the next time you 
+launch the application, rest assured that your colour theme will be set and ready to go!
 
 ![Gui Themes](images/UiThemes.png)
 
@@ -538,7 +794,8 @@ Themes are saved in your user preferences.
 
 #### Saving data
 
-StudyTracker data are saved in the hard disk automatically after any command that changes the data. There is no need to save manually.
+StudyTrackers data is saved in the hard disk automatically after any command that changes the data. You can rest assured that you do
+not need to save your data manually.
 
 #### Editing the data file
 
