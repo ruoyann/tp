@@ -276,7 +276,7 @@ You can add a study spot to StudyTracker by making use of this command.
 Tags, amenities, address and operating hours are all optional.
 </div>
 <div markdown="span" class="alert alert-primary">:bulb: **Tip:**
-Not sure how to use the Command Line Interface? Check <a href="How-to-use-these-Commands-in-Command-Line-Interface">this</a> guide out!
+Not sure how to use the Command Line Interface? Check <a href="#how-to-use-these-commands-in-command-line-interface">this</a> guide out!
 </div>
 
 **Examples:** You can try executing the commands in the **input** rows and check if you get the corresponding **output**!
@@ -286,7 +286,7 @@ Not sure how to use the Command Line Interface? Check <a href="How-to-use-these-
     <th width="90" align="left">Input 1</th>
     <td >
 
-`add n/COM1 Basement r/5`
+add n/COM1 Basement r/5
 
 </td>
   </tr>
@@ -294,7 +294,7 @@ Not sure how to use the Command Line Interface? Check <a href="How-to-use-these-
     <th>Output 1</th>
     <td>
 
-`New study spot added: COM1 Basement; Rating: 5; Favourite: false; Studied Hours: 0`
+New study spot added: COM1 Basement; Rating: 5; Favourite: false; Studied Hours: 0
 
 </td>
   </tr>
@@ -302,15 +302,14 @@ Not sure how to use the Command Line Interface? Check <a href="How-to-use-these-
     <th>Input 2</th>
     <td>
 
-```add n/Starbucks at UTown r/4 t/noisy m/wifi o/0800-2000,0900-2200```
+add n/Starbucks at UTown r/4 t/noisy m/wifi o/0800-2000,0900-2200
 
 </td>
   </tr>
   <tr align="left">
     <th>Output 2</th>
     <td>
-
-`New study spot added: Starbucks at UTown; Rating: 4; Operating Hours: Weekdays: 0800-2000, Weekends: 0900-2200; Tags: [noisy]; Amenities: [wifi]`
+New study spot added: Starbucks at UTown; Rating: 4; Operating Hours: Weekdays: 0800-2000, Weekends: 0900-2200; Tags: [noisy]; Amenities: [wifi]
 
 </td>
   </tr>
@@ -342,7 +341,7 @@ you can easily do so by making use of the edit command!
     <th width="90" align="left">Input 1</th>
     <td >
 
-`edit spot/COM1 Basement n/Basement`
+edit spot/COM1 Basement n/Basement
 
 </td>
   </tr>
@@ -350,7 +349,7 @@ you can easily do so by making use of the edit command!
     <th>Output 1</th>
     <td>
 
-`Edited study spot: Basement; Rating: 5; Favourite: false; Studied Hours: 0`
+Edited study spot: Basement; Rating: 5; Favourite: false; Studied Hours: 0
 
 </td>
 </table>
@@ -381,7 +380,7 @@ add command and directly mark it as a favourite using that command!
     <th width="90" align="left">Input 1</th>
     <td >
 
-`fav n/COM1 Basement`
+fav n/COM1 Basement
 
 </td>
   </tr>
@@ -389,7 +388,7 @@ add command and directly mark it as a favourite using that command!
     <th>Output 1</th>
     <td>
 
-`Added study spot to favourites: COM1 Basement`
+Added study spot to favourites: COM1 Basement
 
 </td>
 </table>
@@ -416,7 +415,7 @@ The study spot you are trying to unfavourite should originally be a favourite!
     <th width="90" align="left">Input 1</th>
     <td >
 
-`unfav n/COM1 Basement`
+unfav n/COM1 Basement
 
 </td>
   </tr>
@@ -424,7 +423,7 @@ The study spot you are trying to unfavourite should originally be a favourite!
     <th>Output 1</th>
     <td>
 
-`Removed study spot from favourites: COM1 Basement`
+Removed study spot from favourites: COM1 Basement
 
 </td>
 </table>
@@ -444,7 +443,7 @@ Want to get rid of study spots that you don't wish to remember? You can use the 
     <th width="90" align="left">Input 1</th>
     <td >
 
-`delete n/Basement`
+delete n/Basement
 
 </td>
   </tr>
@@ -452,7 +451,7 @@ Want to get rid of study spots that you don't wish to remember? You can use the 
     <th>Output 1</th>
     <td>
 
-`Deleted study spot: Basement `
+Deleted study spot: Basement 
 
 </td>
 </table>
@@ -475,7 +474,7 @@ This command is irreversible!
     <th width="90" align="left">Input 1</th>
     <td >
 
-`clear`
+clear
 
 </td>
   </tr>
@@ -483,7 +482,7 @@ This command is irreversible!
     <th>Output 1</th>
     <td>
 
-`StudyTracker has been cleared!`
+StudyTracker has been cleared!
 
 </td>
 </table>
@@ -518,20 +517,13 @@ You can use multiple flags at once.
 </div>
 
 **Examples:** You can try executing the commands in the **input** rows and check if you get the corresponding **output**!
-```
-list 
-Listed all study spots
-  
-list -f -t t/cold -m m/wifi -r r/5
-Listed all study spots in Favourites with Tags: [cold] with Amenities: [wifi] with Rating: 5
-```
 
 <table>
   <tr>
     <th width="90" align="left">Input 1</th>
     <td >
 
-`list `
+list 
 
 </td>
   </tr>
@@ -539,7 +531,7 @@ Listed all study spots in Favourites with Tags: [cold] with Amenities: [wifi] wi
     <th>Output 1</th>
     <td>
 
-`Listed all study spots`
+Listed all study spots
 
 </td>
   </tr>
@@ -547,7 +539,7 @@ Listed all study spots in Favourites with Tags: [cold] with Amenities: [wifi] wi
     <th>Input 2</th>
     <td>
 
-`list -f -t t/cold -m m/wifi -r r/5`
+list -f -t t/cold -m m/wifi -r r/5
 
 </td>
   </tr>
@@ -555,7 +547,7 @@ Listed all study spots in Favourites with Tags: [cold] with Amenities: [wifi] wi
     <th>Output 2</th>
     <td>
 
-`Listed all study spots in Favourites with Tags: [cold] with Amenities: [wifi] with Rating: 5`
+Listed all study spots in Favourites with Tags: [cold] with Amenities: [wifi] with Rating: 5
 </td>
   </tr>
 </table>
@@ -579,17 +571,13 @@ Trying to find a study spot by it's name? You can use the find command to easily
 * StudyTracker will return study spots matching at least one keyword.
 
 **Examples:** You can try executing the commands in the **input** rows and check if you get the corresponding **output**!
-```
-find library
-3 study spot(s) listed!
-```
 
 <table>
   <tr>
     <th width="90" align="left">Input 1</th>
     <td >
 
-`find library`
+find library
 
 </td>
   </tr>
@@ -597,7 +585,7 @@ find library
     <th>Output 1</th>
     <td>
 
-`3 study spot(s) listed!`
+3 study spot(s) listed!
 
 </td>
 </table>
@@ -633,7 +621,7 @@ Logging 5 hours to 'Starbucks UTown' with the command `log n/starbucks utown hr/
     <th width="90" align="left">Input 1</th>
     <td >
 
-`log n/Starbucks hr/5`
+log n/Starbucks hr/5
 
 </td>
   </tr>
@@ -641,7 +629,7 @@ Logging 5 hours to 'Starbucks UTown' with the command `log n/starbucks utown hr/
     <th>Output 1</th>
     <td>
 
-`Logged 5 hours at Starbucks!`
+Logged 5 hours at Starbucks!
 
 </td>
   </tr>
@@ -649,7 +637,7 @@ Logging 5 hours to 'Starbucks UTown' with the command `log n/starbucks utown hr/
     <th>Input 2</th>
     <td>
 
-`log -o n/Starbucks hr/5`
+log -o n/Starbucks hr/5
 
 </td>
   </tr>
@@ -657,14 +645,14 @@ Logging 5 hours to 'Starbucks UTown' with the command `log n/starbucks utown hr/
     <th>Output 2</th>
     <td>
 
-`Changed hours to 5 at Starbucks!`
+Changed hours to 5 at Starbucks!
 </td>
   </tr>
   <tr align="left">
     <th>Input 3</th>
     <td>
 
-`log -r n/Starbucks`
+log -r n/Starbucks
 
 </td>
   </tr>
@@ -672,14 +660,14 @@ Logging 5 hours to 'Starbucks UTown' with the command `log n/starbucks utown hr/
     <th>Output 3</th>
     <td>
 
-`Reset hours at Starbucks!`
+Reset hours at Starbucks!
 </td>
   </tr>
   <tr align="left">
     <th>Input 4</th>
     <td>
 
-`log -r`
+log -r
 
 </td>
   </tr>
@@ -687,7 +675,7 @@ Logging 5 hours to 'Starbucks UTown' with the command `log n/starbucks utown hr/
     <th>Output 4</th>
     <td>
 
-`Reset hours for all study spots!`
+Reset hours for all study spots!
 </td>
   </tr>
 </table>
