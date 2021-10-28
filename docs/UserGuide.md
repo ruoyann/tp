@@ -352,6 +352,7 @@ edit spot/COM1 Basement n/Basement
 Edited study spot: Basement; Rating: 5; Favourite: false; Studied Hours: 0
 
 </td>
+</tr>
 </table>
 
 <div markdown="span" class="alert alert-primary">:information_source: **Note:**
@@ -391,6 +392,7 @@ fav n/COM1 Basement
 Added study spot to favourites: COM1 Basement
 
 </td>
+</tr>
 </table>
 
 <img src="images/add_favourites.png" alt="favourites" height="700"/>
@@ -413,7 +415,7 @@ The study spot you are trying to unfavourite should originally be a favourite!
 <table>
   <tr>
     <th width="90" align="left">Input 1</th>
-    <td >
+    <td>
 
 unfav n/COM1 Basement
 
@@ -426,6 +428,7 @@ unfav n/COM1 Basement
 Removed study spot from favourites: COM1 Basement
 
 </td>
+</tr>
 </table>
 
 #### Deleting a study spot : `delete`
@@ -454,6 +457,7 @@ delete n/Basement
 Deleted study spot: Basement 
 
 </td>
+</tr>
 </table>
 
 ### Clearing all entries : `clear`
@@ -472,7 +476,7 @@ This command is irreversible!
 <table>
   <tr>
     <th width="90" align="left">Input 1</th>
-    <td >
+    <td>
 
 clear
 
@@ -485,6 +489,7 @@ clear
 StudyTracker has been cleared!
 
 </td>
+</tr>
 </table>
 
 <div markdown="span" class="alert alert-primary">:bulb: **Tip:**
@@ -588,6 +593,7 @@ find library
 3 study spot(s) listed!
 
 </td>
+</tr>
 </table>
 
 ### Logging study hours: `log`
