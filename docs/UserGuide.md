@@ -711,7 +711,8 @@ Input     | Output | Usage of Alias | Output |
 * running `myList` will run the `list` command.
 
 <div markdown="span" class="alert alert-primary">:bulb: **Tip:**
-You can chain aliases to make more powerful commands! <br> <br>
+You can chain aliases to make more powerful commands! See the below example.<br> <br>
+</div>
 
 **Example:** <br>
 
@@ -729,7 +730,7 @@ will set alias `LogCLB` to expand to the command `log n/Central Library hr/`.
 <br><br>
 
 Running `LogCLB 3` would then result in `log n/Central Library hr/3`, allowing you to log a variable number of study hours to 'Central Library'!
-</div>
+
 
 #### Removing command aliases: `unalias`
 
