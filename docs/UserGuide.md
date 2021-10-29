@@ -788,7 +788,7 @@ launch the application, rest assured that your colour theme will be set and read
 
 #### Saving data
 
-StudyTrackers data is saved in the hard disk automatically after any command that changes the data. You can rest assured that you do
+StudyTracker's data is saved in the hard disk automatically after any command that changes the data. You can rest assured that you do
 not need to save your data manually.
 
 #### Editing the data file
