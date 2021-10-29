@@ -177,7 +177,7 @@ tell the program what to do.
 1. Click on the box that says "Enter command here...", and simply type in whatever input you want.
 
 1. Press enter (or click the send button) to submit the command to the program. Remember that the input should be valid! Or else
-the program will not know what to do 😢 :.
+the program will not know what to do 😢.
    
 1. After pressing enter, your command has successfully been given to StudyTracker to be processed! You have just successfully **executed** a command.
 
@@ -704,7 +704,7 @@ Alias is the command for you. The `alias` command can help you to shorten input 
 
 **Example:** 
 
-Input     | Output | Usage of Alias | Output |
+| Input     | Output | Usage of Alias | Output |
 | ----------- | ----------- | ---------- | ------------- |
 | `alias al/MyList cmd/list` | `Added alias myList: [list]` | `myList` | `Listed all study spots` |
 
