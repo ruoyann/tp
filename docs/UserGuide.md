@@ -697,10 +697,6 @@ Use the log command at the end of a study session to keep track of how long you 
 Do you find yourself using certain commands so often that you wish you could "code-name" it so you don't need to type so much? 
 Alias is the command for you. The alias command can help you to shorten input commands to whatever you want it to be. 
 
-**Format:** `alias -s` to show all aliases
-
-**Format:** `alias al/ALIAS* cmd/COMMAND*` to set alias
-
 | Format     | Function |
 | ----------- | ----------- |
 | `alias -s` | Shows all aliases that you have set |
