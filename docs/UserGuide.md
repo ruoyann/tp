@@ -615,10 +615,6 @@ The flag `-o` stands for override, which overrides the studied hours with the pr
 The flag `-r` stands for reset, which resets the hours to 0
 </div>
 
-<img src="images/log_hours.png" alt="log hours" />
-
-Logging 5 hours to 'Starbucks UTown' with the command `log n/starbucks utown hr/2` would update the **study spot card**, as well as statistics on the **pie chart**.
-
 
 **Example:** You can try executing the commands in the **input** rows and check if you get the corresponding **output**!
 
@@ -627,7 +623,7 @@ Logging 5 hours to 'Starbucks UTown' with the command `log n/starbucks utown hr/
     <th width="90" align="left">Input 1</th>
     <td >
 
-log n/Starbucks hr/5
+log n/Starbucks UTown hr/2
 
 </td>
   </tr>
@@ -635,7 +631,7 @@ log n/Starbucks hr/5
     <th>Output 1</th>
     <td>
 
-Logged 5 hours at Starbucks!
+Logged 2 hours at Starbucks UTown!
 
 </td>
   </tr>
@@ -643,7 +639,7 @@ Logged 5 hours at Starbucks!
     <th>Input 2</th>
     <td>
 
-log -o n/Starbucks hr/5
+log -o n/Starbucks UTown hr/5
 
 </td>
   </tr>
@@ -651,14 +647,14 @@ log -o n/Starbucks hr/5
     <th>Output 2</th>
     <td>
 
-Changed hours to 5 at Starbucks!
+Changed hours to 5 at Starbucks UTown!
 </td>
   </tr>
   <tr align="left">
     <th>Input 3</th>
     <td>
 
-log -r n/Starbucks
+log -r n/Starbucks UTown
 
 </td>
   </tr>
@@ -666,7 +662,7 @@ log -r n/Starbucks
     <th>Output 3</th>
     <td>
 
-Reset hours at Starbucks!
+Reset hours at Starbucks UTown!
 </td>
   </tr>
   <tr align="left">
@@ -686,6 +682,10 @@ Reset hours for all study spots!
   </tr>
 </table>
 
+<img src="images/log_hours.png" alt="log hours" />
+
+Logging 2 hours to 'Starbucks UTown' with the command `log n/starbucks utown hr/2` (as seen in Input 1) would update the **study spot card**, as well as statistics on the **pie chart**.
+
 <div markdown="span" class="alert alert-primary">:bulb: **Tip:**
 Use the log command at the end of a study session to keep track of how long you studied somewhere!
 </div>
@@ -703,10 +703,11 @@ Alias is the command for you. The alias command can help you to shorten input co
 | `alias al/ALIAS* cmd/COMMAND*` | Sets and alias, where `ALIAS` is the shortcut and `COMMAND` is the given input you wish to alias  |
 
 **Example:**
-```
-alias al/myList cmd/list
-Added alias myList: [list]
-```
+
+Input     | Output | Usage of Alias | Output |
+| ----------- | ----------- | ---------- | ------------- |
+| `alias al/MyList cmd/list` | `Added alias myList: [list]` | `myList` | `Listed all study spots` |
+
 * running `myList` will run the `list` command.
 
 <div markdown="span" class="alert alert-primary">:bulb: **Tip:**
@@ -714,9 +715,11 @@ You can chain aliases to make more powerful commands! <br> <br>
 
 **Example:** <br>
 
-```
-alias al/LogCLB cmd/log n/Central Library hr/
-```
+| Input     | Output | Usage of Alias | Output |
+| ----------- | ----------- | ---------- | ------------- |
+| `alias al/LogCLB cmd/log n/Central Library hr/` | `Added alias LogCLB: [log n/Central Library hr/]` | `LogCLB 3` | `Logged 3 hours at Central Library!`|
+
+
 <br>
 ```
 Added alias LogCLB: [log n/Central Library hr/]
@@ -735,10 +738,25 @@ If you do not like an alias you originally set, you can use unalias to remove th
 **Format:** `unalias al/ALIAS*` to remove alias
 
 **Example:**
-```
-unalias al/myList
+
+<table>
+  <tr>
+    <th width="90" align="left">Input 1</th>
+    <td >
+
+unalias al/MyList
+
+</td>
+  </tr>
+  <tr align="left">
+    <th>Output 1</th>
+    <td>
+
 Removed alias 'myList'
-```
+
+</td>
+</tr>
+</table>
 
 <div style="page-break-after: always;"></div>
 
@@ -766,7 +784,7 @@ Hands off the mouse and want to quickly close the app without getting your hands
 
 **Format:** `exit`
 
-**Default Command alias:** `bye`, `quit`
+[**Default Command alias:**](#setting-command-aliases) `bye`, `quit`
 
 <div style="page-break-after: always;"></div>
 
