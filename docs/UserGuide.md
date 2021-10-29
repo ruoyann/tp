@@ -704,7 +704,7 @@ Alias is the command for you. The `alias` command can help you to shorten input 
 
 **Example:** 
 
-Input     | Output | Usage of Alias | Output |
+| Input     | Output | Usage of Alias | Output |
 | ----------- | ----------- | ---------- | ------------- |
 | `alias al/MyList cmd/list` | `Added alias myList: [list]` | `myList` | `Listed all study spots` |
 
