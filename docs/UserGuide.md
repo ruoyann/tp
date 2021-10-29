@@ -268,7 +268,7 @@ Click on the groups to view clear, step-by-step usage instructions!
 
 #### Adding a study spot: `add`
 
-You can add a study spot to StudyTracker by making use of this command.
+You can add a study spot to StudyTracker by making use of the `add` command.
 
 **Format:** `add n/NAME* r/RATING* a/ADDRESS t/TAG... m/AMENITY... o/OPERATING_HOURS`
 
@@ -320,8 +320,8 @@ New study spot added: Starbucks at UTown; Rating: 4; Operating Hours: Weekdays: 
 
 #### Editing a study spot : `edit`
 
-If you made a mistake in your add command, or wish to change the details of a study spot, 
-you can easily do so by making use of the edit command!
+If you made a mistake in your `add` command, or wish to change the details of a study spot, 
+you can easily do so by making use of the `edit` command!
 
 **Format:** `edit spot/NAME* n/NEW_NAME a/NEW_ADDRESS t/NEW_TAG m/NEW_AMENITY r/NEW_RATING o/NEW_OPERATING_HOURS`
 
@@ -402,7 +402,7 @@ Added study spot to favourites: COM1 Basement
 #### Removing a study spot from Favourites: `unfav`
 
 Did one of your favourite study spots suddenly decide to ban students from studying there, and you decide it is time to unfavourite a spot?
-You can make use of the unfav command to do so.
+You can make use of the `unfav` command to do so.
 
 <div markdown="span" class="alert alert-primary">:information_source: **Note:**
 The study spot you are trying to unfavourite should originally be a favourite!
@@ -433,7 +433,7 @@ Removed study spot from favourites: COM1 Basement
 
 #### Deleting a study spot : `delete`
 
-Want to get rid of study spots that you don't wish to remember? You can use the delete command to do so.
+Want to get rid of study spots that you don't wish to remember? You can use the `delete` command to do so.
 
 **Format:** `delete n/NAME*`
 
@@ -462,7 +462,7 @@ Deleted study spot: Basement
 
 ### Clearing all entries : `clear`
 
-Moving to a new location and decide to start your list afresh? You can make use of the clear command to clear the entire list of
+Moving to a new location and decide to start your list afresh? You can make use of the `clear` command to clear the entire list of
 study spots.
 
 <div markdown="span" class="alert alert-warning">:warning: **Caution:**
@@ -505,9 +505,9 @@ studytracker.json file which should be found within the data folder of the file 
 #### Listing study spots : `list`
 
 Want to find all the study spots that have the amenity "aircon"? Or perhaps list all the study spots you tagged with 
-"freewater"? You can make use of the list command and its various different [flags](#flags) to get what you want.
+"freewater"? You can make use of the `list` command and its various different [flags](#flags) to get what you want.
 
-Below shows the corresponding flag to its function.
+Below shows the corresponding [flag](#flags) to its function.
 
 | Flag     | Function |
 | ----------- | ----------- |
@@ -567,7 +567,7 @@ Make use of command aliases to speed up typing your inputs!
 
 #### Locating a study spot by name: `find`
 
-Trying to find a study spot by it's name? You can use the find command to easily do so!
+Trying to find a study spot by it's name? You can use the `find` command to easily do so!
 
 **Format:** `find KEYWORD* [MORE KEYWORDS]`
 
@@ -598,7 +598,7 @@ find library
 
 ### Logging study hours: `log`
 
-After studying at a certain StudySpot, you can log how many hours you have studied at this location.
+After studying at a certain StudySpot, you can `log` how many hours you have studied at this location.
 There are also various flags you can use to reset or override hours to the value of your choice.
 Use the `-r` and `-o` flags respectively, as shown
 below:
@@ -695,14 +695,14 @@ Use the log command at the end of a study session to keep track of how long you 
 #### Adding command aliases : `alias`, `unalias`
 
 Do you find yourself using certain commands so often that you wish you could "code-name" it so you don't need to type so much? 
-Alias is the command for you. The alias command can help you to shorten input commands to whatever you want it to be. 
+Alias is the command for you. The `alias` command can help you to shorten input commands to whatever you want it to be. 
 
 | Format     | Function |
 | ----------- | ----------- |
 | `alias -s` | Shows all aliases that you have set |
 | `alias al/ALIAS* cmd/COMMAND*` | Sets and alias, where `ALIAS` is the shortcut and `COMMAND` is the given input you wish to alias  |
 
-**Example:**
+**Example:** 
 
 Input     | Output | Usage of Alias | Output |
 | ----------- | ----------- | ---------- | ------------- |
@@ -733,7 +733,7 @@ Running `LogCLB 3` would then result in `log n/Central Library hr/3`, allowing y
 
 #### Removing command aliases: `unalias`
 
-If you do not like an alias you originally set, you can use unalias to remove that alias.
+If you do not like an alias you originally set, you can use `unalias` to remove that alias.
 
 **Format:** `unalias al/ALIAS*` to remove alias
 
@@ -762,7 +762,7 @@ Removed alias 'myList'
 
 ### Viewing help : `help`
 
-Forgot a command? You can make use of the help command to get a quick overview of all commands available in StudyTracker!
+Forgot a command? You can make use of the `help` command to get a quick overview of all commands available in StudyTracker!
 
 Click on each command on the left panel to view usage instructions of each command.
 
@@ -780,7 +780,7 @@ Alternatively, click on 'Help' in the menu bar!
 
 ### Exiting the program : `exit`
 
-Hands off the mouse and want to quickly close the app without getting your hands off the keyboard? Simply execute the exit command!
+Hands off the mouse and want to quickly close the app without getting your hands off the keyboard? Simply execute the `exit` command!
 
 **Format:** `exit`
 
