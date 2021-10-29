@@ -364,7 +364,7 @@ This input only changes the name from "COM1 Basement" to "Basement".
 
 #### Adding a study spot to Favourites: `fav`
 
-Really enjoyed studying somewhere? You can add this study spot to your favourites by using the fav command! This will 
+Really enjoyed studying somewhere? You can add this study spot to your favourites by using the `fav` command! This will 
 make the Study Spot appear in the [Favourites List](#info-display), reminding you of the place every time you open StudyTracker.
 
 <div markdown="span" class="alert alert-primary">:information_source: **Note:**
