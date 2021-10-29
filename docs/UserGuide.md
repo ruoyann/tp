@@ -721,13 +721,6 @@ You can chain aliases to make more powerful commands! See the below example.<br>
 | `alias al/LogCLB cmd/log n/Central Library hr/` | `Added alias LogCLB: [log n/Central Library hr/]` | `LogCLB 3` | `Logged 3 hours at Central Library!`|
 
 
-<br>
-```
-Added alias LogCLB: [log n/Central Library hr/]
-```
-<br>
-will set alias `LogCLB` to expand to the command `log n/Central Library hr/`.
-<br><br>
 
 Running `LogCLB 3` would then result in `log n/Central Library hr/3`, allowing you to log a variable number of study hours to 'Central Library'!
 
