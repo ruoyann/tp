@@ -181,7 +181,7 @@ the program will not know what to do 😢 :.
    
 1. After pressing enter, your command has successfully been given to StudyTracker to be processed! You have just successfully **executed** a command.
 
-Congragulations:party_popper:! You should now know how to use CLI. Now all you need to know are the **commands** you can give to the CLI to play around with it.
+Congratulations! 🎉 You should now know how to use CLI. Now all you need to know are the **commands** you can give to the CLI to play around with it.
 
 <div style="page-break-after: always;"></div>
 
