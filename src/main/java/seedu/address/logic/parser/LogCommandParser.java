@@ -48,17 +48,16 @@ public class LogCommandParser implements Parser<LogCommand> {
                             LogCommand.MESSAGE_ONE_FLAG));
                 }
                 String flag = argMultimap.getValue(PREFIX_FLAG).get();
-                assert(flag.equals(LogCommand.FLAG_RESET) || flag.equals(LogCommand.FLAG_OVERRIDE) || flag.equals(LogCommand.FLAG_RESET_ALL));
+                assert(flag.equals(LogCommand.FLAG_RESET) || flag.equals(LogCommand.FLAG_OVERRIDE)
+                        || flag.equals(LogCommand.FLAG_RESET_ALL));
 
                 // Reset only depends on if a name is given,
                 // It should ignore any hour provided, and should not throw an error even if hour is null.
                 if (flag.equals("r")) {
-                    return new LogCommand(studySpot, null, isNamePresent,
-                            false, !isNamePresent);
+                    return new LogCommand(studySpot, null, isNamePresent, false, !isNamePresent);
                 }
                 else if (flag.equals("ra")) {
-                    return new LogCommand(studySpot, null, false,
-                            false, true);
+                    return new LogCommand(studySpot, null, false, false, true);
                 } else {
                     isOverride = true;
                 }
