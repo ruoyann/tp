@@ -157,9 +157,9 @@ public class StudySpot {
         final StringBuilder builder = new StringBuilder();
         builder.append(getName())
                 .append(" | ")
-                .append(getRating())
+                .append(getRating().getStars())
                 .append(" | ")
-                .append(getFavourite())
+                .append(getFavourite().getHeart())
                 .append(" | ")
                 .append(System.getProperty("line.separator"));
 

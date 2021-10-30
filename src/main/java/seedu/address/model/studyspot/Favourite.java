@@ -40,13 +40,17 @@ public class Favourite {
         return test.equals("true") || test.equals("false");
     }
 
-    @Override
-    public String toString() {
+    public String getHeart() {
         if (isFavourite) {
             return "\u2665";
         } else {
             return "\u2661";
         }
+    }
+
+    @Override
+    public String toString() {
+        return value;
     }
 
     @Override
