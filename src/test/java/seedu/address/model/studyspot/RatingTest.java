@@ -32,7 +32,7 @@ public class RatingTest {
         assertFalse(Rating.isValidRating("9011p041")); // alphabets within digits
         assertFalse(Rating.isValidRating("9312 1534")); // spaces within digits
         assertFalse(Rating.isValidRating("8")); // number greater than 5
-        assertFalse(Rating.isValidRating("0")); // number smaller than 1
+        assertFalse(Rating.isValidRating("-1")); // number smaller than 0
 
         // valid rating
         assertTrue(Rating.isValidRating("3")); // only digits from 1 to 5
