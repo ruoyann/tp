@@ -505,7 +505,9 @@ studytracker.json file which should be found within the data folder of the file 
 #### Listing study spots : `list`
 
 Want to find all the study spots that have the amenity "aircon"? Or perhaps list all the study spots you tagged with 
-"freewater"? You can make use of the `list` command and its various different [flags](#flags) to get what you want.
+"freewater"? You can make use of the `list` command and its various different [flags](#flags) to get what you want. 
+<br> Note that the results of the `list` command will only contain StudySpots that matches **ALL** the 
+specifications provided by the user. 
 
 Below shows the corresponding [flag](#flags) to its function.
 
