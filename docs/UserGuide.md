@@ -76,8 +76,9 @@ You're on the right track to productivity!
 
 1. Refer to the [Features](#features) section for more commands and features in StudyTracker.
 
-<div markdown="span" class="alert alert-primary">:bulb: **Tip:** Check out **<a href="#command-structure">How to 
-read Commands in StudyTracker</a>** section if you are unfamiliar with CLI syntax!
+<div markdown="span" class="alert alert-primary">:bulb: **Tip:** 
+Check out **<a href="#command-structure">How to read Commands in StudyTracker</a>** section if you are unfamiliar 
+with CLI syntax!
 </div>
 
 <div style="page-break-after: always;"></div>
