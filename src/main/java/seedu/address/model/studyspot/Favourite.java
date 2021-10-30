@@ -42,7 +42,11 @@ public class Favourite {
 
     @Override
     public String toString() {
-        return value;
+        if (isFavourite) {
+            return "\u2665";
+        } else {
+            return "\u2661";
+        }
     }
 
     @Override
