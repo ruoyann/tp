@@ -76,13 +76,11 @@ You're on the right track to productivity!
 
 1. Refer to the [Features](#features) section for more commands and features in StudyTracker.
 
-<div markdown="span" class="alert alert-primary">:bulb: 
+<div markdown="span" class="alert alert-primary">:bulb: </div> 
 
 **Tip:** Check out **<a href="#command-structure">How to 
 read Commands in StudyTracker</a>** section if you are 
 unfamiliar with CLI syntax!
-
-</div>
     
 
 <div style="page-break-after: always;"></div>
@@ -146,7 +144,9 @@ e.g. the `NAME` parameter has a delimiter `n/` and the `AMENITY` parameter has a
 * Parameters can be in any order.<br>
   e.g. if the command specifies `n/NAME* a/ADDRESS`, `a/ADDRESS n/NAME*` is also acceptable.
 
-<div markdown="block" class="alert alert-warning">:warning: **Caution:**
+<div markdown="block" class="alert alert-warning">:warning: 
+
+**Caution:**
 
 * If a parameter is expected only once in the command, but you specified it multiple times, only the **last occurrence** of the parameter will be taken.<br>
   e.g. if you specify `n/COM1 n/CLB`, StudyTracker will only take `n/CLB`.
@@ -247,8 +247,10 @@ The **Command Box** is where to enter [**commands**](#how-to-read-commands-in-st
 * `Command Box` — type in your commands here
 * `Display` — results of commands and error messages are shown here.
 
-<div markdown="span" class="alert alert-primary">:bulb: **Tip:**
-Check out <a href="#managing-themes">Managing Themes</a> section to change the theme of the GUI!
+<div markdown="span" class="alert alert-primary">:bulb: 
+
+**Tip:**
+Check out <a href="#managing-themes">**Managing Themes**</a> section to change the theme of the GUI!
 </div>
 
 ## Features
@@ -278,10 +280,14 @@ You can add a study spot to StudyTracker by making use of the `add` command.
 
 **Format:** `add n/NAME* r/RATING* a/ADDRESS t/TAG... m/AMENITY... o/OPERATING_HOURS`
 
-<div markdown="span" class="alert alert-primary">:information_source: **Note:**
+<div markdown="span" class="alert alert-primary">:information_source: 
+
+**Note:**
 Tags, amenities, address and operating hours are all optional.
 </div>
-<div markdown="span" class="alert alert-primary">:bulb: **Tip:**
+<div markdown="span" class="alert alert-primary">:bulb: 
+
+**Tip:**
 Not sure how to use the Command Line Interface? Check <a href="#how-to-use-these-commands-in-command-line-interface">this</a> guide out!
 </div>
 
@@ -361,7 +367,9 @@ Edited study spot: Basement; Rating: 5; Favourite: false; Studied Hours: 0
 </tr>
 </table>
 
-<div markdown="span" class="alert alert-primary">:information_source: **Note:**
+<div markdown="span" class="alert alert-primary">:information_source: 
+
+**Note:**
 The above input assumes that there is already a study spot named "COM1 Basement" in the Study Tracker!
 This input only changes the name from "COM1 Basement" to "Basement".
 </div>
@@ -373,7 +381,9 @@ This input only changes the name from "COM1 Basement" to "Basement".
 Really enjoyed studying somewhere? You can add this study spot to your favourites by using the `fav` command! This will 
 make the Study Spot appear in the [Favourites List](#info-display), reminding you of the place every time you open StudyTracker.
 
-<div markdown="span" class="alert alert-primary">:information_source: **Note:**
+<div markdown="span" class="alert alert-primary">:information_source: 
+
+**Note:**
 Don't forget to add the spot to your StudyTracker before using the fav command! Alternatively, you could use the 
 add command and directly mark it as a favourite using that command!
 </div>
@@ -410,7 +420,9 @@ Added study spot to favourites: COM1 Basement
 Did one of your favourite study spots suddenly decide to ban students from studying there, and you decide it is time to unfavourite a spot?
 You can make use of the `unfav` command to do so.
 
-<div markdown="span" class="alert alert-primary">:information_source: **Note:**
+<div markdown="span" class="alert alert-primary">:information_source: 
+
+**Note:**
 The study spot you are trying to unfavourite should originally be a favourite!
 </div>
 
@@ -471,7 +483,9 @@ Deleted study spot: Basement
 Moving to a new location and decide to start your list afresh? You can make use of the `clear` command to clear the entire list of
 study spots.
 
-<div markdown="span" class="alert alert-warning">:warning: **Caution:**
+<div markdown="span" class="alert alert-warning">:warning: 
+
+**Caution:**
 This command is irreversible!
 </div>
 
@@ -498,7 +512,9 @@ StudyTracker has been cleared!
 </tr>
 </table>
 
-<div markdown="span" class="alert alert-primary">:bulb: **Tip:**
+<div markdown="span" class="alert alert-primary">:bulb: 
+
+**Tip:**
 If you wish to clear all your study spots while keeping the data you originally stored, you can make a copy of the 
 studytracker.json file which should be found within the data folder of the file with StudyTracker!
 </div>
@@ -523,7 +539,9 @@ Below shows the corresponding [flag](#flags) to its function.
 | `-m m/AMENITY...` | Shows all study spots with the specified amenities |
 | `-r r/RATING` | Shows all study spots with the given rating |
 
-<div markdown="span" class="alert alert-primary">:information_source: **Note:**
+<div markdown="span" class="alert alert-primary">:information_source: 
+
+**Note:**
 You can use multiple flags at once.
 </div>
 
@@ -565,7 +583,9 @@ Listed all study spots in Favourites with Tags: [cold] with Amenities: [wifi] wi
 
 <img src="images/list_tags_cold.png" alt="cold tags" height="700"/>
 
-<div markdown="span" class="alert alert-primary">:bulb: **Tip:**
+<div markdown="span" class="alert alert-primary">:bulb: 
+
+**Tip:**
 Make use of command aliases to speed up typing your inputs!
 </div>
 
@@ -616,7 +636,9 @@ below:
 | `log -r n/NAME*` | Resets the number of studied hours at a study spot to 0 |
 | `log -r` | Resets studied hours of **ALL** study spots to 0 |
 
-<div markdown="span" class="alert alert-primary">:information_source: **Note:**
+<div markdown="span" class="alert alert-primary">:information_source: 
+
+**Note:**
 The flag `-o` stands for override, which overrides the studied hours with the provided value <br>
 The flag `-r` stands for reset, which resets the hours to 0
 </div>
@@ -692,7 +714,9 @@ Reset hours for all study spots!
 
 Logging 2 hours to 'Starbucks UTown' with the command `log n/starbucks utown hr/2` (as seen in Input 1) would update the **study spot card**, as well as statistics on the **pie chart**.
 
-<div markdown="span" class="alert alert-primary">:bulb: **Tip:**
+<div markdown="span" class="alert alert-primary">:bulb: 
+
+**Tip:**
 Use the log command at the end of a study session to keep track of how long you studied somewhere!
 </div>
 
@@ -716,7 +740,9 @@ Alias is the command for you. The `alias` command can help you to shorten input 
 
 * running `myList` will run the `list` command.
 
-<div markdown="span" class="alert alert-primary">:bulb: **Tip:**
+<div markdown="span" class="alert alert-primary">:bulb: 
+
+**Tip:**
 You can chain aliases to make more powerful commands! See the below example.<br> <br>
 </div>
 
@@ -771,7 +797,9 @@ You can also visit the User Guide and Developer Guide by clicking on the buttons
 
 Format: `help`
 
-<div markdown="span" class="alert alert-primary">:bulb: **Tip:**
+<div markdown="span" class="alert alert-primary">:bulb: 
+
+**Tip:**
 View the help window anytime by using the F1 shortcut!
 Alternatively, click on 'Help' in the menu bar!
 </div>
@@ -809,7 +837,9 @@ not need to save your data manually.
 
 StudyTracker data are saved as a JSON file `[home folder]/data/studytracker.json`. Advanced users are welcome to update data directly by editing that data file.
 
-<div markdown="span" class="alert alert-warning">:warning: **Caution:**
+<div markdown="span" class="alert alert-warning">:warning: 
+
+**Caution:**
 If your changes to the data file makes its format invalid, StudyTracker will discard all data and start with an empty data file at the next run.
 </div>
 
