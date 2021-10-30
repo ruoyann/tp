@@ -12,7 +12,7 @@ public class Rating {
 
     public static final String MESSAGE_CONSTRAINTS =
             "Ratings should only contain numbers, and it should only be a digit from 1 to 5";
-    public static final String VALIDATION_REGEX = "^[1-5]$";
+    public static final String VALIDATION_REGEX = "^[0-5]$";
     public final String value;
 
     /**
