@@ -275,6 +275,8 @@ You can add a study spot to StudyTracker by making use of the `add` command.
 * Adds a study spot with `NAME`.
 * You can only add amenities from this list of 4 amenities: `wifi`, `food`, `charger`, `aircon`. Any other amenities 
   entered will give you an error message. 
+* You can only enter tags that are one-word long. If you wish to use more than one word, you can use Camel Case 
+  (e.g. `t/veryCrowded`) 
 
 <div markdown="span" class="alert alert-primary">:information_source: **Note:**
 Tags, amenities, address and operating hours are all optional.
