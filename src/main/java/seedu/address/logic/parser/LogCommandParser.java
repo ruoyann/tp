@@ -33,17 +33,13 @@ public class LogCommandParser implements Parser<LogCommand> {
         // log hi hr/3
         if ((!arePrefixesPresent(argMultimap, PREFIX_NAME)
                 || !argMultimap.getPreamble().isEmpty()) && !args.contains("-r")) {
-            System.out.println("Entering error1");
             throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT, LogCommand.MESSAGE_USAGE));
         }
 
         // log -r hi (supposed to be log -r n/hi)
         // won't throw error for log -r
-        System.out.println(args);
-        System.out.println(args.equals("-r"));
         if ((!arePrefixesPresent(argMultimap, PREFIX_NAME)
                 || !argMultimap.getPreamble().isEmpty()) && !args.equals(" -r")) {
-            System.out.println("Entering error2");
             throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT, LogCommand.MESSAGE_USAGE));
         }
 
