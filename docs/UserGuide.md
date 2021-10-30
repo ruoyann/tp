@@ -146,7 +146,7 @@ e.g. the `NAME` parameter has a delimiter `n/` and the `AMENITY` parameter has a
 * If a parameter is expected only once in the command, but you specified it multiple times, only the **last occurrence** of the parameter will be taken.<br>
   e.g. if you specify `n/COM1 n/CLB`, StudyTracker will only take `n/CLB`.
 
-* Extraneous parameters for commands that do not take in parameters (such as `help`, `list`, `exit` and `clear`) will be ignored.<br>
+* Extraneous parameters for commands that do not take in parameters (such as `help`, `exit` and `clear`) will be ignored.<br>
   e.g. if the command specifies `help 123`, it will be interpreted as `help`.
 </div>
 
