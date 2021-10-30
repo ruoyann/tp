@@ -24,17 +24,17 @@ public class AddCommandTest {
     public void constructor_nullStudySpot_throwsNullPointerException() {
         assertThrows(NullPointerException.class, () -> new AddCommand(null));
     }
-//
-//    @Test
-//    public void execute_validStudySpotAcceptedByModel_addSuccessful() throws Exception {
-//        ModelStubAcceptingStudySpotAdded modelStub = new ModelStubAcceptingStudySpotAdded();
-//        StudySpot validStudySpot = new StudySpotBuilder().build();
-//
-//        CommandResult commandResult = new AddCommand(validStudySpot).execute(modelStub);
-//
-//        assertEquals(String.format(AddCommand.MESSAGE_SUCCESS, validStudySpot), commandResult.getFeedbackToUser());
-//        assertEquals(Arrays.asList(validStudySpot), modelStub.studySpotsAdded);
-//    }
+
+    @Test
+    public void execute_validStudySpotAcceptedByModel_addSuccessful() throws Exception {
+        ModelStubAcceptingStudySpotAdded modelStub = new ModelStubAcceptingStudySpotAdded();
+        StudySpot validStudySpot = new StudySpotBuilder().build();
+
+        CommandResult commandResult = new AddCommand(validStudySpot).execute(modelStub);
+
+        assertEquals(String.format(AddCommand.MESSAGE_SUCCESS, validStudySpot), commandResult.getFeedbackToUser());
+        assertEquals(Arrays.asList(validStudySpot), modelStub.studySpotsAdded);
+    }
 
     @Test
     public void execute_duplicateStudySpot_throwsCommandException() {
