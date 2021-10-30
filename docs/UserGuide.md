@@ -76,10 +76,10 @@ You're on the right track to productivity!
 
 1. Refer to the [Features](#features) section for more commands and features in StudyTracker.
 
-<div markdown="span" class="alert alert-primary">:bulb: </div> **Tip:** Check out **<a href="#command-structure">How to 
+<div markdown="span" class="alert alert-primary">:bulb: **Tip:** Check out **<a href="#command-structure">How to 
 read Commands in StudyTracker</a>** section if you are 
 unfamiliar with CLI syntax!
-    
+</div>
 
 <div style="page-break-after: always;"></div>
 
@@ -142,7 +142,7 @@ e.g. the `NAME` parameter has a delimiter `n/` and the `AMENITY` parameter has a
 * Parameters can be in any order.<br>
   e.g. if the command specifies `n/NAME* a/ADDRESS`, `a/ADDRESS n/NAME*` is also acceptable.
 
-<div markdown="block" class="alert alert-warning">:warning:**Caution:**
+<div markdown="block" class="alert alert-warning">:warning: **Caution:**
 
 * If a parameter is expected only once in the command, but you specified it multiple times, only the **last occurrence** of the parameter will be taken.<br>
   e.g. if you specify `n/COM1 n/CLB`, StudyTracker will only take `n/CLB`.
