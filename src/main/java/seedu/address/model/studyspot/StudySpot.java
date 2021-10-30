@@ -157,11 +157,16 @@ public class StudySpot {
         final StringBuilder builder = new StringBuilder();
         builder.append(getName())
                 .append(" | ")
-                .append(getRating().getStars())
-                .append(" | ")
-                .append(getFavourite().getHeart())
-                .append(" | ")
-                .append(System.getProperty("line.separator"));
+                .append(getRating().getStars());
+
+        if (getFavourite().isFavourite()) {
+            builder.append(" | ")
+                    .append(getFavourite().getHeart())
+                    .append(" | ")
+                    .append(System.getProperty("line.separator"));
+        } else {
+            builder.append(System.getProperty("line.separator"));
+        }
 
         if (!getOperatingHours().toString().equals("-")) {
             builder
@@ -188,8 +193,10 @@ public class StudySpot {
         }
 
         if (getStudiedHours().getHours() > 0) {
-            builder.append("Studied Hours: ")
+            builder
+                    .append("(")
                     .append(getStudiedHours())
+                    .append(" hours studied)")
                     .append(System.getProperty("line.separator"));
         }
 

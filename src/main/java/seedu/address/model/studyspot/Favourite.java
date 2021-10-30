@@ -44,7 +44,7 @@ public class Favourite {
         if (isFavourite) {
             return "\u2665";
         } else {
-            return "\u2661";
+            return "";
         }
     }
 
