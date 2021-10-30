@@ -437,7 +437,8 @@ Want to get rid of study spots that you don't wish to remember? You can use the 
 
 **Format:** `delete n/NAME*`
 
-* Deletes the study spot with the specified **name**.
+* Deletes the study spot matching `NAME`.
+  The provided `NAME` is not case-sensitive and **must fully match the study spot name**.
 
 **Examples:** You can try executing the commands in the **input** rows and check if you get the corresponding **output**!
 
@@ -600,7 +601,7 @@ find library
 
 ### Logging study hours: `log`
 
-After studying at a certain StudySpot, you can `log` how many hours you have studied at this location.
+After studying at a certain study spot, you can `log` how many hours you have studied at this location.
 There are also various flags you can use to reset or override hours to the value of your choice.
 Use the `-r` and `-o` flags respectively, as shown
 below:
