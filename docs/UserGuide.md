@@ -843,7 +843,7 @@ Action | Format, Examples
 **Unfavourite** | `unfav n/NAME*`
 **Delete** | `delete n/NAME*` <br> e.g. `delete n/COM1`
 **List** | `list -f -t t/TAG...`
-**Find** | `find n/NAME*`<br> e.g. `find n/lib`
+**Find** | `find KEYWORD* [MORE KEYWORDS]*`<br> e.g. `find library`
 **Log** | `log -o n/NAME* hr/NUM_OF_HOURS*` <br> e.g. `log -o n/Starbucks hr/5`
 **Alias** | `alias al/ALIAS* cmd/COMMAND*`<br> e.g. `alias al/home cmd/find home`
 **Unalias** | `unalias al/ALIAS*`
