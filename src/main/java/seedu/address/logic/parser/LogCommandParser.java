@@ -6,6 +6,7 @@ import static seedu.address.logic.parser.CliSyntax.PREFIX_HOURS;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_NAME;
 
 import java.util.NoSuchElementException;
+import java.util.stream.Stream;
 
 import seedu.address.logic.commands.LogCommand;
 import seedu.address.logic.parser.exceptions.ParseException;
@@ -28,6 +29,23 @@ public class LogCommandParser implements Parser<LogCommand> {
         Name studySpot = null;
         StudiedHours hoursStudied;
         boolean isOverride = false;
+
+        // log hi hr/3
+        if ((!arePrefixesPresent(argMultimap, PREFIX_NAME)
+                || !argMultimap.getPreamble().isEmpty()) && !args.contains("-r")) {
+            System.out.println("Entering error1");
+            throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT, LogCommand.MESSAGE_USAGE));
+        }
+
+        // log -r hi (supposed to be log -r n/hi)
+        // won't throw error for log -r
+        System.out.println(args);
+        System.out.println(args.equals("-r"));
+        if ((!arePrefixesPresent(argMultimap, PREFIX_NAME)
+                || !argMultimap.getPreamble().isEmpty()) && !args.equals(" -r")) {
+            System.out.println("Entering error2");
+            throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT, LogCommand.MESSAGE_USAGE));
+        }
 
         try {
             boolean isNamePresent = argMultimap.getValue(PREFIX_NAME).isPresent();
@@ -57,6 +75,13 @@ public class LogCommandParser implements Parser<LogCommand> {
         } catch (NoSuchElementException e) {
             throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT, LogCommand.MESSAGE_USAGE));
         }
+    }
 
+    /**
+     * Returns true if none of the prefixes contains empty {@code Optional} values in the given
+     * {@code ArgumentMultimap}.
+     */
+    private static boolean arePrefixesPresent(ArgumentMultimap argumentMultimap, Prefix... prefixes) {
+        return Stream.of(prefixes).allMatch(prefix -> argumentMultimap.getValue(prefix).isPresent());
     }
 }
