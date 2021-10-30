@@ -29,7 +29,7 @@ Want to contribute to development? Check out the [**Developer Guide**](Developer
 
 ---
 
-**Table of Contents**
+### Table of Contents
 
 * Table of Contents
 {:toc}
