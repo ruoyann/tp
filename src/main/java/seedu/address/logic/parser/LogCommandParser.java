@@ -26,22 +26,16 @@ public class LogCommandParser implements Parser<LogCommand> {
     public LogCommand parse(String args) throws ParseException {
         ArgumentMultimap argMultimap =
                 ArgumentTokenizer.tokenize(args, PREFIX_FLAG, PREFIX_NAME, PREFIX_HOURS);
-        Name studySpot = null;
+
+        // If command has no n/ and it's not a reset all command
+        if ((!arePrefixesPresent(argMultimap, PREFIX_NAME)
+                || !argMultimap.getPreamble().isEmpty()) && !args.contains(" -ra")) {
+            throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT, LogCommand.MESSAGE_USAGE));
+        }
+
+        Name studySpot;
         StudiedHours hoursStudied;
         boolean isOverride = false;
-
-        // log hi hr/3
-        if ((!arePrefixesPresent(argMultimap, PREFIX_NAME)
-                || !argMultimap.getPreamble().isEmpty()) && !args.contains("-r")) {
-            throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT, LogCommand.MESSAGE_USAGE));
-        }
-
-        // log -r hi (supposed to be log -r n/hi)
-        // won't throw error for log -r
-        if ((!arePrefixesPresent(argMultimap, PREFIX_NAME)
-                || !argMultimap.getPreamble().isEmpty()) && !args.equals(" -r")) {
-            throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT, LogCommand.MESSAGE_USAGE));
-        }
 
         try {
             boolean isNamePresent = argMultimap.getValue(PREFIX_NAME).isPresent();
@@ -54,18 +48,21 @@ public class LogCommandParser implements Parser<LogCommand> {
                             LogCommand.MESSAGE_ONE_FLAG));
                 }
                 String flag = argMultimap.getValue(PREFIX_FLAG).get();
-                assert(flag.equals(LogCommand.FLAG_RESET) || flag.equals(LogCommand.FLAG_OVERRIDE));
+                assert(flag.equals(LogCommand.FLAG_RESET) || flag.equals(LogCommand.FLAG_OVERRIDE) || flag.equals(LogCommand.FLAG_RESET_ALL));
 
                 // Reset only depends on if a name is given,
                 // It should ignore any hour provided, and should not throw an error even if hour is null.
                 if (flag.equals("r")) {
                     return new LogCommand(studySpot, null, isNamePresent,
                             false, !isNamePresent);
+                }
+                else if (flag.equals("ra")) {
+                    return new LogCommand(studySpot, null, false,
+                            false, true);
                 } else {
                     isOverride = true;
                 }
             }
-
             hoursStudied = ParserUtil.parseStudiedHours(argMultimap.getValue(PREFIX_HOURS).get());
             return new LogCommand(studySpot, hoursStudied, false, isOverride, false);
         } catch (NoSuchElementException e) {
