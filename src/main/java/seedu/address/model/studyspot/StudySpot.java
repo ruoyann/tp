@@ -156,41 +156,48 @@ public class StudySpot {
 
         final StringBuilder builder = new StringBuilder();
         builder.append(getName())
-                .append("; Rating: ")
-                .append(getRating());
+                .append(" | ")
+                .append(getRating().getStars());
+
+        if (getFavourite().isFavourite()) {
+            builder.append(" | ")
+                    .append(getFavourite().getHeart())
+                    .append(" | ")
+                    .append(System.getProperty("line.separator"));
+        } else {
+            builder.append(System.getProperty("line.separator"));
+        }
 
         if (!getOperatingHours().toString().equals("-")) {
             builder
-                .append("; Operating Hours: ")
-                .append(getOperatingHours());
+                    .append("\uD83D\uDD58" + " ")
+                    .append(getOperatingHours())
+                    .append(System.getProperty("line.separator"));
         }
 
         if (!getAddress().toString().equals("-")) {
             builder
-                .append("; Address: ")
-                .append(getAddress());
-        }
-
-        if (getFavourite().isFavourite()) {
-            builder.append("; Favourite: ")
-                    .append(getFavourite());
-        }
-
-        if (getStudiedHours().getHours() > 0) {
-            builder.append("; Studied Hours: ")
-                    .append(getStudiedHours());
+                    .append("\uD83D\uDCCD" + " ")
+                    .append(getAddress())
+                    .append(System.getProperty("line.separator"));
         }
 
         Set<Tag> tags = getTags();
         if (!tags.isEmpty()) {
-            builder.append("; Tags: ");
             tags.forEach(builder::append);
         }
 
         Set<Amenity> amenities = getAmenities();
         if (!amenities.isEmpty()) {
-            builder.append("; Amenities: ");
             amenities.forEach(builder::append);
+        }
+
+        if (getStudiedHours().getHours() > 0) {
+            builder
+                    .append("(")
+                    .append(getStudiedHours())
+                    .append(" hour(s) studied)")
+                    .append(System.getProperty("line.separator"));
         }
 
         return builder.toString();
