@@ -82,29 +82,6 @@ public class OperatingHours {
                 && openingHours.matches(TIME_VALIDATION_REGEX)
                 && closingHours.length() == TIME_LENGTH
                 && closingHours.matches(TIME_VALIDATION_REGEX);
-                //&& isValidTimeInterval(openingHours, closingHours);
-    }
-
-    private static boolean isValidTimeInterval(String start, String end) {
-        assert start.matches(TIME_VALIDATION_REGEX) : "Invalid operating hours!";
-        assert end.matches(TIME_VALIDATION_REGEX) : "Invalid operating hours!";
-
-        // check if start and end time are the same, which means a 24 hours interval
-        if (start.equals(end)) {
-            return true;
-        }
-
-        // check if start hours are smaller than end hours
-        int startHours = Integer.parseInt(start.substring(0, 2));
-        int endHours = Integer.parseInt(end.substring(0, 2));
-        if (startHours != endHours) {
-            return endHours > startHours;
-        } else {
-            // check if minutes are valid when hours are the same
-            int startMinutes = Integer.parseInt(start.substring(2, 4));
-            int endMinutes = Integer.parseInt(end.substring(2, 4));
-            return endMinutes > startMinutes;
-        }
     }
 
     @Override
