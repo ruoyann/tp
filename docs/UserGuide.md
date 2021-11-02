@@ -29,7 +29,7 @@ Want to contribute to development? Check out the [**Developer Guide**](Developer
 
 ---
 
-**Table of Contents**
+## Table of Contents
 
 * Table of Contents
 {:toc}
@@ -147,7 +147,7 @@ e.g. the `NAME` parameter has a delimiter `n/` and the `AMENITY` parameter has a
 * If a parameter is expected only once in the command, but you specified it multiple times, only the **last occurrence** of the parameter will be taken.<br>
   e.g. if you specify `n/COM1 n/CLB`, StudyTracker will only take `n/CLB`.
 
-* Extraneous parameters for commands that do not take in parameters (such as `help`, `list`, `exit` and `clear`) will be ignored.<br>
+* Extraneous parameters for commands that do not take in parameters (such as `help`, `exit` and `clear`) will be ignored.<br>
   e.g. if the command specifies `help 123`, it will be interpreted as `help`.
 </div>
 
@@ -273,6 +273,13 @@ Click on the groups to view clear, step-by-step usage instructions!
 You can add a study spot to StudyTracker by making use of the `add` command.
 
 **Format:** `add n/NAME* r/RATING* a/ADDRESS t/TAG... m/AMENITY... o/OPERATING_HOURS`
+
+* Adds a study spot with `NAME`.
+* You can only add amenities from this list of 4 amenities: `wifi`, `food`, `charger`, `aircon`. Any other amenities 
+  entered will give you an error message. 
+* You can only enter tags that are one-word long. If you wish to use more than one word, you can use Camel Case 
+  (e.g. `t/veryCrowded`) 
+* You can only enter ratings that are integers from 0 to 5, inclusive.  
 
 <div markdown="span" class="alert alert-primary">:information_source: **Note:**
 Tags, amenities, address and operating hours are all optional.
@@ -439,7 +446,8 @@ Want to get rid of study spots that you don't wish to remember? You can use the 
 
 **Format:** `delete n/NAME*`
 
-* Deletes the study spot with the specified **name**.
+* Deletes the study spot matching `NAME`.
+  The provided `NAME` is not case-sensitive and **must fully match the study spot name**.
 
 **Examples:** You can try executing the commands in the **input** rows and check if you get the corresponding **output**!
 
@@ -507,7 +515,9 @@ studytracker.json file which should be found within the data folder of the file 
 #### Listing study spots : `list`
 
 Want to find all the study spots that have the amenity "aircon"? Or perhaps list all the study spots you tagged with 
-"freewater"? You can make use of the `list` command and its various different [flags](#flags) to get what you want.
+"freewater"? You can make use of the `list` command and its various different [flags](#flags) to get what you want. 
+<br> Note that the results of the `list` command will only contain StudySpots that matches **ALL** the 
+specifications provided by the user. 
 
 Below shows the corresponding [flag](#flags) to its function.
 
@@ -600,7 +610,7 @@ Trying to find a study spot by its name? You can use the `find` command to easil
 
 ### Logging study hours: `log`
 
-After studying at a certain StudySpot, you can `log` how many hours you have studied at this location.
+After studying at a certain study spot, you can `log` how many hours you have studied at this location.
 There are also various flags you can use to reset or override hours to the value of your choice.
 Use the `-r` and `-o` flags respectively, as shown
 below:
@@ -847,7 +857,7 @@ Action | Format, Examples
 **Unfavourite** | `unfav n/NAME*` <br> e.g. `unfav n/COM1`
 **Delete** | `delete n/NAME*` <br> e.g. `delete n/COM1`
 **List** | `list -f -t t/TAG... -m m/AMENITY... -r r/RATING` <br> e.g. `list -f -t t/quiet -m m/wifi -r r/5`
-**Find** | `find n/NAME*`<br> e.g. `find n/lib`
+**Find** | `find KEYWORD* [MORE KEYWORDS]*`<br> e.g. `find library`
 **Log** | `log -o n/NAME* hr/NUM_OF_HOURS*` <br> e.g. `log -o n/Starbucks hr/5`
 **Alias** | `alias al/ALIAS* cmd/COMMAND*`<br> e.g. `alias al/home cmd/find home`
 **Unalias** | `unalias al/ALIAS*` <br> e.g. `unalias al/MyList`

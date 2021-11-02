@@ -48,10 +48,10 @@ public class EditCommand extends Command {
             + PREFIX_RATING + "RATING "
             + PREFIX_OPERATING_HOURS + "OPERATING HOURS "
             + PREFIX_ADDRESS + "ADDRESS "
-            + "[" + PREFIX_TAG + "TAG]..."
-            + "[" + PREFIX_AMENITY + "NEW AMENITY]... "
-            + "[" + PREFIX_REMOVE_TAG + "OLD TAG]... "
-            + "[" + PREFIX_REMOVE_AMENITY + "OLD AMENITY]... \n"
+            + "" + PREFIX_TAG + "TAG..."
+            + "" + PREFIX_AMENITY + "NEW AMENITY... "
+            + "" + PREFIX_REMOVE_TAG + "OLD TAG... "
+            + "" + PREFIX_REMOVE_AMENITY + "OLD AMENITY... \n"
             + "Example: " + COMMAND_WORD + " " + PREFIX_EDIT_SPOT + "tr3 "
             + PREFIX_RATING + "5 ";
 

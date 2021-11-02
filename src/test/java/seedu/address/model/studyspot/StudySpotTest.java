@@ -41,9 +41,9 @@ public class StudySpotTest {
         editedStarbucks = new StudySpotBuilder(STARBUCKS).withName(VALID_NAME_DECK).build();
         assertFalse(STARBUCKS.isSameStudySpot(editedStarbucks));
 
-        // name differs in case, all other attributes same -> returns false
+        // name differs in case, all other attributes same -> returns true
         StudySpot editedDeck = new StudySpotBuilder(DECK).withName(VALID_NAME_DECK.toLowerCase()).build();
-        assertFalse(DECK.isSameStudySpot(editedDeck));
+        assertTrue(DECK.isSameStudySpot(editedDeck));
 
         // name has trailing spaces, all other attributes same -> returns false
         String nameWithTrailingSpaces = VALID_NAME_DECK + " ";

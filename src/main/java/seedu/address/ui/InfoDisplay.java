@@ -164,8 +164,10 @@ public class InfoDisplay extends UiPart<Region> {
                 break;
             }
         }
-        topFiveSpots.remove(indexToBeRemoved);
-        topFiveSpots.add(indexOfNewSpot, newSpot);
+        if (isFound) {
+            topFiveSpots.remove(indexToBeRemoved);
+            topFiveSpots.add(indexOfNewSpot, newSpot);
+        }
     }
 
     /**

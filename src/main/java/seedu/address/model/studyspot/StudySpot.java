@@ -118,7 +118,7 @@ public class StudySpot {
         }
 
         return otherSpot != null
-                && otherSpot.getName().equals(getName());
+                && otherSpot.getName().toString().equalsIgnoreCase(getName().toString());
     }
 
     /**
