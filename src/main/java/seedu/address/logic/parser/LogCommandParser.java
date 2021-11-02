@@ -4,9 +4,9 @@ import static seedu.address.commons.core.Messages.MESSAGE_INVALID_COMMAND_FORMAT
 import static seedu.address.logic.parser.CliSyntax.PREFIX_FLAG;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_HOURS;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_NAME;
+import static seedu.address.logic.parser.ParserUtil.arePrefixesPresent;
 
 import java.util.NoSuchElementException;
-import java.util.stream.Stream;
 
 import seedu.address.logic.commands.LogCommand;
 import seedu.address.logic.parser.exceptions.ParseException;
@@ -48,15 +48,17 @@ public class LogCommandParser implements Parser<LogCommand> {
                             LogCommand.MESSAGE_ONE_FLAG));
                 }
                 String flag = argMultimap.getValue(PREFIX_FLAG).get();
-                assert(flag.equals(LogCommand.FLAG_RESET) || flag.equals(LogCommand.FLAG_OVERRIDE)
-                        || flag.equals(LogCommand.FLAG_RESET_ALL));
+                if (!flag.equals(LogCommand.FLAG_RESET) && !flag.equals(LogCommand.FLAG_OVERRIDE)
+                         && !flag.equals(LogCommand.FLAG_RESET_ALL)) {
+                    throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT,
+                            LogCommand.MESSAGE_INVALID_FLAG));
+                }
 
                 // Reset only depends on if a name is given,
                 // It should ignore any hour provided, and should not throw an error even if hour is null.
-                if (flag.equals("r")) {
-                    return new LogCommand(studySpot, null, isNamePresent, false, !isNamePresent);
-                }
-                else if (flag.equals("ra")) {
+                if (flag.equals("r") && isNamePresent) {
+                    return new LogCommand(studySpot, null, true, false, false);
+                } else if (flag.equals("ra")) {
                     return new LogCommand(studySpot, null, false, false, true);
                 } else {
                     isOverride = true;
@@ -67,13 +69,5 @@ public class LogCommandParser implements Parser<LogCommand> {
         } catch (NoSuchElementException e) {
             throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT, LogCommand.MESSAGE_USAGE));
         }
-    }
-
-    /**
-     * Returns true if none of the prefixes contains empty {@code Optional} values in the given
-     * {@code ArgumentMultimap}.
-     */
-    private static boolean arePrefixesPresent(ArgumentMultimap argumentMultimap, Prefix... prefixes) {
-        return Stream.of(prefixes).allMatch(prefix -> argumentMultimap.getValue(prefix).isPresent());
     }
 }
