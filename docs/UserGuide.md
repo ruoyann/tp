@@ -232,7 +232,7 @@ Scroll down the list to view all the study spots!
 * `Tags` — user-defined tags for the study spot
 * `Address` — address of study spot
 * `Operating Hours` — operating hours of study spot on weekdays and weekends respectively
-* `Favourite` — the presence of this icon shows that the study spot is added to favourites, and vice versa
+* `Favourite` — this icon indicates the study spot is a favourite
 * `Amenities` — the icons represent the amenities present in study spot.
 From left to right, the amenities are **aircon, charger, food, wifi**.
 * `Hours` — total number of hours studied at study spot
@@ -699,6 +699,10 @@ Use the log command at the end of a study session to keep track of how long you 
 Do you find yourself using certain commands so often that you wish you could "code-name" it so you don't need to type so much? 
 Alias is the command for you. The `alias` command can help you to shorten input commands to whatever you want it to be. 
 
+<div markdown="span" class="alert alert-primary">:information_source: **Note:**
+Aliases are CASE-SENSITIVE
+</div>
+
 | Format     | Function |
 | ----------- | ----------- |
 | `alias -s` | Shows all aliases that you have set |
@@ -708,7 +712,7 @@ Alias is the command for you. The `alias` command can help you to shorten input 
 
 | Input     | Output | Usage of Alias | Output |
 | ----------- | ----------- | ---------- | ------------- |
-| `alias al/MyList cmd/list` | Added alias myList: [list] | `myList` | `Listed all study spots` |
+| `alias al/ml cmd/list` | Added alias ml: [list] | `ml` | `Listed all study spots` |
 
 * running `myList` will run the `list` command.
 

@@ -196,7 +196,7 @@ public class StudySpot {
             builder
                     .append("(")
                     .append(getStudiedHours())
-                    .append(" hours studied)")
+                    .append(" hour(s) studied)")
                     .append(System.getProperty("line.separator"));
         }
 
