@@ -33,6 +33,8 @@ public class OperatingHoursTest {
         assertFalse(OperatingHours.isValidOperatingHours("0900-2200 0900-2200")); // missing ',' symbol
         // missing '-' between opening and closing hours
         assertFalse(OperatingHours.isValidOperatingHours("09002200, 09002200"));
+        assertFalse(OperatingHours.isValidOperatingHours("0900-2200, 0900-220")); // incomplete closing hour
+        assertFalse(OperatingHours.isValidOperatingHours("090-2200, 0900-2200")); // incomplete opening hour
 
         // invalid parts
         // invalid separator between hours and minutes
@@ -49,14 +51,14 @@ public class OperatingHoursTest {
         // invalid timings
         assertFalse(OperatingHours.isValidOperatingHours("0900-2400, 0900-2200"));
         assertFalse(OperatingHours.isValidOperatingHours("0900-2200, 0900-2260"));
-        // invalid time intervals
-        assertFalse(OperatingHours.isValidOperatingHours("0900-0900, 0900-2200"));
-        assertFalse(OperatingHours.isValidOperatingHours("1800-1000, 0900-2200"));
-        assertFalse(OperatingHours.isValidOperatingHours("0900-2200, 0930-0900"));
 
         // valid OperatingHours
         assertTrue(OperatingHours.isValidOperatingHours("0900-2200, 0900-2200"));
         assertTrue(OperatingHours.isValidOperatingHours("1000-2359, 1200-1830"));
         assertTrue(OperatingHours.isValidOperatingHours("0930-1000, 0900-2200"));
+        // valid time intervals
+        assertTrue(OperatingHours.isValidOperatingHours("0900-0900, 0900-2200"));
+        assertTrue(OperatingHours.isValidOperatingHours("1800-1000, 0900-2200"));
+        assertTrue(OperatingHours.isValidOperatingHours("0900-2200, 0930-0900"));
     }
 }

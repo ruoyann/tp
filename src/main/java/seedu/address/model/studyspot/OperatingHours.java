@@ -17,6 +17,7 @@ public class OperatingHours {
 
     /** Ensures the time provided is valid and in the format hh:mm. */
     public static final String TIME_VALIDATION_REGEX = "([01]?[0-9]|2[0-3])[0-5][0-9]";
+    public static final int TIME_LENGTH = 4;
 
     public final String value;
     public final String weekdaysValue;
@@ -77,18 +78,20 @@ public class OperatingHours {
 
         String openingHours = separatedOperatingHour[0].trim();
         String closingHours = separatedOperatingHour[1].trim();
-        return openingHours.matches(TIME_VALIDATION_REGEX)
-                && closingHours.matches(TIME_VALIDATION_REGEX)
-                && isValidTimeInterval(openingHours, closingHours);
+        return openingHours.length() == TIME_LENGTH
+                && openingHours.matches(TIME_VALIDATION_REGEX)
+                && closingHours.length() == TIME_LENGTH
+                && closingHours.matches(TIME_VALIDATION_REGEX);
+                //&& isValidTimeInterval(openingHours, closingHours);
     }
 
     private static boolean isValidTimeInterval(String start, String end) {
         assert start.matches(TIME_VALIDATION_REGEX) : "Invalid operating hours!";
         assert end.matches(TIME_VALIDATION_REGEX) : "Invalid operating hours!";
 
-        // check if start and end time are the same
+        // check if start and end time are the same, which means a 24 hours interval
         if (start.equals(end)) {
-            return false;
+            return true;
         }
 
         // check if start hours are smaller than end hours
