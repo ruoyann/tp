@@ -42,29 +42,21 @@ public class LogCommandParser implements Parser<LogCommand> {
             studySpot = isNamePresent ? ParserUtil.parseName(argMultimap.getValue(PREFIX_NAME).get()) : null;
 
             if (argMultimap.getValue(PREFIX_FLAG).isPresent()) {
-                // Only one flag should be present
-                if (argMultimap.getAllValues(PREFIX_FLAG).size() != 1) {
-                    throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT,
-                            LogCommand.MESSAGE_ONE_FLAG));
-                }
                 String flag = argMultimap.getValue(PREFIX_FLAG).get();
-                if (!flag.equals(LogCommand.FLAG_RESET) && !flag.equals(LogCommand.FLAG_OVERRIDE)
-                         && !flag.equals(LogCommand.FLAG_RESET_ALL)) {
-                    throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT,
-                            LogCommand.MESSAGE_INVALID_FLAG));
-                }
 
-                // Reset only depends on if a name is given,
-                // It should ignore any hour provided, and should not throw an error even if hour is null.
                 if (flag.equals("r") && isNamePresent) {
                     return new LogCommand(studySpot, null, true, false, false);
+                } else if (flag.equals("o") && isNamePresent) {
+                    isOverride = true;
                 } else if (flag.equals("ra")) {
                     return new LogCommand(studySpot, null, false, false, true);
                 } else {
-                    isOverride = true;
+                    throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT,
+                            LogCommand.MESSAGE_INVALID_FLAG));
                 }
             }
-            hoursStudied = ParserUtil.parseStudiedHours(argMultimap.getValue(PREFIX_HOURS).get());
+            hoursStudied =
+                    ParserUtil.parseStudiedHours(argMultimap.getValue(PREFIX_HOURS).orElseThrow(() -> new ParseException(LogCommand.MESSAGE_MISSING_HOURS)));
             return new LogCommand(studySpot, hoursStudied, false, isOverride, false);
         } catch (NoSuchElementException e) {
             throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT, LogCommand.MESSAGE_USAGE));
