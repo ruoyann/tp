@@ -586,6 +586,7 @@ Trying to find a study spot by its name? You can use the `find` command to easil
 * The search is case-insensitive. e.g `library` will match `Library`
 * StudyTracker will only match full words. e.g. `Lib` will not match `Library`
 * StudyTracker will return study spots matching at least one keyword.
+* For example, `find library spot` will match `Central Library` and `Cool Spot` as both the search results for `library` and `spot` are shown.
 
 **Examples:** You can try executing the commands in the **input** rows and check if you get the corresponding **output**!
 
