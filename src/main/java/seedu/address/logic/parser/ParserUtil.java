@@ -197,6 +197,9 @@ public class ParserUtil {
         requireNonNull(tag);
         String trimmedTag = tag.trim();
         if (!Tag.isValidTagName(trimmedTag)) {
+            if (tag.contains(" ")) {
+                throw new ParseException(Tag.MESSAGE_NO_SPACE);
+            }
             throw new ParseException(Tag.MESSAGE_CONSTRAINTS);
         }
         return new Tag(trimmedTag);

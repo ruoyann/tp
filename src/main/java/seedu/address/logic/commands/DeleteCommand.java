@@ -36,7 +36,12 @@ public class DeleteCommand extends Command {
             throw new CommandException(MESSAGE_INVALID_NAME);
         }
 
-        model.deleteStudySpot(studySpotToDelete);
+        if (studySpotToDelete.isFavourite()) {
+            StudySpot unfavStudySpot = model.removeStudySpotFromFavourites(studySpotToDelete);
+            model.deleteStudySpot(unfavStudySpot);
+        } else {
+            model.deleteStudySpot(studySpotToDelete);
+        }
         return new CommandResult(String.format(MESSAGE_DELETE_STUDYSPOT_SUCCESS, studySpotToDelete.getName()));
     }
 
