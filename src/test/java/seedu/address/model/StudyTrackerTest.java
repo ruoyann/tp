@@ -2,12 +2,12 @@ package seedu.address.model;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertFalse;
+import static org.junit.jupiter.api.Assertions.assertNotEquals;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 import static seedu.address.logic.commands.CommandTestUtil.VALID_ADDRESS_DECK;
 import static seedu.address.logic.commands.CommandTestUtil.VALID_TAG_QUIET;
 import static seedu.address.testutil.Assert.assertThrows;
-import static seedu.address.testutil.TypicalStudySpots.STARBUCKS;
-import static seedu.address.testutil.TypicalStudySpots.getTypicalStudyTracker;
+import static seedu.address.testutil.TypicalStudySpots.*;
 
 import java.util.Arrays;
 import java.util.Collection;
@@ -122,6 +122,19 @@ public class StudyTrackerTest {
         assertThrows(UnsupportedOperationException.class, () -> studyTracker.getStudySpotList().remove(0));
     }
 
+    @Test
+    public void hashCode_test() {
+        StudyTracker anotherSt = new StudyTracker();
+        StudyTracker deckSt = new StudyTracker();
+
+        studyTracker.addStudySpot(STARBUCKS);
+        anotherSt.addStudySpot(STARBUCKS);
+        deckSt.addStudySpot(DECK);
+
+        assertEquals(anotherSt.hashCode(), studyTracker.hashCode());
+        assertNotEquals(deckSt.hashCode(), studyTracker.hashCode());
+    }
+
     /**
      * A stub ReadOnlyStudyTracker whose study spots list can violate interface constraints.
      */
@@ -143,5 +156,4 @@ public class StudyTrackerTest {
             throw new AssertionError("This method should not be called.");
         }
     }
-
 }

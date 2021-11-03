@@ -1,6 +1,8 @@
 package seedu.address.model.studyspot;
 
+import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertFalse;
+import static org.junit.jupiter.api.Assertions.assertNotEquals;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 import static seedu.address.testutil.Assert.assertThrows;
 
@@ -28,13 +30,21 @@ public class NameTest {
         assertFalse(Name.isValidName("")); // empty string
         assertFalse(Name.isValidName(" ")); // spaces only
         assertFalse(Name.isValidName("^")); // only non-alphanumeric characters
-        assertFalse(Name.isValidName("peter*")); // contains non-alphanumeric characters
+        assertFalse(Name.isValidName("A*Star")); // contains non-alphanumeric characters
 
         // valid name
-        assertTrue(Name.isValidName("peter jack")); // alphabets only
+        assertTrue(Name.isValidName("my bedroom")); // alphabets only
         assertTrue(Name.isValidName("12345")); // numbers only
-        assertTrue(Name.isValidName("peter the 2nd")); // alphanumeric characters
-        assertTrue(Name.isValidName("Capital Tan")); // with capital letters
-        assertTrue(Name.isValidName("David Roger Jackson Ray Jr 2nd")); // long names
+        assertTrue(Name.isValidName("3rd floor of rvrc")); // alphanumeric characters
+        assertTrue(Name.isValidName("UTown Basketball Court")); // with capital letters
+        assertTrue(Name.isValidName("COM2 Seminar Room 2 on the 2nd floor near bus stop")); // long names
+    }
+
+    @Test
+    public void hashCode_test() {
+        Name name = new Name("Starbucks UTown");
+
+        assertEquals(new Name("Starbucks UTown").hashCode(), name.hashCode());
+        assertNotEquals(new Address("home").hashCode(), name.hashCode());
     }
 }
