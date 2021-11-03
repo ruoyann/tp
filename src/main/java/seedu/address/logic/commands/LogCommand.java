@@ -71,19 +71,25 @@ public class LogCommand extends Command {
     @Override
     public CommandResult execute(Model model) throws CommandException {
         requireNonNull(model);
+
         if (isResetAll) {
             return handleResetAll(model);
         }
+
         StudySpot studySpotToAddHours = model.findStudySpot(name);
+
         if (studySpotToAddHours == null) {
             throw new CommandException(MESSAGE_INVALID_NAME);
         }
+
         if (isResetStudySpot) {
             return handleReset(model, studySpotToAddHours);
         }
+
         if (isOverride) {
             return handleOverride(model, studySpotToAddHours, studiedHours);
         }
+
         try {
             StudiedHours newHours = studySpotToAddHours.getStudiedHours().addHours(studiedHours);
             StudySpot updatedStudySpot = addHoursToStudySpot(studySpotToAddHours, newHours);

@@ -82,10 +82,17 @@ public class LogCommandTest {
 
     @Test
     public void execute_invalidNullStudiedHours_failure() {
-        StudiedHours invalidStudiedHours = null;
         Name name = new Name("Starbucks");
 
-        assertThrows(NullPointerException.class, () -> new LogCommand(name, invalidStudiedHours, false,
+        assertThrows(NullPointerException.class, () -> new LogCommand(name, null, false,
+                false, false).execute(model));
+    }
+
+    @Test
+    public void execute_invalidNullName_failure() {
+        Name name = null;
+        StudiedHours studiedHours = new StudiedHours("3");
+        assertThrows(NullPointerException.class, () -> new LogCommand(name, studiedHours, false,
                 false, false).execute(model));
     }
 
