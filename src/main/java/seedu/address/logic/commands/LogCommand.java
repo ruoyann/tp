@@ -154,6 +154,10 @@ public class LogCommand extends Command {
         return this.isOverride;
     }
 
+    public boolean getIsResetAll() {
+        return this.isResetAll;
+    }
+
     @Override
     public boolean equals(Object other) {
         // short circuit if same object
@@ -165,7 +169,8 @@ public class LogCommand extends Command {
                 return getName().equals(e.getName())
                         && getStudiedHours().toString().equals(e.getStudiedHours().toString())
                         && getIsReset() == (e.getIsReset())
-                        && getIsOverride() == (e.getIsOverride());
+                        && getIsOverride() == (e.getIsOverride())
+                        && getIsResetAll() == (e.getIsResetAll());
             }
         }
         return false;

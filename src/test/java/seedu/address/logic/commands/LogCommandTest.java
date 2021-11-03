@@ -2,6 +2,7 @@ package seedu.address.logic.commands;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertFalse;
+import static org.junit.jupiter.api.Assertions.assertThrows;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 import static seedu.address.logic.commands.CommandTestUtil.assertCommandFailure;
 import static seedu.address.testutil.TypicalStudySpots.getTypicalStudyTracker;
@@ -80,6 +81,15 @@ public class LogCommandTest {
     }
 
     @Test
+    public void execute_invalidNullStudiedHours_failure() {
+        StudiedHours invalidStudiedHours = null;
+        Name name = new Name("Starbucks");
+
+        assertThrows(NullPointerException.class, () -> new LogCommand(name, invalidStudiedHours, false,
+                false, false).execute(model));
+    }
+
+    @Test
     public void equals() {
         Name firstStudySpotInTypicalStudySpots = new Name("Starbucks");
         StudiedHours studiedHours = new StudiedHours("4");
@@ -103,12 +113,28 @@ public class LogCommandTest {
         // different types -> returns false
         assertFalse(standardCommand.equals(new ClearCommand()));
 
-        // different index -> returns false
+        // different name -> returns false
         assertFalse(standardCommand.equals(new LogCommand(secondStudySpotInTypicalStudySpots, copyStudiedHours,
                 false, false, false)));
 
         // different descriptor -> returns false
         assertFalse(standardCommand.equals(new LogCommand(secondStudySpotInTypicalStudySpots, differentStudiedHours,
                 false, false, false)));
+
+        // same name but different studied hours -> returns false
+        assertFalse(standardCommand.equals(new LogCommand(firstStudySpotInTypicalStudySpots, differentStudiedHours,
+                false, false, false)));
+
+        // same name same hours, different reset -> returns false
+        assertFalse(standardCommand.equals(new LogCommand(firstStudySpotInTypicalStudySpots, studiedHours,
+                true, false, false)));
+
+        // same name same hours, different override -> returns false
+        assertFalse(standardCommand.equals(new LogCommand(firstStudySpotInTypicalStudySpots, studiedHours,
+                false, true, false)));
+
+        // same name same hours, different reset all -> returns false
+        assertFalse(standardCommand.equals(new LogCommand(firstStudySpotInTypicalStudySpots, studiedHours,
+                false, false, true)));
     }
 }
