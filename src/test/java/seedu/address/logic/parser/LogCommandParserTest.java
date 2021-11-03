@@ -28,7 +28,7 @@ public class LogCommandParserTest {
     @Test
     public void parse_invalidFormat_failure() {
         Name name = STARBUCKS.getName();
-        String userInput = " " +  name.fullName + " " + PREFIX_HOURS + "5";
+        String userInput = " " + name.fullName + " " + PREFIX_HOURS + "5";
         assertParseFailure(parser, userInput, String.format(MESSAGE_INVALID_COMMAND_FORMAT, LogCommand.MESSAGE_USAGE));
     }
 

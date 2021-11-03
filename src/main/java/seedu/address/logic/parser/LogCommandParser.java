@@ -45,12 +45,12 @@ public class LogCommandParser implements Parser<LogCommand> {
             if (argMultimap.getValue(PREFIX_FLAG).isPresent()) {
                 String flag = argMultimap.getValue(PREFIX_FLAG).get();
 
-                if (flag.equals("r") && isNamePresent) {
+                if (flag.equals(LogCommand.FLAG_RESET) && isNamePresent) {
                     return new LogCommand(studySpot, null, true, false,
                             false);
-                } else if (flag.equals("o") && isNamePresent && isHoursPresent) {
+                } else if (flag.equals(LogCommand.FLAG_OVERRIDE) && isNamePresent && isHoursPresent) {
                     isOverride = true;
-                } else if (flag.equals("ra")) {
+                } else if (flag.equals(LogCommand.FLAG_RESET_ALL)) {
                     return new LogCommand(studySpot, null, false, false,
                             true);
                 } else {
