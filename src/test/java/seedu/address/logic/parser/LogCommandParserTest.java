@@ -21,7 +21,8 @@ public class LogCommandParserTest {
         Name name = STARBUCKS.getName();
         StudiedHours studiedHours = new StudiedHours("5");
         String userInput = " " + PREFIX_NAME + name.fullName + " " + PREFIX_HOURS + "5";
-        assertParseSuccess(parser, userInput, new LogCommand(STARBUCKS.getName(), studiedHours, false, false, false));
+        assertParseSuccess(parser, userInput, new LogCommand(STARBUCKS.getName(), studiedHours, false,
+                false, false));
     }
 
     @Test
@@ -36,6 +37,6 @@ public class LogCommandParserTest {
         Name name = STARBUCKS.getName();
         String userInput = " -r " + "-o " + PREFIX_NAME + name.fullName;
         assertParseFailure(parser, userInput, String.format(MESSAGE_INVALID_COMMAND_FORMAT,
-                                                            LogCommand.MESSAGE_ONE_FLAG));
+                                                            LogCommand.MESSAGE_INVALID_FLAG));
     }
 }
