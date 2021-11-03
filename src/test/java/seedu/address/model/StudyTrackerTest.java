@@ -7,7 +7,9 @@ import static org.junit.jupiter.api.Assertions.assertTrue;
 import static seedu.address.logic.commands.CommandTestUtil.VALID_ADDRESS_DECK;
 import static seedu.address.logic.commands.CommandTestUtil.VALID_TAG_QUIET;
 import static seedu.address.testutil.Assert.assertThrows;
-import static seedu.address.testutil.TypicalStudySpots.*;
+import static seedu.address.testutil.TypicalStudySpots.DECK;
+import static seedu.address.testutil.TypicalStudySpots.STARBUCKS;
+import static seedu.address.testutil.TypicalStudySpots.getTypicalStudyTracker;
 
 import java.util.Arrays;
 import java.util.Collection;
