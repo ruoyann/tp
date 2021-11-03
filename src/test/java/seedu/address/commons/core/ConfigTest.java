@@ -13,6 +13,8 @@ public class ConfigTest {
         String defaultConfigAsString = "Current log level : INFO\n"
                 + "Preference file Location : data/preferences.json";
 
+        System.out.println(new Config().toString());
+
         assertEquals(defaultConfigAsString, new Config().toString());
     }
 
