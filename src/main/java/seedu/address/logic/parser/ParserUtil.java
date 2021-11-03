@@ -19,6 +19,7 @@ import java.util.stream.Stream;
 import seedu.address.commons.core.index.Index;
 import seedu.address.commons.util.StringUtil;
 import seedu.address.logic.commands.ListCommand;
+import seedu.address.logic.commands.LogCommand;
 import seedu.address.logic.parser.exceptions.ParseException;
 import seedu.address.model.amenity.Amenity;
 import seedu.address.model.studyspot.Address;
@@ -121,6 +122,9 @@ public class ParserUtil {
     public static StudiedHours parseStudiedHours(String studiedHours) throws ParseException {
         requireNonNull(studiedHours);
         String trimmedStudiedHours = studiedHours.trim();
+        if (studiedHours.equals("")) {
+            throw new ParseException(LogCommand.MESSAGE_MISSING_HOURS);
+        }
         if (!StudiedHours.isValidLoggedHours(trimmedStudiedHours)) {
             throw new ParseException(StudiedHours.MESSAGE_CONSTRAINTS);
         }
