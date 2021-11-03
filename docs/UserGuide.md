@@ -279,7 +279,10 @@ You can add a study spot to StudyTracker by making use of the `add` command.
   entered will give you an error message. 
 * You can only enter tags that are one-word long. If you wish to use more than one word, you can use Camel Case 
   (e.g. `t/veryCrowded`) 
-* You can only enter ratings that are integers from 0 to 5, inclusive.  
+* You can only enter ratings that are integers from 0 to 5, inclusive. 
+* You can indicate that a study spot closes on the next day by entering a closing hour that is earlier than
+  the opening hour.
+* You can indicate that a study spots opens for 24 hours by entering identical opening and closing hours.
 
 <div markdown="span" class="alert alert-primary">:information_source: **Note:**
 Tags, amenities, address and operating hours are all optional.
