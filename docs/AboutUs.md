@@ -27,7 +27,7 @@ We are a team based in the [School of Computing, National University of Singapor
 
 <img src="images/qreoct.png" width="200px">
 
-[[github](http://github.com/qreoct)]
+[[github](http://github.com/qreoct)][[portfolio](team/qreoct.md)]
 
 * Responsibilities: Team lead, documentation
 
