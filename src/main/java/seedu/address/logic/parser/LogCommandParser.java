@@ -24,12 +24,11 @@ public class LogCommandParser implements Parser<LogCommand> {
      * @throws ParseException if the user input does not conform to the expected format
      */
     public LogCommand parse(String args) throws ParseException {
-        ArgumentMultimap argMultimap =
-                ArgumentTokenizer.tokenize(args, PREFIX_FLAG, PREFIX_NAME, PREFIX_HOURS);
+        ArgumentMultimap argMultimap = ArgumentTokenizer.tokenize(args, PREFIX_FLAG, PREFIX_NAME, PREFIX_HOURS);
 
         // If command has no n/ and it's not a reset all command
         if ((!arePrefixesPresent(argMultimap, PREFIX_NAME)
-                || !argMultimap.getPreamble().isEmpty()) && !args.contains(" -ra")) {
+                || !argMultimap.getPreamble().isEmpty()) && !args.contains(LogCommand.FLAG_RESET_ALL)) {
             throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT, LogCommand.MESSAGE_USAGE));
         }
 
