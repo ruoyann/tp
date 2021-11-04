@@ -41,10 +41,19 @@ public class NameTest {
     }
 
     @Test
+    public void equals_test() {
+        Name name = new Name("Starbucks UTown");
+
+        assertTrue(name.equals(name));
+        assertTrue(new Name("Starbucks UTown").equals(name));
+        assertFalse(new Name("other").equals(name));
+    }
+
+    @Test
     public void hashCode_test() {
         Name name = new Name("Starbucks UTown");
 
         assertEquals(new Name("Starbucks UTown").hashCode(), name.hashCode());
-        assertNotEquals(new Address("home").hashCode(), name.hashCode());
+        assertNotEquals(new Name("home").hashCode(), name.hashCode());
     }
 }

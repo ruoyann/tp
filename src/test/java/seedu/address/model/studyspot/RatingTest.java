@@ -43,6 +43,15 @@ public class RatingTest {
     }
 
     @Test
+    public void equals_test() {
+        Rating rating = new Rating("5");
+
+        assertTrue(rating.equals(rating));
+        assertTrue(new Rating("5").equals(rating));
+        assertFalse(new Rating("3").equals(rating));
+    }
+
+    @Test
     public void hashCode_test() {
         Rating rating = new Rating("2");
 
