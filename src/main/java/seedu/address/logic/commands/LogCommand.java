@@ -173,6 +173,20 @@ public class LogCommand extends Command {
         } else {
             if (other instanceof LogCommand) {
                 LogCommand e = (LogCommand) other;
+
+                if (name == null && studiedHours == null) {
+                    return getIsReset() == (e.getIsReset())
+                            && getIsOverride() == (e.getIsOverride())
+                            && getIsResetAll() == (e.getIsResetAll());
+                }
+
+                if (studiedHours == null) {
+                    return getName().equals(e.getName())
+                            && getIsReset() == (e.getIsReset())
+                            && getIsOverride() == (e.getIsOverride())
+                            && getIsResetAll() == (e.getIsResetAll());
+                }
+
                 return getName().equals(e.getName())
                         && getStudiedHours().toString().equals(e.getStudiedHours().toString())
                         && getIsReset() == (e.getIsReset())
