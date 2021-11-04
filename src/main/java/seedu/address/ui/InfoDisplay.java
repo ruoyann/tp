@@ -164,8 +164,10 @@ public class InfoDisplay extends UiPart<Region> {
                 break;
             }
         }
-        topFiveSpots.remove(indexToBeRemoved);
-        topFiveSpots.add(indexOfNewSpot, newSpot);
+        if (isFound) {
+            topFiveSpots.remove(indexToBeRemoved);
+            topFiveSpots.add(indexOfNewSpot, newSpot);
+        }
     }
 
     /**
@@ -289,13 +291,14 @@ public class InfoDisplay extends UiPart<Region> {
     }
 
     /**
-     * Given a list of study spots, add up total studied hours
+     * Given a list of study spots, add up total studied hours.
+     * Returns MAX int value if there is integer overflow.
      */
     private int getTotalStudiedHours(ObservableList<StudySpot> fullList) {
-        int totalHours = 0;
+        long totalHours = 0;
         for (StudySpot s : fullList) {
             totalHours += s.getStudiedHours().getHours();
         }
-        return totalHours;
+        return totalHours > (long) Integer.MAX_VALUE ? Integer.MAX_VALUE : (int) totalHours;
     }
 }

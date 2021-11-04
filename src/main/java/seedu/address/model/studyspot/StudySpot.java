@@ -118,7 +118,7 @@ public class StudySpot {
         }
 
         return otherSpot != null
-                && otherSpot.getName().equals(getName());
+                && otherSpot.getName().toString().equalsIgnoreCase(getName().toString());
     }
 
     /**
@@ -161,14 +161,14 @@ public class StudySpot {
 
         if (!getOperatingHours().toString().equals("-")) {
             builder
-                .append("; Operating Hours: ")
-                .append(getOperatingHours());
+                    .append("; Operating Hours: ")
+                    .append(getOperatingHours());
         }
 
         if (!getAddress().toString().equals("-")) {
             builder
-                .append("; Address: ")
-                .append(getAddress());
+                    .append("; Address: ")
+                    .append(getAddress());
         }
 
         if (getFavourite().isFavourite()) {
@@ -199,5 +199,4 @@ public class StudySpot {
     public boolean isSameName(Name name) {
         return this.name.isSameNameCaseInsensitive(name);
     }
-
 }

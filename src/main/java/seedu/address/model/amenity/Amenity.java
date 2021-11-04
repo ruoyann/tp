@@ -33,7 +33,7 @@ public class Amenity {
      */
     public static boolean isValidAmenityType(String test) {
         requireNonNull(test);
-        return Arrays.asList(VALID_TYPES).contains(test);
+        return Arrays.asList(VALID_TYPES).stream().anyMatch(test::equalsIgnoreCase);
     }
 
     /**
