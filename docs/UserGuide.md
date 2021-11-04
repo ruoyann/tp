@@ -306,7 +306,7 @@ Not sure how to use the Command Line Interface? Check <a href="#how-to-use-these
     <th>Output 1</th>
     <td>
 
-New study spot added: COM1 Basement; Rating: 5; Favourite: false; Studied Hours: 0
+New study spot added: COM1 Basement; Rating: 5
 
 </td>
   </tr>
@@ -361,7 +361,7 @@ you can easily do so by making use of the `edit` command!
     <th>Output 1</th>
     <td>
 
-Edited study spot: Basement; Rating: 5; Favourite: false; Studied Hours: 0
+Edited study spot: Basement; Rating: 5
 
 </td>
 </tr>
@@ -591,7 +591,9 @@ Trying to find a study spot by its name? You can use the `find` command to easil
 * StudyTracker will return study spots matching at least one keyword.
 * For example, `find library spot` will match `Central Library` and `Cool Spot` as both the search results for `library` and `spot` are shown.
 
-**Examples:** You can try executing the commands in the **input** rows and check if you get the corresponding **output**!
+**Examples:** You can try executing the commands in the **input** rows and check if you get the corresponding 
+**output**! Note that the specific number of study spots listed may differ from what you see, depending on what 
+study spots you have. 
 
 <table>
   <tr>
@@ -685,7 +687,7 @@ Reset hours at Starbucks UTown!
     <th>Input 4</th>
     <td>
 
-log -r
+log -ra
 
 </td>
   </tr>
@@ -758,7 +760,7 @@ If you do not like an alias you originally set, you can use `unalias` to remove 
     <th width="90" align="left">Input 1</th>
     <td >
 
-`unalias al/MyList`
+`unalias al/ml`
 
 </td>
   </tr>
@@ -766,7 +768,7 @@ If you do not like an alias you originally set, you can use `unalias` to remove 
     <th>Output 1</th>
     <td>
 
-Removed alias 'myList'
+Removed alias 'ml'
 
 </td>
 </tr>
