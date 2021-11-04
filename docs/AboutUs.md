@@ -44,6 +44,6 @@ We are a team based in the [School of Computing, National University of Singapor
 
 <img src="images/ruoyann.png" width="200px">
 
-[[github](http://github.com/ruoyann)]
+[[github](http://github.com/ruoyann)][[portfolio](team/ruoyann.md)]
 
 * Responsibilities: Deliverables, Deadlines 
