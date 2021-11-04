@@ -36,7 +36,7 @@ We are a team based in the [School of Computing, National University of Singapor
 
 <img src="images/joenzkimchan.png" width="200px">
 
-[[github](http://github.com/joenzkimchan)]
+[[github](http://github.com/joenzkimchan)][[portfolio](team/joenzkimchan.md)]
 
 * Responsibilities: Code quality, Sourcetree 
 
