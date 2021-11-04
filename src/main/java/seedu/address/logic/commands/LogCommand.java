@@ -132,7 +132,6 @@ public class LogCommand extends Command {
 
     private static StudySpot addHoursToStudySpot(StudySpot studySpotToAddHours,
                                                  StudiedHours hoursAfterAddition) {
-        assert studySpotToAddHours != null;
         Name name = studySpotToAddHours.getName();
         Rating rating = studySpotToAddHours.getRating();
         OperatingHours operatingHours = studySpotToAddHours.getOperatingHours();
