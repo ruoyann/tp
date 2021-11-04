@@ -14,7 +14,7 @@
     "rating" : "3",
     "operatingHours" : "-",
     "address" : "NUS, Central Library",
-    "favourite" : "false",
+    "favourite" : "true",
     "studiedHours" : "2",
     "tagged" : [ "cold", "quiet" ],
     "amenities" : [ "wifi", "charger", "aircon"]
@@ -23,7 +23,7 @@
     "rating" : "2",
     "operatingHours" : "-",
     "address" : "NUS Computing",
-    "favourite" : "false",
+    "favourite" : "true",
     "studiedHours" : "23",
     "tagged" : [ ],
     "amenities" : [ "wifi", "charger", "aircon"]
@@ -59,7 +59,7 @@
     "rating" : "5",
     "operatingHours" : "-",
     "address" : "NUS COM2",
-    "favourite" : "false",
+    "favourite" : "true",
     "studiedHours" : "13",
     "tagged" : [ ],
     "amenities" : []

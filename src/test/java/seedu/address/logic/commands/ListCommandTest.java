@@ -5,6 +5,7 @@ import static org.junit.jupiter.api.Assertions.assertTrue;
 import static seedu.address.logic.commands.CommandTestUtil.assertCommandSuccess;
 import static seedu.address.logic.commands.CommandTestUtil.showNoStudySpot;
 import static seedu.address.logic.commands.CommandTestUtil.showStudySpotAtIndex;
+import static seedu.address.logic.commands.ListCommand.MESSAGE_SUCCESS;
 import static seedu.address.model.Model.PREDICATE_SHOW_ALL_STUDYSPOTS;
 import static seedu.address.model.Model.PREDICATE_SHOW_FAVOURITES;
 import static seedu.address.testutil.TypicalIndexes.INDEX_FIRST_SPOT;
@@ -44,6 +45,11 @@ public class ListCommandTest {
     private static final Predicate<StudySpot> chargerTest = ListCommand.containsAmenity(charger);
     private static final Predicate<StudySpot> zeroRatingTest = ListCommand.containsRating(ratingZero);
     private static final Predicate<StudySpot> fiveRatingTest = ListCommand.containsRating(ratingFive);
+    private static final Set<Tag> tagCoffeeSet = new HashSet<>(Arrays.asList(coffee));
+    private static final Set<Tag> tagColdSet = new HashSet<>(Arrays.asList(cold));
+    private static final Set<Amenity> amenitySet = new HashSet<>(Arrays.asList(wifi, charger));
+    private static final Set<Amenity> amenityWifiSet = new HashSet<>(Arrays.asList(wifi));
+
 
     private Model model;
     private Model expectedModel;
@@ -58,14 +64,14 @@ public class ListCommandTest {
     @Test
     public void execute_listIsNotFiltered_showsSameList() {
         assertCommandSuccess(new ListCommand(PREDICATE_SHOW_ALL_STUDYSPOTS, false, null, null, null), model,
-                ListCommand.MESSAGE_SUCCESS, expectedModel);
+                MESSAGE_SUCCESS, expectedModel);
     }
 
     @Test
     public void execute_listIsFiltered_showsEverything() {
         showStudySpotAtIndex(model, INDEX_FIRST_SPOT);
         assertCommandSuccess(new ListCommand(PREDICATE_SHOW_ALL_STUDYSPOTS, false, null, null, null), model,
-                ListCommand.MESSAGE_SUCCESS, expectedModel);
+                MESSAGE_SUCCESS, expectedModel);
     }
 
     @Test
@@ -78,7 +84,7 @@ public class ListCommandTest {
         showStudySpotAtIndex(expectedModel, INDEX_FIRST_SPOT);
         Predicate<StudySpot> predicate = ListCommand.containsTag(coffee);
         assertCommandSuccess(new ListCommand(predicate, true, tagSet, amenitySet, ratingFive), model,
-                ListCommand.MESSAGE_SUCCESS + ListCommand.getFilterMessage(true, tagSet, amenitySet, ratingFive),
+                MESSAGE_SUCCESS + ListCommand.getFilterMessage(true, tagSet, amenitySet, ratingFive),
                 expectedModel);
     }
 
@@ -91,36 +97,43 @@ public class ListCommandTest {
         Predicate<StudySpot> predicate = ListCommand.containsTag(tag);
         assertTrue(model.getFullList().stream().filter(predicate).collect(Collectors.toList()).isEmpty());
         assertCommandSuccess(new ListCommand(predicate, false, tagSet, null, null), model,
-                ListCommand.MESSAGE_SUCCESS + ListCommand.getFilterMessage(false, tagSet, null, null), expectedModel);
+                MESSAGE_SUCCESS + ListCommand.getFilterMessage(false, tagSet, null, null), expectedModel);
     }
 
     @Test
-    public void execute_listIsNotFiltered_showsOneFavStudySpot() {
-        StudySpot studySpot = model.getFullList().get(INDEX_FIRST_SPOT.getZeroBased());
-        model.addStudySpotToFavourites(studySpot);
-
-        // Ensure only one study spot is favourited
-        assertTrue(model.getFullList().stream().filter(PREDICATE_SHOW_FAVOURITES).collect(Collectors.toList())
-                .size() == 1);
-
+    public void execute_listIsNotFiltered_showsFavStudySpots() {
         // Expected model
-        expectedModel.addStudySpotToFavourites(studySpot);
-        showStudySpotAtIndex(expectedModel, INDEX_FIRST_SPOT);
+        expectedModel.updateFilteredStudySpotList(PREDICATE_SHOW_FAVOURITES);
 
-        assertCommandSuccess(new ListCommand(PREDICATE_SHOW_FAVOURITES, false, null, null, null), model,
-                ListCommand.MESSAGE_SUCCESS + ListCommand.getFilterMessage(false, null, null, null), expectedModel);
+        assertCommandSuccess(new ListCommand(PREDICATE_SHOW_FAVOURITES, true, null, null, null), model,
+                MESSAGE_SUCCESS + ListCommand.getFilterMessage(true, null, null, null), expectedModel);
     }
 
     @Test
-    public void execute_listIsFiltered_showsNoFavStudySpot() {
-        showStudySpotAtIndex(model, INDEX_FIRST_SPOT);
-        assertTrue(model.getFullList().stream().filter(PREDICATE_SHOW_FAVOURITES).collect(Collectors.toList())
-                .isEmpty());
+    public void execute_listIsNotFiltered_showsStudySpotsWithCoffeeTag() {
+        expectedModel.updateFilteredStudySpotList(coffeeTest);
 
-        showNoStudySpot(expectedModel);
+        assertCommandSuccess(new ListCommand(coffeeTest, false, tagCoffeeSet, null, null), model,
+                MESSAGE_SUCCESS + ListCommand.getFilterMessage(false, tagCoffeeSet, null, null), expectedModel);
 
-        assertCommandSuccess(new ListCommand(PREDICATE_SHOW_FAVOURITES, false, null, null, null), model,
-                ListCommand.MESSAGE_SUCCESS + ListCommand.getFilterMessage(false, null, null, null), expectedModel);
+    }
+
+    @Test
+    public void execute_listIsNotFiltered_showsStudySpotsWithWifiAmenity() {
+        expectedModel.updateFilteredStudySpotList(wifiTest);
+
+        assertCommandSuccess(new ListCommand(wifiTest, false, null, amenityWifiSet, null), model,
+                MESSAGE_SUCCESS + ListCommand.getFilterMessage(false, null, amenityWifiSet, null), expectedModel);
+
+    }
+
+    @Test
+    public void execute_listIsNotFiltered_showsStudySpotsWithFiveRating() {
+        expectedModel.updateFilteredStudySpotList(fiveRatingTest);
+
+        assertCommandSuccess(new ListCommand(fiveRatingTest, false, null, null, ratingFive), model,
+                MESSAGE_SUCCESS + ListCommand.getFilterMessage(false, null, null, ratingFive), expectedModel);
+
     }
 
     @Test
@@ -134,11 +147,6 @@ public class ListCommandTest {
         ListCommand cmd3 = new ListCommand(PREDICATE_SHOW_FAVOURITES, true, null, null, null);
         ListCommand cmd4 = new ListCommand(PREDICATE_SHOW_ALL_STUDYSPOTS, false, null, null, null);
         assertFalse(cmd3.equals(cmd4));
-
-        Set<Tag> tagCoffeeSet = new HashSet<>(Arrays.asList(coffee));
-        Set<Tag> tagColdSet = new HashSet<>(Arrays.asList(cold));
-        Set<Amenity> amenitySet = new HashSet<>(Arrays.asList(wifi, charger));
-        Set<Amenity> amenityWifiSet = new HashSet<>(Arrays.asList(wifi));
 
         // different tags -> returns false
         ListCommand cmd5 = new ListCommand(coffeeTest, false, tagCoffeeSet, amenitySet, ratingFive);

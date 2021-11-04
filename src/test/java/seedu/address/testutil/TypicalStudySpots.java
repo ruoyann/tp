@@ -32,12 +32,14 @@ public class TypicalStudySpots {
     public static final StudySpot CENTRAL_LIBRARY = new StudySpotBuilder().withName("Central library")
             .withAddress("NUS, Central Library")
             .withOperatingHours("-").withRating("3")
+            .withFavourite(true)
             .withTags("cold", "quiet")
             .withAmenities("wifi", "charger", "aircon").build();
     public static final StudySpot COM1 = new StudySpotBuilder().withName("COM1")
             .withRating("2")
             .withOperatingHours("-")
             .withAddress("NUS Computing")
+            .withFavourite(true)
             .withAmenities("wifi", "charger", "aircon").build();
     public static final StudySpot FRONTIER_CANTEEN = new StudySpotBuilder().withName("Frontier Canteen")
             .withRating("3")
@@ -58,6 +60,7 @@ public class TypicalStudySpots {
     public static final StudySpot LT_17 = new StudySpotBuilder().withName("LT17")
             .withRating("5")
             .withOperatingHours("-")
+            .withFavourite(true)
             .withAddress("NUS COM2").build();
 
     // Manually added
@@ -93,6 +96,9 @@ public class TypicalStudySpots {
         StudyTracker st = new StudyTracker();
         for (StudySpot spot : getTypicalStudySpots()) {
             st.addStudySpot(spot);
+            if (spot.isFavourite()) {
+                st.addStudySpotToFavourites(spot);
+            }
         }
         return st;
     }

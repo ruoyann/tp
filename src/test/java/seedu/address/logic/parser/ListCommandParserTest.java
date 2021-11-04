@@ -13,19 +13,12 @@ import java.util.Set;
 import java.util.function.Predicate;
 
 import org.junit.jupiter.api.Test;
-
 import seedu.address.logic.commands.ListCommand;
 import seedu.address.model.amenity.Amenity;
+import seedu.address.model.studyspot.Rating;
 import seedu.address.model.studyspot.StudySpot;
 import seedu.address.model.tag.Tag;
 
-/**
- * As we are only doing white-box testing, our test cases do not cover path variations
- * outside of the DeleteCommand code. For example, inputs "1" and "1 abc" take the
- * same path through the DeleteCommand, and therefore we test only one of them.
- * The path variation for those two cases occur inside the ParserUtil, and
- * therefore should be covered by the ParserUtilTest.
- */
 public class ListCommandParserTest {
 
     private ListCommandParser parser = new ListCommandParser();
@@ -38,6 +31,37 @@ public class ListCommandParserTest {
     @Test
     public void parse_emptyTags_throwsParseException() {
         assertParseFailure(parser, " -t t/", Tag.MESSAGE_CONSTRAINTS);
+    }
+
+    @Test
+    public void parse_missingTags_throwsParseException() {
+        assertParseFailure(parser, " -t", ListCommand.MESSAGE_MISSING_TAGS);
+    }
+
+    @Test
+    public void parse_emptyAmenities_throwsParseException() {
+        assertParseFailure(parser, " -m m/", String.format(Amenity.MESSAGE_CONSTRAINTS,
+                Amenity.listAllAmenityTypes(Amenity.VALID_TYPES)));
+    }
+
+    @Test
+    public void parse_missingAmenities_throwsParseException() {
+        assertParseFailure(parser, " -m", ListCommand.MESSAGE_MISSING_AMENITIES);
+    }
+
+    @Test
+    public void parse_emptyRating_throwsParseException() {
+        assertParseFailure(parser, " -r r/", Rating.MESSAGE_CONSTRAINTS);
+    }
+
+    @Test
+    public void parse_missingRating_throwsParseException() {
+        assertParseFailure(parser, " -r", ListCommand.MESSAGE_MISSING_RATING);
+    }
+
+    @Test
+    public void parse_unknownFlags_throwsParseException() {
+        assertParseFailure(parser, " -s", ListCommand.MESSAGE_UNKNOWN_FLAGS);
     }
 
     @Test
