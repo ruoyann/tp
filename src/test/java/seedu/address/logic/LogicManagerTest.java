@@ -62,6 +62,16 @@ public class LogicManagerTest {
     }
 
     @Test
+    public void getFavouriteStudySpotList() {
+        assertEquals(model.getFavouriteStudySpotList(), logic.getFavouriteStudySpotList());
+    }
+
+    @Test
+    public void getTopFiveStudySpotList() {
+        assertEquals(model.getTopFiveStudySpotList(), logic.getTopFiveStudySpotList());
+    }
+
+    @Test
     public void getStudyTrackerFilePath() {
         assertEquals(model.getStudyTrackerFilePath(), logic.getStudyTrackerFilePath());
     }
