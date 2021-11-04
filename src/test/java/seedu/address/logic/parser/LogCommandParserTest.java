@@ -42,6 +42,16 @@ public class LogCommandParserTest {
         String invalidOverrideMissingName = " " + PREFIX_HOURS + "5";
         assertParseFailure(parser, invalidOverrideMissingName, String.format(MESSAGE_INVALID_COMMAND_FORMAT,
                 LogCommand.MESSAGE_USAGE));
+
+        String invalidNoNameAndNotResetAll = "-o";
+        assertParseFailure(parser, invalidNoNameAndNotResetAll, String.format(MESSAGE_INVALID_COMMAND_FORMAT,
+                LogCommand.MESSAGE_USAGE));
+
+        // test preamble n/Starbucks -o
+        String invalidNamePresentPreamblePresentNotResetAll = " test preamble " + PREFIX_NAME + name.fullName + " -o";
+        assertParseFailure(parser, invalidNamePresentPreamblePresentNotResetAll, String.format(
+                MESSAGE_INVALID_COMMAND_FORMAT, LogCommand.MESSAGE_USAGE
+        ));
     }
 
     @Test
