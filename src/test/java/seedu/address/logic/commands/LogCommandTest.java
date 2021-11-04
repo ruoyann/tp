@@ -143,5 +143,24 @@ public class LogCommandTest {
         // same name same hours, different reset all -> returns false
         assertFalse(standardCommand.equals(new LogCommand(firstStudySpotInTypicalStudySpots, studiedHours,
                 false, false, true)));
+
+        LogCommand resetAllCommand = new LogCommand(null, null, false, false, true);
+        LogCommand sameResetAllCommand = new LogCommand(null, null, false, false, true);
+
+        // name == null, studied hours == null, different commands
+        assertFalse(standardCommand.equals(resetAllCommand));
+
+        // name == null, studied hours == null, same command
+        assertTrue(resetAllCommand.equals(sameResetAllCommand));
+
+        LogCommand nullStudiedHours = new LogCommand(firstStudySpotInTypicalStudySpots, null, true, false, false);
+
+        // same name, null vs non null studied hours -> returns false
+        assertFalse(standardCommand.equals(nullStudiedHours));
+
+        LogCommand nullStudiedHoursDifferentName = new LogCommand(secondStudySpotInTypicalStudySpots, null, true, false, false);
+
+        // different name, both null studied hours -> returns false
+        assertFalse(nullStudiedHoursDifferentName.equals(nullStudiedHours));
     }
 }
