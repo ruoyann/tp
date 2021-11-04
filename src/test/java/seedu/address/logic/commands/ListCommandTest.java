@@ -1,5 +1,6 @@
 package seedu.address.logic.commands;
 
+import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 import static seedu.address.logic.commands.CommandTestUtil.assertCommandSuccess;
 import static seedu.address.logic.commands.CommandTestUtil.showNoStudySpot;
@@ -17,7 +18,6 @@ import java.util.stream.Collectors;
 
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
-
 import seedu.address.model.Model;
 import seedu.address.model.ModelManager;
 import seedu.address.model.UserPrefs;
@@ -25,6 +25,7 @@ import seedu.address.model.amenity.Amenity;
 import seedu.address.model.studyspot.Rating;
 import seedu.address.model.studyspot.StudySpot;
 import seedu.address.model.tag.Tag;
+import seedu.address.testutil.StudySpotBuilder;
 
 /**
  * Contains integration tests (interaction with the Model) and unit tests for ListCommand.
@@ -114,7 +115,60 @@ public class ListCommandTest {
     @Test
     public void equals() {
         ListCommand cmd1 = new ListCommand(PREDICATE_SHOW_FAVOURITES, true, null, null, null);
-        ListCommand cmd2 = new ListCommand(PREDICATE_SHOW_FAVOURITES, true, null, null, null);
+        ListCommand cmd2 = new ListCommand(PREDICATE_SHOW_ALL_STUDYSPOTS, true, null, null, null);
+        assertTrue(cmd1.equals(cmd1));
         assertTrue(cmd1.equals(cmd2));
+
+        Tag coffee = new Tag("coffee");
+        Tag tag = new Tag("test123");
+        Set<Tag> tagSet = new HashSet<>(Arrays.asList(coffee, tag));
+        Amenity wifi = new Amenity("wifi");
+        Amenity charger = new Amenity("charger");
+        Set<Amenity> amenitySet = new HashSet<>(Arrays.asList(wifi, charger));
+        Predicate<StudySpot> wifiTest = ListCommand.containsAmenity(wifi);
+        Predicate<StudySpot> chargerTest = ListCommand.containsAmenity(charger);
+        Rating ratingZero = new Rating("0");
+        Rating ratingFive = new Rating("5");
+        StudySpot studySpotZero = new StudySpotBuilder().withRating("0").build();
+        StudySpot studySpotFive = new StudySpotBuilder().withRating("5").build();
+        Predicate<StudySpot> zeroTest = ListCommand.containsRating(ratingZero);
+        Predicate<StudySpot> fiveTest = ListCommand.containsRating(ratingFive);
+
+    }
+
+    @Test
+    public void containsAmenity() {
+        Amenity wifi = new Amenity("wifi");
+        Amenity charger = new Amenity("charger");
+        StudySpot studySpot = new StudySpotBuilder().build();
+        StudySpot studySpotWifi = new StudySpotBuilder().withAmenities("wifi").build();
+        StudySpot studySpotCharger = new StudySpotBuilder().withAmenities("charger").build();
+        Predicate<StudySpot> wifiTest = ListCommand.containsAmenity(wifi);
+        Predicate<StudySpot> chargerTest = ListCommand.containsAmenity(charger);
+
+        assertTrue(wifiTest.test(studySpotWifi));
+        assertTrue(chargerTest.test(studySpotCharger));
+
+        assertFalse(chargerTest.test(studySpotWifi));
+        assertFalse(wifiTest.test(studySpotCharger));
+
+        assertFalse(chargerTest.test(studySpot));
+        assertFalse(wifiTest.test(studySpot));
+    }
+
+    @Test
+    public void containsRating() {
+        Rating ratingZero = new Rating("0");
+        Rating ratingFive = new Rating("5");
+        StudySpot studySpotZero = new StudySpotBuilder().withRating("0").build();
+        StudySpot studySpotFive = new StudySpotBuilder().withRating("5").build();
+        Predicate<StudySpot> zeroTest = ListCommand.containsRating(ratingZero);
+        Predicate<StudySpot> fiveTest = ListCommand.containsRating(ratingFive);
+
+        assertTrue(zeroTest.test(studySpotZero));
+        assertTrue(fiveTest.test(studySpotFive));
+
+        assertFalse(zeroTest.test(studySpotFive));
+        assertFalse(fiveTest.test(studySpotZero));
     }
 }
