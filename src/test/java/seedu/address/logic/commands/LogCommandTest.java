@@ -158,7 +158,8 @@ public class LogCommandTest {
         // same name, null vs non null studied hours -> returns false
         assertFalse(standardCommand.equals(nullStudiedHours));
 
-        LogCommand nullStudiedHoursDifferentName = new LogCommand(secondStudySpotInTypicalStudySpots, null, true, false, false);
+        LogCommand nullStudiedHoursDifferentName = new LogCommand(secondStudySpotInTypicalStudySpots, null,
+                true, false, false);
 
         // different name, both null studied hours -> returns false
         assertFalse(nullStudiedHoursDifferentName.equals(nullStudiedHours));
