@@ -201,9 +201,12 @@ public class ParserUtil {
     public static Tag parseTag(String tag) throws ParseException {
         requireNonNull(tag);
         String trimmedTag = tag.trim();
-        if (!Tag.isValidTagName(trimmedTag)) {
+        if (!Tag.isValidTagName(trimmedTag) || !Tag.isValidTagLength(trimmedTag)) {
             if (tag.contains(" ")) {
                 throw new ParseException(Tag.MESSAGE_NO_SPACE);
+            }
+            if (!Tag.isValidTagLength(trimmedTag)) {
+                throw new ParseException(Tag.MESSAGE_LENGTH);
             }
             throw new ParseException(Tag.MESSAGE_CONSTRAINTS);
         }
