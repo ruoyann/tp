@@ -153,6 +153,9 @@ public class LogCommandTest {
         // name == null, studied hours == null, same command
         assertTrue(resetAllCommand.equals(sameResetAllCommand));
 
+        assertTrue(resetAllCommand.equals(new LogCommand(null, null,
+                false, true, false)));
+
         // different booleans -> false
         assertFalse(resetAllCommand.equals(new LogCommand(null, null, true, true, false)));
 
@@ -172,5 +175,12 @@ public class LogCommandTest {
         // same name, null hours, different booleans -> returns false
         assertFalse(nullStudiedHours.equals(new LogCommand(firstStudySpotInTypicalStudySpots, null,
                 false, true, true)));
+
+        assertFalse(nullStudiedHours.equals(new LogCommand(firstStudySpotInTypicalStudySpots, null,
+                false, false, true)));
+
+        assertFalse(nullStudiedHours.equals(new LogCommand(firstStudySpotInTypicalStudySpots, null,
+                false, false, false)));
+
     }
 }
