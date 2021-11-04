@@ -20,7 +20,7 @@ We are a team based in the [School of Computing, National University of Singapor
 
 <img src="images/limdanqi.png" width="200px">
 
-[[github](https://github.com/limdanqi)]
+[[github](https://github.com/limdanqi)][[portfolio](team/limdanqi.md)]
 
 * Responsibility: Testing
 
