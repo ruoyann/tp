@@ -11,7 +11,8 @@ We are a team based in the [School of Computing, National University of Singapor
 
 <img src="images/mslevis.png" width="200px">
 
-[[github](https://github.com/mslevis)]
+[[github](https://github.com/mslevis)] 
+[[portfolio](team/mslevis.md)]
 
 * Responsibility: Integration
 
