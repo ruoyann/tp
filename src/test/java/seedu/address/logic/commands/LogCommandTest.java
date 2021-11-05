@@ -147,16 +147,17 @@ public class LogCommandTest {
         LogCommand resetAllCommand = new LogCommand(null, null, false, false, true);
         LogCommand sameResetAllCommand = new LogCommand(null, null, false, false, true);
 
-        // name == null, studied hours == null, different commands
+        // name == null, studied hours == null, different commands -> returns false
         assertFalse(standardCommand.equals(resetAllCommand));
 
-        // name == null, studied hours == null, same command
+        // name == null, studied hours == null, same command -> returns true
         assertTrue(resetAllCommand.equals(sameResetAllCommand));
 
+        // different booleans -> returns false
         assertFalse(resetAllCommand.equals(new LogCommand(null, null,
                 false, true, false)));
 
-        // different booleans -> false
+        // different booleans -> returns false
         assertFalse(resetAllCommand.equals(new LogCommand(null, null, true, true, false)));
 
         LogCommand nullStudiedHours = new LogCommand(firstStudySpotInTypicalStudySpots,
@@ -176,11 +177,12 @@ public class LogCommandTest {
         assertFalse(nullStudiedHours.equals(new LogCommand(firstStudySpotInTypicalStudySpots, null,
                 false, true, true)));
 
+        // same name, null hours, different booleans -> returns false
         assertFalse(nullStudiedHours.equals(new LogCommand(firstStudySpotInTypicalStudySpots, null,
                 false, false, true)));
 
+        // same name, null hours, different booleans -> returns false
         assertFalse(nullStudiedHours.equals(new LogCommand(firstStudySpotInTypicalStudySpots, null,
                 false, false, false)));
-
     }
 }

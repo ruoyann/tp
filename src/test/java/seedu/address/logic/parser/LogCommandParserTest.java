@@ -29,25 +29,26 @@ public class LogCommandParserTest {
     public void parse_invalidFormat_failure() {
         Name name = STARBUCKS.getName();
 
-        // Starbucks hr/5
+        // Starbucks hr/5 -> missing n/ prefix
         String userInput = " " + name.fullName + " " + PREFIX_HOURS + "5";
         assertParseFailure(parser, userInput, String.format(MESSAGE_INVALID_COMMAND_FORMAT, LogCommand.MESSAGE_USAGE));
 
-        // -o n/Starbucks
+        // -o n/Starbucks -> missing hr/
         String invalidOverrideHourMissing = " " + PREFIX_NAME + name.fullName;
         assertParseFailure(parser, invalidOverrideHourMissing, String.format(MESSAGE_INVALID_COMMAND_FORMAT,
                 LogCommand.MESSAGE_USAGE));
 
-        // -o hr/5
+        // -o hr/5 -> missing n/ prefix
         String invalidOverrideMissingName = " " + PREFIX_HOURS + "5";
         assertParseFailure(parser, invalidOverrideMissingName, String.format(MESSAGE_INVALID_COMMAND_FORMAT,
                 LogCommand.MESSAGE_USAGE));
 
+        // -o -> missing name, not reset all
         String invalidNoNameAndNotResetAll = "-o";
         assertParseFailure(parser, invalidNoNameAndNotResetAll, String.format(MESSAGE_INVALID_COMMAND_FORMAT,
                 LogCommand.MESSAGE_USAGE));
 
-        // test preamble n/Starbucks -o
+        // test preamble n/Starbucks -o -> missing hr/ when not reset all
         String invalidNamePresentPreamblePresentNotResetAll = " test preamble " + PREFIX_NAME + name.fullName + " -o";
         assertParseFailure(parser, invalidNamePresentPreamblePresentNotResetAll, String.format(
                 MESSAGE_INVALID_COMMAND_FORMAT, LogCommand.MESSAGE_USAGE
