@@ -1,5 +1,6 @@
 package seedu.address.logic.parser;
 
+import static org.junit.jupiter.api.Assertions.assertDoesNotThrow;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 import static seedu.address.logic.parser.ParserUtil.MESSAGE_INVALID_INDEX;
@@ -173,6 +174,25 @@ public class ParserUtilTest {
     }
 
     @Test
+    public void parseTag_containsWhiteSpace_throwsParseException() {
+        assertThrows(ParseException.class, () -> ParserUtil.parseTag(" "));
+    }
+
+    @Test
+    public void parseTag_exceedsMaxLength_throwsParseException() {
+        StringBuilder sb = new StringBuilder();
+        for (int i = 0; i < 49; i++) {
+            sb.append("a");
+        }
+        assertDoesNotThrow(() -> ParserUtil.parseTag(sb.toString()));
+        StringBuilder sb1 = new StringBuilder();
+        for (int i = 0; i < 50; i++) {
+            sb1.append("a");
+        }
+        assertThrows(ParseException.class, () -> ParserUtil.parseTag(sb1.toString()));
+    }
+
+    @Test
     public void parseTags_null_throwsNullPointerException() {
         assertThrows(NullPointerException.class, () -> ParserUtil.parseTags(null));
     }
@@ -194,6 +214,7 @@ public class ParserUtilTest {
 
         assertEquals(expectedTagSet, actualTagSet);
     }
+
 
     @Test
     public void parseStudiedHours_invalidValue() {
