@@ -9,6 +9,7 @@ import static seedu.address.logic.parser.CliSyntax.PREFIX_FLAG;
 import static seedu.address.logic.parser.ParserUtil.arePrefixesPresent;
 
 import java.util.List;
+import java.util.stream.Collectors;
 
 import seedu.address.logic.commands.AliasCommand;
 import seedu.address.logic.parser.exceptions.ParseException;
@@ -42,11 +43,15 @@ public class AliasCommandParser implements Parser<AliasCommand> {
 
         String userAlias = argMultimap.getValue(PREFIX_ALIAS).get();
         String aliasCommandPhrase = argMultimap.getValue(PREFIX_ALIAS_COMMAND).get();
+        String aliasPhraseFlags = flagsList.isEmpty()
+                ? ""
+                : flagsList.stream().collect(Collectors.joining(" -", " -", ""));
+        String aliasCommandPhraseWithFlags = aliasCommandPhrase + aliasPhraseFlags;
 
         Alias aliasToAdd;
 
         try {
-            aliasToAdd = new Alias(userAlias, aliasCommandPhrase);
+            aliasToAdd = new Alias(userAlias, aliasCommandPhraseWithFlags);
         } catch (IllegalArgumentException e) {
             throw new ParseException(String.format(MESSAGE_INVALID_ALIAS_ARGUMENTS, e.getMessage()));
         }
