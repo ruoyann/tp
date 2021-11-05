@@ -1,6 +1,8 @@
 package seedu.address.model.studyspot;
 
+import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertFalse;
+import static org.junit.jupiter.api.Assertions.assertNotEquals;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 import static seedu.address.testutil.Assert.assertThrows;
 
@@ -60,5 +62,12 @@ public class OperatingHoursTest {
         assertTrue(OperatingHours.isValidOperatingHours("0900-0900, 0900-2200"));
         assertTrue(OperatingHours.isValidOperatingHours("1800-1000, 0900-2200"));
         assertTrue(OperatingHours.isValidOperatingHours("0900-2200, 0930-0900"));
+    }
+    @Test
+    public void hashCode_test() {
+        OperatingHours operatingHours = new OperatingHours("0900-0900, 0900-2200");
+
+        assertEquals(new OperatingHours("0900-0900, 0900-2200").hashCode(), operatingHours.hashCode());
+        assertNotEquals(new OperatingHours("1800-1000, 1800-1000").hashCode(), operatingHours.hashCode());
     }
 }

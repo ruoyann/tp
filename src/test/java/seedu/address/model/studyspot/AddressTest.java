@@ -1,6 +1,8 @@
 package seedu.address.model.studyspot;
 
+import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertFalse;
+import static org.junit.jupiter.api.Assertions.assertNotEquals;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 import static seedu.address.testutil.Assert.assertThrows;
 
@@ -32,5 +34,13 @@ public class AddressTest {
         assertTrue(Address.isValidAddress("Blk 456, Den Road, #01-355"));
         assertTrue(Address.isValidAddress("-")); // one character
         assertTrue(Address.isValidAddress("Leng Inc; 1234 Market St; San Francisco CA 2349879; USA")); // long address
+    }
+
+    @Test
+    public void hashCode_test() {
+        Address address = new Address("42 Wallaby Way, Sydney");
+
+        assertEquals(new Address("42 Wallaby Way, Sydney").hashCode(), address.hashCode());
+        assertNotEquals(new Address("Bermuda Triangle").hashCode(), address.hashCode());
     }
 }
