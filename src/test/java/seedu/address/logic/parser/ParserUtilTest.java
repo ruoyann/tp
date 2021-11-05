@@ -244,4 +244,5 @@ public class ParserUtilTest {
         String maxIntegerPlusOne = "2147483648";
         assertThrows(ParseException.class, () -> ParserUtil.parseStudiedHours(maxIntegerPlusOne));
     }
+
 }
