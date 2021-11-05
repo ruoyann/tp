@@ -83,6 +83,22 @@ public class StudyTrackerTest {
     }
 
     @Test
+    public void setStudySpotInStudyTracker_replaceWithFavourite_returnsTrue() {
+        StudySpot favStarbucks = new StudySpotBuilder(STARBUCKS).withFavourite(true).build();
+        studyTracker.addStudySpot(favStarbucks);
+        studyTracker.addStudySpotToFavourites(favStarbucks);
+        StudySpot editedStarbucks = new StudySpotBuilder(STARBUCKS)
+                .withAddress(VALID_ADDRESS_DECK).withTags(VALID_TAG_QUIET).withFavourite(true)
+                .build();
+
+        // we are testing studyTracker#setStudySpot to correctly replace a favourited study spot
+        // in both StudyTracker and the favouritesList
+        studyTracker.setStudySpot(favStarbucks, editedStarbucks);
+        assertEquals(studyTracker.findStudySpot(STARBUCKS.getName()), editedStarbucks);
+        assertTrue(studyTracker.getFavouriteStudySpotList().contains(editedStarbucks));
+    }
+
+    @Test
     public void addStudySpotToFavourite_notInStudyTracker_throwsAssertionError() {
         assertThrows(AssertionError.class, () -> studyTracker.addStudySpotToFavourites(STARBUCKS));
     }
