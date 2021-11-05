@@ -8,7 +8,7 @@
     "studiedHours" : "3",
     "favourite" : "false",
     "tagged" : [ "coffee" ],
-    "amenities" : [ "wifi", "charger", "food", "aircon"]
+    "amenities" : [ "wifi" ]
   }, {
     "name" : "Central library",
     "rating" : "3",
