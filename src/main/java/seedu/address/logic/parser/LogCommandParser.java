@@ -6,8 +6,6 @@ import static seedu.address.logic.parser.CliSyntax.PREFIX_HOURS;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_NAME;
 import static seedu.address.logic.parser.ParserUtil.arePrefixesPresent;
 
-import java.util.NoSuchElementException;
-
 import seedu.address.logic.commands.LogCommand;
 import seedu.address.logic.parser.exceptions.ParseException;
 import seedu.address.model.studyspot.Name;
@@ -36,32 +34,28 @@ public class LogCommandParser implements Parser<LogCommand> {
         StudiedHours hoursStudied;
         boolean isOverride = false;
 
-        try {
-            boolean isNamePresent = argMultimap.getValue(PREFIX_NAME).isPresent();
-            boolean isHoursPresent = argMultimap.getValue(PREFIX_HOURS).isPresent();
-            studySpot = isNamePresent ? ParserUtil.parseName(argMultimap.getValue(PREFIX_NAME).get()) : null;
+        boolean isNamePresent = argMultimap.getValue(PREFIX_NAME).isPresent();
+        boolean isHoursPresent = argMultimap.getValue(PREFIX_HOURS).isPresent();
+        studySpot = isNamePresent ? ParserUtil.parseName(argMultimap.getValue(PREFIX_NAME).get()) : null;
 
-            if (argMultimap.getValue(PREFIX_FLAG).isPresent()) {
-                String flag = argMultimap.getValue(PREFIX_FLAG).get();
+        if (argMultimap.getValue(PREFIX_FLAG).isPresent()) {
+            String flag = argMultimap.getValue(PREFIX_FLAG).get();
 
-                if (flag.equals(LogCommand.FLAG_RESET) && isNamePresent) {
-                    return new LogCommand(studySpot, null, true, false, false);
-                } else if (flag.equals(LogCommand.FLAG_OVERRIDE) && isNamePresent && isHoursPresent) {
-                    isOverride = true;
-                } else if (flag.equals(LogCommand.FLAG_RESET_ALL)) {
-                    return new LogCommand(studySpot, null, false, false, true);
-                } else {
-                    throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT, LogCommand.MESSAGE_USAGE));
-                }
+            if (flag.equals(LogCommand.FLAG_RESET) && isNamePresent) {
+                return new LogCommand(studySpot, null, true, false, false);
+            } else if (flag.equals(LogCommand.FLAG_OVERRIDE) && isNamePresent && isHoursPresent) {
+                isOverride = true;
+            } else if (flag.equals(LogCommand.FLAG_RESET_ALL)) {
+                return new LogCommand(studySpot, null, false, false, true);
+            } else {
+                throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT, LogCommand.MESSAGE_USAGE));
             }
-
-            if (isHoursPresent) {
-                hoursStudied = ParserUtil.parseStudiedHours(argMultimap.getValue(PREFIX_HOURS).get());
-                return new LogCommand(studySpot, hoursStudied, false, isOverride, false);
-            }
-            throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT, LogCommand.MESSAGE_USAGE));
-        } catch (NoSuchElementException e) {
-            throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT, LogCommand.MESSAGE_USAGE));
         }
+
+        if (isHoursPresent) {
+            hoursStudied = ParserUtil.parseStudiedHours(argMultimap.getValue(PREFIX_HOURS).get());
+            return new LogCommand(studySpot, hoursStudied, false, isOverride, false);
+        }
+        throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT, LogCommand.MESSAGE_USAGE));
     }
 }

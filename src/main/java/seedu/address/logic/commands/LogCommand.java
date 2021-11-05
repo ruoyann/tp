@@ -72,19 +72,25 @@ public class LogCommand extends Command {
     @Override
     public CommandResult execute(Model model) throws CommandException {
         requireNonNull(model);
+
         if (isResetAll) {
             return handleResetAll(model);
         }
+
         StudySpot studySpotToAddHours = model.findStudySpot(name);
+
         if (studySpotToAddHours == null) {
             throw new CommandException(MESSAGE_INVALID_NAME);
         }
+
         if (isResetStudySpot) {
             return handleReset(model, studySpotToAddHours);
         }
+
         if (isOverride) {
             return handleOverride(model, studySpotToAddHours, studiedHours);
         }
+
         try {
             StudiedHours newHours = studySpotToAddHours.getStudiedHours().addHours(studiedHours);
             StudySpot updatedStudySpot = addHoursToStudySpot(studySpotToAddHours, newHours);
@@ -126,7 +132,6 @@ public class LogCommand extends Command {
 
     private static StudySpot addHoursToStudySpot(StudySpot studySpotToAddHours,
                                                  StudiedHours hoursAfterAddition) {
-        assert studySpotToAddHours != null;
         Name name = studySpotToAddHours.getName();
         Rating rating = studySpotToAddHours.getRating();
         OperatingHours operatingHours = studySpotToAddHours.getOperatingHours();
@@ -155,6 +160,10 @@ public class LogCommand extends Command {
         return this.isOverride;
     }
 
+    public boolean getIsResetAll() {
+        return this.isResetAll;
+    }
+
     @Override
     public boolean equals(Object other) {
         // short circuit if same object
@@ -163,10 +172,25 @@ public class LogCommand extends Command {
         } else {
             if (other instanceof LogCommand) {
                 LogCommand e = (LogCommand) other;
+
+                if ((name == null && studiedHours == null) || (e.name == null && e.studiedHours == null)) {
+                    return getIsReset() == (e.getIsReset())
+                            && getIsOverride() == (e.getIsOverride())
+                            && getIsResetAll() == (e.getIsResetAll());
+                }
+
+                if (studiedHours == null || e.studiedHours == null) {
+                    return getName().equals(e.getName())
+                            && getIsReset() == (e.getIsReset())
+                            && getIsOverride() == (e.getIsOverride())
+                            && getIsResetAll() == (e.getIsResetAll());
+                }
+
                 return getName().equals(e.getName())
                         && getStudiedHours().toString().equals(e.getStudiedHours().toString())
                         && getIsReset() == (e.getIsReset())
-                        && getIsOverride() == (e.getIsOverride());
+                        && getIsOverride() == (e.getIsOverride())
+                        && getIsResetAll() == (e.getIsResetAll());
             }
         }
         return false;
