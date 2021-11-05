@@ -19,6 +19,7 @@ import seedu.address.model.studyspot.Address;
 import seedu.address.model.studyspot.Name;
 import seedu.address.model.studyspot.OperatingHours;
 import seedu.address.model.studyspot.Rating;
+import seedu.address.model.studyspot.StudiedHours;
 import seedu.address.model.tag.Tag;
 
 public class ParserUtilTest {
@@ -215,9 +216,32 @@ public class ParserUtilTest {
         assertEquals(expectedTagSet, actualTagSet);
     }
 
+    @Test
+    public void parseStudiedHours_validInput_returnsStudiedHours() throws ParseException {
+        StudiedHours actualHours = ParserUtil.parseStudiedHours("10");
+        StudiedHours expectedHours = new StudiedHours("10");
+
+        assertEquals(actualHours, expectedHours);
+    }
 
     @Test
-    public void parseStudiedHours_invalidValue() {
+    public void parseStudiedHours_invalidValue_throwsParseException() {
         assertThrows(ParseException.class, () -> ParserUtil.parseStudiedHours(INVALID_STUDIED_HOURS));
+    }
+
+    @Test
+    public void parseStudiedHours_negativeValue_throwsParseException() {
+        assertThrows(ParseException.class, () -> ParserUtil.parseStudiedHours("-10"));
+    }
+
+    @Test
+    public void parseStudiedHours_missingValue_throwsParseException() {
+        assertThrows(ParseException.class, () -> ParserUtil.parseStudiedHours(""));
+    }
+
+    @Test
+    public void parseStudiedHours_largerThanMaxInteger_throwsParseException() {
+        String maxIntegerPlusOne = "2147483648";
+        assertThrows(ParseException.class, () -> ParserUtil.parseStudiedHours(maxIntegerPlusOne));
     }
 }
