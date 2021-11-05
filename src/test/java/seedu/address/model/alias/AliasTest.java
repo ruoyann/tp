@@ -41,9 +41,13 @@ class AliasTest {
     public void constructor_invalidCommandWordType_throwsIllegalArgumentException() {
         String emptyCommandWord = "";
         String invalidWordCommandWord = "park"; // command word doesn't exist
+        String dangerousWordCommandWord = "alias"; //cannot alias to an "alias" command
+        String alsoDangerousWordCommandWord = "unalias"; //cannot alias to an "unalias" command
 
         assertThrows(IllegalArgumentException.class, () -> new Alias("ls", emptyCommandWord));
         assertThrows(IllegalArgumentException.class, () -> new Alias("ls", invalidWordCommandWord));
+        assertThrows(IllegalArgumentException.class, () -> new Alias("ls", dangerousWordCommandWord));
+        assertThrows(IllegalArgumentException.class, () -> new Alias("ls", alsoDangerousWordCommandWord));
     }
 
     @Test

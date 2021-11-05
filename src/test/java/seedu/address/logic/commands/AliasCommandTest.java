@@ -78,6 +78,10 @@ class AliasCommandTest {
         AliasCommand lsAliasCommand = new AliasCommand(false, lsAlias);
         AliasCommand pwdAliasCommand = new AliasCommand(false, pwdAlias);
         AliasCommand showTypeAliasCommand = new AliasCommand(true);
+        AliasCommand anotherShowTypeAliasCommand = new AliasCommand(true, lsAlias);
+
+        // same showtype -> returns true (check if AliasCommand defensively sets alias to null when isShowType)
+        assertTrue(showTypeAliasCommand.equals(anotherShowTypeAliasCommand));
 
         // same object -> returns true
         assertTrue(lsAliasCommand.equals(lsAliasCommand));

@@ -49,7 +49,13 @@ public class AliasCommand extends Command {
         requireNonNull(alias);
 
         this.isShowType = isShowType;
-        this.alias = alias;
+
+        // defensive code to ensure null alias when isShowType
+        if (isShowType) {
+            this.alias = null;
+        } else {
+            this.alias = alias;
+        }
     }
 
     @Override
