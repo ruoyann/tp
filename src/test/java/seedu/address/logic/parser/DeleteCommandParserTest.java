@@ -50,6 +50,9 @@ public class DeleteCommandParserTest {
         String expectedMessage = String.format(MESSAGE_INVALID_COMMAND_FORMAT, DeleteCommand.MESSAGE_USAGE);
 
         // Missing name field
+        assertParseFailure(parser, "", expectedMessage);
+
+        // Missing name parameter
         assertParseFailure(parser, VALID_NAME_DECK, expectedMessage);
     }
 }
