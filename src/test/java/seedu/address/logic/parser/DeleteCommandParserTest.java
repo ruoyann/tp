@@ -1,6 +1,7 @@
 package seedu.address.logic.parser;
 
 import static seedu.address.commons.core.Messages.MESSAGE_INVALID_COMMAND_FORMAT;
+import static seedu.address.logic.commands.CommandTestUtil.VALID_NAME_DECK;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_DELETE_SPOT;
 import static seedu.address.logic.parser.CommandParserTestUtil.assertParseFailure;
 import static seedu.address.logic.parser.CommandParserTestUtil.assertParseSuccess;
@@ -39,5 +40,16 @@ public class DeleteCommandParserTest {
     public void parse_invalidName_throwsParseException() {
         String userInput = " " + PREFIX_DELETE_SPOT;
         assertParseFailure(parser, userInput, Name.MESSAGE_CONSTRAINTS);
+    }
+
+    /**
+     * Compulsory fields to be tested for are name
+     */
+    @Test
+    public void parse_compulsoryFieldMissing_failure() {
+        String expectedMessage = String.format(MESSAGE_INVALID_COMMAND_FORMAT, DeleteCommand.MESSAGE_USAGE);
+
+        // Missing name field
+        assertParseFailure(parser, VALID_NAME_DECK, expectedMessage);
     }
 }
