@@ -1,6 +1,9 @@
 package seedu.address;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertFalse;
+import static org.junit.jupiter.api.Assertions.assertNotEquals;
+import static org.junit.jupiter.api.Assertions.assertTrue;
 
 import java.nio.file.Paths;
 import java.util.Collections;
@@ -35,6 +38,41 @@ public class AppParametersTest {
         parametersStub.namedParameters.put("config", "a\0");
         expected.setConfigPath(null);
         assertEquals(expected, AppParameters.parse(parametersStub));
+    }
+
+    @Test
+    public void hashCode_test() {
+        AppParameters duplicateParams = new AppParameters();
+        AppParameters differentParams = new AppParameters();
+
+        expected.setConfigPath(Paths.get("config.json"));
+        duplicateParams.setConfigPath(Paths.get("config.json"));
+        differentParams.setConfigPath(Paths.get("another.json"));
+
+        assertEquals(duplicateParams.hashCode(), expected.hashCode());
+        assertNotEquals(differentParams.hashCode(), expected.hashCode());
+    }
+
+    @Test
+    public void equals_test() {
+        AppParameters duplicateParams = new AppParameters();
+        AppParameters differentParams = new AppParameters();
+
+        expected.setConfigPath(Paths.get("config.json"));
+        duplicateParams.setConfigPath(Paths.get("config.json"));
+        differentParams.setConfigPath(Paths.get("another.json"));
+
+        // equals itself -> true
+        assertTrue(expected.equals(expected));
+
+        // same parameters -> true
+        assertTrue(expected.equals(duplicateParams));
+
+        // different object -> false
+        assertFalse(expected.equals(5));
+
+        // different parameters -> false
+        assertFalse(expected.equals(differentParams));
     }
 
     private static class ParametersStub extends Application.Parameters {

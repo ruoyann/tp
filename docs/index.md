@@ -20,3 +20,4 @@ Easy to learn, yet powerful when mastered with various customizations.
 **Acknowledgements**
 
 * Libraries used: [JavaFX](https://openjfx.io/), [Jackson](https://github.com/FasterXML/jackson), [JUnit5](https://github.com/junit-team/junit5)
+* Images and icons used are [credited here](../copyright.txt).

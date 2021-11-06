@@ -27,7 +27,12 @@ class AliasCommandParserTest {
     @Test
     void parse_allFieldsPresent_success() {
         Alias expectedAlias = new Alias(VALID_ALIAS_LS, VALID_ALIAS_COMMAND_LIST);
+        Alias expectedAliasWithCommandFlag = new Alias(VALID_ALIAS_LS, VALID_ALIAS_COMMAND_LIST + " -f");
+        Alias expectedAliasLong = new Alias(VALID_ALIAS_LS, VALID_ALIAS_COMMAND_LIST + " -f -m m/wifi m/food r/3 -r");
+
         AliasCommand expectedNoShowCommand = new AliasCommand(false, expectedAlias);
+        AliasCommand expectedFlagCommand = new AliasCommand(false, expectedAliasWithCommandFlag);
+        AliasCommand expectedLongCommand = new AliasCommand(false, expectedAliasLong);
         AliasCommand expectedShowCommand = new AliasCommand(true);
 
         // has show flag, no arguments
@@ -54,6 +59,14 @@ class AliasCommandParserTest {
         // multiple commandWords - last one accepted
         assertParseSuccess(parser, PREAMBLE_WHITESPACE + ALIAS_USER_ALIAS_LS + ALIAS_USER_COMMAND_LIST
                 + ALIAS_USER_COMMAND_EXIT + ALIAS_USER_COMMAND_LIST , expectedNoShowCommand);
+
+        // command itself has flag - correctly accepted
+        assertParseSuccess(parser, PREAMBLE_WHITESPACE + ALIAS_USER_ALIAS_LS + ALIAS_USER_COMMAND_LIST
+                + " -f", expectedFlagCommand);
+
+        // command has multiple flags - correctly accepted
+        assertParseSuccess(parser, PREAMBLE_WHITESPACE + ALIAS_USER_ALIAS_LS + ALIAS_USER_COMMAND_LIST
+                + " -f -m m/wifi m/food r/3 -r", expectedLongCommand);
     }
 
     /**

@@ -11,7 +11,8 @@ We are a team based in the [School of Computing, National University of Singapor
 
 <img src="images/mslevis.png" width="200px">
 
-[[github](https://github.com/mslevis)]
+[[github](https://github.com/mslevis)] 
+[[portfolio](team/mslevis.md)]
 
 * Responsibility: Integration
 
@@ -19,7 +20,7 @@ We are a team based in the [School of Computing, National University of Singapor
 
 <img src="images/limdanqi.png" width="200px">
 
-[[github](https://github.com/limdanqi)]
+[[github](https://github.com/limdanqi)][[portfolio](team/limdanqi.md)]
 
 * Responsibility: Testing
 
@@ -27,7 +28,7 @@ We are a team based in the [School of Computing, National University of Singapor
 
 <img src="images/qreoct.png" width="200px">
 
-[[github](http://github.com/qreoct)]
+[[github](http://github.com/qreoct)][[portfolio](team/qreoct.md)]
 
 * Responsibilities: Team lead, documentation
 
@@ -35,7 +36,7 @@ We are a team based in the [School of Computing, National University of Singapor
 
 <img src="images/joenzkimchan.png" width="200px">
 
-[[github](http://github.com/joenzkimchan)]
+[[github](http://github.com/joenzkimchan)][[portfolio](team/joenzkimchan.md)]
 
 * Responsibilities: Code quality, Sourcetree 
 
