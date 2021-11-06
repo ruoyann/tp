@@ -1,7 +1,7 @@
 package seedu.address.logic.parser;
 
 import static seedu.address.commons.core.Messages.MESSAGE_INVALID_COMMAND_FORMAT;
-import static seedu.address.logic.commands.CommandTestUtil.VALID_NAME_DECK;
+import static seedu.address.logic.commands.CommandTestUtil.*;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_DELETE_SPOT;
 import static seedu.address.logic.parser.CommandParserTestUtil.assertParseFailure;
 import static seedu.address.logic.parser.CommandParserTestUtil.assertParseSuccess;
@@ -20,13 +20,17 @@ import seedu.address.model.studyspot.Name;
  */
 public class DeleteCommandParserTest {
 
-    private DeleteCommandParser parser = new DeleteCommandParser();
+    private final DeleteCommandParser parser = new DeleteCommandParser();
 
     @Test
     public void parse_validArgs_returnsDeleteCommand() {
-        Name targetName = new Name("validName");
-        String userInput = " " + PREFIX_DELETE_SPOT + targetName.fullName;
-        assertParseSuccess(parser, userInput, new DeleteCommand(targetName));
+        // White space only preamble
+        assertParseSuccess(parser, "         " + PREFIX_DELETE_SPOT + VALID_NAME_DECK,
+                new DeleteCommand(new Name(VALID_NAME_DECK)));
+
+        // Correct format
+        assertParseSuccess(parser,  " " + PREFIX_DELETE_SPOT + VALID_NAME_DECK,
+                new DeleteCommand(new Name(VALID_NAME_DECK)));
     }
 
     @Test
@@ -49,7 +53,7 @@ public class DeleteCommandParserTest {
     public void parse_compulsoryFieldMissing_failure() {
         String expectedMessage = String.format(MESSAGE_INVALID_COMMAND_FORMAT, DeleteCommand.MESSAGE_USAGE);
 
-        // Missing name field
+        // Missing name parameter and name field
         assertParseFailure(parser, "", expectedMessage);
 
         // Missing name parameter
@@ -60,6 +64,6 @@ public class DeleteCommandParserTest {
     public void parser_extraPreamble_failure() {
         String expectedMessage = String.format(MESSAGE_INVALID_COMMAND_FORMAT, DeleteCommand.MESSAGE_USAGE);
 
-        assertParseFailure(parser, "Extra" + PREFIX_DELETE_SPOT + VALID_NAME_DECK, expectedMessage);
+        assertParseFailure(parser, PREAMBLE_NON_EMPTY + PREFIX_DELETE_SPOT + VALID_NAME_DECK, expectedMessage);
     }
 }
