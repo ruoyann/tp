@@ -69,4 +69,11 @@ public class DeleteCommandParserTest {
 
         assertParseFailure(parser, PREAMBLE_NON_EMPTY + PREFIX_DELETE_SPOT + VALID_NAME_DECK, expectedMessage);
     }
+
+    @Test
+    public void parser_extraPreambleMissingPrefix_failure() {
+        String expectedMessage = String.format(MESSAGE_INVALID_COMMAND_FORMAT, DeleteCommand.MESSAGE_USAGE);
+
+        assertParseFailure(parser, PREAMBLE_NON_EMPTY + VALID_NAME_DECK, expectedMessage);
+    }
 }
