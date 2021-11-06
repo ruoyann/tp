@@ -70,14 +70,6 @@ public class StudiedHours {
     }
 
     @Override
-    public boolean equals(Object other) {
-        return other == this // short circuit if same object
-                || (other instanceof StudiedHours // instanceof handles nulls
-                && value.equals(((StudiedHours) other).value) // state check
-                && (loggedHours == (((StudiedHours) other).getHours())));
-    }
-
-    @Override
     public String toString() {
         return String.valueOf(loggedHours);
     }
