@@ -338,7 +338,8 @@ New study spot added: Starbucks at UTown; Rating: 4; Operating Hours: Weekdays: 
 If you made a mistake in your `add` command, or wish to change the details of a study spot, 
 you can easily do so by making use of the `edit` command!
 
-**Format:** `edit spot/NAME* n/NEW_NAME a/NEW_ADDRESS t/NEW_TAG m/NEW_AMENITY r/NEW_RATING o/NEW_OPERATING_HOURS`
+**Format:** `edit spot/NAME* n/NEW_NAME a/NEW_ADDRESS t/NEW_TAG m/NEW_AMENITY rt/NEW_TAG rm/NEW_AMENITY r/NEW_RATING 
+o/NEW_OPERATING_HOURS`
 
 * Edits the study spot matching `NAME`.
   The provided `NAME` is not case-sensitive and **must fully match the study spot name**.
@@ -372,7 +373,8 @@ Edited study spot: Basement; Rating: 5; Favourite: false; Studied Hours: 0
 
 <div markdown="span" class="alert alert-primary">:information_source: **Note:**
 The above input assumes that there is already a study spot named "COM1 Basement" in the Study Tracker!
-This input only changes the name from "COM1 Basement" to "Basement".
+This input only changes the name from "COM1 Basement" to "Basement". Outputs may differ based on what information 
+your original study spot already has. 
 </div>
 
 <div style="page-break-after: always;"></div>
@@ -709,7 +711,7 @@ Use the log command at the end of a study session to keep track of how long you 
 
 ### Setting Command Aliases
 
-#### Adding command aliases : `alias`, `unalias`
+#### Adding command aliases : `alias` 
 
 Do you find yourself using certain commands so often that you wish you could "code-name" it so you don't need to type so much? 
 Alias is the command for you. The `alias` command can help you to shorten input commands to whatever you want it to be. 
@@ -729,7 +731,7 @@ Aliases are CASE-SENSITIVE
 | ----------- | ----------- | ---------- | ------------- |
 | `alias al/ml cmd/list` | Added alias ml: [list] | `ml` | `Listed all study spots` |
 
-* running `myList` will run the `list` command.
+* running `ml` will run the `list` command.
 
 <div markdown="span" class="alert alert-primary">:bulb: **Tip:**
 You can chain aliases to make more powerful commands! See the below example.<br> <br>
@@ -857,15 +859,15 @@ You may also copy the **preferences.json** file to keep your user preferences.
 Action | Format, Examples
 --------|------------------
 **Add** | `add n/NAME* r/RATING* a/ADDRESS t/TAG... m/AMENITY... o/OPERATING_HOURS` <br> e.g. `add n/COM1 r/5`
-**Edit** | `edit spot/NAME* n/NEW_NAME a/NEW_ADDRESS t/NEW_TAG m/NEW_AMENITY r/NEW_RATING o/NEW_OPERATING_HOURS`<br> e.g.,`edit n/tr3 n/Training Room 3`
+**Edit** | `edit spot/NAME* n/NEW_NAME a/NEW_ADDRESS t/NEW_TAG m/NEW_AMENITY rt/NEW_TAG rm/NEW_AMENITY r/NEW_RATING o/NEW_OPERATING_HOURS`<br> e.g.,`edit spot/tr3 n/Training Room 3`
 **Favourite**  |  `fav n/NAME*` <br> e.g. `fav n/COM1`
 **Unfavourite** | `unfav n/NAME*` <br> e.g. `unfav n/COM1`
 **Delete** | `delete n/NAME*` <br> e.g. `delete n/COM1`
+**Clear** | `clear`
 **List** | `list -f -t t/TAG... -m m/AMENITY... -r r/RATING` <br> e.g. `list -f -t t/quiet -m m/wifi -r r/5`
 **Find** | `find KEYWORD* [MORE KEYWORDS]*`<br> e.g. `find library`
 **Log** | `log -o n/NAME* hr/NUM_OF_HOURS*` <br> e.g. `log -o n/Starbucks hr/5`
 **Alias** | `alias al/ALIAS* cmd/COMMAND*`<br> e.g. `alias al/home cmd/find home`
 **Unalias** | `unalias al/ALIAS*` <br> e.g. `unalias al/MyList`
-**Clear** | `clear`
 **Help** | `help`
 **Exit** | `exit`

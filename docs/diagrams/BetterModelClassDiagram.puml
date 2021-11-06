@@ -21,4 +21,5 @@ StudySpot *--> OperatingHours
 StudySpot *--> Address
 StudySpot *--> Favourite
 StudySpot *--> Amenities
+StudySpot *--> StudiedHours
 @enduml
