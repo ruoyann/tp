@@ -30,7 +30,7 @@ public class DeleteCommandParserTest {
                 new DeleteCommand(new Name(VALID_NAME_DECK)));
 
         // Correct format
-        assertParseSuccess(parser,  " " + PREFIX_DELETE_SPOT + VALID_NAME_DECK,
+        assertParseSuccess(parser, " " + PREFIX_DELETE_SPOT + VALID_NAME_DECK,
                 new DeleteCommand(new Name(VALID_NAME_DECK)));
     }
 
