@@ -112,6 +112,7 @@ Throughout the User Guide, you'll see commands to enter into StudyTracker.
 Here is how to read the command format:
 
 #### Command Structure
+
 Commands use a multipart structure that must be specified in this order:
 1. **Command word** which may be user-created aliases (detailed further in [**Aliases**](#setting-command-aliases--alias-unalias)). <br>
 2. **Parameters** and **Flags**. A command may have more than one flag and/or parameters.
@@ -153,6 +154,7 @@ e.g. the `NAME` parameter has a delimiter `n/` and the `AMENITY` parameter has a
 
 
 ### How to use these Commands in Command Line Interface
+
 If this is your first time using *Command Line Interface (CLI)*, fret not and we will guide you step-by-step on how to use CLI!
 
 You tell the *Command Line Interface* exactly what you want it to do! However, if you input something that the CLI does not understand, 
@@ -196,7 +198,7 @@ The top of the interface contains the **Menu Bar**. Clicking on `File` or `Help`
 
 On the left side of the interface, you can find the [**Info Display**](#info-display).
 
-On the right side of the interface, you can find the [**Study Spot List**](#study-spot-list) and [**Command Box**](#study-spot-list).
+On the right side of the interface, you can find the [**Study Spot List**](#study-spot-list) and [**Command Box**](#command-box).
 
 ### Info Display
 
@@ -222,7 +224,6 @@ From left to right, the amenities are **aircon, charger, food, wifi**.
 
 ### Study Spot List
 
-
 ![Gui annotated](images/GuiStudySpotListAnnotated.png)
 
 The **Study Spot List** contains **Cards** representing every study spot in StudyTracker.
@@ -238,7 +239,9 @@ From left to right, the amenities are **aircon, charger, food, wifi**.
 * `Hours` — total number of hours studied at study spot
 * `Rating` — user-defined rating for the study spot out of 5
 
-The **Command Box** is where to enter [**commands**](#how-to-read-commands-in-studytracker) in StudyTracker.
+### Command Box 
+
+The **Command Box** is where you can enter [**commands**](#how-to-read-commands-in-studytracker) in StudyTracker.
 
 * `Command Box` — type in your commands here
 * `Display` — results of commands and error messages are shown here.
@@ -618,19 +621,17 @@ Trying to find a study spot by its name? You can use the `find` command to easil
 
 After studying at a certain study spot, you can `log` how many hours you have studied at this location.
 There are also various flags you can use to reset or override hours to the value of your choice.
-Use the `-r` and `-o` flags respectively, as shown
-below:
+Use the `-r`, `-o` or `-ra` flags respectively, as shown below:
 
 | Format     | Function |
 | ----------- | ----------- |
 | `log n/NAME* hr/NUM_OF_HOURS*` | Adds the given `NUM_OF_HOURS` to the original studied hours at a study spot |
 | `log -o n/NAME* hr/NUM_OF_HOURS*` | Overrides the current studied hours with the given `NUM_OF_HOURS`  |
 | `log -r n/NAME*` | Resets the number of studied hours at a study spot to 0 |
-| `log -r` | Resets studied hours of **ALL** study spots to 0 |
+| `log -ra` | Resets studied hours of **ALL** study spots to 0 |
 
 <div markdown="span" class="alert alert-primary">:information_source: **Note:**
-The flag `-o` stands for override, which overrides the studied hours with the provided value <br>
-The flag `-r` stands for reset, which resets the hours to 0
+As long as the flag `-ra` is present in the command, hours for all study spots will be reset to 0.  
 </div>
 
 

@@ -1,6 +1,8 @@
 package seedu.address.model.studyspot;
 
+import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertFalse;
+import static org.junit.jupiter.api.Assertions.assertNotEquals;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 import static seedu.address.logic.commands.CommandTestUtil.VALID_ADDRESS_DECK;
 import static seedu.address.logic.commands.CommandTestUtil.VALID_NAME_DECK;
@@ -77,7 +79,10 @@ public class StudySpotTest {
         editedStarbucks = new StudySpotBuilder(STARBUCKS).withRating(VALID_RATING_DECK).build();
         assertFalse(STARBUCKS.equals(editedStarbucks));
 
-        // different OPERATING_HOURS -> returns false
+        editedStarbucks = new StudySpotBuilder(STARBUCKS).withAmenities("wifi").build();
+        assertFalse(STARBUCKS.equals(editedStarbucks));
+
+        // different operating hours  -> returns false
         editedStarbucks = new StudySpotBuilder(STARBUCKS).withOperatingHours(VALID_OPERATING_HOURS_DECK).build();
         assertFalse(STARBUCKS.equals(editedStarbucks));
 
@@ -92,5 +97,24 @@ public class StudySpotTest {
         // different tags -> returns false
         editedStarbucks = new StudySpotBuilder(STARBUCKS).withTags(VALID_TAG_QUIET).build();
         assertFalse(STARBUCKS.equals(editedStarbucks));
+    }
+
+    @Test
+    public void hashCode_test() {
+        StudySpot starbucks = new StudySpotBuilder(STARBUCKS).build();
+
+        assertEquals(new StudySpotBuilder(STARBUCKS).build().hashCode(), starbucks.hashCode());
+        assertNotEquals(new StudySpotBuilder(DECK).build().hashCode(), starbucks.hashCode());
+    }
+
+    @Test
+    public void toString_stringReturned() {
+        String defaultConfigAsString = "Starbucks; Rating: 4; Address: UTown;"
+                + " Favourite: true; Studied Hours: 100; Tags: [coffee]; Amenities: [wifi][charger][aircon][food]";
+
+        StudySpot starbucks = new StudySpotBuilder(STARBUCKS)
+                .withStudiedHours("100").withFavourite(true).build();
+
+        assertEquals(defaultConfigAsString, starbucks.toString());
     }
 }

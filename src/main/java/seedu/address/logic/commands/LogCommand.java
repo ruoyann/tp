@@ -32,7 +32,7 @@ public class LogCommand extends Command {
             + "The -r will reset the studied hours to 0\n"
             + "Parameters: "
             + PREFIX_NAME + "NAME* (case-insensitive) "
-            + PREFIX_HOURS + "ADDED_HOURS* (required if -r is not input) "
+            + PREFIX_HOURS + "ADDED_HOURS* (required if -ra is not input) "
             + "[-r] [-o]\n"
             + "Example: " + COMMAND_WORD + " " + PREFIX_NAME + "Starbucks" + " " + PREFIX_HOURS + "4 ";
     public static final String MESSAGE_SUCCESS_DEFAULT = "Logged %1$S hour(s) at %2$s!";
@@ -40,8 +40,10 @@ public class LogCommand extends Command {
     public static final String MESSAGE_SUCCESS_RESET = "Reset hours at %1$s!";
     public static final String MESSAGE_SUCCESS_RESET_ALL = "Reset hours for all study spots!";
     public static final String MESSAGE_SUCCESS_OVERRIDE = "Changed hours to %1$S at %2$s!";
+    public static final String MESSAGE_MISSING_HOURS = "Please enter studied hours e.g. hr/5";
 
     public static final String FLAG_RESET = "r";
+    public static final String FLAG_RESET_ALL = "ra";
     public static final String FLAG_OVERRIDE = "o";
 
 
@@ -71,19 +73,25 @@ public class LogCommand extends Command {
     @Override
     public CommandResult execute(Model model) throws CommandException {
         requireNonNull(model);
+
         if (isResetAll) {
             return handleResetAll(model);
         }
+
         StudySpot studySpotToAddHours = model.findStudySpot(name);
+
         if (studySpotToAddHours == null) {
             throw new CommandException(MESSAGE_INVALID_NAME);
         }
+
         if (isResetStudySpot) {
             return handleReset(model, studySpotToAddHours);
         }
+
         if (isOverride) {
             return handleOverride(model, studySpotToAddHours, studiedHours);
         }
+
         try {
             StudiedHours newHours = studySpotToAddHours.getStudiedHours().addHours(studiedHours);
             StudySpot updatedStudySpot = addHoursToStudySpot(studySpotToAddHours, newHours);
@@ -125,7 +133,6 @@ public class LogCommand extends Command {
 
     private static StudySpot addHoursToStudySpot(StudySpot studySpotToAddHours,
                                                  StudiedHours hoursAfterAddition) {
-        assert studySpotToAddHours != null;
         Name name = studySpotToAddHours.getName();
         Rating rating = studySpotToAddHours.getRating();
         OperatingHours operatingHours = studySpotToAddHours.getOperatingHours();
@@ -154,6 +161,10 @@ public class LogCommand extends Command {
         return this.isOverride;
     }
 
+    public boolean getIsResetAll() {
+        return this.isResetAll;
+    }
+
     @Override
     public boolean equals(Object other) {
         // short circuit if same object
@@ -162,10 +173,25 @@ public class LogCommand extends Command {
         } else {
             if (other instanceof LogCommand) {
                 LogCommand e = (LogCommand) other;
+
+                if ((name == null && studiedHours == null) || (e.name == null && e.studiedHours == null)) {
+                    return getIsReset() == (e.getIsReset())
+                            && getIsOverride() == (e.getIsOverride())
+                            && getIsResetAll() == (e.getIsResetAll());
+                }
+
+                if (studiedHours == null || e.studiedHours == null) {
+                    return getName().equals(e.getName())
+                            && getIsReset() == (e.getIsReset())
+                            && getIsOverride() == (e.getIsOverride())
+                            && getIsResetAll() == (e.getIsResetAll());
+                }
+
                 return getName().equals(e.getName())
                         && getStudiedHours().toString().equals(e.getStudiedHours().toString())
                         && getIsReset() == (e.getIsReset())
-                        && getIsOverride() == (e.getIsOverride());
+                        && getIsOverride() == (e.getIsOverride())
+                        && getIsResetAll() == (e.getIsResetAll());
             }
         }
         return false;
