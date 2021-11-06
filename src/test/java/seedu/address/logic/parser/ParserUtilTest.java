@@ -14,10 +14,12 @@ import java.util.Set;
 import org.junit.jupiter.api.Test;
 
 import seedu.address.logic.parser.exceptions.ParseException;
+import seedu.address.model.amenity.Amenity;
 import seedu.address.model.studyspot.Address;
 import seedu.address.model.studyspot.Name;
 import seedu.address.model.studyspot.OperatingHours;
 import seedu.address.model.studyspot.Rating;
+import seedu.address.model.studyspot.StudiedHours;
 import seedu.address.model.tag.Tag;
 
 public class ParserUtilTest {
@@ -26,7 +28,11 @@ public class ParserUtilTest {
     private static final String INVALID_ADDRESS = " ";
     private static final String INVALID_OPERATING_HOURS = "9-10, 9-6";
     private static final String INVALID_TAG = "#friend";
+    private static final String INVALID_TAG_WITH_SPACING = "very crowded";
+    private static final String INVALID_LONG_TAG = "thisPlaceIsVeryCrowdedAndNoisyyyyyyyyyyyyyyyyyyyyyyyyyyy";
+    private static final String INVALID_AMENITY = "wifii";
     private static final String INVALID_STUDIED_HOURS = "hour";
+    private static final String INVALID_STUDIED_HOURS_INTEGER_OVERFLOW = "21474836250";
 
     private static final String VALID_NAME = "Rachel Walker";
     private static final String VALID_RATING = "3";
@@ -34,6 +40,9 @@ public class ParserUtilTest {
     private static final String VALID_OPERATING_HOURS = "0900-2200, 0900-1800";
     private static final String VALID_TAG_1 = "friend";
     private static final String VALID_TAG_2 = "neighbour";
+    private static final String VALID_AMENITY_1 = "aircon";
+    private static final String VALID_AMENITY_2 = "food";
+    private static final String VALID_STUDIED_HOURS = "5";
 
     private static final String WHITESPACE = " \t\r\n";
 
@@ -156,7 +165,14 @@ public class ParserUtilTest {
 
     @Test
     public void parseTag_invalidValue_throwsParseException() {
+        // non-alpha numeric value
         assertThrows(ParseException.class, () -> ParserUtil.parseTag(INVALID_TAG));
+
+        // contains spacing
+        assertThrows(ParseException.class, () -> ParserUtil.parseTag(INVALID_TAG_WITH_SPACING));
+
+        // tag more than specified tag length
+        assertThrows(ParseException.class, () -> ParserUtil.parseTag(INVALID_LONG_TAG));
     }
 
     @Test
@@ -196,7 +212,82 @@ public class ParserUtilTest {
     }
 
     @Test
-    public void parseStudiedHours_invalidValue() {
+    public void parseAmenity_null_throwsNullPointerException() {
+        assertThrows(NullPointerException.class, () -> ParserUtil.parseAmenity(null));
+    }
+
+    @Test
+    public void parseAmenity_invalidValue_throwsParseException() {
+        assertThrows(ParseException.class, () -> ParserUtil.parseAmenity(INVALID_AMENITY));
+    }
+
+    @Test
+    public void parseAmenity_validValueWithoutWhitespace_returnsAmenity() throws Exception {
+        Amenity expectedAmenity = new Amenity(VALID_AMENITY_1);
+        assertEquals(expectedAmenity, ParserUtil.parseAmenity(VALID_AMENITY_1));
+    }
+
+    @Test
+    public void parseAmenity_validValueWithWhitespace_returnsTrimmedAmenity() throws Exception {
+        String amenityWithWhitespace = WHITESPACE + VALID_AMENITY_1 + WHITESPACE;
+        Amenity expectedAmenity = new Amenity(VALID_AMENITY_1);
+        assertEquals(expectedAmenity, ParserUtil.parseAmenity(amenityWithWhitespace));
+    }
+
+    @Test
+    public void parseAmenities_null_throwsNullPointerException() {
+        assertThrows(NullPointerException.class, () -> ParserUtil.parseAmenities(null));
+    }
+
+    @Test
+    public void parseAmenities_collectionWithInvalidAmenities_throwsParseException() {
+        assertThrows(ParseException.class, () -> ParserUtil.parseAmenities(Arrays.asList(VALID_AMENITY_1,
+                INVALID_AMENITY)));
+    }
+
+    @Test
+    public void parseAmenities_emptyCollection_returnsEmptySet() throws Exception {
+        assertTrue(ParserUtil.parseAmenities(Collections.emptyList()).isEmpty());
+    }
+
+    @Test
+    public void parseAmenities_collectionWithValidAmenities_returnsAmenitySet() throws Exception {
+        Set<Amenity> actualAmenitySet = ParserUtil.parseAmenities(Arrays.asList(VALID_AMENITY_1, VALID_AMENITY_2));
+        Set<Amenity> expectedAmenitySet = new HashSet<Amenity>(Arrays.asList(new Amenity(VALID_AMENITY_1),
+                new Amenity(VALID_AMENITY_2)));
+
+        assertEquals(expectedAmenitySet, actualAmenitySet);
+    }
+
+    @Test
+    public void parseStudiedHours_null_throwsNullPointerException() {
+        assertThrows(NullPointerException.class, () -> ParserUtil.parseStudiedHours((String) null));
+    }
+
+    @Test
+    public void parseStudiedHours_emptyValue_throwsParseException() {
+        assertThrows(ParseException.class, () -> ParserUtil.parseStudiedHours(""));
+    }
+
+    @Test
+    public void parseStudiedHours_invalidValue_throwsParseException() {
+        // non-digit value
         assertThrows(ParseException.class, () -> ParserUtil.parseStudiedHours(INVALID_STUDIED_HOURS));
+
+        // integer overflow
+        assertThrows(ParseException.class, () -> ParserUtil.parseStudiedHours(INVALID_STUDIED_HOURS_INTEGER_OVERFLOW));
+    }
+
+    @Test
+    public void parseStudiedHours_validValueWithoutWhitespace_returnsStudiedHours() throws Exception {
+        StudiedHours expectedStudiedHours = new StudiedHours(VALID_STUDIED_HOURS);
+        assertEquals(expectedStudiedHours, ParserUtil.parseStudiedHours(VALID_STUDIED_HOURS));
+    }
+
+    @Test
+    public void parseStudiedHours_validValueWithWhitespace_returnsTrimmedStudiedHours() throws Exception {
+        String studiedHoursWithWhitespace = WHITESPACE + VALID_STUDIED_HOURS + WHITESPACE;
+        StudiedHours expectedStudiedHours = new StudiedHours(VALID_STUDIED_HOURS);
+        assertEquals(expectedStudiedHours, ParserUtil.parseStudiedHours(studiedHoursWithWhitespace));
     }
 }

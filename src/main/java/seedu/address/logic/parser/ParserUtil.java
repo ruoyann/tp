@@ -129,18 +129,16 @@ public class ParserUtil {
             throw new ParseException(StudiedHours.MESSAGE_CONSTRAINTS);
         }
         try {
-            Integer.parseInt(studiedHours);
+            Integer.parseInt(trimmedStudiedHours);
         } catch (NumberFormatException e) {
             throw new ParseException(StudiedHours.MESSAGE_INTEGER_OVERFLOW);
         }
-        return new StudiedHours(studiedHours);
+        return new StudiedHours(trimmedStudiedHours);
     }
 
     /**
-     * Parses a {@code String amenity} into an {@code Amenity}.
+     * Parses a {@code ArgumentMultimap argMultiMap} into an {@code Predicate<StudySpot>}.
      * Leading and trailing whitespaces will be trimmed.
-     *
-     * @throws ParseException if the given {@code amenity} is invalid.
      */
     public static Predicate<StudySpot> parseFlags(ArgumentMultimap argMultiMap) throws ParseException {
         requireNonNull(argMultiMap);
@@ -234,7 +232,7 @@ public class ParserUtil {
     public static Amenity parseAmenity(String amenity) throws ParseException {
         requireNonNull(amenity);
         String trimmedAmenity = amenity.trim();
-        if (!Amenity.isValidAmenityType(amenity)) {
+        if (!Amenity.isValidAmenityType(trimmedAmenity)) {
             throw new ParseException(String.format(Amenity.MESSAGE_CONSTRAINTS,
                     Amenity.listAllAmenityTypes(Amenity.VALID_TYPES)));
         }
