@@ -2,6 +2,7 @@ package seedu.address.model.studyspot;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertFalse;
+import static org.junit.jupiter.api.Assertions.assertNotEquals;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 import static seedu.address.logic.commands.CommandTestUtil.VALID_ADDRESS_DECK;
 import static seedu.address.logic.commands.CommandTestUtil.VALID_TAG_QUIET;
@@ -167,5 +168,18 @@ public class UniqueStudySpotListTest {
     public void asUnmodifiableObservableList_modifyList_throwsUnsupportedOperationException() {
         assertThrows(UnsupportedOperationException.class, ()
             -> uniqueStudySpotList.asUnmodifiableObservableList().remove(0));
+    }
+
+    @Test
+    public void hashCode_test() {
+        UniqueStudySpotList anotherStarbucks = new UniqueStudySpotList();
+        UniqueStudySpotList anotherDeck = new UniqueStudySpotList();
+
+        anotherStarbucks.add(STARBUCKS);
+        anotherDeck.add(DECK);
+        uniqueStudySpotList.add(STARBUCKS);
+
+        assertEquals(anotherStarbucks.hashCode(), uniqueStudySpotList.hashCode());
+        assertNotEquals(anotherDeck.hashCode(), uniqueStudySpotList.hashCode());
     }
 }

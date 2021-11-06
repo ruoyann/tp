@@ -9,6 +9,20 @@ import org.junit.jupiter.api.Test;
 
 public class CommandResultTest {
     @Test
+    public void getters_correctValues_success() {
+        CommandResult two = new CommandResult("010", false, true, false);
+        CommandResult five = new CommandResult("101", true, false, true);
+
+        assertFalse(two.isLogHours());
+        assertTrue(two.isShowHelp());
+        assertFalse(two.isExit());;
+
+        assertTrue(five.isLogHours());
+        assertFalse(five.isShowHelp());
+        assertTrue(five.isExit());
+    }
+
+    @Test
     public void equals() {
         CommandResult commandResult = new CommandResult("feedback");
 
