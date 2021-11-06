@@ -31,6 +31,7 @@ import static seedu.address.logic.commands.CommandTestUtil.VALID_RATING_DECK;
 import static seedu.address.logic.commands.CommandTestUtil.VALID_RATING_FRONTIER;
 import static seedu.address.logic.commands.CommandTestUtil.VALID_TAG_CROWDED;
 import static seedu.address.logic.commands.CommandTestUtil.VALID_TAG_QUIET;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_AMENITY;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_EDIT_SPOT;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_TAG;
 import static seedu.address.logic.parser.CommandParserTestUtil.assertParseFailure;
@@ -49,6 +50,7 @@ import seedu.address.testutil.EditStudySpotDescriptorBuilder;
 public class EditCommandParserTest {
 
     private static final String TAG_EMPTY = " " + PREFIX_TAG;
+    private static final String AMENITIES_EMPTY = " " + PREFIX_AMENITY;
 
     private static final String MESSAGE_INVALID_FORMAT =
             String.format(MESSAGE_INVALID_COMMAND_FORMAT, EditCommand.MESSAGE_USAGE);
@@ -237,5 +239,14 @@ public class EditCommandParserTest {
         assertParseSuccess(parser, userInput, expectedCommand);
     }
 
-    //todo reset amenities
+    @Test
+    public void parse_resetAmenities_success() {
+        Name targetName = new Name(VALID_NAME_FRONTIER);
+        String userInput = " " + PREFIX_EDIT_SPOT + targetName.fullName + AMENITIES_EMPTY;
+
+        EditStudySpotDescriptor descriptor = new EditStudySpotDescriptorBuilder().withAddedAmenities().build();
+        EditCommand expectedCommand = new EditCommand(targetName, descriptor);
+
+        assertParseSuccess(parser, userInput, expectedCommand);
+    }
 }
