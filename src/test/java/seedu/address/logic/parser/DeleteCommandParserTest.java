@@ -38,9 +38,12 @@ public class DeleteCommandParserTest {
 
     @Test
     public void parse_invalidArgs_throwsParseException() {
-        String userInput = "abc";
-        assertParseFailure(parser, userInput, String.format(MESSAGE_INVALID_COMMAND_FORMAT,
-                DeleteCommand.MESSAGE_USAGE));
+        String expectedMessage = String.format(MESSAGE_INVALID_COMMAND_FORMAT, DeleteCommand.MESSAGE_USAGE);
+
+        assertParseFailure(parser, " abc", expectedMessage);
+
+        String userInput = PREAMBLE_WHITESPACE + " abc";
+        assertParseFailure(parser, userInput, expectedMessage);
     }
 
     @Test
