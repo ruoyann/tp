@@ -4,7 +4,6 @@ import static java.util.Objects.requireNonNull;
 import static seedu.address.commons.core.Messages.MESSAGE_INVALID_COMMAND_FORMAT;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_DELETE_SPOT;
 
-import java.util.NoSuchElementException;
 import java.util.stream.Stream;
 
 import seedu.address.logic.commands.DeleteCommand;
@@ -32,12 +31,7 @@ public class DeleteCommandParser implements Parser<DeleteCommand> {
             throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT, DeleteCommand.MESSAGE_USAGE));
         }
 
-        try {
-            toBeDeletedSpot = ParserUtil.parseName(argMultimap.getValue(PREFIX_DELETE_SPOT).get());
-        } catch (NoSuchElementException pe) {
-            throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT, DeleteCommand.MESSAGE_USAGE), pe);
-        }
-
+        toBeDeletedSpot = ParserUtil.parseName(argMultimap.getValue(PREFIX_DELETE_SPOT).get());
         return new DeleteCommand(toBeDeletedSpot);
     }
 

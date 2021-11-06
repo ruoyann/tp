@@ -34,4 +34,10 @@ public class DeleteCommandParserTest {
         assertParseFailure(parser, userInput, String.format(MESSAGE_INVALID_COMMAND_FORMAT,
                 DeleteCommand.MESSAGE_USAGE));
     }
+
+    @Test
+    public void parse_invalidName_throwsParseException() {
+        String userInput = " " + PREFIX_DELETE_SPOT;
+        assertParseFailure(parser, userInput, Name.MESSAGE_CONSTRAINTS);
+    }
 }
