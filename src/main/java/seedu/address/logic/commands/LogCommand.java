@@ -35,7 +35,7 @@ public class LogCommand extends Command {
             + PREFIX_HOURS + "ADDED_HOURS* (required if -r is not input) "
             + "[-r] [-o]\n"
             + "Example: " + COMMAND_WORD + " " + PREFIX_NAME + "Starbucks" + " " + PREFIX_HOURS + "4 ";
-    public static final String MESSAGE_SUCCESS_DEFAULT = "Logged %1$S hours at %2$s!";
+    public static final String MESSAGE_SUCCESS_DEFAULT = "Logged %1$S hour(s) at %2$s!";
     public static final String MESSAGE_ONE_FLAG = "Please only use one flag!";
     public static final String MESSAGE_SUCCESS_RESET = "Reset hours at %1$s!";
     public static final String MESSAGE_SUCCESS_RESET_ALL = "Reset hours for all study spots!";
