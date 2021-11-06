@@ -137,8 +137,9 @@ public class ParserUtil {
     }
 
     /**
-     * Parses a {@code ArgumentMultimap argMultiMap} into an {@code Predicate<StudySpot>}.
-     * Leading and trailing whitespaces will be trimmed.
+     * Parses flags given in ArgumentMultimap into Predicate
+     *
+     * @throws ParseException if the given flags and parameters are invalid
      */
     public static Predicate<StudySpot> parseFlags(ArgumentMultimap argMultiMap) throws ParseException {
         requireNonNull(argMultiMap);
@@ -166,11 +167,8 @@ public class ParserUtil {
         if (isFlagPresent(flags, ListCommand.FLAG_RATING)) {
             Rating rating = parseRating(argMultiMap.getValue(PREFIX_RATING)
                     .orElseThrow(() -> new ParseException(ListCommand.MESSAGE_MISSING_RATING)));
-            Set<Rating> ratings = new HashSet<>();
-            ratings.add(rating);
-            List<Predicate<StudySpot>> ratingsPredicate =
-                    ratings.stream().map(r -> ListCommand.containsRating(r)).collect(Collectors.toList());
-            predicateList.addAll(ratingsPredicate);
+            Predicate<StudySpot> ratingsPredicate = ListCommand.containsRating(rating);
+            predicateList.add(ratingsPredicate);
         }
         return predicateList.stream().reduce(Predicate::and).get();
     }

@@ -5,6 +5,7 @@ import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertNotEquals;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 import static seedu.address.logic.commands.CommandTestUtil.VALID_ADDRESS_DECK;
+import static seedu.address.logic.commands.CommandTestUtil.VALID_AMENITY_CHARGER;
 import static seedu.address.logic.commands.CommandTestUtil.VALID_NAME_DECK;
 import static seedu.address.logic.commands.CommandTestUtil.VALID_OPERATING_HOURS_DECK;
 import static seedu.address.logic.commands.CommandTestUtil.VALID_RATING_DECK;
@@ -79,7 +80,7 @@ public class StudySpotTest {
         editedStarbucks = new StudySpotBuilder(STARBUCKS).withRating(VALID_RATING_DECK).build();
         assertFalse(STARBUCKS.equals(editedStarbucks));
 
-        editedStarbucks = new StudySpotBuilder(STARBUCKS).withAmenities("wifi").build();
+        editedStarbucks = new StudySpotBuilder(STARBUCKS).withAmenities(VALID_AMENITY_CHARGER).build();
         assertFalse(STARBUCKS.equals(editedStarbucks));
 
         // different operating hours  -> returns false
@@ -110,7 +111,7 @@ public class StudySpotTest {
     @Test
     public void toString_stringReturned() {
         String defaultConfigAsString = "Starbucks; Rating: 4; Address: UTown;"
-                + " Favourite: true; Studied Hours: 100; Tags: [coffee]; Amenities: [wifi][charger][aircon][food]";
+                + " Favourite: true; Studied Hours: 100; Tags: [coffee]; Amenities: [wifi]";
 
         StudySpot starbucks = new StudySpotBuilder(STARBUCKS)
                 .withStudiedHours("100").withFavourite(true).build();

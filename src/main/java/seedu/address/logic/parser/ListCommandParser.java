@@ -18,13 +18,13 @@ import seedu.address.model.studyspot.StudySpot;
 import seedu.address.model.tag.Tag;
 
 /**
- * Parses input arguments and creates a new FindCommand object
+ * Parses input arguments and creates a new ListCommand object
  */
 public class ListCommandParser implements Parser<ListCommand> {
 
     /**
-     * Parses the given {@code String} of arguments in the context of the FindCommand
-     * and returns a FindCommand object for execution.
+     * Parses the given {@code String} of arguments in the context of the ListCommand
+     * and returns a ListCommand object for execution.
      * @throws ParseException if the user input does not conform the expected format
      */
     public ListCommand parse(String args) throws ParseException {
@@ -46,9 +46,7 @@ public class ListCommandParser implements Parser<ListCommand> {
                 : null;
 
         Rating rating = isRatingFlagPresent
-                ? ParserUtil.parseRating(argMultimap.getValue(PREFIX_RATING)
-                .orElseThrow(() -> new ParseException(ListCommand.MESSAGE_MISSING_RATING)))
-                : null;
+                ? ParserUtil.parseRating(argMultimap.getValue(PREFIX_RATING).get()) : null;
 
         if (isTagFlagPresent && tagList.isEmpty()) {
             throw new ParseException(ListCommand.MESSAGE_MISSING_TAGS);

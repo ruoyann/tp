@@ -52,6 +52,23 @@ public class DeleteCommandTest {
     }
 
     @Test
+    public void execute_deleteFavouriteStudySpot_success() {
+        StudySpot studySpotToDelete = model.getFullList().get(1);
+        assert(studySpotToDelete.isFavourite()); // studySpot being deleted is a favourite
+
+        DeleteCommand deleteCommand = new DeleteCommand(VALID_NAME_TWO);
+
+        String expectedMessage = String.format(DeleteCommand.MESSAGE_DELETE_STUDYSPOT_SUCCESS,
+                studySpotToDelete.getName());
+
+        ModelManager expectedModel = new ModelManager(model.getStudyTracker(), new UserPrefs());
+        StudySpot unfavStudySpot = expectedModel.removeStudySpotFromFavourites(studySpotToDelete);
+        expectedModel.deleteStudySpot(unfavStudySpot);
+
+        assertCommandSuccess(deleteCommand, model, expectedMessage, expectedModel);
+    }
+
+    @Test
     public void execute_validIndexFilteredList_success() {
         showStudySpotAtIndex(model, INDEX_FIRST_SPOT);
 

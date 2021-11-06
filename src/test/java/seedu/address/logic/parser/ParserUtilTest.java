@@ -1,5 +1,6 @@
 package seedu.address.logic.parser;
 
+import static org.junit.jupiter.api.Assertions.assertDoesNotThrow;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 import static seedu.address.logic.parser.ParserUtil.MESSAGE_INVALID_INDEX;
@@ -29,10 +30,9 @@ public class ParserUtilTest {
     private static final String INVALID_OPERATING_HOURS = "9-10, 9-6";
     private static final String INVALID_TAG = "#friend";
     private static final String INVALID_TAG_WITH_SPACING = "very crowded";
-    private static final String INVALID_LONG_TAG = "thisPlaceIsVeryCrowdedAndNoisyyyyyyyyyyyyyyyyyyyyyyyyyyy";
+    private static final String INVALID_TAG_49_CHAR = "thisPlaceIsVeryCrowdedAndNoisyyyyyyyyyyyyyyyyyyyy";
     private static final String INVALID_AMENITY = "wifii";
     private static final String INVALID_STUDIED_HOURS = "hour";
-    private static final String INVALID_STUDIED_HOURS_INTEGER_OVERFLOW = "21474836250";
 
     private static final String VALID_NAME = "Rachel Walker";
     private static final String VALID_RATING = "3";
@@ -165,14 +165,7 @@ public class ParserUtilTest {
 
     @Test
     public void parseTag_invalidValue_throwsParseException() {
-        // non-alpha numeric value
         assertThrows(ParseException.class, () -> ParserUtil.parseTag(INVALID_TAG));
-
-        // contains spacing
-        assertThrows(ParseException.class, () -> ParserUtil.parseTag(INVALID_TAG_WITH_SPACING));
-
-        // tag more than specified tag length
-        assertThrows(ParseException.class, () -> ParserUtil.parseTag(INVALID_LONG_TAG));
     }
 
     @Test
@@ -186,6 +179,19 @@ public class ParserUtilTest {
         String tagWithWhitespace = WHITESPACE + VALID_TAG_1 + WHITESPACE;
         Tag expectedTag = new Tag(VALID_TAG_1);
         assertEquals(expectedTag, ParserUtil.parseTag(tagWithWhitespace));
+    }
+
+    @Test
+    public void parseTag_containsWhiteSpace_throwsParseException() {
+        assertThrows(ParseException.class, () -> ParserUtil.parseTag(" "));
+    }
+
+    @Test
+    public void parseTag_exceedsMaxLength_throwsParseException() {
+        assertDoesNotThrow(() -> ParserUtil.parseTag(INVALID_TAG_49_CHAR));
+
+        String invalidTagFiftyChar = INVALID_TAG_49_CHAR + "y";
+        assertThrows(ParseException.class, () -> ParserUtil.parseTag(invalidTagFiftyChar));
     }
 
     @Test
@@ -271,11 +277,7 @@ public class ParserUtilTest {
 
     @Test
     public void parseStudiedHours_invalidValue_throwsParseException() {
-        // non-digit value
         assertThrows(ParseException.class, () -> ParserUtil.parseStudiedHours(INVALID_STUDIED_HOURS));
-
-        // integer overflow
-        assertThrows(ParseException.class, () -> ParserUtil.parseStudiedHours(INVALID_STUDIED_HOURS_INTEGER_OVERFLOW));
     }
 
     @Test
@@ -290,4 +292,16 @@ public class ParserUtilTest {
         StudiedHours expectedStudiedHours = new StudiedHours(VALID_STUDIED_HOURS);
         assertEquals(expectedStudiedHours, ParserUtil.parseStudiedHours(studiedHoursWithWhitespace));
     }
+
+    @Test
+    public void parseStudiedHours_negativeValue_throwsParseException() {
+        assertThrows(ParseException.class, () -> ParserUtil.parseStudiedHours("-10"));
+    }
+
+    @Test
+    public void parseStudiedHours_largerThanMaxInteger_throwsParseException() {
+        String maxIntegerPlusOne = "2147483648";
+        assertThrows(ParseException.class, () -> ParserUtil.parseStudiedHours(maxIntegerPlusOne));
+    }
+
 }
