@@ -55,4 +55,11 @@ public class DeleteCommandParserTest {
         // Missing name parameter
         assertParseFailure(parser, VALID_NAME_DECK, expectedMessage);
     }
+
+    @Test
+    public void parser_extraPreamble_failure() {
+        String expectedMessage = String.format(MESSAGE_INVALID_COMMAND_FORMAT, DeleteCommand.MESSAGE_USAGE);
+
+        assertParseFailure(parser, "Extra" + PREFIX_DELETE_SPOT + VALID_NAME_DECK, expectedMessage);
+    }
 }
