@@ -101,6 +101,23 @@ public class EditCommandTest {
     }
 
     @Test
+    public void execute_replaceTags_fail() {
+        Name firstStudySpotInTypicalStudySpots = new Name("Starbucks");
+        EditStudySpotDescriptor descriptor = new EditStudySpotDescriptorBuilder().withRemovedTags().build();
+        EditCommand editCommand = new EditCommand(firstStudySpotInTypicalStudySpots, descriptor);
+
+        assertCommandFailure(editCommand, model, EditCommand.MESSAGE_MISSING_REMOVAL_INPUT);
+    }
+    @Test
+    public void execute_replaceAmenities_fail() {
+        Name firstStudySpotInTypicalStudySpots = new Name("Starbucks");
+        EditStudySpotDescriptor descriptor = new EditStudySpotDescriptorBuilder().withRemovedAmenities().build();
+        EditCommand editCommand = new EditCommand(firstStudySpotInTypicalStudySpots, descriptor);
+
+        assertCommandFailure(editCommand, model, EditCommand.MESSAGE_MISSING_REMOVAL_INPUT);
+    }
+
+    @Test
     public void execute_editRepeatedTags_fail() {
         Name firstStudySpotInTypicalStudySpots = new Name("Starbucks");
         EditStudySpotDescriptor descriptor = new EditStudySpotDescriptorBuilder()

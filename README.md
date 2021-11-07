@@ -12,7 +12,9 @@
 ![Ui](docs/images/Ui.png)
 
 ## Features
-1. **Make informed decisions** of where to study —  every study spot includes details about amenities like sockets, aircon, and crowd level, and more!
+1. **Make informed decisions** of where to study —  every study spot includes details about *amenities* like chargers, 
+   aircon, food, and wifi! Not forgetting the personalised *tags*, *address* and *operating hour* information that you 
+   can add to every study spot!
 2. **Data-driven statistics** to **track time spent studying** ensures that you know where to go to be productive
 3. Made a mistake? Found out something new? **Editing details is quick and simple!**
 4. **Powerful customization** with user-defined aliases and custom themes!

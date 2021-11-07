@@ -1,9 +1,8 @@
 package seedu.address.logic.commands;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
-import static org.junit.jupiter.api.Assertions.assertFalse;
+import static org.junit.jupiter.api.Assertions.assertNotEquals;
 import static org.junit.jupiter.api.Assertions.assertThrows;
-import static org.junit.jupiter.api.Assertions.assertTrue;
 import static seedu.address.logic.commands.CommandTestUtil.assertCommandFailure;
 import static seedu.address.testutil.TypicalStudySpots.getTypicalStudyTracker;
 
@@ -109,80 +108,92 @@ public class LogCommandTest {
         StudiedHours differentStudiedHours = new StudiedHours("7");
         LogCommand commandWithSameValues = new LogCommand(firstStudySpotInTypicalStudySpots, copyStudiedHours,
                 false, false, false);
-        assertTrue(standardCommand.equals(commandWithSameValues));
+        assertEquals(commandWithSameValues, standardCommand);
 
         // same object -> returns true
-        assertTrue(standardCommand.equals(standardCommand));
+        assertEquals(standardCommand, standardCommand);
 
         // null -> returns false
-        assertFalse(standardCommand.equals(null));
+        assertNotEquals(standardCommand, null);
 
         // different types -> returns false
-        assertFalse(standardCommand.equals(new ClearCommand()));
+        assertNotEquals(new ClearCommand(), standardCommand);
 
         // different name -> returns false
-        assertFalse(standardCommand.equals(new LogCommand(secondStudySpotInTypicalStudySpots, copyStudiedHours,
-                false, false, false)));
+        assertNotEquals(new LogCommand(secondStudySpotInTypicalStudySpots, copyStudiedHours,
+                false, false, false), standardCommand);
 
         // different descriptor -> returns false
-        assertFalse(standardCommand.equals(new LogCommand(secondStudySpotInTypicalStudySpots, differentStudiedHours,
-                false, false, false)));
+        assertNotEquals(new LogCommand(secondStudySpotInTypicalStudySpots, differentStudiedHours,
+                false, false, false), standardCommand);
 
         // same name but different studied hours -> returns false
-        assertFalse(standardCommand.equals(new LogCommand(firstStudySpotInTypicalStudySpots, differentStudiedHours,
-                false, false, false)));
+        assertNotEquals(new LogCommand(firstStudySpotInTypicalStudySpots, differentStudiedHours,
+                false, false, false), standardCommand);
 
         // same name same hours, different reset -> returns false
-        assertFalse(standardCommand.equals(new LogCommand(firstStudySpotInTypicalStudySpots, studiedHours,
-                true, false, false)));
+        assertNotEquals(new LogCommand(firstStudySpotInTypicalStudySpots, studiedHours,
+                true, false, false), standardCommand);
 
         // same name same hours, different override -> returns false
-        assertFalse(standardCommand.equals(new LogCommand(firstStudySpotInTypicalStudySpots, studiedHours,
-                false, true, false)));
+        assertNotEquals(new LogCommand(firstStudySpotInTypicalStudySpots, studiedHours,
+                false, true, false), standardCommand);
 
         // same name same hours, different reset all -> returns false
-        assertFalse(standardCommand.equals(new LogCommand(firstStudySpotInTypicalStudySpots, studiedHours,
-                false, false, true)));
+        assertNotEquals(new LogCommand(firstStudySpotInTypicalStudySpots, studiedHours,
+                false, false, true), standardCommand);
+
+        // same name, one null hours, different reset all -> returns false
+        assertNotEquals(new LogCommand(firstStudySpotInTypicalStudySpots, null,
+                false, false, true), standardCommand);
 
         LogCommand resetAllCommand = new LogCommand(null, null, false, false, true);
         LogCommand sameResetAllCommand = new LogCommand(null, null, false, false, true);
 
         // name == null, studied hours == null, different commands -> returns false
-        assertFalse(standardCommand.equals(resetAllCommand));
+        assertNotEquals(resetAllCommand, standardCommand);
 
         // name == null, studied hours == null, same command -> returns true
-        assertTrue(resetAllCommand.equals(sameResetAllCommand));
+        assertEquals(sameResetAllCommand, resetAllCommand);
 
         // different booleans -> returns false
-        assertFalse(resetAllCommand.equals(new LogCommand(null, null,
-                false, true, false)));
+        assertNotEquals(new LogCommand(null, null,
+                false, true, false), resetAllCommand);
 
         // different booleans -> returns false
-        assertFalse(resetAllCommand.equals(new LogCommand(null, null, true, true, false)));
+        assertNotEquals(new LogCommand(null, null, true, true, false), resetAllCommand);
 
         LogCommand nullStudiedHours = new LogCommand(firstStudySpotInTypicalStudySpots,
                 null, true, false, false);
 
         // same name, null vs non null studied hours -> returns false
-        assertFalse(standardCommand.equals(nullStudiedHours));
+        assertNotEquals(nullStudiedHours, standardCommand);
 
         LogCommand nullStudiedHoursDifferentName = new LogCommand(secondStudySpotInTypicalStudySpots, null,
                 true, false, false);
 
         // different name, both null studied hours -> returns false
-        assertFalse(nullStudiedHoursDifferentName.equals(nullStudiedHours));
+        assertNotEquals(nullStudiedHours, nullStudiedHoursDifferentName);
 
 
         // same name, null hours, different booleans -> returns false
-        assertFalse(nullStudiedHours.equals(new LogCommand(firstStudySpotInTypicalStudySpots, null,
-                false, true, true)));
+        assertNotEquals(new LogCommand(firstStudySpotInTypicalStudySpots, null,
+                false, true, true), nullStudiedHours);
 
         // same name, null hours, different booleans -> returns false
-        assertFalse(nullStudiedHours.equals(new LogCommand(firstStudySpotInTypicalStudySpots, null,
-                false, false, true)));
+        assertNotEquals(new LogCommand(firstStudySpotInTypicalStudySpots, null,
+                false, false, true), nullStudiedHours);
 
         // same name, null hours, different booleans -> returns false
-        assertFalse(nullStudiedHours.equals(new LogCommand(firstStudySpotInTypicalStudySpots, null,
-                false, false, false)));
+        assertNotEquals(new LogCommand(firstStudySpotInTypicalStudySpots, null,
+                false, false, false), nullStudiedHours);
+
+        // same name, null hours, different booleans -> returns false
+        assertNotEquals(new LogCommand(firstStudySpotInTypicalStudySpots, null,
+                true, false, true), nullStudiedHours);
+
+        // same name, null hours, different booleans -> returns false
+        assertNotEquals(new LogCommand(firstStudySpotInTypicalStudySpots, null,
+                true, true, false), nullStudiedHours);
     }
 }

@@ -19,12 +19,13 @@ Only want to know how to use StudyTracker? Check out the [**User Guide**](UserGu
 
 <div style="page-break-after: always;"></div>
 
-## Table of Contents
+--- 
+## **Table of Contents**
 
 * Table of Contents
 {:toc}
 
---------------------------------------------------------------------------------------------------------------------
+---
 
 ## **Acknowledgements**
 
@@ -172,7 +173,7 @@ The `Storage` component,
 
 Classes used by multiple components are in the `seedu.address.commons` package.
 
---------------------------------------------------------------------------------------------------------------------
+---
 
 ## **Implementation**
 
@@ -223,7 +224,7 @@ The Alias feature is facilitated by three key classes: `Alias.java`, `StudyTrack
 
 `StudyTrackerParser.java` is responsible for parsing user commands. The key operations needed for Aliases are:
 
-* `StudyTrackerParser#isInvokingAlias()` —  checks if the user input is a normal command, an Alias belonging in `UserPrefs`, or invalid.  
+* `StudyTrackerParser#isInvokingAlias()` —  checks if the user input is a normal command, or one that invokes an Alias belonging in `UserPrefs`.  
 * `StudyTrackerParser#expandAlias()` —  parses the Alias into its corresponding command.
 StudyTrackerParser will prepend the arguments from the expanded command before the arguments in user input, if any.
 
@@ -341,7 +342,6 @@ Sequence diagram for `-r` flag is the same as `-o` but with handleReset() instea
 
 The following activity diagram summarizes what happens when a user executes a new command:
 
-
 ![LogActivityDiagram](images/LogActivityDiagram.png)
 
 #### Design considerations
@@ -368,6 +368,103 @@ To tackle these issues, the following solutions were implemented:
     to keep track of how long they studied there.
     - Using Edit on `StudiedHours` should provide a similar effect to the `-o` flag of Log, it was agreed that it was
      not natural and unintuitive to use Edit for this purpose.
+
+### Operating Hours
+#### Overview
+
+Operating hours allow users to specify the opening and closing hours of a study spot.
+
+#### Implementation
+
+Operating hours is facilitated by these classes: `OperatingHours.java`, `StudySpot.java`, `AddCommand.java`
+and `EditCommand.java`.
+
+`OperatingHours.java` is responsible for creating `OperatingHours` objects. A `StudySpot` object contains 
+an `operatingHours` attribute. A study spot with an `OperatingHours` object can be initialised with an Add command 
+or the `operatingHours` attribute can be edited with an Edit command.
+
+Given below is an example usage scenario of adding a study spot with operating hours and how the mechanism behaves.
+
+Step 1. The user executes `add n/com r/5 o/0900-2200, 0900-1800` to add a new study spot. `StudyTrackerParser` class
+creates an `AddCommandParser` to parse the command. Since operating hours are provided in the command, 
+`ParserUtil#parseOperatingHours(String operatingHours)` is called. An `AddCommand` object with the study spot to be 
+added is then created.
+
+The following object diagram illustrates the `OperatingHours` object created.
+
+![Add OperatingHoursObjectDiagram](images/AddOperatingHoursObjectDiagram.png)
+
+
+Step 2. `LogicManager` executes the `AddCommand` object, calling `Model#addStudySpot(StudySpot studySpot)` so that 
+a new study spot is added to the model in StudyTracker.
+
+The following sequence diagram demonstrates how `StudyTrackerParser` parses the command.
+
+![Add OperatingHoursSequenceDiagram](images/AddOperatingHoursSequenceDiagram.png)
+
+
+### Enhanced List feature
+#### Overview
+
+The List Command is enhanced to support filtering of favourites, tags, amenities and rating.
+
+#### Implementation
+
+The `Model` component stores the currently 'selected' `StudySpot` objects as a separate filtered list. The filter of this list can be updated using `Model#updateFilteredStudySpotList(Predicate<StudySpot> predicate)`.
+
+Given below is an example usage scenario and how the list mechanism behaves at every step.
+
+Step 1. The user executes `list -f` command to show all favourites in the StudyTracker. `StudyTrackerParser` class
+creates a `ListCommandParser` to parse the command and creates a `ListCommand` object with a `Predicate<StudySpot>`
+that filters for favourite `StudySpots`.
+
+
+Step 2. `LogicManager` executes the `ListCommand` object, calling 
+`Model#updateFilteredStudySpotList(Predicate<StudySpot> predicate)`. This updates the model in StudyTracker to show
+only favourite `StudySpots` to the user. 
+
+The following sequence diagram demonstrates how `StudyTrackerParser` parses the command.
+
+![ListSequenceDiagram](images/ListSequenceDiagram.png)
+
+
+#### Design considerations
+
+**Behaviour of filters with multiple tags:**
+* **Alternative 1 (current choice):** Filtering by tags show study spots that all specified tags.
+* **Alternative 2:** Filtering by tags show study spots that contain at least one of the specified tags.
+
+
+The current choice was chosen as it is intuitive and most modern desktop applications follow this behaviour. 
+
+### Enhanced Edit Command
+
+#### Overview
+
+The Edit Command is enhanced to support the removal of specific tags and amenities.
+
+#### Implementation
+
+The Edit Command is facilitated by two classes: `EditCommand.java` and `EditCommandParser.java`.
+
+Given below is an example usage scenario of removing a tag from a study spot and how the mechanism behaves.
+
+Step 1. The user executes `edit spot/com rt/noisy` to remove the Tag `noisy` from the StudySpot `com`. 
+`StudyTrackerParser` then parses this input and creates an `EditCommand` object.
+
+Step 2. `LogicManager` executes the `EditCommand` object and updates the model in StudyTracker with the edited study
+spot.
+
+The following sequence diagram demonstrates how `StudyTrackerParser` parses the command.
+
+![Edit RemoveTagSequenceDiagram](images/EditRemoveTagSequenceDiagram.png)
+
+
+#### Design considerations
+
+**Aspect: How to increase the ease of removing fields in a study spot:**
+- **Alternative 1 (current choice)**: Users can directly remove a tag or an amenity they specify.
+- **Alternative 2**: Users have to retype existing tags or amenities if they wish to retain them.
 
 ### Themes
 
@@ -413,109 +510,7 @@ The following are examples showing the `Default` and `DotsDark` theme.
 * `fg-text`, `bg-text`, `accent-text` — text colour for `fg-surface`, `bg-surface` and `fg-accent` respectively.
 * `button` — button colour
 
-### Operating Hours
-#### Overview
-
-Operating hours allow users to specify the opening and closing hours of a study spot.
-
-#### Implementation
-
-Operating hours is facilitated by these classes: `OperatingHours.java`, `StudySpot.java`, `AddCommand.java`
-and `EditCommand.java`.
-
-`OperatingHours.java` is responsible for creating `OperatingHours` objects. A `StudySpot` object contains 
-an `operatingHours` attribute. A study spot with an `OperatingHours` object can be initialised with an Add command 
-or the `operatingHours` attribute can be edited with an Edit command.
-
-Given below is an example usage scenario of adding a study spot with operating hours and how the mechanism behaves.
-
-Step 1. The user executes `add n/com r/5 o/0900-2200, 0900-1800` to add a new study spot. `StudyTrackerParser` class
-creates an `AddCommandParser` to parse the command. Since operating hours are provided in the command, 
-`ParserUtil#parseOperatingHours(String operatingHours)` is called. An `AddCommand` object with the study spot to be 
-added is then created.
-
-The following object diagram illustrates the `OperatingHours` object created.
-
-![Add OperatingHoursObjectDiagram](images/AddOperatingHoursObjectDiagram.png)
-
-
-Step 2. `LogicManager` executes the `AddCommand` object, calling `Model#addStudySpot(StudySpot studySpot)` so that 
-a new study spot is added to the model in StudyTracker.
-
-The following sequence diagram demonstrates how `StudyTrackerParser` parses the command.
-
-![Add OperatingHoursSequenceDiagram](images/AddOperatingHoursSequenceDiagram.png)
-
-
-### Enhanced List feature
-#### Overview
-
-The List Command is enhanced to support filtering of favourites and tags.
-
-#### Implementation
-
-The `Model` component stores the currently 'selected' `StudySpot` objects as a separate filtered list. The filter of this list can be updated using `Model#updateFilteredStudySpotList(Predicate<StudySpot> predicate)`.
-
-Given below is an example usage scenario and how the list mechanism behaves at every step.
-
-Step 1. The user executes `list -f` command to show all favourites in the StudyTracker. `StudyTrackerParser` class
-creates a `ListCommandParser` to parse the command and creates a `ListCommand` object with a `Predicate<StudySpot>`
-that filters for favourite `StudySpots`.
-
-
-Step 2. `LogicManager` executes the `ListCommand` object, calling 
-`Model#updateFilteredStudySpotList(Predicate<StudySpot> predicate)`. This updates the model in StudyTracker to show
-only favourite `StudySpots` to the user. 
-
-The following sequence diagram demonstrates how `StudyTrackerParser` parses the command.
-
-![ListSequenceDiagram](images/ListSequenceDiagram.png)
-
-
-#### Design considerations
-
-**Behaviour of filters with multiple tags:**
-* **Current choice:** Filtering by tags show study spots that all specified tags.
-* **Alternative 1:** Filtering by tags show study spots that contain at least one of the specified tags.
-
-
-The current choice was chosen as it is intuitive and most modern desktop applications follow this behaviour. 
-
-#### Future Extensions
-
-A future extension would be for List to support filtering of amenities as well.
-
-### Enhanced Edit Command
-
-#### Overview
-
-The Edit Command is enhanced to support the removal of specific tags and amenities.
-
-#### Implementation
-
-The Edit Command is facilitated by two classes: `EditCommand.java` and `EditCommandParser.java`.
-
-Given below is an example usage scenario of removing a tag from a study spot and how the mechanism behaves.
-
-Step 1. The user executes `edit spot/com rt/noisy` to remove the Tag `noisy` from the StudySpot `com`. 
-`StudyTrackerParser` then parses this input and creates an `EditCommand` object.
-
-Step 2. `LogicManager` executes the `EditCommand` object and updates the model in StudyTracker with the edited study
-spot.
-
-The following sequence diagram demonstrates how `StudyTrackerParser` parses the command.
-
-![Edit RemoveTagSequenceDiagram](images/EditRemoveTagSequenceDiagram.png)
-
-
-#### Design considerations
-
-**Aspect: How to increase the ease of removing fields in a study spot:**
-- Alternative 1 (current choice): Users can directly remove a tag or an amenity they specify.
-- Alternative 2: Users have to retype existing tags or amenities if they wish to retain them.
-
-
---------------------------------------------------------------------------------------------------------------------
+---
 
 ## **Documentation, logging, testing, configuration, dev-ops**
 
@@ -525,7 +520,7 @@ The following sequence diagram demonstrates how `StudyTrackerParser` parses the 
 * [Configuration guide](Configuration.md)
 * [DevOps guide](DevOps.md)
 
---------------------------------------------------------------------------------------------------------------------
+---
 
 ## **Appendix: Requirements**
 
@@ -654,7 +649,7 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 * **Private contact detail**: A contact detail that is not meant to be shared with others
 * **Usable**: All functions can be used even if the user experience is not optimal
 
---------------------------------------------------------------------------------------------------------------------
+---
 
 ## **Appendix: Instructions for manual testing**
 
@@ -669,9 +664,11 @@ testers are expected to do more *exploratory* testing.
 
 1. Initial launch
 
-    1. Download the jar file and copy into an empty folder
+    1. Download the jar file and copy into an empty folder.
 
-    1. Double-click the jar file Expected: Shows the GUI with a set of sample contacts. The window size may not be optimum.
+    1. Double-click the jar file.<br>
+       Expected: Shows the GUI with a set of sample study spots.
+       The window size may not be optimum.
 
 1. Saving window preferences
 
@@ -679,8 +676,36 @@ testers are expected to do more *exploratory* testing.
 
     1. Re-launch the app by double-clicking the jar file.<br>
        Expected: The most recent window size and location is retained.
+       
+1. Saving custom themes
 
-1. _{ more test cases …​ }_
+    1. Set a colour theme in the Settings by accessing `File > Settings` in the Menu Bar and selecting a Theme.
+    
+    1. Click on `Save` to apply this theme.<br>
+       Expected: The GUI will change colour to the selected theme. 
+       
+    1. Close the window.
+       
+    1. Re-launch the app by double-clicking the jar file.<br>
+       Expected: The GUI will launch with the selected theme.
+       
+### Adding a study spot
+
+1. Adding a study spot to StudyTracker
+
+    1. Prerequisites: Do not have a study spot named 'Test Spot' already in StudyTracker
+
+    1. Test case: `add n/Test Spot r/5 m/wifi a/Testing`<br>
+       Expected: A study spot named Test Spot, with rating 5, amenity [wifi], address: "Testing" is added to the list.
+       Details of the added study spot is shown in the status message.
+       The study spot is also displayed in the GUI (might require scrolling down the list of study spots).
+       
+    1. Test case: `add n/Test Spot r/3`<br>
+       Expected: No study spot is added as there already exists a study spot named 'Test Spot'.
+       Error details shown in the status message. 
+
+    1. Other incorrect add commands to try: `add New Place`, `add n/New Place`<br>
+       Expected: Error messages for invalid command format is shown.
 
 ### Deleting a study spot
 
@@ -689,15 +714,13 @@ testers are expected to do more *exploratory* testing.
     1. Prerequisites: Have at least 1 study spot in the list. 
 
     1. Test case: `delete n/Central Library`<br>
-       Expected: The study spot named COM1 is deleted from the list. Details of the deleted study spot shown in the status message.
+       Expected: The study spot named Central Library is deleted from the list. Details of the deleted study spot shown in the status message.
 
     1. Test case: `delete n/INVALID`<br>
        Expected: No study spot is deleted as there does not exist a study spot named 'INVALID'. Error details shown in the status message. Similar error message will show if user tries to delete a study spot that does not exist in the list. 
 
     1. Other incorrect delete commands to try: `delete Central Library`, `delete spot/Central Library`<br>
        Expected: Similar to previous.
-       
-1. _{ more test cases …​ }_
 
 ### Adding and using aliases
 
@@ -707,18 +730,21 @@ testers are expected to do more *exploratory* testing.
         1. `myAdd myPlace` 
     
         Expected: A new study spot 'myPlace' with rating 5 is added.
-    Details of this new study spot is shown in the GUI.
+        Details of this new study spot is shown in the GUI. (i.e. the Add command has been executed successfully).
+       
    1. Test case:
         1. `myAdd`
         
-        Expected: No study spot is added.
-      Error details shown in the status message.
+        Expected: No study spot is added. (i.e. the Add command is missing parameters).
+        Error details shown in the status message.
+      
 1. Overwriting an existing alias
    1. Test case:
         1. `alias al/myAdd cmd/list`
         1. `myAdd`
     
-        Expected: All study spots are listed (i.e. the List command has been executed)
+        Expected: All study spots are listed (i.e. the List command has been executed successfully)
+    
 1. Removing an alias
     1. Test case:
         1. `unalias al/myAdd`
@@ -726,12 +752,21 @@ testers are expected to do more *exploratory* testing.
     
         Expected: Unknown command execution.
         Error details  shown in the status message.
-        
+       
+### Logging hours at a study spot
 
-### Saving data
+1. Logging hours studied at a study spot
 
-1. Dealing with missing/corrupted data files
+    1. Prerequisites: Have a study spot named 'Test Spot' already in StudyTracker with 0 hours logged.
+       Refer to Test case *"Adding a study spot"* for steps to achieve this.
 
-    1. _{explain how to simulate a missing/corrupted file, and the expected behavior}_
-
-1. _{ more test cases …​ }_
+    1. Test case: `log n/Test Spot hr/25`<br>
+       Expected:
+       - The study spot named Test Spot will get 25 hours logged to it.
+       - The Hours Studied section of the card will be updated to show "25 hours".
+       - The Hours Studied pie chart will update total hours with 25 additional hours.
+       - The Hours Studied pie chart will have a segment for Test Spot with 25 hours, which shows on mouseover.
+       
+    1. Test case: `add log -ra`<br>
+       Expected: The studied hours are reset from all study spots.
+       The Hours Studied pie chart will not show, and total hours for all study spots are 0.
