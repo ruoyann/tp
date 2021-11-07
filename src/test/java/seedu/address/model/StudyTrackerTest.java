@@ -101,6 +101,7 @@ public class StudyTrackerTest {
     @Test
     public void addStudySpotToFavourite_notInStudyTracker_throwsAssertionError() {
         assertThrows(AssertionError.class, () -> studyTracker.addStudySpotToFavourites(STARBUCKS));
+        assertThrows(AssertionError.class, () -> studyTracker.addStudySpotToFavourites(null));
     }
 
     @Test
