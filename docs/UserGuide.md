@@ -56,7 +56,7 @@ Let's explore how we **add a new study spot** and **track our study time** with 
     <img src="images/Ui.png" alt="Default Ui" width="550"/>
     <br> _Figure 1 - GUI of StudyTracker_
 
-1. Type the command in the [command box](#study-spot-list) and press Enter to execute it. e.g. typing **`help`** and pressing Enter will open the help window.<br>
+1. Type the command in the [command box](#command-box) and press Enter to execute it. e.g. typing **`help`** and pressing Enter will open the help window.<br>
 
     Do the following commands in sequence:
 
@@ -115,7 +115,7 @@ Here is how to read the command format:
 #### Command Structure
 
 Commands use a multipart structure that must be specified in this order:
-1. **Command word** which may be user-created aliases (detailed further in [**Aliases**](#setting-command-aliases--alias-unalias)). <br>
+1. **Command word** which may be user-created aliases (detailed further in [**Aliases**](#setting-command-aliases)). <br>
 2. **Parameters** and **Flags**. A command may have more than one flag and/or parameters.
 
 <img src="images/commandStructure.png" alt="commandStructure" height="300"/>
