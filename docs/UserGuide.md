@@ -413,7 +413,7 @@ Added study spot to favourites: COM1 Tech Hangout
 </tr>
 </table>
 
-<img src="images/add_favourites.png" alt="favourites" height="700"/>
+<img src="images/add_favourites.png" alt="favourites"/>
 
 <div style="page-break-after: always;"></div>
 
@@ -579,7 +579,7 @@ Listed all study spots with Tags: [coffee] with Amenities: [wifi] with Rating: 4
   </tr>
 </table>
 
-<img src="images/list_tags_amenities.png" alt="cold tags" height="700"/>
+<img src="images/list_tags_amenities.png" alt="cold tags"/>
 
 <div markdown="span" class="alert alert-primary">:bulb: **Tip:**
 Make use of command aliases to speed up typing your inputs!
