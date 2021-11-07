@@ -29,7 +29,7 @@ Want to contribute to development? Check out the [**Developer Guide**](Developer
 
 ---
 
-## Table of Contents
+## **Table of Contents**
 
 * Table of Contents
 {:toc}
@@ -38,7 +38,7 @@ Want to contribute to development? Check out the [**Developer Guide**](Developer
 
 <div style="page-break-after: always;"></div>
 
-## Quick Start
+## **Quick Start**
 
 StudyTracker comes with sample data.
 In this **Quick Start** section, we'll go through **a tutorial to try the essential features of StudyTracker.**
@@ -84,7 +84,7 @@ with CLI syntax!
 <div style="page-break-after: always;"></div>
 
 ---
-## How to use this User Guide
+## **How to use this User Guide**
 
 This section provides tips on reading this document, as well as how to navigate it.
 
@@ -188,7 +188,8 @@ Congratulations! 🎉 You should now know how to use CLI. Now all you need to kn
 
 <div style="page-break-after: always;"></div>
 
-## GUI Layout
+---
+## **GUI Layout**
 
 This section introduces the Graphical User Interface (GUI) of StudyTracker.
 
@@ -250,7 +251,8 @@ The **Command Box** is where you can enter [**commands**](#how-to-read-commands-
 Check out <a href="#managing-themes">**Managing Themes**</a> section to change the theme of the GUI!
 </div>
 
-## Features
+---
+## **Features**
 
 This section introduces all the features in StudyTracker.
 
@@ -833,9 +835,9 @@ StudyTracker data are saved as a JSON file `[home folder]/data/studytracker.json
 If your changes to the data file makes its format invalid, StudyTracker will discard all data and start with an empty data file at the next run.
 </div>
 
---------------------------------------------------------------------------------------------------------------------
+---
 
-## FAQ
+## **FAQ**
 
 This section contains frequently asked questions (FAQs) about StudyTracker.
 
@@ -855,9 +857,9 @@ You may also copy the **preferences.json** file to keep your user preferences.
 **Q**: What do I do when I encounter bugs?<br>
 **A**: As much as possible, we rigorously test our application before it is released. However, should you encounter bugs, you can raise issues to our team [here](https://github.com/AY2122S1-CS2103T-T09-1/tp/issues) and we would look to fix them in upcoming patches.
 
---------------------------------------------------------------------------------------------------------------------
+---
 
-## Command summary
+## **Command summary**
 
 Action | Format, Examples
 --------|------------------

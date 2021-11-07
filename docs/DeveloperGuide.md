@@ -19,12 +19,13 @@ Only want to know how to use StudyTracker? Check out the [**User Guide**](UserGu
 
 <div style="page-break-after: always;"></div>
 
-## Table of Contents
+--- 
+## **Table of Contents**
 
 * Table of Contents
 {:toc}
 
---------------------------------------------------------------------------------------------------------------------
+---
 
 ## **Acknowledgements**
 
@@ -172,7 +173,7 @@ The `Storage` component,
 
 Classes used by multiple components are in the `seedu.address.commons` package.
 
---------------------------------------------------------------------------------------------------------------------
+---
 
 ## **Implementation**
 
@@ -508,7 +509,8 @@ The following are examples showing the `Default` and `DotsDark` theme.
 * `fg-accent` — contrasting colour to act as accenting colour
 * `fg-text`, `bg-text`, `accent-text` — text colour for `fg-surface`, `bg-surface` and `fg-accent` respectively.
 * `button` — button colour
---------------------------------------------------------------------------------------------------------------------
+
+---
 
 ## **Documentation, logging, testing, configuration, dev-ops**
 
@@ -518,7 +520,7 @@ The following are examples showing the `Default` and `DotsDark` theme.
 * [Configuration guide](Configuration.md)
 * [DevOps guide](DevOps.md)
 
---------------------------------------------------------------------------------------------------------------------
+---
 
 ## **Appendix: Requirements**
 
@@ -647,7 +649,7 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 * **Private contact detail**: A contact detail that is not meant to be shared with others
 * **Usable**: All functions can be used even if the user experience is not optimal
 
---------------------------------------------------------------------------------------------------------------------
+---
 
 ## **Appendix: Instructions for manual testing**
 
