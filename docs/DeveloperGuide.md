@@ -224,7 +224,7 @@ The Alias feature is facilitated by three key classes: `Alias.java`, `StudyTrack
 
 `StudyTrackerParser.java` is responsible for parsing user commands. The key operations needed for Aliases are:
 
-* `StudyTrackerParser#isInvokingAlias()` —  checks if the user input is a normal command, an Alias belonging in `UserPrefs`, or invalid.  
+* `StudyTrackerParser#isInvokingAlias()` —  checks if the user input is a normal command, or one that invokes an Alias belonging in `UserPrefs`.  
 * `StudyTrackerParser#expandAlias()` —  parses the Alias into its corresponding command.
 StudyTrackerParser will prepend the arguments from the expanded command before the arguments in user input, if any.
 
@@ -431,8 +431,8 @@ The following sequence diagram demonstrates how `StudyTrackerParser` parses the 
 #### Design considerations
 
 **Behaviour of filters with multiple tags:**
-* **Current choice:** Filtering by tags show study spots that all specified tags.
-* **Alternative 1:** Filtering by tags show study spots that contain at least one of the specified tags.
+* **Alternative 1 (current choice):** Filtering by tags show study spots that all specified tags.
+* **Alternative 2:** Filtering by tags show study spots that contain at least one of the specified tags.
 
 
 The current choice was chosen as it is intuitive and most modern desktop applications follow this behaviour. 
@@ -463,8 +463,8 @@ The following sequence diagram demonstrates how `StudyTrackerParser` parses the 
 #### Design considerations
 
 **Aspect: How to increase the ease of removing fields in a study spot:**
-- Alternative 1 (current choice): Users can directly remove a tag or an amenity they specify.
-- Alternative 2: Users have to retype existing tags or amenities if they wish to retain them.
+- **Alternative 1 (current choice)**: Users can directly remove a tag or an amenity they specify.
+- **Alternative 2**: Users have to retype existing tags or amenities if they wish to retain them.
 
 ### Themes
 

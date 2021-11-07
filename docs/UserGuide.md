@@ -121,7 +121,7 @@ Commands use a multipart structure that must be specified in this order:
 
 #### Flags
 
-Commands may require **flags**.
+Commands may contain **flags**. All flags are optional.
   Flags are represented by a dash, and a sequence of characters. <br>
   e.g. the `list` command has a `-f` flag to list only favourites.
 
@@ -340,8 +340,7 @@ New study spot added: Starbucks at UTown; Rating: 4; Operating Hours: Weekdays: 
 If you made a mistake in your `add` command, or wish to change the details of a study spot, 
 you can easily do so by making use of the `edit` command!
 
-**Format:** `edit spot/NAME* n/NEW_NAME a/NEW_ADDRESS t/NEW_TAG m/NEW_AMENITY rt/NEW_TAG rm/NEW_AMENITY r/NEW_RATING 
-o/NEW_OPERATING_HOURS`
+**Format:** `edit spot/NAME* n/NEW_NAME a/NEW_ADDRESS t/NEW_TAG m/NEW_AMENITY r/NEW_RATING o/NEW_OPERATING_HOURS rt/OLD_TAG rm/OLD_AMENITY`
 
 * Edits the study spot matching `NAME`.
   The provided `NAME` is not case-sensitive and **must fully match the study spot name**.
@@ -864,7 +863,7 @@ You may also copy the **preferences.json** file to keep your user preferences.
 Action | Format, Examples
 --------|------------------
 **Add** | `add n/NAME* r/RATING* a/ADDRESS t/TAG... m/AMENITY... o/OPERATING_HOURS` <br> e.g. `add n/COM1 r/5`
-**Edit** | `edit spot/NAME* n/NEW_NAME a/NEW_ADDRESS t/NEW_TAG m/NEW_AMENITY rt/NEW_TAG rm/NEW_AMENITY r/NEW_RATING o/NEW_OPERATING_HOURS`<br> e.g.,`edit spot/tr3 n/Training Room 3`
+**Edit** | `edit spot/NAME* n/NEW_NAME a/NEW_ADDRESS t/NEW_TAG m/NEW_AMENITY r/NEW_RATING o/NEW_OPERATING_HOURS rt/OLD_TAG rm/OLD_AMENITY`<br> e.g.,`edit spot/tr3 n/Training Room 3`
 **Favourite**  |  `fav n/NAME*` <br> e.g. `fav n/COM1`
 **Unfavourite** | `unfav n/NAME*` <br> e.g. `unfav n/COM1`
 **Delete** | `delete n/NAME*` <br> e.g. `delete n/COM1`
