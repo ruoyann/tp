@@ -58,6 +58,11 @@ public class LogCommandParserTest {
         assertParseFailure(parser, invalidNoNameAndReset, String.format(MESSAGE_INVALID_COMMAND_FORMAT,
                 LogCommand.MESSAGE_USAGE));
 
+        // -a -> missing name
+        String invalidFlag = "-a";
+        assertParseFailure(parser, invalidFlag, String.format(MESSAGE_INVALID_COMMAND_FORMAT,
+                LogCommand.MESSAGE_USAGE));
+
         // test preamble n/Starbucks -o -> missing hr/ when not reset all
         String invalidNamePresentPreamblePresentNotResetAll = " test preamble " + PREFIX_NAME + name.fullName + " -o";
         assertParseFailure(parser, invalidNamePresentPreamblePresentNotResetAll, String.format(
