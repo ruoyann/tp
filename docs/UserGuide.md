@@ -231,7 +231,8 @@ This section introduces the Graphical User Interface (GUI) of StudyTracker.
 ![Gui annotated](images/GuiAnnotated.png)
 _Figure 3 - GUI Layout_
 
-The top of the interface contains the **Menu Bar**. Clicking on `File` or `Help` will open up the [Settings menu](#managing-themes) and the [Help window](#viewing-help--help).
+The top of the interface contains the **Menu Bar**. Clicking on `File` or `Help` will open up the [Settings menu]
+(#managing-themes) and the [Help window](#viewing-help--help) respectively.
 
 On the left side of the interface, you can find the [**Info Display**](#info-display).
 
@@ -299,6 +300,10 @@ This section introduces all the features in StudyTracker.
 
 Features are grouped according to usage.
 Click on the groups to view clear, step-by-step usage instructions!
+
+<div markdown="span" class="alert alert-primary">:information_source: **Note:**
+To get the expected outputs we stated in this guide, please use the app's default data. Also, please enter the inputs by following the sample inputs provided in the features section sequentially.
+</div>
 
 
 | Features | Usage and commands|
@@ -386,10 +391,12 @@ you can easily do so by making use of the `edit` command!
 * Edits the study spot matching `NAME`.
   The provided `NAME` is not case-sensitive and **must fully match the study spot name**.
 * You must provide **at least one** of the optional fields.
-* StudyTracker will update the details of the given study spot with the provided `NEW_NAME`, `NEW_ADDRESS`, `NEW_RATING` or `NEW_OPERATING HOURS`.
-* When editing tags and amenities, `t/` or `m/` will be adding on top of existing tags and amenities.
-* You can remove a specific tag or amenity with the `rt/` or `rm/` parameter.
-* You can remove all the study spot’s tags by typing `t/` or `m/` without
+* StudyTracker will update the details of the given study spot with any provided `NEW_NAME`, `NEW_ADDRESS`, 
+  `NEW_RATING`, `NEW_AMENITY`, `NEW_TAG` and `NEW_OPERATING HOURS`, while removing any provided `OLD_TAG` and 
+  `OLD_AMENITY`.
+* When editing tags and amenities, using `t/` or `m/` will be adding on top of existing tags and amenities.
+* You can remove a specific tag or amenity with the `rt/` or `rm/` parameter respectively.
+* You can remove all the study spot’s tags by typing `t/` or `m/` respectively without
   specifying any tags after it.
 
 **Examples:** You can try executing the commands in the **input** rows and check if you get the corresponding **output**!
@@ -411,10 +418,43 @@ Edited study spot: Basement; Rating: 5
 
 </td>
 </tr>
+  <tr>
+    <th width="90" align="left">Input 2</th>
+    <td >
+
+`edit spot/outside cool spot r/4 t/coffee`
+
+</td>
+  </tr>
+  <tr align="left">
+    <th>Output 2</th>
+    <td>
+
+Edited study spot: Outside cool spot; Rating: 4; Address: COM2; Studied Hours: 10; Tags: [warm][drinks][coffee]; 
+Amenities: [wifi][charger][food]
+
+</td>
+</tr>
+  <tr>
+    <th width="90" align="left">Input 3</th>
+    <td >
+
+`edit spot/home sweet home t/`
+
+</td>
+  </tr>
+  <tr align="left">
+    <th>Output 3</th>
+    <td>
+
+Edited study spot: Home Sweet Home; Rating: 1; Address: 42 Wallaby Way; Amenities: [wifi][charger]
+
+</td>
+</tr>
 </table>
 
 <div markdown="span" class="alert alert-primary">:information_source: **Note:**
-The above input assumes that there is already a study spot named "COM1 Basement" in the Study Tracker!
+The above input1 and output1 assumes that there is already a study spot named "COM1 Basement" in the Study Tracker!
 This input only changes the name from "COM1 Basement" to "Basement". Outputs may differ based on what information 
 your original study spot already has. 
 </div>
@@ -427,8 +467,7 @@ Really enjoyed studying somewhere? You can add this study spot to your favourite
 make the Study Spot appear in the [Favourites List](#info-display), reminding you of the place every time you open StudyTracker.
 
 <div markdown="span" class="alert alert-primary">:information_source: **Note:**
-Don't forget to add the spot to your StudyTracker before using the fav command! Alternatively, you could use the 
-add command and directly mark it as a favourite using that command!
+Don't forget to add the spot to your StudyTracker before using the fav command! 
 </div>
 
 **Format:** `fav n/NAME*`
@@ -477,7 +516,7 @@ The study spot you are trying to unfavourite should originally be a favourite!
     <th width="90" align="left">Input 1</th>
     <td>
 
-`unfav n/COM1 Basement`
+`unfav n/com1 tech hangout`
 
 </td>
   </tr>
@@ -485,7 +524,7 @@ The study spot you are trying to unfavourite should originally be a favourite!
     <th>Output 1</th>
     <td>
 
-Removed study spot from favourites: COM1 Basement
+Removed study spot from favourites: COM1 Tech Hangout
 
 </td>
 </tr>
@@ -521,46 +560,6 @@ Deleted study spot: Basement
 </tr>
 </table>
 
-### Clearing all entries : `clear`
-
-Moving to a new location and decide to start your list afresh? You can make use of the `clear` command to clear the entire list of
-study spots.
-
-<div markdown="span" class="alert alert-warning">:warning: **Caution:**
-This command is irreversible!
-</div>
-
-**Format:** `clear`
-
-**Example:** You can try executing the commands in the **input** rows and check if you get the corresponding **output**!
-
-<table>
-  <tr>
-    <th width="90" align="left">Input 1</th>
-    <td>
-
-`clear`
-
-</td>
-  </tr>
-  <tr align="left">
-    <th>Output 1</th>
-    <td>
-
-StudyTracker has been cleared!
-
-</td>
-</tr>
-</table>
-
-<div markdown="span" class="alert alert-primary">:bulb: **Tip:**
-If you wish to clear all your study spots while keeping the data you originally stored, you can make a copy of the 
-studytracker.json file which should be found within the data folder of the file with StudyTracker!
-</div>
-
-
-<div style="page-break-after: always;"></div>
-
 ### Managing StudyTracker list
 
 #### Listing study spots : `list`
@@ -578,7 +577,7 @@ Below shows the corresponding [flag](#flags) to its function.
 | `-f`   | Shows all favourited study spots        |
 | `-t t/TAG...` | Shows all study spots with the specified tags |
 | `-m m/AMENITY...` | Shows all study spots with the specified amenities |
-| `-r r/RATING` | Shows all study spots with the given rating |
+| `-r r/RATING` | Shows all study spots with the specified rating |
 
 <div markdown="span" class="alert alert-primary">:information_source: **Note:**
 You can use multiple flags at once.
@@ -621,7 +620,7 @@ Listed all study spots with Tags: [coffee] with Amenities: [wifi] with Rating: 4
   </tr>
 </table>
 
-<img src="images/list_tags_amenities.png" alt="cold tags"/>
+<img src="images/list_tags_amenities.png" alt="coffee tags wifi amenities rating 4"/>
 _Figure 7 - Example of listing study spots with wifi, coffee tag and rating of 4_
 
 <div markdown="span" class="alert alert-primary">:bulb: **Tip:**
@@ -658,7 +657,7 @@ study spots you have.
     <th>Output 1</th>
     <td>
 
-3 study spot(s) listed!
+2 study spot(s) listed!
 
 </td>
 </tr>
@@ -689,7 +688,7 @@ As long as the flag `-ra` is present in the command, hours for all study spots w
     <th width="90" align="left">Input 1</th>
     <td >
 
-log n/Starbucks UTown hr/2
+`log n/Starbucks UTown hr/2`
 
 </td>
   </tr>
@@ -705,7 +704,7 @@ Logged 2 hours at Starbucks UTown!
     <th>Input 2</th>
     <td>
 
-log -o n/Starbucks UTown hr/5
+`log -o n/Starbucks UTown hr/5`
 
 </td>
   </tr>
@@ -841,6 +840,46 @@ Format: `help`
 View the help window anytime by using the F1 shortcut!
 Alternatively, click on 'Help' in the menu bar!
 </div>
+
+<div style="page-break-after: always;"></div>
+
+### Clearing all entries : `clear`
+
+Moving to a new location and decide to start your list afresh? You can make use of the `clear` command to clear the entire list of
+study spots.
+
+<div markdown="span" class="alert alert-warning">:warning: **Caution:**
+This command is irreversible!
+</div>
+
+**Format:** `clear`
+
+**Example:** You can try executing the commands in the **input** rows and check if you get the corresponding **output**!
+
+<table>
+  <tr>
+    <th width="90" align="left">Input 1</th>
+    <td>
+
+`clear`
+
+</td>
+  </tr>
+  <tr align="left">
+    <th>Output 1</th>
+    <td>
+
+StudyTracker has been cleared!
+
+</td>
+</tr>
+</table>
+
+<div markdown="span" class="alert alert-primary">:bulb: **Tip:**
+If you wish to clear all your study spots while keeping the data you originally stored, you can make a copy of the 
+studytracker.json file which should be found within the data folder of the file with StudyTracker!
+</div>
+
 
 <div style="page-break-after: always;"></div>
 
