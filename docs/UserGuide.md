@@ -188,10 +188,6 @@ Remove amenity `rm/` | `edit`
 Alias `al/` | `alias`, `unalias`
 Command `cmd` | `alias`, `unalias`
 
-<div markdown="span" class="alert alert-primary">:information_source: **Note:**
-Flags may differ in meaning depending on the command word used. 
-</div>
-
 ### How to use these Commands in Command Line Interface
 
 If this is your first time using *Command Line Interface (CLI)*, fret not and we will guide you step-by-step on how to use CLI!
@@ -225,10 +221,6 @@ the program will not know what to do 😢.
 
 Congratulations! 🎉 You should now know how to use CLI. Now all you need to know are the **commands** you can give to the CLI to play around with it.
 
-<div markdown="span" class="alert alert-primary">:bulb: **Tip:**
-In **Command Box**, simply use the UP and DOWN arrow keys to navigate through your command history!
-</div>
-
 <div style="page-break-after: always;"></div>
 
 ## GUI Layout
@@ -243,6 +235,10 @@ The top of the interface contains the **Menu Bar**. Clicking on `File` or `Help`
 On the left side of the interface, you can find the [**Info Display**](#info-display).
 
 On the right side of the interface, you can find the [**Study Spot List**](#study-spot-list) and [**Command Box**](#command-box).
+
+<div markdown="span" class="alert alert-primary">:bulb: **Tip:**
+Check out <a href="#managing-themes">**Managing Themes**</a> section to change the theme of the GUI!
+</div>
 
 ### Info Display
 
@@ -266,7 +262,6 @@ The `Total` tag at the top shows total number of favourited study spots in Study
 From left to right, the amenities are **aircon, charger, food, wifi**.
 * `Hours studied` — total number of hours studied at study spot
 
-
 ### Study Spot List
 
 ![Gui annotated](images/GuiStudySpotListAnnotated.png)
@@ -288,13 +283,12 @@ From left to right, the amenities are **aircon, charger, food, wifi**.
 ### Command Box 
 
 The **Command Box** is where you can enter [**commands**](#how-to-read-commands-in-studytracker) in StudyTracker.
-Similar to any CLI, you can navigate the history of commands you entered with UP and DOWN arrow keys.
 
 * `Command Box` — type in your commands here
 * `Display` — results of commands and error messages are shown here.
 
 <div markdown="span" class="alert alert-primary">:bulb: **Tip:**
-Check out <a href="#managing-themes">**Managing Themes**</a> section to change the theme of the GUI!
+Similar to any CLI, you can navigate the history of commands you entered with UP and DOWN arrow keys.
 </div>
 
 ## Features
