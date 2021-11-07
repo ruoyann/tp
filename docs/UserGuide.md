@@ -904,7 +904,7 @@ You may also copy the **preferences.json** file to keep your user preferences.
 
 --------------------------------------------------------------------------------------------------------------------
 
-## Glossary
+## **Glossary**
 
 Term | Definition
 -----------|------------------
