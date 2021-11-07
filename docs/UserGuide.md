@@ -914,11 +914,11 @@ You may also copy the **preferences.json** file to keep your user preferences.
 
 Term | Definition
 -----------|------------------
-Command Line Interface (CLI) | A user interface that accepts text input to execute commands
-Graphical User Interface (GUI) | A user interface that uses icons, menus and a mouse to interact with the system
-Syntax | The grammar that all commands follow for our software to understand it. Click [here](#how-to-read-commands-in-studytracker) where we break it down for you!
+Command Line Interface (CLI) | A user interface that accepts text input to execute commands.
+Graphical User Interface (GUI) | A user interface that uses icons, menus and a mouse to interact with the system.
+Syntax | The grammar that all commands follow for our software to understand it. <br> Click [here](#how-to-read-commands-in-studytracker) where we break it down for you!
 Flags | Represented by a dash and a sequence of characters, flags modify the operation of a command and are sometimes called options. <br> e.g. `-f` in the command `list -f` to list favourites
-Parameters | Parameters specifies information for a command needed to execute
+Parameters | Parameters specifies information for a command needed to execute.
 
 
 --------------------------------------------------------------------------------------------------------------------
