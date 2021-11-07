@@ -402,6 +402,33 @@ The following sequence diagram demonstrates how `StudyTrackerParser` parses the 
 
 ![Add OperatingHoursSequenceDiagram](images/AddOperatingHoursSequenceDiagram.png)
 
+### Amenities 
+#### Overview
+
+Users are able to add amenities such as wifi, food, aircon and charger to a study spot.
+
+#### Implementation
+
+Amenity is facilitated by these classes: `Amenity.java`, `StudySpot.java`, `AddCommand.java` and `EditCommand.java`.
+
+`Amenity.java` is responsible for creating `Amenity` objects. A `StudySpot` object contains
+an `amenity` attribute. A study spot with an `Amenity` object can be initialised with an Add command
+or the `amenity` attribute can be edited with an Edit command.
+
+Given below is an example usage scenario of adding a study spot with the wifi amenity and how the mechanism behaves.
+
+Step 1. The user executes `add n/COM1 r/5 m/wifi` to add a new study spot. `StudyTrackerParser` class
+creates an `AddCommandParser` to parse the command. Since an amenity is provided in the command,
+`ParserUtil#parseAmenity(String amenity)` is called. An `AddCommand` object with the study spot to be
+added is then created.
+
+Step 2. `LogicManager` executes the `AddCommand` object, calling `Model#addStudySpot(StudySpot studySpot)` so that
+a new study spot is added to the model in StudyTracker.
+
+The following sequence diagram demonstrates how `StudyTrackerParser` parses the command.
+
+![Add AmenitySequenceDiagram](images/AddAmenitySequenceDiagram.png)
+
 
 ### Enhanced List feature
 #### Overview
