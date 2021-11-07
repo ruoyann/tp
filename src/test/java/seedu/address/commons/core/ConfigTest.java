@@ -4,6 +4,7 @@ import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertNotEquals;
 import static org.junit.jupiter.api.Assertions.assertNotNull;
 
+import java.nio.file.Path;
 import java.nio.file.Paths;
 import java.util.logging.Level;
 
@@ -13,8 +14,9 @@ public class ConfigTest {
 
     @Test
     public void toString_defaultObject_stringReturned() {
+        Path userPrefsFilePath = Paths.get("data", "preferences.json");
         String defaultConfigAsString = "Current log level : INFO\n"
-                + "Preference file Location : preferences.json";
+                + "Preference file Location : " + userPrefsFilePath;
 
         assertEquals(defaultConfigAsString, new Config().toString());
     }

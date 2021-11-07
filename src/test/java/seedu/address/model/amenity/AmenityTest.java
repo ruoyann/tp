@@ -2,6 +2,7 @@ package seedu.address.model.amenity;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertFalse;
+import static org.junit.jupiter.api.Assertions.assertNotEquals;
 import static seedu.address.testutil.Assert.assertThrows;
 
 import org.junit.jupiter.api.Test;
@@ -45,4 +46,25 @@ public class AmenityTest {
         assertEquals(expectedOutcome, Amenity.listAllAmenityTypes(multipleAmenityTypes));
     }
 
+    @Test
+    public void equals() {
+        Amenity wifi = new Amenity("wifi");
+        Amenity food = new Amenity("food");
+
+        // same object -> returns true
+        assertEquals(wifi, wifi);
+
+        // same values -> returns true
+        Amenity wifiCopy = new Amenity("wifi");
+        assertEquals(wifi, wifiCopy);
+
+        // different types -> returns false
+        assertNotEquals(wifi, 1);
+
+        // null -> returns false
+        assertNotEquals(food, null);
+
+        // different amenity -> returns false
+        assertNotEquals(food, wifi);
+    }
 }

@@ -41,9 +41,15 @@ AddCommandParser -> AddCommand
 activate AddCommand
 AddCommand --> AddCommandParser : a
 deactivate AddCommand
+'Hidden arrow to position the destroy marker below the end of the activation bar.
+AddCommand -[hidden]-> StudyTrackerParser
+destroy AddCommand
 
 AddCommandParser --> StudyTrackerParser : a
 deactivate AddCommandParser
+'Hidden arrow to position the destroy marker below the end of the activation bar.
+AddCommandParser -[hidden]-> StudyTrackerParser
+destroy AddCommandParser
 
 StudyTrackerParser --> LogicManager : a
 deactivate StudyTrackerParser
