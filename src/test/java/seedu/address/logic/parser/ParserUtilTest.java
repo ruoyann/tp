@@ -2,18 +2,26 @@ package seedu.address.logic.parser;
 
 import static org.junit.jupiter.api.Assertions.assertDoesNotThrow;
 import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertTrue;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_FLAG;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_TAG;
 import static seedu.address.logic.parser.ParserUtil.MESSAGE_INVALID_INDEX;
+import static seedu.address.model.Model.PREDICATE_SHOW_ALL_STUDYSPOTS;
 import static seedu.address.testutil.Assert.assertThrows;
 import static seedu.address.testutil.TypicalIndexes.INDEX_FIRST_SPOT;
 
+import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Collections;
 import java.util.HashSet;
+import java.util.List;
 import java.util.Set;
+import java.util.function.Predicate;
 
 import org.junit.jupiter.api.Test;
 
+import seedu.address.logic.commands.ListCommand;
 import seedu.address.logic.parser.exceptions.ParseException;
 import seedu.address.model.amenity.Amenity;
 import seedu.address.model.studyspot.Address;
@@ -21,7 +29,9 @@ import seedu.address.model.studyspot.Name;
 import seedu.address.model.studyspot.OperatingHours;
 import seedu.address.model.studyspot.Rating;
 import seedu.address.model.studyspot.StudiedHours;
+import seedu.address.model.studyspot.StudySpot;
 import seedu.address.model.tag.Tag;
+import seedu.address.testutil.StudySpotBuilder;
 
 public class ParserUtilTest {
     private static final String INVALID_NAME = "R@chel";
@@ -302,6 +312,60 @@ public class ParserUtilTest {
     public void parseStudiedHours_largerThanMaxInteger_throwsParseException() {
         String maxIntegerPlusOne = "2147483648";
         assertThrows(ParseException.class, () -> ParserUtil.parseStudiedHours(maxIntegerPlusOne));
+    }
+
+    @Test
+    public void parseFlags_null_throwsNullPointerException() {
+        assertThrows(NullPointerException.class, () -> ParserUtil.parseFlags(null));
+    }
+
+    @Test
+    public void parseFlags_validValue_returnsStudySpotPredicate() throws Exception {
+        // favourite flag
+        ArgumentMultimap argumentMultimapFavourite = ArgumentTokenizer.tokenize(" -f", PREFIX_FLAG);
+        Predicate<StudySpot> predicateReturnedForFavourite = ParserUtil.parseFlags(argumentMultimapFavourite);
+        StudySpot favouriteSpot = new StudySpotBuilder().withFavourite(true).build();
+        StudySpot unfavouriteSpot = new StudySpotBuilder().withFavourite(false).build();
+
+        assertTrue(predicateReturnedForFavourite.test(favouriteSpot));
+        assertFalse(predicateReturnedForFavourite.test(unfavouriteSpot));
+
+        // tag flag
+        String tagArguments = " -t t/quiet";
+        ArgumentMultimap argumentMultimapTag = ArgumentTokenizer.tokenize(tagArguments, PREFIX_FLAG);
+        Predicate<StudySpot> predicateReturnedForTag = ParserUtil.parseFlags(argumentMultimapTag);
+        StudySpot taggedSpot = new StudySpotBuilder().withTags("quiet").build();
+        StudySpot nontaggedSpot = new StudySpotBuilder().build();
+        StudySpot otherTagSpot = new StudySpotBuilder().withTags("cold").build();
+
+        assertTrue(predicateReturnedForTag.test(taggedSpot));
+//        assertFalse(predicateReturnedForTag.test(nontaggedSpot));
+//        assertFalse(predicateReturnedForTag.test(otherTagSpot));
+
+        // amenity flag
+        String amenityArguments = " -m m/wifi";
+        ArgumentMultimap argumentMultimapAmenity = ArgumentTokenizer.tokenize(amenityArguments, PREFIX_FLAG);
+        Predicate<StudySpot> predicateReturnedForAmenity = ParserUtil.parseFlags(argumentMultimapAmenity);
+        StudySpot spotWithAmenity = new StudySpotBuilder().withAmenities("wifi").build();
+        StudySpot spotWithoutAmenity = new StudySpotBuilder().build();
+        StudySpot spotWithOtherAmenity = new StudySpotBuilder().withAmenities("aircon").build();
+
+        assertTrue(predicateReturnedForAmenity.test(spotWithAmenity));
+//        assertFalse(predicateReturnedForAmenity.test(spotWithoutAmenity));
+//        assertFalse(predicateReturnedForAmenity.test(spotWithOtherAmenity));
+
+        // rating flag
+        String ratingArguments = " -r r/4";
+        ArgumentMultimap argumentMultimapRating = ArgumentTokenizer.tokenize(ratingArguments, PREFIX_FLAG);
+        Predicate<StudySpot> predicateReturnedForRating = ParserUtil.parseFlags(argumentMultimapRating);
+        StudySpot spotWithRating = new StudySpotBuilder().withRating("4").build();
+        StudySpot spotWithoutRating = new StudySpotBuilder().build();
+        StudySpot spotWithOtherRating = new StudySpotBuilder().withRating("5").build();
+
+        assertTrue(predicateReturnedForRating.test(spotWithRating));
+//        assertFalse(predicateReturnedForRating.test(spotWithoutRating));
+//        assertFalse(predicateReturnedForRating.test(spotWithOtherRating));
+
     }
 
 }

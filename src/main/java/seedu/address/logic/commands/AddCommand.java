@@ -36,7 +36,7 @@ public class AddCommand extends Command {
             + PREFIX_HOURS + "5 "
             + PREFIX_ADDRESS + "SoC "
             + PREFIX_TAG + "cold "
-            + PREFIX_TAG + "quiet"
+            + PREFIX_TAG + "quiet "
             + PREFIX_AMENITY + "wifi";
 
     public static final String MESSAGE_SUCCESS = "New study spot added: %1$s";
