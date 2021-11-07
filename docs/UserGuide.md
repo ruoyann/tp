@@ -398,7 +398,7 @@ add command and directly mark it as a favourite using that command!
     <th width="90" align="left">Input 1</th>
     <td >
 
-`fav n/COM1 Basement`
+`fav n/COM1 Tech Hangout`
 
 </td>
   </tr>
@@ -406,7 +406,7 @@ add command and directly mark it as a favourite using that command!
     <th>Output 1</th>
     <td>
 
-Added study spot to favourites: COM1 Basement
+Added study spot to favourites: COM1 Tech Hangout
 
 </td>
 </tr>
@@ -564,7 +564,7 @@ Listed all study spots
     <th>Input 2</th>
     <td>
 
-`list -f -t t/cold -m m/wifi -r r/5`
+`list -t t/coffee -m m/wifi -r r/4`
 
 </td>
   </tr>
@@ -572,12 +572,13 @@ Listed all study spots
     <th>Output 2</th>
     <td>
 
-Listed all study spots in Favourites with Tags: [cold] with Amenities: [wifi] with Rating: 5
+Listed all study spots with Tags: [coffee] with Amenities: [wifi] with Rating: 4
+
 </td>
   </tr>
 </table>
 
-<img src="images/list_tags_cold.png" alt="cold tags" height="700"/>
+<img src="images/list_tags_amenities.png" alt="cold tags" height="700"/>
 
 <div markdown="span" class="alert alert-primary">:bulb: **Tip:**
 Make use of command aliases to speed up typing your inputs!
