@@ -122,6 +122,15 @@ public class StudyTrackerTest {
     }
 
     @Test
+    public void removeStudySpot_returnsTrue() {
+        studyTracker.addStudySpot(STARBUCKS);
+        StudySpot starbucks = new StudySpotBuilder(STARBUCKS).build();
+        assertTrue(studyTracker.getStudySpotList().contains(starbucks));
+        studyTracker.removeStudySpot(starbucks);
+        assertTrue(studyTracker.getFavouriteStudySpotList().isEmpty());
+    }
+
+    @Test
     public void isFavouriteStudySpot_notInFavourites_returnsFalse() {
         studyTracker.addStudySpot(STARBUCKS);
         assertFalse(studyTracker.isFavouriteStudySpot(STARBUCKS));
