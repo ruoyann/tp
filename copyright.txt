@@ -1,17 +1,19 @@
 ﻿Some code adapted from http://code.makery.ch/library/javafx-8-tutorial/ by Marco Jakob
 
-Copyright by Susumu Yoshida - http://www.mcdodesign.com/
-- address_book_32.png
-- AddressApp.ico
+Images by Irastoya - https://www.irasutoya.com
+Free for commercial and non-commercial use (https://www.irasutoya.com/p/terms.html)
 
-Copyright by Jan Jan Kovařík - http://glyphicons.com/
-- calendar.png
-- edit.png
-
-Copyright by Irastoya - https://irastoya.com/
 - books.png
 - study_tracker_32.png
 
-Copyright by FontAwesome - https://fontawesome.com
-- calendar-alt.svg
-- map-marker-alt.svg
+Icons by FontAwesome - https://fontawesome.com
+Open source (https://fontawesome.com/support#fa-opensource)
+
+- clock.svg
+- map-marker.svg
+- plug.svg
+- snowflake.svg
+- star-solid.svg
+- star-regular.svg
+- utensils.svg
+- wifi.svg

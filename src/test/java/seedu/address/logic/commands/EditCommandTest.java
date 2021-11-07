@@ -100,26 +100,47 @@ public class EditCommandTest {
         assertCommandSuccess(editCommand, model, expectedMessage, expectedModel);
     }
 
-    //todo uncomment after other amenity types added, and change in json
-    //    @Test
-    //    public void execute_replaceAmenities_success() {
-    //        Name firstStudySpotInTypicalStudySpots = new Name("Starbucks");
-    //        StudySpot studySpotInFilteredList = model.getFilteredStudySpotList().get(INDEX_FIRST_SPOT.getZeroBased());
-    //        StudySpot editedStudySpot = new StudySpotBuilder(studySpotInFilteredList)
-    //                .withAmenities(VALID_AMENITY_AIRCON, VALID_AMENITY_CHARGER).build();
-    //
-    //        EditStudySpotDescriptor descriptor = new EditStudySpotDescriptorBuilder()
-    //                .withAddedAmenities(VALID_AMENITY_AIRCON, VALID_AMENITY_CHARGER)
-    //                .withRemovedAmenities(VALID_AMENITY_WIFI).build();
-    //        EditCommand editCommand = new EditCommand(firstStudySpotInTypicalStudySpots, descriptor);
-    //
-    //        String expectedMessage = String.format(EditCommand.MESSAGE_EDIT_STUDYSPOT_SUCCESS, editedStudySpot);
-    //
-    //        Model expectedModel = new ModelManager(new StudyTracker(model.getStudyTracker()), new UserPrefs());
-    //        expectedModel.setStudySpot(model.getFilteredStudySpotList().get(0), editedStudySpot);
-    //
-    //        assertCommandSuccess(editCommand, model, expectedMessage, expectedModel);
-    //    }
+    @Test
+    public void execute_editRepeatedTags_fail() {
+        Name firstStudySpotInTypicalStudySpots = new Name("Starbucks");
+        EditStudySpotDescriptor descriptor = new EditStudySpotDescriptorBuilder()
+                .withAddedTags(VALID_TAG_COFFEE).withRemovedTags(VALID_TAG_COFFEE).build();
+        EditCommand editCommand = new EditCommand(firstStudySpotInTypicalStudySpots, descriptor);
+
+        assertCommandFailure(editCommand, model, EditCommand.MESSAGE_REPEATED_COMMANDS);
+    }
+
+    @Test
+    public void execute_replaceAmenities_success() {
+        Name firstStudySpotInTypicalStudySpots = new Name("Starbucks");
+        StudySpot studySpotInFilteredList = model.getFilteredStudySpotList().get(INDEX_FIRST_SPOT.getZeroBased());
+        StudySpot editedStudySpot = new StudySpotBuilder(studySpotInFilteredList)
+                .withAmenities(VALID_AMENITY_AIRCON, VALID_AMENITY_CHARGER).build();
+
+        EditStudySpotDescriptor descriptor = new EditStudySpotDescriptorBuilder()
+                .withAddedAmenities(VALID_AMENITY_AIRCON, VALID_AMENITY_CHARGER)
+                .withRemovedAmenities(VALID_AMENITY_WIFI).build();
+        EditCommand editCommand = new EditCommand(firstStudySpotInTypicalStudySpots, descriptor);
+
+        String expectedMessage = String.format(EditCommand.MESSAGE_EDIT_STUDYSPOT_SUCCESS, editedStudySpot);
+
+        Model expectedModel = new ModelManager(new StudyTracker(model.getStudyTracker()), new UserPrefs());
+        expectedModel.setStudySpot(model.getFilteredStudySpotList().get(0), editedStudySpot);
+
+        assertCommandSuccess(editCommand, model, expectedMessage, expectedModel);
+    }
+
+    @Test
+    public void execute_replaceRepeatedAmenities_fail() {
+        Name firstStudySpotInTypicalStudySpots = new Name("Starbucks");
+
+        EditStudySpotDescriptor descriptor = new EditStudySpotDescriptorBuilder()
+                .withAddedAmenities(VALID_AMENITY_WIFI)
+                .withRemovedAmenities(VALID_AMENITY_WIFI).build();
+        EditCommand editCommand = new EditCommand(firstStudySpotInTypicalStudySpots, descriptor);
+
+        assertCommandFailure(editCommand, model, EditCommand.MESSAGE_REPEATED_COMMANDS);
+    }
 
     @Test
     public void execute_noFieldSpecifiedUnfilteredList_success() {

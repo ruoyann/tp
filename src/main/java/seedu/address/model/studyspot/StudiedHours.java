@@ -73,4 +73,11 @@ public class StudiedHours {
     public String toString() {
         return String.valueOf(loggedHours);
     }
+
+    @Override
+    public boolean equals(Object other) {
+        return other == this // short circuit if same object
+                || (other instanceof StudiedHours // instanceof handles nulls
+                && loggedHours == (((StudiedHours) other).loggedHours)); // state check
+    }
 }

@@ -21,3 +21,8 @@
 
 ### Acknowledgement
 StudyTracker is an application developed based on the `AddressBook Level 3` application created by the [SE-EDU initiative](https://se-education.org).
+
+Images and icons are [licensed for use](copyright.txt).
+
+### License
+StudyTracker is licensed under the [MIT license](LICENSE)

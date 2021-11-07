@@ -14,10 +14,12 @@ import java.util.List;
 import java.util.Set;
 import java.util.function.Predicate;
 import java.util.stream.Collectors;
+import java.util.stream.Stream;
 
 import seedu.address.commons.core.index.Index;
 import seedu.address.commons.util.StringUtil;
 import seedu.address.logic.commands.ListCommand;
+import seedu.address.logic.commands.LogCommand;
 import seedu.address.logic.parser.exceptions.ParseException;
 import seedu.address.model.amenity.Amenity;
 import seedu.address.model.studyspot.Address;
@@ -120,6 +122,9 @@ public class ParserUtil {
     public static StudiedHours parseStudiedHours(String studiedHours) throws ParseException {
         requireNonNull(studiedHours);
         String trimmedStudiedHours = studiedHours.trim();
+        if (studiedHours.equals("")) {
+            throw new ParseException(LogCommand.MESSAGE_MISSING_HOURS);
+        }
         if (!StudiedHours.isValidLoggedHours(trimmedStudiedHours)) {
             throw new ParseException(StudiedHours.MESSAGE_CONSTRAINTS);
         }
@@ -132,10 +137,9 @@ public class ParserUtil {
     }
 
     /**
-     * Parses a {@code String amenity} into an {@code Amenity}.
-     * Leading and trailing whitespaces will be trimmed.
+     * Parses flags given in ArgumentMultimap into Predicate
      *
-     * @throws ParseException if the given {@code amenity} is invalid.
+     * @throws ParseException if the given flags and parameters are invalid
      */
     public static Predicate<StudySpot> parseFlags(ArgumentMultimap argMultiMap) throws ParseException {
         requireNonNull(argMultiMap);
@@ -163,11 +167,8 @@ public class ParserUtil {
         if (isFlagPresent(flags, ListCommand.FLAG_RATING)) {
             Rating rating = parseRating(argMultiMap.getValue(PREFIX_RATING)
                     .orElseThrow(() -> new ParseException(ListCommand.MESSAGE_MISSING_RATING)));
-            Set<Rating> ratings = new HashSet<>();
-            ratings.add(rating);
-            List<Predicate<StudySpot>> ratingsPredicate =
-                    ratings.stream().map(r -> ListCommand.containsRating(r)).collect(Collectors.toList());
-            predicateList.addAll(ratingsPredicate);
+            Predicate<StudySpot> ratingsPredicate = ListCommand.containsRating(rating);
+            predicateList.add(ratingsPredicate);
         }
         return predicateList.stream().reduce(Predicate::and).get();
     }
@@ -196,9 +197,12 @@ public class ParserUtil {
     public static Tag parseTag(String tag) throws ParseException {
         requireNonNull(tag);
         String trimmedTag = tag.trim();
-        if (!Tag.isValidTagName(trimmedTag)) {
+        if (!Tag.isValidTagName(trimmedTag) || !Tag.isValidTagLength(trimmedTag)) {
             if (tag.contains(" ")) {
                 throw new ParseException(Tag.MESSAGE_NO_SPACE);
+            }
+            if (!Tag.isValidTagLength(trimmedTag)) {
+                throw new ParseException(Tag.MESSAGE_LENGTH);
             }
             throw new ParseException(Tag.MESSAGE_CONSTRAINTS);
         }
@@ -243,5 +247,13 @@ public class ParserUtil {
             amenitySet.add(parseAmenity(amenityType));
         }
         return amenitySet;
+    }
+
+    /**
+     * Returns true if none of the prefixes contains empty {@code Optional} values in the given
+     * {@code ArgumentMultimap}.
+     */
+    public static boolean arePrefixesPresent(ArgumentMultimap argumentMultimap, Prefix... prefixes) {
+        return Stream.of(prefixes).allMatch(prefix -> argumentMultimap.getValue(prefix).isPresent());
     }
 }

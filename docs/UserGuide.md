@@ -112,6 +112,7 @@ Throughout the User Guide, you'll see commands to enter into StudyTracker.
 Here is how to read the command format:
 
 #### Command Structure
+
 Commands use a multipart structure that must be specified in this order:
 1. **Command word** which may be user-created aliases (detailed further in [**Aliases**](#setting-command-aliases--alias-unalias)). <br>
 2. **Parameters** and **Flags**. A command may have more than one flag and/or parameters.
@@ -153,6 +154,7 @@ e.g. the `NAME` parameter has a delimiter `n/` and the `AMENITY` parameter has a
 
 
 ### How to use these Commands in Command Line Interface
+
 If this is your first time using *Command Line Interface (CLI)*, fret not and we will guide you step-by-step on how to use CLI!
 
 You tell the *Command Line Interface* exactly what you want it to do! However, if you input something that the CLI does not understand, 
@@ -196,7 +198,7 @@ The top of the interface contains the **Menu Bar**. Clicking on `File` or `Help`
 
 On the left side of the interface, you can find the [**Info Display**](#info-display).
 
-On the right side of the interface, you can find the [**Study Spot List**](#study-spot-list) and [**Command Box**](#study-spot-list).
+On the right side of the interface, you can find the [**Study Spot List**](#study-spot-list) and [**Command Box**](#command-box).
 
 ### Info Display
 
@@ -222,7 +224,6 @@ From left to right, the amenities are **aircon, charger, food, wifi**.
 
 ### Study Spot List
 
-
 ![Gui annotated](images/GuiStudySpotListAnnotated.png)
 
 The **Study Spot List** contains **Cards** representing every study spot in StudyTracker.
@@ -238,7 +239,9 @@ From left to right, the amenities are **aircon, charger, food, wifi**.
 * `Hours` — total number of hours studied at study spot
 * `Rating` — user-defined rating for the study spot out of 5
 
-The **Command Box** is where to enter [**commands**](#how-to-read-commands-in-studytracker) in StudyTracker.
+### Command Box 
+
+The **Command Box** is where you can enter [**commands**](#how-to-read-commands-in-studytracker) in StudyTracker.
 
 * `Command Box` — type in your commands here
 * `Display` — results of commands and error messages are shown here.
@@ -335,7 +338,8 @@ New study spot added: Starbucks at UTown; Rating: 4; Operating Hours: Weekdays: 
 If you made a mistake in your `add` command, or wish to change the details of a study spot, 
 you can easily do so by making use of the `edit` command!
 
-**Format:** `edit spot/NAME* n/NEW_NAME a/NEW_ADDRESS t/NEW_TAG m/NEW_AMENITY r/NEW_RATING o/NEW_OPERATING_HOURS`
+**Format:** `edit spot/NAME* n/NEW_NAME a/NEW_ADDRESS t/NEW_TAG m/NEW_AMENITY rt/NEW_TAG rm/NEW_AMENITY r/NEW_RATING 
+o/NEW_OPERATING_HOURS`
 
 * Edits the study spot matching `NAME`.
   The provided `NAME` is not case-sensitive and **must fully match the study spot name**.
@@ -369,7 +373,8 @@ Edited study spot: Basement; Rating: 5
 
 <div markdown="span" class="alert alert-primary">:information_source: **Note:**
 The above input assumes that there is already a study spot named "COM1 Basement" in the Study Tracker!
-This input only changes the name from "COM1 Basement" to "Basement".
+This input only changes the name from "COM1 Basement" to "Basement". Outputs may differ based on what information 
+your original study spot already has. 
 </div>
 
 <div style="page-break-after: always;"></div>
@@ -393,7 +398,7 @@ add command and directly mark it as a favourite using that command!
     <th width="90" align="left">Input 1</th>
     <td >
 
-`fav n/COM1 Basement`
+`fav n/COM1 Tech Hangout`
 
 </td>
   </tr>
@@ -401,7 +406,7 @@ add command and directly mark it as a favourite using that command!
     <th>Output 1</th>
     <td>
 
-Added study spot to favourites: COM1 Basement
+Added study spot to favourites: COM1 Tech Hangout
 
 </td>
 </tr>
@@ -559,7 +564,7 @@ Listed all study spots
     <th>Input 2</th>
     <td>
 
-`list -f -t t/cold -m m/wifi -r r/5`
+`list -t t/coffee -m m/wifi -r r/4`
 
 </td>
   </tr>
@@ -567,12 +572,13 @@ Listed all study spots
     <th>Output 2</th>
     <td>
 
-Listed all study spots in Favourites with Tags: [cold] with Amenities: [wifi] with Rating: 5
+Listed all study spots with Tags: [coffee] with Amenities: [wifi] with Rating: 4
+
 </td>
   </tr>
 </table>
 
-<img src="images/list_tags_cold.png" alt="cold tags" height="700"/>
+<img src="images/list_tags_amenities.png" alt="cold tags" height="700"/>
 
 <div markdown="span" class="alert alert-primary">:bulb: **Tip:**
 Make use of command aliases to speed up typing your inputs!
@@ -618,19 +624,17 @@ study spots you have.
 
 After studying at a certain study spot, you can `log` how many hours you have studied at this location.
 There are also various flags you can use to reset or override hours to the value of your choice.
-Use the `-r` and `-o` flags respectively, as shown
-below:
+Use the `-r`, `-o` or `-ra` flags respectively, as shown below:
 
 | Format     | Function |
 | ----------- | ----------- |
 | `log n/NAME* hr/NUM_OF_HOURS*` | Adds the given `NUM_OF_HOURS` to the original studied hours at a study spot |
 | `log -o n/NAME* hr/NUM_OF_HOURS*` | Overrides the current studied hours with the given `NUM_OF_HOURS`  |
 | `log -r n/NAME*` | Resets the number of studied hours at a study spot to 0 |
-| `log -r` | Resets studied hours of **ALL** study spots to 0 |
+| `log -ra` | Resets studied hours of **ALL** study spots to 0 |
 
 <div markdown="span" class="alert alert-primary">:information_source: **Note:**
-The flag `-o` stands for override, which overrides the studied hours with the provided value <br>
-The flag `-r` stands for reset, which resets the hours to 0
+As long as the flag `-ra` is present in the command, hours for all study spots will be reset to 0.  
 </div>
 
 
@@ -710,7 +714,7 @@ Use the log command at the end of a study session to keep track of how long you 
 
 ### Setting Command Aliases
 
-#### Adding command aliases : `alias`, `unalias`
+#### Adding command aliases : `alias` 
 
 Do you find yourself using certain commands so often that you wish you could "code-name" it so you don't need to type so much? 
 Alias is the command for you. The `alias` command can help you to shorten input commands to whatever you want it to be. 
@@ -730,7 +734,7 @@ Aliases are CASE-SENSITIVE
 | ----------- | ----------- | ---------- | ------------- |
 | `alias al/ml cmd/list` | Added alias ml: [list] | `ml` | `Listed all study spots` |
 
-* running `myList` will run the `list` command.
+* running `ml` will run the `list` command.
 
 <div markdown="span" class="alert alert-primary">:bulb: **Tip:**
 You can chain aliases to make more powerful commands! See the below example.<br> <br>
@@ -858,15 +862,15 @@ You may also copy the **preferences.json** file to keep your user preferences.
 Action | Format, Examples
 --------|------------------
 **Add** | `add n/NAME* r/RATING* a/ADDRESS t/TAG... m/AMENITY... o/OPERATING_HOURS` <br> e.g. `add n/COM1 r/5`
-**Edit** | `edit spot/NAME* n/NEW_NAME a/NEW_ADDRESS t/NEW_TAG m/NEW_AMENITY r/NEW_RATING o/NEW_OPERATING_HOURS`<br> e.g.,`edit n/tr3 n/Training Room 3`
+**Edit** | `edit spot/NAME* n/NEW_NAME a/NEW_ADDRESS t/NEW_TAG m/NEW_AMENITY rt/NEW_TAG rm/NEW_AMENITY r/NEW_RATING o/NEW_OPERATING_HOURS`<br> e.g.,`edit spot/tr3 n/Training Room 3`
 **Favourite**  |  `fav n/NAME*` <br> e.g. `fav n/COM1`
 **Unfavourite** | `unfav n/NAME*` <br> e.g. `unfav n/COM1`
 **Delete** | `delete n/NAME*` <br> e.g. `delete n/COM1`
+**Clear** | `clear`
 **List** | `list -f -t t/TAG... -m m/AMENITY... -r r/RATING` <br> e.g. `list -f -t t/quiet -m m/wifi -r r/5`
 **Find** | `find KEYWORD* [MORE KEYWORDS]*`<br> e.g. `find library`
 **Log** | `log -o n/NAME* hr/NUM_OF_HOURS*` <br> e.g. `log -o n/Starbucks hr/5`
 **Alias** | `alias al/ALIAS* cmd/COMMAND*`<br> e.g. `alias al/home cmd/find home`
 **Unalias** | `unalias al/ALIAS*` <br> e.g. `unalias al/ml`
-**Clear** | `clear`
 **Help** | `help`
 **Exit** | `exit`

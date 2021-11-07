@@ -1,5 +1,6 @@
 package seedu.address.logic.parser;
 
+import static org.junit.jupiter.api.Assertions.assertDoesNotThrow;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 import static seedu.address.logic.parser.ParserUtil.MESSAGE_INVALID_INDEX;
@@ -18,6 +19,7 @@ import seedu.address.model.studyspot.Address;
 import seedu.address.model.studyspot.Name;
 import seedu.address.model.studyspot.OperatingHours;
 import seedu.address.model.studyspot.Rating;
+import seedu.address.model.studyspot.StudiedHours;
 import seedu.address.model.tag.Tag;
 
 public class ParserUtilTest {
@@ -173,6 +175,25 @@ public class ParserUtilTest {
     }
 
     @Test
+    public void parseTag_containsWhiteSpace_throwsParseException() {
+        assertThrows(ParseException.class, () -> ParserUtil.parseTag(" "));
+    }
+
+    @Test
+    public void parseTag_exceedsMaxLength_throwsParseException() {
+        StringBuilder sb = new StringBuilder();
+        for (int i = 0; i < 49; i++) {
+            sb.append("a");
+        }
+        assertDoesNotThrow(() -> ParserUtil.parseTag(sb.toString()));
+        StringBuilder sb1 = new StringBuilder();
+        for (int i = 0; i < 50; i++) {
+            sb1.append("a");
+        }
+        assertThrows(ParseException.class, () -> ParserUtil.parseTag(sb1.toString()));
+    }
+
+    @Test
     public void parseTags_null_throwsNullPointerException() {
         assertThrows(NullPointerException.class, () -> ParserUtil.parseTags(null));
     }
@@ -196,7 +217,32 @@ public class ParserUtilTest {
     }
 
     @Test
-    public void parseStudiedHours_invalidValue() {
+    public void parseStudiedHours_validInput_returnsStudiedHours() throws ParseException {
+        StudiedHours actualHours = ParserUtil.parseStudiedHours("10");
+        StudiedHours expectedHours = new StudiedHours("10");
+
+        assertEquals(actualHours, expectedHours);
+    }
+
+    @Test
+    public void parseStudiedHours_invalidValue_throwsParseException() {
         assertThrows(ParseException.class, () -> ParserUtil.parseStudiedHours(INVALID_STUDIED_HOURS));
     }
+
+    @Test
+    public void parseStudiedHours_negativeValue_throwsParseException() {
+        assertThrows(ParseException.class, () -> ParserUtil.parseStudiedHours("-10"));
+    }
+
+    @Test
+    public void parseStudiedHours_missingValue_throwsParseException() {
+        assertThrows(ParseException.class, () -> ParserUtil.parseStudiedHours(""));
+    }
+
+    @Test
+    public void parseStudiedHours_largerThanMaxInteger_throwsParseException() {
+        String maxIntegerPlusOne = "2147483648";
+        assertThrows(ParseException.class, () -> ParserUtil.parseStudiedHours(maxIntegerPlusOne));
+    }
+
 }

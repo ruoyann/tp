@@ -88,8 +88,6 @@ public class EditCommandParser implements Parser<EditCommand> {
      * {@code Set<Tag>} containing zero tags.
      */
     private Optional<Set<Tag>> parseTagsForEdit(Collection<String> tags) throws ParseException {
-        assert tags != null;
-
         if (tags.isEmpty()) {
             return Optional.empty();
         }
@@ -103,8 +101,6 @@ public class EditCommandParser implements Parser<EditCommand> {
      * {@code Set<Amenity>} containing zero tags.
      */
     private Optional<Set<Amenity>> parseAmenitiesForEdit(Collection<String> amenities) throws ParseException {
-        assert amenities != null;
-
         if (amenities.isEmpty()) {
             return Optional.empty();
         }

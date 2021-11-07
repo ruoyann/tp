@@ -192,7 +192,8 @@ Aliases are stored in the `UserPrefs` object.
 
 * **Aliases** — A user-specified string that is mapped to a **command**.
   Aliases **cannot** be defined to existing command words.
-* **Commands** — A command must contain exactly one command word and optional arguments. 
+* **Commands** — A command must contain exactly one command word, all compulsory arguments and optional arguments if 
+  indicated. 
   When executed, an action is performed.
 * **Command Words** — The main "verbs" representing commands in StudyTracker.
   A command word by itself is a **command**.
@@ -297,7 +298,7 @@ as `StudiedHours`. This number can be changed by making use of the Log feature.
 
 #### Implementation of Log feature
 
-The Log feature is facilitated by `LogCommand.java`, `StudiedHours`.
+The Log feature is facilitated by `LogCommand.java`, `StudiedHours.java`.
 
 `StudiedHours.java` is a statistical field in `StudySpot`. It is responsible for storing the hours a user studies at a
 StudySpot. It implements the following operations: 
@@ -324,7 +325,7 @@ Given below is an example usage scenario and how the Log feature behaves at each
 
 1. The user executes `log -r n/Starbucks UTown` which resets the `StudiedHours` at Starbucks to 0.
 
-1. After studying for 3 hours at Starbucks, the user executes `log n/Starbucks UTown hr/4`, which adds 5 hours to 0,
+1. After studying for 3 hours at Starbucks, the user executes `log n/Starbucks UTown hr/5`, which adds 5 hours to 0,
  resulting in the `StudiedHours` to become 5.
 
 1. The user realises he made a mistake, and executes `log -o n/Starbucks UTown hr/3`, which hard changes the 
