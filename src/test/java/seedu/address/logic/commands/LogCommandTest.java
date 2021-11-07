@@ -143,14 +143,15 @@ public class LogCommandTest {
         assertNotEquals(new LogCommand(firstStudySpotInTypicalStudySpots, studiedHours,
                 false, false, true), standardCommand);
 
+        // same name, one null hours, different reset all -> returns false
+        assertNotEquals(new LogCommand(firstStudySpotInTypicalStudySpots, null,
+                false, false, true), standardCommand);
+
         LogCommand resetAllCommand = new LogCommand(null, null, false, false, true);
         LogCommand sameResetAllCommand = new LogCommand(null, null, false, false, true);
 
         // name == null, studied hours == null, different commands -> returns false
         assertNotEquals(resetAllCommand, standardCommand);
-
-        // flipped name == null, studied hours == null, different commands -> returns false
-        assertNotEquals(standardCommand, resetAllCommand);
 
         // name == null, studied hours == null, same command -> returns true
         assertEquals(sameResetAllCommand, resetAllCommand);
