@@ -29,7 +29,7 @@ Want to contribute to development? Check out the [**Developer Guide**](Developer
 
 ---
 
-## Table of Contents
+## **Table of Contents**
 
 * Table of Contents
 {:toc}
@@ -38,7 +38,7 @@ Want to contribute to development? Check out the [**Developer Guide**](Developer
 
 <div style="page-break-after: always;"></div>
 
-## Quick Start
+## **Quick Start**
 
 StudyTracker comes with sample data.
 In this **Quick Start** section, we'll go through **a tutorial to try the essential features of StudyTracker.**
@@ -84,7 +84,7 @@ with CLI syntax!
 <div style="page-break-after: always;"></div>
 
 ---
-## How to use this User Guide
+## **How to use this User Guide**
 
 This section provides tips on reading this document, as well as how to navigate it.
 
@@ -121,7 +121,7 @@ Commands use a multipart structure that must be specified in this order:
 
 #### Flags
 
-Commands may require **flags**.
+Commands may contain **flags**. All flags are optional.
   Flags are represented by a dash, and a sequence of characters. <br>
   e.g. the `list` command has a `-f` flag to list only favourites.
 
@@ -188,7 +188,8 @@ Congratulations! 🎉 You should now know how to use CLI. Now all you need to kn
 
 <div style="page-break-after: always;"></div>
 
-## GUI Layout
+---
+## **GUI Layout**
 
 This section introduces the Graphical User Interface (GUI) of StudyTracker.
 
@@ -250,7 +251,8 @@ The **Command Box** is where you can enter [**commands**](#how-to-read-commands-
 Check out <a href="#managing-themes">**Managing Themes**</a> section to change the theme of the GUI!
 </div>
 
-## Features
+---
+## **Features**
 
 This section introduces all the features in StudyTracker.
 
@@ -338,8 +340,7 @@ New study spot added: Starbucks at UTown; Rating: 4; Operating Hours: Weekdays: 
 If you made a mistake in your `add` command, or wish to change the details of a study spot, 
 you can easily do so by making use of the `edit` command!
 
-**Format:** `edit spot/NAME* n/NEW_NAME a/NEW_ADDRESS t/NEW_TAG m/NEW_AMENITY rt/NEW_TAG rm/NEW_AMENITY r/NEW_RATING 
-o/NEW_OPERATING_HOURS`
+**Format:** `edit spot/NAME* n/NEW_NAME a/NEW_ADDRESS t/NEW_TAG m/NEW_AMENITY r/NEW_RATING o/NEW_OPERATING_HOURS rt/OLD_TAG rm/OLD_AMENITY`
 
 * Edits the study spot matching `NAME`.
   The provided `NAME` is not case-sensitive and **must fully match the study spot name**.
@@ -412,7 +413,7 @@ Added study spot to favourites: COM1 Tech Hangout
 </tr>
 </table>
 
-<img src="images/add_favourites.png" alt="favourites" height="700"/>
+<img src="images/add_favourites.png" alt="favourites"/>
 
 <div style="page-break-after: always;"></div>
 
@@ -578,7 +579,7 @@ Listed all study spots with Tags: [coffee] with Amenities: [wifi] with Rating: 4
   </tr>
 </table>
 
-<img src="images/list_tags_amenities.png" alt="cold tags" height="700"/>
+<img src="images/list_tags_amenities.png" alt="cold tags"/>
 
 <div markdown="span" class="alert alert-primary">:bulb: **Tip:**
 Make use of command aliases to speed up typing your inputs!
@@ -833,9 +834,9 @@ StudyTracker data are saved as a JSON file `[home folder]/data/studytracker.json
 If your changes to the data file makes its format invalid, StudyTracker will discard all data and start with an empty data file at the next run.
 </div>
 
---------------------------------------------------------------------------------------------------------------------
+---
 
-## FAQ
+## **FAQ**
 
 This section contains frequently asked questions (FAQs) about StudyTracker.
 
@@ -855,14 +856,14 @@ You may also copy the **preferences.json** file to keep your user preferences.
 **Q**: What do I do when I encounter bugs?<br>
 **A**: As much as possible, we rigorously test our application before it is released. However, should you encounter bugs, you can raise issues to our team [here](https://github.com/AY2122S1-CS2103T-T09-1/tp/issues) and we would look to fix them in upcoming patches.
 
---------------------------------------------------------------------------------------------------------------------
+---
 
-## Command summary
+## **Command summary**
 
 Action | Format, Examples
 --------|------------------
 **Add** | `add n/NAME* r/RATING* a/ADDRESS t/TAG... m/AMENITY... o/OPERATING_HOURS` <br> e.g. `add n/COM1 r/5`
-**Edit** | `edit spot/NAME* n/NEW_NAME a/NEW_ADDRESS t/NEW_TAG m/NEW_AMENITY rt/NEW_TAG rm/NEW_AMENITY r/NEW_RATING o/NEW_OPERATING_HOURS`<br> e.g.,`edit spot/tr3 n/Training Room 3`
+**Edit** | `edit spot/NAME* n/NEW_NAME a/NEW_ADDRESS t/NEW_TAG m/NEW_AMENITY r/NEW_RATING o/NEW_OPERATING_HOURS rt/OLD_TAG rm/OLD_AMENITY`<br> e.g.,`edit spot/tr3 n/Training Room 3`
 **Favourite**  |  `fav n/NAME*` <br> e.g. `fav n/COM1`
 **Unfavourite** | `unfav n/NAME*` <br> e.g. `unfav n/COM1`
 **Delete** | `delete n/NAME*` <br> e.g. `delete n/COM1`
