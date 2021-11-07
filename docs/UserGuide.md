@@ -120,6 +120,7 @@ Commands use a multipart structure that must be specified in this order:
 
 <img src="images/commandStructure.png" alt="commandStructure" height="300"/>
 <br> _Figure 2 - Command Structure_
+
 #### Flags
 
 Commands may require **flags**.
@@ -235,7 +236,7 @@ In **Command Box**, simply use the UP and DOWN arrow keys to navigate through yo
 This section introduces the Graphical User Interface (GUI) of StudyTracker.
 
 ![Gui annotated](images/GuiAnnotated.png)
-<br> _Figure 3 - GUI Layout_
+_Figure 3 - GUI Layout_
 
 The top of the interface contains the **Menu Bar**. Clicking on `File` or `Help` will open up the [Settings menu](#managing-themes) and the [Help window](#viewing-help--help).
 
@@ -248,7 +249,7 @@ On the right side of the interface, you can find the [**Study Spot List**](#stud
 The **Info Display** contains the **Pie Chart** and **Favourites List**.
 
 ![Gui annotated](images/GuiInfoDisplayAnnotated.png)
-<br> _Figure 4 - Info Display Layout_
+_Figure 4 - Info Display Layout_
 
 The **Hours Studied Pie Chart** displays statistics of time spent studying at the *top five* study spots in terms of 
 the number of hours studied.
@@ -269,7 +270,7 @@ From left to right, the amenities are **aircon, charger, food, wifi**.
 ### Study Spot List
 
 ![Gui annotated](images/GuiStudySpotListAnnotated.png)
-<br> _Figure 5 - Study Spot List Layout_
+_Figure 5 - Study Spot List Layout_
 
 The **Study Spot List** contains **Cards** representing every study spot in StudyTracker.
 The `Total` tag at the top shows current visible study spots/total number of study spots in StudyTracker.
@@ -459,7 +460,7 @@ Added study spot to favourites: COM1 Tech Hangout
 </table>
 
 <img src="images/add_favourites.png" alt="favourites"/>
-<br> _Figure 6 - Example of Adding Favourites_
+_Figure 6 - Example of Adding Favourites_
 
 <div style="page-break-after: always;"></div>
 
@@ -626,7 +627,7 @@ Listed all study spots with Tags: [coffee] with Amenities: [wifi] with Rating: 4
 </table>
 
 <img src="images/list_tags_amenities.png" alt="cold tags"/>
-<br> _Figure 7 - Example of listing study spots with wifi, coffee tag and rating of 4_
+_Figure 7 - Example of listing study spots with wifi, coffee tag and rating of 4_
 
 <div markdown="span" class="alert alert-primary">:bulb: **Tip:**
 Make use of command aliases to speed up typing your inputs!
@@ -753,7 +754,7 @@ Reset hours for all study spots!
 </table>
 
 <img src="images/log_hours.png" alt="log hours" />
-<br> _Figure 8 - Example of Log command_
+_Figure 8 - Example of Log command_
 
 Logging 2 hours to 'Starbucks UTown' with the command `log n/starbucks utown hr/2` (as seen in Input 1) would update the **study spot card**, as well as statistics on the **pie chart**.
 
@@ -837,7 +838,7 @@ Click on each command on the left panel to view usage instructions of each comma
 
 You can also visit the User Guide and Developer Guide by clicking on the buttons in the window.
 ![Help window](images/helpMessage.png)
-<br> _Figure 9 - Help window_
+_Figure 9 - Help window_
 
 Format: `help`
 
@@ -865,7 +866,7 @@ From `File > Settings`, select the colour theme you wish to use. Themes are save
 launch the application, rest assured that your colour theme will be set and ready to go!
 
 ![Gui Themes](images/UiThemes.png)
-<br> _Figure 10 - Themes available_
+_Figure 10 - Themes available_
 
 <div style="page-break-after: always;"></div>
 
