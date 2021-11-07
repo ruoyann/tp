@@ -341,7 +341,6 @@ Sequence diagram for `-r` flag is the same as `-o` but with handleReset() instea
 
 The following activity diagram summarizes what happens when a user executes a new command:
 
-
 ![LogActivityDiagram](images/LogActivityDiagram.png)
 
 #### Design considerations
@@ -368,6 +367,103 @@ To tackle these issues, the following solutions were implemented:
     to keep track of how long they studied there.
     - Using Edit on `StudiedHours` should provide a similar effect to the `-o` flag of Log, it was agreed that it was
      not natural and unintuitive to use Edit for this purpose.
+
+### Operating Hours
+#### Overview
+
+Operating hours allow users to specify the opening and closing hours of a study spot.
+
+#### Implementation
+
+Operating hours is facilitated by these classes: `OperatingHours.java`, `StudySpot.java`, `AddCommand.java`
+and `EditCommand.java`.
+
+`OperatingHours.java` is responsible for creating `OperatingHours` objects. A `StudySpot` object contains 
+an `operatingHours` attribute. A study spot with an `OperatingHours` object can be initialised with an Add command 
+or the `operatingHours` attribute can be edited with an Edit command.
+
+Given below is an example usage scenario of adding a study spot with operating hours and how the mechanism behaves.
+
+Step 1. The user executes `add n/com r/5 o/0900-2200, 0900-1800` to add a new study spot. `StudyTrackerParser` class
+creates an `AddCommandParser` to parse the command. Since operating hours are provided in the command, 
+`ParserUtil#parseOperatingHours(String operatingHours)` is called. An `AddCommand` object with the study spot to be 
+added is then created.
+
+The following object diagram illustrates the `OperatingHours` object created.
+
+![Add OperatingHoursObjectDiagram](images/AddOperatingHoursObjectDiagram.png)
+
+
+Step 2. `LogicManager` executes the `AddCommand` object, calling `Model#addStudySpot(StudySpot studySpot)` so that 
+a new study spot is added to the model in StudyTracker.
+
+The following sequence diagram demonstrates how `StudyTrackerParser` parses the command.
+
+![Add OperatingHoursSequenceDiagram](images/AddOperatingHoursSequenceDiagram.png)
+
+
+### Enhanced List feature
+#### Overview
+
+The List Command is enhanced to support filtering of favourites, tags, amenities and rating.
+
+#### Implementation
+
+The `Model` component stores the currently 'selected' `StudySpot` objects as a separate filtered list. The filter of this list can be updated using `Model#updateFilteredStudySpotList(Predicate<StudySpot> predicate)`.
+
+Given below is an example usage scenario and how the list mechanism behaves at every step.
+
+Step 1. The user executes `list -f` command to show all favourites in the StudyTracker. `StudyTrackerParser` class
+creates a `ListCommandParser` to parse the command and creates a `ListCommand` object with a `Predicate<StudySpot>`
+that filters for favourite `StudySpots`.
+
+
+Step 2. `LogicManager` executes the `ListCommand` object, calling 
+`Model#updateFilteredStudySpotList(Predicate<StudySpot> predicate)`. This updates the model in StudyTracker to show
+only favourite `StudySpots` to the user. 
+
+The following sequence diagram demonstrates how `StudyTrackerParser` parses the command.
+
+![ListSequenceDiagram](images/ListSequenceDiagram.png)
+
+
+#### Design considerations
+
+**Behaviour of filters with multiple tags:**
+* **Current choice:** Filtering by tags show study spots that all specified tags.
+* **Alternative 1:** Filtering by tags show study spots that contain at least one of the specified tags.
+
+
+The current choice was chosen as it is intuitive and most modern desktop applications follow this behaviour. 
+
+### Enhanced Edit Command
+
+#### Overview
+
+The Edit Command is enhanced to support the removal of specific tags and amenities.
+
+#### Implementation
+
+The Edit Command is facilitated by two classes: `EditCommand.java` and `EditCommandParser.java`.
+
+Given below is an example usage scenario of removing a tag from a study spot and how the mechanism behaves.
+
+Step 1. The user executes `edit spot/com rt/noisy` to remove the Tag `noisy` from the StudySpot `com`. 
+`StudyTrackerParser` then parses this input and creates an `EditCommand` object.
+
+Step 2. `LogicManager` executes the `EditCommand` object and updates the model in StudyTracker with the edited study
+spot.
+
+The following sequence diagram demonstrates how `StudyTrackerParser` parses the command.
+
+![Edit RemoveTagSequenceDiagram](images/EditRemoveTagSequenceDiagram.png)
+
+
+#### Design considerations
+
+**Aspect: How to increase the ease of removing fields in a study spot:**
+- Alternative 1 (current choice): Users can directly remove a tag or an amenity they specify.
+- Alternative 2: Users have to retype existing tags or amenities if they wish to retain them.
 
 ### Themes
 
@@ -412,109 +508,6 @@ The following are examples showing the `Default` and `DotsDark` theme.
 * `fg-accent` — contrasting colour to act as accenting colour
 * `fg-text`, `bg-text`, `accent-text` — text colour for `fg-surface`, `bg-surface` and `fg-accent` respectively.
 * `button` — button colour
-
-### Operating Hours
-#### Overview
-
-Operating hours allow users to specify the opening and closing hours of a study spot.
-
-#### Implementation
-
-Operating hours is facilitated by these classes: `OperatingHours.java`, `StudySpot.java`, `AddCommand.java`
-and `EditCommand.java`.
-
-`OperatingHours.java` is responsible for creating `OperatingHours` objects. A `StudySpot` object contains 
-an `operatingHours` attribute. A study spot with an `OperatingHours` object can be initialised with an Add command 
-or the `operatingHours` attribute can be edited with an Edit command.
-
-Given below is an example usage scenario of adding a study spot with operating hours and how the mechanism behaves.
-
-Step 1. The user executes `add n/com r/5 o/0900-2200, 0900-1800` to add a new study spot. `StudyTrackerParser` class
-creates an `AddCommandParser` to parse the command. Since operating hours are provided in the command, 
-`ParserUtil#parseOperatingHours(String operatingHours)` is called. An `AddCommand` object with the study spot to be 
-added is then created.
-
-The following object diagram illustrates the `OperatingHours` object created.
-
-![Add OperatingHoursObjectDiagram](images/AddOperatingHoursObjectDiagram.png)
-
-
-Step 2. `LogicManager` executes the `AddCommand` object, calling `Model#addStudySpot(StudySpot studySpot)` so that 
-a new study spot is added to the model in StudyTracker.
-
-The following sequence diagram demonstrates how `StudyTrackerParser` parses the command.
-
-![Add OperatingHoursSequenceDiagram](images/AddOperatingHoursSequenceDiagram.png)
-
-
-### Enhanced List feature
-#### Overview
-
-The List Command is enhanced to support filtering of favourites and tags.
-
-#### Implementation
-
-The `Model` component stores the currently 'selected' `StudySpot` objects as a separate filtered list. The filter of this list can be updated using `Model#updateFilteredStudySpotList(Predicate<StudySpot> predicate)`.
-
-Given below is an example usage scenario and how the list mechanism behaves at every step.
-
-Step 1. The user executes `list -f` command to show all favourites in the StudyTracker. `StudyTrackerParser` class
-creates a `ListCommandParser` to parse the command and creates a `ListCommand` object with a `Predicate<StudySpot>`
-that filters for favourite `StudySpots`.
-
-
-Step 2. `LogicManager` executes the `ListCommand` object, calling 
-`Model#updateFilteredStudySpotList(Predicate<StudySpot> predicate)`. This updates the model in StudyTracker to show
-only favourite `StudySpots` to the user. 
-
-The following sequence diagram demonstrates how `StudyTrackerParser` parses the command.
-
-![ListSequenceDiagram](images/ListSequenceDiagram.png)
-
-
-#### Design considerations
-
-**Behaviour of filters with multiple tags:**
-* **Current choice:** Filtering by tags show study spots that all specified tags.
-* **Alternative 1:** Filtering by tags show study spots that contain at least one of the specified tags.
-
-
-The current choice was chosen as it is intuitive and most modern desktop applications follow this behaviour. 
-
-#### Future Extensions
-
-A future extension would be for List to support filtering of amenities as well.
-
-### Enhanced Edit Command
-
-#### Overview
-
-The Edit Command is enhanced to support the removal of specific tags and amenities.
-
-#### Implementation
-
-The Edit Command is facilitated by two classes: `EditCommand.java` and `EditCommandParser.java`.
-
-Given below is an example usage scenario of removing a tag from a study spot and how the mechanism behaves.
-
-Step 1. The user executes `edit spot/com rt/noisy` to remove the Tag `noisy` from the StudySpot `com`. 
-`StudyTrackerParser` then parses this input and creates an `EditCommand` object.
-
-Step 2. `LogicManager` executes the `EditCommand` object and updates the model in StudyTracker with the edited study
-spot.
-
-The following sequence diagram demonstrates how `StudyTrackerParser` parses the command.
-
-![Edit RemoveTagSequenceDiagram](images/EditRemoveTagSequenceDiagram.png)
-
-
-#### Design considerations
-
-**Aspect: How to increase the ease of removing fields in a study spot:**
-- Alternative 1 (current choice): Users can directly remove a tag or an amenity they specify.
-- Alternative 2: Users have to retype existing tags or amenities if they wish to retain them.
-
-
 --------------------------------------------------------------------------------------------------------------------
 
 ## **Documentation, logging, testing, configuration, dev-ops**
