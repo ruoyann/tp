@@ -261,9 +261,7 @@ Features are grouped according to usage.
 Click on the groups to view clear, step-by-step usage instructions!
 
 <div markdown="span" class="alert alert-primary">:information_source: **Note:**
-To get exactly the same expected outputs as we stated, please follow all input examples sequentially using 
-our sample data that appears in the app upon opening it the first time. This means scrolling through our features 
-section from first command to last command and following the example inputs on each row from first to last row. 
+To get the expected outputs we stated in this guide, please use the app's default data. Also, please enter the inputs by following the sample inputs provided in the features section sequentially.
 </div>
 
 
