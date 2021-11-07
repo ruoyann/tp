@@ -122,15 +122,6 @@ public class StudyTrackerTest {
     }
 
     @Test
-    public void removeStudySpot_returnsTrue() {
-        studyTracker.addStudySpot(STARBUCKS);
-        StudySpot starbucks = new StudySpotBuilder(STARBUCKS).build();
-        assertTrue(studyTracker.getStudySpotList().contains(starbucks));
-        studyTracker.removeStudySpot(starbucks);
-        assertTrue(studyTracker.getFavouriteStudySpotList().isEmpty());
-    }
-
-    @Test
     public void isFavouriteStudySpot_notInFavourites_returnsFalse() {
         studyTracker.addStudySpot(STARBUCKS);
         assertFalse(studyTracker.isFavouriteStudySpot(STARBUCKS));
@@ -182,5 +173,30 @@ public class StudyTrackerTest {
         public ObservableList<StudySpot> getFavouriteStudySpotList() {
             throw new AssertionError("This method should not be called.");
         }
+    }
+
+    @Test
+    public void equals() {
+        StudyTracker st1 = new StudyTracker();
+        StudyTracker st2 = new StudyTracker();
+
+        st1.addStudySpot(STARBUCKS);
+        st2.addStudySpot(STARBUCKS);
+
+        // study tracker with same study spots
+        assertEquals(st2, st1);
+
+        // same study tracker
+        assertEquals(st1, st1);
+
+        StudyTracker st1f = new StudyTracker();
+        StudyTracker st2f = new StudyTracker();
+        st1f.addStudySpot(DECK);
+        st2f.addStudySpot(DECK);
+        st1f.addStudySpotToFavourites(DECK);
+        st2f.addStudySpotToFavourites(DECK);
+
+        // study tracker with same study spots and same favourite study spots
+        assertEquals(st2f, st1f);
     }
 }

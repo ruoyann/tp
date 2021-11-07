@@ -145,7 +145,7 @@ public class StudyTracker implements ReadOnlyStudyTracker {
      * @return Returns the updated study spot.
      */
     public StudySpot addStudySpotToFavourites(StudySpot studySpot) {
-        assert(hasStudySpot(studySpot));
+        assert(hasStudySpot(studySpot) == true);
         StudySpot favouriteStudySpot = new StudySpot(studySpot.getName(), studySpot.getRating(),
                 studySpot.getOperatingHours(), studySpot.getAddress(), studySpot.getStudiedHours(),
                 new Favourite(true), studySpot.getTags(), studySpot.getAmenities());
