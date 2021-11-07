@@ -6,6 +6,7 @@ import static seedu.address.commons.core.Messages.MESSAGE_INVALID_COMMAND_FORMAT
 import static seedu.address.commons.core.Messages.MESSAGE_UNKNOWN_COMMAND;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_ALIAS;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_ALIAS_COMMAND;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_HOURS;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_NAME;
 import static seedu.address.testutil.Assert.assertThrows;
 import static seedu.address.testutil.TypicalStudySpots.STARBUCKS;
@@ -28,12 +29,14 @@ import seedu.address.logic.commands.FavouriteCommand;
 import seedu.address.logic.commands.FindCommand;
 import seedu.address.logic.commands.HelpCommand;
 import seedu.address.logic.commands.ListCommand;
+import seedu.address.logic.commands.LogCommand;
 import seedu.address.logic.commands.UnaliasCommand;
 import seedu.address.logic.commands.UnfavouriteCommand;
 import seedu.address.logic.parser.exceptions.ParseException;
 import seedu.address.model.alias.Alias;
 import seedu.address.model.studyspot.Name;
 import seedu.address.model.studyspot.NameContainsKeywordsPredicate;
+import seedu.address.model.studyspot.StudiedHours;
 import seedu.address.model.studyspot.StudySpot;
 import seedu.address.testutil.EditStudySpotDescriptorBuilder;
 import seedu.address.testutil.StudySpotBuilder;
@@ -130,6 +133,16 @@ public class StudyTrackerParserTest {
     public void parseCommand_list() throws Exception {
         assertTrue(parser.parseCommand(ListCommand.COMMAND_WORD, ALIAS_LIST) instanceof ListCommand);
         assertTrue(parser.parseCommand(ListCommand.COMMAND_WORD + " 3", ALIAS_LIST) instanceof ListCommand);
+    }
+
+    @Test
+    public void parseCommand_log() throws Exception {
+        LogCommand commandFromParse = (LogCommand) parser.parseCommand(
+                LogCommand.COMMAND_WORD + " " + PREFIX_NAME + STARBUCKS.getName() + " "
+                        + PREFIX_HOURS + "5", ALIAS_LIST);
+        LogCommand expectedLogCommand = new LogCommand(STARBUCKS.getName(), new StudiedHours("5"),
+                false, false, false);
+        assertEquals(expectedLogCommand, commandFromParse);
     }
 
     @Test
