@@ -48,6 +48,12 @@ deactivate StudyTrackerParser
 LogicManager -> LogCommand : execute()
 activate LogCommand
 
+LogCommand -> LogCommand : setStudySpotHours(Starbucks, hoursAfterAddition)
+activate LogCommand
+
+LogCommand --> LogCommand : updatedStarbucks
+deactivate LogCommand
+
 LogCommand -> Model : setStudySpot(Starbucks,\n updatedStarbucks)
 activate Model
 
