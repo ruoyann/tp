@@ -129,11 +129,11 @@ public class ParserUtil {
             throw new ParseException(StudiedHours.MESSAGE_CONSTRAINTS);
         }
         try {
-            Integer.parseInt(studiedHours);
+            Integer.parseInt(trimmedStudiedHours);
         } catch (NumberFormatException e) {
             throw new ParseException(StudiedHours.MESSAGE_INTEGER_OVERFLOW);
         }
-        return new StudiedHours(studiedHours);
+        return new StudiedHours(trimmedStudiedHours);
     }
 
     /**
@@ -230,7 +230,7 @@ public class ParserUtil {
     public static Amenity parseAmenity(String amenity) throws ParseException {
         requireNonNull(amenity);
         String trimmedAmenity = amenity.trim();
-        if (!Amenity.isValidAmenityType(amenity)) {
+        if (!Amenity.isValidAmenityType(trimmedAmenity)) {
             throw new ParseException(String.format(Amenity.MESSAGE_CONSTRAINTS,
                     Amenity.listAllAmenityTypes(Amenity.VALID_TYPES)));
         }
