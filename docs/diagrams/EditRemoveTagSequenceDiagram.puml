@@ -90,6 +90,9 @@ deactivate CommandResult
 
 EditCommand --> LogicManager : result
 deactivate EditCommand
+'Hidden arrow to position the destroy marker below the end of the activation bar.
+EditCommand -[hidden]-> StudyTrackerParser
+destroy EditCommand
 
 [<--LogicManager
 deactivate LogicManager
