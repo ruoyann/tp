@@ -30,7 +30,6 @@ public class ParserUtilTest {
     private static final String INVALID_OPERATING_HOURS = "9-10, 9-6";
     private static final String INVALID_TAG = "#friend";
     private static final String INVALID_TAG_WITH_SPACING = "very crowded";
-    private static final String INVALID_TAG_49_CHAR = "thisPlaceIsVeryCrowdedAndNoisyyyyyyyyyyyyyyyyyyyy";
     private static final String INVALID_AMENITY = "wifii";
     private static final String INVALID_STUDIED_HOURS = "hour";
 
@@ -40,6 +39,7 @@ public class ParserUtilTest {
     private static final String VALID_OPERATING_HOURS = "0900-2200, 0900-1800";
     private static final String VALID_TAG_1 = "friend";
     private static final String VALID_TAG_2 = "neighbour";
+    private static final String VALID_TAG_49_CHAR = "thisPlaceIsVeryCrowdedAndNoisyyyyyyyyyyyyyyyyyyyy";
     private static final String VALID_AMENITY_1 = "aircon";
     private static final String VALID_AMENITY_2 = "food";
     private static final String VALID_STUDIED_HOURS = "5";
@@ -188,9 +188,9 @@ public class ParserUtilTest {
 
     @Test
     public void parseTag_exceedsMaxLength_throwsParseException() {
-        assertDoesNotThrow(() -> ParserUtil.parseTag(INVALID_TAG_49_CHAR));
+        assertDoesNotThrow(() -> ParserUtil.parseTag(VALID_TAG_49_CHAR));
 
-        String invalidTagFiftyChar = INVALID_TAG_49_CHAR + "y";
+        String invalidTagFiftyChar = VALID_TAG_49_CHAR + "y";
         assertThrows(ParseException.class, () -> ParserUtil.parseTag(invalidTagFiftyChar));
     }
 
