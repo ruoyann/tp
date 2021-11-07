@@ -63,6 +63,9 @@ deactivate CommandResult
 
 ListCommand --> LogicManager : result
 deactivate ListCommand
+'Hidden arrow to position the destroy marker below the end of the activation bar.
+ListCommand -[hidden]-> StudyTrackerParser
+destroy ListCommand
 
 [<--LogicManager
 deactivate LogicManager
