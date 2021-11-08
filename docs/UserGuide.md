@@ -896,13 +896,8 @@ Click on each command on the left panel to view usage instructions of each comma
 
 You can also visit the User Guide and Developer Guide by clicking on the buttons in the window.
 
-<p align=“center”>
-
-![Help window](images/helpMessage.png)
-
+<img align="center" src="images/helpMessage.png">
 _Figure 9 - Help Window_
-
-</p>
 
 
 Format: `help`
