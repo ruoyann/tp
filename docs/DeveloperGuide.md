@@ -41,6 +41,8 @@ To set up your development environment for StudyTracker, refer to this guide [_S
 
 --------------------------------------------------------------------------------------------------------------------
 
+<div style="page-break-after: always;"></div>
+
 ## **Design**
 
 This segment introduces the general architecture of StudyTracker.
@@ -57,6 +59,8 @@ This segment introduces the general architecture of StudyTracker.
 The ***Architecture Diagram*** given above explains the high-level design of the App.
 
 Given below is a quick overview of main components and how they interact with each other.
+
+<div style="page-break-after: always;"></div>
 
 **Main components of the architecture**
 
@@ -85,12 +89,16 @@ Each of the four main components (also shown in the diagram above),
 * defines its *API* in an `interface` with the same name as the Component.
 * implements its functionality using a concrete `{Component Name}Manager` class (which follows the corresponding API `interface` mentioned in the previous point.
 
+<div style="page-break-after: always;"></div>
+
 For example, the `Logic` component defines its API in the [`Logic.java`](https://github.com/AY2122S1-CS2103T-T09-1/tp/blob/master/src/main/java/seedu/address/logic/Logic.java) interface and implements its functionality using the [`LogicManager.java`](https://github.com/AY2122S1-CS2103T-T09-1/tp/tree/master/src/main/java/seedu/address/logic) class which follows the `Logic` interface.
 Other components interact with a given component through its interface rather than the concrete class (reason: to prevent outside component's being coupled to the implementation of a component), as illustrated in the (partial) class diagram below.
 
 <img src="images/ComponentManagers.png" width="300" />
 
 The sections below give more details of each component.
+
+<div style="page-break-after: always;"></div>
 
 ### UI component
 
@@ -109,6 +117,8 @@ The `UI` component,
 * keeps a reference to the `Logic` component, because the `UI` relies on the `Logic` to execute commands.
 * depends on some classes in the `Model` component, as it displays `StudySpot` object residing in the `Model`.
 
+<div style="page-break-after: always;"></div>
+
 ### Logic component
 
 **API** : [`Logic.java`](https://github.com/AY2122S1-CS2103T-T09-1/tp/blob/master/src/main/java/seedu/address/logic/Logic.java)
@@ -123,6 +133,8 @@ How the `Logic` component works:
 1. The command can communicate with the `Model` when it is executed (e.g. to add a `StudySpot`).
 1. The result of the command execution is encapsulated as a `CommandResult` object which is returned from `Logic`.
 
+<div style="page-break-after: always;"></div>
+
 The Sequence Diagram below illustrates the interactions within the `Logic` component for the `execute("delete n/Central Library")` API call.
 
 ![Interactions Inside the Logic Component for the `delete n/Central Library` Command](images/DeleteSequenceDiagram.png)
@@ -134,9 +146,13 @@ Here are the other classes in `Logic` (omitted from the class diagram above) tha
 
 <img src="images/ParserClasses.png" width="600"/>
 
+<div style="page-break-after: always;"></div>
+
 How the parsing works:
 * When called upon to parse a user command, the `StudyTrackerParser` class creates an `XYZCommandParser` (`XYZ` is a placeholder for the specific command name e.g., `AddCommandParser`) which uses the other classes shown above to parse the user command and create a `XYZCommand` object (e.g., `AddCommand`) which the `StudyTrackerParser` returns back as a `Command` object.
 * All `XYZCommandParser` classes (e.g., `AddCommandParser`, `DeleteCommandParser`, ...) inherit from the `Parser` interface so that they can be treated similarly where possible e.g, during testing.
+
+<div style="page-break-after: always;"></div>
 
 ### Model component
 **API** : [`Model.java`](https://github.com/AY2122S1-CS2103T-T09-1/tp/blob/master/src/main/java/seedu/address/model/Model.java)
@@ -151,12 +167,15 @@ The `Model` component,
 * stores a `UserPref` object that represents the user’s preferences. This is exposed to the outside as a `ReadOnlyUserPref` objects.
 * does not depend on any of the other three components (as the `Model` represents data entities of the domain, they should make sense on their own without depending on other components)
 
+<div style="page-break-after: always;"></div>
+
 <div markdown="span" class="alert alert-info">:information_source: **Note:** An alternative (arguably, a more OOP) model is given below. It has a `Tag` list in the `StudyTracker`, which `StudySpot` references. This allows `StudyTracker` to only require one `Tag` object per unique tag, instead of each `StudySpot` needing their own `Tag` objects.<br>
 
 <img src="images/BetterModelClassDiagram.png" width="600" />
 
 </div>
 
+<div style="page-break-after: always;"></div>
 
 ### Storage component
 
@@ -174,6 +193,8 @@ The `Storage` component,
 Classes used by multiple components are in the `seedu.address.commons` package.
 
 ---
+
+<div style="page-break-after: always;"></div>
 
 ## **Implementation**
 
@@ -287,7 +308,9 @@ The following activity diagram summarizes what happens when a user executes a ne
 * **Alternative 3:** Aliases can map to commands, including other aliases.
     * Pros: User has even more freedom.
     * Cons: Implementation is much more challenging (e.g. how to prevent recursion?).
-    
+
+
+<div style="page-break-after: always;"></div>
 
 ### Log feature
 
@@ -375,6 +398,8 @@ To tackle these issues, the following solutions were implemented:
     - Using Edit on `StudiedHours` should provide a similar effect to the `-o` flag of Log, it was agreed that it was
      not natural and unintuitive to use Edit for this purpose.
 
+<div style="page-break-after: always;"></div>
+
 ### Operating Hours
 #### Overview
 
@@ -408,6 +433,8 @@ The following sequence diagram demonstrates how `StudyTrackerParser` parses the 
 
 ![Add OperatingHoursSequenceDiagram](images/AddOperatingHoursSequenceDiagram.png)
 
+<div style="page-break-after: always;"></div>
+
 ### Amenities 
 #### Overview
 
@@ -435,6 +462,8 @@ The following sequence diagram demonstrates how `StudyTrackerParser` parses the 
 
 ![Add AmenitySequenceDiagram](images/AddAmenitySequenceDiagram.png)
 
+
+<div style="page-break-after: always;"></div>
 
 ### Enhanced List Command
 #### Overview
@@ -478,6 +507,8 @@ The following sequence diagram demonstrates how `StudyTrackerParser` parses the 
 
 The current choice was chosen as it is intuitive and most modern desktop applications follow this behaviour. 
 
+<div style="page-break-after: always;"></div>
+
 ### Enhanced Edit Command
 
 #### Overview
@@ -506,6 +537,8 @@ The following sequence diagram demonstrates how `StudyTrackerParser` parses the 
 **Aspect: How to increase the ease of removing fields in a study spot:**
 - **Alternative 1 (current choice)**: Users can directly remove a tag or an amenity they specify.
 - **Alternative 2**: Users have to retype existing tags or amenities if they wish to retain them.
+
+<div style="page-break-after: always;"></div>
 
 ### Themes
 
@@ -553,6 +586,8 @@ The following are examples showing the `Default` and `DotsDark` theme.
 
 ---
 
+<div style="page-break-after: always;"></div>
+
 ## **Documentation, logging, testing, configuration, dev-ops**
 
 * [Documentation guide](Documentation.md)
@@ -576,6 +611,8 @@ The following are examples showing the `Default` and `DotsDark` theme.
 * is reasonably comfortable using CLI apps
 
 **Value proposition**: manage study spots faster than a typical mouse/GUI driven app
+
+<div style="page-break-after: always;"></div>
 
 ### User stories
 
@@ -664,7 +701,9 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
     * 1a1. StudyTracker shows an error message.
 
       Use case ends.
-    
+
+<div style="page-break-after: always;"></div>
+
 ### Non-Functional Requirements
 
 1.  Should work on any _mainstream OS_ as long as it has Java `11` or above installed.
@@ -687,6 +726,8 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 * **Usable**: All functions can be used even if the user experience is not optimal
 
 ---
+
+<div style="page-break-after: always;"></div>
 
 ## **Appendix: Instructions for manual testing**
 
