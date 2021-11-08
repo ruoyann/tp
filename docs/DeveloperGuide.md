@@ -41,6 +41,8 @@ To set up your development environment for StudyTracker, refer to this guide [_S
 
 --------------------------------------------------------------------------------------------------------------------
 
+<div style="page-break-after: always;"></div>
+
 ## **Design**
 
 This segment introduces the general architecture of StudyTracker.
@@ -92,6 +94,8 @@ Other components interact with a given component through its interface rather th
 
 The sections below give more details of each component.
 
+<div style="page-break-after: always;"></div>
+
 ### UI component
 
 The **API** of this component is specified in [`Ui.java`](https://github.com/AY2122S1-CS2103T-T09-1/tp/tree/master/src/main/java/seedu/address/ui/Ui.java)
@@ -108,6 +112,8 @@ The `UI` component,
 * listens for changes to `Model` data so that the UI can be updated with the modified data.
 * keeps a reference to the `Logic` component, because the `UI` relies on the `Logic` to execute commands.
 * depends on some classes in the `Model` component, as it displays `StudySpot` object residing in the `Model`.
+
+<div style="page-break-after: always;"></div>
 
 ### Logic component
 
@@ -138,6 +144,8 @@ How the parsing works:
 * When called upon to parse a user command, the `StudyTrackerParser` class creates an `XYZCommandParser` (`XYZ` is a placeholder for the specific command name e.g., `AddCommandParser`) which uses the other classes shown above to parse the user command and create a `XYZCommand` object (e.g., `AddCommand`) which the `StudyTrackerParser` returns back as a `Command` object.
 * All `XYZCommandParser` classes (e.g., `AddCommandParser`, `DeleteCommandParser`, ...) inherit from the `Parser` interface so that they can be treated similarly where possible e.g, during testing.
 
+<div style="page-break-after: always;"></div>
+
 ### Model component
 **API** : [`Model.java`](https://github.com/AY2122S1-CS2103T-T09-1/tp/blob/master/src/main/java/seedu/address/model/Model.java)
 
@@ -157,6 +165,7 @@ The `Model` component,
 
 </div>
 
+<div style="page-break-after: always;"></div>
 
 ### Storage component
 
@@ -174,6 +183,8 @@ The `Storage` component,
 Classes used by multiple components are in the `seedu.address.commons` package.
 
 ---
+
+<div style="page-break-after: always;"></div>
 
 ## **Implementation**
 
@@ -287,7 +298,9 @@ The following activity diagram summarizes what happens when a user executes a ne
 * **Alternative 3:** Aliases can map to commands, including other aliases.
     * Pros: User has even more freedom.
     * Cons: Implementation is much more challenging (e.g. how to prevent recursion?).
-    
+
+
+<div style="page-break-after: always;"></div>
 
 ### Log feature
 
@@ -375,6 +388,8 @@ To tackle these issues, the following solutions were implemented:
     - Using Edit on `StudiedHours` should provide a similar effect to the `-o` flag of Log, it was agreed that it was
      not natural and unintuitive to use Edit for this purpose.
 
+<div style="page-break-after: always;"></div>
+
 ### Operating Hours
 #### Overview
 
@@ -408,6 +423,8 @@ The following sequence diagram demonstrates how `StudyTrackerParser` parses the 
 
 ![Add OperatingHoursSequenceDiagram](images/AddOperatingHoursSequenceDiagram.png)
 
+<div style="page-break-after: always;"></div>
+
 ### Amenities 
 #### Overview
 
@@ -435,6 +452,8 @@ The following sequence diagram demonstrates how `StudyTrackerParser` parses the 
 
 ![Add AmenitySequenceDiagram](images/AddAmenitySequenceDiagram.png)
 
+
+<div style="page-break-after: always;"></div>
 
 ### Enhanced List Command
 #### Overview
@@ -478,6 +497,8 @@ The following sequence diagram demonstrates how `StudyTrackerParser` parses the 
 
 The current choice was chosen as it is intuitive and most modern desktop applications follow this behaviour. 
 
+<div style="page-break-after: always;"></div>
+
 ### Enhanced Edit Command
 
 #### Overview
@@ -506,6 +527,8 @@ The following sequence diagram demonstrates how `StudyTrackerParser` parses the 
 **Aspect: How to increase the ease of removing fields in a study spot:**
 - **Alternative 1 (current choice)**: Users can directly remove a tag or an amenity they specify.
 - **Alternative 2**: Users have to retype existing tags or amenities if they wish to retain them.
+
+<div style="page-break-after: always;"></div>
 
 ### Themes
 
@@ -553,6 +576,8 @@ The following are examples showing the `Default` and `DotsDark` theme.
 
 ---
 
+<div style="page-break-after: always;"></div>
+
 ## **Documentation, logging, testing, configuration, dev-ops**
 
 * [Documentation guide](Documentation.md)
@@ -576,6 +601,8 @@ The following are examples showing the `Default` and `DotsDark` theme.
 * is reasonably comfortable using CLI apps
 
 **Value proposition**: manage study spots faster than a typical mouse/GUI driven app
+
+<div style="page-break-after: always;"></div>
 
 ### User stories
 
@@ -664,7 +691,9 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
     * 1a1. StudyTracker shows an error message.
 
       Use case ends.
-    
+
+<div style="page-break-after: always;"></div>
+
 ### Non-Functional Requirements
 
 1.  Should work on any _mainstream OS_ as long as it has Java `11` or above installed.
@@ -687,6 +716,8 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 * **Usable**: All functions can be used even if the user experience is not optimal
 
 ---
+
+<div style="page-break-after: always;"></div>
 
 ## **Appendix: Instructions for manual testing**
 
