@@ -356,7 +356,7 @@ Not sure how to use the Command Line Interface? Check <a href="#how-to-use-these
     <td>
 
 
-        ```
+        ```java
         add n/COM1 Basement r/5
         ```
     </td>
@@ -377,7 +377,7 @@ Not sure how to use the Command Line Interface? Check <a href="#how-to-use-these
 
 
 
-```
+```java
 add n/Starbucks at UTown r/4 t/noisy m/wifi o/0800-2000,0900-2200
 ```
 
