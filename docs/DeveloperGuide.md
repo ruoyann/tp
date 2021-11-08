@@ -309,7 +309,7 @@ is no integer overflow.
  together, returning a new `StudiedHour`. It also ensures that there is no integer overflow.
 
 `LogCommand.java` is responsible for changing the `StudiedHours` field in a given `StudySpot` (given by its `Name`). 
-It has 3 different ways of doing so:
+It has 4 different ways of doing so:
 - By default, it adds the given input value to the current value.
     - E.g. If the current StudiedHours is 4, and the user logs 3 more hours, it adds 4 and 3 together to give 7 hours.
 - By using the `-o` flag in the input, it **overrides** the original value and replaces it with the given value.
@@ -317,10 +317,12 @@ It has 3 different ways of doing so:
       and replace it with 3.
 - By using the `-r` flag in the input, it **resets** the original value to 0.
     - E.g. If the current StudiedHours is 4, and the user logs with the `-r` flag, the value will be reset to 0.
+- By using the `-ra` flag in the input, it **resets** the original value of ALL `StudySpot`'s to 0.
+    - E.g. If the user logs with the `-ra` flag, all values will be reset to 0.
     
 Given below is an example usage scenario and how the Log feature behaves at each step:
 
-1. The user launches the application. The program loads with the given `StudySpots`.
+1. The user launches the application. The program loads with the given `StudySpot`'s.
 
 ![PartialStudyTrackerDiagram](images/PartialStudyTracker.png)
 
@@ -332,6 +334,8 @@ Given below is an example usage scenario and how the Log feature behaves at each
 1. The user realises he made a mistake, and executes `log -o n/Starbucks UTown hr/3`, which hard changes the 
 `StudiedHours` to 3.
    
+1. The user wants to reset all `StudiedHours` to 0, so the user executes the command `log -ra`.
+   
 The following sequence diagram demonstrates the flow from the given input:
 
 ![LogSequenceDiagram](images/LogSequenceDiagram.png)
@@ -339,6 +343,8 @@ The following sequence diagram demonstrates the flow from the given input:
 ![LogSequenceDiagramOverride](images/LogSequenceDiagramWithFlagO.png)
 
 Sequence diagram for `-r` flag is the same as `-o` but with handleReset() instead of handleOverride()
+
+![LogSequenceDiagramResetAll](images/LogSequenceDiagramWithFlagRA.png)
 
 The following activity diagram summarizes what happens when a user executes a new command:
 
