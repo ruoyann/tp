@@ -17,9 +17,10 @@ This **Developer Guide** assumes that developers are familiar with **Java 8**, *
 
 Only want to know how to use StudyTracker? Check out the [**User Guide**](UserGuide.html) instead.
 
+--- 
+
 <div style="page-break-after: always;"></div>
 
---- 
 ## **Table of Contents**
 
 * Table of Contents
@@ -131,12 +132,16 @@ How the `Logic` component works:
 1. The command can communicate with the `Model` when it is executed (e.g. to add a `StudySpot`).
 1. The result of the command execution is encapsulated as a `CommandResult` object which is returned from `Logic`.
 
+<div style="page-break-after: always;"></div>
+
 The Sequence Diagram below illustrates the interactions within the `Logic` component for the `execute("delete n/Central Library")` API call.
 
 ![Interactions Inside the Logic Component for the `delete n/Central Library` Command](images/DeleteSequenceDiagram.png)
 
 <div markdown="span" class="alert alert-info">:information_source: **Note:** The lifeline for `DeleteCommandParser` should end at the destroy marker (X) but due to a limitation of PlantUML, the lifeline reaches the end of diagram.
 </div>
+
+<div style="page-break-after: always;"></div>
 
 Here are the other classes in `Logic` (omitted from the class diagram above) that are used for parsing a user command:
 
@@ -153,6 +158,7 @@ How the parsing works:
 
 <img src="images/ModelClassDiagram.png" width="750" />
 
+<div style="page-break-after: always;"></div>
 
 The `Model` component,
 
@@ -253,6 +259,8 @@ Given below is an example usage scenario and how the Alias feature behaves at ea
 
 ![AliasState0](images/AliasState0.png)
 
+<div style="page-break-after: always;"></div>
+
 **Step 2.** The user executes `alias al/myAdd cmd/add r/5 n/` which creates an alias `myAdd` with command `add r/5 n/`.
 The `alias` command calls `Model#addAlias()`, adding this newly created alias to the Model and in UserPrefs.
 
@@ -286,8 +294,6 @@ The following sequence diagram demonstrates how StudyTrackerParser parses the in
 The following activity diagram summarizes what happens when a user executes a new command:
 
 <img src="images/AliasActivityDiagram.png" width="350" />
-
-<div style="page-break-after: always;"></div>
 
 #### Design considerations
 
@@ -337,6 +343,8 @@ It has 4 different ways of doing so:
     - E.g. If the current StudiedHours is 4, and the user logs with the `-r` flag, the value will be reset to 0.
 - By using the `-ra` flag in the input, it **resets** the original value of ALL `StudySpot`'s to 0.
     - E.g. If the user logs with the `-ra` flag, all values will be reset to 0.
+
+<div style="page-break-after: always;"></div>
     
 Given below is an example usage scenario and how the Log feature behaves at each step:
 
@@ -425,6 +433,8 @@ The following object diagram illustrates the `OperatingHours` object created.
 
 Step 2. `LogicManager` executes the `AddCommand` object, calling `Model#addStudySpot(StudySpot studySpot)` so that 
 a new study spot is added to the model in StudyTracker.
+
+<div style="page-break-after: always;"></div>
 
 The following sequence diagram demonstrates how `StudyTrackerParser` parses the command.
 
@@ -527,6 +537,7 @@ The following sequence diagram demonstrates how `StudyTrackerParser` parses the 
 
 ![Edit RemoveTagSequenceDiagram](images/EditRemoveTagSequenceDiagram.png)
 
+<div style="page-break-after: always;"></div>
 
 #### Design considerations
 
@@ -534,7 +545,6 @@ The following sequence diagram demonstrates how `StudyTrackerParser` parses the 
 - **Alternative 1 (current choice)**: Users can directly remove a tag or an amenity they specify.
 - **Alternative 2**: Users have to retype existing tags or amenities if they wish to retain them.
 
-<div style="page-break-after: always;"></div>
 
 ### Themes
 
@@ -551,6 +561,8 @@ These settings are stored by `UserPrefs` in the Model.
 
 Themes are stored as Strings representing the theme name.
 For example, `"default"` represents the default theme.
+
+<div style="page-break-after: always;"></div>
 
 The `MainWindow` Ui component communicates with the Logic class to read and write the currently selected theme.
 Then, the `MainWindow` takes the stored theme and injects the corresponding CSS file to set the colours of the JavaFX app.
@@ -608,8 +620,6 @@ The following are examples showing the `Default` and `DotsDark` theme.
 * is reasonably comfortable using CLI apps
 
 **Value proposition**: manage study spots faster than a typical mouse/GUI driven app
-
-<div style="page-break-after: always;"></div>
 
 ### User stories
 
@@ -833,6 +843,8 @@ testers are expected to do more *exploratory* testing.
     
         Expected: Unknown command execution.
         Error details  shown in the status message.
+
+<div style="page-break-after: always;"></div>
        
 ### Logging hours at a study spot
 
