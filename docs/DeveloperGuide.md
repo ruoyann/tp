@@ -334,7 +334,7 @@ Given below is an example usage scenario and how the Log feature behaves at each
 1. The user realises he made a mistake, and executes `log -o n/Starbucks UTown hr/3`, which hard changes the 
 `StudiedHours` to 3.
    
-1. The user wants to reset all `StudiedHours` to 0, so executes the command `log -ra`.
+1. The user wants to reset all `StudiedHours` to 0, so the user executes the command `log -ra`.
    
 The following sequence diagram demonstrates the flow from the given input:
 

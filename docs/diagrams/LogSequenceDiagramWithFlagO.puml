@@ -26,7 +26,7 @@ activate LogCommandParser
 LogCommandParser --> StudyTrackerParser
 deactivate LogCommandParser
 
-StudyTrackerParser -> LogCommandParser : parse("-o \nn/Starbucks hr/5")
+StudyTrackerParser -> LogCommandParser : parse("-o \nn/Starbucks hr/3")
 activate LogCommandParser
 
 create LogCommand
@@ -51,7 +51,7 @@ activate LogCommand
 LogCommand -> LogCommand : handleOverride()
 activate LogCommand
 
-LogCommand -> LogCommand : setStudySpotHours(Starbucks, '5')
+LogCommand -> LogCommand : setStudySpotHours(Starbucks, '3')
 activate LogCommand
 
 LogCommand --> LogCommand : updatedStarbucks
