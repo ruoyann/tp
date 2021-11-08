@@ -345,23 +345,39 @@ Not sure how to use the Command Line Interface? Check <a href="#how-to-use-these
 **Examples:** You can try executing the commands in the **input** rows and check if you get the corresponding **output**!
 
 <table>
-  <tr>
-    <th width="90" align="left">Input 1</th>
-    <td >
-
+<tr>
+<th>
+Input 1
+</th>
+<td>
 ```
-add n/COM1 Basement r/5
+Test
 ```
-
 </td>
+</tr>
+</table>
+
+
+<table>
+  <tr>
+    <th width="90" align="left">
+        Input 1
+    </th>
+    <td>
+        ```
+        add n/COM1 Basement r/5
+        ```
+    </td>
   </tr>
   <tr align="left">
-    <th>Output 1</th>
+    <th>
+        Output 1
+    </th>
     <td>
 
-New study spot added: COM1 Basement; Rating: 5
+        New study spot added: COM1 Basement; Rating: 5
 
-</td>
+    </td>
   </tr>
   <tr align="left">
     <th>Input 2</th>
