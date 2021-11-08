@@ -120,6 +120,8 @@ Commands use a multipart structure that must be specified in this order:
 <img src="images/commandStructure.png" alt="commandStructure" height="300"/>
 <br> _Figure 2 - Command Structure_
 
+<div style="page-break-after: always;"></div>
+
 #### Flags
 
 Commands may contain **flags**. All flags are optional.
@@ -142,6 +144,8 @@ Show `-s` | `alias`
 <div markdown="span" class="alert alert-primary">:information_source: **Note:**
 Flags may differ in meaning depending on the command word used. 
 </div>
+
+<div style="page-break-after: always;"></div>
 
 #### Parameters
 
@@ -282,7 +286,7 @@ Scroll down the list to view all the study spots!
 * `Name` — name of study spot
 * `Tags` — user-defined tags for the study spot
 * `Address` — address of study spot
-* `Operating Hours` — operating hours of study spot on weekdays and weekends respectively
+* `Operating Hours` — operating hours of study spot on weekdays and weekends 
 * `Favourite` — this icon indicates the study spot is a favourite
 * `Amenities` — the icons represent the amenities present in study spot.
 From left to right, the amenities are **aircon, charger, food, wifi**.
@@ -845,15 +849,16 @@ Aliases are CASE-SENSITIVE
 * running `ml` will run the `list` command.
 
 <div markdown="span" class="alert alert-primary">:bulb: **Tip:**
-You can chain aliases to make more powerful commands! See the below example.<br> <br>
+You can chain aliases to make more powerful commands! See the below example.<br>
 </div>
+
+<div style="page-break-after: always;"></div>
 
 **Example:** <br>
 
 | Input     | Output | Usage of Alias | Output |
 | ----------- | ----------- | ---------- | ------------- |
 | `alias al/LogCLB cmd/log n/Central Library hr/` | Added alias LogCLB: [log n/Central Library hr/] | `LogCLB 3` | `Logged 3 hours at Central Library!`|
-
 
 
 Running `LogCLB 3` would then result in `log n/Central Library hr/3`, allowing you to log a variable number of study hours to 'Central Library'!
