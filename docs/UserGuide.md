@@ -898,9 +898,9 @@ You can also visit the User Guide and Developer Guide by clicking on the buttons
 
 <p align=“center”>
 ![Help window](images/helpMessage.png)
+_Figure 9 - Help Window_
 </p>
 
-_Figure 9 - Help Window_
 
 Format: `help`
 
