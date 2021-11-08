@@ -412,8 +412,8 @@ Users are able to add amenities such as wifi, food, aircon and charger to a stud
 Amenity is facilitated by these classes: `Amenity.java`, `StudySpot.java`, `AddCommand.java` and `EditCommand.java`.
 
 `Amenity.java` is responsible for creating `Amenity` objects. A `StudySpot` object contains
-an `amenity` attribute. A study spot with an `Amenity` object can be initialised with an Add command
-or the `amenity` attribute can be edited with an Edit command.
+an `amenities` attribute. A study spot with an `Amenity` object can be initialised with an Add command
+or the `amenities` attribute can be edited with an Edit command.
 
 Given below is an example usage scenario of adding a study spot with the wifi amenity and how the mechanism behaves.
 
