@@ -941,7 +941,6 @@ StudyTracker data are saved as a JSON file `[home folder]/data/studytracker.json
 If your changes to the data file makes its format invalid, StudyTracker will discard all data and start with an empty data file at the next run.
 </div>
 
-<div style="page-break-after: always;"></div>
 
 ## **FAQ**
 
