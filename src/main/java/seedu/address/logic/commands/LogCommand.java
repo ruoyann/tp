@@ -105,6 +105,9 @@ public class LogCommand extends Command {
         }
     }
 
+    /**
+     * Handles the execute case if the flag is a reset flag
+     */
     private CommandResult handleReset(Model model, StudySpot studySpot) {
         StudiedHours newHours = new StudiedHours("0");
         StudySpot newStudySpot = setStudySpotHours(studySpot, newHours);
@@ -113,6 +116,9 @@ public class LogCommand extends Command {
         return new CommandResult(String.format(MESSAGE_SUCCESS_RESET, name), true, false, false);
     }
 
+    /**
+     * Handles the execute case if the flag is a reset all flag
+     */
     private CommandResult handleResetAll(Model model) {
         for (StudySpot studySpot: model.getFullList()) {
             StudiedHours newHours = new StudiedHours("0");
@@ -123,6 +129,9 @@ public class LogCommand extends Command {
         return new CommandResult(MESSAGE_SUCCESS_RESET_ALL, true, false, false);
     }
 
+    /**
+     * Handles the execute case if the flag is an override flag
+     */
     private CommandResult handleOverride(Model model, StudySpot studySpot, StudiedHours studiedHours) {
         StudySpot newStudySpot = setStudySpotHours(studySpot, studiedHours);
         model.setStudySpot(studySpot, newStudySpot);
@@ -131,6 +140,9 @@ public class LogCommand extends Command {
                 true, false, false);
     }
 
+    /**
+     * Given a StudySpot and StudiedHours, return a StudySpot with the given StudiedHours
+     */
     private static StudySpot setStudySpotHours(StudySpot studySpotToAddHours,
                                                StudiedHours hoursAfterAddition) {
         Name name = studySpotToAddHours.getName();
