@@ -112,7 +112,6 @@ You can then look at the [**GUI Layout**](#gui-layout) and [**Features**](#featu
 Throughout the User Guide, you'll see commands to enter into StudyTracker.
 Here is how to read the command format:
 
-<div style="page-break-after: always;"></div>
 #### Command Structure
 
 Commands use a multipart structure that must be specified in this order:
