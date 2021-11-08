@@ -457,7 +457,7 @@ Want to get rid of study spots that you don't wish to remember? You can use the 
 
 <div style="page-break-after: always;"></div>
 
-### Clearing all entries : `clear`
+#### Clearing all entries : `clear`
 
 Moving to a new location and decide to start your list afresh? You can make use of the `clear` command to clear the entire list of
 study spots.
