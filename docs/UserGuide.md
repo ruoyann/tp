@@ -989,8 +989,7 @@ Action | Format, Examples
 --------|------------------
 **Add** | `add n/NAME* r/RATING* a/ADDRESS t/TAG... m/AMENITY... o/OPERATING_HOURS` <br> e.g. `add n/COM1 r/5`
 **Edit** | `edit spot/NAME* n/NEW_NAME a/NEW_ADDRESS t/NEW_TAG m/NEW_AMENITY r/NEW_RATING o/NEW_OPERATING_HOURS rt/OLD_TAG rm/OLD_AMENITY`<br> e.g.,`edit spot/tr3 n/Training Room 3`
-**Favourite**  |  `fav n/NAME*` <br> e.g. `fav n/COM1`
-**Unfavourite** | `unfav n/NAME*` <br> e.g. `unfav n/COM1`
+**Favourite / Unfavourite**  |  `fav n/NAME*` / `unfav n/NAME*` <br> e.g. `fav n/COM1` / `unfav n/COM1`
 **Delete** | `delete n/NAME*` <br> e.g. `delete n/COM1`
 **Clear** | `clear`
 **List** | `list -f -t t/TAG... -m m/AMENITY... -r r/RATING` <br> e.g. `list -f -t t/quiet -m m/wifi -r r/5`
