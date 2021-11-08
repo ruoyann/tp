@@ -289,8 +289,6 @@ From left to right, the amenities are **aircon, charger, food, wifi**.
 * `Hours` — total number of hours studied at study spot
 * `Rating` — user-defined rating for the study spot out of 5
 
-<div style="page-break-after: always;"></div>
-
 ### Command Box 
 
 The **Command Box** is where you can enter [**commands**](#how-to-read-commands-in-studytracker) in StudyTracker.
@@ -573,6 +571,8 @@ Deleted study spot: Basement
 </td>
 </tr>
 </table>
+
+<div style="page-break-after: always;"></div>
 
 ### Clearing all entries : `clear`
 
@@ -858,8 +858,6 @@ You can chain aliases to make more powerful commands! See the below example.<br>
 
 Running `LogCLB 3` would then result in `log n/Central Library hr/3`, allowing you to log a variable number of study hours to 'Central Library'!
 
-<div style="page-break-after: always;"></div>
-
 #### Removing command aliases: `unalias`
 
 If you do not like an alias you originally set, you can use `unalias` to remove that alias.
@@ -915,7 +913,6 @@ Hands off the mouse and want to quickly close the app without getting your hands
 
 [**Default Command alias:**](#setting-command-aliases) `bye`, `quit`
 
-<div style="page-break-after: always;"></div>
 
 ### Managing Themes
 Personality matters, and you should be given a way to select a theme that speaks to you!
