@@ -350,19 +350,19 @@ It has 4 different ways of doing so:
     
 Given below is an example usage scenario and how the Log feature behaves at each step:
 
-1. The user launches the application. The program loads with the given `StudySpot`'s.
+Step 1. The user launches the application. The program loads with the given `StudySpot`'s.
 
 ![PartialStudyTrackerDiagram](images/PartialStudyTracker.png)
 
-1. The user executes `log -r n/Starbucks UTown` which resets the `StudiedHours` at Starbucks to 0.
+Step 2. The user executes `log -r n/Starbucks UTown` which resets the `StudiedHours` at Starbucks to 0.
 
-1. After studying for 3 hours at Starbucks, the user executes `log n/Starbucks UTown hr/5`, which adds 5 hours to 0,
+Step 3. After studying for 3 hours at Starbucks, the user executes `log n/Starbucks UTown hr/5`, which adds 5 hours to 0,
  resulting in the `StudiedHours` to become 5.
 
-1. The user realises he made a mistake, and executes `log -o n/Starbucks UTown hr/3`, which hard changes the 
+Step 4. The user realises he made a mistake, and executes `log -o n/Starbucks UTown hr/3`, which hard changes the 
 `StudiedHours` to 3.
    
-1. The user wants to reset all `StudiedHours` to 0, so the user executes the command `log -ra`.
+Step 5. The user wants to reset all `StudiedHours` to 0, so the user executes the command `log -ra`.
    
 The following sequence diagram demonstrates the flow from the given input:
 
