@@ -54,8 +54,9 @@ Let's explore how we **add a new study spot** and **track our study time** with 
 1. Double-click the file to start the app. The GUI similar to the one below should appear in a few seconds. Note how the app contains some sample data.<br>
 
     <img src="images/Ui.png" alt="Default Ui" width="550"/>
+    <br> _Figure 1 - GUI of StudyTracker_
 
-1. Type the command in the [command box](#study-spot-list) and press Enter to execute it. e.g. typing **`help`** and pressing Enter will open the help window.<br>
+1. Type the command in the [command box](#command-box) and press Enter to execute it. e.g. typing **`help`** and pressing Enter will open the help window.<br>
 
     Do the following commands in sequence:
 
@@ -114,16 +115,34 @@ Here is how to read the command format:
 #### Command Structure
 
 Commands use a multipart structure that must be specified in this order:
-1. **Command word** which may be user-created aliases (detailed further in [**Aliases**](#setting-command-aliases--alias-unalias)). <br>
+1. **Command word** which may be user-created aliases (detailed further in [**Aliases**](#setting-command-aliases)). <br>
 2. **Parameters** and **Flags**. A command may have more than one flag and/or parameters.
 
 <img src="images/commandStructure.png" alt="commandStructure" height="300"/>
+<br> _Figure 2 - Command Structure_
 
 #### Flags
 
 Commands may contain **flags**. All flags are optional.
   Flags are represented by a dash, and a sequence of characters. <br>
   e.g. the `list` command has a `-f` flag to list only favourites.
+
+Here is a list of common flags used.
+
+Flags | Features that support these flags
+--------|------------------
+Favourite `-f` | `list`
+Amenities `-m` | `list`
+Rating `-r` | `list`
+Tags `-t` | `list`
+Override `-o` | `log`
+Reset `-r` | `log`
+Reset All `-ra` | `log`
+Show `-s` | `alias`
+
+<div markdown="span" class="alert alert-primary">:information_source: **Note:**
+Flags may differ in meaning depending on the command word used. 
+</div>
 
 #### Parameters
 
@@ -152,6 +171,22 @@ e.g. the `NAME` parameter has a delimiter `n/` and the `AMENITY` parameter has a
   e.g. if the command specifies `help 123`, it will be interpreted as `help`.
 </div>
 
+Here is a list of common parameters used.
+
+Parameters | Features that support these parameters
+--------|------------------
+Name `n/` | `add`, `edit`, `fav`, `unfav`, `delete`
+Spot `spot/` | `edit`
+Address `a/` | `add`, `edit`
+Operating Hours `o/` | `add`, `edit`
+Studied Hours `hr/` | `add`, `log`
+Rating `r/` | `add`, `edit`, `list`
+Amenity `m/` | `add`, `edit`, `list`
+Tag `t/` | `add`, `edit`, `list`
+Remove tag `rt/` | `edit`
+Remove amenity `rm/` | `edit`
+Alias `al/` | `alias`, `unalias`
+Command `cmd` | `alias`, `unalias`
 
 ### How to use these Commands in Command Line Interface
 
@@ -194,6 +229,7 @@ Congratulations! 🎉 You should now know how to use CLI. Now all you need to kn
 This section introduces the Graphical User Interface (GUI) of StudyTracker.
 
 ![Gui annotated](images/GuiAnnotated.png)
+_Figure 3 - GUI Layout_
 
 The top of the interface contains the **Menu Bar**. Clicking on `File` or `Help` will open up the [Settings menu]
 (#managing-themes) and the [Help window](#viewing-help--help) respectively.
@@ -202,11 +238,16 @@ On the left side of the interface, you can find the [**Info Display**](#info-dis
 
 On the right side of the interface, you can find the [**Study Spot List**](#study-spot-list) and [**Command Box**](#command-box).
 
+<div markdown="span" class="alert alert-primary">:bulb: **Tip:**
+Check out <a href="#managing-themes">**Managing Themes**</a> section to change the theme of the GUI!
+</div>
+
 ### Info Display
 
 The **Info Display** contains the **Pie Chart** and **Favourites List**.
 
 ![Gui annotated](images/GuiInfoDisplayAnnotated.png)
+_Figure 4 - Info Display Layout_
 
 The **Hours Studied Pie Chart** displays statistics of time spent studying at the *top five* study spots in terms of 
 the number of hours studied.
@@ -223,10 +264,10 @@ The `Total` tag at the top shows total number of favourited study spots in Study
 From left to right, the amenities are **aircon, charger, food, wifi**.
 * `Hours studied` — total number of hours studied at study spot
 
-
 ### Study Spot List
 
 ![Gui annotated](images/GuiStudySpotListAnnotated.png)
+_Figure 5 - Study Spot List Layout_
 
 The **Study Spot List** contains **Cards** representing every study spot in StudyTracker.
 The `Total` tag at the top shows current visible study spots/total number of study spots in StudyTracker.
@@ -249,7 +290,7 @@ The **Command Box** is where you can enter [**commands**](#how-to-read-commands-
 * `Display` — results of commands and error messages are shown here.
 
 <div markdown="span" class="alert alert-primary">:bulb: **Tip:**
-Check out <a href="#managing-themes">**Managing Themes**</a> section to change the theme of the GUI!
+Similar to any CLI, you can navigate the history of commands you entered with UP and DOWN arrow keys.
 </div>
 
 ---
@@ -453,6 +494,7 @@ Added study spot to favourites: COM1 Tech Hangout
 </table>
 
 <img src="images/add_favourites.png" alt="favourites"/>
+_Figure 6 - Example of Adding Favourites_
 
 <div style="page-break-after: always;"></div>
 
@@ -579,6 +621,7 @@ Listed all study spots with Tags: [coffee] with Amenities: [wifi] with Rating: 4
 </table>
 
 <img src="images/list_tags_amenities.png" alt="coffee tags wifi amenities rating 4"/>
+_Figure 7 - Example of listing study spots with wifi, coffee tag and rating of 4_
 
 <div markdown="span" class="alert alert-primary">:bulb: **Tip:**
 Make use of command aliases to speed up typing your inputs!
@@ -705,6 +748,7 @@ Reset hours for all study spots!
 </table>
 
 <img src="images/log_hours.png" alt="log hours" />
+_Figure 8 - Example of Log command_
 
 Logging 2 hours to 'Starbucks UTown' with the command `log n/starbucks utown hr/2` (as seen in Input 1) would update the **study spot card**, as well as statistics on the **pie chart**.
 
@@ -788,6 +832,7 @@ Click on each command on the left panel to view usage instructions of each comma
 
 You can also visit the User Guide and Developer Guide by clicking on the buttons in the window.
 ![Help window](images/helpMessage.png)
+<br> _Figure 9 - Help window_
 
 Format: `help`
 
@@ -855,6 +900,7 @@ From `File > Settings`, select the colour theme you wish to use. Themes are save
 launch the application, rest assured that your colour theme will be set and ready to go!
 
 ![Gui Themes](images/UiThemes.png)
+_Figure 10 - Themes available_
 
 <div style="page-break-after: always;"></div>
 
@@ -895,7 +941,20 @@ You may also copy the **preferences.json** file to keep your user preferences.
 **Q**: What do I do when I encounter bugs?<br>
 **A**: As much as possible, we rigorously test our application before it is released. However, should you encounter bugs, you can raise issues to our team [here](https://github.com/AY2122S1-CS2103T-T09-1/tp/issues) and we would look to fix them in upcoming patches.
 
----
+--------------------------------------------------------------------------------------------------------------------
+
+## **Glossary**
+
+Term | Definition
+-----------|------------------
+Command Line Interface (CLI) | A user interface that accepts text input to execute commands.
+Graphical User Interface (GUI) | A user interface that uses icons, menus and a mouse to interact with the system.
+Syntax | The grammar that all commands follow for our software to understand it. <br> Click [here](#how-to-read-commands-in-studytracker) where we break it down for you!
+Flags | Represented by a dash and a sequence of characters, flags modify the operation of a command and are sometimes called options. <br> e.g. `-f` in the command `list -f` to list favourites
+Parameters | Parameters specify information for a command needed to execute.
+
+
+--------------------------------------------------------------------------------------------------------------------
 
 ## **Command summary**
 
