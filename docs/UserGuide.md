@@ -235,8 +235,8 @@ This section introduces the Graphical User Interface (GUI) of StudyTracker.
 ![Gui annotated](images/GuiAnnotated.png)
 _Figure 3 - GUI Layout_
 
-The top of the interface contains the **Menu Bar**. Clicking on `File` or `Help` will open up the [Settings menu]
-(#managing-themes) and the [Help window](#viewing-help--help) respectively.
+The top of the interface contains the **Menu Bar**. Clicking on `File` or `Help` will open up the [Settings menu](#managing-themes) and the [Help window](#viewing-help--help) 
+respectively.
 
 On the left side of the interface, you can find the [**Info Display**](#info-display).
 
