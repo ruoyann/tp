@@ -32,10 +32,11 @@ public class LogCommand extends Command {
             + "specified study spot (case-insensitive).\n"
             + "The -o flag will override the studied hours to the value provided\n"
             + "The -r will reset the studied hours to 0\n"
+            + "The -ra flag will reset all study spot studied hours to 0\n"
             + "Parameters: "
-            + PREFIX_NAME + "NAME* (case-insensitive) "
+            + PREFIX_NAME + "NAME* "
             + PREFIX_HOURS + "ADDED_HOURS* (required if -ra is not input) "
-            + "[-r] [-o]\n"
+            + "-r -o -ra (note only 1 flag can be used at a time)\n"
             + "Example: " + COMMAND_WORD + " " + PREFIX_NAME + "Starbucks" + " " + PREFIX_HOURS + "4 ";
     public static final String MESSAGE_SUCCESS_DEFAULT = "Logged %1$S hour(s) at %2$s!";
     public static final String MESSAGE_ONE_FLAG = "Please only use one flag!";
