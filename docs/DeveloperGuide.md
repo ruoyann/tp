@@ -295,6 +295,8 @@ The following activity diagram summarizes what happens when a user executes a ne
 
 <img src="images/AliasActivityDiagram.png" width="350" />
 
+<div style="page-break-after: always;"></div>
+
 #### Design considerations
 
 **Aspect: What aliases should be allowed:**
@@ -371,6 +373,8 @@ The following sequence diagram demonstrates the flow from the given input:
 Sequence diagram for `-r` flag is the same as `-o` but with handleReset() instead of handleOverride()
 
 ![LogSequenceDiagramResetAll](images/LogSequenceDiagramWithFlagRA.png)
+
+<div style="page-break-after: always;"></div>
 
 The following activity diagram summarizes what happens when a user executes a new command:
 
@@ -668,7 +672,8 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
     * 3a1. StudyTracker shows an error message.
 
       Use case resumes at step 2.
-    
+
+<div style="page-break-after: always;"></div>
 
 **UC02 - Add and use an alias**
 
