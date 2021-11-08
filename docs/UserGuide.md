@@ -105,6 +105,8 @@ You can then look at the [**GUI Layout**](#gui-layout) and [**Features**](#featu
 | :bulb: | This symbol indicates that we are mentioning a tip. |
 | :warning: | This symbol indicates something to be careful of. |
 
+<div style="page-break-after: always;"></div>
+
 ### How to read Commands in StudyTracker
 
 Throughout the User Guide, you'll see commands to enter into StudyTracker.
@@ -947,6 +949,8 @@ If your changes to the data file makes its format invalid, StudyTracker will dis
 
 ---
 
+<div style="page-break-after: always;"></div>
+
 ## **FAQ**
 
 This section contains frequently asked questions (FAQs) about StudyTracker.
@@ -968,6 +972,8 @@ You may also copy the **preferences.json** file to keep your user preferences.
 **A**: As much as possible, we rigorously test our application before it is released. However, should you encounter bugs, you can raise issues to our team [here](https://github.com/AY2122S1-CS2103T-T09-1/tp/issues) and we would look to fix them in upcoming patches.
 
 --------------------------------------------------------------------------------------------------------------------
+
+<div style="page-break-after: always;"></div>
 
 ## **Glossary**
 
