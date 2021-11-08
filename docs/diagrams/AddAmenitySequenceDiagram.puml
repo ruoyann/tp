@@ -32,6 +32,7 @@ activate AddCommandParser
 
 AddCommandParser -> ParserUtil : parseAmenity("wifi")
 activate ParserUtil
+
 ParserUtil --> AddCommandParser
 deactivate ParserUtil
 
@@ -69,9 +70,9 @@ deactivate CommandResult
 
 AddCommand --> LogicManager : result
 deactivate AddCommand
-deactivate AddCommandParser
 'Hidden arrow to position the destroy marker below the end of the activation bar.
-AddCommandParser -[hidden]-> StudyTrackerParser
+AddCommand -[hidden]-> StudyTrackerParser
+destroy AddCommand
 
 [<--LogicManager
 deactivate LogicManager

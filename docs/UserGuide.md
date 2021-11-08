@@ -54,8 +54,9 @@ Let's explore how we **add a new study spot** and **track our study time** with 
 1. Double-click the file to start the app. The GUI similar to the one below should appear in a few seconds. Note how the app contains some sample data.<br>
 
     <img src="images/Ui.png" alt="Default Ui" width="550"/>
+    <br> _Figure 1 - GUI of StudyTracker_
 
-1. Type the command in the [command box](#study-spot-list) and press Enter to execute it. e.g. typing **`help`** and pressing Enter will open the help window.<br>
+1. Type the command in the [command box](#command-box) and press Enter to execute it. e.g. typing **`help`** and pressing Enter will open the help window.<br>
 
     Do the following commands in sequence:
 
@@ -114,16 +115,34 @@ Here is how to read the command format:
 #### Command Structure
 
 Commands use a multipart structure that must be specified in this order:
-1. **Command word** which may be user-created aliases (detailed further in [**Aliases**](#setting-command-aliases--alias-unalias)). <br>
+1. **Command word** which may be user-created aliases (detailed further in [**Aliases**](#setting-command-aliases)). <br>
 2. **Parameters** and **Flags**. A command may have more than one flag and/or parameters.
 
 <img src="images/commandStructure.png" alt="commandStructure" height="300"/>
+<br> _Figure 2 - Command Structure_
 
 #### Flags
 
 Commands may contain **flags**. All flags are optional.
   Flags are represented by a dash, and a sequence of characters. <br>
   e.g. the `list` command has a `-f` flag to list only favourites.
+
+Here is a list of common flags used.
+
+Flags | Features that support these flags
+--------|------------------
+Favourite `-f` | `list`
+Amenities `-m` | `list`
+Rating `-r` | `list`
+Tags `-t` | `list`
+Override `-o` | `log`
+Reset `-r` | `log`
+Reset All `-ra` | `log`
+Show `-s` | `alias`
+
+<div markdown="span" class="alert alert-primary">:information_source: **Note:**
+Flags may differ in meaning depending on the command word used. 
+</div>
 
 #### Parameters
 
@@ -152,6 +171,22 @@ e.g. the `NAME` parameter has a delimiter `n/` and the `AMENITY` parameter has a
   e.g. if the command specifies `help 123`, it will be interpreted as `help`.
 </div>
 
+Here is a list of common parameters used.
+
+Parameters | Features that support these parameters
+--------|------------------
+Name `n/` | `add`, `edit`, `fav`, `unfav`, `delete`
+Spot `spot/` | `edit`
+Address `a/` | `add`, `edit`
+Operating Hours `o/` | `add`, `edit`
+Studied Hours `hr/` | `add`, `log`
+Rating `r/` | `add`, `edit`, `list`
+Amenity `m/` | `add`, `edit`, `list`
+Tag `t/` | `add`, `edit`, `list`
+Remove tag `rt/` | `edit`
+Remove amenity `rm/` | `edit`
+Alias `al/` | `alias`, `unalias`
+Command `cmd` | `alias`, `unalias`
 
 ### How to use these Commands in Command Line Interface
 
@@ -194,18 +229,25 @@ Congratulations! 🎉 You should now know how to use CLI. Now all you need to kn
 This section introduces the Graphical User Interface (GUI) of StudyTracker.
 
 ![Gui annotated](images/GuiAnnotated.png)
+_Figure 3 - GUI Layout_
 
-The top of the interface contains the **Menu Bar**. Clicking on `File` or `Help` will open up the [Settings menu](#managing-themes) and the [Help window](#viewing-help--help).
+The top of the interface contains the **Menu Bar**. Clicking on `File` or `Help` will open up the [Settings menu]
+(#managing-themes) and the [Help window](#viewing-help--help) respectively.
 
 On the left side of the interface, you can find the [**Info Display**](#info-display).
 
 On the right side of the interface, you can find the [**Study Spot List**](#study-spot-list) and [**Command Box**](#command-box).
+
+<div markdown="span" class="alert alert-primary">:bulb: **Tip:**
+Check out <a href="#managing-themes">**Managing Themes**</a> section to change the theme of the GUI!
+</div>
 
 ### Info Display
 
 The **Info Display** contains the **Pie Chart** and **Favourites List**.
 
 ![Gui annotated](images/GuiInfoDisplayAnnotated.png)
+_Figure 4 - Info Display Layout_
 
 The **Hours Studied Pie Chart** displays statistics of time spent studying at the *top five* study spots in terms of 
 the number of hours studied.
@@ -222,10 +264,10 @@ The `Total` tag at the top shows total number of favourited study spots in Study
 From left to right, the amenities are **aircon, charger, food, wifi**.
 * `Hours studied` — total number of hours studied at study spot
 
-
 ### Study Spot List
 
 ![Gui annotated](images/GuiStudySpotListAnnotated.png)
+_Figure 5 - Study Spot List Layout_
 
 The **Study Spot List** contains **Cards** representing every study spot in StudyTracker.
 The `Total` tag at the top shows current visible study spots/total number of study spots in StudyTracker.
@@ -248,7 +290,7 @@ The **Command Box** is where you can enter [**commands**](#how-to-read-commands-
 * `Display` — results of commands and error messages are shown here.
 
 <div markdown="span" class="alert alert-primary">:bulb: **Tip:**
-Check out <a href="#managing-themes">**Managing Themes**</a> section to change the theme of the GUI!
+Similar to any CLI, you can navigate the history of commands you entered with UP and DOWN arrow keys.
 </div>
 
 ---
@@ -258,6 +300,10 @@ This section introduces all the features in StudyTracker.
 
 Features are grouped according to usage.
 Click on the groups to view clear, step-by-step usage instructions!
+
+<div markdown="span" class="alert alert-primary">:information_source: **Note:**
+To get the expected outputs we stated in this guide, please use the app's default data. Also, please enter the inputs by following the sample inputs provided in the features section sequentially.
+</div>
 
 
 | Features | Usage and commands|
@@ -345,10 +391,12 @@ you can easily do so by making use of the `edit` command!
 * Edits the study spot matching `NAME`.
   The provided `NAME` is not case-sensitive and **must fully match the study spot name**.
 * You must provide **at least one** of the optional fields.
-* StudyTracker will update the details of the given study spot with the provided `NEW_NAME`, `NEW_ADDRESS`, `NEW_RATING` or `NEW_OPERATING HOURS`.
-* When editing tags and amenities, `t/` or `m/` will be adding on top of existing tags and amenities.
-* You can remove a specific tag or amenity with the `rt/` or `rm/` parameter.
-* You can remove all the study spot’s tags by typing `t/` or `m/` without
+* StudyTracker will update the details of the given study spot with any provided `NEW_NAME`, `NEW_ADDRESS`, 
+  `NEW_RATING`, `NEW_AMENITY`, `NEW_TAG` and `NEW_OPERATING HOURS`, while removing any provided `OLD_TAG` and 
+  `OLD_AMENITY`.
+* When editing tags and amenities, using `t/` or `m/` will be adding on top of existing tags and amenities.
+* You can remove a specific tag or amenity with the `rt/` or `rm/` parameter respectively.
+* You can remove all the study spot’s tags by typing `t/` or `m/` respectively without
   specifying any tags after it.
 
 **Examples:** You can try executing the commands in the **input** rows and check if you get the corresponding **output**!
@@ -370,10 +418,43 @@ Edited study spot: Basement; Rating: 5
 
 </td>
 </tr>
+  <tr>
+    <th width="90" align="left">Input 2</th>
+    <td >
+
+`edit spot/outside cool spot r/4 t/coffee`
+
+</td>
+  </tr>
+  <tr align="left">
+    <th>Output 2</th>
+    <td>
+
+Edited study spot: Outside cool spot; Rating: 4; Address: COM2; Studied Hours: 10; Tags: [warm][drinks][coffee]; 
+Amenities: [wifi][charger][food]
+
+</td>
+</tr>
+  <tr>
+    <th width="90" align="left">Input 3</th>
+    <td >
+
+`edit spot/home sweet home t/`
+
+</td>
+  </tr>
+  <tr align="left">
+    <th>Output 3</th>
+    <td>
+
+Edited study spot: Home Sweet Home; Rating: 1; Address: 42 Wallaby Way; Amenities: [wifi][charger]
+
+</td>
+</tr>
 </table>
 
 <div markdown="span" class="alert alert-primary">:information_source: **Note:**
-The above input assumes that there is already a study spot named "COM1 Basement" in the Study Tracker!
+The above input1 and output1 assumes that there is already a study spot named "COM1 Basement" in the Study Tracker!
 This input only changes the name from "COM1 Basement" to "Basement". Outputs may differ based on what information 
 your original study spot already has. 
 </div>
@@ -386,8 +467,7 @@ Really enjoyed studying somewhere? You can add this study spot to your favourite
 make the Study Spot appear in the [Favourites List](#info-display), reminding you of the place every time you open StudyTracker.
 
 <div markdown="span" class="alert alert-primary">:information_source: **Note:**
-Don't forget to add the spot to your StudyTracker before using the fav command! Alternatively, you could use the 
-add command and directly mark it as a favourite using that command!
+Don't forget to add the spot to your StudyTracker before using the fav command! 
 </div>
 
 **Format:** `fav n/NAME*`
@@ -414,6 +494,7 @@ Added study spot to favourites: COM1 Tech Hangout
 </table>
 
 <img src="images/add_favourites.png" alt="favourites"/>
+_Figure 6 - Example of Adding Favourites_
 
 <div style="page-break-after: always;"></div>
 
@@ -435,7 +516,7 @@ The study spot you are trying to unfavourite should originally be a favourite!
     <th width="90" align="left">Input 1</th>
     <td>
 
-`unfav n/COM1 Basement`
+`unfav n/com1 tech hangout`
 
 </td>
   </tr>
@@ -443,7 +524,7 @@ The study spot you are trying to unfavourite should originally be a favourite!
     <th>Output 1</th>
     <td>
 
-Removed study spot from favourites: COM1 Basement
+Removed study spot from favourites: COM1 Tech Hangout
 
 </td>
 </tr>
@@ -479,46 +560,6 @@ Deleted study spot: Basement
 </tr>
 </table>
 
-### Clearing all entries : `clear`
-
-Moving to a new location and decide to start your list afresh? You can make use of the `clear` command to clear the entire list of
-study spots.
-
-<div markdown="span" class="alert alert-warning">:warning: **Caution:**
-This command is irreversible!
-</div>
-
-**Format:** `clear`
-
-**Example:** You can try executing the commands in the **input** rows and check if you get the corresponding **output**!
-
-<table>
-  <tr>
-    <th width="90" align="left">Input 1</th>
-    <td>
-
-`clear`
-
-</td>
-  </tr>
-  <tr align="left">
-    <th>Output 1</th>
-    <td>
-
-StudyTracker has been cleared!
-
-</td>
-</tr>
-</table>
-
-<div markdown="span" class="alert alert-primary">:bulb: **Tip:**
-If you wish to clear all your study spots while keeping the data you originally stored, you can make a copy of the 
-studytracker.json file which should be found within the data folder of the file with StudyTracker!
-</div>
-
-
-<div style="page-break-after: always;"></div>
-
 ### Managing StudyTracker list
 
 #### Listing study spots : `list`
@@ -536,7 +577,7 @@ Below shows the corresponding [flag](#flags) to its function.
 | `-f`   | Shows all favourited study spots        |
 | `-t t/TAG...` | Shows all study spots with the specified tags |
 | `-m m/AMENITY...` | Shows all study spots with the specified amenities |
-| `-r r/RATING` | Shows all study spots with the given rating |
+| `-r r/RATING` | Shows all study spots with the specified rating |
 
 <div markdown="span" class="alert alert-primary">:information_source: **Note:**
 You can use multiple flags at once.
@@ -579,7 +620,8 @@ Listed all study spots with Tags: [coffee] with Amenities: [wifi] with Rating: 4
   </tr>
 </table>
 
-<img src="images/list_tags_amenities.png" alt="cold tags"/>
+<img src="images/list_tags_amenities.png" alt="coffee tags wifi amenities rating 4"/>
+_Figure 7 - Example of listing study spots with wifi, coffee tag and rating of 4_
 
 <div markdown="span" class="alert alert-primary">:bulb: **Tip:**
 Make use of command aliases to speed up typing your inputs!
@@ -615,7 +657,7 @@ study spots you have.
     <th>Output 1</th>
     <td>
 
-3 study spot(s) listed!
+2 study spot(s) listed!
 
 </td>
 </tr>
@@ -646,7 +688,7 @@ As long as the flag `-ra` is present in the command, hours for all study spots w
     <th width="90" align="left">Input 1</th>
     <td >
 
-log n/Starbucks UTown hr/2
+`log n/Starbucks UTown hr/2`
 
 </td>
   </tr>
@@ -662,7 +704,7 @@ Logged 2 hours at Starbucks UTown!
     <th>Input 2</th>
     <td>
 
-log -o n/Starbucks UTown hr/5
+`log -o n/Starbucks UTown hr/5`
 
 </td>
   </tr>
@@ -706,6 +748,7 @@ Reset hours for all study spots!
 </table>
 
 <img src="images/log_hours.png" alt="log hours" />
+_Figure 8 - Example of Log command_
 
 Logging 2 hours to 'Starbucks UTown' with the command `log n/starbucks utown hr/2` (as seen in Input 1) would update the **study spot card**, as well as statistics on the **pie chart**.
 
@@ -781,6 +824,46 @@ Removed alias 'ml'
 
 <div style="page-break-after: always;"></div>
 
+### Clearing all entries : `clear`
+
+Moving to a new location and decide to start your list afresh? You can make use of the `clear` command to clear the entire list of
+study spots.
+
+<div markdown="span" class="alert alert-warning">:warning: **Caution:**
+This command is irreversible!
+</div>
+
+**Format:** `clear`
+
+**Example:** You can try executing the commands in the **input** rows and check if you get the corresponding **output**!
+
+<table>
+  <tr>
+    <th width="90" align="left">Input 1</th>
+    <td>
+
+`clear`
+
+</td>
+  </tr>
+  <tr align="left">
+    <th>Output 1</th>
+    <td>
+
+StudyTracker has been cleared!
+
+</td>
+</tr>
+</table>
+
+<div markdown="span" class="alert alert-primary">:bulb: **Tip:**
+If you wish to clear all your study spots while keeping the data you originally stored, you can make a copy of the 
+studytracker.json file which should be found within the data folder of the file with StudyTracker!
+</div>
+
+
+<div style="page-break-after: always;"></div>
+
 ### Viewing help : `help`
 
 Forgot a command? You can make use of the `help` command to get a quick overview of all commands available in StudyTracker!
@@ -816,6 +899,7 @@ From `File > Settings`, select the colour theme you wish to use. Themes are save
 launch the application, rest assured that your colour theme will be set and ready to go!
 
 ![Gui Themes](images/UiThemes.png)
+_Figure 10 - Themes available_
 
 <div style="page-break-after: always;"></div>
 
@@ -856,7 +940,20 @@ You may also copy the **preferences.json** file to keep your user preferences.
 **Q**: What do I do when I encounter bugs?<br>
 **A**: As much as possible, we rigorously test our application before it is released. However, should you encounter bugs, you can raise issues to our team [here](https://github.com/AY2122S1-CS2103T-T09-1/tp/issues) and we would look to fix them in upcoming patches.
 
----
+--------------------------------------------------------------------------------------------------------------------
+
+## **Glossary**
+
+Term | Definition
+-----------|------------------
+Command Line Interface (CLI) | A user interface that accepts text input to execute commands.
+Graphical User Interface (GUI) | A user interface that uses icons, menus and a mouse to interact with the system.
+Syntax | The grammar that all commands follow for our software to understand it. <br> Click [here](#how-to-read-commands-in-studytracker) where we break it down for you!
+Flags | Represented by a dash and a sequence of characters, flags modify the operation of a command and are sometimes called options. <br> e.g. `-f` in the command `list -f` to list favourites
+Parameters | Parameters specify information for a command needed to execute.
+
+
+--------------------------------------------------------------------------------------------------------------------
 
 ## **Command summary**
 
@@ -867,11 +964,11 @@ Action | Format, Examples
 **Favourite**  |  `fav n/NAME*` <br> e.g. `fav n/COM1`
 **Unfavourite** | `unfav n/NAME*` <br> e.g. `unfav n/COM1`
 **Delete** | `delete n/NAME*` <br> e.g. `delete n/COM1`
-**Clear** | `clear`
 **List** | `list -f -t t/TAG... -m m/AMENITY... -r r/RATING` <br> e.g. `list -f -t t/quiet -m m/wifi -r r/5`
 **Find** | `find KEYWORD* [MORE KEYWORDS]*`<br> e.g. `find library`
 **Log** | `log -o n/NAME* hr/NUM_OF_HOURS*` <br> e.g. `log -o n/Starbucks hr/5`
 **Alias** | `alias al/ALIAS* cmd/COMMAND*`<br> e.g. `alias al/home cmd/find home`
 **Unalias** | `unalias al/ALIAS*` <br> e.g. `unalias al/ml`
+**Clear** | `clear`
 **Help** | `help`
 **Exit** | `exit`

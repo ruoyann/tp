@@ -54,17 +54,23 @@ public class InfoDisplay extends UiPart<Region> {
             infoDisplayDefaultMessage.setText(DEFAULT_MESSAGE);
         }
 
-        for (StudySpot s : topFiveSpots) {
-            String name = s.getName().fullName;
-            int hours = s.getStudiedHours().getHours();
-            pieData.add(new PieChart.Data(name, hours));
-        }
-
+        initializePieChart(topFiveSpots, pieData);
         infoDisplayChart.setData(pieData);
         infoChartHours.setText(String.valueOf(getTotalStudiedHours(fullList)));
         pieData.forEach(this::addInteractivity);
 
         pieChartData = pieData;
+    }
+
+    /**
+     * Add spots to a pie chart
+     */
+    private void initializePieChart(ObservableList<StudySpot> spots, ObservableList<PieChart.Data> pieData) {
+        for (StudySpot s : spots) {
+            String name = s.getName().fullName;
+            int hours = s.getStudiedHours().getHours();
+            pieData.add(new PieChart.Data(name, hours));
+        }
     }
 
     /**
