@@ -518,6 +518,50 @@ Deleted study spot: Basement
 </tr>
 </table>
 
+### Clearing all entries : `clear`
+
+Moving to a new location and decide to start your list afresh? You can make use of the `clear` command to clear the entire list of
+study spots.
+
+<div markdown="span" class="alert alert-warning">:warning: **Caution:**
+This command is irreversible!
+</div>
+
+**Format:** `clear`
+
+**Example:** You can try executing the commands in the **input** rows and check if you get the corresponding **output**!
+<div markdown="span" class="alert alert-primary">:information_source: **Note:**
+Do not execute this command yet if you wish to continue trying out our features under [Managing StudyTracker list]
+(#managing-studytracker-list)** in order to get the same expected output. 
+</div>
+
+<table>
+  <tr>
+    <th width="90" align="left">Input 1</th>
+    <td>
+
+`clear`
+
+</td>
+  </tr>
+  <tr align="left">
+    <th>Output 1</th>
+    <td>
+
+StudyTracker has been cleared!
+
+</td>
+</tr>
+</table>
+
+<div markdown="span" class="alert alert-primary">:bulb: **Tip:**
+If you wish to clear all your study spots while keeping the data you originally stored, you can make a copy of the 
+studytracker.json file which should be found within the data folder of the file with StudyTracker!
+</div>
+
+
+<div style="page-break-after: always;"></div>
+
 ### Managing StudyTracker list
 
 #### Listing study spots : `list`
@@ -798,45 +842,6 @@ Alternatively, click on 'Help' in the menu bar!
 
 <div style="page-break-after: always;"></div>
 
-### Clearing all entries : `clear`
-
-Moving to a new location and decide to start your list afresh? You can make use of the `clear` command to clear the entire list of
-study spots.
-
-<div markdown="span" class="alert alert-warning">:warning: **Caution:**
-This command is irreversible!
-</div>
-
-**Format:** `clear`
-
-**Example:** You can try executing the commands in the **input** rows and check if you get the corresponding **output**!
-
-<table>
-  <tr>
-    <th width="90" align="left">Input 1</th>
-    <td>
-
-`clear`
-
-</td>
-  </tr>
-  <tr align="left">
-    <th>Output 1</th>
-    <td>
-
-StudyTracker has been cleared!
-
-</td>
-</tr>
-</table>
-
-<div markdown="span" class="alert alert-primary">:bulb: **Tip:**
-If you wish to clear all your study spots while keeping the data you originally stored, you can make a copy of the 
-studytracker.json file which should be found within the data folder of the file with StudyTracker!
-</div>
-
-
-<div style="page-break-after: always;"></div>
 
 ### Exiting the program : `exit`
 
