@@ -391,7 +391,7 @@ you can easily do so by making use of the `edit` command!
 
 
 <div markdown="span" class="alert alert-primary">:information_source: **Note:**
-The above input1 and output1 assumes that there is already a study spot named "COM1 Basement" in the Study Tracker!
+The above first input and output pair assumes that there is already a study spot named "COM1 Basement" in the Study Tracker!
 This input only changes the name from "COM1 Basement" to "Basement". Outputs may differ based on what information 
 your original study spot already has. 
 </div>
