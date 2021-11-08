@@ -346,6 +346,8 @@ Not sure how to use the Command Line Interface? Check <a href="#how-to-use-these
 
 | Input | Output |
 |---- |---- |
+|`add n/COM1 Basement r/5`| New study spot added: COM1 Basement; Rating: 5|
+|`add n/Starbucks at UTown r/4 t/noisy m/wifi o/0800-2000,0900-2200`| New study spot added: Starbucks at UTown; Rating: 4; Operating Hours: Weekdays: 0800-2000, Weekends: 0900-2200; Tags: [noisy]; Amenities: [wifi]|
 
 
 <table>
