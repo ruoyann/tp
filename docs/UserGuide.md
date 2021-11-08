@@ -36,8 +36,6 @@ Want to contribute to development? Check out the [**Developer Guide**](Developer
 
 ---
 
-<div style="page-break-after: always;"></div>
-
 ## **Quick Start**
 
 StudyTracker comes with sample data.
@@ -112,6 +110,7 @@ You can then look at the [**GUI Layout**](#gui-layout) and [**Features**](#featu
 Throughout the User Guide, you'll see commands to enter into StudyTracker.
 Here is how to read the command format:
 
+<div style="page-break-after: always;"></div>
 #### Command Structure
 
 Commands use a multipart structure that must be specified in this order:
@@ -171,6 +170,8 @@ e.g. the `NAME` parameter has a delimiter `n/` and the `AMENITY` parameter has a
   e.g. if the command specifies `help 123`, it will be interpreted as `help`.
 </div>
 
+<div style="page-break-after: always;"></div>
+
 Here is a list of common parameters used.
 
 Parameters | Features that support these parameters
@@ -187,6 +188,8 @@ Remove tag `rt/` | `edit`
 Remove amenity `rm/` | `edit`
 Alias `al/` | `alias`, `unalias`
 Command `cmd` | `alias`, `unalias`
+
+<div style="page-break-after: always;"></div>
 
 ### How to use these Commands in Command Line Interface
 
@@ -242,6 +245,8 @@ On the right side of the interface, you can find the [**Study Spot List**](#stud
 Check out <a href="#managing-themes">**Managing Themes**</a> section to change the theme of the GUI!
 </div>
 
+<div style="page-break-after: always;"></div>
+
 ### Info Display
 
 The **Info Display** contains the **Pie Chart** and **Favourites List**.
@@ -264,6 +269,8 @@ The `Total` tag at the top shows total number of favourited study spots in Study
 From left to right, the amenities are **aircon, charger, food, wifi**.
 * `Hours studied` — total number of hours studied at study spot
 
+<div style="page-break-after: always;"></div>
+
 ### Study Spot List
 
 ![Gui annotated](images/GuiStudySpotListAnnotated.png)
@@ -282,6 +289,8 @@ From left to right, the amenities are **aircon, charger, food, wifi**.
 * `Hours` — total number of hours studied at study spot
 * `Rating` — user-defined rating for the study spot out of 5
 
+<div style="page-break-after: always;"></div>
+
 ### Command Box 
 
 The **Command Box** is where you can enter [**commands**](#how-to-read-commands-in-studytracker) in StudyTracker.
@@ -292,6 +301,8 @@ The **Command Box** is where you can enter [**commands**](#how-to-read-commands-
 <div markdown="span" class="alert alert-primary">:bulb: **Tip:**
 Similar to any CLI, you can navigate the history of commands you entered with UP and DOWN arrow keys.
 </div>
+
+<div style="page-break-after: always;"></div>
 
 ---
 ## **Features**
@@ -317,6 +328,8 @@ inputs by following the sample inputs provided in the features section sequentia
 | **[Exiting the program](#exiting-the-program--exit)**| Exit StudyTracker <br> **Commands**: `exit` |
 | **[Managing themes](#managing-themes)**| Customize the look of StudyTracker |
 | **[Data](#data)** | Manage and save user data and user preferences |
+
+<div style="page-break-after: always;"></div>
 
 ### Managing study spots 
 
@@ -674,6 +687,8 @@ Make use of command aliases to speed up typing your inputs!
 
 [**Default Command alias:**](#setting-command-aliases) `ls`
 
+<div style="page-break-after: always;"></div>
+
 #### Locating a study spot by name: `find`
 
 Trying to find a study spot by its name? You can use the `find` command to easily do so!
@@ -707,6 +722,8 @@ study spots you have.
 </td>
 </tr>
 </table>
+
+<div style="page-break-after: always;"></div>
 
 ### Logging study hours: `log`
 
@@ -801,6 +818,8 @@ Logging 2 hours to 'Starbucks UTown' with the command `log n/starbucks utown hr/
 Use the log command at the end of a study session to keep track of how long you studied somewhere!
 </div>
 
+<div style="page-break-after: always;"></div>
+
 ### Setting Command Aliases
 
 #### Adding command aliases : `alias` 
@@ -839,6 +858,7 @@ You can chain aliases to make more powerful commands! See the below example.<br>
 
 Running `LogCLB 3` would then result in `log n/Central Library hr/3`, allowing you to log a variable number of study hours to 'Central Library'!
 
+<div style="page-break-after: always;"></div>
 
 #### Removing command aliases: `unalias`
 
@@ -959,6 +979,8 @@ Parameters | Parameters specify information for a command needed to execute.
 
 
 --------------------------------------------------------------------------------------------------------------------
+
+<div style="page-break-after: always;"></div>
 
 ## **Command summary**
 
