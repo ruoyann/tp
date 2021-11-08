@@ -355,8 +355,8 @@ Not sure how to use the Command Line Interface? Check <a href="#how-to-use-these
 </div>
 <div markdown="span" class="alert alert-primary">:warning: **Caution:**
 Name cases will be reflected in the interface upon adding, however the name will be case insensitive in future commands for an existing study spot.
-Hence you cannot add a StudySpot with the same name and a different case e.g. If Central Library is already in StudyTracker,
-you cannot add central library.
+Hence you cannot add a StudySpot with the same name and a different case e.g. If "Central Library" is already in StudyTracker,
+you cannot add "central library".
 </div>
 
 **Examples:** You can try executing the commands in the **input** rows and check if you get the corresponding **output**!
