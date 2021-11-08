@@ -1,0 +1,28 @@
+@startuml
+
+start
+:Receives List command;
+if () then ([valid command])
+    if () then ([flags are given])
+        if () then ([valid parameters])
+        note left
+            When multiple flags
+            are given, the various
+            predicates are applied
+            to the filter.
+            (AND filter)
+            end note
+            :Shows filtered study spots;
+        else ([else])
+            :Shows invalid parameters error;
+        endif
+    else ([else])
+        :Shows all study spots;
+    endif
+else ([else])
+    :Shows wrong command format error;
+endif
+
+stop
+
+@enduml
