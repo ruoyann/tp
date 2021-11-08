@@ -349,7 +349,7 @@ Not sure how to use the Command Line Interface? Check <a href="#how-to-use-these
     <th width="90" align="left">Input 1</th>
     <td >
 
-`add n/COM1 Basement r/5`
+```add n/COM1 Basement r/5```
 
 </td>
   </tr>
@@ -365,7 +365,7 @@ New study spot added: COM1 Basement; Rating: 5
     <th>Input 2</th>
     <td>
 
-`add n/Starbucks at UTown r/4 t/noisy m/wifi o/0800-2000,0900-2200`
+```add n/Starbucks at UTown r/4 t/noisy m/wifi o/0800-2000,0900-2200```
 
 </td>
   </tr>
@@ -406,7 +406,7 @@ you can easily do so by making use of the `edit` command!
     <th width="90" align="left">Input 1</th>
     <td >
 
-`edit spot/COM1 Basement n/Basement`
+```edit spot/COM1 Basement n/Basement```
 
 </td>
   </tr>
@@ -422,7 +422,7 @@ Edited study spot: Basement; Rating: 5
     <th width="90" align="left">Input 2</th>
     <td >
 
-`edit spot/outside cool spot r/4 t/coffee`
+```edit spot/outside cool spot r/4 t/coffee```
 
 </td>
   </tr>
@@ -439,7 +439,7 @@ Amenities: [wifi][charger][food]
     <th width="90" align="left">Input 3</th>
     <td >
 
-`edit spot/home sweet home t/`
+```edit spot/home sweet home t/```
 
 </td>
   </tr>
@@ -479,7 +479,7 @@ Don't forget to add the spot to your StudyTracker before using the fav command!
     <th width="90" align="left">Input 1</th>
     <td >
 
-`fav n/COM1 Tech Hangout`
+```fav n/COM1 Tech Hangout```
 
 </td>
   </tr>
@@ -516,7 +516,7 @@ The study spot you are trying to unfavourite should originally be a favourite!
     <th width="90" align="left">Input 1</th>
     <td>
 
-`unfav n/com1 tech hangout`
+```unfav n/com1 tech hangout```
 
 </td>
   </tr>
@@ -546,7 +546,7 @@ Want to get rid of study spots that you don't wish to remember? You can use the 
     <th width="90" align="left">Input 1</th>
     <td >
 
-`delete n/Basement`
+```delete n/Basement```
 
 </td>
   </tr>
@@ -590,7 +590,7 @@ You can use multiple flags at once.
     <th width="90" align="left">Input 1</th>
     <td >
 
-`list` 
+```list``` 
 
 </td>
   </tr>
@@ -606,7 +606,7 @@ Listed all study spots
     <th>Input 2</th>
     <td>
 
-`list -t t/coffee -m m/wifi -r r/4`
+```list -t t/coffee -m m/wifi -r r/4```
 
 </td>
   </tr>
@@ -649,7 +649,7 @@ study spots you have.
     <th width="90" align="left">Input 1</th>
     <td >
 
-`find library`
+```find library```
 
 </td>
   </tr>
@@ -688,7 +688,7 @@ As long as the flag `-ra` is present in the command, hours for all study spots w
     <th width="90" align="left">Input 1</th>
     <td >
 
-`log n/Starbucks UTown hr/2`
+```log n/Starbucks UTown hr/2```
 
 </td>
   </tr>
@@ -704,7 +704,7 @@ Logged 2 hours at Starbucks UTown!
     <th>Input 2</th>
     <td>
 
-`log -o n/Starbucks UTown hr/5`
+```log -o n/Starbucks UTown hr/5```
 
 </td>
   </tr>
@@ -719,7 +719,7 @@ Changed hours to 5 at Starbucks UTown!
     <th>Input 3</th>
     <td>
 
-log -r n/Starbucks UTown
+```log -r n/Starbucks UTown```
 
 </td>
   </tr>
@@ -734,7 +734,7 @@ Reset hours at Starbucks UTown!
     <th>Input 4</th>
     <td>
 
-log -ra
+```log -ra```
 
 </td>
   </tr>
@@ -808,7 +808,7 @@ If you do not like an alias you originally set, you can use `unalias` to remove 
     <th width="90" align="left">Input 1</th>
     <td >
 
-`unalias al/ml`
+```unalias al/ml```
 
 </td>
   </tr>
@@ -842,7 +842,7 @@ This command is irreversible!
     <th width="90" align="left">Input 1</th>
     <td>
 
-`clear`
+```clear```
 
 </td>
   </tr>
