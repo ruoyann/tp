@@ -302,7 +302,8 @@ Features are grouped according to usage.
 Click on the groups to view clear, step-by-step usage instructions!
 
 <div markdown="span" class="alert alert-primary">:information_source: **Note:**
-To get the expected outputs we stated in this guide, please use the app's default data. Also, please enter the inputs by following the sample inputs provided in the features section sequentially.
+To get the expected outputs we stated in this guide, please use the app's default data. Also, please enter the 
+inputs by following the sample inputs provided in the features section sequentially (except for the `clear` command).
 </div>
 
 
