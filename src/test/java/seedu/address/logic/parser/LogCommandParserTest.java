@@ -60,7 +60,7 @@ public class LogCommandParserTest {
         Name name = STARBUCKS.getName();
         String userInput = " -r " + "-o " + PREFIX_NAME + name.fullName;
         assertParseFailure(parser, userInput, String.format(MESSAGE_INVALID_COMMAND_FORMAT,
-                                                            LogCommand.MESSAGE_USAGE));
+                                                            LogCommand.MESSAGE_ONE_FLAG));
     }
 
     @Test

@@ -1,6 +1,11 @@
 package seedu.address.logic.parser;
 
 import static seedu.address.commons.core.Messages.MESSAGE_INVALID_COMMAND_FORMAT;
+import static seedu.address.logic.commands.LogCommand.FLAG_OVERRIDE;
+import static seedu.address.logic.commands.LogCommand.FLAG_RESET;
+import static seedu.address.logic.commands.LogCommand.FLAG_RESET_ALL;
+import static seedu.address.logic.commands.LogCommand.MESSAGE_ONE_FLAG;
+import static seedu.address.logic.commands.LogCommand.MESSAGE_USAGE;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_FLAG;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_HOURS;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_NAME;
@@ -30,21 +35,25 @@ public class LogCommandParser implements Parser<LogCommand> {
         Name studySpot = isNamePresent ? ParserUtil.parseName(argMultimap.getValue(PREFIX_NAME).get()) : null;
 
         if (argMultimap.getValue(PREFIX_FLAG).isPresent()) {
+            // Only one flag should be present
+            if (argMultimap.getAllValues(PREFIX_FLAG).size() != 1) {
+                throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT, MESSAGE_ONE_FLAG));
+            }
             String flag = argMultimap.getValue(PREFIX_FLAG).get();
 
-            if (flag.equals(LogCommand.FLAG_RESET) && isNamePresent) {
+            if (flag.equals(FLAG_RESET) && isNamePresent) {
                 return new LogCommand(studySpot, null, true, false, false);
-            } else if (flag.equals(LogCommand.FLAG_OVERRIDE) && isNamePresent && isHoursPresent) {
+            } else if (flag.equals(FLAG_OVERRIDE) && isNamePresent && isHoursPresent) {
                 return new LogCommand(studySpot, hoursStudied, false, true, false);
-            } else if (flag.equals(LogCommand.FLAG_RESET_ALL)) {
+            } else if (flag.equals(FLAG_RESET_ALL)) {
                 return new LogCommand(studySpot, null, false, false, true);
             } else {
-                throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT, LogCommand.MESSAGE_USAGE));
+                throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT, MESSAGE_USAGE));
             }
         } else if (isNamePresent && isHoursPresent) {
             return new LogCommand(studySpot, hoursStudied, false, false, false);
         } else {
-            throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT, LogCommand.MESSAGE_USAGE));
+            throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT, MESSAGE_USAGE));
         }
     }
 }
