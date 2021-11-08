@@ -430,7 +430,7 @@ The following sequence diagram demonstrates how `StudyTrackerParser` parses the 
 ![Add AmenitySequenceDiagram](images/AddAmenitySequenceDiagram.png)
 
 
-### Enhanced List feature
+### Enhanced List Command
 #### Overview
 
 The List Command is enhanced to support filtering of favourites, tags, amenities and rating.
@@ -438,6 +438,16 @@ The List Command is enhanced to support filtering of favourites, tags, amenities
 #### Implementation
 
 The `Model` component stores the currently 'selected' `StudySpot` objects as a separate filtered list. The filter of this list can be updated using `Model#updateFilteredStudySpotList(Predicate<StudySpot> predicate)`.
+
+The following activity diagram outlines the general parsing and execution of a ListCommand.
+
+![ListActivityDiagram](images/ListCommandActivityDiagram.png)
+
+Upon entering a command, the user's input command is parsed and a `ListCommandParser` is created. 
+The parser looks out for flags given in the user's input and checks if the associated parameters are given correctly
+`ListCommandParser` then creates a `ListCommand` object with a `Predicate<StudySpot>` that tests for 
+the specified conditions by the user. `Logic Manager` proceeds to execute `ListCommand` and a `CommandResult` object
+is created. The result is returned to `Logic Manager`.
 
 Given below is an example usage scenario and how the list mechanism behaves at every step.
 
@@ -454,13 +464,11 @@ The following sequence diagram demonstrates how `StudyTrackerParser` parses the 
 
 ![ListSequenceDiagram](images/ListSequenceDiagram.png)
 
-
 #### Design considerations
 
 **Behaviour of filters with multiple tags:**
 * **Alternative 1 (current choice):** Filtering by tags show study spots that all specified tags.
 * **Alternative 2:** Filtering by tags show study spots that contain at least one of the specified tags.
-
 
 The current choice was chosen as it is intuitive and most modern desktop applications follow this behaviour. 
 
@@ -582,8 +590,6 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 | `*`      | user with multiple devices | save data into a user-specified text file           | transfer my data between devices                                                |
 | `*`      | user with multiple devices | import data from a user-specified text file           | transfer my data between devices                                                |
 
-*{More to be added}*
-
 ### Use cases
 
 (For all use cases below, the **System** is the `StudyTracker` and the **Actor** is the `user`, unless specified otherwise)
@@ -667,8 +673,6 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 10. Should be designed for use by a single user
 11. A user with above average typing speed for regular English text (i.e. not code, not system admin commands) should be able to accomplish most of the tasks faster using commands than using the mouse.
 12. StudyTracker is offered as a Free, Open Source Software (FOSS) program, licensed under the MIT License.
-
-*{More to be added}*
 
 ### Glossary
 
