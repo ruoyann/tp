@@ -824,25 +824,6 @@ Removed alias 'ml'
 
 <div style="page-break-after: always;"></div>
 
-### Viewing help : `help`
-
-Forgot a command? You can make use of the `help` command to get a quick overview of all commands available in StudyTracker!
-
-Click on each command on the left panel to view usage instructions of each command.
-
-You can also visit the User Guide and Developer Guide by clicking on the buttons in the window.
-![Help window](images/helpMessage.png)
-<br> _Figure 9 - Help window_
-
-Format: `help`
-
-<div markdown="span" class="alert alert-primary">:bulb: **Tip:**
-View the help window anytime by using the F1 shortcut!
-Alternatively, click on 'Help' in the menu bar!
-</div>
-
-<div style="page-break-after: always;"></div>
-
 ### Clearing all entries : `clear`
 
 Moving to a new location and decide to start your list afresh? You can make use of the `clear` command to clear the entire list of
@@ -880,6 +861,24 @@ If you wish to clear all your study spots while keeping the data you originally 
 studytracker.json file which should be found within the data folder of the file with StudyTracker!
 </div>
 
+
+<div style="page-break-after: always;"></div>
+
+### Viewing help : `help`
+
+Forgot a command? You can make use of the `help` command to get a quick overview of all commands available in StudyTracker!
+
+Click on each command on the left panel to view usage instructions of each command.
+
+You can also visit the User Guide and Developer Guide by clicking on the buttons in the window.
+![Help window](images/helpMessage.png)
+
+Format: `help`
+
+<div markdown="span" class="alert alert-primary">:bulb: **Tip:**
+View the help window anytime by using the F1 shortcut!
+Alternatively, click on 'Help' in the menu bar!
+</div>
 
 <div style="page-break-after: always;"></div>
 
@@ -965,11 +964,11 @@ Action | Format, Examples
 **Favourite**  |  `fav n/NAME*` <br> e.g. `fav n/COM1`
 **Unfavourite** | `unfav n/NAME*` <br> e.g. `unfav n/COM1`
 **Delete** | `delete n/NAME*` <br> e.g. `delete n/COM1`
-**Clear** | `clear`
 **List** | `list -f -t t/TAG... -m m/AMENITY... -r r/RATING` <br> e.g. `list -f -t t/quiet -m m/wifi -r r/5`
 **Find** | `find KEYWORD* [MORE KEYWORDS]*`<br> e.g. `find library`
 **Log** | `log -o n/NAME* hr/NUM_OF_HOURS*` <br> e.g. `log -o n/Starbucks hr/5`
 **Alias** | `alias al/ALIAS* cmd/COMMAND*`<br> e.g. `alias al/home cmd/find home`
 **Unalias** | `unalias al/ALIAS*` <br> e.g. `unalias al/ml`
+**Clear** | `clear`
 **Help** | `help`
 **Exit** | `exit`
