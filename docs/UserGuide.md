@@ -344,18 +344,8 @@ Not sure how to use the Command Line Interface? Check <a href="#how-to-use-these
 
 **Examples:** You can try executing the commands in the **input** rows and check if you get the corresponding **output**!
 
-<table>
-<tr>
-<th>
-Input 1
-</th>
-<td>
-```
-Test
-```
-</td>
-</tr>
-</table>
+| Input | Output |
+|---- |---- |
 
 
 <table>
@@ -364,6 +354,8 @@ Test
         Input 1
     </th>
     <td>
+
+
         ```
         add n/COM1 Basement r/5
         ```
@@ -382,6 +374,8 @@ Test
   <tr align="left">
     <th>Input 2</th>
     <td>
+
+
 
 ```
 add n/Starbucks at UTown r/4 t/noisy m/wifi o/0800-2000,0900-2200
