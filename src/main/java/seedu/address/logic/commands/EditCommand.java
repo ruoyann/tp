@@ -17,7 +17,9 @@ import java.util.Collections;
 import java.util.HashSet;
 import java.util.Optional;
 import java.util.Set;
+import java.util.logging.Logger;
 
+import seedu.address.commons.core.LogsCenter;
 import seedu.address.commons.util.CollectionUtil;
 import seedu.address.logic.commands.exceptions.CommandException;
 import seedu.address.model.Model;
@@ -68,6 +70,8 @@ public class EditCommand extends Command {
     public static final String FIELD_TAG = "tag";
     public static final String FIELD_AMENITY = "amenity";
 
+    private static final Logger logger = LogsCenter.getLogger(EditCommand.class);
+
     private final Name name;
     private final EditStudySpotDescriptor editStudySpotDescriptor;
 
@@ -85,6 +89,7 @@ public class EditCommand extends Command {
 
     @Override
     public CommandResult execute(Model model) throws CommandException {
+        logger.info("Executing Edit Command...");
         requireNonNull(model);
 
         StudySpot studySpotToEdit = model.findStudySpot(name);

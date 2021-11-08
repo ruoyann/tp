@@ -6,7 +6,9 @@ import static seedu.address.logic.parser.CliSyntax.PREFIX_HOURS;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_NAME;
 
 import java.util.Set;
+import java.util.logging.Logger;
 
+import seedu.address.commons.core.LogsCenter;
 import seedu.address.commons.exceptions.IllegalValueException;
 import seedu.address.logic.commands.exceptions.CommandException;
 import seedu.address.model.Model;
@@ -46,6 +48,7 @@ public class LogCommand extends Command {
     public static final String FLAG_RESET_ALL = "ra";
     public static final String FLAG_OVERRIDE = "o";
 
+    private static final Logger logger = LogsCenter.getLogger(LogCommand.class);
 
     private final Name name;
     private final StudiedHours studiedHours;
@@ -72,6 +75,7 @@ public class LogCommand extends Command {
 
     @Override
     public CommandResult execute(Model model) throws CommandException {
+        logger.info("Executing Log Command...");
         requireNonNull(model);
 
         if (isResetAll) {

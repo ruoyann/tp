@@ -9,8 +9,10 @@ import java.util.List;
 import java.util.Optional;
 import java.util.Set;
 import java.util.function.Predicate;
+import java.util.logging.Logger;
 import java.util.stream.Collectors;
 
+import seedu.address.commons.core.LogsCenter;
 import seedu.address.model.Model;
 import seedu.address.model.amenity.Amenity;
 import seedu.address.model.studyspot.Rating;
@@ -45,6 +47,8 @@ public class ListCommand extends Command {
     public static final String MESSAGE_MISSING_RATING = "Please enter a rating. e.g. r/5";
     public static final String MESSAGE_UNKNOWN_FLAGS = "Unknown flags given. Valid flags: -f -t -m -r";
 
+    private static final Logger logger = LogsCenter.getLogger(ListCommand.class);
+
     private final Predicate<StudySpot> predicate;
     private final boolean isFavFlagPresent;
     private final Set<Tag> tags;
@@ -68,6 +72,7 @@ public class ListCommand extends Command {
 
     @Override
     public CommandResult execute(Model model) {
+        logger.info("Executing List Command...");
         requireNonNull(model);
         model.updateFilteredStudySpotList(predicate);
         StringBuilder sb = new StringBuilder();

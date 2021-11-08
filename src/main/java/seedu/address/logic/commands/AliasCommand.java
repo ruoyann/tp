@@ -4,8 +4,10 @@ import static java.util.Objects.requireNonNull;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_ALIAS;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_ALIAS_COMMAND;
 
+import java.util.logging.Logger;
 import java.util.stream.Collectors;
 
+import seedu.address.commons.core.LogsCenter;
 import seedu.address.model.Model;
 import seedu.address.model.alias.Alias;
 
@@ -29,6 +31,8 @@ public class AliasCommand extends Command {
 
     public static final String MESSAGE_SUCCESS_SET = "Added alias %1$s";
     public static final String MESSAGE_SUCCESS_SHOW = "Here are your aliases:\n%1$s.";
+
+    private static final Logger logger = LogsCenter.getLogger(AliasCommand.class);
 
     private final boolean isShowType;
     private final Alias alias;
@@ -60,6 +64,7 @@ public class AliasCommand extends Command {
 
     @Override
     public CommandResult execute(Model model) {
+        logger.info("Executing Alias Command...");
         if (this.isShowType) {
             return new CommandResult(String.format(MESSAGE_SUCCESS_SHOW,
                     model.getUserPrefs().getUserAliases().stream()

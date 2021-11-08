@@ -4,6 +4,9 @@ import static java.util.Objects.requireNonNull;
 import static seedu.address.commons.core.Messages.MESSAGE_INVALID_NAME;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_DELETE_SPOT;
 
+import java.util.logging.Logger;
+
+import seedu.address.commons.core.LogsCenter;
 import seedu.address.logic.commands.exceptions.CommandException;
 import seedu.address.model.Model;
 import seedu.address.model.studyspot.Name;
@@ -22,6 +25,8 @@ public class DeleteCommand extends Command {
 
     public static final String MESSAGE_DELETE_STUDYSPOT_SUCCESS = "Deleted study spot: %1$s";
 
+    private static final Logger logger = LogsCenter.getLogger(DeleteCommand.class);
+
     private Name name;
 
     public DeleteCommand(Name name) {
@@ -30,6 +35,7 @@ public class DeleteCommand extends Command {
 
     @Override
     public CommandResult execute(Model model) throws CommandException {
+        logger.info("Executing Delete Command...");
         requireNonNull(model);
         StudySpot studySpotToDelete = model.findStudySpot(name);
         if (studySpotToDelete == null) {

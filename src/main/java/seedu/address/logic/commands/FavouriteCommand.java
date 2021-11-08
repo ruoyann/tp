@@ -4,6 +4,9 @@ import static java.util.Objects.requireNonNull;
 import static seedu.address.commons.core.Messages.MESSAGE_INVALID_NAME;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_NAME;
 
+import java.util.logging.Logger;
+
+import seedu.address.commons.core.LogsCenter;
 import seedu.address.logic.commands.exceptions.CommandException;
 import seedu.address.model.Model;
 import seedu.address.model.studyspot.Name;
@@ -25,6 +28,8 @@ public class FavouriteCommand extends Command {
     public static final String MESSAGE_FAVOURITE_REPEATSTUDYSPOT_FAIL =
             "Study spot provided is already a favourite: %1$s";
 
+    private static final Logger logger = LogsCenter.getLogger(FavouriteCommand.class);
+
     private final Name name;
 
     public FavouriteCommand(Name name) {
@@ -33,6 +38,7 @@ public class FavouriteCommand extends Command {
 
     @Override
     public CommandResult execute(Model model) throws CommandException {
+        logger.info("Executing Favourite Command...");
         requireNonNull(model);
 
         StudySpot studySpotToFavourite = model.findStudySpot(name);

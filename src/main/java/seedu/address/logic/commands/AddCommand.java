@@ -9,6 +9,9 @@ import static seedu.address.logic.parser.CliSyntax.PREFIX_OPERATING_HOURS;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_RATING;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_TAG;
 
+import java.util.logging.Logger;
+
+import seedu.address.commons.core.LogsCenter;
 import seedu.address.logic.commands.exceptions.CommandException;
 import seedu.address.model.Model;
 import seedu.address.model.studyspot.StudySpot;
@@ -42,6 +45,8 @@ public class AddCommand extends Command {
     public static final String MESSAGE_SUCCESS = "New study spot added: %1$s";
     public static final String MESSAGE_DUPLICATE_STUDYSPOT = "This study spot already exists in the study tracker";
 
+    private static final Logger logger = LogsCenter.getLogger(AddCommand.class);
+
     private final StudySpot toAdd;
 
     /**
@@ -54,6 +59,7 @@ public class AddCommand extends Command {
 
     @Override
     public CommandResult execute(Model model) throws CommandException {
+        logger.info("Executing Add Command...");
         requireNonNull(model);
 
         if (model.hasStudySpot(toAdd)) {
