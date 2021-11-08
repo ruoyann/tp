@@ -27,14 +27,12 @@ Want to contribute to development? Check out the [**Developer Guide**](Developer
 
 <div style="page-break-after: always;"></div>
 
----
 
 ## **Table of Contents**
 
 * Table of Contents
 {:toc}
 
----
 
 ## **Quick Start**
 
@@ -82,7 +80,6 @@ with CLI syntax!
 
 <div style="page-break-after: always;"></div>
 
----
 ## **How to use this User Guide**
 
 This section provides tips on reading this document, as well as how to navigate it.
@@ -231,7 +228,6 @@ Congratulations! 🎉 You should now know how to use CLI. Now all you need to kn
 
 <div style="page-break-after: always;"></div>
 
----
 ## **GUI Layout**
 
 This section introduces the Graphical User Interface (GUI) of StudyTracker.
@@ -307,7 +303,6 @@ Similar to any CLI, you can navigate the history of commands you entered with UP
 
 <div style="page-break-after: always;"></div>
 
----
 ## **Features**
 
 This section introduces all the features in StudyTracker.
@@ -946,8 +941,6 @@ StudyTracker data are saved as a JSON file `[home folder]/data/studytracker.json
 If your changes to the data file makes its format invalid, StudyTracker will discard all data and start with an empty data file at the next run.
 </div>
 
----
-
 <div style="page-break-after: always;"></div>
 
 ## **FAQ**
@@ -970,7 +963,6 @@ You may also copy the **preferences.json** file to keep your user preferences.
 **Q**: What do I do when I encounter bugs?<br>
 **A**: As much as possible, we rigorously test our application before it is released. However, should you encounter bugs, you can raise issues to our team [here](https://github.com/AY2122S1-CS2103T-T09-1/tp/issues) and we would look to fix them in upcoming patches.
 
---------------------------------------------------------------------------------------------------------------------
 
 <div style="page-break-after: always;"></div>
 
@@ -985,7 +977,6 @@ Flags | Represented by a dash and a sequence of characters, flags modify the ope
 Parameters | Parameters specify information for a command needed to execute.
 
 
---------------------------------------------------------------------------------------------------------------------
 
 <div style="page-break-after: always;"></div>
 
