@@ -309,7 +309,7 @@ is no integer overflow.
  together, returning a new `StudiedHour`. It also ensures that there is no integer overflow.
 
 `LogCommand.java` is responsible for changing the `StudiedHours` field in a given `StudySpot` (given by its `Name`). 
-It has 3 different ways of doing so:
+It has 4 different ways of doing so:
 - By default, it adds the given input value to the current value.
     - E.g. If the current StudiedHours is 4, and the user logs 3 more hours, it adds 4 and 3 together to give 7 hours.
 - By using the `-o` flag in the input, it **overrides** the original value and replaces it with the given value.
@@ -317,10 +317,12 @@ It has 3 different ways of doing so:
       and replace it with 3.
 - By using the `-r` flag in the input, it **resets** the original value to 0.
     - E.g. If the current StudiedHours is 4, and the user logs with the `-r` flag, the value will be reset to 0.
+- By using the `-ra` flag in the input, it **resets** the original value of ALL `StudySpot`'s to 0.
+    - E.g. If the user logs with the `-ra` flag, all values will be reset to 0.
     
 Given below is an example usage scenario and how the Log feature behaves at each step:
 
-1. The user launches the application. The program loads with the given `StudySpots`.
+1. The user launches the application. The program loads with the given `StudySpot`'s.
 
 ![PartialStudyTrackerDiagram](images/PartialStudyTracker.png)
 
@@ -332,6 +334,8 @@ Given below is an example usage scenario and how the Log feature behaves at each
 1. The user realises he made a mistake, and executes `log -o n/Starbucks UTown hr/3`, which hard changes the 
 `StudiedHours` to 3.
    
+1. The user wants to reset all `StudiedHours` to 0, so the user executes the command `log -ra`.
+   
 The following sequence diagram demonstrates the flow from the given input:
 
 ![LogSequenceDiagram](images/LogSequenceDiagram.png)
@@ -339,6 +343,8 @@ The following sequence diagram demonstrates the flow from the given input:
 ![LogSequenceDiagramOverride](images/LogSequenceDiagramWithFlagO.png)
 
 Sequence diagram for `-r` flag is the same as `-o` but with handleReset() instead of handleOverride()
+
+![LogSequenceDiagramResetAll](images/LogSequenceDiagramWithFlagRA.png)
 
 The following activity diagram summarizes what happens when a user executes a new command:
 
@@ -402,8 +408,35 @@ The following sequence diagram demonstrates how `StudyTrackerParser` parses the 
 
 ![Add OperatingHoursSequenceDiagram](images/AddOperatingHoursSequenceDiagram.png)
 
+### Amenities 
+#### Overview
 
-### Enhanced List feature
+Users are able to add amenities such as wifi, food, aircon and charger to a study spot.
+
+#### Implementation
+
+Amenity is facilitated by these classes: `Amenity.java`, `StudySpot.java`, `AddCommand.java` and `EditCommand.java`.
+
+`Amenity.java` is responsible for creating `Amenity` objects. A `StudySpot` object contains
+an `amenities` attribute. A study spot with an `Amenity` object can be initialised with an Add command
+or the `amenities` attribute can be edited with an Edit command.
+
+Given below is an example usage scenario of adding a study spot with the wifi amenity and how the mechanism behaves.
+
+Step 1. The user executes `add n/COM1 r/5 m/wifi` to add a new study spot. `StudyTrackerParser` class
+creates an `AddCommandParser` to parse the command. Since an amenity is provided in the command,
+`ParserUtil#parseAmenity(String amenity)` is called. An `AddCommand` object with the study spot to be
+added is then created.
+
+Step 2. `LogicManager` executes the `AddCommand` object, calling `Model#addStudySpot(StudySpot studySpot)` so that
+a new study spot is added to the model in StudyTracker.
+
+The following sequence diagram demonstrates how `StudyTrackerParser` parses the command.
+
+![Add AmenitySequenceDiagram](images/AddAmenitySequenceDiagram.png)
+
+
+### Enhanced List Command
 #### Overview
 
 The List Command is enhanced to support filtering of favourites, tags, amenities and rating.
@@ -411,6 +444,16 @@ The List Command is enhanced to support filtering of favourites, tags, amenities
 #### Implementation
 
 The `Model` component stores the currently 'selected' `StudySpot` objects as a separate filtered list. The filter of this list can be updated using `Model#updateFilteredStudySpotList(Predicate<StudySpot> predicate)`.
+
+The following activity diagram outlines the general parsing and execution of a ListCommand.
+
+![ListActivityDiagram](images/ListCommandActivityDiagram.png)
+
+Upon entering a command, the user's input command is parsed and a `ListCommandParser` is created. 
+The parser looks out for flags given in the user's input and checks if the associated parameters are given correctly
+`ListCommandParser` then creates a `ListCommand` object with a `Predicate<StudySpot>` that tests for 
+the specified conditions by the user. `Logic Manager` proceeds to execute `ListCommand` and a `CommandResult` object
+is created. The result is returned to `Logic Manager`.
 
 Given below is an example usage scenario and how the list mechanism behaves at every step.
 
@@ -427,13 +470,11 @@ The following sequence diagram demonstrates how `StudyTrackerParser` parses the 
 
 ![ListSequenceDiagram](images/ListSequenceDiagram.png)
 
-
 #### Design considerations
 
 **Behaviour of filters with multiple tags:**
 * **Alternative 1 (current choice):** Filtering by tags show study spots that all specified tags.
 * **Alternative 2:** Filtering by tags show study spots that contain at least one of the specified tags.
-
 
 The current choice was chosen as it is intuitive and most modern desktop applications follow this behaviour. 
 
@@ -555,8 +596,6 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 | `*`      | user with multiple devices | save data into a user-specified text file           | transfer my data between devices                                                |
 | `*`      | user with multiple devices | import data from a user-specified text file           | transfer my data between devices                                                |
 
-*{More to be added}*
-
 ### Use cases
 
 (For all use cases below, the **System** is the `StudyTracker` and the **Actor** is the `user`, unless specified otherwise)
@@ -640,8 +679,6 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 10. Should be designed for use by a single user
 11. A user with above average typing speed for regular English text (i.e. not code, not system admin commands) should be able to accomplish most of the tasks faster using commands than using the mouse.
 12. StudyTracker is offered as a Free, Open Source Software (FOSS) program, licensed under the MIT License.
-
-*{More to be added}*
 
 ### Glossary
 

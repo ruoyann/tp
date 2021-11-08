@@ -94,7 +94,7 @@ public class LogCommand extends Command {
 
         try {
             StudiedHours newHours = studySpotToAddHours.getStudiedHours().addHours(studiedHours);
-            StudySpot updatedStudySpot = addHoursToStudySpot(studySpotToAddHours, newHours);
+            StudySpot updatedStudySpot = setStudySpotHours(studySpotToAddHours, newHours);
 
             model.setStudySpot(studySpotToAddHours, updatedStudySpot);
             model.updateFilteredStudySpotList(Model.PREDICATE_SHOW_ALL_STUDYSPOTS);
@@ -107,7 +107,7 @@ public class LogCommand extends Command {
 
     private CommandResult handleReset(Model model, StudySpot studySpot) {
         StudiedHours newHours = new StudiedHours("0");
-        StudySpot newStudySpot = addHoursToStudySpot(studySpot, newHours);
+        StudySpot newStudySpot = setStudySpotHours(studySpot, newHours);
         model.setStudySpot(studySpot, newStudySpot);
         model.updateFilteredStudySpotList(Model.PREDICATE_SHOW_ALL_STUDYSPOTS);
         return new CommandResult(String.format(MESSAGE_SUCCESS_RESET, name), true, false, false);
@@ -116,7 +116,7 @@ public class LogCommand extends Command {
     private CommandResult handleResetAll(Model model) {
         for (StudySpot studySpot: model.getFullList()) {
             StudiedHours newHours = new StudiedHours("0");
-            StudySpot newStudySpot = addHoursToStudySpot(studySpot, newHours);
+            StudySpot newStudySpot = setStudySpotHours(studySpot, newHours);
             model.setStudySpot(studySpot, newStudySpot);
         }
         model.updateFilteredStudySpotList(Model.PREDICATE_SHOW_ALL_STUDYSPOTS);
@@ -124,15 +124,15 @@ public class LogCommand extends Command {
     }
 
     private CommandResult handleOverride(Model model, StudySpot studySpot, StudiedHours studiedHours) {
-        StudySpot newStudySpot = addHoursToStudySpot(studySpot, studiedHours);
+        StudySpot newStudySpot = setStudySpotHours(studySpot, studiedHours);
         model.setStudySpot(studySpot, newStudySpot);
         model.updateFilteredStudySpotList(Model.PREDICATE_SHOW_ALL_STUDYSPOTS);
         return new CommandResult(String.format(MESSAGE_SUCCESS_OVERRIDE, studiedHours, studySpot.getName()),
                 true, false, false);
     }
 
-    private static StudySpot addHoursToStudySpot(StudySpot studySpotToAddHours,
-                                                 StudiedHours hoursAfterAddition) {
+    private static StudySpot setStudySpotHours(StudySpot studySpotToAddHours,
+                                               StudiedHours hoursAfterAddition) {
         Name name = studySpotToAddHours.getName();
         Rating rating = studySpotToAddHours.getRating();
         OperatingHours operatingHours = studySpotToAddHours.getOperatingHours();
