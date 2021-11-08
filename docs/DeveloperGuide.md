@@ -41,6 +41,8 @@ To set up your development environment for StudyTracker, refer to this guide [_S
 
 --------------------------------------------------------------------------------------------------------------------
 
+<div style="page-break-after: always;"></div>
+
 ## **Design**
 
 This segment introduces the general architecture of StudyTracker.
@@ -57,6 +59,8 @@ This segment introduces the general architecture of StudyTracker.
 The ***Architecture Diagram*** given above explains the high-level design of the App.
 
 Given below is a quick overview of main components and how they interact with each other.
+
+<div style="page-break-after: always;"></div>
 
 **Main components of the architecture**
 
@@ -92,6 +96,8 @@ Other components interact with a given component through its interface rather th
 
 The sections below give more details of each component.
 
+<div style="page-break-after: always;"></div>
+
 ### UI component
 
 The **API** of this component is specified in [`Ui.java`](https://github.com/AY2122S1-CS2103T-T09-1/tp/tree/master/src/main/java/seedu/address/ui/Ui.java)
@@ -108,6 +114,8 @@ The `UI` component,
 * listens for changes to `Model` data so that the UI can be updated with the modified data.
 * keeps a reference to the `Logic` component, because the `UI` relies on the `Logic` to execute commands.
 * depends on some classes in the `Model` component, as it displays `StudySpot` object residing in the `Model`.
+
+<div style="page-break-after: always;"></div>
 
 ### Logic component
 
@@ -138,6 +146,8 @@ How the parsing works:
 * When called upon to parse a user command, the `StudyTrackerParser` class creates an `XYZCommandParser` (`XYZ` is a placeholder for the specific command name e.g., `AddCommandParser`) which uses the other classes shown above to parse the user command and create a `XYZCommand` object (e.g., `AddCommand`) which the `StudyTrackerParser` returns back as a `Command` object.
 * All `XYZCommandParser` classes (e.g., `AddCommandParser`, `DeleteCommandParser`, ...) inherit from the `Parser` interface so that they can be treated similarly where possible e.g, during testing.
 
+<div style="page-break-after: always;"></div>
+
 ### Model component
 **API** : [`Model.java`](https://github.com/AY2122S1-CS2103T-T09-1/tp/blob/master/src/main/java/seedu/address/model/Model.java)
 
@@ -157,6 +167,7 @@ The `Model` component,
 
 </div>
 
+<div style="page-break-after: always;"></div>
 
 ### Storage component
 
@@ -174,6 +185,8 @@ The `Storage` component,
 Classes used by multiple components are in the `seedu.address.commons` package.
 
 ---
+
+<div style="page-break-after: always;"></div>
 
 ## **Implementation**
 
@@ -212,6 +225,8 @@ Aliases are stored in the `UserPrefs` object.
   `myAdd` will itself expand to another well-formed command (by definition of Alias).
     * `add list find n/Starbucks r/5`  —  not well-formed, since it has 3 command words (only should have one).
     * `myAdd add n/Starbucks r/5`  —  not well-formed, since it has both 1 alias and 1 command word (only should have one).
+
+<div style="page-break-after: always;"></div>
 
 #### Implementation of Alias feature
 
@@ -272,6 +287,8 @@ The following activity diagram summarizes what happens when a user executes a ne
 
 <img src="images/AliasActivityDiagram.png" width="350" />
 
+<div style="page-break-after: always;"></div>
+
 #### Design considerations
 
 **Aspect: What aliases should be allowed:**
@@ -287,7 +304,8 @@ The following activity diagram summarizes what happens when a user executes a ne
 * **Alternative 3:** Aliases can map to commands, including other aliases.
     * Pros: User has even more freedom.
     * Cons: Implementation is much more challenging (e.g. how to prevent recursion?).
-    
+
+<div style="page-break-after: always;"></div>
 
 ### Log feature
 
@@ -350,6 +368,8 @@ The following activity diagram summarizes what happens when a user executes a ne
 
 ![LogActivityDiagram](images/LogActivityDiagram.png)
 
+<div style="page-break-after: always;"></div>
+
 #### Design considerations
 
 Initially, Log Command was designed for users to keep track of how long they studied somewhere, and was supposed to 
@@ -374,6 +394,8 @@ To tackle these issues, the following solutions were implemented:
     to keep track of how long they studied there.
     - Using Edit on `StudiedHours` should provide a similar effect to the `-o` flag of Log, it was agreed that it was
      not natural and unintuitive to use Edit for this purpose.
+
+<div style="page-break-after: always;"></div>
 
 ### Operating Hours
 #### Overview
@@ -408,6 +430,8 @@ The following sequence diagram demonstrates how `StudyTrackerParser` parses the 
 
 ![Add OperatingHoursSequenceDiagram](images/AddOperatingHoursSequenceDiagram.png)
 
+<div style="page-break-after: always;"></div>
+
 ### Amenities 
 #### Overview
 
@@ -435,6 +459,7 @@ The following sequence diagram demonstrates how `StudyTrackerParser` parses the 
 
 ![Add AmenitySequenceDiagram](images/AddAmenitySequenceDiagram.png)
 
+<div style="page-break-after: always;"></div>
 
 ### Enhanced List Command
 #### Overview
@@ -478,6 +503,8 @@ The following sequence diagram demonstrates how `StudyTrackerParser` parses the 
 
 The current choice was chosen as it is intuitive and most modern desktop applications follow this behaviour. 
 
+<div style="page-break-after: always;"></div>
+
 ### Enhanced Edit Command
 
 #### Overview
@@ -507,6 +534,8 @@ The following sequence diagram demonstrates how `StudyTrackerParser` parses the 
 - **Alternative 1 (current choice)**: Users can directly remove a tag or an amenity they specify.
 - **Alternative 2**: Users have to retype existing tags or amenities if they wish to retain them.
 
+<div style="page-break-after: always;"></div>
+
 ### Themes
 
 #### Overview
@@ -532,6 +561,7 @@ The following activity diagram summarizes the process of customizing themes.
 
 ![Themes Activity Diagram](images/ThemesActivityDiagram.png)
 
+<div style="page-break-after: always;"></div>
 
 #### Themes style guide
 
@@ -552,6 +582,8 @@ The following are examples showing the `Default` and `DotsDark` theme.
 * `button` — button colour
 
 ---
+
+<div style="page-break-after: always;"></div>
 
 ## **Documentation, logging, testing, configuration, dev-ops**
 
@@ -577,6 +609,8 @@ The following are examples showing the `Default` and `DotsDark` theme.
 
 **Value proposition**: manage study spots faster than a typical mouse/GUI driven app
 
+<div style="page-break-after: always;"></div>
+
 ### User stories
 
 Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unlikely to have) - `*`
@@ -595,6 +629,8 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 | `*`      | user with many study spots in the study tracker | sort study spots by name           | locate a study spot easily                                                 |
 | `*`      | user with multiple devices | save data into a user-specified text file           | transfer my data between devices                                                |
 | `*`      | user with multiple devices | import data from a user-specified text file           | transfer my data between devices                                                |
+
+<div style="page-break-after: always;"></div>
 
 ### Use cases
 
@@ -664,6 +700,8 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
     * 1a1. StudyTracker shows an error message.
 
       Use case ends.
+
+<div style="page-break-after: always;"></div>
     
 ### Non-Functional Requirements
 
@@ -687,6 +725,8 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 * **Usable**: All functions can be used even if the user experience is not optimal
 
 ---
+
+<div style="page-break-after: always;"></div>
 
 ## **Appendix: Instructions for manual testing**
 
@@ -725,6 +765,8 @@ testers are expected to do more *exploratory* testing.
        
     1. Re-launch the app by double-clicking the jar file.<br>
        Expected: The GUI will launch with the selected theme.
+
+<div style="page-break-after: always;"></div>
        
 ### Adding a study spot
 
@@ -758,6 +800,8 @@ testers are expected to do more *exploratory* testing.
 
     1. Other incorrect delete commands to try: `delete Central Library`, `delete spot/Central Library`<br>
        Expected: Similar to previous.
+
+<div style="page-break-after: always;"></div>
 
 ### Adding and using aliases
 
