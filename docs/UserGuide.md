@@ -995,7 +995,6 @@ Action | Format, Examples
 **List** | `list -f -t t/TAG... -m m/AMENITY... -r r/RATING` <br> e.g. `list -f -t t/quiet -m m/wifi -r r/5`
 **Find** | `find KEYWORD* [MORE KEYWORDS]*`<br> e.g. `find library`
 **Log** | `log -o n/NAME* hr/NUM_OF_HOURS*` <br> e.g. `log -o n/Starbucks hr/5`
-**Alias** | `alias al/ALIAS* cmd/COMMAND*`<br> e.g. `alias al/home cmd/find home`
-**Unalias** | `unalias al/ALIAS*` <br> e.g. `unalias al/ml`
+**Alias / Unalias** | `alias al/ALIAS* cmd/COMMAND*` / `unalias al/ALIAS*`<br> e.g. `alias al/home cmd/find home` / `unalias al/ml`
 **Help** | `help`
 **Exit** | `exit`
