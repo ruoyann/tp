@@ -52,8 +52,6 @@ Let's explore how we **add a new study spot** and **track our study time** with 
     <img src="images/Ui.png" alt="Default Ui" width="550"/>
     <br> _Figure 1 - GUI of StudyTracker_
 
-<div style="page-break-after: always;"></div>
-
 1. Type the command in the [command box](#command-box) and press Enter to execute it. e.g. typing **`help`** and pressing Enter will open the help window.<br>
 
     Do the following commands in sequence:
@@ -898,7 +896,9 @@ Click on each command on the left panel to view usage instructions of each comma
 
 You can also visit the User Guide and Developer Guide by clicking on the buttons in the window.
 
+<p align=“center”>
 ![Help window](images/helpMessage.png)
+</p>
 
 _Figure 9 - Help Window_
 
