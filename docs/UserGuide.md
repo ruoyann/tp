@@ -349,52 +349,6 @@ Not sure how to use the Command Line Interface? Check <a href="#how-to-use-these
 |`add n/COM1 Basement r/5`| New study spot added: COM1 Basement; Rating: 5|
 |`add n/Starbucks at UTown r/4 t/noisy m/wifi o/0800-2000,0900-2200`| New study spot added: Starbucks at UTown; Rating: 4; Operating Hours: Weekdays: 0800-2000, Weekends: 0900-2200; Tags: [noisy]; Amenities: [wifi]|
 
-
-<table>
-  <tr>
-    <th width="90" align="left">
-        Input 1
-    </th>
-    <td>
-
-
-        ```java
-        add n/COM1 Basement r/5
-        ```
-    </td>
-  </tr>
-  <tr align="left">
-    <th>
-        Output 1
-    </th>
-    <td>
-
-        New study spot added: COM1 Basement; Rating: 5
-
-    </td>
-  </tr>
-  <tr align="left">
-    <th>Input 2</th>
-    <td>
-
-
-
-```java
-add n/Starbucks at UTown r/4 t/noisy m/wifi o/0800-2000,0900-2200
-```
-
-</td>
-  </tr>
-  <tr align="left">
-    <th>Output 2</th>
-    <td>
-New study spot added: Starbucks at UTown; Rating: 4; Operating Hours: Weekdays: 0800-2000, Weekends: 0900-2200; Tags: [noisy]; Amenities: [wifi]
-
-</td>
-  </tr>
-</table>
-
-
 <div style="page-break-after: always;"></div>
 
 #### Editing a study spot : `edit`
@@ -417,57 +371,12 @@ you can easily do so by making use of the `edit` command!
 
 **Examples:** You can try executing the commands in the **input** rows and check if you get the corresponding **output**!
 
-<table>
-  <tr>
-    <th width="90" align="left">Input 1</th>
-    <td >
+| Input | Output |
+|---- |---- |
+|`edit spot/COM1 Basement n/Basement`|Edited study spot: Basement; Rating: 5|
+|`edit spot/outside cool spot r/4 t/coffee`|Edited study spot: Outside cool spot; Rating: 4; Address: COM2; Studied Hours: 10; Tags: [warm][drinks][coffee]; Amenities: [wifi][charger][food]|
+|`edit spot/home sweet home t/`|Edited study spot: Home Sweet Home; Rating: 1; Address: 42 Wallaby Way; Amenities: [wifi][charger]|
 
-```edit spot/COM1 Basement n/Basement```
-
-</td>
-  </tr>
-  <tr align="left">
-    <th>Output 1</th>
-    <td>
-
-Edited study spot: Basement; Rating: 5
-
-</td>
-</tr>
-  <tr>
-    <th width="90" align="left">Input 2</th>
-    <td >
-
-```edit spot/outside cool spot r/4 t/coffee```
-
-</td>
-  </tr>
-  <tr align="left">
-    <th>Output 2</th>
-    <td>
-
-Edited study spot: Outside cool spot; Rating: 4; Address: COM2; Studied Hours: 10; Tags: [warm][drinks][coffee]; 
-Amenities: [wifi][charger][food]
-
-</td>
-</tr>
-  <tr>
-    <th width="90" align="left">Input 3</th>
-    <td >
-
-```edit spot/home sweet home t/```
-
-</td>
-  </tr>
-  <tr align="left">
-    <th>Output 3</th>
-    <td>
-
-Edited study spot: Home Sweet Home; Rating: 1; Address: 42 Wallaby Way; Amenities: [wifi][charger]
-
-</td>
-</tr>
-</table>
 
 <div markdown="span" class="alert alert-primary">:information_source: **Note:**
 The above input1 and output1 assumes that there is already a study spot named "COM1 Basement" in the Study Tracker!
@@ -490,24 +399,10 @@ Don't forget to add the spot to your StudyTracker before using the fav command!
 
 **Examples:** You can try executing the commands in the **input** rows and check if you get the corresponding **output**!
 
-<table>
-  <tr>
-    <th width="90" align="left">Input 1</th>
-    <td >
+| Input | Output |
+|---- |---- |
+|`fav n/COM1 Tech Hangout`|Added study spot to favourites: COM1 Tech Hangout|
 
-```fav n/COM1 Tech Hangout```
-
-</td>
-  </tr>
-  <tr align="left">
-    <th>Output 1</th>
-    <td>
-
-Added study spot to favourites: COM1 Tech Hangout
-
-</td>
-</tr>
-</table>
 
 <img src="images/add_favourites.png" alt="favourites"/>
 _Figure 6 - Example of Adding Favourites_
@@ -527,24 +422,10 @@ The study spot you are trying to unfavourite should originally be a favourite!
 
 **Examples:** You can try executing the commands in the **input** rows and check if you get the corresponding **output**!
 
-<table>
-  <tr>
-    <th width="90" align="left">Input 1</th>
-    <td>
+| Input | Output |
+|---- |---- |
+|`unfav n/com1 tech hangout`|Removed study spot from favourites: COM1 Tech Hangout|
 
-```unfav n/com1 tech hangout```
-
-</td>
-  </tr>
-  <tr align="left">
-    <th>Output 1</th>
-    <td>
-
-Removed study spot from favourites: COM1 Tech Hangout
-
-</td>
-</tr>
-</table>
 
 #### Deleting a study spot : `delete`
 
@@ -557,24 +438,10 @@ Want to get rid of study spots that you don't wish to remember? You can use the 
 
 **Examples:** You can try executing the commands in the **input** rows and check if you get the corresponding **output**!
 
-<table>
-  <tr>
-    <th width="90" align="left">Input 1</th>
-    <td >
+| Input | Output |
+|---- |---- |
+|`delete n/Basement`|Deleted study spot: Basement|
 
-```delete n/Basement```
-
-</td>
-  </tr>
-  <tr align="left">
-    <th>Output 1</th>
-    <td>
-
-Deleted study spot: Basement 
-
-</td>
-</tr>
-</table>
 
 ### Managing StudyTracker list
 
@@ -601,40 +468,11 @@ You can use multiple flags at once.
 
 **Examples:** You can try executing the commands in the **input** rows and check if you get the corresponding **output**!
 
-<table>
-  <tr>
-    <th width="90" align="left">Input 1</th>
-    <td >
+| Input | Output |
+|---- |---- |
+|`list`|Listed all study spots|
+|`list -t t/coffee -m m/wifi -r r/4`|Listed all study spots with Tags: [coffee] with Amenities: [wifi] with Rating: 4|
 
-```list``` 
-
-</td>
-  </tr>
-  <tr align="left">
-    <th>Output 1</th>
-    <td>
-
-Listed all study spots
-
-</td>
-  </tr>
-  <tr align="left">
-    <th>Input 2</th>
-    <td>
-
-```list -t t/coffee -m m/wifi -r r/4```
-
-</td>
-  </tr>
-  <tr align="left">
-    <th>Output 2</th>
-    <td>
-
-Listed all study spots with Tags: [coffee] with Amenities: [wifi] with Rating: 4
-
-</td>
-  </tr>
-</table>
 
 <img src="images/list_tags_amenities.png" alt="coffee tags wifi amenities rating 4"/>
 _Figure 7 - Example of listing study spots with wifi, coffee tag and rating of 4_
@@ -660,24 +498,10 @@ Trying to find a study spot by its name? You can use the `find` command to easil
 **output**! Note that the specific number of study spots listed may differ from what you see, depending on what 
 study spots you have. 
 
-<table>
-  <tr>
-    <th width="90" align="left">Input 1</th>
-    <td >
+| Input | Output |
+|---- |---- |
+|`find library`|2 study spot(s) listed!|
 
-```find library```
-
-</td>
-  </tr>
-  <tr align="left">
-    <th>Output 1</th>
-    <td>
-
-2 study spot(s) listed!
-
-</td>
-</tr>
-</table>
 
 ### Logging study hours: `log`
 
@@ -699,69 +523,12 @@ As long as the flag `-ra` is present in the command, hours for all study spots w
 
 **Example:** You can try executing the commands in the **input** rows and check if you get the corresponding **output**!
 
-<table>
-  <tr>
-    <th width="90" align="left">Input 1</th>
-    <td >
-
-```log n/Starbucks UTown hr/2```
-
-</td>
-  </tr>
-  <tr align="left">
-    <th>Output 1</th>
-    <td>
-
-Logged 2 hours at Starbucks UTown!
-
-</td>
-  </tr>
-  <tr align="left">
-    <th>Input 2</th>
-    <td>
-
-```log -o n/Starbucks UTown hr/5```
-
-</td>
-  </tr>
-  <tr align="left">
-    <th>Output 2</th>
-    <td>
-
-Changed hours to 5 at Starbucks UTown!
-</td>
-  </tr>
-  <tr align="left">
-    <th>Input 3</th>
-    <td>
-
-```log -r n/Starbucks UTown```
-
-</td>
-  </tr>
-  <tr align="left">
-    <th>Output 3</th>
-    <td>
-
-Reset hours at Starbucks UTown!
-</td>
-  </tr>
-  <tr align="left">
-    <th>Input 4</th>
-    <td>
-
-```log -ra```
-
-</td>
-  </tr>
-  <tr align="left">
-    <th>Output 4</th>
-    <td>
-
-Reset hours for all study spots!
-</td>
-  </tr>
-</table>
+| Input | Output |
+|---- |---- |
+|`log n/Starbucks UTown hr/2`|Logged 2 hours at Starbucks UTown!|
+|`log -o n/Starbucks UTown hr/5`|Changed hours to 5 at Starbucks UTown!|
+|`log -r n/Starbucks UTown`|Reset hours at Starbucks UTown!|
+|`log -ra`|Reset hours for all study spots!|
 
 <img src="images/log_hours.png" alt="log hours" />
 _Figure 8 - Example of Log command_
@@ -819,24 +586,9 @@ If you do not like an alias you originally set, you can use `unalias` to remove 
 
 **Example:**
 
-<table>
-  <tr>
-    <th width="90" align="left">Input 1</th>
-    <td >
-
-```unalias al/ml```
-
-</td>
-  </tr>
-  <tr align="left">
-    <th>Output 1</th>
-    <td>
-
-Removed alias 'ml'
-
-</td>
-</tr>
-</table>
+| Input | Output |
+|---- |---- |
+|`unalias al/ml`|Removed alias 'ml'|
 
 <div style="page-break-after: always;"></div>
 
@@ -853,24 +605,9 @@ This command is irreversible!
 
 **Example:** You can try executing the commands in the **input** rows and check if you get the corresponding **output**!
 
-<table>
-  <tr>
-    <th width="90" align="left">Input 1</th>
-    <td>
-
-```clear```
-
-</td>
-  </tr>
-  <tr align="left">
-    <th>Output 1</th>
-    <td>
-
-StudyTracker has been cleared!
-
-</td>
-</tr>
-</table>
+| Input | Output |
+|---- |---- |
+|`clear`|StudyTracker has been cleared!|
 
 <div markdown="span" class="alert alert-primary">:bulb: **Tip:**
 If you wish to clear all your study spots while keeping the data you originally stored, you can make a copy of the 
