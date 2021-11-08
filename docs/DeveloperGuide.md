@@ -403,7 +403,7 @@ The following sequence diagram demonstrates how `StudyTrackerParser` parses the 
 ![Add OperatingHoursSequenceDiagram](images/AddOperatingHoursSequenceDiagram.png)
 
 
-### Enhanced List feature
+### Enhanced List Command
 #### Overview
 
 The List Command is enhanced to support filtering of favourites, tags, amenities and rating.
@@ -411,6 +411,16 @@ The List Command is enhanced to support filtering of favourites, tags, amenities
 #### Implementation
 
 The `Model` component stores the currently 'selected' `StudySpot` objects as a separate filtered list. The filter of this list can be updated using `Model#updateFilteredStudySpotList(Predicate<StudySpot> predicate)`.
+
+The following activity diagram outlines the general parsing and execution of a ListCommand.
+
+![ListActivityDiagram](images/ListCommandActivityDiagram.png)
+
+Upon entering a command, the user's input command is parsed and a `ListCommandParser` is created. 
+The parser looks out for flags given in the user's input and checks if the associated parameters are given correctly
+`ListCommandParser` then creates a `ListCommand` object with a `Predicate<StudySpot>` that tests for 
+the specified conditions by the user. `Logic Manager` proceeds to execute `ListCommand` and a `CommandResult` object
+is created. The result is returned to `Logic Manager`.
 
 Given below is an example usage scenario and how the list mechanism behaves at every step.
 
@@ -427,13 +437,11 @@ The following sequence diagram demonstrates how `StudyTrackerParser` parses the 
 
 ![ListSequenceDiagram](images/ListSequenceDiagram.png)
 
-
 #### Design considerations
 
 **Behaviour of filters with multiple tags:**
 * **Alternative 1 (current choice):** Filtering by tags show study spots that all specified tags.
 * **Alternative 2:** Filtering by tags show study spots that contain at least one of the specified tags.
-
 
 The current choice was chosen as it is intuitive and most modern desktop applications follow this behaviour. 
 
