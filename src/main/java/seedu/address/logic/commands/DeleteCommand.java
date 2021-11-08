@@ -19,7 +19,7 @@ public class DeleteCommand extends Command {
 
     public static final String COMMAND_WORD = "delete";
 
-    public static final String MESSAGE_USAGE = COMMAND_WORD + ": Deletes the specified study spot\n"
+    public static final String MESSAGE_USAGE = COMMAND_WORD + ": Deletes the specified study spot (case insensitive)\n"
             + "Parameters: n/NAME* \n"
             + "Example: " + COMMAND_WORD + " " + PREFIX_DELETE_SPOT + "starbucks";
 

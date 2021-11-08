@@ -31,7 +31,7 @@ public class ListCommand extends Command {
             + "The -t flag lists study spots that match given tags\n"
             + "The -m flag lists study spots that match given amenities\n"
             + "The -r flag lists study spots that match given rating\n"
-            + "Parameters: [-f] [-t t/TAG...] [-m m/AMENITY...] [-r r/RATING]\n"
+            + "Parameters: -f -t t/TAG... -m m/AMENITY... -r r/RATING\n"
             + "Example: " + COMMAND_WORD;
     public static final String FLAG_FAVOURITES = "f";
     public static final String FLAG_TAGS = "t";

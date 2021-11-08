@@ -19,7 +19,7 @@ public class FindCommand extends Command {
 
     public static final String MESSAGE_USAGE = COMMAND_WORD + ": Finds all study spots whose names contain any of "
             + "the specified keywords (case-insensitive) and displays them.\n"
-            + "Parameters: KEYWORD [MORE_KEYWORDS]...\n"
+            + "Parameters: KEYWORD MORE_KEYWORDS...\n"
             + "Example: " + COMMAND_WORD + " com2 library biz ";
 
     private static final Logger logger = LogsCenter.getLogger(AddCommand.class);

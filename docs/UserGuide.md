@@ -353,6 +353,11 @@ Tags, amenities, address and operating hours are all optional.
 <div markdown="span" class="alert alert-primary">:bulb: **Tip:**
 Not sure how to use the Command Line Interface? Check <a href="#how-to-use-these-commands-in-command-line-interface">this</a> guide out!
 </div>
+<div markdown="span" class="alert alert-primary">:warning: **Caution:**
+Name cases will be reflected in the interface upon adding, however the name will be case insensitive in future commands for an existing study spot.
+Hence you cannot add a StudySpot with the same name and a different case e.g. If Central Library is already in StudyTracker,
+you cannot add central library.
+</div>
 
 **Examples:** You can try executing the commands in the **input** rows and check if you get the corresponding **output**!
 
@@ -527,7 +532,7 @@ Make use of command aliases to speed up typing your inputs!
 
 Trying to find a study spot by its name? You can use the `find` command to easily do so!
 
-**Format:** `find KEYWORD* [MORE KEYWORDS]`
+**Format:** `find KEYWORD* MORE_KEYWORDS...`
 
 * The search is case-insensitive. e.g `library` will match `Library`
 * StudyTracker will only match full words. e.g. `Lib` will not match `Library`
@@ -742,7 +747,7 @@ Action | Format, Examples
 **Delete** | `delete n/NAME*` <br> e.g. `delete n/COM1`
 **Clear** | `clear`
 **List** | `list -f -t t/TAG... -m m/AMENITY... -r r/RATING` <br> e.g. `list -f -t t/quiet -m m/wifi -r r/5`
-**Find** | `find KEYWORD* [MORE KEYWORDS]*`<br> e.g. `find library`
+**Find** | `find KEYWORD* MORE KEYWORDS...`<br> e.g. `find library`
 **Log** | `log -o n/NAME* hr/NUM_OF_HOURS*` <br> e.g. `log -o n/Starbucks hr/5`
 **Alias / Unalias** | `alias al/ALIAS* cmd/COMMAND*` / `unalias al/ALIAS*`<br> e.g. `alias al/home cmd/find home` / `unalias al/ml`
 **Help** | `help`

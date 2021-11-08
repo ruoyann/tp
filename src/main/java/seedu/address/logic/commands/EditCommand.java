@@ -45,7 +45,7 @@ public class EditCommand extends Command {
             + "Existing values will be overwritten by the input values.\n"
             + "Note that study hours cannot be changed with edit, use log command instead.\n"
             + "Parameters: "
-            + PREFIX_EDIT_SPOT + "NAME* (non-case sensitive) "
+            + PREFIX_EDIT_SPOT + "NAME* "
             + PREFIX_NAME + "NAME "
             + PREFIX_RATING + "RATING "
             + PREFIX_OPERATING_HOURS + "OPERATING HOURS "
