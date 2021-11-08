@@ -17,9 +17,10 @@ This **Developer Guide** assumes that developers are familiar with **Java 8**, *
 
 Only want to know how to use StudyTracker? Check out the [**User Guide**](UserGuide.html) instead.
 
+--- 
+
 <div style="page-break-after: always;"></div>
 
---- 
 ## **Table of Contents**
 
 * Table of Contents
@@ -41,6 +42,8 @@ To set up your development environment for StudyTracker, refer to this guide [_S
 
 --------------------------------------------------------------------------------------------------------------------
 
+<div style="page-break-after: always;"></div>
+
 ## **Design**
 
 This segment introduces the general architecture of StudyTracker.
@@ -57,6 +60,8 @@ This segment introduces the general architecture of StudyTracker.
 The ***Architecture Diagram*** given above explains the high-level design of the App.
 
 Given below is a quick overview of main components and how they interact with each other.
+
+<div style="page-break-after: always;"></div>
 
 **Main components of the architecture**
 
@@ -92,6 +97,8 @@ Other components interact with a given component through its interface rather th
 
 The sections below give more details of each component.
 
+<div style="page-break-after: always;"></div>
+
 ### UI component
 
 The **API** of this component is specified in [`Ui.java`](https://github.com/AY2122S1-CS2103T-T09-1/tp/tree/master/src/main/java/seedu/address/ui/Ui.java)
@@ -109,6 +116,8 @@ The `UI` component,
 * keeps a reference to the `Logic` component, because the `UI` relies on the `Logic` to execute commands.
 * depends on some classes in the `Model` component, as it displays `StudySpot` object residing in the `Model`.
 
+<div style="page-break-after: always;"></div>
+
 ### Logic component
 
 **API** : [`Logic.java`](https://github.com/AY2122S1-CS2103T-T09-1/tp/blob/master/src/main/java/seedu/address/logic/Logic.java)
@@ -123,12 +132,16 @@ How the `Logic` component works:
 1. The command can communicate with the `Model` when it is executed (e.g. to add a `StudySpot`).
 1. The result of the command execution is encapsulated as a `CommandResult` object which is returned from `Logic`.
 
+<div style="page-break-after: always;"></div>
+
 The Sequence Diagram below illustrates the interactions within the `Logic` component for the `execute("delete n/Central Library")` API call.
 
 ![Interactions Inside the Logic Component for the `delete n/Central Library` Command](images/DeleteSequenceDiagram.png)
 
 <div markdown="span" class="alert alert-info">:information_source: **Note:** The lifeline for `DeleteCommandParser` should end at the destroy marker (X) but due to a limitation of PlantUML, the lifeline reaches the end of diagram.
 </div>
+
+<div style="page-break-after: always;"></div>
 
 Here are the other classes in `Logic` (omitted from the class diagram above) that are used for parsing a user command:
 
@@ -138,11 +151,14 @@ How the parsing works:
 * When called upon to parse a user command, the `StudyTrackerParser` class creates an `XYZCommandParser` (`XYZ` is a placeholder for the specific command name e.g., `AddCommandParser`) which uses the other classes shown above to parse the user command and create a `XYZCommand` object (e.g., `AddCommand`) which the `StudyTrackerParser` returns back as a `Command` object.
 * All `XYZCommandParser` classes (e.g., `AddCommandParser`, `DeleteCommandParser`, ...) inherit from the `Parser` interface so that they can be treated similarly where possible e.g, during testing.
 
+<div style="page-break-after: always;"></div>
+
 ### Model component
 **API** : [`Model.java`](https://github.com/AY2122S1-CS2103T-T09-1/tp/blob/master/src/main/java/seedu/address/model/Model.java)
 
 <img src="images/ModelClassDiagram.png" width="750" />
 
+<div style="page-break-after: always;"></div>
 
 The `Model` component,
 
@@ -157,6 +173,7 @@ The `Model` component,
 
 </div>
 
+<div style="page-break-after: always;"></div>
 
 ### Storage component
 
@@ -174,6 +191,8 @@ The `Storage` component,
 Classes used by multiple components are in the `seedu.address.commons` package.
 
 ---
+
+<div style="page-break-after: always;"></div>
 
 ## **Implementation**
 
@@ -213,6 +232,8 @@ Aliases are stored in the `UserPrefs` object.
     * `add list find n/Starbucks r/5`  —  not well-formed, since it has 3 command words (only should have one).
     * `myAdd add n/Starbucks r/5`  —  not well-formed, since it has both 1 alias and 1 command word (only should have one).
 
+<div style="page-break-after: always;"></div>
+
 #### Implementation of Alias feature
 
 The Alias feature is facilitated by three key classes: `Alias.java`, `StudyTrackerParser.java`, and `UserPrefs.java`.
@@ -237,6 +258,8 @@ Given below is an example usage scenario and how the Alias feature behaves at ea
 **Step 1.** The user launches the application for the first time. The program loads with default Aliases.
 
 ![AliasState0](images/AliasState0.png)
+
+<div style="page-break-after: always;"></div>
 
 **Step 2.** The user executes `alias al/myAdd cmd/add r/5 n/` which creates an alias `myAdd` with command `add r/5 n/`.
 The `alias` command calls `Model#addAlias()`, adding this newly created alias to the Model and in UserPrefs.
@@ -272,6 +295,8 @@ The following activity diagram summarizes what happens when a user executes a ne
 
 <img src="images/AliasActivityDiagram.png" width="350" />
 
+<div style="page-break-after: always;"></div>
+
 #### Design considerations
 
 **Aspect: What aliases should be allowed:**
@@ -287,7 +312,8 @@ The following activity diagram summarizes what happens when a user executes a ne
 * **Alternative 3:** Aliases can map to commands, including other aliases.
     * Pros: User has even more freedom.
     * Cons: Implementation is much more challenging (e.g. how to prevent recursion?).
-    
+
+<div style="page-break-after: always;"></div>
 
 ### Log feature
 
@@ -319,22 +345,24 @@ It has 4 different ways of doing so:
     - E.g. If the current StudiedHours is 4, and the user logs with the `-r` flag, the value will be reset to 0.
 - By using the `-ra` flag in the input, it **resets** the original value of ALL `StudySpot`'s to 0.
     - E.g. If the user logs with the `-ra` flag, all values will be reset to 0.
+
+<div style="page-break-after: always;"></div>
     
 Given below is an example usage scenario and how the Log feature behaves at each step:
 
-1. The user launches the application. The program loads with the given `StudySpot`'s.
+Step 1. The user launches the application. The program loads with the given `StudySpot`'s.
 
 ![PartialStudyTrackerDiagram](images/PartialStudyTracker.png)
 
-1. The user executes `log -r n/Starbucks UTown` which resets the `StudiedHours` at Starbucks to 0.
+Step 2. The user executes `log -r n/Starbucks UTown` which resets the `StudiedHours` at Starbucks to 0.
 
-1. After studying for 3 hours at Starbucks, the user executes `log n/Starbucks UTown hr/5`, which adds 5 hours to 0,
+Step 3. After studying for 3 hours at Starbucks, the user executes `log n/Starbucks UTown hr/5`, which adds 5 hours to 0,
  resulting in the `StudiedHours` to become 5.
 
-1. The user realises he made a mistake, and executes `log -o n/Starbucks UTown hr/3`, which hard changes the 
+Step 4. The user realises he made a mistake, and executes `log -o n/Starbucks UTown hr/3`, which hard changes the 
 `StudiedHours` to 3.
    
-1. The user wants to reset all `StudiedHours` to 0, so the user executes the command `log -ra`.
+Step 5. The user wants to reset all `StudiedHours` to 0, so the user executes the command `log -ra`.
    
 The following sequence diagram demonstrates the flow from the given input:
 
@@ -346,9 +374,13 @@ Sequence diagram for `-r` flag is the same as `-o` but with handleReset() instea
 
 ![LogSequenceDiagramResetAll](images/LogSequenceDiagramWithFlagRA.png)
 
+<div style="page-break-after: always;"></div>
+
 The following activity diagram summarizes what happens when a user executes a new command:
 
 ![LogActivityDiagram](images/LogActivityDiagram.png)
+
+<div style="page-break-after: always;"></div>
 
 #### Design considerations
 
@@ -374,6 +406,8 @@ To tackle these issues, the following solutions were implemented:
     to keep track of how long they studied there.
     - Using Edit on `StudiedHours` should provide a similar effect to the `-o` flag of Log, it was agreed that it was
      not natural and unintuitive to use Edit for this purpose.
+
+<div style="page-break-after: always;"></div>
 
 ### Operating Hours
 #### Overview
@@ -404,9 +438,13 @@ The following object diagram illustrates the `OperatingHours` object created.
 Step 2. `LogicManager` executes the `AddCommand` object, calling `Model#addStudySpot(StudySpot studySpot)` so that 
 a new study spot is added to the model in StudyTracker.
 
+<div style="page-break-after: always;"></div>
+
 The following sequence diagram demonstrates how `StudyTrackerParser` parses the command.
 
 ![Add OperatingHoursSequenceDiagram](images/AddOperatingHoursSequenceDiagram.png)
+
+<div style="page-break-after: always;"></div>
 
 ### Amenities 
 #### Overview
@@ -435,6 +473,7 @@ The following sequence diagram demonstrates how `StudyTrackerParser` parses the 
 
 ![Add AmenitySequenceDiagram](images/AddAmenitySequenceDiagram.png)
 
+<div style="page-break-after: always;"></div>
 
 ### Enhanced List Command
 #### Overview
@@ -478,6 +517,8 @@ The following sequence diagram demonstrates how `StudyTrackerParser` parses the 
 
 The current choice was chosen as it is intuitive and most modern desktop applications follow this behaviour. 
 
+<div style="page-break-after: always;"></div>
+
 ### Enhanced Edit Command
 
 #### Overview
@@ -500,12 +541,14 @@ The following sequence diagram demonstrates how `StudyTrackerParser` parses the 
 
 ![Edit RemoveTagSequenceDiagram](images/EditRemoveTagSequenceDiagram.png)
 
+<div style="page-break-after: always;"></div>
 
 #### Design considerations
 
 **Aspect: How to increase the ease of removing fields in a study spot:**
 - **Alternative 1 (current choice)**: Users can directly remove a tag or an amenity they specify.
 - **Alternative 2**: Users have to retype existing tags or amenities if they wish to retain them.
+
 
 ### Themes
 
@@ -523,6 +566,8 @@ These settings are stored by `UserPrefs` in the Model.
 Themes are stored as Strings representing the theme name.
 For example, `"default"` represents the default theme.
 
+<div style="page-break-after: always;"></div>
+
 The `MainWindow` Ui component communicates with the Logic class to read and write the currently selected theme.
 Then, the `MainWindow` takes the stored theme and injects the corresponding CSS file to set the colours of the JavaFX app.
 
@@ -532,6 +577,7 @@ The following activity diagram summarizes the process of customizing themes.
 
 ![Themes Activity Diagram](images/ThemesActivityDiagram.png)
 
+<div style="page-break-after: always;"></div>
 
 #### Themes style guide
 
@@ -552,6 +598,8 @@ The following are examples showing the `Default` and `DotsDark` theme.
 * `button` — button colour
 
 ---
+
+<div style="page-break-after: always;"></div>
 
 ## **Documentation, logging, testing, configuration, dev-ops**
 
@@ -596,6 +644,8 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 | `*`      | user with multiple devices | save data into a user-specified text file           | transfer my data between devices                                                |
 | `*`      | user with multiple devices | import data from a user-specified text file           | transfer my data between devices                                                |
 
+<div style="page-break-after: always;"></div>
+
 ### Use cases
 
 (For all use cases below, the **System** is the `StudyTracker` and the **Actor** is the `user`, unless specified otherwise)
@@ -622,7 +672,8 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
     * 3a1. StudyTracker shows an error message.
 
       Use case resumes at step 2.
-    
+
+<div style="page-break-after: always;"></div>
 
 **UC02 - Add and use an alias**
 
@@ -664,6 +715,8 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
     * 1a1. StudyTracker shows an error message.
 
       Use case ends.
+
+<div style="page-break-after: always;"></div>
     
 ### Non-Functional Requirements
 
@@ -687,6 +740,8 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 * **Usable**: All functions can be used even if the user experience is not optimal
 
 ---
+
+<div style="page-break-after: always;"></div>
 
 ## **Appendix: Instructions for manual testing**
 
@@ -725,6 +780,8 @@ testers are expected to do more *exploratory* testing.
        
     1. Re-launch the app by double-clicking the jar file.<br>
        Expected: The GUI will launch with the selected theme.
+
+<div style="page-break-after: always;"></div>
        
 ### Adding a study spot
 
@@ -759,6 +816,8 @@ testers are expected to do more *exploratory* testing.
     1. Other incorrect delete commands to try: `delete Central Library`, `delete spot/Central Library`<br>
        Expected: Similar to previous.
 
+<div style="page-break-after: always;"></div>
+
 ### Adding and using aliases
 
 1. Adding a custom alias
@@ -789,6 +848,8 @@ testers are expected to do more *exploratory* testing.
     
         Expected: Unknown command execution.
         Error details  shown in the status message.
+
+<div style="page-break-after: always;"></div>
        
 ### Logging hours at a study spot
 

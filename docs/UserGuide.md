@@ -27,16 +27,12 @@ Want to contribute to development? Check out the [**Developer Guide**](Developer
 
 <div style="page-break-after: always;"></div>
 
----
 
 ## **Table of Contents**
 
 * Table of Contents
 {:toc}
 
----
-
-<div style="page-break-after: always;"></div>
 
 ## **Quick Start**
 
@@ -84,7 +80,6 @@ with CLI syntax!
 
 <div style="page-break-after: always;"></div>
 
----
 ## **How to use this User Guide**
 
 This section provides tips on reading this document, as well as how to navigate it.
@@ -107,6 +102,8 @@ You can then look at the [**GUI Layout**](#gui-layout) and [**Features**](#featu
 | :bulb: | This symbol indicates that we are mentioning a tip. |
 | :warning: | This symbol indicates something to be careful of. |
 
+<div style="page-break-after: always;"></div>
+
 ### How to read Commands in StudyTracker
 
 Throughout the User Guide, you'll see commands to enter into StudyTracker.
@@ -120,6 +117,8 @@ Commands use a multipart structure that must be specified in this order:
 
 <img src="images/commandStructure.png" alt="commandStructure" height="300"/>
 <br> _Figure 2 - Command Structure_
+
+<div style="page-break-after: always;"></div>
 
 #### Flags
 
@@ -143,6 +142,8 @@ Show `-s` | `alias`
 <div markdown="span" class="alert alert-primary">:information_source: **Note:**
 Flags may differ in meaning depending on the command word used. 
 </div>
+
+<div style="page-break-after: always;"></div>
 
 #### Parameters
 
@@ -171,6 +172,8 @@ e.g. the `NAME` parameter has a delimiter `n/` and the `AMENITY` parameter has a
   e.g. if the command specifies `help 123`, it will be interpreted as `help`.
 </div>
 
+<div style="page-break-after: always;"></div>
+
 Here is a list of common parameters used.
 
 Parameters | Features that support these parameters
@@ -187,6 +190,8 @@ Remove tag `rt/` | `edit`
 Remove amenity `rm/` | `edit`
 Alias `al/` | `alias`, `unalias`
 Command `cmd` | `alias`, `unalias`
+
+<div style="page-break-after: always;"></div>
 
 ### How to use these Commands in Command Line Interface
 
@@ -223,7 +228,6 @@ Congratulations! 🎉 You should now know how to use CLI. Now all you need to kn
 
 <div style="page-break-after: always;"></div>
 
----
 ## **GUI Layout**
 
 This section introduces the Graphical User Interface (GUI) of StudyTracker.
@@ -241,6 +245,8 @@ On the right side of the interface, you can find the [**Study Spot List**](#stud
 <div markdown="span" class="alert alert-primary">:bulb: **Tip:**
 Check out <a href="#managing-themes">**Managing Themes**</a> section to change the theme of the GUI!
 </div>
+
+<div style="page-break-after: always;"></div>
 
 ### Info Display
 
@@ -264,6 +270,8 @@ The `Total` tag at the top shows total number of favourited study spots in Study
 From left to right, the amenities are **aircon, charger, food, wifi**.
 * `Hours studied` — total number of hours studied at study spot
 
+<div style="page-break-after: always;"></div>
+
 ### Study Spot List
 
 ![Gui annotated](images/GuiStudySpotListAnnotated.png)
@@ -275,7 +283,7 @@ Scroll down the list to view all the study spots!
 * `Name` — name of study spot
 * `Tags` — user-defined tags for the study spot
 * `Address` — address of study spot
-* `Operating Hours` — operating hours of study spot on weekdays and weekends respectively
+* `Operating Hours` — operating hours of study spot on weekdays and weekends 
 * `Favourite` — this icon indicates the study spot is a favourite
 * `Amenities` — the icons represent the amenities present in study spot.
 From left to right, the amenities are **aircon, charger, food, wifi**.
@@ -293,7 +301,8 @@ The **Command Box** is where you can enter [**commands**](#how-to-read-commands-
 Similar to any CLI, you can navigate the history of commands you entered with UP and DOWN arrow keys.
 </div>
 
----
+<div style="page-break-after: always;"></div>
+
 ## **Features**
 
 This section introduces all the features in StudyTracker.
@@ -302,7 +311,8 @@ Features are grouped according to usage.
 Click on the groups to view clear, step-by-step usage instructions!
 
 <div markdown="span" class="alert alert-primary">:information_source: **Note:**
-To get the expected outputs we stated in this guide, please use the app's default data. Also, please enter the inputs by following the sample inputs provided in the features section sequentially.
+To get the expected outputs we stated in this guide, please use the app's default data. Also, please enter the 
+inputs by following the sample inputs provided in the features section sequentially (except for the `clear` command).
 </div>
 
 
@@ -316,6 +326,8 @@ To get the expected outputs we stated in this guide, please use the app's defaul
 | **[Exiting the program](#exiting-the-program--exit)**| Exit StudyTracker <br> **Commands**: `exit` |
 | **[Managing themes](#managing-themes)**| Customize the look of StudyTracker |
 | **[Data](#data)** | Manage and save user data and user preferences |
+
+<div style="page-break-after: always;"></div>
 
 ### Managing study spots 
 
@@ -443,6 +455,32 @@ Want to get rid of study spots that you don't wish to remember? You can use the 
 |`delete n/Basement`|Deleted study spot: Basement|
 
 
+<div style="page-break-after: always;"></div>
+
+### Clearing all entries : `clear`
+
+Moving to a new location and decide to start your list afresh? You can make use of the `clear` command to clear the entire list of
+study spots.
+
+<div markdown="span" class="alert alert-warning">:warning: **Caution:**
+This command is irreversible!
+</div>
+
+**Format:** `clear`
+
+**Example:** You can try executing the commands in the **input** rows and check if you get the corresponding **output**!
+
+| Input | Output |
+|---- |---- |
+|`clear`|StudyTracker has been cleared!|
+
+<div markdown="span" class="alert alert-primary">:bulb: **Tip:**
+If you wish to clear all your study spots while keeping the data you originally stored, you can make a copy of the 
+studytracker.json file which should be found within the data folder of the file with StudyTracker!
+</div>
+
+<div style="page-break-after: always;"></div>
+
 ### Managing StudyTracker list
 
 #### Listing study spots : `list`
@@ -483,6 +521,8 @@ Make use of command aliases to speed up typing your inputs!
 
 [**Default Command alias:**](#setting-command-aliases) `ls`
 
+<div style="page-break-after: always;"></div>
+
 #### Locating a study spot by name: `find`
 
 Trying to find a study spot by its name? You can use the `find` command to easily do so!
@@ -502,6 +542,8 @@ study spots you have.
 |---- |---- |
 |`find library`|2 study spot(s) listed!|
 
+
+<div style="page-break-after: always;"></div>
 
 ### Logging study hours: `log`
 
@@ -539,6 +581,8 @@ Logging 2 hours to 'Starbucks UTown' with the command `log n/starbucks utown hr/
 Use the log command at the end of a study session to keep track of how long you studied somewhere!
 </div>
 
+<div style="page-break-after: always;"></div>
+
 ### Setting Command Aliases
 
 #### Adding command aliases : `alias` 
@@ -564,8 +608,10 @@ Aliases are CASE-SENSITIVE
 * running `ml` will run the `list` command.
 
 <div markdown="span" class="alert alert-primary">:bulb: **Tip:**
-You can chain aliases to make more powerful commands! See the below example.<br> <br>
+You can chain aliases to make more powerful commands! See the below example.<br>
 </div>
+
+<div style="page-break-after: always;"></div>
 
 **Example:** <br>
 
@@ -574,9 +620,7 @@ You can chain aliases to make more powerful commands! See the below example.<br>
 | `alias al/LogCLB cmd/log n/Central Library hr/` | Added alias LogCLB: [log n/Central Library hr/] | `LogCLB 3` | `Logged 3 hours at Central Library!`|
 
 
-
 Running `LogCLB 3` would then result in `log n/Central Library hr/3`, allowing you to log a variable number of study hours to 'Central Library'!
-
 
 #### Removing command aliases: `unalias`
 
@@ -592,31 +636,6 @@ If you do not like an alias you originally set, you can use `unalias` to remove 
 
 <div style="page-break-after: always;"></div>
 
-### Clearing all entries : `clear`
-
-Moving to a new location and decide to start your list afresh? You can make use of the `clear` command to clear the entire list of
-study spots.
-
-<div markdown="span" class="alert alert-warning">:warning: **Caution:**
-This command is irreversible!
-</div>
-
-**Format:** `clear`
-
-**Example:** You can try executing the commands in the **input** rows and check if you get the corresponding **output**!
-
-| Input | Output |
-|---- |---- |
-|`clear`|StudyTracker has been cleared!|
-
-<div markdown="span" class="alert alert-primary">:bulb: **Tip:**
-If you wish to clear all your study spots while keeping the data you originally stored, you can make a copy of the 
-studytracker.json file which should be found within the data folder of the file with StudyTracker!
-</div>
-
-
-<div style="page-break-after: always;"></div>
-
 ### Viewing help : `help`
 
 Forgot a command? You can make use of the `help` command to get a quick overview of all commands available in StudyTracker!
@@ -624,7 +643,11 @@ Forgot a command? You can make use of the `help` command to get a quick overview
 Click on each command on the left panel to view usage instructions of each command.
 
 You can also visit the User Guide and Developer Guide by clicking on the buttons in the window.
-![Help window](images/helpMessage.png)
+
+<img align="center" src="images/helpMessage.png">
+
+_Figure 9 - Help Window_
+
 
 Format: `help`
 
@@ -643,7 +666,6 @@ Hands off the mouse and want to quickly close the app without getting your hands
 
 [**Default Command alias:**](#setting-command-aliases) `bye`, `quit`
 
-<div style="page-break-after: always;"></div>
 
 ### Managing Themes
 Personality matters, and you should be given a way to select a theme that speaks to you!
@@ -671,7 +693,7 @@ StudyTracker data are saved as a JSON file `[home folder]/data/studytracker.json
 If your changes to the data file makes its format invalid, StudyTracker will discard all data and start with an empty data file at the next run.
 </div>
 
----
+<div style="page-break-after: always;"></div>
 
 ## **FAQ**
 
@@ -693,7 +715,8 @@ You may also copy the **preferences.json** file to keep your user preferences.
 **Q**: What do I do when I encounter bugs?<br>
 **A**: As much as possible, we rigorously test our application before it is released. However, should you encounter bugs, you can raise issues to our team [here](https://github.com/AY2122S1-CS2103T-T09-1/tp/issues) and we would look to fix them in upcoming patches.
 
---------------------------------------------------------------------------------------------------------------------
+
+<div style="page-break-after: always;"></div>
 
 ## **Glossary**
 
@@ -706,7 +729,8 @@ Flags | Represented by a dash and a sequence of characters, flags modify the ope
 Parameters | Parameters specify information for a command needed to execute.
 
 
---------------------------------------------------------------------------------------------------------------------
+
+<div style="page-break-after: always;"></div>
 
 ## **Command summary**
 
@@ -714,14 +738,12 @@ Action | Format, Examples
 --------|------------------
 **Add** | `add n/NAME* r/RATING* a/ADDRESS t/TAG... m/AMENITY... o/OPERATING_HOURS` <br> e.g. `add n/COM1 r/5`
 **Edit** | `edit spot/NAME* n/NEW_NAME a/NEW_ADDRESS t/NEW_TAG m/NEW_AMENITY r/NEW_RATING o/NEW_OPERATING_HOURS rt/OLD_TAG rm/OLD_AMENITY`<br> e.g.,`edit spot/tr3 n/Training Room 3`
-**Favourite**  |  `fav n/NAME*` <br> e.g. `fav n/COM1`
-**Unfavourite** | `unfav n/NAME*` <br> e.g. `unfav n/COM1`
+**Favourite / Unfavourite**  |  `fav n/NAME*` / `unfav n/NAME*` <br> e.g. `fav n/COM1` / `unfav n/COM1`
 **Delete** | `delete n/NAME*` <br> e.g. `delete n/COM1`
+**Clear** | `clear`
 **List** | `list -f -t t/TAG... -m m/AMENITY... -r r/RATING` <br> e.g. `list -f -t t/quiet -m m/wifi -r r/5`
 **Find** | `find KEYWORD* [MORE KEYWORDS]*`<br> e.g. `find library`
 **Log** | `log -o n/NAME* hr/NUM_OF_HOURS*` <br> e.g. `log -o n/Starbucks hr/5`
-**Alias** | `alias al/ALIAS* cmd/COMMAND*`<br> e.g. `alias al/home cmd/find home`
-**Unalias** | `unalias al/ALIAS*` <br> e.g. `unalias al/ml`
-**Clear** | `clear`
+**Alias / Unalias** | `alias al/ALIAS* cmd/COMMAND*` / `unalias al/ALIAS*`<br> e.g. `alias al/home cmd/find home` / `unalias al/ml`
 **Help** | `help`
 **Exit** | `exit`
