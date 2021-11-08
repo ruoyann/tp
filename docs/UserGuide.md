@@ -349,7 +349,9 @@ Not sure how to use the Command Line Interface? Check <a href="#how-to-use-these
     <th width="90" align="left">Input 1</th>
     <td >
 
-```add n/COM1 Basement r/5```
+```
+add n/COM1 Basement r/5
+```
 
 </td>
   </tr>
@@ -365,7 +367,9 @@ New study spot added: COM1 Basement; Rating: 5
     <th>Input 2</th>
     <td>
 
-```add n/Starbucks at UTown r/4 t/noisy m/wifi o/0800-2000,0900-2200```
+```
+add n/Starbucks at UTown r/4 t/noisy m/wifi o/0800-2000,0900-2200
+```
 
 </td>
   </tr>
