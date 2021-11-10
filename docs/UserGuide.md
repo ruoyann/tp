@@ -104,8 +104,6 @@ You can then look at the [**GUI Layout**](#gui-layout) and [**Features**](#featu
 | :warning: | This symbol indicates something to be careful of. |
 | :small_red_triangle: | This symbol indicates where you can go back to the top (Table of Contents) |
 
-<div markdown="span">[:small_red_triangle: **Back to Top**](#table-of-contents)
-</div>
 
 <div style="page-break-after: always;"></div>
 
@@ -197,6 +195,9 @@ Alias `al/` | `alias`, `unalias`
 Command `cmd` | `alias`, `unalias`
 
 <div style="page-break-after: always;"></div>
+
+<div markdown="span">[:small_red_triangle: **Back to Top**](#table-of-contents)
+</div>
 
 ### How to use these Commands in Command Line Interface
 
@@ -307,6 +308,9 @@ Similar to any CLI, you can navigate the history of commands you entered with UP
 </div>
 
 <div style="page-break-after: always;"></div>
+
+<div markdown="span">[:small_red_triangle: **Back to Top**](#table-of-contents)
+</div>
 
 ## **Features**
 
@@ -491,6 +495,9 @@ studytracker.json file which should be found within the data folder of the file 
 
 <div style="page-break-after: always;"></div>
 
+<div markdown="span">[:small_red_triangle: **Back to Top**](#table-of-contents)
+</div>
+
 ### Managing StudyTracker list
 
 #### Listing study spots : `list`
@@ -552,8 +559,11 @@ study spots you have.
 |---- |---- |
 |`find library`|2 study spot(s) listed!|
 
+<div markdown="span">[:small_red_triangle: **Back to Top**](#table-of-contents)
+</div>
 
 <div style="page-break-after: always;"></div>
+
 
 ### Logging study hours: `log`
 
@@ -589,6 +599,9 @@ Logging 2 hours to 'Starbucks UTown' with the command `log n/starbucks utown hr/
 
 <div markdown="span" class="alert alert-primary">:bulb: **Tip:**
 Use the log command at the end of a study session to keep track of how long you studied somewhere!
+</div>
+
+<div markdown="span">[:small_red_triangle: **Back to Top**](#table-of-contents)
 </div>
 
 <div style="page-break-after: always;"></div>
@@ -644,6 +657,9 @@ If you do not like an alias you originally set, you can use `unalias` to remove 
 |---- |---- |
 |`unalias al/ml`|Removed alias 'ml'|
 
+<div markdown="span">[:small_red_triangle: **Back to Top**](#table-of-contents)
+</div>
+
 <div style="page-break-after: always;"></div>
 
 ### Viewing help : `help`
@@ -676,6 +692,8 @@ Hands off the mouse and want to quickly close the app without getting your hands
 
 [**Default Command alias:**](#setting-command-aliases) `bye`, `quit`
 
+<div markdown="span">[:small_red_triangle: **Back to Top**](#table-of-contents)
+</div>
 
 ### Managing Themes
 Personality matters, and you should be given a way to select a theme that speaks to you!
@@ -687,6 +705,9 @@ launch the application, rest assured that your colour theme will be set and read
 _Figure 10 - Themes available_
 
 <div style="page-break-after: always;"></div>
+
+<div markdown="span">[:small_red_triangle: **Back to Top**](#table-of-contents)
+</div>
 
 ### Data
 
@@ -701,6 +722,9 @@ StudyTracker data are saved as a JSON file `[home folder]/data/studytracker.json
 
 <div markdown="span" class="alert alert-warning">:warning: **Caution:**
 If your changes to the data file makes its format invalid, StudyTracker will discard all data and start with an empty data file at the next run.
+</div>
+
+<div markdown="span">[:small_red_triangle: **Back to Top**](#table-of-contents)
 </div>
 
 <div style="page-break-after: always;"></div>
@@ -725,6 +749,8 @@ You may also copy the **preferences.json** file to keep your user preferences.
 **Q**: What do I do when I encounter bugs?<br>
 **A**: As much as possible, we rigorously test our application before it is released. However, should you encounter bugs, you can raise issues to our team [here](https://github.com/AY2122S1-CS2103T-T09-1/tp/issues) and we would look to fix them in upcoming patches.
 
+<div markdown="span">[:small_red_triangle: **Back to Top**](#table-of-contents)
+</div>
 
 <div style="page-break-after: always;"></div>
 
@@ -738,7 +764,8 @@ Syntax | The grammar that all commands follow for our software to understand it.
 Flags | Represented by a dash and a sequence of characters, flags modify the operation of a command and are sometimes called options. <br> e.g. `-f` in the command `list -f` to list favourites
 Parameters | Parameters specify information for a command needed to execute.
 
-
+<div markdown="span">[:small_red_triangle: **Back to Top**](#table-of-contents)
+</div>
 
 <div style="page-break-after: always;"></div>
 
@@ -757,3 +784,6 @@ Action | Format, Examples
 **Alias / Unalias** | `alias al/ALIAS* cmd/COMMAND*` / `unalias al/ALIAS*`<br> e.g. `alias al/home cmd/find home` / `unalias al/ml`
 **Help** | `help`
 **Exit** | `exit`
+
+<div markdown="span">[:small_red_triangle: **Back to Top**](#table-of-contents)
+</div>
