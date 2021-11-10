@@ -102,9 +102,9 @@ You can then look at the [**GUI Layout**](#gui-layout) and [**Features**](#featu
 | :information_source: | This symbol indicates that something important to take note of. |
 | :bulb: | This symbol indicates that we are mentioning a tip. |
 | :warning: | This symbol indicates something to be careful of. |
-| :arrow_up: | This symbol indicates where you can go back to the top (Table of Contents) |
+| :small_red_triangle: | This symbol indicates where you can go back to the top (Table of Contents) |
 
-<div markdown="span">:arrow_up: **Back to Top**
+<div markdown="span">[:small_red_triangle: **Back to Top**](#table-of-contents)
 </div>
 
 <div style="page-break-after: always;"></div>
