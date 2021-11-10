@@ -194,10 +194,10 @@ Remove amenity `rm/` | `edit`
 Alias `al/` | `alias`, `unalias`
 Command `cmd` | `alias`, `unalias`
 
-<div style="page-break-after: always;"></div>
-
 <div markdown="span">[:small_red_triangle: **Back to Top**](#table-of-contents)
 </div>
+
+<div style="page-break-after: always;"></div>
 
 ### How to use these Commands in Command Line Interface
 
@@ -307,10 +307,10 @@ The **Command Box** is where you can enter [**commands**](#how-to-read-commands-
 Similar to any CLI, you can navigate the history of commands you entered with UP and DOWN arrow keys.
 </div>
 
-<div style="page-break-after: always;"></div>
-
 <div markdown="span">[:small_red_triangle: **Back to Top**](#table-of-contents)
 </div>
+
+<div style="page-break-after: always;"></div>
 
 ## **Features**
 
@@ -493,10 +493,10 @@ If you wish to clear all your study spots while keeping the data you originally 
 studytracker.json file which should be found within the data folder of the file with StudyTracker!
 </div>
 
-<div style="page-break-after: always;"></div>
-
 <div markdown="span">[:small_red_triangle: **Back to Top**](#table-of-contents)
 </div>
+
+<div style="page-break-after: always;"></div>
 
 ### Managing StudyTracker list
 
@@ -692,8 +692,6 @@ Hands off the mouse and want to quickly close the app without getting your hands
 
 [**Default Command alias:**](#setting-command-aliases) `bye`, `quit`
 
-<div markdown="span">[:small_red_triangle: **Back to Top**](#table-of-contents)
-</div>
 
 ### Managing Themes
 Personality matters, and you should be given a way to select a theme that speaks to you!
@@ -704,10 +702,11 @@ launch the application, rest assured that your colour theme will be set and read
 ![Gui Themes](images/UiThemes.png)
 _Figure 10 - Themes available_
 
-<div style="page-break-after: always;"></div>
-
 <div markdown="span">[:small_red_triangle: **Back to Top**](#table-of-contents)
 </div>
+
+<div style="page-break-after: always;"></div>
+
 
 ### Data
 
