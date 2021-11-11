@@ -52,7 +52,8 @@ Let's explore how we **add a new study spot** and **track our study time** with 
     <img src="images/Ui.png" alt="Default Ui" width="550"/>
     <br> _Figure 1 - GUI of StudyTracker_
 
-1. Type the command in the [command box](#command-box) and press Enter to execute it. e.g. typing **`help`** and pressing Enter will open the help window.<br>
+1. Type the command in the [**command box**](#command-box) and press Enter to execute it. e.g. typing **`help`** and 
+   pressing Enter will open the help window.<br>
 
     Do the following commands in sequence:
 
@@ -71,12 +72,13 @@ Let's explore how we **add a new study spot** and **track our study time** with 
 1. Congratulations! You've just added a new study spot, and logged your study time!
 You're on the right track to productivity!
 
-1. Refer to the [Features](#features) section for more commands and features in StudyTracker.
+1. Refer to the [**Features**](#features) section for more commands and features in StudyTracker.
 
 <div markdown="span" class="alert alert-primary">:bulb: **Tip:** 
 Check out **<a href="#command-structure">How to read Commands in StudyTracker</a>** section if you are unfamiliar 
 with CLI syntax!
 </div>
+
 
 <div style="page-break-after: always;"></div>
 
@@ -85,9 +87,11 @@ with CLI syntax!
 This section provides tips on reading this document, as well as how to navigate it.
 
 This User Guide is structured so that it is easy for you to find what you need.
-If this is your first time using StudyTracker, we recommend reading the User Guide in order, starting from this section.
+If this is your first time using StudyTracker, don't worry! You will have no problems using our app as long as 
+you read this User Guide in order, starting from this section.
 
-It is recommended that you have the StudyTracker application open, so you can try out the commands and features!
+We recommend you to have the StudyTracker application open, so you can try out the commands and features as you go 
+along!
 
 The [**Table of Contents**](#table-of-contents) contains links to all the sections of the guide.
 
@@ -101,6 +105,8 @@ You can then look at the [**GUI Layout**](#gui-layout) and [**Features**](#featu
 | :information_source: | This symbol indicates that something important to take note of. |
 | :bulb: | This symbol indicates that we are mentioning a tip. |
 | :warning: | This symbol indicates something to be careful of. |
+| :small_red_triangle: | This symbol indicates where you can go back to the top (Table of Contents) |
+
 
 <div style="page-break-after: always;"></div>
 
@@ -191,6 +197,9 @@ Remove amenity `rm/` | `edit`
 Alias `al/` | `alias`, `unalias`
 Command `cmd` | `alias`, `unalias`
 
+<div markdown="span">[:small_red_triangle: **Back to Top**](#table-of-contents)
+</div>
+
 <div style="page-break-after: always;"></div>
 
 ### How to use these Commands in Command Line Interface
@@ -201,12 +210,12 @@ You tell the *Command Line Interface* exactly what you want it to do! However, i
 then the program will not be able to help you. Inputs that the CLI understand are called **valid**, while those that are not understood are
 called **invalid**.
 
-Some **valid** user inputs for the [*add command*](#adding-a-study-spot-add) are provided below:
+Some **valid** user inputs for the [**add command**](#adding-a-study-spot-add) are provided below:
 * `add n/PC Commons a/UTown t/veryCrowded m/wifi r/4`
 * `add n/COM2 Basement r/3` (optional arguments are not required)
 * `add n/TR3 r/4 a/Yusof Ishak House m/wifi m/aircon` (multiple amenities are acceptable)
 
-Some **invalid** user inputs for the *add command* are provided below:
+Some **invalid** user inputs for the [**add command**](#adding-a-study-spot-add) are provided below:
 * `add n/PC Commons` (missing `RATING` parameter)
 * `add PC Commons /UTown /very crowded /toilet /4*` (delimiters and slashes missing from parameters, unnecessary asterisk added outside of parameters)
 * `n/PC Commons a/UTown r/4` (missing command word `add`)
@@ -214,7 +223,9 @@ Some **invalid** user inputs for the *add command* are provided below:
 If you accidentally entered a wrong command, don't worry! A comprehensive error message will show up 
 in the display immediately to guide you to entering the correct command.
 
-1. In the [Graphical User Interface Layout](#gui-layout), the **Command Box** can be found at the bottom. This is where you will
+1. In the [**Graphical User Interface Layout**](#gui-layout), the [**Command Box**](#command-box) can be found at the 
+   bottom. 
+   This is where you will
 tell the program what to do.
    
 1. Click on the box that says "Enter command here...", and simply type in whatever input you want.
@@ -235,7 +246,8 @@ This section introduces the Graphical User Interface (GUI) of StudyTracker.
 ![Gui annotated](images/GuiAnnotated.png)
 _Figure 3 - GUI Layout_
 
-The top of the interface contains the **Menu Bar**. Clicking on `File` or `Help` will open up the [Settings menu](#managing-themes) and the [Help window](#viewing-help--help) 
+The top of the interface contains the **Menu Bar**. Clicking on `File` or `Help` will open up the [**Settings menu**]
+(#managing-themes) and the [**Help window**](#viewing-help--help) 
 respectively.
 
 On the left side of the interface, you can find the [**Info Display**](#info-display).
@@ -301,6 +313,9 @@ The **Command Box** is where you can enter [**commands**](#how-to-read-commands-
 Similar to any CLI, you can navigate the history of commands you entered with UP and DOWN arrow keys.
 </div>
 
+<div markdown="span">[:small_red_triangle: **Back to Top**](#table-of-contents)
+</div>
+
 <div style="page-break-after: always;"></div>
 
 ## **Features**
@@ -311,8 +326,8 @@ Features are grouped according to usage.
 Click on the groups to view clear, step-by-step usage instructions!
 
 <div markdown="span" class="alert alert-primary">:information_source: **Note:**
-To get the expected outputs we stated in this guide, please use the app's default data. Also, please enter the 
-inputs by following the sample inputs provided in the features section sequentially (except for the `clear` command).
+To get the expected outputs we stated in this guide exactly, please use the app's default data. Also, please enter 
+the inputs by following the sample inputs provided in the features section sequentially (except for the `clear` command).
 </div>
 
 
@@ -333,7 +348,7 @@ inputs by following the sample inputs provided in the features section sequentia
 
 #### Adding a study spot: `add`
 
-You can add a study spot to StudyTracker by making use of the `add` command.
+Found a new study spot? You can add the study spot to your StudyTracker by making use of the `add` command.
 
 **Format:** `add n/NAME* r/RATING* a/ADDRESS t/TAG... m/AMENITY... o/OPERATING_HOURS`
 
@@ -351,10 +366,12 @@ You can add a study spot to StudyTracker by making use of the `add` command.
 Tags, amenities, address and operating hours are all optional.
 </div>
 <div markdown="span" class="alert alert-primary">:bulb: **Tip:**
-Not sure how to use the Command Line Interface? Check <a href="#how-to-use-these-commands-in-command-line-interface">this</a> guide out!
+Not sure how to use the Command Line Interface? Check <a 
+href="#how-to-use-these-commands-in-command-line-interface">**this**</a> guide out!
 </div>
 <div markdown="span" class="alert alert-primary">:warning: **Caution:**
-Name cases will be reflected in the interface upon adding, however the name will be case insensitive in future commands for an existing study spot.
+Name cases will be reflected in the interface upon adding, however the name will be case-insensitive in future 
+commands for an existing study spot.
 Hence you cannot add a StudySpot with the same name and a different case e.g. If "Central Library" is already in StudyTracker,
 you cannot add "central library".
 </div>
@@ -370,13 +387,14 @@ you cannot add "central library".
 
 #### Editing a study spot : `edit`
 
-If you made a mistake in your `add` command, or wish to change the details of a study spot, 
+If you made a mistake in your `add` command, or wish to change the details of a study spot due to newly-discovered 
+amenities, 
 you can easily do so by making use of the `edit` command!
 
 **Format:** `edit spot/NAME* n/NEW_NAME a/NEW_ADDRESS t/NEW_TAG m/NEW_AMENITY r/NEW_RATING o/NEW_OPERATING_HOURS rt/OLD_TAG rm/OLD_AMENITY`
 
 * Edits the study spot matching `NAME`.
-  The provided `NAME` is not case-sensitive and **must fully match the study spot name**.
+  The provided `NAME` is case-insensitive and **must fully match the study spot name**.
 * You must provide **at least one** of the optional fields.
 * StudyTracker will update the details of the given study spot with any provided `NEW_NAME`, `NEW_ADDRESS`, 
   `NEW_RATING`, `NEW_AMENITY`, `NEW_TAG` and `NEW_OPERATING HOURS`, while removing any provided `OLD_TAG` and 
@@ -406,7 +424,9 @@ your original study spot already has.
 #### Adding a study spot to Favourites: `fav`
 
 Really enjoyed studying somewhere? You can add this study spot to your favourites by using the `fav` command! This will 
-make the Study Spot appear in the [Favourites List](#info-display), reminding you of the place every time you open StudyTracker.
+make the Study Spot appear in the [**Favourites List**](#info-display), reminding you of your favourite study spots 
+every 
+time you open StudyTracker.
 
 <div markdown="span" class="alert alert-primary">:information_source: **Note:**
 Don't forget to add the spot to your StudyTracker before using the fav command! 
@@ -446,12 +466,13 @@ The study spot you are trying to unfavourite should originally be a favourite!
 
 #### Deleting a study spot : `delete`
 
-Want to get rid of study spots that you don't wish to remember? You can use the `delete` command to do so.
+Decided that you never want to go back to a study spot as it was extremely unconducive for studying? You can use the 
+`delete`command to do so.
 
 **Format:** `delete n/NAME*`
 
 * Deletes the study spot matching `NAME`.
-  The provided `NAME` is not case-sensitive and **must fully match the study spot name**.
+  The provided `NAME` is case-insensitive and **must fully match the study spot name**.
 
 **Examples:** You can try executing the commands in the **input** rows and check if you get the corresponding **output**!
 
@@ -484,6 +505,9 @@ If you wish to clear all your study spots while keeping the data you originally 
 studytracker.json file which should be found within the data folder of the file with StudyTracker!
 </div>
 
+<div markdown="span">[:small_red_triangle: **Back to Top**](#table-of-contents)
+</div>
+
 <div style="page-break-after: always;"></div>
 
 ### Managing StudyTracker list
@@ -491,11 +515,11 @@ studytracker.json file which should be found within the data folder of the file 
 #### Listing study spots : `list`
 
 Want to find all the study spots that have the amenity "aircon"? Or perhaps list all the study spots you tagged with 
-"freewater"? You can make use of the `list` command and its various different [flags](#flags) to get what you want. 
+"freeWater"? You can make use of the `list` command and its various different [**flags**](#flags) to get what you want. 
 <br> Note that the results of the `list` command will only contain StudySpots that matches **ALL** the 
 specifications provided by the user. 
 
-Below shows the corresponding [flag](#flags) to its function.
+Below shows the corresponding [**flag**](#flags) to its function.
 
 | Flag     | Function |
 | ----------- | ----------- |
@@ -521,10 +545,9 @@ You can use multiple flags at once.
 _Figure 7 - Example of listing study spots with wifi, coffee tag and rating of 4_
 
 <div markdown="span" class="alert alert-primary">:bulb: **Tip:**
-Make use of command aliases to speed up typing your inputs!
+Make use of [**command aliases**](#setting-command-aliases) to speed up typing your inputs!
+Default Command alias for `list`: `ls`
 </div>
-
-[**Default Command alias:**](#setting-command-aliases) `ls`
 
 <div style="page-break-after: always;"></div>
 
@@ -547,8 +570,11 @@ study spots you have.
 |---- |---- |
 |`find library`|2 study spot(s) listed!|
 
+<div markdown="span">[:small_red_triangle: **Back to Top**](#table-of-contents)
+</div>
 
 <div style="page-break-after: always;"></div>
+
 
 ### Logging study hours: `log`
 
@@ -584,6 +610,9 @@ Logging 2 hours to 'Starbucks UTown' with the command `log n/starbucks utown hr/
 
 <div markdown="span" class="alert alert-primary">:bulb: **Tip:**
 Use the log command at the end of a study session to keep track of how long you studied somewhere!
+</div>
+
+<div markdown="span">[:small_red_triangle: **Back to Top**](#table-of-contents)
 </div>
 
 <div style="page-break-after: always;"></div>
@@ -639,6 +668,9 @@ If you do not like an alias you originally set, you can use `unalias` to remove 
 |---- |---- |
 |`unalias al/ml`|Removed alias 'ml'|
 
+<div markdown="span">[:small_red_triangle: **Back to Top**](#table-of-contents)
+</div>
+
 <div style="page-break-after: always;"></div>
 
 ### Viewing help : `help`
@@ -681,7 +713,11 @@ launch the application, rest assured that your colour theme will be set and read
 ![Gui Themes](images/UiThemes.png)
 _Figure 10 - Themes available_
 
+<div markdown="span">[:small_red_triangle: **Back to Top**](#table-of-contents)
+</div>
+
 <div style="page-break-after: always;"></div>
+
 
 ### Data
 
@@ -698,6 +734,9 @@ StudyTracker data are saved as a JSON file `[home folder]/data/studytracker.json
 If your changes to the data file makes its format invalid, StudyTracker will discard all data and start with an empty data file at the next run.
 </div>
 
+<div markdown="span">[:small_red_triangle: **Back to Top**](#table-of-contents)
+</div>
+
 <div style="page-break-after: always;"></div>
 
 ## **FAQ**
@@ -709,17 +748,26 @@ This section contains frequently asked questions (FAQs) about StudyTracker.
 You may also copy the **preferences.json** file to keep your user preferences.
 
 **Q**: How should tags be used? <br>
-**A**: Tags are short bites of information about study spots. It is up to you to define how you use them. One way is to use `list` to filter for study spots with a specified tag. You can refer to [List](#listing-study-spots--list) for more details.
+**A**: Tags are short bites of information about study spots. It is up to you to define how you use them. One way is 
+to use `list` to filter for study spots with a specified tag. You can refer to [**List**](#listing-study-spots--list) 
+for more details.
 
 **Q**: How do I receive updates for this app? <br>
-**A**: Currently, the app does not automatically update. You can check out the latest version [here](https://github.com/AY2122S1-CS2103T-T09-1/tp/releases). Simply replace your current JAR file with the latest version.
+**A**: Currently, the app does not automatically update. You can check out the latest version [**here**](https://github.
+com/AY2122S1-CS2103T-T09-1/tp/releases). Simply replace your current JAR file with the latest version.
 
 **Q**: Can I contribute to the code as well? <br>
-**A**: Yes, of course! We're open-source and are open to new ideas. You can contact anyone in the team on [Github](https://github.com/AY2122S1-CS2103T-T09-1/tp) and create a pull request [here](https://github.com/AY2122S1-CS2103T-T09-1/tp/pulls).
+**A**: Yes, of course! We're open-source and are open to new ideas. You can contact anyone in the team on [**Github**]
+(https://github.com/AY2122S1-CS2103T-T09-1/tp) and create a pull request [**here**](https://github.
+com/AY2122S1-CS2103T-T09-1/tp/pulls).
 
 **Q**: What do I do when I encounter bugs?<br>
-**A**: As much as possible, we rigorously test our application before it is released. However, should you encounter bugs, you can raise issues to our team [here](https://github.com/AY2122S1-CS2103T-T09-1/tp/issues) and we would look to fix them in upcoming patches.
+**A**: As much as possible, we rigorously test our application before it is released. However, should you encounter 
+bugs, you can raise issues to our team [**here**](https://github.com/AY2122S1-CS2103T-T09-1/tp/issues) and we would 
+look to fix them in upcoming patches.
 
+<div markdown="span">[:small_red_triangle: **Back to Top**](#table-of-contents)
+</div>
 
 <div style="page-break-after: always;"></div>
 
@@ -729,11 +777,12 @@ Term | Definition
 -----------|------------------
 Command Line Interface (CLI) | A user interface that accepts text input to execute commands.
 Graphical User Interface (GUI) | A user interface that uses icons, menus and a mouse to interact with the system.
-Syntax | The grammar that all commands follow for our software to understand it. <br> Click [here](#how-to-read-commands-in-studytracker) where we break it down for you!
+Syntax | The grammar that all commands follow for our software to understand it. <br> Click [**here**](#how-to-read-commands-in-studytracker) where we break it down for you!
 Flags | Represented by a dash and a sequence of characters, flags modify the operation of a command and are sometimes called options. <br> e.g. `-f` in the command `list -f` to list favourites
 Parameters | Parameters specify information for a command needed to execute.
 
-
+<div markdown="span">[:small_red_triangle: **Back to Top**](#table-of-contents)
+</div>
 
 <div style="page-break-after: always;"></div>
 
@@ -752,3 +801,6 @@ Action | Format, Examples
 **Alias / Unalias** | `alias al/ALIAS* cmd/COMMAND*` / `unalias al/ALIAS*`<br> e.g. `alias al/home cmd/find home` / `unalias al/ml`
 **Help** | `help`
 **Exit** | `exit`
+
+<div markdown="span">[:small_red_triangle: **Back to Top**](#table-of-contents)
+</div>
