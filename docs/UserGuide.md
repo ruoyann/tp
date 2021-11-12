@@ -180,9 +180,9 @@ e.g. the `NAME` parameter has a delimiter `n/` and the `AMENITY` parameter has a
 
 <div style="page-break-after: always;"></div>
 
-Here is a list of common parameters used.
+Here is a list of common delimiters used.
 
-Parameters | Features that support these parameters
+Delimiters | Features that support these delimiters
 --------|------------------
 Name `n/` | `add`, `edit`, `fav`, `unfav`, `delete`
 Spot `spot/` | `edit`
@@ -195,7 +195,7 @@ Tag `t/` | `add`, `edit`, `list`
 Remove tag `rt/` | `edit`
 Remove amenity `rm/` | `edit`
 Alias `al/` | `alias`, `unalias`
-Command `cmd` | `alias`, `unalias`
+Command `cmd/` | `alias`, `unalias`
 
 <div markdown="span">[:small_red_triangle: **Back to Top**](#table-of-contents)
 </div>
@@ -246,8 +246,7 @@ This section introduces the Graphical User Interface (GUI) of StudyTracker.
 ![Gui annotated](images/GuiAnnotated.png)
 _Figure 3 - GUI Layout_
 
-The top of the interface contains the **Menu Bar**. Clicking on `File` or `Help` will open up the [**Settings menu**]
-(#managing-themes) and the [**Help window**](#viewing-help--help) 
+The top of the interface contains the **Menu Bar**. Clicking on `File` or `Help` will open up the [**Settings menu**](#managing-themes) and the [**Help window**](#viewing-help--help) 
 respectively.
 
 On the left side of the interface, you can find the [**Info Display**](#info-display).
@@ -753,17 +752,15 @@ to use `list` to filter for study spots with a specified tag. You can refer to [
 for more details.
 
 **Q**: How do I receive updates for this app? <br>
-**A**: Currently, the app does not automatically update. You can check out the latest version [**here**](https://github.
-com/AY2122S1-CS2103T-T09-1/tp/releases). Simply replace your current JAR file with the latest version.
+**A**: Currently, the app does not automatically update. You can check out the latest version [**here**](https://github.com/AY2122S1-CS2103T-T09-1/tp/releases). Simply replace your current JAR file with the latest version.
 
 **Q**: Can I contribute to the code as well? <br>
-**A**: Yes, of course! We're open-source and are open to new ideas. You can contact anyone in the team on [**Github**]
-(https://github.com/AY2122S1-CS2103T-T09-1/tp) and create a pull request [**here**](https://github.
-com/AY2122S1-CS2103T-T09-1/tp/pulls).
+**A**: Yes, of course! We're open-source and are open to new ideas. You can contact anyone in the team on [**Github**](https://github.com/AY2122S1-CS2103T-T09-1/tp) and create a pull request [**here**](https://github.com/AY2122S1-CS2103T-T09-1/tp/pulls).
 
 **Q**: What do I do when I encounter bugs?<br>
 **A**: As much as possible, we rigorously test our application before it is released. However, should you encounter 
-bugs, you can raise issues to our team [**here**](https://github.com/AY2122S1-CS2103T-T09-1/tp/issues) and we would 
+bugs, you can raise issues to our team [**here**](https://githubcom/AY2122S1-CS2103T-T09-1/tp/issues) 
+and we would 
 look to fix them in upcoming patches.
 
 <div markdown="span">[:small_red_triangle: **Back to Top**](#table-of-contents)
@@ -779,7 +776,8 @@ Command Line Interface (CLI) | A user interface that accepts text input to execu
 Graphical User Interface (GUI) | A user interface that uses icons, menus and a mouse to interact with the system.
 Syntax | The grammar that all commands follow for our software to understand it. <br> Click [**here**](#how-to-read-commands-in-studytracker) where we break it down for you!
 Flags | Represented by a dash and a sequence of characters, flags modify the operation of a command and are sometimes called options. <br> e.g. `-f` in the command `list -f` to list favourites
-Parameters | Parameters specify information for a command needed to execute.
+Parameters | Text used to specify information for a command needed to execute.
+Delimiters | A sequence of characters used to specify places in a command where a parameter is given.
 
 <div markdown="span">[:small_red_triangle: **Back to Top**](#table-of-contents)
 </div>
