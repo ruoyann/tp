@@ -500,8 +500,8 @@ This command is irreversible!
 |`clear`|StudyTracker has been cleared!|
 
 <div markdown="span" class="alert alert-primary">:bulb: **Tip:**
-If you wish to clear all your study spots while keeping the data you originally stored, you can make a copy of the 
-studytracker.json file which should be found within the data folder of the file with StudyTracker!
+If you wish to clear all your study spots while keeping the data you originally stored, you can make a copy of [home 
+folder]/data/studytracker.json
 </div>
 
 <div markdown="span">[:small_red_triangle: **Back to Top**](#table-of-contents)
@@ -624,7 +624,7 @@ Do you find yourself using certain commands so often that you wish you could "co
 Alias is the command for you. The `alias` command can help you to shorten input commands to whatever you want it to be. 
 
 <div markdown="span" class="alert alert-primary">:information_source: **Note:**
-Aliases are CASE-SENSITIVE
+Aliases are case-sensitive! 
 </div>
 
 | Format     | Function |
